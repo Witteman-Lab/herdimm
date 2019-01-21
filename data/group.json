@@ -1,0 +1,18 @@
+{
+    "containerId" : "group",
+	"className" : "selectedMember",
+	"groupMembers" : {
+		"memberType1" : {
+			"type" : "Avatar",
+			"n" : 1
+		},
+		"memberType2" : {
+			"type" : "Vulnerable",
+			"n" : 2
+		},
+		"memberType3" : {
+			"type" : "Others",
+			"n" : 6
+		}
+	}
+}

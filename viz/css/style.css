@@ -1,0 +1,32 @@
+div#gridContainer {
+	min-height: 600px;
+	/* max-width: 800px; */
+}
+
+div#gridContainer svg {
+	border: 1px solid #CCC;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+div#gridContainer svg g path {
+	/* background: contain; */
+}
+
+.svgPattern{
+	/* display: none; */
+}
+
+svg defs pattern image {
+/* svg defs pattern { */
+	repeat: no-repeat;
+	background-repeat: no-repeat;
+}
+
+#testSnap {
+	position: absolute;
+	top: 0;
+	left: 0;
+}

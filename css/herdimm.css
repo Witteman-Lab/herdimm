@@ -1,0 +1,137 @@
+/************************************
+ * Reveal override
+ ************************************/
+div.reveal .slides {
+	padding:0;
+	margin:0;
+}
+div.reveal div.slides h1 {
+	margin: 1% 0;
+	font-size: 1em;
+	font-weight: bold;
+	
+}
+div.reveal div.slides h2 {
+	font-size: 0.8em;
+}
+
+div.reveal div.slides section.slide h3 {
+	text-align:center;
+	border-bottom: 5px solid #D9B158;
+	padding: 0 0 5px 0;
+	margin: 1px;
+	font-weight: bold;
+	color:#D9B158;
+	width: auto;
+	display: inline-block;
+}
+div.reveal div.slides section#avatarCreator.slide.present {
+	/* margin-top: 50px; */
+	/* position: absolute; */
+	top: 0 !important;
+}
+
+/************************************
+ * General
+ ************************************/
+body {
+	font-family: Arial;
+	max-width: 1440px;
+	padding: 0 2%;
+}
+h3 {
+	font-size: 1.5em;
+}
+
+/************************************
+ * Navigation
+ ************************************/
+nav#nav {
+	text-align: left;
+	font-size: 0.8em;
+	margin: 1% 0;
+	visibility: hidden;
+	text-decoration: none;
+}
+nav#nav a {
+	margin: 0 3% 0 0;
+	/* color: #D9B158; */
+	text-decoration: none;
+}
+nav#nav a.linkActive {
+	color:#D9B158;
+	font-weight: bold;
+	border-bottom: 5px solid #D9B158;
+	padding-bottom: 5px;
+}
+nav#nav a.linkInactive {
+	color: #BFBABE;
+	font-weight: normal;
+}
+button.main-controls {
+	background-color: #D9B158;
+	color: #FFF;
+	font-size: 0.7em;
+	padding: 5px 20px;
+	margin: 0;
+	min-height: 44px;
+	min-width: 88px;
+	border: none;
+	border-radius: 5px;
+}
+button.main-controls:hover {
+	background-color: #B9974D;
+}
+button.main-controls:active {
+	background-color: #868686;
+}
+
+
+
+/************************************
+ * Avatar related
+ ************************************/
+#svgObject {
+	margin:1% 0;
+	border: 2px solid #CCC;
+	border-radius: 50%;
+}
+.myAvatar {
+	width:15%;
+}
+
+
+/************************************ 
+ * Customizer
+ ************************************/
+a.hairChoice:after {
+	content: "";
+	position: absolute; 
+	top: 0; 
+	right: 0; 
+	bottom: 0; 
+	left: 0;
+}
+a.hairChoice {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+	width: 10%;
+}
+a.hairChoice.selected {
+	background-color: #F0F0F0;
+}
+div.circle {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	display: inline-block;
+	cursor: pointer;
+	margin: 10px;
+}
+div.selected {
+	border: 2px solid #000;
+}
+p.sectionTitle {
+	font-weight: bold;
+}

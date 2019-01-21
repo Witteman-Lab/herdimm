@@ -1,0 +1,52 @@
+{
+    "containerId" : "glasses",
+	"folder" : "./medias/glasses/",
+	"className" : "glasses",
+	"glasses" : {
+		"glasses1" : { 
+			"file" : "glasses1.png"
+		},
+		"glasses2" : { 
+			"file" : "glasses2.png"
+		},
+		"glasses3" : { 
+			"file" : "glasses3.png"
+		},
+		"glasses4" : { 
+			"file" : "glasses4.png"
+		},
+		"glasses5" : { 
+			"file" : "glasses5.png"
+		},
+		"glasses6" : { 
+			"file" : "glasses6.png"
+		},
+		"glasses7" : { 
+			"file" : "glasses7.png"
+		},
+		"glasses8" : { 
+			"file" : "glasses8.png"
+		},
+		"glasses9" : { 
+			"file" : "glasses9.png"
+		},
+		"glasses10" : { 
+			"file" : "glasses10.png"
+		},
+		"glasses11" : { 
+			"file" : "glasses11.png"
+		},
+		"glasses12" : { 
+			"file" : "glasses12.png"
+		},
+		"glasses13" : { 
+			"file" : "glasses13.png"
+		},
+		"glasses14" : { 
+			"file" : "glasses14.png"
+		},
+		"glasses15" : { 
+			"file" : "glasses15.png"
+		}
+	}
+}

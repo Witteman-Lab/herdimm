@@ -1,0 +1,94 @@
+{
+    "containerId" : "gridContainer",
+    "shapeSize" : "20",
+	"sidesNumber" : "6",
+	"cap" : "round",
+	"margin" : "5",
+	"fill" : "#BFBABE",
+	"stroke" : "#BFBABE",
+	"opacity" : "1",
+	"linewidth" : "5",
+	"shapes" : {
+		"shape1" : { 
+			"id" : "hex1",
+			"fill" : "#FFC",
+			"opacity" : "1",
+			"stroke" : "#BFBABE",
+			"linewidth" : "10",
+			"line" : "1",
+			"column" : "2"
+		},
+		"shape2" : { 
+			"id" : "hex2",
+			"fill" : "#FFC",
+			"opacity" : "1",
+			"stroke" : "#BFBABE",
+			"linewidth" : "10",
+			"line" : "2",
+			"column" : "1"
+		},
+		"shape3" : { 
+			"id" : "hex3",
+			"fill" : "#FFF",
+			"opacity" : "1",
+			"stroke" : "#5387BC",
+			"linewidth" : "10",
+			"line" : "2",
+			"column" : "3"
+		},
+		"shape4" : { 
+			"id" : "hex4",
+			"fill" : "#FFF",
+			"opacity" : "1",
+			"stroke" : "#5387BC",
+			"linewidth" : "10",
+			"line" : "3",
+			"column" : "2"
+		},
+		"shape5" : { 
+			"id" : "hex5",
+			"fill" : "#FFF",
+			"opacity" : "1",
+			"stroke" : "#BFBABE",
+			"linewidth" : "10",
+			"line" : "3",
+			"column" : "4"
+		},
+		"shape6" : { 
+			"id" : "hex6",
+			"fill" : "#FFF",
+			"opacity" : "1",
+			"stroke" : "#5387BC",
+			"linewidth" : "10",
+			"line" : "4",
+			"column" : "1"
+		},
+		"shape7" : { 
+			"id" : "hex7",
+			"fill" : "#FFF",
+			"opacity" : "1",
+			"stroke" : "#F00",
+			"linewidth" : "10",
+			"line" : "4",
+			"column" : "3"
+		},
+		"shape8" : { 
+			"id" : "hex8",
+			"fill" : "#FFF",
+			"opacity" : "1",
+			"stroke" : "#BFBABE",
+			"linewidth" : "10",
+			"line" : "5",
+			"column" : "2"
+		},
+		"shape9" : { 
+			"id" : "hex9",
+			"fill" : "#FFF",
+			"opacity" : "1",
+			"stroke" : "#BFBABE",
+			"linewidth" : "10",
+			"line" : "5",
+			"column" : "4"
+		}
+	}
+}

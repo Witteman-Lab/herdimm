@@ -1,0 +1,79 @@
+{
+    "containerId" : "facialHairs",
+	"folder" : "./medias/facialHair/",
+	"className" : "facialHair",
+	"facialHair" : {
+		"facialHair1" : { 
+			"file" : "facialHair1.png"
+		},
+		"facialHair2" : { 
+			"file" : "facialHair2.png"
+		},
+		"facialHair3" : { 
+			"file" : "facialHair3.png"
+		},
+		"facialHair4" : { 
+			"file" : "facialHair4.png"
+		},
+		"facialHair5" : { 
+			"file" : "facialHair5.png"
+		},
+		"facialHair6" : { 
+			"file" : "facialHair6.png"
+		},
+		"facialHair7" : { 
+			"file" : "facialHair7.png"
+		},
+		"facialHair8" : { 
+			"file" : "facialHair8.png"
+		},
+		"facialHair9" : { 
+			"file" : "facialHair9.png"
+		},
+		"facialHair10" : { 
+			"file" : "facialHair10.png"
+		},
+		"facialHair11" : { 
+			"file" : "facialHair11.png"
+		},
+		"facialHair12" : { 
+			"file" : "facialHair12.png"
+		},
+		"facialHair13" : { 
+			"file" : "facialHair13.png"
+		},
+		"facialHair14" : { 
+			"file" : "facialHair14.png"
+		},
+		"facialHair15" : { 
+			"file" : "facialHair15.png"
+		},
+		"facialHair16" : { 
+			"file" : "facialHair16.png"
+		},
+		"facialHair17" : { 
+			"file" : "facialHair17.png"
+		},
+		"facialHair18" : { 
+			"file" : "facialHair18.png"
+		},
+		"facialHair19" : { 
+			"file" : "facialHair19.png"
+		},
+		"facialHair20" : { 
+			"file" : "facialHair20.png"
+		},
+		"facialHair21" : { 
+			"file" : "facialHair21.png"
+		},
+		"facialHair22" : { 
+			"file" : "facialHair22.png"
+		},
+		"facialHair23" : { 
+			"file" : "facialHair23.png"
+		},
+		"facialHair24" : { 
+			"file" : "facialHair24.png"
+		}
+	}
+}

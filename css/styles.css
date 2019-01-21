@@ -1,0 +1,250 @@
+/************************************
+ * Reveal override
+ ************************************/
+div.reveal .slides {
+	padding:0;
+	margin:0;
+	width: 100% !important;
+	height: 100% !important;
+	zoom: 1 !important;
+}
+div.reveal div.slides section.slide.present {
+	
+}
+div.reveal div.slides h1, div.reveal div.slides h2 {
+	margin: 1% 0;
+	font-weight: bold;
+	text-align: center;
+}
+div.reveal div.slides h1 {
+	font-size: 1.6em;
+}
+div.reveal div.slides h2 {
+	font-size: 1.4em;
+}
+
+
+/************************************
+ * General
+ ************************************/
+html {
+	font-size: 14px;
+	font-family: Arial;
+}
+
+body {
+	padding: 20px;
+	width: 100%;
+}
+
+
+/************************************
+ * Loader
+ ************************************/
+div#loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+	text-align: center;
+	margin: auto;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+p#loader {
+	font-size: 1.4em;
+	color: #3498db;
+	text-align: center;
+}
+
+
+/************************************
+ * Content
+ ************************************/
+p#instructions {
+	margin: 20px 0;
+}
+ 
+
+/************************************
+ * Characters
+ ************************************/
+div#characters {
+	visibility: hidden;
+}
+
+/************************************
+ * Character customizer
+ ************************************/
+div#characterCustomizer {
+	display: none;
+}
+.wrap_character:after {
+	content: "";
+	position: absolute; 
+	top: 0; 
+	right: 0; 
+	bottom: 0; 
+	left: 0;
+}
+.wrap_character {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+	margin: 0;
+	padding: 0;
+	width: 100px;
+}
+.wrap_character:hover {
+	background-color: #f3f3f3;
+}
+
+.character, .wrap_character {
+	min-width: 50px;
+	min-height: 50px;
+}
+div.selectedMember {
+	border: 1px dashed #BBB;
+	width: 100px;
+	height: 100px;
+	display: inline-block;
+	margin: 0 10px 0 0;
+}
+
+div#characterCustomizer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+	min-width: 175px;
+    width: 30%; 	/* 30% | 30em */
+    /*height: 30%;*/ 	/* 30% | 18em */
+    margin-top: -15%; 	/* -15% */ /* set to a negative number 1/2 of your height */
+    margin-left: -15%; /* -15% */ /* set to a negative number 1/2 of your width */
+    padding: 10px;
+	border: 1px solid #DDD;
+    background-color: #f3f3f3EE;
+	text-align: center;
+	z-index: 99999;
+}
+
+input#hairSpectrum::before {
+	content: "Hair color";
+}
+
+input#skinSpectrum::before {
+	content: "Skin color";
+}
+
+div#characterCustomizer img {
+	width: 100%;
+}
+
+div#facialHairs, div#glasses {
+	position: absolute;
+	top: 40%;
+	width: 50px;
+	height: 50px;
+	background-color: #FFF;
+	border: 1px solid #333;
+	cursor: pointer;
+	text-align: center;
+}
+div#facialHairs {
+	right: 15px;
+}
+div#glasses {
+	left: 15px;
+}
+
+div#listFacialHair, div#listGlasses {
+	background-color: #FFF;
+	border: 1px solid #333;
+	display: inline-block;
+	padding: 1px;
+	height: 200px;
+	overflow: auto;
+}
+div#facialHairs img, div#glasses img, div#listFacialHair img, div#listGlasses img {
+	vertical-align: middle;
+}
+div#listFacialHair img, div#listGlasses img {
+	margin: 5px auto;
+	border: none;
+}
+div#listFacialHair img:hover, div#listGlasses img:hover {
+	/* border: 1px solid #0FC; */
+	/* background-color: #00CC0066; */
+}
+span.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+	background-color: #FFF;
+}
+img.noAccessory::after {
+	content: "None";
+}
+p.accessoryTitle {
+	position: absolute;
+	top: 0;
+	font-size: 0.7em;
+	width: 100%;
+	margin: 0 auto;
+}
+#close {
+	position: absolute;
+	top: 0;
+	right: 0;
+	cursor: pointer;
+}
+button#add {
+	margin: 10px 0 0 0;
+}
+
+/************************************
+ * Group
+ ************************************/
+div#group {
+	visibility: hidden;
+	margin: 0 auto;
+	width: 100%;
+	padding: 5px;
+	background-color: #FFF;
+	z-index: 99998;
+}
+
+div.selected {
+	border: 1px solid #DDD;
+    background-color: #f3f3f3;
+}
+
+button span.shortcut {
+	font-size: 0.8em;
+	color: #666;
+}
+
+#continue {
+	padding: 10px;
+	margin: 20px 0 0 0;
+	border: 1px solid #FFF;
+    background-color: #123;
+	text-decoration: none;
+	color: #FFF;
+	display: inline-block;
+	visibility: hidden;
+}
+a#continuer:link, a#continuer:visited{
+	
+}
+a#continuer:hover{
+	background-color: #678;
+	color: #123;
+}
+a#continuer:active{
+	background-color: #345;
+	color: #123;
+}
