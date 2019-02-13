@@ -1,4 +1,14 @@
 module.exports = {
     baseUrl: './',
-    assetsDir: '../src/assets/'
+    chainWebpack: config => {
+        const svgRule = config.module.rule('svg');
+        svgRule.uses.clear();
+
+        svgRule
+            .test(/\.(svg)$/)
+            .use('html-loader')
+            .loader('html-loader')
+            .options({
+            })
+    }
 };
