@@ -28,10 +28,12 @@
 
               <br/>
               <br/>
+              <div class="buttons is-light is-centered">
+                  <span class="button"  v-on:click="this.resetFaceColor">Reset Color</span>
+                  <span class="button"  v-on:click="this.changeFaceColor">Change Face Color</span>
+                  <span class="button"  v-on:click="this.changeHairColor">Change Hair Color</span>
+              </div>
 
-              <button v-on:click="this.resetFaceColor">Reset Color</button>
-              <button v-on:click="this.changeFaceColor">Change Face Color</button>
-              <button v-on:click="this.changeHairColor">Change Hair Color</button>
 
 
           </div>
