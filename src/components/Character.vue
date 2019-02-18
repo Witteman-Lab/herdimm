@@ -1,7 +1,6 @@
 <template>
     <div>
-        Character component
-        <div style="display: flex; justify-content: center">
+        <div style="display: block; float: left; margin-right: auto; margin-left: auto">
             <div ref="characterImg" v-html="this.svg" style="width: 128px; height: 119px;"></div>
         </div>
     </div>
@@ -56,5 +55,6 @@
 </script>
 
 <style scoped>
+
 
 </style>
