@@ -7,6 +7,7 @@
 </template>
 
 <script>
+
     export default {
         components: {
         },
@@ -21,7 +22,7 @@
                     hairBack: ''
                 },
                 characterInstance: '',
-                defaultColor: ''
+                defaultColor: '',
             };
         },
         props: {
@@ -42,6 +43,9 @@
             },
             resetFaceColor(){
                 this.characterInstance.innerHTML = this.defaultColor;
+            },
+            getSvgColor() {
+                return this.svgColor
             }
         },
         created() {
