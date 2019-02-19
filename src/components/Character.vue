@@ -1,12 +1,13 @@
 <template>
     <div>
         <div style="display: block; float: left; margin-right: auto; margin-left: auto">
-            <div ref="characterImg" v-html="this.svg" style="width: 60px; height: 75px;"></div>
+            <div ref="characterImg" v-html="this.svg" style="width: 60px; height: 75git px;"></div>
         </div>
     </div>
 </template>
 
 <script>
+
     export default {
         components: {
         },
@@ -21,7 +22,7 @@
                     hairBack: ''
                 },
                 characterInstance: '',
-                defaultColor: ''
+                defaultColor: '',
             };
         },
         props: {
@@ -42,6 +43,9 @@
             },
             resetFaceColor(){
                 this.characterInstance.innerHTML = this.defaultColor;
+            },
+            getSvgColor() {
+                return this.svgColor
             }
         },
         created() {

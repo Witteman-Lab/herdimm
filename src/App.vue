@@ -7,6 +7,7 @@
 
                // menu
 
+<<<<<<< HEAD
               </div>
 
               <div class="column is-one-third " >
@@ -56,8 +57,30 @@
                           </div>
                       </div>
                   </div>
+=======
+              // menu
+>>>>>>> 1d17afcdb9bbaa6e90576fbce8646e702e7ea35f
 
 
+<<<<<<< HEAD
+=======
+          <div class="column is-one-third " >
+              <div class="image " style="cursor: pointer">
+                  <Character  ref="character" :svgFile="require(`./assets/characters/F-1.svg`)" :color="this.currentColor" />
+                  <Character  ref="character" :svgFile="require('./assets/characters/F-1.svg')" :color="this.currentColor" />
+                  <Character  ref="character" :svgFile="require('./assets/characters/F-1.svg')" :color="this.currentColor" />
+                  <Character  ref="character" :svgFile="require('./assets/characters/F-1.svg')" :color="this.currentColor" />
+                  <Character  ref="character" :svgFile="require('./assets/characters/F-1.svg')" :color="this.currentColor" />
+                  <character  ref="character" :svgFile="require('./assets/characters/F-1.svg')" :color="this.currentColor" />
+                  <Character  ref="character" :svgFile="require('./assets/characters/F-1.svg')" :color="this.currentColor" />
+                  <Character  ref="character" :svgFile="require('./assets/characters/F-1.svg')" :color="''" /> -->
+              </div>
+          </div>
+            <div>
+                <CharacterList></CharacterList>
+            </div>
+          <div class="column is-centered is-half-desktop is-half-mobile ">
+>>>>>>> 1d17afcdb9bbaa6e90576fbce8646e702e7ea35f
 
               </div>
               <div class="column is-centered is-half-desktop is-half-mobile ">
@@ -74,11 +97,16 @@
                       <span class="button"  v-on:click="this.changeHairColor">Change Hair Color</span>
                   </div>
 
+<<<<<<< HEAD
 
 
               </div>
             </div>
      </section>
+=======
+          </div>
+        </div>
+>>>>>>> 1d17afcdb9bbaa6e90576fbce8646e702e7ea35f
   </div>
 
 
@@ -88,10 +116,12 @@
 <script>
     import Character from './components/Character.vue'
     import { Slider } from 'vue-color';
+    import CharacterList from "./components/CharacterList";
 
     export default {
         name: 'app',
         components: {
+            CharacterList,
             Character,
             'slider-picker': Slider,
         },
@@ -127,7 +157,6 @@
     text-align: center;
     color: #2c3e50;
     margin-top: 60px;
-
   }
 
 
