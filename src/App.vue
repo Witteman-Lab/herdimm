@@ -5,83 +5,68 @@
               <div class="column ">
 
 
-               // menu
-
-<<<<<<< HEAD
+             <!--
+                  <Character  ref="character" :svgFile="require('./assets/F-1.svg')" :color="this.currentColor" />
+                  <Character  ref="character" :svgFile="require('./assets/F-1.svg')" :color="this.currentColor" />
+                  <Character  ref="character" :svgFile="require('./assets/F-1.svg')" :color="this.currentColor" />
+                  <Character  ref="character" :svgFile="require('./assets/F-1.svg')" :color="this.currentColor" />
+                  <Character  ref="character" :svgFile="require('./assets/F-1.svg')" :color="this.currentColor" />
+                  <Character  ref="character" :svgFile="require('./assets/F-1.svg')" :color="this.currentColor" />
+                  <div>
+                      <CharacterList></CharacterList>
+                  </div>
+                  <br/>
+                -->
               </div>
 
               <div class="column is-one-third " >
                   <div class="image " style="cursor: pointer">
-                      <Character  ref="character" :svgFile="require('./assets/F-1.svg')" :color="this.currentColor" />
-                      <Character  ref="character" :svgFile="require('./assets/F-1.svg')" :color="this.currentColor" />
-                      <Character  ref="character" :svgFile="require('./assets/F-1.svg')" :color="this.currentColor" />
-                      <Character  ref="character" :svgFile="require('./assets/F-1.svg')" :color="this.currentColor" />
-                      <character  ref="character" :svgFile="require('./assets/F-1.svg')" :color="this.currentColor" />
-                      <Character  ref="character" :svgFile="require('./assets/F-1.svg')" :color="this.currentColor" />
-                      <Character  ref="character" :svgFile="require('./assets/F-1.svg')" :color="this.currentColor" />
+                      <div class="image" v-on:click="launch">
+                          <CharacterList></CharacterList>
 
-                      <div class="modal">
+                      </div>
+
+                      <div class="modal" v-bind:class="{'is-active': isActive }" >
                           <div class="modal-background">
                               <div class="modal-card">
-                                  <section class="modal-card-body">
-                                      <div class="dropdown is-center is-active">
-                                          <div class="dropdown-trigger">
-                                              <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
-                                                  <span>Hair color</span>
-                                                  <span class="icon is-small">
-                                                      <i class="fas fa-angle-down" aria-hidden="true"></i>
-                                                  </span>
-                                              </button>
-                                          </div>
-                                          <div class="dropdown-content">
+                                  <section class=" section">
 
-                                          </div>
-                                          <div class="dropdown is-le is-active">
+                                      <div class=" modal-card head">
+
+                                          <div class="dropdown is-center is-active">
                                               <div class="dropdown-trigger">
                                                   <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
                                                       <span>Hair color</span>
-                                                      <span class="icon is-small">
-                                                      <i class="fas fa-angle-down" aria-hidden="true"></i>
-                                                  </span>
+                                                        <span class="icon is-small">
+                                                          <i class="fas fa-angle-down" aria-hidden="true"></i>
+                                                        </span>
                                                   </button>
                                               </div>
                                               <div class="dropdown-content">
 
                                               </div>
+                                              <div class="dropdown is-pulled-left is-active">
+                                                  <div class="dropdown-trigger">
+                                                      <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                                                          <span>Hair color</span>
+                                                           <span class="icon is-small">
+                                                          <i class="fas fa-angle-down" aria-hidden="true"></i>
+                                                      </span>
+                                                      </button>
+                                                  </div>
+                                                  <div class="dropdown-content">
+
+                                                  </div>
+                                            </div>
+                                          </div>
+
                                       </div>
-                                      <Character  ref="character" :svgFile="require('./assets/F-1.svg')" :color="this.currentColor" />
-
-
                                   </section>
                               </div>
                           </div>
                       </div>
+
                   </div>
-=======
-              // menu
->>>>>>> 1d17afcdb9bbaa6e90576fbce8646e702e7ea35f
-
-
-<<<<<<< HEAD
-=======
-          <div class="column is-one-third " >
-              <div class="image " style="cursor: pointer">
-                  <Character  ref="character" :svgFile="require(`./assets/characters/F-1.svg`)" :color="this.currentColor" />
-                  <Character  ref="character" :svgFile="require('./assets/characters/F-1.svg')" :color="this.currentColor" />
-                  <Character  ref="character" :svgFile="require('./assets/characters/F-1.svg')" :color="this.currentColor" />
-                  <Character  ref="character" :svgFile="require('./assets/characters/F-1.svg')" :color="this.currentColor" />
-                  <Character  ref="character" :svgFile="require('./assets/characters/F-1.svg')" :color="this.currentColor" />
-                  <character  ref="character" :svgFile="require('./assets/characters/F-1.svg')" :color="this.currentColor" />
-                  <Character  ref="character" :svgFile="require('./assets/characters/F-1.svg')" :color="this.currentColor" />
-                  <Character  ref="character" :svgFile="require('./assets/characters/F-1.svg')" :color="''" /> -->
-              </div>
-          </div>
-            <div>
-                <CharacterList></CharacterList>
-            </div>
-          <div class="column is-centered is-half-desktop is-half-mobile ">
->>>>>>> 1d17afcdb9bbaa6e90576fbce8646e702e7ea35f
-
               </div>
               <div class="column is-centered is-half-desktop is-half-mobile ">
 
@@ -97,20 +82,13 @@
                       <span class="button"  v-on:click="this.changeHairColor">Change Hair Color</span>
                   </div>
 
-<<<<<<< HEAD
+
 
 
               </div>
             </div>
      </section>
-=======
-          </div>
-        </div>
->>>>>>> 1d17afcdb9bbaa6e90576fbce8646e702e7ea35f
-  </div>
-
-
-
+   </div>
 </template>
 
 <script>
@@ -120,13 +98,16 @@
 
     export default {
         name: 'app',
+        el: '#launch-modal',
         components: {
             CharacterList,
             Character,
             'slider-picker': Slider,
         },
         data() {
+
             return {
+                isActive: false,
                 currentColor: '#FFFFFF',
                 tab:['test1', 'test2', 'test3'],
                 currentCharacter: "character"
@@ -144,6 +125,10 @@
             },
             resetFaceColor(){
                 this.$refs[this.currentCharacter].resetFaceColor();
+            },
+            launch(){
+                this.isActive =true;
+
             },
         }
     }

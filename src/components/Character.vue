@@ -1,7 +1,7 @@
 <template>
     <div>
         <div style="display: block; float: left; margin-right: auto; margin-left: auto">
-            <div ref="characterImg" v-html="this.svg" style="width: 60px; height: 75git px;"></div>
+            <div ref="characterImg" v-html="this.svg" style="width: 60px; height: 75px;"></div>
         </div>
     </div>
 </template>
