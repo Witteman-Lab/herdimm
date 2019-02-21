@@ -1,18 +1,17 @@
 <template>
     <div>
-        <div v-for="(character) in characterList" :key="character.id">
-            <Character  ref="character" :svgFile="require(`../assets/characters/${character.file}`)" :color="''" />
+        <div v-for="(character) in this.characterList" :key="character.id">
+          <Character ref="character" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" :color="''" />
         </div>
     </div>
 </template>
 
 <script>
-    import json from '../assets/characters.json';
     import Character from '../components/Character.vue'
 
     export default {
         name: "CharacterList",
-        date() {
+        data() {
             return {
                 characterList: []
             }
@@ -20,16 +19,21 @@
         components: {
             Character,
         },
-        methods: {
-           addCharacterToList() {
-               this.characterList.push('test');
-               // a faire pour mercredi
-               // potentiellement ajouter dans le json les couleurs ?
-
-           }
+        props: {
+            characters: Array
         },
-        created() {
-            this.characterList = json.characters;
+        methods: {
+           addCharacterToList(character) {
+               character.id = this.characterList.length;
+               // TODO manage character id for update or delete
+               this.characterList.push(character);
+           },
+            launchModal(id) {
+                this.$parent.launch(this.characterList[id]);
+            }
+        },
+        mounted() {
+            this.characterList = this.characters;
         }
     }
 </script>
