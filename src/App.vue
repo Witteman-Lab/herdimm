@@ -32,8 +32,8 @@
                 </div>
             </div>
             <h1>Build your group</h1>
-            <div style="display: flex;justify-content: center;">
-                <div class="column is-center is-four-fifths" >
+            <div class="Avatar">
+                <div class="column is-flex-mobile  is-center is-four-fifths " >
                     <div style="cursor: pointer">
                         <div>
                             <CharacterList ref="listAvailable" :characters="this.characterList"></CharacterList>
@@ -42,7 +42,7 @@
                 </div>
             </div>
             <h1>Your Group</h1>
-            <div style="display: flex;justify-content: center;">
+            <div>
                 <div class="column is-four-fifths" >
                     <div style="cursor: pointer">
                         <div v-on:click="launch">
@@ -172,5 +172,9 @@ v-on:click="launch"
         text-align: center;
         color: #2c3e50;
         margin-top: 60px;
+    }
+    .Avatar {
+        display: flex;
+        justify-content: center;
     }
 </style>
