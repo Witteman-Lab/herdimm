@@ -1,7 +1,6 @@
 <template>
     <div id="app">
         <div class="is-centered is-half-desktop is-half-mobile">
-
             <div class="modal" v-bind:class="{'is-active': isActive }" >
                 <div class="modal-background">
                     <div class="modal-card">
@@ -42,7 +41,7 @@
                 </div>
             </div>
             <h1>Your Group</h1>
-            <div>
+            <div class="Avatar">
                 <div class="column is-four-fifths" >
                     <div style="cursor: pointer">
                         <div v-on:click="launch">
@@ -52,6 +51,7 @@
                 </div>
             </div>
         </div>
+        <div class="button is-success" v-if="this.isVisible" v-on:click="loadAnimationView">Continue</div>
         <!--<div class=" modal-card head">
 v-on:click="launch"
             <div class="dropdown is-center is-active">
@@ -121,9 +121,9 @@ v-on:click="launch"
             'slider-picker': Slider,
         },
         data() {
-
             return {
                 isActive: false,
+                isVisible: false,
                 currentColor: '#FFFFFF',
                 tab:['test1', 'test2', 'test3'],
                 currentCharacter: "",
@@ -138,24 +138,33 @@ v-on:click="launch"
             changeFaceColor() {
                 this.$refs.character.changeFaceColor("#000000");
             },
-            changeHairColor(){
+            changeHairColor() {
                 this.$refs.character.changeHairColor();
             },
-            resetFaceColor(){
+            resetFaceColor() {
                 this.$refs.character.resetFaceColor();
             },
-            launch(character){
-                this.currentCharacter = require(`./assets/characters/${character.file}`);
-                this.currentCharacterObject = character;
-                this.isActive = true;
-                this.$refs.character.$forceUpdate();
+            launch(character) {
+                if (this.$refs.listToFill.getCharacterListSize() < json.maxCharactersInGroup)  {
+                    this.currentCharacter = require(`./assets/characters/${character.file}`);
+                    this.currentCharacterObject = character;
+                    this.isActive = true;
+                    this.$refs.character.$forceUpdate();
+                }
             },
-            removeModal(){
+            removeModal() {
                 this.isActive = false;
             },
             saveCharacter() {
                 this.$refs.listToFill.addCharacterToList(this.currentCharacterObject);
                 this.removeModal();
+                if (this.$refs.listToFill.getCharacterListSize() === json.maxCharactersInGroup) {
+                    this.isVisible = true;
+                }
+            },
+            loadAnimationView() {
+                //TODO switch view to view animation
+                console.log("load next view Animation")
             }
         },
         created() {

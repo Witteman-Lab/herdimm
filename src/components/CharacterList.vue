@@ -25,11 +25,13 @@
         methods: {
            addCharacterToList(character) {
                character.id = this.characterList.length;
-               // TODO manage character id for update or delete
                this.characterList.push(character);
            },
             launchModal(id) {
                 this.$parent.launch(this.characterList[id]);
+            },
+            getCharacterListSize() {
+               return this.characterList.length;
             }
         },
         mounted() {
