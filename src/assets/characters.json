@@ -1,221 +1,145 @@
 {
-    "containerId" : "characters",
-    "characterCustomizerId" : "characterCustomizer",
-    "charactersGroupId" : "group",
+  "containerId" : "characters",
+  "characterCustomizerId" : "characterCustomizer",
+  "charactersGroupId" : "group",
 	"maxCharactersInGroup" : 9,
-	"folder" : "./medias/characters/",
+	"folder" : "./characters/",
 	"className" : "character",
 	"characters" : [
 		{
-			"id": 0,
-			"file" : "Baby-1.svg",
-			"type" : "baby"
-		},
-		{
 			"id": 1,
-			"file" : "Baby-2.svg",
+			"file" : "baby01.svg",
 			"type" : "baby"
 		},
 		{
 			"id": 2,
-			"file" : "Baby-3.svg",
+			"file" : "baby02.svg",
 			"type" : "baby"
 		},
 		{
 			"id": 3,
-			"file" : "Baby-4.svg",
+			"file" : "baby03.svg",
 			"type" : "baby"
 		},
 		{
 			"id": 4,
-			"file" 	 : "F-1.svg",
-			"type" 	 : "adult",
-			"gender" : "woman"
+			"file" : "baby04.svg",
+			"type" : "baby"
 		},
 		{
 			"id": 5,
-			"file" : "F-3.svg",
-			"type" : "adult",
-			"gender" : "woman"
+			"file" 	 : "child01.svg",
+			"type" 	 : "child"
 		},
 		{
 			"id": 6,
-			"file" : "F-4.svg",
-			"type" : "adult"
+			"file" : "child02.svg",
+			"type" : "child"
 		},
 		{
 			"id": 7,
-			"file" : "F-5.svg",
-			"type" : "adult",
-			"gender" : "woman"
+			"file" : "child03.svg",
+			"type" : "child"
 		},
 		{
 			"id": 8,
-			"file" : "F-6.svg",
-			"type" : "adult",
-			"gender" : "woman"
+			"file" : "child04.svg",
+			"type" : "child"
 		},
 		{
 			"id": 9,
-			"file" : "F-7.svg",
-			"type" : "adult",
-			"gender" : "woman"
+			"file" : "child05.svg",
+			"type" : "child"
 		},
 		{
 			"id": 10,
-			"file" : "F-8.svg",
-			"type" : "adult",
-			"gender" : "woman"
+			"file" : "adult01.svg",
+			"type" : "adult"
 		},
 		{
 			"id": 11,
-			"file" : "F-9.svg",
-			"type" : "adult",
-			"gender" : "woman"
+			"file" : "adult02.svg",
+			"type" : "adult"
 		},
 		{
 			"id": 12,
-			"file" : "F-10.svg",
-			"type" : "adult",
-			"gender" : "woman"
+			"file" : "adult03.svg",
+			"type" : "adult"
 		},
 		{
 			"id": 13,
-			"file" : "F-11.svg",
-			"type" : "adult",
-			"gender" : "woman"
+			"file" : "adult04.svg",
+			"type" : "adult"
 		},
 		{
 			"id": 14,
-			"file" : "F-12.svg",
-			"type" : "adult",
-			"gender" : "woman"
+			"file" : "adult05.svg",
+			"type" : "adult"
 		},
 		{
 			"id": 15,
-			"file" : "F-13.svg",
-			"type" : "adult",
-			"gender" : "woman"
+			"file" : "adult06.svg",
+			"type" : "adult"
 		},
 		{
 			"id": 16,
-			"file" : "F-14.svg",
-			"type" : "adult",
-			"gender" : "woman"
+			"file" : "adult07.svg",
+			"type" : "adult"
 		},
 		{
 			"id": 17,
-			"file" : "F-15.svg",
-			"type" : "adult",
-			"gender" : "woman"
+			"file" : "adult08.svg",
+			"type" : "adult"
 		},
 		{
 			"id": 18,
-			"file" : "F-16.svg",
-			"type" : "adult",
-			"gender" : "woman"
+			"file" : "adult09.svg",
+			"type" : "adult"
 		},
 		{
 			"id": 19,
-			"file" : "H-1.svg",
-			"type" : "adult",
-			"gender" : "man"
+			"file" : "adult10.svg",
+			"type" : "adult"
 		},
 		{
 			"id": 20,
-			"file" : "H-2.svg",
-			"type" : "adult",
-			"gender" : "man"
+			"file" : "adult11.svg",
+			"type" : "adult"
 		},
 		{
 			"id": 21,
-			"file" : "H-3.svg",
-			"type" : "adult",
-			"gender" : "man"
+			"file" : "adult12.svg",
+			"type" : "adult"
 		},
 		{
 			"id": 22,
-			"file" : "H-4.svg",
-			"type" : "adult",
-			"gender" : "man"
+			"file" : "adult13.svg",
+			"type" : "adult"
 		},
 		{
 			"id": 23,
-			"file" : "H-5.svg",
-			"type" : "adult",
-			"gender" : "man"
+			"file" : "adult14.svg",
+			"type" : "adult"
 		},
 		{
 			"id": 24,
-			"file" : "H-6.svg",
-			"type" : "adult",
-			"gender" : "man"
+			"file" : "adult15.svg",
+			"type" : "adult"
 		},
 		{
 			"id": 25,
-			"file" : "H-7.svg",
-			"type" : "adult",
-			"gender" : "man"
+			"file" : "adult16.svg",
+			"type" : "adult"
 		},
 		{
 			"id": 26,
-			"file" : "H-8.svg",
-			"type" : "adult",
-			"gender" : "man"
+			"file" : "adult17.svg",
+			"type" : "adult"
 		},
 		{
 			"id": 27,
-			"file" : "H-9.svg",
-			"type" : "adult",
-			"gender" : "man"
-		},
-		{
-			"id": 28,
-			"file" : "H-10.svg",
-			"type" : "adult",
-			"gender" : "man"
-		},
-		{
-			"id": 29,
-			"file" : "H-11.svg",
-			"type" : "adult",
-			"gender" : "man"
-		},
-		{
-			"id": 30,
-			"file" : "H-12.svg",
-			"type" : "adult",
-			"gender" : "man"
-		},
-		{
-			"id": 31,
-			"file" : "H-13.svg",
-			"type" : "adult",
-			"gender" : "man"
-		},
-		{
-			"id": 32,
-			"file" : "H-14.svg",
-			"type" : "adult",
-			"gender" : "man"
-		},
-		{
-			"id": 33,
-			"file" : "H-15.svg",
-			"type" : "adult",
-			"gender" : "man"
-		},
-		{
-			"id": 34,
-			"file" : "H-16.svg",
-			"type" : "adult",
-			"gender" : "man"
-		},
-		{
-			"id": 35,
-			"file" : "F-2.svg",
-			"type" : "adult",
-			"gender" : "woman"
+			"file" : "adult18.svg",
+			"type" : "adult"
 		}
 	]
 }
