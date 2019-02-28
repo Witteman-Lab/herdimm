@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <div class="is-centered is-half-desktop is-half-mobile">
-
+            <!-- Modal windows -->
             <div class="modal" v-bind:class="{'is-active': isActive }" >
                 <div class="modal-background">
                     <div class="modal-card">
@@ -121,7 +121,6 @@ v-on:click="launch"
             'slider-picker': Slider,
         },
         data() {
-
             return {
                 isActive: false,
                 currentColor: '#FFFFFF',

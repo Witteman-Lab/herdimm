@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import json  from './data/characters.json'
+    import json  from '../assets/characters.json'
     export default {
         name: "LoadData",
         data(){

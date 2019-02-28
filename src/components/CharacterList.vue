@@ -7,7 +7,7 @@
 </template>
 
 <script>
-    import Character from '../components/Character.vue'
+    import Character from './Character.vue'
 
     export default {
         name: "CharacterList",
@@ -30,6 +30,7 @@
            },
             launchModal(id) {
                 this.$parent.launch(this.characterList[id]);
+                console.log("this", this)
             }
         },
         mounted() {
