@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div style="display: block; float: left; margin-right: auto; margin-left: auto">
+        <div class="character-position">
             <div v-on:click="createYourCharacter" ref="characterImg" v-html="this.svg" style="width: 70px; height: 95px;"></div>
         </div>
     </div>
@@ -118,6 +118,10 @@
 </script>
 
 <style scoped>
-
-
+    .character-position {
+        display: block;
+        float: left;
+        margin-right: auto;
+        margin-left: auto;
+    }
 </style>

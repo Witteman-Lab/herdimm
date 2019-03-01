@@ -30,7 +30,7 @@
         <div class="is-centered is-half-desktop is-half-mobile">
             <h1>Build your group</h1>
             <div class="Avatar">
-                <div class="column is-flex-mobile  is-center is-four-fifths " >
+                <div class="column is-center is-four-fifths " >
                     <div style="cursor: pointer">
                         <div>
                             <CharacterList ref="listAvailable" :characters="this.characterList"></CharacterList>
