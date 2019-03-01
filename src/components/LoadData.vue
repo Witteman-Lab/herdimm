@@ -5,16 +5,15 @@
 </template>
 
 <script>
-    import json  from '../assets/characters.json'
-    export default {
-        name: "LoadData",
-        data(){
-            return{
-                myJson: json
-            }
+import json  from '../assets/characters.json'
+export default {
+    name: "LoadData",
+    data(){
+        return{
+            myJson: json
         }
-
     }
+}
 </script>
 
 <style scoped>

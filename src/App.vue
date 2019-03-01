@@ -53,137 +53,137 @@
         </div>
         <div class="button is-success" v-if="this.isVisible" v-on:click="loadAnimationView">Continue</div>
         <!--<div class=" modal-card head">
-v-on:click="launch"
-            <div class="dropdown is-center is-active">
-                <div class="dropdown-trigger">
-                    <button v-on:click="removeModal" class="button" aria-haspopup="true" aria-controls="dropdown-menu">
-                        <span>Cancel</span>
-                          <span class="icon is-small">
-                            <i class="fas fa-angle-down" aria-hidden="true"></i>
-                          </span>
-                    </button>
-                </div>
-                <div class="dropdown-content">
+        v-on:click="launch"
+        <div class="dropdown is-center is-active">
+        <div class="dropdown-trigger">
+        <button v-on:click="removeModal" class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+        <span>Cancel</span>
+        <span class="icon is-small">
+        <i class="fas fa-angle-down" aria-hidden="true"></i>
+    </span>
+</button>
+</div>
+<div class="dropdown-content">
 
-                </div>
-                <div class="dropdown is-pulled-left is-active">
-                    <div class="dropdown-trigger">
-                        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
-                            <span>Hair color</span>
-                             <span class="icon is-small">
-                            <i class="fas fa-angle-down" aria-hidden="true"></i>
-                        </span>
-                        </button>
-                    </div>
-                    <div class="dropdown-content">
+</div>
+<div class="dropdown is-pulled-left is-active">
+<div class="dropdown-trigger">
+<button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+<span>Hair color</span>
+<span class="icon is-small">
+<i class="fas fa-angle-down" aria-hidden="true"></i>
+</span>
+</button>
+</div>
+<div class="dropdown-content">
 
-                    </div>
-              </div>
-            </div>
+</div>
+</div>
+</div>
 
-        </div>-->
-
-
-
-        <!--<div class="column is-centered is-half-desktop is-half-mobile ">
-
-            <div  style="display: flex; justify-content: center" >
-                <slider-picker :value="this.currentColor" @input="this.updateValue"/>
-            </div>
-
-            <br/>
-            <br/>
-            <div class="buttons is-light is-centered">
-                <span class="button"  v-on:click="this.resetFaceColor">Reset Color</span>
-                <span class="button"  v-on:click="this.changeFaceColor">Change Face Color</span>
-                <span class="button"  v-on:click="this.changeHairColor">Change Hair Color</span>
-            </div>
+</div>-->
 
 
 
+<!--<div class="column is-centered is-half-desktop is-half-mobile ">
 
-        </div>                  -->
+<div  style="display: flex; justify-content: center" >
+<slider-picker :value="this.currentColor" @input="this.updateValue"/>
+</div>
 
-    </div>
+<br/>
+<br/>
+<div class="buttons is-light is-centered">
+<span class="button"  v-on:click="this.resetFaceColor">Reset Color</span>
+<span class="button"  v-on:click="this.changeFaceColor">Change Face Color</span>
+<span class="button"  v-on:click="this.changeHairColor">Change Hair Color</span>
+</div>
+
+
+
+
+</div>                  -->
+
+</div>
 </template>
 
 <script>
-    import Character from './components/Character.vue'
-    import { Slider } from 'vue-color';
-    import CharacterList from "./components/CharacterList";
-    import json from './assets/characters.json';
+import Character from './components/Character.vue'
+import { Slider } from 'vue-color';
+import CharacterList from "./components/CharacterList";
+import json from './assets/characters.json';
 
-    export default {
-        name: 'app',
-        components: {
-            CharacterList,
-            Character,
-            'slider-picker': Slider,
+export default {
+    name: 'app',
+    components: {
+        CharacterList,
+        Character,
+        'slider-picker': Slider,
+    },
+    data() {
+        return {
+            isActive: false,
+            isVisible: false,
+            currentColor: '#FFFFFF',
+            tab:['test1', 'test2', 'test3'],
+            currentCharacter: "",
+            currentCharacterObject: "",
+            characterList: []
+        };
+    },
+    methods: {
+        updateValue(color) {
+            this.currentColor = color.hex;
         },
-        data() {
-            return {
-                isActive: false,
-                isVisible: false,
-                currentColor: '#FFFFFF',
-                tab:['test1', 'test2', 'test3'],
-                currentCharacter: "",
-                currentCharacterObject: "",
-                characterList: []
-            };
+        changeFaceColor() {
+            this.$refs.character.changeFaceColor("#000000");
         },
-        methods: {
-            updateValue(color) {
-                this.currentColor = color.hex;
-            },
-            changeFaceColor() {
-                this.$refs.character.changeFaceColor("#000000");
-            },
-            changeHairColor() {
-                this.$refs.character.changeHairColor();
-            },
-            resetFaceColor() {
-                this.$refs.character.resetFaceColor();
-            },
-            launch(character) {
-                if (this.$refs.listToFill.getCharacterListSize() < json.maxCharactersInGroup)  {
-                    this.currentCharacter = require(`./assets/characters/${character.file}`);
-                    this.currentCharacterObject = character;
-                    this.isActive = true;
-                    this.$refs.character.$forceUpdate();
-                }
-            },
-            removeModal() {
-                this.isActive = false;
-            },
-            saveCharacter() {
-                this.$refs.listToFill.addCharacterToList(this.currentCharacterObject);
-                this.removeModal();
-                if (this.$refs.listToFill.getCharacterListSize() === json.maxCharactersInGroup) {
-                    this.isVisible = true;
-                }
-            },
-            loadAnimationView() {
-                //TODO switch view to view animation
-                console.log("load next view Animation")
+        changeHairColor() {
+            this.$refs.character.changeHairColor();
+        },
+        resetFaceColor() {
+            this.$refs.character.resetFaceColor();
+        },
+        launch(character) {
+            if (this.$refs.listToFill.getCharacterListSize() < json.maxCharactersInGroup)  {
+                this.currentCharacter = require(`./assets/characters/${character.file}`);
+                this.currentCharacterObject = character;
+                this.isActive = true;
+                this.$refs.character.$forceUpdate();
             }
         },
-        created() {
-            this.characterList = json.characters;
+        removeModal() {
+            this.isActive = false;
+        },
+        saveCharacter() {
+            this.$refs.listToFill.addCharacterToList(this.currentCharacterObject);
+            this.removeModal();
+            if (this.$refs.listToFill.getCharacterListSize() === json.maxCharactersInGroup) {
+                this.isVisible = true;
+            }
+        },
+        loadAnimationView() {
+            //TODO switch view to view animation
+            console.log("load next view Animation")
         }
+    },
+    created() {
+        this.characterList = json.characters;
     }
+}
 </script>
 
 <style>
-    #app {
-        font-family: 'Avenir', Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-align: center;
-        color: #2c3e50;
-        margin-top: 60px;
-    }
-    .Avatar {
-        display: flex;
-        justify-content: center;
-    }
+#app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
+}
+.Avatar {
+    display: flex;
+    justify-content: center;
+}
 </style>
