@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-for="(character) in characterList" :key="character.id">
-          <Character ref="character" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" :color="''" />
+            <Character ref="character" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" :color="''" />
         </div>
     </div>
 </template>
@@ -28,7 +28,7 @@
             },
             getCharacterListSize() {
                return this.characterList.length;
-            }
+            },
         },
         mounted() {
             this.characterList = this.characters;

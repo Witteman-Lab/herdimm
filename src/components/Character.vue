@@ -7,10 +7,7 @@
 </template>
 
 <script>
-
     export default {
-        components: {
-        },
         name: "Character",
         data() {
             return {
@@ -94,7 +91,7 @@
           		return "#" + hex_red + hex_green + hex_blue;
             },
             createYourCharacter() {
-                this.$parent.launchModal(this.id);
+                this.$parent.launchModal(this.id - 1);
             },
             loadSvgDatas() {
                 if (this.svg) {

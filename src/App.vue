@@ -1,61 +1,55 @@
 <template>
     <div id="app">
-
-            <div class="is-centered is-half-desktop is-half-mobile">
-                <div class="modal" v-bind:class="{'is-active': isActive }" >
-                    <div class="modal-background">
-                        <div class="modal-card">
-                            <div class="modal-card">
-                                <header class="modal-card-head">
-                                    <p class="modal-card-title">Create your avatar</p>
-                                    <button class="delete" aria-label="close" v-on:click="removeModal"></button>
-                                </header>
-                                <section class="modal-card-body">
-                                    <Character  ref="character" :svgFile="this.currentCharacter" :color="this.currentColor" />
-                                    <br/>
-                                    <div style="display: flex; justify-content: center">
-                                        <slider-picker :value="this.currentColor" @input="this.updateValue"/>
-                                    </div>
-                                    <br/>
-                                    <div class="buttons is-light is-centered">
-                                        <span class="button"  v-on:click="this.resetFaceColor">Reset Color</span>
-                                        <span class="button"  v-on:click="this.changeFaceColor">Change Face Color</span>
-                                        <span class="button"  v-on:click="this.changeHairColor">Change Hair Color</span>
-                                    </div>
-                                </section>
-                                <footer class="modal-card-foot">
-                                    <button class="button is-success" v-on:click="saveCharacter">Save</button>
-                                    <button class="button" v-on:click="removeModal">Cancel</button>
-                                </footer>
-                            </div>
+        <div class="modal" v-bind:class="{'is-active': isActive }" >
+            <div class="modal-background">
+                <div class="modal-card mobile-modal" >
+                    <header class="modal-card-head">
+                        <p class="modal-card-title">Create your avatar</p>
+                        <button class="delete" aria-label="close" v-on:click="removeModal"></button>
+                    </header>
+                    <section class="modal-card-body">
+                        <Character  ref="character" :svgFile="this.currentCharacter" :color="this.currentColor" />
+                        <br/>
+                        <div style="display: flex; justify-content: center">
+                            <slider-picker :value="this.currentColor" @input="this.updateValue"/>
                         </div>
-                    </div>
-                </div>
-                <h1>Build your group</h1>
-                <div class="Avatar">
-                    <div class="column is-flex-mobile  is-center is-four-fifths " >
-                        <div style="cursor: pointer">
-                            <div>
-                                <CharacterList ref="listAvailable" :characters="this.characterList"></CharacterList>
-                            </div>
+                        <br/>
+                        <div class="buttons is-light is-centered">
+                            <span class="button"  v-on:click="this.resetFaceColor">Reset Color</span>
+                            <span class="button"  v-on:click="this.changeFaceColor">Change Face Color</span>
+                            <span class="button"  v-on:click="this.changeHairColor">Change Hair Color</span>
                         </div>
-                    </div>
+                    </section>
+                    <footer class="modal-card-foot">
+                        <button class="button is-success" v-on:click="saveCharacter">Save</button>
+                        <button class="button" v-on:click="removeModal">Cancel</button>
+                    </footer>
                 </div>
-                <h1>Your Group</h1>
-                <div class="Avatar">
-                    <div class="column is-four-fifths" >
-                        <div style="cursor: pointer">
-                            <div v-on:click="launch">
-                                <GroupCharacter :characters="[]" ref="listToFill"></GroupCharacter>
-                            </div>
+            </div>
+        </div>
+        <div class="is-centered is-half-desktop is-half-mobile">
+            <h1>Build your group</h1>
+            <div class="Avatar">
+                <div class="column is-flex-mobile  is-center is-four-fifths " >
+                    <div style="cursor: pointer">
+                        <div>
+                            <CharacterList ref="listAvailable" :characters="this.characterList"></CharacterList>
                         </div>
                     </div>
                 </div>
             </div>
-
-                <div class="button is-success" style="cursor: pointer" v-if="isVisible" v-on:click="loadAnimationView()">Continue</div>
-
-
+            <h1>Your Group</h1>
+            <div class="Avatar">
+                <div class="column is-four-fifths" >
+                    <div style="cursor: pointer">
+                        <div>
+                            <GroupCharacter ref="listToFill"></GroupCharacter>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="button is-success" style="cursor: pointer" v-if="isVisible" v-on:click="loadAnimationView()">Continue</div>
     </div>
 </template>
 
@@ -65,6 +59,7 @@
     import CharacterList from "./components/CharacterList";
     import json from './assets/characters.json';
     import GroupCharacter from "./components/GroupCharacter";
+
     export default {
         name: 'app',
         components: {
@@ -80,8 +75,7 @@
                 currentColor: '#FFFFFF',
                 currentCharacter: "",
                 currentCharacterObject: "",
-                characterList: [],
-
+                characterList: []
             };
         },
         methods: {
@@ -116,8 +110,7 @@
                 }
             },
             loadAnimationView() {
-                this.$router.push({name: 'Animations'});
-
+                this.$router.push('/Animations')
             }
         },
         created() {
@@ -126,7 +119,7 @@
     }
 </script>
 
-<style>
+<style scoped>
     #app {
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
@@ -138,5 +131,14 @@
     .Avatar {
         display: flex;
         justify-content: center;
+    }
+    .mobile-modal {
+        margin-top: calc(20vh - 40px);
+    }
+    @media only screen and (max-width: 768px) {
+        .mobile-modal {
+            margin-top: calc(20vh - 40px);
+            width: auto;
+        }
     }
 </style>

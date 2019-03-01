@@ -19,33 +19,25 @@
         components: {
             Character
         },
-        props: {
-            characters: Array
-        },
         methods: {
             addCharacterToList(character) {
-                character.id = this.characterList.length;
-                this.characterList.push(character);
+                this.characterList.push({id: this.characterList.length + 1, file: character.file, type: character.type});
             },
             editCharacterToList(pos) {
-                character.id = this.characterList.length;
                 this.characterList.splice(pos, 1);
             },
             deleteCharacterToList(pos) {
-                character.id = this.characterList.length;
                 this.characterList.splice(pos, 1)
             },
             launchModal(id) {
-               // TODO Edit to have a new modal
+               // TODO Manage Character Edition with a new modal
+                console.log("Nothing happen here.");
                 // this.$parent.launch(this.characterList[id]);
             },
             getCharacterListSize() {
                 return this.characterList.length;
             }
         },
-        mounted() {
-            this.characterList = this.characters;
-        }
     }
 </script>
 
