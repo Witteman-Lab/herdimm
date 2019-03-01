@@ -45,65 +45,13 @@
                 <div class="column is-four-fifths" >
                     <div style="cursor: pointer">
                         <div v-on:click="launch">
-                            <CharacterList :characters="[]" ref="listToFill"></CharacterList>
+                            <GroupCharacter :characters="[]" ref="listToFill"></GroupCharacter>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="button is-success" v-if="this.isVisible" v-on:click="loadAnimationView">Continue</div>
-        <!--<div class=" modal-card head">
-v-on:click="launch"
-            <div class="dropdown is-center is-active">
-                <div class="dropdown-trigger">
-                    <button v-on:click="removeModal" class="button" aria-haspopup="true" aria-controls="dropdown-menu">
-                        <span>Cancel</span>
-                          <span class="icon is-small">
-                            <i class="fas fa-angle-down" aria-hidden="true"></i>
-                          </span>
-                    </button>
-                </div>
-                <div class="dropdown-content">
-
-                </div>
-                <div class="dropdown is-pulled-left is-active">
-                    <div class="dropdown-trigger">
-                        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
-                            <span>Hair color</span>
-                             <span class="icon is-small">
-                            <i class="fas fa-angle-down" aria-hidden="true"></i>
-                        </span>
-                        </button>
-                    </div>
-                    <div class="dropdown-content">
-
-                    </div>
-              </div>
-            </div>
-
-        </div>-->
-
-
-
-        <!--<div class="column is-centered is-half-desktop is-half-mobile ">
-
-            <div  style="display: flex; justify-content: center" >
-                <slider-picker :value="this.currentColor" @input="this.updateValue"/>
-            </div>
-
-            <br/>
-            <br/>
-            <div class="buttons is-light is-centered">
-                <span class="button"  v-on:click="this.resetFaceColor">Reset Color</span>
-                <span class="button"  v-on:click="this.changeFaceColor">Change Face Color</span>
-                <span class="button"  v-on:click="this.changeHairColor">Change Hair Color</span>
-            </div>
-
-
-
-
-        </div>                  -->
-
     </div>
 </template>
 
@@ -112,10 +60,12 @@ v-on:click="launch"
     import { Slider } from 'vue-color';
     import CharacterList from "./components/CharacterList";
     import json from './assets/characters.json';
+    import GroupCharacter from "./components/GroupCharacter";
 
     export default {
         name: 'app',
         components: {
+            GroupCharacter,
             CharacterList,
             Character,
             'slider-picker': Slider,
@@ -125,7 +75,6 @@ v-on:click="launch"
                 isActive: false,
                 isVisible: false,
                 currentColor: '#FFFFFF',
-                tab:['test1', 'test2', 'test3'],
                 currentCharacter: "",
                 currentCharacterObject: "",
                 characterList: []
@@ -164,7 +113,7 @@ v-on:click="launch"
             },
             loadAnimationView() {
                 //TODO switch view to view animation
-                console.log("load next view Animation")
+                //console.log("load next view Animation")
             }
         },
         created() {
