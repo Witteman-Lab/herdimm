@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-for="(character) in this.characterList" :key="character.id">
+        <div v-for="(character) in characterList" :key="character.id">
             <Character ref="character" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" :color="''" />
         </div>
     </div>
@@ -28,8 +28,6 @@ export default {
             this.characterList.push(character);
         },
         launchModal(id) {
-            console.log("launchModal character", character);
-            console.log("launchModal id", id);
             this.$parent.launch(this.characterList[id]);
         },
         getCharacterListSize() {

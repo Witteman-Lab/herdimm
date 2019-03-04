@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div style="display: block; float: left; margin-right: auto; margin-left: auto">
+        <div class="character-position">
             <div v-on:click="createYourCharacter" ref="characterImg" v-html="this.svg" style="width: 70px; height: 95px;"></div>
         </div>
     </div>
@@ -83,8 +83,21 @@ export default {
             let hex_green 	= dec_green.toString(16);
             let hex_blue 	= dec_blue.toString(16);
 
-            if (hex_red.length === 1) {
-                hex_red = "0" + hex_red.toString();
+          	return "#" + hex_red + hex_green + hex_blue;
+            },
+            createYourCharacter() {
+                this.$parent.launchModal(this.id - 1);
+            },
+            loadSvgDatas() {
+                if (this.svg) {
+                    this.characterInstance = this.$refs.characterImg.children[0].children[0];
+                    this.defaultColor = this.characterInstance.innerHTML;
+                    this.changeFaceColor(this.getRandomColor());
+                    this.changeHairColor(this.getRandomColor());
+                }
+            },
+            updateCurrentSvg() {
+                this.svg = this.svgFile;
             }
             if (hex_green.length === 1) {
                 hex_green = "0" + hex_green.toString();
@@ -124,6 +137,10 @@ export default {
 </script>
 
 <style scoped>
-
-
+    .character-position {
+        display: block;
+        float: left;
+        margin-right: auto;
+        margin-left: auto;
+    }
 </style>
