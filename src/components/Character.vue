@@ -83,34 +83,10 @@ export default {
             let hex_green 	= dec_green.toString(16);
             let hex_blue 	= dec_blue.toString(16);
 
-          	return "#" + hex_red + hex_green + hex_blue;
-            },
-            createYourCharacter() {
-                this.$parent.launchModal(this.id - 1);
-            },
-            loadSvgDatas() {
-                if (this.svg) {
-                    this.characterInstance = this.$refs.characterImg.children[0].children[0];
-                    this.defaultColor = this.characterInstance.innerHTML;
-                    this.changeFaceColor(this.getRandomColor());
-                    this.changeHairColor(this.getRandomColor());
-                }
-            },
-            updateCurrentSvg() {
-                this.svg = this.svgFile;
-            }
-            if (hex_green.length === 1) {
-                hex_green = "0" + hex_green.toString();
-            }
-            if (hex_blue.length === 1) {
-                hex_blue = "0" + hex_blue.toString();
-            }
-
             return "#" + hex_red + hex_green + hex_blue;
         },
         createYourCharacter() {
-            console.log("createYourCharacter this.id", this.id);
-            this.$parent.launchModal(this.id);
+            this.$parent.launchModal(this.id - 1);
         },
         loadSvgDatas() {
             if (this.svg) {

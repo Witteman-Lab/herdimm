@@ -113,25 +113,10 @@
                 this.$router.push('/Animations')
             }
         },
-        removeModal() {
-            this.isActive = false;
-        },
-        saveCharacter() {
-            this.$refs.listToFill.addCharacterToList(this.currentCharacterObject);
-            this.removeModal();
-            if (this.$refs.listToFill.getCharacterListSize() === json.maxCharactersInGroup) {
-                this.isVisible = true;
-            }
-        },
-        loadAnimationView() {
-            //TODO switch view to view animation
-            console.log("load next view Animation")
+        created() {
+            this.characterList = json.characters;
         }
-    },
-    created() {
-        this.characterList = json.characters;
     }
-}
 </script>
 
 <style scoped>
