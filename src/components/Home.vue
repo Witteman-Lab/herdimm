@@ -1,12 +1,10 @@
 <template>
-    <div>
-        hello everyone
-    </div>
+
 </template>
 
 <script>
     export default {
-        name: 'Animations'
+        name: 'home'
     }
 </script>
 

@@ -50,6 +50,7 @@
             </div>
         </div>
         <div class="button is-success" style="cursor: pointer" v-if="isVisible" v-on:click="loadAnimationView()">Continue</div>
+        <router-view/>
     </div>
 </template>
 
@@ -110,7 +111,7 @@
                 }
             },
             loadAnimationView() {
-                this.$router.push('/Animations')
+                this.$router.push('Animations')
             }
         },
         created() {
