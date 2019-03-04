@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-for="(character) in characterList" :key="character.id">
+        <div v-for="(character) in this.characterList" :key="character.id">
             <Character ref="character" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" :color="''" />
         </div>
     </div>
@@ -28,7 +28,11 @@ export default {
             this.characterList.push(character);
         },
         launchModal(id) {
-            this.$parent.launch(this.characterList[id]);
+            this.characterList.filter(obj => {
+                if (obj.id === id) {
+                    this.$parent.launch(obj);
+                }
+            });
         },
         getCharacterListSize() {
             return this.characterList.length;
@@ -36,6 +40,7 @@ export default {
     },
     mounted() {
         this.characterList = this.characters;
+        console.log()
     }
 }
 </script>

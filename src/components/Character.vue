@@ -86,7 +86,7 @@ export default {
             return "#" + hex_red + hex_green + hex_blue;
         },
         createYourCharacter() {
-            this.$parent.launchModal(this.id - 1);
+            this.$parent.launchModal(this.id);
         },
         loadSvgDatas() {
             if (this.svg) {

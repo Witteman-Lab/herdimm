@@ -21,7 +21,7 @@
         },
         methods: {
             addCharacterToList(character) {
-                this.characterList.push({id: this.characterList.length + 1, file: character.file, type: character.type});
+                this.characterList.push({id: character.id, file: character.file, type: character.type});
             },
             editCharacterToList(pos) {
                 this.characterList.splice(pos, 1);
