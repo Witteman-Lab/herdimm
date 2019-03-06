@@ -35,18 +35,14 @@ export default {
     methods: {
         changeFaceColor(color) {
             this.svgColor.face = color;
-            console.log("changeFaceColor color", color)
             this.svgColor.faceShadow = this.getDarkerShade(color);
-            console.log("this.svgColor.faceShadow", this.svgColor.faceShadow)
             this.$refs.characterImg.children[0].children[0].innerHTML = this.$refs.characterImg.children[0].children[0].innerHTML +
                 `.st2_custom_${this.$refs.characterImg.children[0].id}{fill:${this.svgColor.face}}
                 .st3_custom_${this.$refs.characterImg.children[0].id}{fill:${this.svgColor.faceShadow}}`;
         },
         changeHairColor(color){
             this.svgColor.hairFront = color;
-            console.log("changeHairColor color", color)
             this.svgColor.hairBack = this.getDarkerShade(color);
-            console.log("this.svgColor.hairBack", this.svgColor.hairBack)
             this.$refs.characterImg.children[0].children[0].innerHTML = this.$refs.characterImg.children[0].children[0].innerHTML +
                 `.st5_custom_${this.$refs.characterImg.children[0].id}{fill:${this.svgColor.hairFront}}
                 .st4_custom_${this.$refs.characterImg.children[0].id}{fill:${this.svgColor.hairBack}}`;
@@ -103,14 +99,15 @@ export default {
         loadSvgDatas() {
             if (this.svg) {
                 if (this.customised) {
+                    let characterId = this.$refs.characterImg.children[0].id;
                     this.$refs.characterImg.children[0].children[3].classList.remove("st2");
                     this.$refs.characterImg.children[0].children[4].classList.remove("st3");
                     this.$refs.characterImg.children[0].children[5].classList.remove("st4");
                     this.$refs.characterImg.children[0].children[6].classList.remove("st5");
-                    this.$refs.characterImg.children[0].children[3].classList.add("st2_custom_" + this.$refs.characterImg.children[0].id);
-                    this.$refs.characterImg.children[0].children[4].classList.add("st3_custom_" + this.$refs.characterImg.children[0].id);
-                    this.$refs.characterImg.children[0].children[5].classList.add("st4_custom_" + this.$refs.characterImg.children[0].id);
-                    this.$refs.characterImg.children[0].children[6].classList.add("st5_custom_" + this.$refs.characterImg.children[0].id);
+                    this.$refs.characterImg.children[0].children[3].classList.add("st2_custom_" + characterId);
+                    this.$refs.characterImg.children[0].children[4].classList.add("st3_custom_" + characterId);
+                    this.$refs.characterImg.children[0].children[5].classList.add("st4_custom_" + characterId);
+                    this.$refs.characterImg.children[0].children[6].classList.add("st5_custom_" + characterId);
                     this.changeFaceColor(this.colors.face);
                     this.changeHairColor(this.colors.hairFront);
                     this.defaultColor = this.$refs.characterImg.children[0].children[0].innerHTML;
