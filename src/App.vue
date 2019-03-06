@@ -8,16 +8,35 @@
                         <button class="delete" aria-label="close" v-on:click="removeModal"></button>
                     </header>
                     <section class="modal-card-body">
-                        <Character  ref="character" :svgFile="this.currentCharacter" :color="this.currentColor" />
-                        <br/>
+                        <Character v-if="isActive" ref="character" :svgFile="this.currentCharacter"
+                                   :colors="{face: this.currentColorFace, hairFront: this.currentColorHair}" :customised="true" />
                         <div style="display: flex; justify-content: center">
-                            <slider-picker :value="this.currentColor" @input="this.updateValue"/>
+                            <div class="dropdown" v-bind:class="{'is-active': isHairColorButtonEnable }">
+                                <div class="dropdown-trigger">
+                                    <button v-on:click="openDropdownHair" class="button">
+                                        <span>Hair Color</span>
+                                        <span class="current-color" v-bind:style="{'background-color': this.currentColorHair }"></span>
+                                    </button>
+                                </div>
+                                <div class="dropdown-menu" role="menu">
+                                    <Compact :value="this.currentColorHair" @input="this.changeHairColor"/>
+                                </div>
+                            </div>
+                            <div class="dropdown" v-bind:class="{'is-active': isFaceColorButtonEnable }">
+                                <div class="dropdown-trigger">
+                                    <button v-on:click="openDropdownFace" class="button">
+                                        <span>Skin Color</span>
+                                        <span class="current-color" v-bind:style="{'background-color': this.currentColorFace }"></span>
+                                    </button>
+                                </div>
+                                <div class="dropdown-menu" role="menu">
+                                    <Compact :value="this.currentColorFace" @input="this.changeFaceColor"/>
+                                </div>
+                            </div>
                         </div>
                         <br/>
                         <div class="buttons is-light is-centered">
                             <span class="button"  v-on:click="this.resetFaceColor">Reset Color</span>
-                            <span class="button"  v-on:click="this.changeFaceColor">Change Face Color</span>
-                            <span class="button"  v-on:click="this.changeHairColor">Change Hair Color</span>
                         </div>
                     </section>
                     <footer class="modal-card-foot">
@@ -33,7 +52,7 @@
                 <div class="column is-center is-four-fifths " >
                     <div style="cursor: pointer">
                         <div>
-                            <CharacterList ref="listAvailable" :characters="this.characterList"></CharacterList>
+                            <CharacterList  ref="listAvailable" :characters="this.characterList" :id="this.currentCharacterObject.file"></CharacterList>
                         </div>
                     </div>
                 </div>
@@ -56,7 +75,7 @@
 
 <script>
     import Character from './components/Character.vue'
-    import { Slider } from 'vue-color';
+    import { Compact } from 'vue-color';
     import CharacterList from "./components/CharacterList";
     import json from './assets/characters.json';
     import GroupCharacter from "./components/GroupCharacter";
@@ -67,27 +86,29 @@
             GroupCharacter,
             CharacterList,
             Character,
-            'slider-picker': Slider,
+            Compact,
         },
         data() {
             return {
                 isActive: false,
                 isVisible: false,
-                currentColor: '#FFFFFF',
+                isHairColorButtonEnable: false,
+                isFaceColorButtonEnable: false,
+                currentColorHair: '#FF0000',
+                currentColorFace: '#0000FF',
                 currentCharacter: "",
                 currentCharacterObject: "",
-                characterList: []
+                characterList: [],
             };
         },
         methods: {
-            updateValue(color) {
-                this.currentColor = color.hex;
+            changeFaceColor(color) {
+                this.currentColorFace = color.hex;
+                this.$refs.character.changeFaceColor(color.hex);
             },
-            changeFaceColor() {
-                this.$refs.character.changeFaceColor("#000000");
-            },
-            changeHairColor() {
-                this.$refs.character.changeHairColor();
+            changeHairColor(color) {
+                this.currentColorHair = color.hex;
+                this.$refs.character.changeHairColor(color.hex);
             },
             resetFaceColor() {
                 this.$refs.character.resetFaceColor();
@@ -96,15 +117,18 @@
                 if (this.$refs.listToFill.getCharacterListSize() < json.maxCharactersInGroup)  {
                     this.currentCharacter = require(`./assets/characters/${character.file}`);
                     this.currentCharacterObject = character;
+                    this.currentColorFace = "#7C5235";
+                    this.currentColorHair = "#412308";
                     this.isActive = true;
-                    this.$refs.character.$forceUpdate();
                 }
             },
             removeModal() {
                 this.isActive = false;
+                this.isHairColorButtonEnable = false;
+                this.isFaceColorButtonEnable = false;
             },
             saveCharacter() {
-                this.$refs.listToFill.addCharacterToList(this.currentCharacterObject);
+                this.$refs.listToFill.addCharacterToGroup(this.currentCharacterObject, this.$refs.character.getSvgColor());
                 this.removeModal();
                 if (this.$refs.listToFill.getCharacterListSize() === json.maxCharactersInGroup) {
                     this.isVisible = true;
@@ -112,6 +136,14 @@
             },
             loadAnimationView() {
                 this.$router.push('Animations')
+            },
+            openDropdownHair() {
+                this.isHairColorButtonEnable = !this.isHairColorButtonEnable;
+                this.isFaceColorButtonEnable = false;
+            },
+            openDropdownFace() {
+                this.isFaceColorButtonEnable = !this.isFaceColorButtonEnable;
+                this.isHairColorButtonEnable = false;
             }
         },
         created() {
@@ -135,6 +167,12 @@
     }
     .mobile-modal {
         margin-top: calc(20vh - 40px);
+    }
+    .current-color {
+        width: 20px;
+        height: 20px;
+        margin-left: 10px;
+        border-style: solid;
     }
     @media only screen and (max-width: 768px) {
         .mobile-modal {

@@ -9,8 +9,7 @@
 <script>
 
 export default {
-    components: {
-    },
+    components: {},
     name: "Character",
     data() {
         return {
@@ -20,43 +19,39 @@ export default {
                 face: '',
                 faceShadow: '',
                 hairFront: '',
-                hairBack: ''
+                hairBack: '',
+                idCharacter: String
             },
-            characterInstance: '',
             defaultColor: '',
         };
     },
     props: {
         color: String,
         svgFile: String,
-        id: String
+        id: String,
+        customised: Boolean,
+        colors: Object
     },
     methods: {
         changeFaceColor(color) {
             this.svgColor.face = color;
             this.svgColor.faceShadow = this.getDarkerShade(color);
-            this.characterInstance.innerHTML =
-            this.characterInstance.innerHTML + `.st2{fill:${this.svgColor.face}}.st3{fill:${this.svgColor.faceShadow}}`;
+            this.$refs.characterImg.children[0].children[0].innerHTML = this.$refs.characterImg.children[0].children[0].innerHTML +
+                `.st2_custom_${this.$refs.characterImg.children[0].id}{fill:${this.svgColor.face}}
+                 .st3_custom_${this.$refs.characterImg.children[0].id}{fill:${this.svgColor.faceShadow}}`;
         },
         changeHairColor(color){
             this.svgColor.hairFront = color;
             this.svgColor.hairBack = this.getDarkerShade(color);
-            this.characterInstance.innerHTML = this.characterInstance.innerHTML +
-            `.st5{fill:${this.svgColor.hairFront}}.st4{fill:${this.svgColor.hairBack}}`;
+            this.$refs.characterImg.children[0].children[0].innerHTML = this.$refs.characterImg.children[0].children[0].innerHTML +
+            `.st5_custom_${this.$refs.characterImg.children[0].id}{fill:${this.svgColor.hairFront}}
+             .st4_custom_${this.$refs.characterImg.children[0].id}{fill:${this.svgColor.hairBack}}`;
         },
         resetFaceColor(){
-            this.characterInstance.innerHTML = this.defaultColor;
+            this.$refs.characterImg.children[0].children[0].innerHTML = this.defaultColor;
         },
         getSvgColor() {
             return this.svgColor
-        },
-        getRandomColor() {
-            var letters = '0123456789ABCDEF';
-            var color = '#';
-            for (var i = 0; i < 6; i++) {
-                color += letters[Math.floor(Math.random() * 16)];
-            }
-            return color;
         },
         // For getting a darker shade for the hair or skin
         // To-do: That method could be optimized later
@@ -86,22 +81,35 @@ export default {
             return "#" + hex_red + hex_green + hex_blue;
         },
         createYourCharacter() {
-            this.$parent.launchModal(this.id);
+            if (!this.customised) {
+                this.$parent.launchModal(this.id);
+            }
         },
         loadSvgDatas() {
             if (this.svg) {
-                this.characterInstance = this.$refs.characterImg.children[0].children[0];
-                this.defaultColor = this.characterInstance.innerHTML;
-                this.changeFaceColor(this.getRandomColor());
-                this.changeHairColor(this.getRandomColor());
+                if (this.customised) {
+                    this.$refs.characterImg.children[0].children[3].classList.remove("st2");
+                    this.$refs.characterImg.children[0].children[3].classList.remove("st3");
+                    this.$refs.characterImg.children[0].children[5].classList.remove("st4");
+                    this.$refs.characterImg.children[0].children[6].classList.remove("st5");
+                    this.$refs.characterImg.children[0].children[3].classList.add("st2_custom_" + this.$refs.characterImg.children[0].id);
+                    this.$refs.characterImg.children[0].children[3].classList.add("st3_custom_" + this.$refs.characterImg.children[0].id);
+                    this.$refs.characterImg.children[0].children[5].classList.add("st4_custom_" + this.$refs.characterImg.children[0].id);
+                    this.$refs.characterImg.children[0].children[6].classList.add("st5_custom_" + this.$refs.characterImg.children[0].id);
+                    this.changeFaceColor(this.colors.face);
+                    this.changeHairColor(this.colors.hairFront);
+                    this.defaultColor = this.$refs.characterImg.children[0].children[0].innerHTML;
+                }
             }
         },
         updateCurrentSvg() {
             this.svg = this.svgFile;
-        }
+        },
+        // methods to parse glasses
+        // methods to parse all facial parts(face, hair)
     },
     created() {
-        this.updateCurrentSvg()
+        this.updateCurrentSvg();
     },
     mounted() {
         this.loadSvgDatas();

@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-for="(character) in characterList" :key="character.id">
-            <Character ref="character" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" />
+            <Character ref="character" :customised="true" :colors="character.colors" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" />
         </div>
     </div>
 </template>
@@ -13,26 +13,23 @@
         name: "GroupCharacter",
         data() {
             return {
-                characterList: []
+                characterList: [],
             }
         },
         components: {
             Character
         },
         methods: {
-            addCharacterToList(character) {
-                this.characterList.push({id: character.id, file: character.file, type: character.type});
+            addCharacterToGroup(character, characterColors) {
+                this.characterList.push({id: character.id, file: character.file, type: character.type, colors: characterColors});
             },
-            editCharacterToList(pos) {
+            editCharacter(pos) {
                 this.characterList.splice(pos, 1);
             },
-            deleteCharacterToList(pos) {
-                this.characterList.splice(pos, 1)
-            },
-            launchModal(id) {
+            launchModal() {
                // TODO Manage Character Edition with a new modal
-                console.log("Nothing happen here.");
-                // this.$parent.launch(this.characterList[id]);
+                // implement launchModal(id)
+                // /console.log("Nothing happen here."  + id);
             },
             getCharacterListSize() {
                 return this.characterList.length;

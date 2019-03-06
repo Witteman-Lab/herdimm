@@ -40,7 +40,6 @@ export default {
     },
     mounted() {
         this.characterList = this.characters;
-        console.log()
     }
 }
 </script>
