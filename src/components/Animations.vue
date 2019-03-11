@@ -1,6 +1,7 @@
 <template>
-    <div>
-        hello everyone
+    <div class="container">
+       <h1>Animation</h1>
+
     </div>
 </template>
 
