@@ -121,8 +121,8 @@
                 isVisible: false,
                 isHairColorButtonEnable: false,
                 isFaceColorButtonEnable: false,
-                currentColorHair: '#FF0000',
-                currentColorFace: '#0000FF',
+                currentColorHair: '',
+                currentColorFace: '',
                 currentCharacter: "",
                 currentCharacterObject: "",
                 characterList: [],
@@ -138,7 +138,11 @@
                 this.$refs.character.changeHairColor(color.hex);
             },
             resetFaceColor() {
+                this.currentColorFace = "#7C5235";
+                this.currentColorHair = "#412308";
                 this.$refs.character.resetFaceColor();
+                this.$refs.character.changeFaceColor(this.currentColorFace);
+                this.$refs.character.changeHairColor(this.currentColorHair);
             },
             launch(character) {
                 if (this.$refs.listToFill.getCharacterListSize() < json.maxCharactersInGroup)  {

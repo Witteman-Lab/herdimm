@@ -21,7 +21,7 @@
         },
         methods: {
             addCharacterToGroup(character, characterColors) {
-                this.characterList.push({id: character.id, file: character.file, type: character.type, colors: characterColors});
+                this.characterList.push({id: character.id + this.characterList.length + "_customised", file: character.file, type: character.type, colors: characterColors});
             },
             editCharacter(pos) {
                 this.characterList.splice(pos, 1);
@@ -33,6 +33,9 @@
             },
             getCharacterListSize() {
                 return this.characterList.length;
+            },
+            getCharacterList() {
+                return this.characterList;
             }
         },
     }
