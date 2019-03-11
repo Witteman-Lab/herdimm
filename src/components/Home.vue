@@ -166,7 +166,8 @@
                 }
             },
             loadAnimationView() {
-                this.$router.push({ name: 'Animations' });
+                let groupCharacter = this.$refs.listToFill.getCharacterList();
+                this.$router.push({name: 'Animations', params:{group: groupCharacter}});
             },
             openDropdownHair() {
                 this.isHairColorButtonEnable = !this.isHairColorButtonEnable;

@@ -16,7 +16,8 @@ export default new Router({
         {
             path: '/Animations',
             name: 'Animations',
-            component: Animations
+            component: Animations,
+            props: true
         }
 
     ]

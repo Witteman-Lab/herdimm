@@ -36,6 +36,9 @@
             },
             getCharacterList() {
                 return this.characterList;
+            },
+            addGroup(characters) {
+                this.characterList = characters;
             }
         },
     }
