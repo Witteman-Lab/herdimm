@@ -8,7 +8,7 @@
                         <button class="delete" aria-label="close" v-on:click="removeModal"></button>
                     </header>
                     <section class="modal-card-body">
-                        <Character v-if="isActive" ref="character" :svgFile="this.currentCharacter"
+                        <Character v-if="isActive" ref="character" :id="'current'" :svgFile="this.currentCharacter"
                                    :colors="{face: this.currentColorFace, hairFront: this.currentColorHair}" :customised="true" />
                         <div style="display: flex; justify-content: center">
                             <div class="dropdown" v-bind:class="{'is-active': isHairColorButtonEnable }">
