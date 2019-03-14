@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="modal" v-bind:class="{'is-active': isActive }" >
-            <div class="modal-background">
+            <div class="modal-background"  @keydown.esc="removeModal" >
                 <div class="modal-card mobile-modal" >
                     <header class="modal-card-head">
                         <p class="modal-card-title">Create your avatar</p>
@@ -97,8 +97,6 @@
             </div>
         </section>
     </div>
-
-
 </template>
 
 <script>
@@ -154,6 +152,7 @@
                 }
             },
             removeModal() {
+                console.log("removed modal !");
                 this.isActive = false;
                 this.isHairColorButtonEnable = false;
                 this.isFaceColorButtonEnable = false;
@@ -180,6 +179,15 @@
         },
         created() {
             this.characterList = json.characters;
+        },
+        mounted() {
+            document.body.addEventListener('keyup', e => {
+                if (e.keyCode === 27 && this.isActive) {
+                    this.removeModal();
+                } else if (e.keyCode === 13 && this.isActive) {
+                    this.saveCharacter();
+                }
+            })
         }
     }
 </script>
