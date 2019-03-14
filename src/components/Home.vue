@@ -152,7 +152,6 @@
                 }
             },
             removeModal() {
-                console.log("removed modal !");
                 this.isActive = false;
                 this.isHairColorButtonEnable = false;
                 this.isFaceColorButtonEnable = false;

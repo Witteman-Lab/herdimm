@@ -8,130 +8,148 @@
 
 <script>
 
-export default {
-    components: {},
-    name: "Character",
-    data() {
-        return {
-            svg: '',
-            currentColor: '#FFFFFF',
-            svgColor: {
-                face: '',
-                faceShadow: '',
-                hairFront: '',
-                hairBack: '',
-                idCharacter: String
+    export default {
+        components: {},
+        name: "Character",
+        data() {
+            return {
+                svg: '',
+                currentColor: '#FFFFFF',
+                svgColor: {
+                    face: '',
+                    faceShadow: '',
+                    hairFront: '',
+                    hairBack: '',
+                    idCharacter: String
+                },
+                defaultColor: '',
+            };
+        },
+        props: {
+            color: String,
+            svgFile: String,
+            id: String,
+            customised: Boolean,
+            colors: Object
+        },
+        methods: {
+            changeFaceColor(color) {
+                this.svgColor.face = color;
+                this.svgColor.faceShadow = this.getDarkerShade(color);
+                this.$refs.characterImg.children[0].children[0].innerHTML = this.$refs.characterImg.children[0].children[0].innerHTML +
+                    `.st2_custom_${this.id}{fill:${this.svgColor.face}}.st3_custom_${this.id}{fill:${this.svgColor.faceShadow}}`;
             },
-            defaultColor: '',
-        };
-    },
-    props: {
-        color: String,
-        svgFile: String,
-        id: String,
-        customised: Boolean,
-        colors: Object
-    },
-    methods: {
-        changeFaceColor(color) {
-            this.svgColor.face = color;
-            this.svgColor.faceShadow = this.getDarkerShade(color);
-            this.$refs.characterImg.children[0].children[0].innerHTML = this.$refs.characterImg.children[0].children[0].innerHTML +
-                `.st2_custom_${this.id}{fill:${this.svgColor.face}}
-                .st3_custom_${this.id}{fill:${this.svgColor.faceShadow}}`;
-        },
-        changeHairColor(color){
-            this.svgColor.hairFront = color;
-            this.svgColor.hairBack = this.getDarkerShade(color);
-            this.$refs.characterImg.children[0].children[0].innerHTML = this.$refs.characterImg.children[0].children[0].innerHTML +
-                `.st5_custom_${this.id}{fill:${this.svgColor.hairFront}}
-                .st4_custom_${this.id}{fill:${this.svgColor.hairBack}}`;
-        },
-        resetFaceColor(){
-            this.$refs.characterImg.children[0].children[0].innerHTML = this.defaultColor;
-        },
-        getSvgColor() {
-            return this.svgColor
-        },
-        // For getting a darker shade for the hair or skin
-        // To-do: That method could be optimized later
-        getDarkerShade(selectedColorToHex) {
-            const proportion = 0.8;
+            changeHairColor(color){
+                this.svgColor.hairFront = color;
+                this.svgColor.hairBack = this.getDarkerShade(color);
+                this.$refs.characterImg.children[0].children[0].innerHTML = this.$refs.characterImg.children[0].children[0].innerHTML +
+                    `.st5_custom_${this.id}{fill:${this.svgColor.hairFront}}.st4_custom_${this.id}{fill:${this.svgColor.hairBack}}`;
+            },
+            resetFaceColor(){
+                this.$refs.characterImg.children[0].children[0].innerHTML = this.defaultColor;
+            },
+            getSvgColor() {
+                return this.svgColor
+            },
+            // For getting a darker shade for the hair or skin
+            // To-do: That method could be optimized later
+            getDarkerShade(selectedColorToHex) {
+                const proportion = 0.8;
 
-            let red 	= selectedColorToHex.substr(1,2);
-            let green 	= selectedColorToHex.substr(3,2);
-            let blue 	= selectedColorToHex.substr(5,2);
+                let red 	= selectedColorToHex.substr(1,2);
+                let green 	= selectedColorToHex.substr(3,2);
+                let blue 	= selectedColorToHex.substr(5,2);
 
-            let dec_red 	= parseInt(red, 16);
-            let dec_green 	= parseInt(green, 16);
-            let dec_blue 	= parseInt(blue, 16);
+                let dec_red 	= parseInt(red, 16);
+                let dec_green 	= parseInt(green, 16);
+                let dec_blue 	= parseInt(blue, 16);
 
-            dec_red 	*= proportion;
-            dec_green 	*= proportion;
-            dec_blue 	*= proportion;
+                dec_red 	*= proportion;
+                dec_green 	*= proportion;
+                dec_blue 	*= proportion;
 
-            dec_red = Math.round(dec_red);
-            dec_green = Math.round(dec_green);
-            dec_blue = Math.round(dec_blue);
+                dec_red = Math.round(dec_red);
+                dec_green = Math.round(dec_green);
+                dec_blue = Math.round(dec_blue);
 
-            let hex_red 	= dec_red.toString(16);
-            let hex_green 	= dec_green.toString(16);
-            let hex_blue 	= dec_blue.toString(16);
+                let hex_red 	= dec_red.toString(16);
+                let hex_green 	= dec_green.toString(16);
+                let hex_blue 	= dec_blue.toString(16);
 
-            // 0 left padding
-            if (hex_red.length === 1) {
-    			hex_red = "0" + hex_red.toString();
-    		}
-    		if (hex_green.length === 1) {
-    			hex_green = "0" + hex_green.toString();
-    		}
-    		if (hex_blue.length === 1) {
-    			hex_blue = "0" + hex_blue.toString();
-    		}
-
-            return "#" + hex_red + hex_green + hex_blue;
-        },
-        createYourCharacter() {
-            if (!this.customised) {
-                this.$parent.launchModal(this.id);
-            }
-        },
-        loadSvgDatas() {
-            if (this.svg) {
-                if (this.customised) {
-                    this.replaceSvgClasses();
-                    this.changeFaceColor(this.colors.face);
-                    this.changeHairColor(this.colors.hairFront);
-                    this.defaultColor = this.$refs.characterImg.children[0].children[0].innerHTML;
+                // 0 left padding
+                if (hex_red.length === 1) {
+                    hex_red = "0" + hex_red.toString();
                 }
-            }
+                if (hex_green.length === 1) {
+                    hex_green = "0" + hex_green.toString();
+                }
+                if (hex_blue.length === 1) {
+                    hex_blue = "0" + hex_blue.toString();
+                }
+
+                return "#" + hex_red + hex_green + hex_blue;
+            },
+            createYourCharacter() {
+                if (!this.customised) {
+                    this.$parent.launchModal(this.id);
+                }
+            },
+            loadSvgData() {
+                if (this.svg) {
+                    if (this.customised) {
+                        this.parseCharacterAttributes();
+                        this.changeFaceColor(this.colors.face);
+                        this.changeHairColor(this.colors.hairFront);
+                        this.defaultColor = this.$refs.characterImg.children[0].children[0].innerHTML;
+                    }
+                }
+            },
+            manageGlasses() {
+
+            },
+            manageBeards() {
+
+            },
+            parseCharacterAttributes() {
+                //console.log("Character id :" + this.$refs.characterImg.children[0].id);
+                for (let i = 0; i < this.$refs.characterImg.children[0].children.length; i++) {
+                    let id = this.$refs.characterImg.children[0].children[i].id;
+                    if (id === "face") {
+                        this.$refs.characterImg.children[0].children[i].classList.remove("st2");
+                        this.$refs.characterImg.children[0].children[i].classList.add("st2_custom_" + this.id);
+                    } else if (id === "face-shadow") {
+                        this.$refs.characterImg.children[0].children[i].classList.remove("st3");
+                        this.$refs.characterImg.children[0].children[i].classList.add("st3_custom_" + this.id);
+                    } else if (id === "hair-dark") {
+                        this.$refs.characterImg.children[0].children[i].classList.remove("st4");
+                        this.$refs.characterImg.children[0].children[i].classList.add("st4_custom_" + this.id);
+                    } else if (id === "hair-light") {
+                        this.$refs.characterImg.children[0].children[i].classList.remove("st5");
+                        this.$refs.characterImg.children[0].children[i].classList.add("st5_custom_" + this.id);
+                    } else if (id === "glasses") {
+                        this.manageGlasses();
+                    } else if (id === "facial-hair") {
+                        this.manageBeards();
+                    }
+                    //console.log("Attributes : " + this.$refs.characterImg.children[0].children[i].id)
+                }
+            },
+            updateCurrentSvg() {
+                this.svg = this.svgFile;
+            },
+            // methods to parse glasses
+            // methods to parse all facial parts(face, hair)
         },
-        replaceSvgClasses() {
-            this.$refs.characterImg.children[0].children[3].classList.remove("st2");
-            this.$refs.characterImg.children[0].children[4].classList.remove("st3");
-            this.$refs.characterImg.children[0].children[5].classList.remove("st4");
-            this.$refs.characterImg.children[0].children[6].classList.remove("st5");
-            this.$refs.characterImg.children[0].children[3].classList.add("st2_custom_" + this.id);
-            this.$refs.characterImg.children[0].children[4].classList.add("st3_custom_" + this.id);
-            this.$refs.characterImg.children[0].children[5].classList.add("st4_custom_" + this.id);
-            this.$refs.characterImg.children[0].children[6].classList.add("st5_custom_" + this.id);
+        created() {
+            this.updateCurrentSvg();
         },
-        updateCurrentSvg() {
-            this.svg = this.svgFile;
+        mounted() {
+            this.loadSvgData();
         },
-        // methods to parse glasses
-        // methods to parse all facial parts(face, hair)
-    },
-    created() {
-        this.updateCurrentSvg();
-    },
-    mounted() {
-        this.loadSvgDatas();
-    },
-    beforeUpdate() {
-        this.updateCurrentSvg();
+        beforeUpdate() {
+            this.updateCurrentSvg();
+        }
     }
-}
 </script>
 
 <style scoped>
