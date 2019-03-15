@@ -132,6 +132,7 @@
                         this.manageBeards();
                     }
                     //console.log("Attributes : " + this.$refs.characterImg.children[0].children[i].id)
+                    this.$refs.characterImg.children[0].children[0].innerHTML = "";
                 }
             },
             updateCurrentSvg() {
