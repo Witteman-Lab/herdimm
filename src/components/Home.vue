@@ -11,6 +11,18 @@
                         <Character v-if="isActive" ref="character" :id="'current'" :svgFile="this.currentCharacter"
                                    :colors="{face: this.currentColorFace, hairFront: this.currentColorHair}" :customised="true" />
                         <div style="display: flex; justify-content: center">
+                            <div class="dropdown" v-bind:class="{'is-active': isGlassesButtonEnable }">
+                                <div class="dropdown-trigger">
+                                    <button v-on:click="openDropdownGlasses" class="button">
+                                        <span>Glasses</span>
+                                    </button>
+                                </div>
+                                <div class="dropdown-menu" role="menu">
+                                    <div class="dropdown-content">
+                                        <a v-for="(glasses, index) in glassesList" class="dropdown-item" v-on:click="selectGlasses(index)">{{glasses}}</a>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="dropdown" v-bind:class="{'is-active': isHairColorButtonEnable }">
                                 <div class="dropdown-trigger">
                                     <button v-on:click="openDropdownHair" class="button">
@@ -119,6 +131,10 @@
                 isVisible: false,
                 isHairColorButtonEnable: false,
                 isFaceColorButtonEnable: false,
+                isBeardsButtonEnable: false,
+                isGlassesButtonEnable: false,
+                beardsList: [],
+                glassesList: [],
                 currentColorHair: '',
                 currentColorFace: '',
                 currentCharacter: "",
@@ -151,6 +167,16 @@
                     this.isActive = true;
                 }
             },
+            setGlassesList(glasses) {
+                this.glassesList = glasses;
+            },
+            selectGlasses(pos) {
+              this.$refs.character.changeGlasses(pos);
+              this.isGlassesButtonEnable = false;
+            },
+            setBeardsList(beards) {
+                this.beardsList = beards;
+            },
             removeModal() {
                 this.isActive = false;
                 this.isHairColorButtonEnable = false;
@@ -170,9 +196,19 @@
             openDropdownHair() {
                 this.isHairColorButtonEnable = !this.isHairColorButtonEnable;
                 this.isFaceColorButtonEnable = false;
+                this.isGlassesButtonEnable = false;
             },
             openDropdownFace() {
                 this.isFaceColorButtonEnable = !this.isFaceColorButtonEnable;
+                this.isHairColorButtonEnable = false;
+                this.isGlassesButtonEnable = false;
+            },
+            openDropdownBeards() {
+                this.isBeardsButtonEnable = !this.isBeardsButtonEnable;
+            },
+            openDropdownGlasses() {
+                this.isGlassesButtonEnable = !this.isGlassesButtonEnable;
+                this.isFaceColorButtonEnable = false;
                 this.isHairColorButtonEnable = false;
             }
         },

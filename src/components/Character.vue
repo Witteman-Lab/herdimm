@@ -20,13 +20,16 @@
                     faceShadow: '',
                     hairFront: '',
                     hairBack: '',
-                    idCharacter: String
+                    idCharacter: String,
+                    glasses: '',
+                    beards: ''
                 },
+                glasses: [],
+                beards: [],
                 defaultColor: '',
             };
         },
         props: {
-            color: String,
             svgFile: String,
             id: String,
             customised: Boolean,
@@ -44,6 +47,39 @@
                 this.svgColor.hairBack = this.getDarkerShade(color);
                 this.$refs.characterImg.children[0].children[0].innerHTML = this.$refs.characterImg.children[0].children[0].innerHTML +
                     `.st5_custom_${this.id}{fill:${this.svgColor.hairFront}}.st4_custom_${this.id}{fill:${this.svgColor.hairBack}}`;
+            },
+            changeBeard(id) {
+                for (let i = 0; i < this.$refs.characterImg.children.length; i++) {
+                    let id = this.$refs.characterImg.children[0].children[i].id;
+                    if (id === "beards") {
+                        for (let j = 0; j < this.$refs.characterImg.children[0].children[i].length; j++) {
+                            if (this.$refs.characterImg.children[0].children[i].children[j].id === id) {
+                                this.$refs.characterImg.children[0].children[i].children[j].style.display = "inline";
+                            } else {
+                                this.$refs.characterImg.children[0].children[i].children[j].style.display = "none";
+                            }
+                        }
+                        return 0;
+                    }
+                }
+            },
+            changeGlasses(pos) {
+                let currentGlasses = "";
+                for (let i = 0; i < this.$refs.characterImg.children[0].children.length; i++) {
+                    let current_id = this.$refs.characterImg.children[0].children[i].id;
+                    if (current_id === "glasses") {
+                        for (let j = 0; j < this.$refs.characterImg.children[0].children[i].children.length; j++) {
+                            if (j === pos) {
+                                this.$refs.characterImg.children[0].children[i].children[j].style.display = "inline";
+                                currentGlasses = pos;
+                            } else {
+                                this.$refs.characterImg.children[0].children[i].children[j].style.display = "none";
+                            }
+                        }
+                        this.svgColor.glasses = currentGlasses;
+                        return 0;
+                    }
+                }
             },
             resetFaceColor(){
                 this.$refs.characterImg.children[0].children[0].innerHTML = this.defaultColor;
@@ -100,15 +136,44 @@
                         this.parseCharacterAttributes();
                         this.changeFaceColor(this.colors.face);
                         this.changeHairColor(this.colors.hairFront);
+                        this.changeGlasses(this.colors.glasses);
                         this.defaultColor = this.$refs.characterImg.children[0].children[0].innerHTML;
                     }
                 }
             },
-            manageGlasses() {
+            // st6 for glasses and beards
+            manageGlasses(position) {
+                // st7 glasses
+                this.$refs.characterImg.children[0].children[position].classList.remove("st6");
+                this.$refs.characterImg.children[0].children[position].classList.add("st6_glasses_" + this.id);
+                this.$refs.characterImg.children[0].children[position].style.display = "inline";
+                //console.log(this.$refs.characterImg.children[0].children[position].children.length);
+                for (let i = 0; i < this.$refs.characterImg.children[0].children[position].children.length; i++) {
+                    this.$refs.characterImg.children[0].children[position].children[i].classList.remove("st7");
+                    this.$refs.characterImg.children[0].children[position].children[i].classList.add("st7_" + i +"_" + this.id);
+                    this.$refs.characterImg.children[0].children[position].children[i].style.display = "none";
+                    this.$refs.characterImg.children[0].children[position].children[i].setAttribute("id", "glasses_" + i +"_" + this.id);
+                    this.glasses.push(this.$refs.characterImg.children[0].children[position].children[i].id);
+                }
+                this.glasses.push("None");
 
+                if (this.$parent.$options.name === "home")
+                    this.$parent.setGlassesList(this.glasses);
             },
-            manageBeards() {
-
+            manageBeards(position) {
+                // st8 beards
+                this.$refs.characterImg.children[0].children[position].classList.remove("st6");
+                this.$refs.characterImg.children[0].children[position].classList.add("st6_beards_" + this.id);
+                this.$refs.characterImg.children[0].children[position].style.display = "none";
+                for (let i = 0; i < this.$refs.characterImg.children[0].children[position].children.length; i++) {
+                    this.$refs.characterImg.children[0].children[position].children[i].classList.remove("st8");
+                    this.$refs.characterImg.children[0].children[position].children[i].classList.add("st8_" + i +"_" + this.id);
+                    this.$refs.characterImg.children[0].children[position].children[i].style.display = "none";
+                    this.$refs.characterImg.children[0].children[position].children[i].setAttribute("id", "beards_" + i +"_" + this.id);
+                    this.beards.push(this.$refs.characterImg.children[0].children[position].children[i].id);
+                }
+                if (this.$parent.$options.name === "home")
+                    this.$parent.setBeardsList(this.beards);
             },
             parseCharacterAttributes() {
                 //console.log("Character id :" + this.$refs.characterImg.children[0].id);
@@ -127,9 +192,9 @@
                         this.$refs.characterImg.children[0].children[i].classList.remove("st5");
                         this.$refs.characterImg.children[0].children[i].classList.add("st5_custom_" + this.id);
                     } else if (id === "glasses") {
-                        this.manageGlasses();
+                        this.manageGlasses(i);
                     } else if (id === "facial-hair") {
-                        this.manageBeards();
+                        this.manageBeards(i);
                     }
                     //console.log("Attributes : " + this.$refs.characterImg.children[0].children[i].id)
                     this.$refs.characterImg.children[0].children[0].innerHTML = "";
@@ -137,7 +202,7 @@
             },
             updateCurrentSvg() {
                 this.svg = this.svgFile;
-            },
+            }
             // methods to parse glasses
             // methods to parse all facial parts(face, hair)
         },
