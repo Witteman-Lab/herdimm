@@ -13,7 +13,7 @@
         name: "GroupCharacter",
         data() {
             return {
-                characterList: [],
+                characterList: []
             }
         },
         components: {

@@ -4,7 +4,7 @@
             <div class="modal-background"  @keydown.esc="removeModal" >
                 <div class="modal-card mobile-modal" >
                     <header class="modal-card-head">
-                        <p class="modal-card-title">Create your avatar</p>
+                        <p class="modal-card-title">{{ modalTitle }}</p>
                         <button class="delete" aria-label="close" v-on:click="removeModal"></button>
                     </header>
                     <section class="modal-card-body">
@@ -83,6 +83,8 @@
         </div>
         <div class="is-centered is-half-desktop is-half-mobile">
             <h1>Build your group</h1>
+            <p id="generalInfo">Click or tap on a character of your choice to select and customize it at your will.</p>
+            <p id="contextualInfo">{{ contextualInfo }}</p>
             <div class="Avatar">
                 <div class="column is-center is-four-fifths " >
                     <div style="cursor: pointer">
@@ -140,7 +142,15 @@
                 currentCharacter: "",
                 currentCharacterObject: "",
                 characterList: [],
+                contextualInfo: "",
+                modalTitle: "",
+                totalCreated: 0,
+                isAvatarCreated: false,
+                areVulnerableCreated: false,
+                areCommunityCreated: false
             };
+        },
+        props: {
         },
         methods: {
             changeFaceColor(color) {
@@ -188,6 +198,7 @@
                 if (this.$refs.listToFill.getCharacterListSize() === json.maxCharactersInGroup) {
                     this.isVisible = true;
                 }
+                this.manageCharacterCount()
             },
             loadAnimationView() {
                 let groupCharacter = this.$refs.listToFill.getCharacterList();
@@ -210,12 +221,30 @@
                 this.isGlassesButtonEnable = !this.isGlassesButtonEnable;
                 this.isFaceColorButtonEnable = false;
                 this.isHairColorButtonEnable = false;
+            },
+            manageCharacterCount() {
+                this.totalCreated++;
+                if (this.totalCreated === json.nbAvatar) {
+                    this.isAvatarCreated = true;
+                    this.contextualInfo = "Now, select and customize two (2) people you consider vulnerable.";
+                    this.modalTitle = "Create a vulnerable person";
+                } else if (this.totalCreated === json.nbAvatar + json.nbVulnerable) {
+                    this.areVulnerableCreated = true;
+                    this.contextualInfo = "Finally, select and customize six (6) other people around you.";
+                    this.modalTitle = "Create a person around you";
+                } else if (this.totalCreated === json.nbAvatar + json.nbVulnerable + json.nbCommunity) {
+                    this.areCommunityCreated = true;
+                    this.contextualInfo = "Press the button to start the animation";
+                    this.modalTitle = "";
+                }
             }
         },
         created() {
             this.characterList = json.characters;
         },
         mounted() {
+            this.contextualInfo = "First, select and customize your own avatar.";
+            this.modalTitle = "Create your avatar";
             document.body.addEventListener('keyup', e => {
                 if (e.keyCode === 27 && this.isActive) {
                     this.removeModal();
