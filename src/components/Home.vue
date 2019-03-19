@@ -1,8 +1,8 @@
 <template>
     <div class="container">
-        <div class="modal" v-bind:class="{'is-active': isActive }" >
-            <div class="modal-background"  @keydown.esc="removeModal" >
-                <div class="modal-card mobile-modal" >
+        <div class="modal" v-bind:class="{'is-active': isActive }">
+            <div class="modal-background">
+                <div class="modal-card mobile-modal">
                     <header class="modal-card-head">
                         <p class="modal-card-title">{{ modalTitle }}</p>
                         <button class="delete" aria-label="close" v-on:click="removeModal"></button>
@@ -32,17 +32,17 @@
                                 </div>
                                 <div class="dropdown-menu" role="menu">
                                     <Compact
-                                            :value="this.currentColorHair"
-                                            @input="this.changeHairColor"
-                                            :palette="[
-                                        '#090806', '#2C222B', '#71635A',
-                                        '#B7A69E', '#D6C4C2', '#CABFB1',
-                                        '#DCD0BA', '#FFF5E1', '#E6CEA8',
-                                        '#E5C8A8', '#DEBC99', '#B89778',
-                                        '#A56B46', '#B55239', '#8D4A43',
-                                        '#91553D', '#533D32', '#3B3024',
-                                        '#554838', '#4E433F', '#504444',
-                                        '#6A4E42', '#A7856A', '#977961'
+                                    :value="this.currentColorHair"
+                                    @input="this.changeHairColor"
+                                    :palette="[
+                                    '#090806', '#2C222B', '#71635A',
+                                    '#B7A69E', '#D6C4C2', '#CABFB1',
+                                    '#DCD0BA', '#FFF5E1', '#E6CEA8',
+                                    '#E5C8A8', '#DEBC99', '#B89778',
+                                    '#A56B46', '#B55239', '#8D4A43',
+                                    '#91553D', '#533D32', '#3B3024',
+                                    '#554838', '#4E433F', '#504444',
+                                    '#6A4E42', '#A7856A', '#977961'
                                     ]"
                                     />
                                 </div>
@@ -56,14 +56,14 @@
                                 </div>
                                 <div class="dropdown-menu" role="menu">
                                     <Compact
-                                            :value="this.currentColorFace"
-                                            @input="this.changeFaceColor"
-                                            :palette="[
-                                        '#FFD6C5', '#E7C1B2', '#E4BDAD',
-                                        '#FFE2C9', '#E7CBB5', '#E6C8B0',
-                                        '#FFCBA3', '#E8B894', '#E7B38D',
-                                        '#D8905F', '#C28155', '#BE794A',
-                                        '#88513A', '#7B4934', '#733E26'
+                                    :value="this.currentColorFace"
+                                    @input="this.changeFaceColor"
+                                    :palette="[
+                                    '#FFD6C5', '#E7C1B2', '#E4BDAD',
+                                    '#FFE2C9', '#E7CBB5', '#E6C8B0',
+                                    '#FFCBA3', '#E8B894', '#E7B38D',
+                                    '#D8905F', '#C28155', '#BE794A',
+                                    '#88513A', '#7B4934', '#733E26'
                                     ]"
                                     />
                                 </div>
@@ -147,7 +147,8 @@
                 totalCreated: 0,
                 isAvatarCreated: false,
                 areVulnerableCreated: false,
-                areCommunityCreated: false
+                areCommunityCreated: false,
+                maxCharactersInGroup: 0
             };
         },
         props: {
@@ -169,7 +170,7 @@
                 this.$refs.character.changeHairColor(this.currentColorHair);
             },
             launch(character) {
-                if (this.$refs.listToFill.getCharacterListSize() < json.maxCharactersInGroup)  {
+                if (this.$refs.listToFill.getCharacterListSize() < this.maxCharactersInGroup)  {
                     this.currentCharacter = require(`../assets/characters/${character.file}`);
                     this.currentCharacterObject = character;
                     this.currentColorFace = "#7C5235";
@@ -195,7 +196,7 @@
             saveCharacter() {
                 this.$refs.listToFill.addCharacterToGroup(this.currentCharacterObject, this.$refs.character.getSvgColor());
                 this.removeModal();
-                if (this.$refs.listToFill.getCharacterListSize() === json.maxCharactersInGroup) {
+                if (this.$refs.listToFill.getCharacterListSize() === this.maxCharactersInGroup) {
                     this.isVisible = true;
                 }
                 this.manageCharacterCount()
@@ -226,11 +227,11 @@
                 this.totalCreated++;
                 if (this.totalCreated === json.nbAvatar) {
                     this.isAvatarCreated = true;
-                    this.contextualInfo = "Now, select and customize two (2) people you consider vulnerable.";
+                    this.contextualInfo = `Now, select and customize ${json.nbVulnerable} people you consider vulnerable.`;
                     this.modalTitle = "Create a vulnerable person";
                 } else if (this.totalCreated === json.nbAvatar + json.nbVulnerable) {
                     this.areVulnerableCreated = true;
-                    this.contextualInfo = "Finally, select and customize six (6) other people around you.";
+                    this.contextualInfo = `Finally, select and customize ${json.nbCommunity} other people around you.`;
                     this.modalTitle = "Create a person around you";
                 } else if (this.totalCreated === json.nbAvatar + json.nbVulnerable + json.nbCommunity) {
                     this.areCommunityCreated = true;
@@ -241,10 +242,11 @@
         },
         created() {
             this.characterList = json.characters;
-        },
-        mounted() {
+            this.maxCharactersInGroup = json.nbAvatar + json.nbVulnerable + json.nbCommunity;
             this.contextualInfo = "First, select and customize your own avatar.";
             this.modalTitle = "Create your avatar";
+        },
+        mounted() {
             document.body.addEventListener('keyup', e => {
                 if (e.keyCode === 27 && this.isActive) {
                     this.removeModal();
@@ -257,6 +259,13 @@
 </script>
 
 <style scoped>
+    h1 {
+        font-weight: bold;
+        margin: 0 0 20px 0;
+    }
+    p {
+        margin: 10px 0;
+    }
     .Avatar {
         display: flex;
         justify-content: center;
