@@ -48,7 +48,7 @@
                 this.$refs.characterImg.children[0].children[0].innerHTML = this.$refs.characterImg.children[0].children[0].innerHTML +
                     `.st5_custom_${this.id}{fill:${this.svgColor.hairFront}}.st4_custom_${this.id}{fill:${this.svgColor.hairBack}}`;
             },
-            changeBeard(id) {
+            changeBeard() {
                 for (let i = 0; i < this.$refs.characterImg.children.length; i++) {
                     let id = this.$refs.characterImg.children[0].children[i].id;
                     if (id === "beards") {
