@@ -40,13 +40,13 @@
                 this.svgColor.face = color;
                 this.svgColor.faceShadow = this.getDarkerShade(color);
                 this.$refs.characterImg.children[0].children[0].innerHTML +=
-                    `.st2_custom_${this.id}{fill:${this.svgColor.face}}.st3_custom_${this.id}{fill:${this.svgColor.faceShadow}}`;
+                    `.st2_custom_${this.id}{fill:${this.svgColor.face};}.st3_custom_${this.id}{fill:${this.svgColor.faceShadow};}`;
             },
             changeHairColor(color){
                 this.svgColor.hairFront = color;
                 this.svgColor.hairBack = this.getDarkerShade(color);
                 this.$refs.characterImg.children[0].children[0].innerHTML +=
-                    `.st5_custom_${this.id}{fill:${this.svgColor.hairFront}}.st4_custom_${this.id}{fill:${this.svgColor.hairBack}}`;
+                    `.st5_custom_${this.id}{fill:${this.svgColor.hairFront};}.st4_custom_${this.id}{fill:${this.svgColor.hairBack};}`;
             },
             changeBeard() {
                 for (let i = 0; i < this.$refs.characterImg.children.length; i++) {

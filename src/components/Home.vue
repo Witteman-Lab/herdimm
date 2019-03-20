@@ -148,7 +148,8 @@
                 isAvatarCreated: false,
                 areVulnerableCreated: false,
                 areCommunityCreated: false,
-                maxCharactersInGroup: 0
+                maxCharactersInGroup: 0,
+                type: String
             };
         },
         props: {
