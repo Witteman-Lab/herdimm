@@ -11,7 +11,19 @@
                         <Character v-if="isActive" ref="character" :id="'current'" :svgFile="this.currentCharacter"
                                    :colors="{face: this.currentColorFace, hairFront: this.currentColorHair}" :customised="true" />
                         <div style="display: flex; justify-content: center">
-                            <div class="dropdown" v-bind:class="{'is-active': isGlassesButtonEnable }">
+                            <div v-if="this.isAdult" class="dropdown" v-bind:class="{'is-active': isBeardsButtonEnable }">
+                                <div class="dropdown-trigger">
+                                    <button v-on:click="openDropdownBeards" class="button">
+                                        <span>Beards</span>
+                                    </button>
+                                </div>
+                                <div class="dropdown-menu" role="menu">
+                                    <div class="dropdown-content">
+                                        <a v-for="(beard, index) in beardsList" class="dropdown-item" v-on:click="selectBeards(index)">{{beard}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div  v-if="this.isAdult" class="dropdown" v-bind:class="{'is-active': isGlassesButtonEnable }">
                                 <div class="dropdown-trigger">
                                     <button v-on:click="openDropdownGlasses" class="button">
                                         <span>Glasses</span>
@@ -149,7 +161,8 @@
                 areVulnerableCreated: false,
                 areCommunityCreated: false,
                 maxCharactersInGroup: 0,
-                type: String
+                type: String,
+                isAdult: false
             };
         },
         props: {
@@ -174,6 +187,7 @@
                 if (this.$refs.listToFill.getCharacterListSize() < this.maxCharactersInGroup)  {
                     this.currentCharacter = require(`../assets/characters/${character.file}`);
                     this.currentCharacterObject = character;
+                    this.isAdult = (character.type === "adult");
                     this.currentColorFace = "#7C5235";
                     this.currentColorHair = "#412308";
                     this.isActive = true;
@@ -182,12 +196,16 @@
             setGlassesList(glasses) {
                 this.glassesList = glasses;
             },
+            setBeardsList(beards) {
+                this.beardsList = beards;
+            },
             selectGlasses(pos) {
               this.$refs.character.changeGlasses(pos);
               this.isGlassesButtonEnable = false;
             },
-            setBeardsList(beards) {
-                this.beardsList = beards;
+            selectBeards(pos) {
+                this.$refs.character.changeBeard(pos);
+                this.isBeardsButtonEnable = false;
             },
             removeModal() {
                 this.isActive = false;

@@ -27,6 +27,7 @@
                 glasses: [],
                 beards: [],
                 defaultColor: '',
+                defaultShirtColor: '.st0{fill:#BFBABE;}' + '.st1{fill:#9D9C9D;}'
             };
         },
         props: {
@@ -48,22 +49,29 @@
                 this.$refs.characterImg.children[0].children[0].innerHTML +=
                     `.st5_custom_${this.id}{fill:${this.svgColor.hairFront};}.st4_custom_${this.id}{fill:${this.svgColor.hairBack};}`;
             },
-            changeBeard() {
-                for (let i = 0; i < this.$refs.characterImg.children.length; i++) {
-                    let id = this.$refs.characterImg.children[0].children[i].id;
-                    if (id === "beards") {
-                        for (let j = 0; j < this.$refs.characterImg.children[0].children[i].length; j++) {
-                            if (this.$refs.characterImg.children[0].children[i].children[j].id === id) {
+            changeBeard(pos) {
+                if (!pos)
+                    return 0;
+                let currentBeards = "";
+                for (let i = 0; i < this.$refs.characterImg.children[0].children.length; i++) {
+                    let current_id = this.$refs.characterImg.children[0].children[i].id;
+                    if (current_id === "facial-hair") {
+                        for (let j = 0; j < this.$refs.characterImg.children[0].children[i].children.length; j++) {
+                            if (j === pos) {
                                 this.$refs.characterImg.children[0].children[i].children[j].style.display = "inline";
+                                currentBeards = pos;
                             } else {
                                 this.$refs.characterImg.children[0].children[i].children[j].style.display = "none";
                             }
                         }
+                        this.svgColor.glasses = currentBeards;
                         return 0;
                     }
                 }
             },
             changeGlasses(pos) {
+                if (!pos)
+                    return 0;
                 let currentGlasses = "";
                 for (let i = 0; i < this.$refs.characterImg.children[0].children.length; i++) {
                     let current_id = this.$refs.characterImg.children[0].children[i].id;
@@ -137,6 +145,9 @@
                         this.changeFaceColor(this.colors.face);
                         this.changeHairColor(this.colors.hairFront);
                         this.changeGlasses(this.colors.glasses);
+                        this.changeBeard(this.colors.beards);
+                        this.$refs.characterImg.children[0].children[0].innerHTML =
+                            this.$refs.characterImg.children[0].children[0].innerHTML + this.defaultShirtColor;
                         this.defaultColor = this.$refs.characterImg.children[0].children[0].innerHTML;
                     }
                 }
@@ -164,7 +175,7 @@
                 // st8 beards
                 this.$refs.characterImg.children[0].children[position].classList.remove("st6");
                 this.$refs.characterImg.children[0].children[position].classList.add("st6_beards_" + this.id);
-                this.$refs.characterImg.children[0].children[position].style.display = "none";
+                this.$refs.characterImg.children[0].children[position].style.display = "inline";
                 for (let i = 0; i < this.$refs.characterImg.children[0].children[position].children.length; i++) {
                     this.$refs.characterImg.children[0].children[position].children[i].classList.remove("st8");
                     this.$refs.characterImg.children[0].children[position].children[i].classList.add("st8_" + i +"_" + this.id);
@@ -172,6 +183,8 @@
                     this.$refs.characterImg.children[0].children[position].children[i].setAttribute("id", "beards_" + i +"_" + this.id);
                     this.beards.push(this.$refs.characterImg.children[0].children[position].children[i].id);
                 }
+                this.beards.push("None");
+
                 if (this.$parent.$options.name === "home")
                     this.$parent.setBeardsList(this.beards);
             },
@@ -203,8 +216,6 @@
             updateCurrentSvg() {
                 this.svg = this.svgFile;
             }
-            // methods to parse glasses
-            // methods to parse all facial parts(face, hair)
         },
         created() {
             this.updateCurrentSvg();
