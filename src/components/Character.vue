@@ -189,28 +189,37 @@
                     this.$parent.setBeardsList(this.beards);
             },
             parseCharacterAttributes() {
-                //console.log("Character id :" + this.$refs.characterImg.children[0].id);
-                for (let i = 0; i < this.$refs.characterImg.children[0].children.length; i++) {
-                    let id = this.$refs.characterImg.children[0].children[i].id;
-                    if (id === "face") {
-                        this.$refs.characterImg.children[0].children[i].classList.remove("st2");
-                        this.$refs.characterImg.children[0].children[i].classList.add("st2_custom_" + this.id);
+                let characterImgSVG = this.$refs.characterImg.children[0];
+
+                for (let i = 0; i < characterImgSVG.children.length; i++) {
+                    let id = characterImgSVG.children[i].id;
+                    let classValue = characterImgSVG.children[i].classList.value;
+
+                    if (!["", "st0", "st1"].includes(classValue)) {
+                        characterImgSVG.children[i].classList.remove(classValue);
+                        characterImgSVG.children[i].classList.add(classValue + "_custom_" + this.id);
+                    }
+
+                    /*if (id === "face") {
+                        characterImgSVG.children[i].classList.remove("st2");
+                        characterImgSVG.children[i].classList.add("st2_custom_" + this.id);
                     } else if (id === "face-shadow") {
-                        this.$refs.characterImg.children[0].children[i].classList.remove("st3");
-                        this.$refs.characterImg.children[0].children[i].classList.add("st3_custom_" + this.id);
+                        characterImgSVG.children[i].classList.remove("st3");
+                        characterImgSVG.children[i].classList.add("st3_custom_" + this.id);
                     } else if (id === "hair-dark") {
-                        this.$refs.characterImg.children[0].children[i].classList.remove("st4");
-                        this.$refs.characterImg.children[0].children[i].classList.add("st4_custom_" + this.id);
+                        characterImgSVG.children[i].classList.remove("st4");
+                        characterImgSVG.children[i].classList.add("st4_custom_" + this.id);
                     } else if (id === "hair-light") {
-                        this.$refs.characterImg.children[0].children[i].classList.remove("st5");
-                        this.$refs.characterImg.children[0].children[i].classList.add("st5_custom_" + this.id);
-                    } else if (id === "glasses") {
+                        characterImgSVG.children[i].classList.remove("st5");
+                        characterImgSVG.children[i].classList.add("st5_custom_" + this.id);
+                    } else*/
+                    if (id === "glasses") {
                         this.manageGlasses(i);
                     } else if (id === "facial-hair") {
                         this.manageBeards(i);
                     }
                     //console.log("Attributes : " + this.$refs.characterImg.children[0].children[i].id)
-                    this.$refs.characterImg.children[0].children[0].innerHTML = "";
+                    characterImgSVG.children[0].innerHTML = "";
                 }
             },
             updateCurrentSvg() {
