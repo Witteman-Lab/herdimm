@@ -20,8 +20,9 @@
             Character
         },
         methods: {
-            addCharacterToGroup(character, characterColors) {
-                this.characterList.push({id: character.id + this.characterList.length + "_customised", file: character.file, type: character.type, colors: characterColors});
+            addCharacterToGroup(character, characterColors, type) {
+                this.characterList.push({id: character.id + this.characterList.length + "_customised",
+                    file: character.file, type: character.type, colors: characterColors, characterType: type});
             },
             editCharacter(pos) {
                 this.characterList.splice(pos, 1);

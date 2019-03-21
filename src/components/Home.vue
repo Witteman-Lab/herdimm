@@ -19,7 +19,7 @@
                                 </div>
                                 <div class="dropdown-menu" role="menu">
                                     <div class="dropdown-content">
-                                        <a v-for="(beard, index) in beardsList" class="dropdown-item" v-on:click="selectBeards(index)">{{beard}}</a>
+                                        <a v-bind:key="beard" v-for="(beard, index) in beardsList" class="dropdown-item" v-on:click="selectBeards(index)">{{beard}}</a>
                                     </div>
                                 </div>
                             </div>
@@ -31,7 +31,7 @@
                                 </div>
                                 <div class="dropdown-menu" role="menu">
                                     <div class="dropdown-content">
-                                        <a v-for="(glasses, index) in glassesList" class="dropdown-item" v-on:click="selectGlasses(index)">{{glasses}}</a>
+                                        <a v-bind:key="glasses" v-for="(glasses, index) in glassesList" class="dropdown-item" v-on:click="selectGlasses(index)">{{glasses}}</a>
                                     </div>
                                 </div>
                             </div>
@@ -44,9 +44,9 @@
                                 </div>
                                 <div class="dropdown-menu" role="menu">
                                     <Compact
-                                    :value="this.currentColorHair"
-                                    @input="this.changeHairColor"
-                                    :palette="[
+                                            :value="this.currentColorHair"
+                                            @input="this.changeHairColor"
+                                            :palette="[
                                     '#090806', '#2C222B', '#71635A',
                                     '#B7A69E', '#D6C4C2', '#CABFB1',
                                     '#DCD0BA', '#FFF5E1', '#E6CEA8',
@@ -68,9 +68,9 @@
                                 </div>
                                 <div class="dropdown-menu" role="menu">
                                     <Compact
-                                    :value="this.currentColorFace"
-                                    @input="this.changeFaceColor"
-                                    :palette="[
+                                            :value="this.currentColorFace"
+                                            @input="this.changeFaceColor"
+                                            :palette="[
                                     '#FFD6C5', '#E7C1B2', '#E4BDAD',
                                     '#FFE2C9', '#E7CBB5', '#E6C8B0',
                                     '#FFCBA3', '#E8B894', '#E7B38D',
@@ -182,6 +182,8 @@
                 this.$refs.character.resetFaceColor();
                 this.$refs.character.changeFaceColor(this.currentColorFace);
                 this.$refs.character.changeHairColor(this.currentColorHair);
+                this.$refs.character.changeGlasses(-1);
+                this.$refs.character.changeBeard(-1);
             },
             launch(character) {
                 if (this.$refs.listToFill.getCharacterListSize() < this.maxCharactersInGroup)  {
@@ -200,8 +202,8 @@
                 this.beardsList = beards;
             },
             selectGlasses(pos) {
-              this.$refs.character.changeGlasses(pos);
-              this.isGlassesButtonEnable = false;
+                this.$refs.character.changeGlasses(pos);
+                this.isGlassesButtonEnable = false;
             },
             selectBeards(pos) {
                 this.$refs.character.changeBeard(pos);
@@ -213,12 +215,22 @@
                 this.isFaceColorButtonEnable = false;
             },
             saveCharacter() {
-                this.$refs.listToFill.addCharacterToGroup(this.currentCharacterObject, this.$refs.character.getSvgColor());
+                this.manageCharacterCount();
+                this.$refs.listToFill.addCharacterToGroup(this.currentCharacterObject,
+                    this.$refs.character.getSvgColor(), this.getCurrentCharacterType(this.totalCreated));
                 this.removeModal();
                 if (this.$refs.listToFill.getCharacterListSize() === this.maxCharactersInGroup) {
                     this.isVisible = true;
                 }
-                this.manageCharacterCount()
+            },
+            getCurrentCharacterType(position) {
+                if (position <= json.nbAvatar) {
+                    return "avatar";
+                } else if (position <= json.nbAvatar + json.nbVulnerable)   {
+                    return "vulnerable"
+                } else if (position <= json.nbAvatar + json.nbVulnerable + json.nbCommunity) {
+                    return "comm";
+                }
             },
             loadAnimationView() {
                 let groupCharacter = this.$refs.listToFill.getCharacterList();

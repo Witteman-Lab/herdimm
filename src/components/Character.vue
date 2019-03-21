@@ -50,7 +50,7 @@
                     `.st5_custom_${this.id}{fill:${this.svgColor.hairFront};}.st4_custom_${this.id}{fill:${this.svgColor.hairBack};}`;
             },
             changeBeard(pos) {
-                if (!pos)
+                if (pos === undefined)
                     return 0;
                 let currentBeards = "";
                 for (let i = 0; i < this.$refs.characterImg.children[0].children.length; i++) {
@@ -64,13 +64,13 @@
                                 this.$refs.characterImg.children[0].children[i].children[j].style.display = "none";
                             }
                         }
-                        this.svgColor.glasses = currentBeards;
+                        this.svgColor.beards = currentBeards;
                         return 0;
                     }
                 }
             },
             changeGlasses(pos) {
-                if (!pos)
+                if (pos === undefined)
                     return 0;
                 let currentGlasses = "";
                 for (let i = 0; i < this.$refs.characterImg.children[0].children.length; i++) {
