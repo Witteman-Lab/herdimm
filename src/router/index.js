@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '../components/Home'
 import Animations from '../components/Animations'
+import Shapes from '../components/Shapes'
 
 Vue.use(Router);
 
@@ -18,7 +19,14 @@ export default new Router({
             name: 'Animations',
             component: Animations,
             props: true
+        },
+        {
+            path: '/Shapes',
+            name: 'Shapes',
+            component: Shapes,
+            props: true
         }
+
 
     ]
 
