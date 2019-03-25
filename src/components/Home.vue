@@ -240,19 +240,25 @@
                 this.isHairColorButtonEnable = !this.isHairColorButtonEnable;
                 this.isFaceColorButtonEnable = false;
                 this.isGlassesButtonEnable = false;
+                this.isBeardsButtonEnable = false;
             },
             openDropdownFace() {
                 this.isFaceColorButtonEnable = !this.isFaceColorButtonEnable;
                 this.isHairColorButtonEnable = false;
                 this.isGlassesButtonEnable = false;
+                this.isBeardsButtonEnable = false;
             },
             openDropdownBeards() {
                 this.isBeardsButtonEnable = !this.isBeardsButtonEnable;
+                this.isGlassesButtonEnable = false;
+                this.isFaceColorButtonEnable = false;
+                this.isHairColorButtonEnable = false;
             },
             openDropdownGlasses() {
                 this.isGlassesButtonEnable = !this.isGlassesButtonEnable;
                 this.isFaceColorButtonEnable = false;
                 this.isHairColorButtonEnable = false;
+                this.isBeardsButtonEnable = false;
             },
             manageCharacterCount() {
                 this.totalCreated++;

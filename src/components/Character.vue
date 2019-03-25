@@ -177,6 +177,16 @@
                 this.$refs.characterImg.children[0].children[position].classList.add("st6_beards_" + this.id);
                 this.$refs.characterImg.children[0].children[position].style.display = "inline";
                 for (let i = 0; i < this.$refs.characterImg.children[0].children[position].children.length; i++) {
+                    if (this.$refs.characterImg.children[0].children[position].children[i].classList.value === "st7") {
+                        this.$refs.characterImg.children[0].children[position].children[i].classList.remove("st7");
+                        this.$refs.characterImg.children[0].children[position].children[i].classList.add("st8");
+                        for (let j = 0; j < this.$refs.characterImg.children[0].children[position].children[i].children.length; j++) {
+                            this.$refs.characterImg.children[0].children[position].children[i].children[j].classList.remove("st5");
+                            this.$refs.characterImg.children[0].children[position].children[i].children[j].classList.add("st5_custom_" + this.id);
+                        }
+                    }
+                    this.$refs.characterImg.children[0].children[position].children[i].classList.remove("st5");
+                    this.$refs.characterImg.children[0].children[position].children[i].classList.add("st5_custom_" + this.id);
                     this.$refs.characterImg.children[0].children[position].children[i].classList.remove("st8");
                     this.$refs.characterImg.children[0].children[position].children[i].classList.add("st8_" + i +"_" + this.id);
                     this.$refs.characterImg.children[0].children[position].children[i].style.display = "none";
