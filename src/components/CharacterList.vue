@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-for="(character) in this.characterList" :key="character.id">
-            <Character :customised="false" ref="character" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" :color="''" />
+            <Character :customised="false" :edit="true" ref="character" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" :color="''" />
         </div>
     </div>
 </template>
@@ -23,10 +23,6 @@ export default {
         characters: Array
     },
     methods: {
-        addCharacterToList(character) {
-            character.id = this.characterList.length;
-            this.characterList.push(character);
-        },
         launchModal(id) {
             this.characterList.filter(obj => {
                 if (obj.id === id) {

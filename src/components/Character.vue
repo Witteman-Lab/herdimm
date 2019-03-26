@@ -34,7 +34,8 @@
             svgFile: String,
             id: String,
             customised: Boolean,
-            colors: Object
+            colors: Object,
+            edit: Boolean
         },
         methods: {
             changeFaceColor(color) {
@@ -134,18 +135,21 @@
                 return "#" + hex_red + hex_green + hex_blue;
             },
             createYourCharacter() {
-                if (!this.customised) {
+                if (this.edit) {
                     this.$parent.launchModal(this.id);
                 }
+            },
+            editCharacterColors(colors) {
+                this.changeFaceColor(colors.face);
+                this.changeHairColor(colors.hairFront);
+                this.changeGlasses(colors.glasses);
+                this.changeBeard(colors.beards);
             },
             loadSvgData() {
                 if (this.svg) {
                     if (this.customised) {
                         this.parseCharacterAttributes();
-                        this.changeFaceColor(this.colors.face);
-                        this.changeHairColor(this.colors.hairFront);
-                        this.changeGlasses(this.colors.glasses);
-                        this.changeBeard(this.colors.beards);
+                        this.editCharacterColors(this.colors);
                         this.$refs.characterImg.children[0].children[0].innerHTML =
                             this.$refs.characterImg.children[0].children[0].innerHTML + this.defaultShirtColor;
                         this.defaultColor = this.$refs.characterImg.children[0].children[0].innerHTML;

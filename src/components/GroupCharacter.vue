@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div v-for="(character) in characterList" :key="character.id">
-            <Character ref="character" :customised="true" :colors="character.colors" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" />
+        <div v-for="(character) in characterList" ref="characterList" :key="character.id">
+            <Character ref="character" :edit="true" :customised="true" :colors="character.colors" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" />
         </div>
     </div>
 </template>
@@ -24,13 +24,21 @@
                 this.characterList.push({id: character.id + this.characterList.length + "_customised",
                     file: character.file, type: character.type, colors: characterColors, characterType: type});
             },
-            editCharacter(pos) {
-                this.characterList.splice(pos, 1);
+            editCharacter(character, characterColors, type) {
+                this.characterList.map((obj, index) => {
+                    if (obj.id === character.id) {
+                        this.characterList.splice(index, 1, {id: character.id,
+                            file: character.file, type: character.type, colors: characterColors, characterType: type});
+                        this.$refs.character[index].editCharacterColors(characterColors);
+                    }
+                });
             },
-            launchModal() {
-               // TODO Manage Character Edition with a new modal
-                // implement launchModal(id)
-                // /console.log("Nothing happen here."  + id);
+            launchModal(id) {
+                this.characterList.filter((obj, index) => {
+                    if (obj.id === id) {
+                        this.$parent.launchEditModal(obj, index);
+                    }
+                });
             },
             getCharacterListSize() {
                 return this.characterList.length;

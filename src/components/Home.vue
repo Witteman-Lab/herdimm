@@ -8,8 +8,8 @@
                         <button class="delete" aria-label="close" v-on:click="removeModal"></button>
                     </header>
                     <section class="modal-card-body">
-                        <Character v-if="isActive" ref="character" :id="'current'" :svgFile="this.currentCharacter"
-                                   :colors="{face: this.currentColorFace, hairFront: this.currentColorHair}" :customised="true" />
+                        <Character v-if="isActive" :edit="false" :customised="true" ref="character" :id="'current'" :svgFile="this.currentCharacter"
+                                   :colors="{face: this.currentColorFace, hairFront: this.currentColorHair, beards: this.currentBeard, glasses: this.currentGlasses}" />
                         <div style="display: flex; justify-content: center">
                             <div v-if="this.isAdult" class="dropdown" v-bind:class="{'is-active': isBeardsButtonEnable }">
                                 <div class="dropdown-trigger">
@@ -87,7 +87,8 @@
                         </div>
                     </section>
                     <footer class="modal-card-foot">
-                        <button class="button is-success" v-on:click="saveCharacter">Save</button>
+                        <button class="button is-success" v-if=!isEdit v-on:click="saveCharacter">Save</button>
+                        <button class="button is-success" v-if=isEdit v-on:click="saveEditCharacter">Edit</button>
                         <button class="button" v-on:click="removeModal">Cancel</button>
                     </footer>
                 </div>
@@ -143,6 +144,7 @@
             return {
                 isActive: false,
                 isVisible: false,
+                isEdit: false,
                 isHairColorButtonEnable: false,
                 isFaceColorButtonEnable: false,
                 isBeardsButtonEnable: false,
@@ -151,6 +153,8 @@
                 glassesList: [],
                 currentColorHair: '',
                 currentColorFace: '',
+                currentBeard: -1,
+                currentGlasses: -1,
                 currentCharacter: "",
                 currentCharacterObject: "",
                 characterList: [],
@@ -165,8 +169,7 @@
                 isAdult: false
             };
         },
-        props: {
-        },
+        props: {},
         methods: {
             changeFaceColor(color) {
                 this.currentColorFace = color.hex;
@@ -192,8 +195,26 @@
                     this.isAdult = (character.type === "adult");
                     this.currentColorFace = "#7C5235";
                     this.currentColorHair = "#412308";
+                    this.currentGlasses = -1;
+                    this.currentBeard = -1;
                     this.isActive = true;
+                    this.isEdit = false;
+                    this.modalTitle = (this.totalCreated === 0 ? "Create your avatar" :
+                        this.totalCreated <= 2 ? "Create a vulnerable person" : "Create a person around you");
                 }
+            },
+            launchEditModal(character, index) {
+                this.currentCharacter = require(`../assets/characters/${character.file}`);
+                this.currentCharacterObject = character;
+                this.isAdult = (character.type === "adult");
+                this.currentColorFace = character.colors.face;
+                this.currentColorHair = character.colors.hairFront;
+                this.currentGlasses = character.colors.glasses;
+                this.currentBeard = character.colors.beards;
+                this.isActive = true;
+                this.isEdit = true;
+                this.modalTitle = (index === 0 ? "Edit your avatar" :
+                    index <= 2 ? "Edit a vulnerable person" : "Edit a person around you");
             },
             setGlassesList(glasses) {
                 this.glassesList = glasses;
@@ -222,6 +243,11 @@
                 if (this.$refs.listToFill.getCharacterListSize() === this.maxCharactersInGroup) {
                     this.isVisible = true;
                 }
+            },
+            saveEditCharacter() {
+                this.$refs.listToFill.editCharacter(this.currentCharacterObject,
+                    this.$refs.character.getSvgColor(), this.currentCharacterObject.type);
+                this.removeModal();
             },
             getCurrentCharacterType(position) {
                 if (position <= json.nbAvatar) {
