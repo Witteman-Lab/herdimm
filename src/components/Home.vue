@@ -231,7 +231,7 @@
                 this.modalTitle = this.getModalTitle(index, "Edit");
             },
             getModalTitle(index, verb) {
-                return (index === 0 ?  `${verb} your avatar` : index <= 2 ? `${verb} a vulnerable person` : `${verb} a person around you`);
+                return (index === 0 ?  `${verb} your avatar` : index <= json.nbAvatar + json.nbVulnerable ? `${verb} a vulnerable person` : `${verb} a person around you`);
             },
             setGlassesList(glasses) {
                 this.glassesList = glasses;
