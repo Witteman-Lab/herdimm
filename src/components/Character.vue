@@ -157,18 +157,22 @@
                 }
             },
             // st6 for glasses and beards
+            manageAccessories(childrenPosition, accessory) {
+                childrenPosition.classList.remove("st6");
+                childrenPosition.classList.add("st6" + accessory + this.id);
+                childrenPosition.style.display = "inline";
+            },
             manageGlasses(position) {
+                let childrenPosition = this.$refs.characterImg.children[0].children[position];
+                this.manageAccessories(childrenPosition, "_glasses_");
+
                 // st7 glasses
-                this.$refs.characterImg.children[0].children[position].classList.remove("st6");
-                this.$refs.characterImg.children[0].children[position].classList.add("st6_glasses_" + this.id);
-                this.$refs.characterImg.children[0].children[position].style.display = "inline";
-                //console.log(this.$refs.characterImg.children[0].children[position].children.length);
-                for (let i = 0; i < this.$refs.characterImg.children[0].children[position].children.length; i++) {
-                    this.$refs.characterImg.children[0].children[position].children[i].classList.remove("st7");
-                    this.$refs.characterImg.children[0].children[position].children[i].classList.add("st7_" + i +"_" + this.id);
-                    this.$refs.characterImg.children[0].children[position].children[i].style.display = "none";
-                    this.$refs.characterImg.children[0].children[position].children[i].setAttribute("id", "glasses_" + i +"_" + this.id);
-                    this.glasses.push(this.$refs.characterImg.children[0].children[position].children[i].id);
+                for (let i = 0; i < childrenPosition.children.length; i++) {
+                    childrenPosition.children[i].classList.remove("st7");
+                    childrenPosition.classList.add("st7_" + i +"_" + this.id);
+                    childrenPosition.children[i].style.display = "none";
+                    childrenPosition.children[i].setAttribute("id", "glasses_" + i +"_" + this.id);
+                    this.glasses.push(childrenPosition.children[i].id);
                 }
                 this.glasses.push("None");
 
@@ -176,26 +180,26 @@
                     this.$parent.setGlassesList(this.glasses);
             },
             manageBeards(position) {
+                let childrenPosition = this.$refs.characterImg.children[0].children[position];
+                this.manageAccessories(childrenPosition, "_beards_");
+
                 // st8 beards
-                this.$refs.characterImg.children[0].children[position].classList.remove("st6");
-                this.$refs.characterImg.children[0].children[position].classList.add("st6_beards_" + this.id);
-                this.$refs.characterImg.children[0].children[position].style.display = "inline";
-                for (let i = 0; i < this.$refs.characterImg.children[0].children[position].children.length; i++) {
-                    if (this.$refs.characterImg.children[0].children[position].children[i].classList.value === "st7") {
-                        this.$refs.characterImg.children[0].children[position].children[i].classList.remove("st7");
-                        this.$refs.characterImg.children[0].children[position].children[i].classList.add("st8");
-                        for (let j = 0; j < this.$refs.characterImg.children[0].children[position].children[i].children.length; j++) {
-                            this.$refs.characterImg.children[0].children[position].children[i].children[j].classList.remove("st5");
-                            this.$refs.characterImg.children[0].children[position].children[i].children[j].classList.add("st5_custom_" + this.id);
+                for (let i = 0; i < childrenPosition.children.length; i++) {
+                    if (childrenPosition.children[i].classList.value === "st7") {
+                        childrenPosition.children[i].classList.remove("st7");
+                        childrenPosition.children[i].classList.add("st8");
+                        for (let j = 0; j < childrenPosition.children[i].children.length; j++) {
+                            childrenPosition.children[i].children[j].classList.remove("st5");
+                            childrenPosition.children[i].children[j].classList.add("st5_custom_" + this.id);
                         }
                     }
-                    this.$refs.characterImg.children[0].children[position].children[i].classList.remove("st5");
-                    this.$refs.characterImg.children[0].children[position].children[i].classList.add("st5_custom_" + this.id);
-                    this.$refs.characterImg.children[0].children[position].children[i].classList.remove("st8");
-                    this.$refs.characterImg.children[0].children[position].children[i].classList.add("st8_" + i +"_" + this.id);
-                    this.$refs.characterImg.children[0].children[position].children[i].style.display = "none";
-                    this.$refs.characterImg.children[0].children[position].children[i].setAttribute("id", "beards_" + i +"_" + this.id);
-                    this.beards.push(this.$refs.characterImg.children[0].children[position].children[i].id);
+                    childrenPosition.children[i].classList.remove("st5");
+                    childrenPosition.children[i].classList.add("st5_custom_" + this.id);
+                    childrenPosition.children[i].classList.remove("st8");
+                    childrenPosition.children[i].classList.add("st8_" + i +"_" + this.id);
+                    childrenPosition.children[i].style.display = "none";
+                    childrenPosition.children[i].setAttribute("id", "beards_" + i +"_" + this.id);
+                    this.beards.push(childrenPosition.children[i].id);
                 }
                 this.beards.push("None");
 
@@ -213,7 +217,6 @@
                         characterImgSVG.children[i].classList.remove(classValue);
                         characterImgSVG.children[i].classList.add(classValue + "_custom_" + this.id);
                     }
-
                     /*if (id === "face") {
                         characterImgSVG.children[i].classList.remove("st2");
                         characterImgSVG.children[i].classList.add("st2_custom_" + this.id);
@@ -232,7 +235,6 @@
                     } else if (id === "facial-hair") {
                         this.manageBeards(i);
                     }
-                    //console.log("Attributes : " + this.$refs.characterImg.children[0].children[i].id)
                     characterImgSVG.children[0].innerHTML = "";
                 }
             },

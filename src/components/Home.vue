@@ -47,15 +47,15 @@
                                             :value="this.currentColorHair"
                                             @input="this.changeHairColor"
                                             :palette="[
-                                    '#090806', '#2C222B', '#71635A',
-                                    '#B7A69E', '#D6C4C2', '#CABFB1',
-                                    '#DCD0BA', '#FFF5E1', '#E6CEA8',
-                                    '#E5C8A8', '#DEBC99', '#B89778',
-                                    '#A56B46', '#B55239', '#8D4A43',
-                                    '#91553D', '#533D32', '#3B3024',
-                                    '#554838', '#4E433F', '#504444',
-                                    '#6A4E42', '#A7856A', '#977961'
-                                    ]"
+                                                '#090806', '#2C222B', '#71635A',
+                                                '#B7A69E', '#D6C4C2', '#CABFB1',
+                                                '#DCD0BA', '#FFF5E1', '#E6CEA8',
+                                                '#E5C8A8', '#DEBC99', '#B89778',
+                                                '#A56B46', '#B55239', '#8D4A43',
+                                                '#91553D', '#533D32', '#3B3024',
+                                                '#554838', '#4E433F', '#504444',
+                                                '#6A4E42', '#A7856A', '#977961'
+                                            ]"
                                     />
                                 </div>
                             </div>
@@ -71,12 +71,12 @@
                                             :value="this.currentColorFace"
                                             @input="this.changeFaceColor"
                                             :palette="[
-                                    '#FFD6C5', '#E7C1B2', '#E4BDAD',
-                                    '#FFE2C9', '#E7CBB5', '#E6C8B0',
-                                    '#FFCBA3', '#E8B894', '#E7B38D',
-                                    '#D8905F', '#C28155', '#BE794A',
-                                    '#88513A', '#7B4934', '#733E26'
-                                    ]"
+                                                '#FFD6C5', '#E7C1B2', '#E4BDAD',
+                                                '#FFE2C9', '#E7CBB5', '#E6C8B0',
+                                                '#FFCBA3', '#E8B894', '#E7B38D',
+                                                '#D8905F', '#C28155', '#BE794A',
+                                                '#88513A', '#7B4934', '#733E26'
+                                            ]"
                                     />
                                 </div>
                             </div>
@@ -88,7 +88,7 @@
                     </section>
                     <footer class="modal-card-foot">
                         <button class="button is-success" v-if=!isEdit v-on:click="saveCharacter">Save</button>
-                        <button class="button is-success" v-if=isEdit v-on:click="saveEditCharacter">Edit</button>
+                        <button class="button is-success" v-if=isEdit v-on:click="saveEditCharacter">Save Edit</button>
                         <button class="button" v-on:click="removeModal">Cancel</button>
                     </footer>
                 </div>
@@ -199,8 +199,7 @@
                     this.currentBeard = -1;
                     this.isActive = true;
                     this.isEdit = false;
-                    this.modalTitle = (this.totalCreated === 0 ? "Create your avatar" :
-                        this.totalCreated <= 2 ? "Create a vulnerable person" : "Create a person around you");
+                    this.modalTitle = this.getModalTitle(this.totalCreated, "Create");
                 }
             },
             launchEditModal(character, index) {
@@ -213,8 +212,10 @@
                 this.currentBeard = character.colors.beards;
                 this.isActive = true;
                 this.isEdit = true;
-                this.modalTitle = (index === 0 ? "Edit your avatar" :
-                    index <= 2 ? "Edit a vulnerable person" : "Edit a person around you");
+                this.modalTitle = this.getModalTitle(index, "Edit");
+            },
+            getModalTitle(index, verb) {
+                return (index === 0 ?  `${verb} your avatar` : index <= 2 ? `${verb} a vulnerable person` : `${verb} a person around you`);
             },
             setGlassesList(glasses) {
                 this.glassesList = glasses;
@@ -291,15 +292,12 @@
                 if (this.totalCreated === json.nbAvatar) {
                     this.isAvatarCreated = true;
                     this.contextualInfo = `Now, select and customize ${json.nbVulnerable} people you consider vulnerable.`;
-                    this.modalTitle = "Create a vulnerable person";
                 } else if (this.totalCreated === json.nbAvatar + json.nbVulnerable) {
                     this.areVulnerableCreated = true;
                     this.contextualInfo = `Finally, select and customize ${json.nbCommunity} other people around you.`;
-                    this.modalTitle = "Create a person around you";
                 } else if (this.totalCreated === json.nbAvatar + json.nbVulnerable + json.nbCommunity) {
                     this.areCommunityCreated = true;
                     this.contextualInfo = "Press the button to start the animation";
-                    this.modalTitle = "";
                 }
             }
         },
@@ -307,7 +305,6 @@
             this.characterList = json.characters;
             this.maxCharactersInGroup = json.nbAvatar + json.nbVulnerable + json.nbCommunity;
             this.contextualInfo = "First, select and customize your own avatar.";
-            this.modalTitle = "Create your avatar";
         },
         mounted() {
             document.body.addEventListener('keyup', e => {
