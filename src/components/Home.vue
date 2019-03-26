@@ -11,7 +11,8 @@
                         <Character v-if="isActive" :edit="false" :customised="true" ref="character" :id="'current'" :svgFile="this.currentCharacter"
                                    :colors="{face: this.currentColorFace, hairFront: this.currentColorHair, beards: this.currentBeard, glasses: this.currentGlasses}" />
                         <div style="display: flex; justify-content: center">
-                            <div v-if="this.isAdult" class="dropdown" v-bind:class="{'is-active': isBeardsButtonEnable }">
+                            <!-- <div v-if="this.isAdult" class="dropdown" v-bind:class="{'is-active': isBeardsButtonEnable }"> -->
+                            <div v-if="this.hasFacialHair" class="dropdown" v-bind:class="{'is-active': isBeardsButtonEnable }">
                                 <div class="dropdown-trigger">
                                     <button v-on:click="openDropdownBeards" class="button">
                                         <span>Beards</span>
@@ -23,7 +24,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div  v-if="this.isAdult" class="dropdown" v-bind:class="{'is-active': isGlassesButtonEnable }">
+                            <!-- <div v-if="this.isAdult" class="dropdown" v-bind:class="{'is-active': isGlassesButtonEnable }"> -->
+                            <div v-if="this.hasGlasses" class="dropdown" v-bind:class="{'is-active': isGlassesButtonEnable }">
                                 <div class="dropdown-trigger">
                                     <button v-on:click="openDropdownGlasses" class="button">
                                         <span>Glasses</span>
@@ -83,7 +85,7 @@
                         </div>
                         <br/>
                         <div class="buttons is-light is-centered">
-                            <span class="button"  v-on:click="this.resetFaceColor">Reset Color</span>
+                            <span class="button" v-on:click="this.resetDefault">Reset</span>
                         </div>
                     </section>
                     <footer class="modal-card-foot">
@@ -166,7 +168,9 @@
                 areCommunityCreated: false,
                 maxCharactersInGroup: 0,
                 type: String,
-                isAdult: false
+                isAdult: false,
+                hasFacialHair: false,
+                hasGlasses: false
             };
         },
         props: {},
@@ -179,7 +183,7 @@
                 this.currentColorHair = color.hex;
                 this.$refs.character.changeHairColor(color.hex);
             },
-            resetFaceColor() {
+            resetDefault() {
                 this.currentColorFace = "#7C5235";
                 this.currentColorHair = "#412308";
                 this.$refs.character.resetFaceColor();
@@ -193,6 +197,10 @@
                     this.currentCharacter = require(`../assets/characters/${character.file}`);
                     this.currentCharacterObject = character;
                     this.isAdult = (character.type === "adult");
+                    // Check for id="facialHair"
+                    this.hasFacialHair = (character.type === "adult");
+                    // Check for id="glasses"
+                    this.hasGlasses = (character.type === "adult");
                     this.currentColorFace = "#7C5235";
                     this.currentColorHair = "#412308";
                     this.currentGlasses = -1;
@@ -206,6 +214,10 @@
                 this.currentCharacter = require(`../assets/characters/${character.file}`);
                 this.currentCharacterObject = character;
                 this.isAdult = (character.type === "adult");
+                // Check for id="facialHair"
+                this.hasFacialHair = (character.type === "adult");
+                // Check for id="glasses"
+                this.hasGlasses = (character.type === "adult");
                 this.currentColorFace = character.colors.face;
                 this.currentColorHair = character.colors.hairFront;
                 this.currentGlasses = character.colors.glasses;
