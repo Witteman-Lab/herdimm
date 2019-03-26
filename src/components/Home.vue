@@ -197,10 +197,12 @@
                     this.currentCharacter = require(`../assets/characters/${character.file}`);
                     this.currentCharacterObject = character;
                     this.isAdult = (character.type === "adult");
-                    // Check for id="facialHair"
-                    this.hasFacialHair = (character.type === "adult");
-                    // Check for id="glasses"
-                    this.hasGlasses = (character.type === "adult");
+                    // For now, explicit value in json file
+                    // Maybe checking for id="facialHair" would be better
+                    this.hasFacialHair = character.hasFacialHair;
+                    // For now, explicit value in json file
+                    // Maybe checking for id="glasses" would be better
+                    this.hasGlasses = character.hasGlasses;
                     this.currentColorFace = "#7C5235";
                     this.currentColorHair = "#412308";
                     this.currentGlasses = -1;
@@ -214,10 +216,12 @@
                 this.currentCharacter = require(`../assets/characters/${character.file}`);
                 this.currentCharacterObject = character;
                 this.isAdult = (character.type === "adult");
-                // Check for id="facialHair"
-                this.hasFacialHair = (character.type === "adult");
-                // Check for id="glasses"
-                this.hasGlasses = (character.type === "adult");
+                // For now, explicit value in json file
+                // Maybe checking for id="facialHair" would be better
+                this.hasFacialHair = character.hasFacialHair;
+                // For now, explicit value in json file
+                // Maybe checking for id="glasses" would be better
+                this.hasGlasses = character.hasGlasses;
                 this.currentColorFace = character.colors.face;
                 this.currentColorHair = character.colors.hairFront;
                 this.currentGlasses = character.colors.glasses;
