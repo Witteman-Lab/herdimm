@@ -90,8 +90,8 @@
                         </div>
                     </section>
                     <footer class="modal-card-foot">
-                        <button class="button is-success" v-if=!isEdit v-on:click="saveCharacter">Save</button>
-                        <button class="button is-success" v-if=isEdit v-on:click="saveEditCharacter">Save Edit</button>
+                        <button class="button is-success" v-if="!isEdit" v-on:click="saveCharacter">Save</button>
+                        <button class="button is-success" v-if="isEdit" v-on:click="saveEditCharacter">Save Edit</button>
                         <button class="button" v-on:click="removeModal">Cancel</button>
                     </footer>
                 </div>
@@ -105,7 +105,7 @@
                 <div class="column is-center is-four-fifths " >
                     <div style="cursor: pointer">
                         <div>
-                            <CharacterList  ref="listAvailable" :characters="this.characterList" :id="this.currentCharacterObject.file"></CharacterList>
+                            <CharacterList ref="listAvailable" :characters="this.characterList" :id="this.currentCharacterObject.file"></CharacterList>
                         </div>
                     </div>
                 </div>

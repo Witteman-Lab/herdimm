@@ -11,13 +11,13 @@
                         <Character v-if="isActive" :edit="false" :customised="true" ref="character" :id="'current'" :svgFile="this.currentCharacter"
                                    :colors="{face: this.currentColorFace, hairFront: this.currentColorHair, beards: this.currentBeard, glasses: this.currentGlasses}" />
 
-                        <div class="tabs is-centered">
+                        <div class="tabs is-centered is-boxed">
                             <ul>
-                                <li class="tab" v-on:click="openTab($event, 'hairColorSelect')">
-                                    <a>Hair color</a>
-                                </li>
                                 <li class="tab" v-on:click="openTab($event, 'skinColorSelect')">
                                     <a>Skin color</a>
+                                </li>
+                                <li class="tab" v-if="this.hasHair" v-on:click="openTab($event, 'hairColorSelect')">
+                                    <a>Hair color</a>
                                 </li>
                                 <li class="tab" v-if="this.hasGlasses" v-on:click="openTab($event, 'glassesSelect')">
                                     <a>Glasses</a>
@@ -29,24 +29,6 @@
                         </div>
 
                         <div style="display: flex; justify-content: center">
-
-                            <!-- Hair color -->
-                            <div id="hairColorSelect" class="content-tab">
-                                <Compact
-                                    :value="this.currentColorHair"
-                                    @input="this.changeHairColor"
-                                    :palette="[
-                                        '#090806', '#2C222B', '#71635A',
-                                        '#B7A69E', '#D6C4C2', '#CABFB1',
-                                        '#DCD0BA', '#FFF5E1', '#E6CEA8',
-                                        '#E5C8A8', '#DEBC99', '#B89778',
-                                        '#A56B46', '#B55239', '#8D4A43',
-                                        '#91553D', '#533D32', '#3B3024',
-                                        '#554838', '#4E433F', '#504444',
-                                        '#6A4E42', '#A7856A', '#977961'
-                                    ]"
-                                />
-                            </div>
 
                             <!-- Skin color -->
                             <div id="skinColorSelect" class="content-tab">
@@ -63,15 +45,34 @@
                                 />
                             </div>
 
+                            <!-- Hair color -->
+                            <div id="hairColorSelect" class="content-tab" v-if="this.hasHair" >
+                                <Compact
+                                    :value="this.currentColorHair"
+                                    @input="this.changeHairColor"
+                                    :palette="[
+                                        '#090806', '#2C222B', '#71635A',
+                                        '#B7A69E', '#D6C4C2', '#CABFB1',
+                                        '#DCD0BA', '#FFF5E1', '#E6CEA8',
+                                        '#E5C8A8', '#DEBC99', '#B89778',
+                                        '#A56B46', '#B55239', '#8D4A43',
+                                        '#91553D', '#533D32', '#3B3024',
+                                        '#554838', '#4E433F', '#504444',
+                                        '#6A4E42', '#A7856A', '#977961'
+                                    ]"
+                                />
+                            </div>
+
                             <!-- Glasses -->
-                            <div id="glassesSelect" class="content-tab"  v-if="this.hasGlasses">
-                                <a v-bind:key="glasses" v-for="(glasses, index) in glassesList" v-on:click="selectGlasses(index)">{{glasses}}</a>
+                            <div id="glassesSelect" class="content-tab buttons" v-if="this.hasGlasses">
+                                <span class="accessoriesList button" v-on:click="selectGlasses(-1)">None</span>
+                                <span class="accessoriesList button" v-for="(glasses, index) in glassesListJson" v-on:click="selectGlasses(index)" v-html="require(`../assets/glasses/${glasses.file}`)"></span>
                             </div>
 
                             <!-- Facial hair -->
-                            <div id="facialHairSelect" class="content-tab" v-if="this.hasFacialHair">
-                                <a v-bind:key="beard" v-for="(beard, index) in beardsList" v-on:click="selectBeards(index)">{{beard}}</a>
-                                <!-- <svg v-bind:key="beard" v-for="(beard, index) in beardsList" class="dropdown-item" v-on:click="selectBeards(index)">{{beard}}</svg> -->
+                            <div id="facialHairSelect" class="content-tab buttons" v-if="this.hasFacialHair">
+                                <span class="accessoriesList button" v-on:click="selectBeards(-1)">None</span>
+                                <span class="accessoriesList button" v-for="(beard, index) in facialHairList" v-html="require(`../assets/facialHair/${beard.file}`)" v-on:click="selectBeards(index)"></span>
                             </div>
                         </div>
 
@@ -84,8 +85,8 @@
                         </div>
                     </section>
                     <footer class="modal-card-foot">
-                        <button class="button is-success" v-if=!isEdit v-on:click="saveCharacter">Save</button>
-                        <button class="button is-success" v-if=isEdit v-on:click="saveEditCharacter">Save Edit</button>
+                        <button class="button is-success" v-if="!isEdit" v-on:click="saveCharacter">Save</button>
+                        <button class="button is-success" v-if="isEdit" v-on:click="saveEditCharacter">Save Edit</button>
                         <button class="button" v-on:click="removeModal">Cancel</button>
                     </footer>
                 </div>
@@ -99,7 +100,7 @@
                 <div class="column is-center is-four-fifths " >
                     <div style="cursor: pointer">
                         <div>
-                            <CharacterList  ref="listAvailable" :characters="this.characterList" :id="this.currentCharacterObject.file"></CharacterList>
+                            <CharacterList ref="listAvailable" :characters="this.characterList" :id="this.currentCharacterObject.file"></CharacterList>
                         </div>
                     </div>
                 </div>
@@ -128,6 +129,8 @@
     import { Compact }  from 'vue-color';
     import CharacterList from "../components/CharacterList";
     import json from '../assets/characters.json';
+    import glassesJson from '../assets/glasses.json';
+    import facialHairJson from '../assets/facialHair.json';
     import GroupCharacter from "../components/GroupCharacter";
     export default {
         name: 'home',
@@ -165,7 +168,10 @@
                 type: String,
                 isAdult: false,
                 hasFacialHair: false,
-                hasGlasses: false
+                hasGlasses: false,
+                hasHair: false,
+                facialHairList: [],
+                glassesListJson: []
             };
         },
         props: {},
@@ -184,7 +190,7 @@
                     tablinks[i].className = tablinks[i].className.replace(" is-active", "");
                 }
 
-                document.getElementById(tabName).style.display = "block";
+                document.getElementById(tabName).style.display = "inline-block";
                 evt.currentTarget.className += " is-active";
             },
             changeFaceColor(color) {
@@ -209,12 +215,7 @@
                     this.currentCharacter = require(`../assets/characters/${character.file}`);
                     this.currentCharacterObject = character;
                     this.isAdult = (character.type === "adult");
-                    // For now, explicit value in json file
-                    // Maybe checking for id="facialHair" would be better
-                    this.hasFacialHair = character.hasFacialHair;
-                    // For now, explicit value in json file
-                    // Maybe checking for id="glasses" would be better
-                    this.hasGlasses = character.hasGlasses;
+
                     this.currentColorFace = "#7C5235";
                     this.currentColorHair = "#412308";
                     this.currentGlasses = -1;
@@ -228,12 +229,7 @@
                 this.currentCharacter = require(`../assets/characters/${character.file}`);
                 this.currentCharacterObject = character;
                 this.isAdult = (character.type === "adult");
-                // For now, explicit value in json file
-                // Maybe checking for id="facialHair" would be better
-                this.hasFacialHair = character.hasFacialHair;
-                // For now, explicit value in json file
-                // Maybe checking for id="glasses" would be better
-                this.hasGlasses = character.hasGlasses;
+
                 this.currentColorFace = character.colors.face;
                 this.currentColorHair = character.colors.hairFront;
                 this.currentGlasses = character.colors.glasses;
@@ -241,6 +237,11 @@
                 this.isActive = true;
                 this.isEdit = true;
                 this.modalTitle = this.getModalTitle(index, "Edit");
+            },
+            setAccessories(hasGlasses, hasBeard, hasHair) {
+                this.hasGlasses = hasGlasses;
+                this.hasFacialHair = hasBeard;
+                this.hasHair = hasHair;
             },
             getModalTitle(index, verb) {
                 return (index === 0 ?  `${verb} your avatar` : index <= json.nbVulnerable ? `${verb} a vulnerable person` : `${verb} a person around you`);
@@ -333,6 +334,9 @@
             this.characterList = json.characters;
             this.maxCharactersInGroup = json.nbAvatar + json.nbVulnerable + json.nbCommunity;
             this.contextualInfo = "First, select and customize your own avatar.";
+
+            this.facialHairList = facialHairJson.beards;
+            this.glassesListJson = glassesJson.glasses;
         },
         mounted() {
             document.body.addEventListener('keyup', e => {
@@ -361,6 +365,9 @@
     .mobile-modal {
         margin-top: calc(20vh - 40px);
     }
+    header.modal-card-head {
+        padding: 10px;
+    }
     .current-color {
         width: 20px;
         height: 20px;
@@ -369,11 +376,22 @@
     }
     .content-tab {
         display: none;
+        margin: 0 0 1rem 0;
+        /* visibility: hidden; */
+    }
+    span.accessoriesList {
+        display: inline-block;
+        margin: 0 auto;
+        min-width: 100px;
     }
     @media only screen and (max-width: 768px) {
         .mobile-modal {
             margin-top: calc(20vh - 40px);
             width: auto;
+            height: 85%;
+        }
+        header.modal-card-head {
+            padding: 5px;
         }
     }
 </style>
