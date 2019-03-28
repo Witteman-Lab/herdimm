@@ -12,7 +12,10 @@
 </template>
 
 <script>
+
     import GroupCharacter from "./GroupCharacter";
+    const width = window.innerWidth;
+    const height = window.innerHeight;
     export default {
         name: 'Animations',
         components: {GroupCharacter},
@@ -21,6 +24,28 @@
                 type: Array
             }
         },
+        data() {
+
+            return {
+                configStage: {
+                    width: width,
+                    height: height
+
+                },
+                configHexagon: {
+                    x: 350,
+                    y: 120,
+                    sides: 6,
+                    radius: 80,
+                    stroke: "black",
+                    fillPatternImage: "http://agasaro.com/IMG/jpg/pommmmme.jpg"
+                },
+
+            }
+
+        },
+
+
         mounted() {
             if (this.group) {
                 console.log(this.group);
