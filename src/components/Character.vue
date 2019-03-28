@@ -216,21 +216,13 @@
                         characterImgSVG.children[i].classList.remove(classValue);
                         characterImgSVG.children[i].classList.add(classValue + "_custom_" + this.id);
                     }
-                    if (id === "hair-light" || id === "hair-dark")
-                        this.hasHair = true;
-                    /*if (id === "face") {
-                        characterImgSVG.children[i].classList.remove("st2");
-                        characterImgSVG.children[i].classList.add("st2_custom_" + this.id);
-                    } else if (id === "face-shadow") {
-                        characterImgSVG.children[i].classList.remove("st3");
-                        characterImgSVG.children[i].classList.add("st3_custom_" + this.id);
-                    } else if (id === "hair-dark") {
-                        characterImgSVG.children[i].classList.remove("st4");
-                        characterImgSVG.children[i].classList.add("st4_custom_" + this.id);
-                    } else if (id === "hair-light") {
-                        characterImgSVG.children[i].classList.remove("st5");
-                        characterImgSVG.children[i].classList.add("st5_custom_" + this.id);
-                    } else*/
+
+                    if (["st4", "st5"].includes(classValue)) {
+                        if (!this.hasHair) {
+                            this.hasHair = true;
+                        }
+                    }
+
                     if (id === "glasses") {
                         this.manageGlasses(i);
                     } else if (id === "facial-hair") {
