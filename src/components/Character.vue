@@ -156,6 +156,8 @@
                         this.$refs.characterImg.children[0].children[0].innerHTML =
                             this.$refs.characterImg.children[0].children[0].innerHTML + this.defaultShirtColor;
                         this.defaultColor = this.$refs.characterImg.children[0].children[0].innerHTML;
+
+                        // Why this?
                         if (this.$parent.$options.name === "home")
                             this.$parent.setAccessories(this.hasGlasses, this.hasBeard, this.hasHair);
                     }
@@ -212,17 +214,20 @@
                     let id = characterImgSVG.children[i].id;
                     let classValue = characterImgSVG.children[i].classList.value;
 
-                    if (!["", "st0", "st1"].includes(classValue)) {
-                        characterImgSVG.children[i].classList.remove(classValue);
-                        characterImgSVG.children[i].classList.add(classValue + "_custom_" + this.id);
-                    }
-
+                    // Detect the presence of hair on the character
                     if (["st4", "st5"].includes(classValue)) {
                         if (!this.hasHair) {
                             this.hasHair = true;
                         }
                     }
 
+                    // Because we don't need to change class names of these (none, st0, and st1)
+                    if (!["", "st0", "st1"].includes(classValue)) {
+                        characterImgSVG.children[i].classList.remove(classValue);
+                        characterImgSVG.children[i].classList.add(classValue + "_custom_" + this.id);
+                    }
+
+                    // Because glasses and facial hair are grouped in <g> elements with ids
                     if (id === "glasses") {
                         this.manageGlasses(i);
                     } else if (id === "facial-hair") {
