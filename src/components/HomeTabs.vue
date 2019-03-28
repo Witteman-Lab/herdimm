@@ -72,7 +72,7 @@
                             <!-- Facial hair -->
                             <div id="facialHairSelect" class="content-tab buttons" v-if="this.hasFacialHair">
                                 <span class="accessoriesList button" v-on:click="selectBeards(-1)">None</span>
-                                <span class="accessoriesList button" v-for="(beard, index) in facialHairList" v-html="require(`../assets/facialHair/${beard.file}`)" v-on:click="selectBeards(index)"></span>
+                                <span class="accessoriesList button facialHairList" v-for="(beard, index) in facialHairList" v-html="require(`../assets/facialHair/${beard.file}`)" v-on:click="selectBeards(index)"></span>
                             </div>
                         </div>
 
@@ -192,6 +192,11 @@
 
                 document.getElementById(tabName).style.display = "inline-block";
                 evt.currentTarget.className += " is-active";
+                if (tabName === "glassesSelect")
+                    this.setAccessoriesPosition("0 110 315 350");
+                else if (tabName === "facialHairSelect") {
+                    this.setAccessoriesPosition("40 130 225 350")
+                }
             },
             changeFaceColor(color) {
                 this.currentColorFace = color.hex;
@@ -328,6 +333,15 @@
                     this.areCommunityCreated = true;
                     this.contextualInfo = "Press the button to start the animation";
                 }
+            },
+            setAccessoriesPosition(position) {
+                let accessories = document.getElementsByClassName("accessoriesList");
+                for (let i = 0; i < accessories.length; i++) {
+                    if (accessories[i].innerHTML !== "None") {
+                        let item = accessories[i].children[0];
+                        item.setAttribute("viewBox", position);
+                    }
+                }
             }
         },
         created() {
@@ -345,7 +359,7 @@
                 } else if (e.keyCode === 13 && this.isActive) {
                     this.saveCharacter();
                 }
-            })
+            });
         }
     }
 </script>
@@ -383,6 +397,9 @@
         display: inline-block;
         margin: 0 auto;
         min-width: 100px;
+    }
+    span.facialHairList {
+        height: 60px;
     }
     @media only screen and (max-width: 768px) {
         .mobile-modal {
