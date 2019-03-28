@@ -13,11 +13,11 @@
 
                         <div class="tabs is-centered is-boxed">
                             <ul>
-                                <li class="tab" v-if="this.hasHair" v-on:click="openTab($event, 'hairColorSelect')">
-                                    <a>Hair color</a>
-                                </li>
                                 <li class="tab" v-on:click="openTab($event, 'skinColorSelect')">
                                     <a>Skin color</a>
+                                </li>
+                                <li class="tab" v-if="this.hasHair" v-on:click="openTab($event, 'hairColorSelect')">
+                                    <a>Hair color</a>
                                 </li>
                                 <li class="tab" v-if="this.hasGlasses" v-on:click="openTab($event, 'glassesSelect')">
                                     <a>Glasses</a>
@@ -29,24 +29,6 @@
                         </div>
 
                         <div style="display: flex; justify-content: center">
-
-                            <!-- Hair color -->
-                            <div id="hairColorSelect" v-if="this.hasHair" class="content-tab">
-                                <Compact
-                                    :value="this.currentColorHair"
-                                    @input="this.changeHairColor"
-                                    :palette="[
-                                        '#090806', '#2C222B', '#71635A',
-                                        '#B7A69E', '#D6C4C2', '#CABFB1',
-                                        '#DCD0BA', '#FFF5E1', '#E6CEA8',
-                                        '#E5C8A8', '#DEBC99', '#B89778',
-                                        '#A56B46', '#B55239', '#8D4A43',
-                                        '#91553D', '#533D32', '#3B3024',
-                                        '#554838', '#4E433F', '#504444',
-                                        '#6A4E42', '#A7856A', '#977961'
-                                    ]"
-                                />
-                            </div>
 
                             <!-- Skin color -->
                             <div id="skinColorSelect" class="content-tab">
@@ -63,15 +45,34 @@
                                 />
                             </div>
 
+                            <!-- Hair color -->
+                            <div id="hairColorSelect" class="content-tab" v-if="this.hasHair" >
+                                <Compact
+                                    :value="this.currentColorHair"
+                                    @input="this.changeHairColor"
+                                    :palette="[
+                                        '#090806', '#2C222B', '#71635A',
+                                        '#B7A69E', '#D6C4C2', '#CABFB1',
+                                        '#DCD0BA', '#FFF5E1', '#E6CEA8',
+                                        '#E5C8A8', '#DEBC99', '#B89778',
+                                        '#A56B46', '#B55239', '#8D4A43',
+                                        '#91553D', '#533D32', '#3B3024',
+                                        '#554838', '#4E433F', '#504444',
+                                        '#6A4E42', '#A7856A', '#977961'
+                                    ]"
+                                />
+                            </div>
+
                             <!-- Glasses -->
                             <div id="glassesSelect" class="content-tab" v-if="this.hasGlasses">
-                                <a v-bind:key="glasses" v-for="(glasses, index) in glassesList" v-on:click="selectGlasses(index)">{{glasses}}</a>
+                                <div v-on:click="selectGlasses(-1)" style="cursor: pointer;width: 60px;">None</div>
+                                <div v-for="(glasses, index) in glassesListJson" v-on:click="selectGlasses(index)" v-html="require(`../assets/glasses/${glasses.file}`)" style="max-width: 60px; max-height: 60px;cursor: pointer"></div>
                             </div>
 
                             <!-- Facial hair -->
                             <div id="facialHairSelect" class="content-tab" v-if="this.hasFacialHair">
-                                <a v-bind:key="beard" v-for="(beard, index) in beardsList" v-on:click="selectBeards(index)">{{beard}}</a>
-                                <!-- <svg v-bind:key="beard" v-for="(beard, index) in beardsList" class="dropdown-item" v-on:click="selectBeards(index)">{{beard}}</svg> -->
+                                <div v-on:click="selectBeards(-1)" style="cursor: pointer;width: 60px;">None</div>
+                                <div v-for="(beard, index) in facialHairList" v-html="require(`../assets/facialHair/${beard.file}`)" v-on:click="selectBeards(index)"  style="max-width: 60px; max-height: 60px;cursor: pointer"></div>
                             </div>
                         </div>
 
