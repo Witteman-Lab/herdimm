@@ -64,15 +64,15 @@
                             </div>
 
                             <!-- Glasses -->
-                            <div id="glassesSelect" class="content-tab" v-if="this.hasGlasses">
-                                <div v-on:click="selectGlasses(-1)" style="cursor: pointer;width: 60px;">None</div>
-                                <div v-for="(glasses, index) in glassesListJson" v-on:click="selectGlasses(index)" v-html="require(`../assets/glasses/${glasses.file}`)" style="max-width: 60px; max-height: 60px;cursor: pointer"></div>
+                            <div id="glassesSelect" class="content-tab buttons" v-if="this.hasGlasses">
+                                <span class="accessoriesList button" v-on:click="selectGlasses(-1)">None</span>
+                                <span class="accessoriesList button" v-for="(glasses, index) in glassesListJson" v-on:click="selectGlasses(index)" v-html="require(`../assets/glasses/${glasses.file}`)"></span>
                             </div>
 
                             <!-- Facial hair -->
-                            <div id="facialHairSelect" class="content-tab" v-if="this.hasFacialHair">
-                                <div v-on:click="selectBeards(-1)" style="cursor: pointer;width: 60px;">None</div>
-                                <div v-for="(beard, index) in facialHairList" v-html="require(`../assets/facialHair/${beard.file}`)" v-on:click="selectBeards(index)"  style="max-width: 60px; max-height: 60px;cursor: pointer"></div>
+                            <div id="facialHairSelect" class="content-tab buttons" v-if="this.hasFacialHair">
+                                <span class="accessoriesList button" v-on:click="selectBeards(-1)">None</span>
+                                <span class="accessoriesList button" v-for="(beard, index) in facialHairList" v-html="require(`../assets/facialHair/${beard.file}`)" v-on:click="selectBeards(index)"></span>
                             </div>
                         </div>
 
@@ -85,8 +85,8 @@
                         </div>
                     </section>
                     <footer class="modal-card-foot">
-                        <button class="button is-success" v-if=!isEdit v-on:click="saveCharacter">Save</button>
-                        <button class="button is-success" v-if=isEdit v-on:click="saveEditCharacter">Save Edit</button>
+                        <button class="button is-success" v-if="!isEdit" v-on:click="saveCharacter">Save</button>
+                        <button class="button is-success" v-if="isEdit" v-on:click="saveEditCharacter">Save Edit</button>
                         <button class="button" v-on:click="removeModal">Cancel</button>
                     </footer>
                 </div>
@@ -100,7 +100,7 @@
                 <div class="column is-center is-four-fifths " >
                     <div style="cursor: pointer">
                         <div>
-                            <CharacterList  ref="listAvailable" :characters="this.characterList" :id="this.currentCharacterObject.file"></CharacterList>
+                            <CharacterList ref="listAvailable" :characters="this.characterList" :id="this.currentCharacterObject.file"></CharacterList>
                         </div>
                     </div>
                 </div>
@@ -190,7 +190,7 @@
                     tablinks[i].className = tablinks[i].className.replace(" is-active", "");
                 }
 
-                document.getElementById(tabName).style.display = "block";
+                document.getElementById(tabName).style.display = "inline-block";
                 evt.currentTarget.className += " is-active";
             },
             changeFaceColor(color) {
@@ -376,6 +376,13 @@
     }
     .content-tab {
         display: none;
+        margin: 0 0 1rem 0;
+        /* visibility: hidden; */
+    }
+    span.accessoriesList {
+        display: inline-block;
+        margin: 0 auto;
+        min-width: 100px;
     }
     @media only screen and (max-width: 768px) {
         .mobile-modal {
