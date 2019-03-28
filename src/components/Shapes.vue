@@ -1,24 +1,22 @@
 <template>
-    <v-stage :config="configStage">
-        <v-layer>
-            <div class="rotate">
-                <v-regular-polygon  ref="hexagon":config="configHexagon"></v-regular-polygon>
+    <v-stage ref="stage" :config="configStage">
+        <v-layer ref="grid">
+            <div>
+                <v-regular-polygon class="" ref="hexagon" :config="configHexagon" v-on:click="changeColor"></v-regular-polygon>
             </div>
-
-
         </v-layer>
     </v-stage>
 </template>
 
 <script>
-
+    import GroupCharacter from "./GroupCharacter";
 
     const width = window.innerWidth;
     const height = window.innerHeight;
 
     export default {
         name: "Shapes",
-
+        components: {GroupCharacter},
         data() {
             return {
                 configStage: {
@@ -32,24 +30,37 @@
                     sides: 6,
                     radius: 80,
                     stroke: "black",
-                    fill: "grey"
+                    fill: "grey",
+                    rotation: 90
                 }
             }
         },
+        props: {},
         methods: {
+            changeColor(evt) {
+                var r = evt.currentTarget.x() % 255;
+                var g = evt.currentTarget.y() % 255;
+
+                evt.currentTarget.x(evt.currentTarget.x() + 5);
+                evt.currentTarget.y(evt.currentTarget.y() + 5);
+
+                evt.currentTarget.fill("rgb(" + r + ", " + g + ", 100)");
+                evt.currentTarget.strokeWidth(evt.currentTarget.strokeWidth() + 1);
+                evt.currentTarget.stroke("#FF0000");
+
+                // Required to apply the change
+                this.$refs.grid.getStage().draw();
+            }
+        },
+        created() {
+
+        },
+        mounted() {
 
         }
     }
 </script>
 
 <style scoped>
-    .rotate {
-        -webkit-transform: rotate(90deg);
-        -moz-transform: rotate(90deg);
-        -o-transform: rotate(90deg);
-        -ms-transform: rotate(90deg);
-        transform: rotate(90deg);
-        background-color: pink;
-    }
 
 </style>
