@@ -27,7 +27,10 @@
                 glasses: [],
                 beards: [],
                 defaultColor: '',
-                defaultShirtColor: '.st0{fill:#BFBABE;}' + '.st1{fill:#9D9C9D;}'
+                defaultShirtColor: '.st0{fill:#BFBABE;}' + '.st1{fill:#9D9C9D;}',
+                hasBeard: false,
+                hasGlasses: false,
+                hasHair: false
             };
         },
         props: {
@@ -153,6 +156,8 @@
                         this.$refs.characterImg.children[0].children[0].innerHTML =
                             this.$refs.characterImg.children[0].children[0].innerHTML + this.defaultShirtColor;
                         this.defaultColor = this.$refs.characterImg.children[0].children[0].innerHTML;
+                        if (this.$parent.$options.name === "home")
+                            this.$parent.setAccessories(this.hasGlasses, this.hasBeard, this.hasHair);
                     }
                 }
             },
@@ -174,10 +179,7 @@
                     childrenPosition.children[i].setAttribute("id", "glasses_" + i +"_" + this.id);
                     this.glasses.push(childrenPosition.children[i].id);
                 }
-                this.glasses.push("None");
-
-                if (this.$parent.$options.name === "home")
-                    this.$parent.setGlassesList(this.glasses);
+                this.hasGlasses = true;
             },
             manageBeards(position) {
                 let childrenPosition = this.$refs.characterImg.children[0].children[position];
@@ -201,10 +203,7 @@
                     childrenPosition.children[i].setAttribute("id", "beards_" + i +"_" + this.id);
                     this.beards.push(childrenPosition.children[i].id);
                 }
-                this.beards.push("None");
-
-                if (this.$parent.$options.name === "home")
-                    this.$parent.setBeardsList(this.beards);
+                this.hasBeard = true;
             },
             parseCharacterAttributes() {
                 let characterImgSVG = this.$refs.characterImg.children[0];
@@ -217,6 +216,8 @@
                         characterImgSVG.children[i].classList.remove(classValue);
                         characterImgSVG.children[i].classList.add(classValue + "_custom_" + this.id);
                     }
+                    if (id === "hair-light" || id === "hair-dark")
+                        this.hasHair = true;
                     /*if (id === "face") {
                         characterImgSVG.children[i].classList.remove("st2");
                         characterImgSVG.children[i].classList.add("st2_custom_" + this.id);

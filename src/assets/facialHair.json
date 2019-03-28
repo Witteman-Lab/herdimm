@@ -1,0 +1,17 @@
+{
+  "folder" : "facialHair",
+  "beards" : [
+    {
+      "id": "facialHair1",
+      "file" : "facialHair1.svg"
+    },
+    {
+      "id": "facialHair2",
+      "file" : "facialHair2.svg"
+    },
+    {
+      "id": "facialHair3",
+      "file" : "facialHair3.svg"
+    }
+  ]
+}

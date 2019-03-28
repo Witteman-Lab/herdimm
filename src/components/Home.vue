@@ -11,7 +11,6 @@
                         <Character v-if="isActive" :edit="false" :customised="true" ref="character" :id="'current'" :svgFile="this.currentCharacter"
                                    :colors="{face: this.currentColorFace, hairFront: this.currentColorHair, beards: this.currentBeard, glasses: this.currentGlasses}" />
                         <div style="display: flex; justify-content: center">
-                            <!-- <div v-if="this.isAdult" class="dropdown" v-bind:class="{'is-active': isBeardsButtonEnable }"> -->
                             <div v-if="this.hasFacialHair" class="dropdown" v-bind:class="{'is-active': isBeardsButtonEnable }">
                                 <div class="dropdown-trigger">
                                     <button v-on:click="openDropdownBeards" class="button">
@@ -20,12 +19,11 @@
                                 </div>
                                 <div class="dropdown-menu" role="menu">
                                     <div class="dropdown-content">
-                                        <a v-bind:key="beard" v-for="(beard, index) in beardsList" class="dropdown-item" v-on:click="selectBeards(index)">{{beard}}</a>
-                                        <!-- <svg v-bind:key="beard" v-for="(beard, index) in beardsList" class="dropdown-item" v-on:click="selectBeards(index)">{{beard}}</svg> -->
+                                        <div v-on:click="selectBeards(-1)" style="cursor: pointer;width: 60px;">None</div>
+                                        <div v-for="(beard, index) in facialHairList" v-html="require(`../assets/facialHair/${beard.file}`)" v-on:click="selectBeards(index)"  style="max-width: 60px; max-height: 60px;cursor: pointer"></div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div v-if="this.isAdult" class="dropdown" v-bind:class="{'is-active': isGlassesButtonEnable }"> -->
                             <div v-if="this.hasGlasses" class="dropdown" v-bind:class="{'is-active': isGlassesButtonEnable }">
                                 <div class="dropdown-trigger">
                                     <button v-on:click="openDropdownGlasses" class="button">
@@ -34,11 +32,12 @@
                                 </div>
                                 <div class="dropdown-menu" role="menu">
                                     <div class="dropdown-content">
-                                        <a v-bind:key="glasses" v-for="(glasses, index) in glassesList" class="dropdown-item" v-on:click="selectGlasses(index)">{{glasses}}</a>
+                                        <div v-on:click="selectGlasses(-1)" style="cursor: pointer;width: 60px;">None</div>
+                                        <div v-for="(glasses, index) in glassesListJson" v-on:click="selectGlasses(index)" v-html="require(`../assets/glasses/${glasses.file}`)" style="max-width: 60px; max-height: 60px;cursor: pointer"></div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="dropdown" v-bind:class="{'is-active': isHairColorButtonEnable }">
+                            <div  v-if="this.hasHair" class="dropdown" v-bind:class="{'is-active': isHairColorButtonEnable }">
                                 <div class="dropdown-trigger">
                                     <button v-on:click="openDropdownHair" class="button">
                                         <span>Hair Color</span>
@@ -135,6 +134,8 @@
     import { Compact }  from 'vue-color';
     import CharacterList from "../components/CharacterList";
     import json from '../assets/characters.json';
+    import glassesJson from '../assets/glasses.json';
+    import facialHairJson from '../assets/facialHair.json';
     import GroupCharacter from "../components/GroupCharacter";
     export default {
         name: 'home',
@@ -172,7 +173,10 @@
                 type: String,
                 isAdult: false,
                 hasFacialHair: false,
-                hasGlasses: false
+                hasGlasses: false,
+                hasHair: false,
+                facialHairList: [],
+                glassesListJson: []
             };
         },
         props: {},
@@ -199,12 +203,7 @@
                     this.currentCharacter = require(`../assets/characters/${character.file}`);
                     this.currentCharacterObject = character;
                     this.isAdult = (character.type === "adult");
-                    // For now, explicit value in json file
-                    // Maybe checking for id="facialHair" would be better
-                    this.hasFacialHair = character.hasFacialHair;
-                    // For now, explicit value in json file
-                    // Maybe checking for id="glasses" would be better
-                    this.hasGlasses = character.hasGlasses;
+
                     this.currentColorFace = "#7C5235";
                     this.currentColorHair = "#412308";
                     this.currentGlasses = -1;
@@ -218,12 +217,7 @@
                 this.currentCharacter = require(`../assets/characters/${character.file}`);
                 this.currentCharacterObject = character;
                 this.isAdult = (character.type === "adult");
-                // For now, explicit value in json file
-                // Maybe checking for id="facialHair" would be better
-                this.hasFacialHair = character.hasFacialHair;
-                // For now, explicit value in json file
-                // Maybe checking for id="glasses" would be better
-                this.hasGlasses = character.hasGlasses;
+
                 this.currentColorFace = character.colors.face;
                 this.currentColorHair = character.colors.hairFront;
                 this.currentGlasses = character.colors.glasses;
@@ -231,6 +225,11 @@
                 this.isActive = true;
                 this.isEdit = true;
                 this.modalTitle = this.getModalTitle(index, "Edit");
+            },
+            setAccessories(hasGlasses, hasBeard, hasHair) {
+                this.hasGlasses = hasGlasses;
+                this.hasFacialHair = hasBeard;
+                this.hasHair = hasHair;
             },
             getModalTitle(index, verb) {
                 return (index === 0 ?  `${verb} your avatar` : index <= json.nbVulnerable ? `${verb} a vulnerable person` : `${verb} a person around you`);
@@ -323,6 +322,10 @@
             this.characterList = json.characters;
             this.maxCharactersInGroup = json.nbAvatar + json.nbVulnerable + json.nbCommunity;
             this.contextualInfo = "First, select and customize your own avatar.";
+
+            this.facialHairList = facialHairJson.beards;
+            this.glassesListJson = glassesJson.glasses;
+            console.log(this.glassesListJson);
         },
         mounted() {
             document.body.addEventListener('keyup', e => {
