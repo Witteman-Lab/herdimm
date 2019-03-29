@@ -295,7 +295,7 @@
             },
             loadAnimationView() {
                 let groupCharacter = this.$refs.listToFill.getCharacterList();
-                this.$router.push({name: 'Animations', params:{group: groupCharacter}});
+                this.$router.push({name: 'Shapes', params:{group: groupCharacter}});
             },
             openDropdownHair() {
                 this.isHairColorButtonEnable = !this.isHairColorButtonEnable;
@@ -363,7 +363,23 @@
         }
     }
 </script>
-
+<style>
+    div.vc-compact {
+        width: 100%;
+    }
+    li.vc-compact-color-item {
+        width: 45px;
+        height: 45px;
+    }
+    div.vc-compact-dot {
+        width: 50%;
+        height: 50%;
+        top: 25%;
+        bottom: 25%;
+        left: 25%;
+        right: 25%;
+    }
+</style>
 <style scoped>
     h1 {
         font-weight: bold;
