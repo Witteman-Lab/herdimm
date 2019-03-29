@@ -1,7 +1,8 @@
 <template>
     <div>
         <div class="character-position">
-            <div v-on:click="createYourCharacter" ref="characterImg" v-html="this.svg" style="width: 70px; height: 95px;"></div>
+            <a v-if="!this.isLoaded" class="button is-large is-loading">Loading</a>
+            <div v-if="this.isLoaded" v-on:click="createYourCharacter" ref="characterImg" v-html="this.svg" style="width: 70px; height: 95px;"></div>
         </div>
     </div>
 </template>
@@ -30,7 +31,8 @@
                 defaultShirtColor: '.st0{fill:#BFBABE;}' + '.st1{fill:#9D9C9D;}',
                 hasBeard: false,
                 hasGlasses: false,
-                hasHair: false
+                hasHair: false,
+                isLoaded: false
             };
         },
         props: {
@@ -245,6 +247,7 @@
         },
         mounted() {
             this.loadSvgData();
+            this.isLoaded = true;
         },
         beforeUpdate() {
             this.updateCurrentSvg();
