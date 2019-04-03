@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-for="(character) in characterList" ref="characterList" :key="character.id">
-            <Character ref="character" :size="this.characterSize" :edit="true" :customised="true" :colors="character.colors" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" />
+            <Character ref="character" :size="{width: '70px', height: '95px'}" :edit="true" :customised="true" :colors="character.colors" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" />
         </div>
     </div>
 </template>
