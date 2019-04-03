@@ -51,6 +51,7 @@ body {
 .hexagon-container {
     display: grid;
     grid-template-columns: var(--hex-width) var(--hex-width) var(--hex-width) var(--hex-width);
+    grid-template-columns: repeat(14, var(--hex-width));
     grid-auto-rows: calc(var(--hex-height) / 10);
     grid-gap: calc(var(--hex-between) / 3) var(--hex-between);
 }
