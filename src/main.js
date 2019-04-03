@@ -6,6 +6,7 @@ import VueKonva from 'vue-konva'
 Vue.use(VueKonva)
 Vue.config.productionTip = false;
 require("./assets/main.scss")
+require("./assets/animation.scss")
 
 new Vue({
     router,
