@@ -11,7 +11,7 @@
                         <Character v-if="isActive" :edit="false" :customised="true" ref="character" :id="'current'" :svgFile="this.currentCharacter"
                                    :colors="{face: this.currentColorFace, hairFront: this.currentColorHair, beards: this.currentBeard, glasses: this.currentGlasses}" />
 
-                        <div class="tabs is-centered is-boxed">
+                        <div class="tabs is-centered is-boxed is-three-quarters">
                             <ul>
                                 <li class="tab" v-on:click="openTab($event, 'skinColorSelect')">
                                     <a>Skin color</a>
@@ -35,6 +35,8 @@
                                 <Compact
                                     :value="this.currentColorFace"
                                     @input="this.changeFaceColor"
+                                    @mouseenter="e => e.target.classList.toggle('hovered')"
+                                    @mouseleave="e => e.target.classList.toggle('notHovered')"
                                     :palette="[
                                         '#FFD6C5', '#E7C1B2', '#E4BDAD',
                                         '#FFE2C9', '#E7CBB5', '#E6C8B0',
@@ -75,8 +77,6 @@
                                 <span class="accessoriesList button facialHairList" v-for="(beard, index) in facialHairList" v-html="require(`../assets/facialHair/${beard.file}`)" v-on:click="selectBeards(index)"></span>
                             </div>
                         </div>
-
-
 
                         <br />
                         <div class="buttons is-light is-centered">
@@ -176,6 +176,9 @@
         },
         props: {},
         methods: {
+            test(evt) {
+                console.log("evt", evt);
+            },
             openTab(evt, tabName) {
                 let i, x, tablinks;
                 x = document.getElementsByClassName("content-tab");
@@ -193,9 +196,9 @@
                 document.getElementById(tabName).style.display = "inline-block";
                 evt.currentTarget.className += " is-active";
                 if (tabName === "glassesSelect")
-                    this.setAccessoriesPosition("0 110 315 350");
+                    this.setAccessoriesPosition("0 110 315 350"); // Works for now, but a bit too arbitrary to be shared
                 else if (tabName === "facialHairSelect") {
-                    this.setAccessoriesPosition("40 130 225 350")
+                    this.setAccessoriesPosition("40 130 225 350"); // Works for now, but a bit too arbitrary to be shared
                 }
             },
             changeFaceColor(color) {
@@ -257,7 +260,7 @@
             setBeardsList(beards) {
                 this.beardsList = beards;
             },
-            selectGlasses(pos) {
+            selectGlasses( pos) {
                 this.$refs.character.changeGlasses(pos);
                 this.isGlassesButtonEnable = false;
             },
@@ -397,12 +400,6 @@
     }
     header.modal-card-head {
         padding: 10px;
-    }
-    .current-color {
-        width: 20px;
-        height: 20px;
-        margin-left: 10px;
-        border-style: solid;
     }
     .content-tab {
         display: none;
