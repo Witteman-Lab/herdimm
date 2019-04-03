@@ -1,13 +1,13 @@
 <template>
     <div>
         <div v-for="(character) in this.characterList" :key="character.id">
-            <Character :customised="false" :edit="true" ref="character" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" :color="''" />
+            <Character :size="{width: '70px', height: '95px'}" :customised="false" :edit="true" ref="character" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)"/>
         </div>
     </div>
 </template>
 
 <script>
-import Character from './Character.vue'
+    import Character from './Character.vue'
 
 export default {
     name: "CharacterList",

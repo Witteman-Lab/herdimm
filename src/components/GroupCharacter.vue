@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-for="(character) in characterList" ref="characterList" :key="character.id">
-            <Character ref="character" :edit="true" :customised="true" :colors="character.colors" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" />
+            <Character ref="character" :size="this.characterSize" :edit="true" :customised="true" :colors="character.colors" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" />
         </div>
     </div>
 </template>
@@ -13,7 +13,11 @@
         name: "GroupCharacter",
         data() {
             return {
-                characterList: []
+                characterList: [],
+                characterSize: {
+                    width: "70px",
+                    height: "95px"
+                }
             }
         },
         components: {

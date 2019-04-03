@@ -2,7 +2,7 @@
     <div>
         <div class="character-position">
             <!-- <a v-if="!this.isLoaded" class="button is-large is-loading">Loading</a> -->
-            <div v-on:click="createYourCharacter" ref="characterImg" v-html="this.svg" style="width: 70px; height: 95px;"></div>
+            <div v-on:click="createYourCharacter" ref="characterImg" v-html="this.svg" :style="{width: this.width, height: this.height}" style="width: 70px; height: 95px;"></div>
             <!-- <div v-if="this.isLoaded" v-on:click="createYourCharacter" ref="characterImg" v-html="this.svg" style="width: 70px; height: 95px;"></div> -->
         </div>
     </div>
@@ -15,6 +15,8 @@
         name: "Character",
         data() {
             return {
+                width: "0px",
+                height: "0px",
                 svg: '',
                 currentColor: '#FFFFFF',
                 svgColor: {
@@ -41,7 +43,8 @@
             id: String,
             customised: Boolean,
             colors: Object,
-            edit: Boolean
+            edit: Boolean,
+            size: Object
         },
         methods: {
             changeFaceColor(color) {
@@ -153,6 +156,8 @@
             },
             loadSvgData() {
                 if (this.svg) {
+                    this.width = this.size.width;
+                    this.height = this.size.height;
                     if (this.customised) {
                         this.parseCharacterAttributes();
                         this.editCharacterColors(this.colors);

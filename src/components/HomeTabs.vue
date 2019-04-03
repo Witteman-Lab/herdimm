@@ -8,7 +8,7 @@
                         <button class="delete" aria-label="close modal" v-on:click="removeModal"></button>
                     </header>
                     <section class="modal-card-body">
-                        <Character v-if="isActive" :edit="false" :customised="true" ref="character" :id="'current'" :svgFile="this.currentCharacter"
+                        <Character v-if="isActive" :size="{width: '70px', height: '95px'}" :edit="false" :customised="true" ref="character" :id="'current'" :svgFile="this.currentCharacter"
                                    :colors="{face: this.currentColorFace, hairFront: this.currentColorHair, beards: this.currentBeard, glasses: this.currentGlasses}" />
 
                         <div class="tabs is-centered is-boxed is-three-quarters">
@@ -351,7 +351,6 @@
             this.characterList = json.characters;
             this.maxCharactersInGroup = json.nbAvatar + json.nbVulnerable + json.nbCommunity;
             this.contextualInfo = "First, select and customize your own avatar.";
-
             this.facialHairList = facialHairJson.beards;
             this.glassesListJson = glassesJson.glasses;
         },

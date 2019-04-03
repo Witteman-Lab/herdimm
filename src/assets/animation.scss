@@ -1,6 +1,6 @@
 :root {
     /* Change this to change the appearance of the hexagons */
-    --hex-height: 40px;
+    --hex-height: 60px;
     --hex-width: calc(var(--hex-height) / 1.73);    /* 1.73 = sqrt(3) */
     --hex-between: calc(var(--hex-height) * 1.73);  /* 1.73 = sqrt(3) */
     --hex-margin: calc(var(--hex-height) / 2);
