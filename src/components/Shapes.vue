@@ -10,6 +10,10 @@
     			<div class="hexagon color-vaccinated"><!-- Place SVG content here --></div>
     			<div class="hexagon color-vulnerable"><!-- Place SVG content here --></div>
     			<div class="hexagon color-vulnerable"><!-- Place SVG content here --></div>
+                <div class="no-hexagon"><!-- Place SVG content here --></div>
+                <div class="no-hexagon"><!-- Place SVG content here --></div>
+                <div class="no-hexagon"><!-- Place SVG content here --></div>
+                <div class="no-hexagon"><!-- Place SVG content here --></div>
 
                 <!-- Example with the SVG content copy-pasted from a file -->
                 <!-- The SVG content should added based on the properties passed after the creation of the group -->
@@ -17,7 +21,7 @@
     				<svg version="1.1" id="adult01" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 315 350" style="enable-background:new 0 0 315 350;" xml:space="preserve">
                         <title id="character">Character</title>
                         <!-- <style> tags seem to cause issues in VueJS... without this we might lose the characters' styles... which we don't want -->
-                        <!-- To investigate and fix -->
+                        <!-- To investigate and fix if possible -->
                         <!-- <style type="text/css">
         					.st0{fill:#BFBABE;}
         					.st1{fill:#9D9C9D;}
@@ -121,13 +125,14 @@
     			</div>
 
     			<div class="hexagon color-vaccinated"><!-- Place SVG content here --></div>
-
+                <div class="no-hexagon"><!-- Place SVG content here --></div>
+                <div class="no-hexagon"><!-- Place SVG content here --></div>
     			<div class="hexagon"><!-- Place SVG content here --></div>
-
+                <div class="no-hexagon"><!-- Place SVG content here --></div>
     			<div class="hexagon color-infected"><!-- Place SVG content here --></div>
-
+                <div class="no-hexagon"><!-- Place SVG content here --></div>
     			<div class="hexagon color-vaccinated"><!-- Place SVG content here --></div>
-
+                <div class="no-hexagon"><!-- Place SVG content here --></div>
     			<div class="hexagon"><!-- Place SVG content here --></div>
     		</div>
         <!-- </v-layer> -->
