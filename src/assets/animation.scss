@@ -1,0 +1,104 @@
+:root {
+    /* Change this to change the appearance of the hexagons */
+    --hex-height: 40px;
+    --hex-width: calc(var(--hex-height) / 1.73);    /* 1.73 = sqrt(3) */
+    --hex-between: calc(var(--hex-height) * 1.73);  /* 1.73 = sqrt(3) */
+    --hex-margin: calc(var(--hex-height) / 2);
+    --hex-border: calc(var(--hex-margin) / 1.73);   /* 1.73 = sqrt(3) */
+
+    --hex-border: calc(var(--hex-margin) / 1.73);   /* 1.73 = sqrt(3) */
+    --hex-transition: all .2s ease;
+
+    /* Colors */
+    --color-hex-default: 	#C4BAB8;
+    --color-hex-vulnerable: #FFFAB0;
+    --color-hex-vaccinated: #3C83B7;
+    --color-hex-infected:   #B0102C;
+}
+
+/* Colors */
+div.color-vulnerable,
+div.color-vulnerable::after,
+div.color-vulnerable::before {
+    background-color: var(--color-hex-vulnerable);
+}
+
+div.color-infected,
+div.color-infected::after,
+div.color-infected::before {
+    background-color: var(--color-hex-infected);
+}
+
+div.color-vaccinated,
+div.color-vaccinated::after,
+div.color-vaccinated::before {
+    background-color: var(--color-hex-vaccinated);
+}
+
+body {
+    margin: 50px;
+}
+
+/* Hexagons */
+.hexagon-container {
+    display: grid;
+    grid-template-columns: var(--hex-width) var(--hex-width) var(--hex-width) var(--hex-width);
+    grid-auto-rows: calc(var(--hex-height) / 10);
+    grid-gap: calc(var(--hex-between) / 3) var(--hex-between);
+}
+
+.hexagon {
+    align-items: center;
+    display: flex;
+    height: var(--hex-height);
+    justify-content: center;
+    margin: var(--hex-border) 0;
+    position: relative;
+    /* transition: var(--hex-transition); */
+    width: var(--hex-width);
+    z-index: 1;
+}
+
+.hexagon,
+.hexagon::after,
+.hexagon::before {
+    background-color: var(--color-hex-default);
+    height: var(--hex-height);
+    width: var(--hex-width);
+}
+
+.hexagon::after,
+.hexagon::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.hexagon::before {
+    transform: rotate(-60deg);
+    -o-transform: rotate(-60deg);
+    -moz-transform: rotate(-60deg);
+    -webkit-transform: rotate(-60deg);
+    -ms-transform: rotate(-60deg);
+}
+
+.hexagon::after {
+    transform: rotate(60deg);
+    -o-transform: rotate(60deg);
+    -moz-transform: rotate(60deg);
+    -webkit-transform: rotate(60deg);
+    -ms-transform: rotate(60deg);
+}
+
+.hexagon:nth-child(8n + 5),
+.hexagon:nth-child(8n + 6),
+.hexagon:nth-child(8n + 7),
+.hexagon:nth-child(8n + 8) {
+    margin-left: calc(var(--hex-width) / 2 + var(--hex-between) / 2);
+}
+
+.hexagon > svg {
+    height: 100%;
+}

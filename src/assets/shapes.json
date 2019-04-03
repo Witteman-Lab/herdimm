@@ -1,0 +1,33 @@
+{
+    "containerId" : "gridContainer",
+    "shapeSize" : "20",
+	"sidesNumber" : "6",
+	"cap" : "round",
+	"margin" : "5",
+	"fill" : "#C4BAB8",
+	"stroke" : "#C4BAB8",
+	"infectedColor" : "#B0102C",
+	"vaccinatedColor" : "#3C83B7",
+	"opacity" : "1",
+	"linewidth" : "5",
+	"shapes" : {
+		"avatar" : { 
+			"className" : "avatar",
+			"fill" 		: "#00FF00",
+			"stroke" 	: "#00FF00"
+		},
+		"comm" : { 
+			"className" : "comm",
+			"fill" 		: "#3C83B7",
+			"stroke" 	: "#3C83B7"
+		},
+		"vulnerable" : { 
+			"className" : "vulnerable",
+			"fill" 		: "#FFFAB0",
+			"stroke" 	: "#FFFAB0"
+		},
+		"gen" : { 
+			"className" : "gen"
+		}
+	}
+}
