@@ -1,43 +1,11 @@
 <template>
-    <!-- <v-stage ref="stage" :config="configStage"> -->
-    <!-- <v-layer ref="grid"> -->
     <div class="hexagon-container">
         <div v-for="shape in this.gridIds">
             <div :class="shape.className">
                 <!--<Character :size="{ width: '35px', height: '47px'}" ref="character" :edit="false" :customised="true" :colors="character.colors" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" />-->
             </div>
         </div>
-        <!-- <div v-for="shape in rows[index]" class="hexagon">{{shape}}</div> -->
-
-        <!-- These will probably be added dynamically using v-for -->
-        <!--<div class="hexagon color-vaccinated"></div>
-        <div class="hexagon"></div>
-        <div class="hexagon color-infected"></div>
-        <div class="hexagon"></div>
-        <div class="hexagon color-vaccinated"></div>
-        <div class="hexagon color-vulnerable"></div>
-        <div class="hexagon color-vulnerable"></div>
-        <div class="no-hexagon"></div>
-        <div class="no-hexagon"></div>
-        <div class="no-hexagon"></div>
-        <div class="no-hexagon"></div> -->
-
-        <!-- Example with the SVG content copy-pasted from a file -->
-        <!-- The SVG content should added based on the properties passed after the creation of the group -->
-
-        <!-- <div class="hexagon color-vaccinated"></div>
-        <div class="no-hexagon"></div>
-        <div class="no-hexagon"></div>
-        <div class="hexagon"></div>
-        <div class="no-hexagon"></div>
-        <div class="hexagon color-infected"></div>
-        <div class="no-hexagon"></div>
-        <div class="hexagon color-vaccinated"></div>
-        <div class="no-hexagon"></div>
-        <div class="hexagon"></div> -->
     </div>
-    <!-- </v-layer> -->
-    <!-- </v-stage> -->
 </template>
 
 <script>
@@ -72,13 +40,13 @@
                     [4,0,4,0,0,0,4,0,4,0,4,0,4,0], //6
                     [0,4,0,4,0,4,0,4,0,4,0,4,0,0], //6
                     [4,0,4,0,4,0,4,0,4,0,4,0,4,0], //7
-                    [0,4,0,4,0,2,0,4,0,4,0,4,0,0], //6
-                    [0,0,0,0,4,0,3,0,2,0,0,0,4,0], //4
-                    [0,0,0,4,0,3,0,3,0,4,0,0,0,4], //5
-                    [0,0,4,0,4,0,3,0,3,0,0,0,4,0], //5
+                    [0,4,0,4,0,4,0,4,0,4,0,4,0,0], //6
+                    [0,0,0,0,4,0,3,0,4,0,0,0,4,0], //4
+                    [0,0,0,4,0,3,0,2,0,4,0,0,0,4], //5
+                    [0,0,4,0,4,0,2,0,3,0,0,0,4,0], //5
                     [0,0,0,4,0,4,0,1,0,4,0,4,0,4], //6
-                    [0,0,4,0,4,0,3,0,4,0,4,0,4,0], //6
-                    [0,0,0,4,0,0,0,4,0,4,0,4,0,4], //5
+                    [0,0,4,0,4,0,3,0,3,0,4,0,4,0], //6
+                    [0,0,0,4,0,0,0,3,0,4,0,4,0,4], //5
                     [0,0,4,0,4,0,0,0,4,0,4,0,4,0], //5
                     [0,4,0,4,0,0,0,4,0,0,0,4,0,4], //5
                     [0,0,4,0,4,0,0,0,4,0,0,0,4,0], //4
@@ -103,7 +71,6 @@
 
                 // For every row
                 for (let i = 0; i < this.shapesArray.length; i++) {
-                    let shapeLine = new Array();
 
                     // For every element in each row
                     for (let j = 0; j < this.shapesArray[i].length; j++) {
@@ -112,38 +79,37 @@
 
                         // Give the object a className
                         switch(shapeValue) {
-                            case 0:
-                                shapeObj.className = "no-hexagon";
-                                break;
                             case 1:
-                                shapeObj.className = "hexagon";
+                                shapeObj.className = "avatar";
                                 break;
                             case 2:
-                                shapeObj.className = "hexagon";
+                                shapeObj.className = "vulnerable";
                                 break;
                             case 3:
-                                shapeObj.className = "hexagon";
+                                shapeObj.className = "comm";
                                 break;
                             case 4:
-                                shapeObj.className = "hexagon";
+                                shapeObj.className = "gen";
                                 break;
                             default:
-                            // code block
                         }
+
                         // Give the object an id
                         if (shapeValue !== 0) {
                             shapeObj.id = "shape_" + (++numId);
+                            shapeObj.className += " hexagon";
+                        } else {
+                            shapeObj.className = "no-hexagon";
                         }
 
-                        //shapeLine.push(shapeObj);
                         this.gridIds.push(shapeObj);
                     }
                 }
-                console.log(this.gridIds);
+                //console.log(this.gridIds);
             }
         },
         created() {
-            //this.characterList = json.characters;
+
         },
         mounted() {
             if (localStorage.getItem("group"))
@@ -154,5 +120,8 @@
 </script>
 
 <style scoped>
-
+    .hexagon-container {
+        margin: 0 auto;
+        width: 90%;
+    }
 </style>

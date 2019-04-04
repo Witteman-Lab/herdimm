@@ -1,6 +1,6 @@
 :root {
     /* Change this to change the appearance of the hexagons */
-    --hex-height: 60px;
+    --hex-height: 40px;
     --hex-width: calc(var(--hex-height) / 1.73);    /* 1.73 = sqrt(3) */
     --hex-between: calc(var(--hex-height) * 1.73);  /* 1.73 = sqrt(3) */
     --hex-margin: calc(var(--hex-height) / 2);
@@ -11,16 +11,28 @@
 
     /* Colors */
     --color-hex-default: 	#C4BAB8;
+    --color-hex-avatar:     #00FF00;
     --color-hex-vulnerable: #FFFAB0;
+    --color-hex-comm:       #3C83B7;
     --color-hex-vaccinated: #3C83B7;
     --color-hex-infected:   #B0102C;
 }
 
 /* Colors */
-div.color-vulnerable,
-div.color-vulnerable::after,
-div.color-vulnerable::before {
+div.avatar,
+div.avatar::after,
+div.avatar::before {
+    background-color: var(--color-hex-avatar);
+}
+div.vulnerable,
+div.vulnerable::after,
+div.vulnerable::before {
     background-color: var(--color-hex-vulnerable);
+}
+div.comm,
+div.comm::after,
+div.comm::before {
+    background-color: var(--color-hex-comm);
 }
 
 div.color-infected,
@@ -44,7 +56,8 @@ div.color-vaccinated::before {
 }
 
 body {
-    margin: 50px;
+    // margin: 0 auto;
+    // width: 90%;
 }
 
 /* Hexagons */
