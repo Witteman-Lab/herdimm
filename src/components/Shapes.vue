@@ -2,18 +2,20 @@
     <div class="hexagon-container">
         <div v-for="shape in this.gridIds">
             <div :class="shape.className" :id="shape.id">
-                <!--<Character :size="{ width: '35px', height: '47px'}" ref="character" :edit="false" :customised="true" :colors="character.colors" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" />-->
+                <!-- <div v-for="character in this.characterList">
+                    <div>{{character.characterType}}</div>
+                    <Character v-if:"shape.className==character.characterType" :class="" :size="{ width: '35px', height: '47px'}" ref="character" :edit="false" :customised="true" :colors="character.colors" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" />
+                </div> -->
+                <!-- <Character :size="{ width: '35px', height: '47px'}" ref="character" :edit="false" :customised="true" :colors="character.colors" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" /> -->
+                <!-- <Character v-if:`shape.className==${character.type}` ref="character" :edit="false" :customised="true" :colors="character.colors" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" /> -->
             </div>
         </div>
     </div>
 </template>
 
 <script>
-    import Character from './Character.vue'
+    import Character from './Character'
     import GroupCharacter from "./GroupCharacter";
-    import json from '../assets/characters.json';
-    import shapesJson from '../assets/shapes.json';
-    import svgFile from '../assets/characters/adult01.svg';
 
     export default {
         name: "Shapes",
@@ -105,7 +107,6 @@
                         this.gridIds.push(shapeObj);
                     }
                 }
-                //console.log(this.gridIds);
             }
         },
         created() {
@@ -114,6 +115,7 @@
         mounted() {
             if (localStorage.getItem("group"))
                 this.characterList = JSON.parse(localStorage.getItem("group"));
+            console.log(this.characterList);
             this.buildGridIds();
         }
     }

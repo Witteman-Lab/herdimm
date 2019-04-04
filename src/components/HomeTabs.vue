@@ -5,7 +5,7 @@
                 <div class="modal-card mobile-modal">
                     <header class="modal-card-head">
                         <p class="modal-card-title">{{ modalTitle }}</p>
-                        <button class="delete" aria-label="close modal" v-on:click="removeModal"></button>
+                        <button class="delete" aria-label="close modal" v-on:click="this.removeModal"></button>
                     </header>
                     <section class="modal-card-body">
                         <Character v-if="isActive" :size="{width: '70px', height: '95px'}" :edit="false" :customised="true" ref="character" :id="'current'" :svgFile="this.currentCharacter"
@@ -80,14 +80,13 @@
 
                         <br />
                         <div class="buttons is-light is-centered">
-                            <!-- <span class="button" v-on:click="this.resetDefault">Reset</span> -->
-                            <button class="button is-centered" v-on:click="this.resetDefault">Reset</button>
+                            <button class="button is-centered" v-on:click="resetDefault">Reset</button>
                         </div>
                     </section>
                     <footer class="modal-card-foot">
-                        <button class="button is-success" v-if="!isEdit" v-on:click="saveCharacter">Save</button>
-                        <button class="button is-success" v-if="isEdit" v-on:click="saveEditCharacter">Save Edit</button>
-                        <button class="button" v-on:click="removeModal">Cancel</button>
+                        <button class="button is-success" v-if="!this.isEdit" v-on:click="this.saveCharacter">Save</button>
+                        <button class="button is-success" v-if="this.isEdit" v-on:click="this.saveEditCharacter">Save Edit</button>
+                        <button class="button" v-on:click="this.removeModal">Cancel</button>
                     </footer>
                 </div>
             </div>
@@ -165,8 +164,6 @@
                 areVulnerableCreated: false,
                 areCommunityCreated: false,
                 maxCharactersInGroup: 0,
-                type: String,
-                isAdult: false,
                 hasFacialHair: false,
                 hasGlasses: false,
                 hasHair: false,
@@ -176,9 +173,6 @@
         },
         props: {},
         methods: {
-            test(evt) {
-                console.log("evt", evt);
-            },
             openTab(evt, tabName) {
                 let i, x, tablinks;
                 x = document.getElementsByClassName("content-tab");
@@ -222,7 +216,6 @@
                 if (this.$refs.listToFill.getCharacterListSize() < this.maxCharactersInGroup)  {
                     this.currentCharacter = require(`../assets/characters/${character.file}`);
                     this.currentCharacterObject = character;
-                    this.isAdult = (character.type === "adult");
 
                     this.currentColorFace = "#7C5235";
                     this.currentColorHair = "#412308";
@@ -236,7 +229,6 @@
             launchEditModal(character, index) {
                 this.currentCharacter = require(`../assets/characters/${character.file}`);
                 this.currentCharacterObject = character;
-                this.isAdult = (character.type === "adult");
 
                 this.currentColorFace = character.colors.face;
                 this.currentColorHair = character.colors.hairFront;
@@ -284,7 +276,7 @@
             },
             saveEditCharacter() {
                 this.$refs.listToFill.editCharacter(this.currentCharacterObject,
-                    this.$refs.character.getSvgColor(), this.currentCharacterObject.type);
+                    this.$refs.character.getSvgColor(), this.currentCharacterObject.characterType);
                 this.removeModal();
             },
             getCurrentCharacterType(position) {
@@ -360,6 +352,10 @@
                     this.removeModal();
                 } else if (e.keyCode === 13 && this.isActive) {
                     this.saveCharacter();
+                }  else if (e.keyCode === 13 && this.isEdit) {
+                    console.log("e.keyCode", e.keyCode);
+                    console.log("this.isEdit", this.isEdit);
+                    this.saveEditCharacter();
                 }
             });
         }

@@ -26,13 +26,13 @@
         methods: {
             addCharacterToGroup(character, characterColors, type) {
                 this.characterList.push({id: character.id + this.characterList.length + "_customised",
-                    file: character.file, type: character.type, colors: characterColors, characterType: type});
+                    file: character.file, colors: characterColors, characterType: type});
             },
             editCharacter(character, characterColors, type) {
                 this.characterList.map((obj, index) => {
                     if (obj.id === character.id) {
                         this.characterList.splice(index, 1, {id: character.id,
-                            file: character.file, type: character.type, colors: characterColors, characterType: type});
+                            file: character.file, colors: characterColors, characterType: type});
                         this.$refs.character[index].editCharacterColors(characterColors);
                     }
                 });
@@ -49,9 +49,6 @@
             },
             getCharacterList() {
                 return this.characterList;
-            },
-            addGroup(characters) {
-                this.characterList = characters;
             }
         },
     }
