@@ -1,7 +1,7 @@
 <template>
     <div class="hexagon-container">
         <div v-for="shape in this.gridIds">
-            <div :class="shape.className">
+            <div :class="shape.className" :id="shape.id">
                 <!--<Character :size="{ width: '35px', height: '47px'}" ref="character" :edit="false" :customised="true" :colors="character.colors" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" />-->
             </div>
         </div>

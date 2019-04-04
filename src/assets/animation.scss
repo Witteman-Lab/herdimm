@@ -50,9 +50,10 @@ div.color-vaccinated::before {
 .no-hexagon,
 .no-hexagon::after,
 .no-hexagon::before {
-    background-color: transparent;
-    height: var(--hex-height);
-    width: var(--hex-width);
+    // background-color: transparent;
+    // height: var(--hex-height);
+    // width: var(--hex-width);
+    display: none;
 }
 
 body {
