@@ -1,40 +1,42 @@
 <template>
     <!-- <v-stage ref="stage" :config="configStage"> -->
-        <!-- <v-layer ref="grid"> -->
-            <div class="hexagon-container">
-                <div v-for="character in this.characterList" class="hexagon">
-                  <Character :class="" :size="{ width: '35px', height: '47px'}" ref="character" :edit="false" :customised="true" :colors="character.colors" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" />
-                </div>
-                <!-- <div v-for="shape in rows[index]" class="hexagon">{{shape}}</div> -->
+    <!-- <v-layer ref="grid"> -->
+    <div class="hexagon-container">
+        <div v-for="shape in this.gridIds">
+            <div :class="shape.className">
+                <!--<Character :size="{ width: '35px', height: '47px'}" ref="character" :edit="false" :customised="true" :colors="character.colors" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" />-->
+            </div>
+        </div>
+        <!-- <div v-for="shape in rows[index]" class="hexagon">{{shape}}</div> -->
 
-                <!-- These will probably be added dynamically using v-for -->
-    			<!--<div class="hexagon color-vaccinated"></div>
-    			<div class="hexagon"></div>
-    			<div class="hexagon color-infected"></div>
-    			<div class="hexagon"></div>
-    			<div class="hexagon color-vaccinated"></div>
-    			<div class="hexagon color-vulnerable"></div>
-    			<div class="hexagon color-vulnerable"></div>
-                <div class="no-hexagon"></div>
-                <div class="no-hexagon"></div>
-                <div class="no-hexagon"></div>
-                <div class="no-hexagon"></div> -->
+        <!-- These will probably be added dynamically using v-for -->
+        <!--<div class="hexagon color-vaccinated"></div>
+        <div class="hexagon"></div>
+        <div class="hexagon color-infected"></div>
+        <div class="hexagon"></div>
+        <div class="hexagon color-vaccinated"></div>
+        <div class="hexagon color-vulnerable"></div>
+        <div class="hexagon color-vulnerable"></div>
+        <div class="no-hexagon"></div>
+        <div class="no-hexagon"></div>
+        <div class="no-hexagon"></div>
+        <div class="no-hexagon"></div> -->
 
-                <!-- Example with the SVG content copy-pasted from a file -->
-                <!-- The SVG content should added based on the properties passed after the creation of the group -->
+        <!-- Example with the SVG content copy-pasted from a file -->
+        <!-- The SVG content should added based on the properties passed after the creation of the group -->
 
-    			<!-- <div class="hexagon color-vaccinated"></div>
-                <div class="no-hexagon"></div>
-                <div class="no-hexagon"></div>
-    			<div class="hexagon"></div>
-                <div class="no-hexagon"></div>
-    			<div class="hexagon color-infected"></div>
-                <div class="no-hexagon"></div>
-    			<div class="hexagon color-vaccinated"></div>
-                <div class="no-hexagon"></div>
-    			<div class="hexagon"></div> -->
-    		</div>
-        <!-- </v-layer> -->
+        <!-- <div class="hexagon color-vaccinated"></div>
+        <div class="no-hexagon"></div>
+        <div class="no-hexagon"></div>
+        <div class="hexagon"></div>
+        <div class="no-hexagon"></div>
+        <div class="hexagon color-infected"></div>
+        <div class="no-hexagon"></div>
+        <div class="hexagon color-vaccinated"></div>
+        <div class="no-hexagon"></div>
+        <div class="hexagon"></div> -->
+    </div>
+    <!-- </v-layer> -->
     <!-- </v-stage> -->
 </template>
 
@@ -58,35 +60,35 @@
                     width: "35px",
                     height: "47px"
                 },
-                /* This array sould be stored outside for users to change easily */
+                /* This array should be stored outside for users to change easily */
                 // 0 = None
                 // 1 = avatar
                 // 2 = vulnerable
                 // 3 = comm
                 // 4 = gen
                 shapesArray: [
-        			[0,0,4,0,0,0,4,0,0,0,0,0,0,0], //2
-        			[0,4,0,4,0,4,0,4,0,4,0,4,0,0], //6
-        			[4,0,4,0,0,0,4,0,4,0,4,0,4,0], //6
-        			[0,4,0,4,0,4,0,4,0,4,0,4,0,0], //6
-        			[4,0,4,0,4,0,4,0,4,0,4,0,4,0], //7
-        			[0,4,0,4,0,2,0,4,0,4,0,4,0,0], //6
-        			[0,0,0,0,4,0,3,0,2,0,0,0,4,0], //4
-        			[0,0,0,4,0,3,0,3,0,4,0,0,0,4], //5
-        			[0,0,4,0,4,0,3,0,3,0,0,0,4,0], //5
-        			[0,0,0,4,0,4,0,1,0,4,0,4,0,4], //6
-        			[0,0,4,0,4,0,3,0,4,0,4,0,4,0], //6
-        			[0,0,0,4,0,0,0,4,0,4,0,4,0,4], //5
-        			[0,0,4,0,4,0,0,0,4,0,4,0,4,0], //5
-        			[0,4,0,4,0,0,0,4,0,0,0,4,0,4], //5
-        			[0,0,4,0,4,0,0,0,4,0,0,0,4,0], //4
-        			[0,4,0,4,0,4,0,4,0,4,0,0,0,0], //5
-        			[4,0,4,0,4,0,4,0,4,0,4,0,0,0], //6
-        			[0,4,0,0,0,4,0,4,0,4,0,0,0,0], //4
-        			[4,0,0,0,0,0,4,0,4,0,4,0,0,0], //4
-        			[0,0,0,0,0,4,0,0,0,4,0,0,0,0], //2
-        			[0,0,0,0,0,0,4,0,0,0,0,0,0,0]  //1
-        		],
+                    [0,0,4,0,0,0,4,0,0,0,0,0,0,0], //2
+                    [0,4,0,4,0,4,0,4,0,4,0,4,0,0], //6
+                    [4,0,4,0,0,0,4,0,4,0,4,0,4,0], //6
+                    [0,4,0,4,0,4,0,4,0,4,0,4,0,0], //6
+                    [4,0,4,0,4,0,4,0,4,0,4,0,4,0], //7
+                    [0,4,0,4,0,2,0,4,0,4,0,4,0,0], //6
+                    [0,0,0,0,4,0,3,0,2,0,0,0,4,0], //4
+                    [0,0,0,4,0,3,0,3,0,4,0,0,0,4], //5
+                    [0,0,4,0,4,0,3,0,3,0,0,0,4,0], //5
+                    [0,0,0,4,0,4,0,1,0,4,0,4,0,4], //6
+                    [0,0,4,0,4,0,3,0,4,0,4,0,4,0], //6
+                    [0,0,0,4,0,0,0,4,0,4,0,4,0,4], //5
+                    [0,0,4,0,4,0,0,0,4,0,4,0,4,0], //5
+                    [0,4,0,4,0,0,0,4,0,0,0,4,0,4], //5
+                    [0,0,4,0,4,0,0,0,4,0,0,0,4,0], //4
+                    [0,4,0,4,0,4,0,4,0,4,0,0,0,0], //5
+                    [4,0,4,0,4,0,4,0,4,0,4,0,0,0], //6
+                    [0,4,0,0,0,4,0,4,0,4,0,0,0,0], //4
+                    [4,0,0,0,0,0,4,0,4,0,4,0,0,0], //4
+                    [0,0,0,0,0,4,0,0,0,4,0,0,0,0], //2
+                    [0,0,0,0,0,0,4,0,0,0,0,0,0,0]  //1
+                ],
                 gridIds: []
             }
         },
@@ -114,30 +116,30 @@
                                 shapeObj.className = "no-hexagon";
                                 break;
                             case 1:
-                                shapeObj.className = "avatar";
+                                shapeObj.className = "hexagon";
                                 break;
                             case 2:
-                                shapeObj.className = "vulnerable";
+                                shapeObj.className = "hexagon";
                                 break;
                             case 3:
-                                shapeObj.className = "comm";
+                                shapeObj.className = "hexagon";
                                 break;
                             case 4:
-                                shapeObj.className = "gen";
+                                shapeObj.className = "hexagon";
                                 break;
                             default:
-                                // code block
+                            // code block
                         }
-
                         // Give the object an id
                         if (shapeValue !== 0) {
                             shapeObj.id = "shape_" + (++numId);
                         }
 
-                        shapeLine.push(shapeObj);
+                        //shapeLine.push(shapeObj);
+                        this.gridIds.push(shapeObj);
                     }
-                    this.gridIds.push(shapeLine);
                 }
+                console.log(this.gridIds);
             }
         },
         created() {

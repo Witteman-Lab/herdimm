@@ -6,7 +6,7 @@
     --hex-margin: calc(var(--hex-height) / 2);
     --hex-border: calc(var(--hex-margin) / 1.73);   /* 1.73 = sqrt(3) */
 
-    --hex-border: calc(var(--hex-margin) / 1.73);   /* 1.73 = sqrt(3) */
+    //--hex-border: calc(var(--hex-margin) / 1.73);   /* 1.73 = sqrt(3) */
     --hex-transition: all .2s ease;
 
     /* Colors */
@@ -53,7 +53,7 @@ body {
     grid-template-columns: var(--hex-width) var(--hex-width) var(--hex-width) var(--hex-width);
     grid-template-columns: repeat(14, var(--hex-width));
     grid-auto-rows: calc(var(--hex-height) / 10);
-    grid-gap: calc(var(--hex-between) / 3) var(--hex-between);
+    grid-gap: calc(var(--hex-between) / 3) calc(var(--hex-height) / 2);
 }
 
 .hexagon {
@@ -102,7 +102,7 @@ body {
 .hexagon:nth-child(8n + 6),
 .hexagon:nth-child(8n + 7),
 .hexagon:nth-child(8n + 8) {
-    margin-left: calc(var(--hex-width) / 2 + var(--hex-between) / 2);
+    margin-left: calc((var(--hex-width) / 2 + var(--hex-between) / 2));
 }
 
 .hexagon > svg {
