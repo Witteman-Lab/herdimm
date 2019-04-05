@@ -352,7 +352,7 @@
                     this.removeModal();
                 } else if (e.keyCode === 13 && this.isActive  && !this.isEdit) {
                     this.saveCharacter();
-                }  else if (e.keyCode === 13 && this.isEdit) {
+                }  else if (e.keyCode === 13  && this.isActive && this.isEdit) {
                     this.saveEditCharacter();
                 }
             });
