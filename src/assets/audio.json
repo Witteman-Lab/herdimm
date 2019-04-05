@@ -1,0 +1,25 @@
+{
+    "folder" : "audio",
+    "languages" : [
+        {
+            "language" : "en",
+            "folder" : "en",
+            "sequences" : [
+                {
+                    "sequence" : 1,
+                    "file" : "1E.m4a"
+                }
+            ]
+        },
+        {
+            "language" : "fr",
+            "folder" : "fr",
+            "sequences" : [
+                {
+                    "sequence" : 1,
+                    "file" : "1F.m4a"
+                }
+            ]
+        }
+    ]
+}
