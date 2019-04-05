@@ -340,6 +340,10 @@
             }
         },
         created() {
+            // Remove the localStorage group item (for safety)
+            // if (localStorage.getItem("group"))
+            //     localStorage.removeItem("group");
+
             this.characterList = json.characters;
             this.maxCharactersInGroup = json.nbAvatar + json.nbVulnerable + json.nbCommunity;
             this.contextualInfo = "First, select and customize your own avatar.";
@@ -348,10 +352,13 @@
         },
         mounted() {
             document.body.addEventListener('keyup', e => {
+                // Escape key to close the modal window (customizer)
                 if (e.keyCode === 27 && this.isActive) {
                     this.removeModal();
+                // Enter key to add a new character to the group (and close the customizer)
                 } else if (e.keyCode === 13 && this.isActive  && !this.isEdit) {
                     this.saveCharacter();
+                // Enter key to save edits to a group member (and close the customizer)
                 }  else if (e.keyCode === 13  && this.isActive && this.isEdit) {
                     this.saveEditCharacter();
                 }
