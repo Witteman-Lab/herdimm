@@ -350,11 +350,9 @@
             document.body.addEventListener('keyup', e => {
                 if (e.keyCode === 27 && this.isActive) {
                     this.removeModal();
-                } else if (e.keyCode === 13 && this.isActive) {
+                } else if (e.keyCode === 13 && this.isActive  && !this.isEdit) {
                     this.saveCharacter();
                 }  else if (e.keyCode === 13 && this.isEdit) {
-                    console.log("e.keyCode", e.keyCode);
-                    console.log("this.isEdit", this.isEdit);
                     this.saveEditCharacter();
                 }
             });
