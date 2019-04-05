@@ -7,7 +7,7 @@
 </template>
 
 <script>
-    import Character from './Character.vue'
+import Character from './Character.vue'
 
 export default {
     name: "CharacterList",

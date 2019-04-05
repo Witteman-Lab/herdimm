@@ -124,15 +124,15 @@
 </template>
 
 <script>
-    import Character from '../components/Character.vue'
-    import { Compact }  from 'vue-color';
+    import Character from "../components/Character.vue"
+    import { Compact }  from "vue-color";
     import CharacterList from "../components/CharacterList";
-    import json from '../assets/characters.json';
-    import glassesJson from '../assets/glasses.json';
-    import facialHairJson from '../assets/facialHair.json';
+    import json from "../assets/characters.json";
+    import glassesJson from "../assets/glasses.json";
+    import facialHairJson from "../assets/facialHair.json";
     import GroupCharacter from "../components/GroupCharacter";
     export default {
-        name: 'home',
+        name: "home",
         components: {
             GroupCharacter,
             CharacterList,

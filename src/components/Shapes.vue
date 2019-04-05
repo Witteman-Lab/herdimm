@@ -1,5 +1,9 @@
 <template>
+    <!-- <div> -->
+        <!-- <AudioPlayer ref="audioPlayer"/> -->
+    <!-- </div> -->
     <div class="hexagon-container">
+        <AudioPlayer ref="audioPlayer"></AudioPlayer>
         <div v-for="shape in this.gridIds">
             <div :class="shape.className" :id="shape.id">
                 <!-- {{shape.className.split(" ")[0]}} -->
@@ -29,14 +33,16 @@
 </template>
 
 <script>
-    import Character from './Character'
+    import Character from "./Character";
     import GroupCharacter from "./GroupCharacter";
+    import AudioPlayer from "./AudioPlayer.vue";
 
     export default {
         name: "Shapes",
         components: {
             GroupCharacter,
-            Character
+            Character,
+            AudioPlayer
         },
         data() {
             return {
@@ -143,6 +149,8 @@
 
             console.log("this.characterList", this.characterList);
             this.buildGridIds();
+
+            console.log();
         }
     }
 </script>

@@ -1,28 +1,39 @@
 <template>
-    <div></div>
+    <div id="audioPlayer"></div>
 </template>
 
 <script>
 import audio from "../assets/audio.json";
+
 export default {
     name: "AudioPlayer",
     components: {},
     data() {
-        return {}
+        return {
+            language: "en"
+        }
     },
     props: {},
-    methods: {},
-    created() {
-        console.log("created");
+    methods: {
+        playAudio(file) {
+            if(file){
+                file.play();
+            }
+        }
     },
+    created() {},
     mounted() {
-        console.log("mounted");
         //console.log("audio", audio);
-        //var audio = new Audio(require('../../assets/testaudio.mp3'));
+        let folder = audio.folder;
+        let audioFile = new Audio(require(`../assets/${folder}/en/1E.mp3`));
+        //console.log("audioFile", audioFile);
+        this.playAudio(audioFile);
     }
 }
 </script>
 
 <style scoped>
-
+    #audioPlayer {
+        display: none;
+    }
 </style>

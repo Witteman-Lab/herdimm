@@ -12,8 +12,8 @@
 </template>
 
 <script>
-
     import GroupCharacter from "./GroupCharacter";
+
     export default {
         name: 'Animations',
         components: {GroupCharacter},
