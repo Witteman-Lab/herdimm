@@ -2,12 +2,27 @@
     <div class="hexagon-container">
         <div v-for="shape in this.gridIds">
             <div :class="shape.className" :id="shape.id">
-                <!-- <div v-for="character in this.characterList">
-                    <div>{{character.characterType}}</div>
-                    <Character v-if:"shape.className==character.characterType" :class="" :size="{ width: '35px', height: '47px'}" ref="character" :edit="false" :customised="true" :colors="character.colors" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" />
+                <!-- {{shape.className.split(" ")[0]}} -->
+
+                <!-- <div v-if="shape.className.indexOf('gen') == -1"> -->
+                <!-- Object.entries(obj).find(i => i[1] === val)
+                Object.keys(object).find(key => object[key] === value)
+                Object.keys(obj).find(key => obj[key] === value)
+                arr.find(o => o.name === 'string 1') -->
+                <div v-if="shape.className.indexOf('gen') == -1">
+                    {{shape.className.split(" ")[0]}}
+                    <!-- <Character :size="{ width: '35px', height: '47px'}" ref="character" :edit="false" :customised="true" :colors="character.colors" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" /> -->
+                </div>
+
+                <!-- <Character v-if:"shape.className==character.characterType" :class="" :size="{ width: '35px', height: '47px'}" ref="character" :edit="false" :customised="true" :colors="character.colors" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" /> -->
+                <!-- <GroupCharacter ref="group"></GroupCharacter> -->
+
+                <!-- <div v-for="character in characterList">
+                    <Character v-if:"compare(shape.className, character.characterType)" :class="" :size="{ width: '35px', height: '47px'}" ref="character" :edit="false" :customised="true" :colors="character.colors" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" />
                 </div> -->
+
                 <!-- <Character :size="{ width: '35px', height: '47px'}" ref="character" :edit="false" :customised="true" :colors="character.colors" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" /> -->
-                <!-- <Character v-if:`shape.className==${character.type}` ref="character" :edit="false" :customised="true" :colors="character.colors" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" /> -->
+                <!-- <Character v-if:"shape.className==${character.type}" ref="character" :edit="false" :customised="true" :colors="character.colors" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" /> -->
             </div>
         </div>
     </div>
@@ -26,10 +41,10 @@
         data() {
             return {
                 characterList: [],
-                characterSize: {
-                    width: "35px",
-                    height: "47px"
-                },
+                // characterSize: {
+                //     width: "35px",
+                //     height: "47px"
+                // },
                 /* This array should be stored outside for users to change easily */
                 // 0 = None
                 // 1 = avatar
@@ -96,7 +111,7 @@
                             default:
                         }
 
-                        // Give the object an id
+                        // Give the object an id and/or a class name
                         if (shapeValue !== 0) {
                             shapeObj.id = "shape_" + (++numId);
                             shapeObj.className += " hexagon";
@@ -113,9 +128,20 @@
 
         },
         mounted() {
-            if (localStorage.getItem("group"))
-                this.characterList = JSON.parse(localStorage.getItem("group"));
-            console.log(this.characterList);
+            // if (localStorage.getItem("group"))
+            //     this.characterList = JSON.parse(localStorage.getItem("group"));
+
+            if (this.group) {
+                console.log(this.group);
+                localStorage.setItem("group", JSON.stringify(this.group));
+                // this.$refs.group.addGroup(this.group);
+            } else {
+                if (localStorage.getItem("group"))
+                    // this.$refs.group.addGroup(JSON.parse(localStorage.getItem("group")));
+                    this.characterList = JSON.parse(localStorage.getItem("group"));
+            }
+
+            console.log("this.characterList", this.characterList);
             this.buildGridIds();
         }
     }
@@ -123,7 +149,7 @@
 
 <style scoped>
     .hexagon-container {
-        margin: 0 auto;
-        width: 90%;
+        margin: 0 10px;
+        width: auto;
     }
 </style>
