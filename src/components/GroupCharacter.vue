@@ -44,6 +44,9 @@
                     }
                 });
             },
+            addGroup(characters) {
+                this.characterList = characters;
+            },
             getCharacterListSize() {
                 return this.characterList.length;
             },

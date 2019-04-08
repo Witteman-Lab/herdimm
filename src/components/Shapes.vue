@@ -13,9 +13,9 @@
                 Object.keys(object).find(key => object[key] === value)
                 Object.keys(obj).find(key => obj[key] === value)
                 arr.find(o => o.name === 'string 1') -->
-                <div v-if="shape.className.indexOf('gen') == -1">
-                    {{shape.className.split(" ")[0]}}
-                    <!-- <Character :size="{ width: '35px', height: '47px'}" ref="character" :edit="false" :customised="true" :colors="character.colors" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" /> -->
+                <div v-if="shape.isCharacter">
+                    <!--{{shape.className.split(" ")[0]}}-->
+                    <Character :size="{ width: '25px', height: '37px'}" ref="character" :edit="false" :customised="true" :colors="shape.character.colors" :id="shape.character.id" :svgFile="require(`../assets/characters/${shape.character.file}`)" />
                 </div>
 
                 <!-- <Character v-if:"shape.className==character.characterType" :class="" :size="{ width: '35px', height: '47px'}" ref="character" :edit="false" :customised="true" :colors="character.colors" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" /> -->
@@ -116,7 +116,9 @@
                                 break;
                             default:
                         }
+                        this.getCharacterFromList(shapeObj);
 
+                        // Give the object an id and/or a class name
                         // Give the object an id and/or a class name
                         if (shapeValue !== 0) {
                             shapeObj.id = "shape_" + (++numId);
@@ -128,6 +130,17 @@
                         this.gridIds.push(shapeObj);
                     }
                 }
+            },
+            getCharacterFromList(shapeObj) {
+                let isCharacter = false;
+                this.characterList.map((character, index) => {
+                    if (character.characterType === shapeObj.className && !isCharacter) {
+                        shapeObj.character = character;
+                        shapeObj.isCharacter = true;
+                        isCharacter = true;
+                        this.characterList.splice(index, 1);
+                    }
+                });
             }
         },
         created() {
@@ -140,17 +153,12 @@
             if (this.group) {
                 console.log(this.group);
                 localStorage.setItem("group", JSON.stringify(this.group));
-                // this.$refs.group.addGroup(this.group);
             } else {
                 if (localStorage.getItem("group"))
-                    // this.$refs.group.addGroup(JSON.parse(localStorage.getItem("group")));
                     this.characterList = JSON.parse(localStorage.getItem("group"));
             }
-
-            console.log("this.characterList", this.characterList);
             this.buildGridIds();
 
-            console.log();
         }
     }
 </script>
