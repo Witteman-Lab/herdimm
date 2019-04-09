@@ -1,32 +1,12 @@
 <template>
-    <!-- <div> -->
-        <!-- <AudioPlayer ref="audioPlayer"/> -->
-    <!-- </div> -->
     <div class="hexagon-container">
         <AudioPlayer ref="audioPlayer"></AudioPlayer>
         <div v-for="shape in this.gridIds">
             <div :class="shape.className" :id="shape.id">
-                <!-- {{shape.className.split(" ")[0]}} -->
-
-                <!-- <div v-if="shape.className.indexOf('gen') == -1"> -->
-                <!-- Object.entries(obj).find(i => i[1] === val)
-                Object.keys(object).find(key => object[key] === value)
-                Object.keys(obj).find(key => obj[key] === value)
-                arr.find(o => o.name === 'string 1') -->
                 <div v-if="shape.isCharacter">
-                    <!--{{shape.className.split(" ")[0]}}-->
+                    <!-- <Character ref="character" :edit="false" :customised="true" :colors="shape.character.colors" :id="shape.character.id" :svgFile="require(`../assets/characters/${shape.character.file}`)" /> -->
                     <Character :size="{ width: '25px', height: '37px'}" ref="character" :edit="false" :customised="true" :colors="shape.character.colors" :id="shape.character.id" :svgFile="require(`../assets/characters/${shape.character.file}`)" />
                 </div>
-
-                <!-- <Character v-if:"shape.className==character.characterType" :class="" :size="{ width: '35px', height: '47px'}" ref="character" :edit="false" :customised="true" :colors="character.colors" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" /> -->
-                <!-- <GroupCharacter ref="group"></GroupCharacter> -->
-
-                <!-- <div v-for="character in characterList">
-                    <Character v-if:"compare(shape.className, character.characterType)" :class="" :size="{ width: '35px', height: '47px'}" ref="character" :edit="false" :customised="true" :colors="character.colors" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" />
-                </div> -->
-
-                <!-- <Character :size="{ width: '35px', height: '47px'}" ref="character" :edit="false" :customised="true" :colors="character.colors" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" /> -->
-                <!-- <Character v-if:"shape.className==${character.type}" ref="character" :edit="false" :customised="true" :colors="character.colors" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" /> -->
             </div>
         </div>
     </div>
@@ -151,7 +131,6 @@
             //     this.characterList = JSON.parse(localStorage.getItem("group"));
 
             if (this.group) {
-                console.log(this.group);
                 localStorage.setItem("group", JSON.stringify(this.group));
             } else {
                 if (localStorage.getItem("group"))

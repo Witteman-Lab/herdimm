@@ -23,10 +23,8 @@ export default {
     },
     created() {},
     mounted() {
-        //console.log("audio", audio);
         let folder = audio.folder;
         let audioFile = new Audio(require(`../assets/${folder}/en/1E.mp3`));
-        //console.log("audioFile", audioFile);
         this.playAudio(audioFile);
     }
 }

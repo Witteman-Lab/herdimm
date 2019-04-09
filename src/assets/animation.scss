@@ -5,35 +5,33 @@
     --hex-between: calc(var(--hex-height) * 1.73);  /* 1.73 = sqrt(3) */
     --hex-margin: calc(var(--hex-height) / 2);
     --hex-border: calc(var(--hex-margin) / 1.73);   /* 1.73 = sqrt(3) */
-
-    //--hex-border: calc(var(--hex-margin) / 1.73);   /* 1.73 = sqrt(3) */
-    --hex-transition: all .2s ease;
+    --hex-transition: all 2s ease;
 
     /* Colors */
     --color-hex-default: 	#C4BAB8;
-    --color-hex-avatar:     #00FF00;
-    --color-hex-vulnerable: #FFFAB0;
-    --color-hex-comm:       #3C83B7;
     --color-hex-vaccinated: #3C83B7;
     --color-hex-infected:   #B0102C;
+    // --color-hex-avatar:     #00FF00;
+    // --color-hex-vulnerable: #FFFAB0;
+    // --color-hex-comm:       #3C83B7;
 }
 
 /* Colors */
-div.avatar,
-div.avatar::after,
-div.avatar::before {
-    background-color: var(--color-hex-avatar);
-}
-div.vulnerable,
-div.vulnerable::after,
-div.vulnerable::before {
-    background-color: var(--color-hex-vulnerable);
-}
-div.comm,
-div.comm::after,
-div.comm::before {
-    background-color: var(--color-hex-comm);
-}
+// div.avatar,
+// div.avatar::after,
+// div.avatar::before {
+//     background-color: var(--color-hex-avatar);
+// }
+// div.vulnerable,
+// div.vulnerable::after,
+// div.vulnerable::before {
+//     background-color: var(--color-hex-vulnerable);
+// }
+// div.comm,
+// div.comm::after,
+// div.comm::before {
+//     background-color: var(--color-hex-comm);
+// }
 
 div.color-infected,
 div.color-infected::after,
@@ -50,9 +48,6 @@ div.color-vaccinated::before {
 .no-hexagon,
 .no-hexagon::after,
 .no-hexagon::before {
-    // background-color: transparent;
-    // height: var(--hex-height);
-    // width: var(--hex-width);
     display: none;
 }
 
@@ -65,6 +60,8 @@ div.color-vaccinated::before {
     grid-gap: calc(var(--hex-between) / 3) calc(var(--hex-height) / 2);
     width: 100%;
     margin: 0 auto;
+    transform: scale(3,3);
+    transform-origin: (15% 45%);
 }
 
 .hexagon {
@@ -107,13 +104,6 @@ div.color-vaccinated::before {
     -moz-transform: rotate(60deg);
     -webkit-transform: rotate(60deg);
     -ms-transform: rotate(60deg);
-}
-
-.hexagon:nth-child(8n + 5),
-.hexagon:nth-child(8n + 6),
-.hexagon:nth-child(8n + 7),
-.hexagon:nth-child(8n + 8) {
-    margin-left: calc((var(--hex-width) / 2 + var(--hex-between) / 2));
 }
 
 .hexagon > svg {
