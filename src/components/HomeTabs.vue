@@ -401,6 +401,12 @@
     header.modal-card-head {
         padding: 10px;
     }
+    /* .hovered {
+        transform: scale(1.1, 1.1);
+    }
+    .notHovered {
+        transform: scale(1, 1);
+    } */
     .content-tab {
         display: none;
         margin: 0 0 1rem 0;

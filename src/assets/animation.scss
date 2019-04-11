@@ -11,6 +11,7 @@
     --color-hex-default: 	#C4BAB8;
     --color-hex-vaccinated: #3C83B7;
     --color-hex-infected:   #B0102C;
+    --color-copy1:          #FF0000;
     // --color-hex-avatar:     #00FF00;
     // --color-hex-vulnerable: #FFFAB0;
     // --color-hex-comm:       #3C83B7;
@@ -55,13 +56,16 @@ div.color-vaccinated::before {
 .hexagon-container {
     display: grid;
     grid-template-columns: var(--hex-width) var(--hex-width) var(--hex-width) var(--hex-width);
-    grid-template-columns: repeat(14, var(--hex-width));
+    grid-template-columns: repeat(14, var(--hex-width)); // Repeat 14 times because grid contains 14 columns
     grid-auto-rows: calc(var(--hex-height) / 10);
     grid-gap: calc(var(--hex-between) / 3) calc(var(--hex-height) / 2);
-    width: 100%;
-    margin: 0 auto;
-    transform: scale(3,3);
-    transform-origin: (15% 45%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    // width: 100%;
+    // margin: 0 auto;
+    // transform: scale(3,3);
+    // transform-origin: (15% 45%);
 }
 
 .hexagon {
@@ -75,6 +79,23 @@ div.color-vaccinated::before {
     width: var(--hex-width);
     z-index: 1;
 }
+
+div#copy1 {
+    // @extend .hexagon-container;
+    z-index: -2;
+}
+div#copy2 {
+    // @extend .hexagon-container;
+    z-index: -3;
+}
+
+div#copy1 .hexagon,
+div#copy1 .hexagon::after,
+div#copy1 .hexagon::before {
+    background-color: var(--color-copy1);
+    // transform: scale(1.1, 1.1);
+}
+
 
 .hexagon,
 .hexagon::after,

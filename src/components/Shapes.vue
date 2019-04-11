@@ -1,8 +1,15 @@
 <template>
-    <div class="hexagon-container">
+    <!-- Audio player to play the voice over -->
+    <!-- <div class="audioP">
         <AudioPlayer ref="audioPlayer"></AudioPlayer>
-        <div v-for="shape in this.gridIds">
+    </div> -->
+
+    <div class="hexagon-container">
+        <!-- <AudioPlayer ref="audioPlayer"></AudioPlayer> -->
+        <!-- Grid creation -->
+        <div v-for="shape in this.gridIds" ref="grid">
             <div :class="shape.className" :id="shape.id">
+                <!-- Where the group members are being placed -->
                 <div v-if="shape.isCharacter">
                     <!-- <Character ref="character" :edit="false" :customised="true" :colors="shape.character.colors" :id="shape.character.id" :svgFile="require(`../assets/characters/${shape.character.file}`)" /> -->
                     <Character :size="{ width: '25px', height: '37px'}" ref="character" :edit="false" :customised="true" :colors="shape.character.colors" :id="shape.character.id" :svgFile="require(`../assets/characters/${shape.character.file}`)" />
@@ -95,22 +102,23 @@
                                 shapeObj.className = "gen";
                                 break;
                             default:
+                                shapeObj.className = "no-hexagon";
                         }
+
                         this.getCharacterFromList(shapeObj);
 
-                        // Give the object an id and/or a class name
                         // Give the object an id and/or a class name
                         if (shapeValue !== 0) {
                             shapeObj.id = "shape_" + (++numId);
                             shapeObj.className += " hexagon";
-                        } else {
-                            shapeObj.className = "no-hexagon";
                         }
 
                         this.gridIds.push(shapeObj);
                     }
                 }
             },
+
+            // To place the right group member in the right shape
             getCharacterFromList(shapeObj) {
                 let isCharacter = false;
                 this.characterList.map((character, index) => {
@@ -121,6 +129,37 @@
                         this.characterList.splice(index, 1);
                     }
                 });
+            },
+
+            // A way to "draw" the contour of the shapes without using borders
+            // Borders are not rendering well the way shapes (hexagons in this case) are being created
+            makeContour(target, delay, duration, color) {
+                let firstColor = "#FFFFFF";
+                // let el = document.getElementsByClassName(target);
+                //let el = document.querySelector(".avatar");
+                //console.log("el", el);
+
+                const sourceElement = document.querySelector('.avatar');
+                // const destination = this.$refs.grid;
+                const destination = document.querySelector('.hexagon-container');
+                //grid
+
+                //console.log(sourceElement);
+
+                const copy = sourceElement.cloneNode(false);
+                copy.className = "copy1";
+                destination.appendChild(copy);
+            },
+
+            duplicateGrid() {
+                const sourceElement = document.querySelector('.hexagon-container');
+                const destination = document.querySelector('.columns');
+                // const destination = document.body;
+                const copy = sourceElement.cloneNode(true);
+                copy.className += " copy";
+                copy.id = "copy1";
+                copy.querySelectorAll('.character-position').forEach(e => e.parentNode.removeChild(e));
+                destination.appendChild(copy);
             }
         },
         created() {
@@ -130,14 +169,21 @@
             // if (localStorage.getItem("group"))
             //     this.characterList = JSON.parse(localStorage.getItem("group"));
 
+            let that = this;
+
             if (this.group) {
                 localStorage.setItem("group", JSON.stringify(this.group));
             } else {
                 if (localStorage.getItem("group"))
                     this.characterList = JSON.parse(localStorage.getItem("group"));
             }
+
             this.buildGridIds();
 
+            document.addEventListener('DOMContentLoaded', function() {
+                // that.makeContour(".avatar", 2, 2, "#E9855B");
+                that.duplicateGrid();
+            });
         }
     }
 </script>
