@@ -11,7 +11,9 @@
     --color-hex-default: 	#C4BAB8;
     --color-hex-vaccinated: #3C83B7;
     --color-hex-infected:   #B0102C;
-    --color-copy1:          #FF0000;
+    --color-copy1:          #FFFFFF;
+    --color-copy2:          #FFFFFF;
+    --color-contour:        #E9855B;
     // --color-hex-avatar:     #00FF00;
     // --color-hex-vulnerable: #FFFAB0;
     // --color-hex-comm:       #3C83B7;
@@ -79,24 +81,6 @@ div.color-vaccinated::before {
     width: var(--hex-width);
     z-index: 1;
 }
-
-div#copy1 {
-    // @extend .hexagon-container;
-    z-index: -2;
-}
-div#copy2 {
-    // @extend .hexagon-container;
-    z-index: -3;
-}
-
-div#copy1 .hexagon,
-div#copy1 .hexagon::after,
-div#copy1 .hexagon::before {
-    background-color: var(--color-copy1);
-    // transform: scale(1.1, 1.1);
-}
-
-
 .hexagon,
 .hexagon::after,
 .hexagon::before {
@@ -129,4 +113,52 @@ div#copy1 .hexagon::before {
 
 .hexagon > svg {
     height: 85%;
+}
+
+
+div#copy1 {
+    z-index: -2;
+}
+div#copy1 .hexagon {
+    transform: scale(1.1, 1.1);
+}
+div#copy1 .hexagon,
+div#copy1 .hexagon::after,
+div#copy1 .hexagon::before {
+    background-color: var(--color-copy1);
+}
+div#copy1 .contour,
+div#copy1 .contour::after,
+div#copy1 .contour::before {
+    background-color: var(--color-contour);
+    // background-blend-mode: exclusion;
+    z-index: 5;
+}
+
+div#copy2 {
+    z-index: -3;
+}
+div#copy2 .hexagon {
+    transform: scale(1.4, 1.4);
+}
+div#copy2 .hexagon,
+div#copy2 .hexagon::after,
+div#copy2 .hexagon::before {
+    background-color: var(--color-copy2);
+}
+
+div#copy2 .contour,
+div#copy2 .contour::after,
+div#copy2 .contour::before {
+    background-color: var(--color-contour);
+    // background-blend-mode: exclusion;
+    // mix-blend-mode: exclusion;
+    //mask-size: 100% 100%;
+    //mask-composite: exclude; //add subtract intersect exclude
+    z-index: 5;
+    -webkit-transition: background-color 2s linear;
+    -moz-transition: background-color 2s linear;
+    -ms-transform: background-color 2s linear;
+    -o-transition: background-color 2s linear;
+    transition: background-color 2s linear;
 }

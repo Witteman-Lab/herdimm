@@ -131,35 +131,24 @@
                 });
             },
 
-            // A way to "draw" the contour of the shapes without using borders
-            // Borders are not rendering well the way shapes (hexagons in this case) are being created
-            makeContour(target, delay, duration, color) {
-                let firstColor = "#FFFFFF";
-                // let el = document.getElementsByClassName(target);
-                //let el = document.querySelector(".avatar");
-                //console.log("el", el);
-
-                const sourceElement = document.querySelector('.avatar');
-                // const destination = this.$refs.grid;
-                const destination = document.querySelector('.hexagon-container');
-                //grid
-
-                //console.log(sourceElement);
-
-                const copy = sourceElement.cloneNode(false);
-                copy.className = "copy1";
+            duplicateGrid(copyIndex) {
+                const sourceElement = document.querySelector('.hexagon-container');
+                const destination = sourceElement.parentNode;
+                const copy = sourceElement.cloneNode(true);
+                copy.className += " copy";
+                copy.id = "copy" + copyIndex;
+                copy.querySelectorAll('.character-position').forEach(e => e.parentNode.removeChild(e));
                 destination.appendChild(copy);
             },
 
-            duplicateGrid() {
-                const sourceElement = document.querySelector('.hexagon-container');
-                const destination = document.querySelector('.columns');
-                // const destination = document.body;
-                const copy = sourceElement.cloneNode(true);
-                copy.className += " copy";
-                copy.id = "copy1";
-                copy.querySelectorAll('.character-position').forEach(e => e.parentNode.removeChild(e));
-                destination.appendChild(copy);
+            // A way to "draw" the contour of the shapes without using borders
+            // Borders are not rendering well the way shapes (hexagons in this case) are being created
+            makeContour(target, delay) {
+                const shapeTargets = document.querySelectorAll('#copy2 ' + target);
+                setTimeout(function() {
+                    shapeTargets.forEach(e => e.className += " contour");
+                }, delay)
+
             }
         },
         created() {
@@ -181,8 +170,9 @@
             this.buildGridIds();
 
             document.addEventListener('DOMContentLoaded', function() {
-                // that.makeContour(".avatar", 2, 2, "#E9855B");
-                that.duplicateGrid();
+                that.duplicateGrid(1);
+                that.duplicateGrid(2);
+                that.makeContour(".avatar", 2000);
             });
         }
     }
