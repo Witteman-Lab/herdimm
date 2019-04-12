@@ -141,6 +141,57 @@
                 destination.appendChild(copy);
             },
 
+            // gettransitionend() {
+            //     var root = document.documentElement;
+            //     var transitions = {
+            //         'transition':'transitionend',
+            //         'OTransition':'oTransitionEnd',
+            //         'MozTransition':'transitionend',
+            //         'WebkitTransition':'webkitTransitionEnd'
+            //     }
+            //
+            //     for (var t in transitions) {
+            //         if (root.style[t] !== undefined ){
+            //             return transitions[t];
+            //         }
+            //     }
+            //     return undefined
+            // },
+
+            zoomIn(delay) {
+                const that = this;
+                const targets = document.querySelectorAll('.hexagon-container');
+                const animParams = "scale(3,3) 2s linear";
+                //let transitionendevt = this.gettransitionend();
+
+                setTimeout(function() {
+                    targets.forEach(e => e.classList.add("zoomIn"));
+                    // targets.forEach(e => e.className += " zoomIn");
+                    // targets.forEach((e) => {
+                    //     //e.style.webkitTransform = animParams;
+                    //     // e.style.transition = animParams;
+                    //     // e.style.OTransition = animParams;
+                    //     // e.style.MozTransition = animParams;
+                    //     // //e.style.msTransform = animParams;
+                    //     // e.style.WebkitTransition = animParams;
+                    //
+                    //     // e.style["-webkit-transition"] = animParams;
+                    //     // e.style["-moz-transition"] = animParams;
+                    //     // e.style["-ms-transition"] = animParams;
+                    //     // e.style["-o-transition"] = animParams;
+                    //     // e.style["transition"] = animParams;
+                    //     //console.log(e.style);
+                    // });
+                }, delay);
+            },
+
+            zoomOut(delay) {
+                const target = document.querySelectorAll('.hexagon-container');
+                setTimeout(function() {
+                    target.forEach(e => e.className += " zoomOut");
+                }, delay)
+            },
+
             // A way to "draw" the contour of the shapes without using borders
             // Borders are not rendering well the way shapes (hexagons in this case) are being created
             makeContour(target, delay) {
@@ -172,7 +223,8 @@
             document.addEventListener('DOMContentLoaded', function() {
                 that.duplicateGrid(1);
                 that.duplicateGrid(2);
-                that.makeContour(".avatar", 2000);
+                that.zoomIn(2000);
+                that.makeContour(".avatar", 5000);
             });
         }
     }

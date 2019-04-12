@@ -77,7 +77,6 @@ div.color-vaccinated::before {
     justify-content: center;
     margin: var(--hex-border) 0;
     position: relative;
-    /* transition: var(--hex-transition); */
     width: var(--hex-width);
     z-index: 1;
 }
@@ -161,4 +160,21 @@ div#copy2 .contour::before {
     -ms-transform: background-color 2s linear;
     -o-transition: background-color 2s linear;
     transition: background-color 2s linear;
+}
+
+.hexagon-container.zoomIn {
+    transform: scale(3,3);
+    -webkit-transition: transform 2s linear;
+    -moz-transition: transform 2s linear;
+    -ms-transform: transform 2s linear;
+    -o-transition: transform 2s linear;
+    transition: transform 2s linear;
+}
+.hexagon-container.zoomOut {
+    transform: scale(1,1);
+    -webkit-transition: transform 2s linear;
+    -moz-transition: transform 2s linear;
+    -ms-transform: transform 2s linear;
+    -o-transition: transform 2s linear;
+    transition: transform 2s linear;
 }
