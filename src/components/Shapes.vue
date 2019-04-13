@@ -213,6 +213,7 @@
 
             if (this.group) {
                 localStorage.setItem("group", JSON.stringify(this.group));
+                this.characterList = this.group;
             } else {
                 if (localStorage.getItem("group"))
                     this.characterList = JSON.parse(localStorage.getItem("group"));

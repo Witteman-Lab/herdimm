@@ -20,6 +20,8 @@
                 svg: '',
                 currentColor: '#FFFFFF',
                 svgColor: {
+                    shirt: '',
+                    shirtShadow: '',
                     face: '',
                     faceShadow: '',
                     hairFront: '',
@@ -31,7 +33,6 @@
                 glasses: [],
                 beards: [],
                 defaultColor: '',
-                defaultShirtColor: '.st0{fill:#BFBABE;}' + '.st1{fill:#9D9C9D;}',
                 hasBeard: false,
                 hasGlasses: false,
                 hasHair: false,
@@ -47,6 +48,12 @@
             size: Object
         },
         methods: {
+            changeShirtColor(color) {
+                this.svgColor.shirt = color;
+                this.svgColor.shirtShadow = this.getDarkerShade(color);
+                this.$refs.characterImg.children[0].children[0].innerHTML +=
+                    `.st0_custom_${this.id}{fill:${this.svgColor.shirt};}.st1_custom_${this.id}{fill:${this.svgColor.shirtShadow};}`;
+            },
             changeFaceColor(color) {
                 this.svgColor.face = color;
                 this.svgColor.faceShadow = this.getDarkerShade(color);
@@ -153,6 +160,7 @@
                 this.changeHairColor(colors.hairFront);
                 this.changeGlasses(colors.glasses);
                 this.changeBeard(colors.beards);
+                this.changeShirtColor(colors.shirt);
             },
             loadSvgData() {
                 if (this.svg) {
@@ -161,8 +169,6 @@
                     if (this.customised) {
                         this.parseCharacterAttributes();
                         this.editCharacterColors(this.colors);
-                        this.$refs.characterImg.children[0].children[0].innerHTML =
-                            this.$refs.characterImg.children[0].children[0].innerHTML + this.defaultShirtColor;
                         this.defaultColor = this.$refs.characterImg.children[0].children[0].innerHTML;
 
                         // Why this?
@@ -230,7 +236,7 @@
                     }
 
                     // Because we don't need to change class names of these (none, st0, and st1)
-                    if (!["", "st0", "st1"].includes(classValue)) {
+                    if (![""].includes(classValue)) {
                         characterImgSVG.children[i].classList.remove(classValue);
                         characterImgSVG.children[i].classList.add(classValue + "_custom_" + this.id);
                     }
