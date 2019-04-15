@@ -1,5 +1,12 @@
 <template>
     <div id="audioPlayer"></div>
+
+ <!--   <audio
+        :src="current"
+        ref="audio"
+        @ended="nextFile()"
+        autoload preload="auto" autoplay>
+    </audio>  -->
 </template>
 
 <script>
@@ -10,8 +17,12 @@ export default {
     components: {},
     data() {
         return {
-            language: "en"
+            language: "en",
+            //playlist: [],
+            //current: "../assets/${folder}/en/1E.mp3"
         }
+
+
     },
     props: {},
     methods: {
@@ -23,10 +34,24 @@ export default {
         }
     },
     created() {},
+   <!--  nextFile(){
+        if(this.playlist.length > 0){
+            this.current = this.playlist.shift()
+            this.play();
+        }else{
+            this.current = "";
+
+        }
+    }, -->
     mounted() {
         let folder = audio.folder;
         let audioFile = new Audio(require(`../assets/${folder}/en/1E.mp3`));
         this.playAudio(audioFile);
+        <!--
+        if(!this.current && this.playlist.length > 0){
+            this.current = this.playlist.shift();
+            this.playAudio();
+        } -->
     }
 }
 </script>
