@@ -88,6 +88,12 @@ div.color-vaccinated::before {
     position: relative;
     width: var(--hex-width);
     z-index: 1;
+
+    // This so it doesn't get blurry when zoomed in (and out?)
+    // Fix for Chrome (others?)
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translateZ(0) scale(1.0, 1.0);
+    transform: translateZ(0);
 }
 .hexagon,
 .hexagon::after,
@@ -122,15 +128,6 @@ div.color-vaccinated::before {
 .hexagon > svg {
     height: 85%;
 }
-
-// This so it doesn't get blurry when zoomed in (and out?)
-// Fix for Chrome (others?)
-.hexagon, .hexagon > svg {
-    -webkit-backface-visibility: hidden;
-    -webkit-transform: translateZ(0) scale(1.0, 1.0);
-    transform: translateZ(0);
-}
-
 
 div#copy1 {
     z-index: -2;
