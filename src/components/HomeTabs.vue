@@ -9,7 +9,7 @@
                     </header>
                     <section class="modal-card-body">
                         <Character v-if="isActive" :size="{width: '70px', height: '95px'}" :edit="false" :customised="true" ref="character" :id="'current'" :svgFile="this.currentCharacter"
-                                   :colors="{face: this.currentColorFace, hairFront: this.currentColorHair, beards: this.currentBeard, glasses: this.currentGlasses}" />
+                                   :colors="{face: this.currentColorFace, hairFront: this.currentColorHair, beards: this.currentBeard, glasses: this.currentGlasses, shirt: this.currentShirt}" />
 
                         <div class="tabs is-centered is-boxed is-three-quarters">
                             <ul>
@@ -150,6 +150,7 @@
                 isGlassesButtonEnable: false,
                 beardsList: [],
                 glassesList: [],
+                currentShirt: "#BFBABE",
                 currentColorHair: '',
                 currentColorFace: '',
                 currentBeard: -1,
@@ -216,7 +217,13 @@
                 if (this.$refs.listToFill.getCharacterListSize() < this.maxCharactersInGroup)  {
                     this.currentCharacter = require(`../assets/characters/${character.file}`);
                     this.currentCharacterObject = character;
-
+                    if (this.totalCreated < json.nbAvatar) {
+                        this.currentShirt = "#F67844";
+                        console.log("pass here avatar");
+                    } else {
+                        console.log("pass here others");
+                        this.currentShirt = "#BFBABE";
+                    }
                     this.currentColorFace = "#7C5235";
                     this.currentColorHair = "#412308";
                     this.currentGlasses = -1;
@@ -234,6 +241,8 @@
                 this.currentColorHair = character.colors.hairFront;
                 this.currentGlasses = character.colors.glasses;
                 this.currentBeard = character.colors.beards;
+                this.currentShirt = character.colors.shirt;
+
                 this.isActive = true;
                 this.isEdit = true;
                 this.modalTitle = this.getModalTitle(index, "Edit");
@@ -340,10 +349,6 @@
             }
         },
         created() {
-            // Remove the localStorage group item (for safety)
-            // if (localStorage.getItem("group"))
-            //     localStorage.removeItem("group");
-
             this.characterList = json.characters;
             this.maxCharactersInGroup = json.nbAvatar + json.nbVulnerable + json.nbCommunity;
             this.contextualInfo = "First, select and customize your own avatar.";

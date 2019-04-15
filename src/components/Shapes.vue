@@ -12,9 +12,9 @@
         <div v-for="shape in this.gridIds" ref="grid">
             <div :class="shape.className" :id="shape.id">
                 <!-- Where the group members are being placed -->
-                <div v-if="shape.isCharacter">
+                <div :style="{height: characterSize, marginBottom: characterBottomMargin}" v-if="shape.isCharacter">
                     <!-- <Character ref="character" :edit="false" :customised="true" :colors="shape.character.colors" :id="shape.character.id" :svgFile="require(`../assets/characters/${shape.character.file}`)" /> -->
-                    <Character :size="{ width: '25px', height: '37px'}" ref="character" :edit="false" :customised="true" :colors="shape.character.colors" :id="shape.character.id" :svgFile="require(`../assets/characters/${shape.character.file}`)" />
+                    <Character :size="{ width: characterSize, height: '37px'}" ref="character" :edit="false" :customised="true" :colors="shape.character.colors" :id="shape.character.id" :svgFile="require(`../assets/characters/${shape.character.file}`)" />
                 </div>
             </div>
         </div>
@@ -25,6 +25,7 @@
     import Character from "./Character";
     import GroupCharacter from "./GroupCharacter";
     import AudioPlayer from "./AudioPlayer.vue";
+   // import animations from '../assets/animation.scss';
 
     export default {
         name: "Shapes",
@@ -36,10 +37,7 @@
         data() {
             return {
                 characterList: [],
-                // characterSize: {
-                //     width: "35px",
-                //     height: "47px"
-                // },
+
                 /* This array should be stored outside for users to change easily */
                 // 0 = None
                 // 1 = avatar
@@ -69,7 +67,9 @@
                     [0,0,0,0,0,4,0,0,0,4,0,0,0,0], //2
                     [0,0,0,0,0,0,4,0,0,0,0,0,0,0]  //1
                 ],
-                gridIds: []
+                gridIds: [],
+                characterSize: 0,
+                characterBottomMargin: 0
             }
         },
         props: {
@@ -208,18 +208,20 @@
 
         },
         mounted() {
-            if (localStorage.getItem("group"))
-                this.characterList = JSON.parse(localStorage.getItem("group"));
-
             let that = this;
 
-            // if (this.group) {
-            //     localStorage.setItem("group", JSON.stringify(this.group));
-            // } else {
-            //     if (localStorage.getItem("group"))
-            //         this.characterList = JSON.parse(localStorage.getItem("group"));
-            // }
+            if (this.group) {
+                localStorage.setItem("group", JSON.stringify(this.group));
+                this.characterList = this.group;
+            } else {
+                if (localStorage.getItem("group"))
+                    this.characterList = JSON.parse(localStorage.getItem("group"));
+            }
 
+            let styles = require('../assets/animation.scss');
+
+            this.characterSize = styles["hexagon-height"];
+            this.characterBottomMargin = styles["character-bottom-margin"];
             this.buildGridIds();
 
             document.addEventListener('DOMContentLoaded', function() {
