@@ -219,9 +219,9 @@
                     this.currentCharacterObject = character;
                     if (this.totalCreated < json.nbAvatar) {
                         this.currentShirt = "#F67844";
-                        console.log("pass here avatar");
+                        //console.log("pass here avatar");
                     } else {
-                        console.log("pass here others");
+                        //console.log("pass here others");
                         this.currentShirt = "#BFBABE";
                     }
                     this.currentColorFace = "#7C5235";

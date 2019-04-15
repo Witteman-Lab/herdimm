@@ -3,17 +3,17 @@
     <!-- <div class="audioP">
         <AudioPlayer ref="audioPlayer"></AudioPlayer>
     </div> -->
+
     <!-- <div class="draw"> -->
         <!-- <svg id="connections"></svg> -->
     <!-- </div> -->
+
     <div class="hexagon-container">
-        <!-- <AudioPlayer ref="audioPlayer"></AudioPlayer> -->
         <!-- Grid creation -->
         <div v-for="shape in this.gridIds" ref="grid">
             <div :class="shape.className" :id="shape.id">
                 <!-- Where the group members are being placed -->
                 <div :style="{height: characterSize, marginBottom: characterBottomMargin}" v-if="shape.isCharacter">
-                    <!-- <Character ref="character" :edit="false" :customised="true" :colors="shape.character.colors" :id="shape.character.id" :svgFile="require(`../assets/characters/${shape.character.file}`)" /> -->
                     <Character :size="{ width: characterSize, height: '37px'}" ref="character" :edit="false" :customised="true" :colors="shape.character.colors" :id="shape.character.id" :svgFile="require(`../assets/characters/${shape.character.file}`)" />
                 </div>
             </div>
@@ -23,16 +23,15 @@
 
 <script>
     import Character from "./Character";
-    import GroupCharacter from "./GroupCharacter";
+    // import GroupCharacter from "./GroupCharacter";
     import AudioPlayer from "./AudioPlayer.vue";
-   // import animations from '../assets/animation.scss';
+    // import animations from '../assets/animation.scss';
 
     export default {
         name: "Shapes",
         components: {
-            GroupCharacter,
             Character,
-            AudioPlayer
+            //AudioPlayer
         },
         data() {
             return {
@@ -161,9 +160,9 @@
             // },
 
             zoomIn(delay) {
-                const that = this;
+                //const that = this;
                 const targets = document.querySelectorAll('.hexagon-container');
-                const animParams = "scale(3,3) 2s linear";
+                //const animParams = "scale(3,3) 2s linear";
                 //let transitionendevt = this.gettransitionend();
 
                 setTimeout(function() {
