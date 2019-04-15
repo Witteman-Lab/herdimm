@@ -3,7 +3,9 @@
     <!-- <div class="audioP">
         <AudioPlayer ref="audioPlayer"></AudioPlayer>
     </div> -->
-
+    <!-- <div class="draw"> -->
+        <!-- <svg id="connections"></svg> -->
+    <!-- </div> -->
     <div class="hexagon-container">
         <!-- <AudioPlayer ref="audioPlayer"></AudioPlayer> -->
         <!-- Grid creation -->
@@ -206,17 +208,17 @@
 
         },
         mounted() {
-            // if (localStorage.getItem("group"))
-            //     this.characterList = JSON.parse(localStorage.getItem("group"));
+            if (localStorage.getItem("group"))
+                this.characterList = JSON.parse(localStorage.getItem("group"));
 
             let that = this;
 
-            if (this.group) {
-                localStorage.setItem("group", JSON.stringify(this.group));
-            } else {
-                if (localStorage.getItem("group"))
-                    this.characterList = JSON.parse(localStorage.getItem("group"));
-            }
+            // if (this.group) {
+            //     localStorage.setItem("group", JSON.stringify(this.group));
+            // } else {
+            //     if (localStorage.getItem("group"))
+            //         this.characterList = JSON.parse(localStorage.getItem("group"));
+            // }
 
             this.buildGridIds();
 
@@ -226,13 +228,31 @@
                 that.zoomIn(2000);
                 that.makeContour(".avatar", 5000);
             });
+        },
+
+        // To perform, otherwise, artefacts from the animation might subsist if we go back to the make your gang tool
+        beforeDestroy() {
+            const shapeTargets = document.querySelectorAll('.copy');
+
+            if(shapeTargets) {
+                shapeTargets.forEach(e => e.parentNode.removeChild(e));
+            }
         }
     }
 </script>
 
 <style scoped>
     .hexagon-container {
-        margin: 0 10px;
+        margin: 0;
         width: auto;
+        /* width: 100vw; */
+        height: 100vh;
+    }
+    #connections {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
     }
 </style>
