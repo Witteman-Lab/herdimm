@@ -2,7 +2,7 @@
     <div>
         <div class="character-position">
             <!-- <a v-if="!this.isLoaded" class="button is-large is-loading">Loading</a> -->
-            <div v-on:click="createYourCharacter" ref="characterImg" v-html="this.svg" :style="{width: this.width, height: this.height}" style="width: 70px; height: 95px;"></div>
+            <div v-on:click="createYourCharacter" ref="characterImg" v-html="this.svg" :style="{width: this.width, height: this.height}" style="width: 70px;"></div>
             <!-- <div v-if="this.isLoaded" v-on:click="createYourCharacter" ref="characterImg" v-html="this.svg" style="width: 70px; height: 95px;"></div> -->
         </div>
     </div>

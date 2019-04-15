@@ -1,6 +1,13 @@
+$hex-height: 40px;
+
+:export {
+    hexagon-height: calc(#{$hex-height} - ((#{$hex-height} / 10) * 2));
+    character-bottom-margin: calc(#{$hex-height} / 10);
+}
+
 :root {
     /* Change this to change the appearance of the hexagons */
-    --hex-height: 40px;
+    --hex-height: #{$hex-height};
     --hex-width: calc(var(--hex-height) / 1.73);    /* 1.73 = sqrt(3) */
     --hex-between: calc(var(--hex-height) * 1.73);  /* 1.73 = sqrt(3) */
     --hex-margin: calc(var(--hex-height) / 2);
@@ -18,6 +25,8 @@
     // --color-hex-vulnerable: #FFFAB0;
     // --color-hex-comm:       #3C83B7;
 }
+
+
 
 /* Colors */
 // div.avatar,
