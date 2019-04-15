@@ -9,12 +9,14 @@
     <!-- </div> -->
 
     <div class="hexagon-container">
+        <!-- <AudioPlayer ref="audioPlayer"></AudioPlayer> -->
         <!-- Grid creation -->
         <div v-for="shape in this.gridIds" ref="grid">
             <div :class="shape.className" :id="shape.id">
                 <!-- Where the group members are being placed -->
                 <div :style="{height: characterSize, marginBottom: characterBottomMargin}" v-if="shape.isCharacter">
-                    <Character :size="{ width: characterSize, height: '37px'}" ref="character" :edit="false" :customised="true" :colors="shape.character.colors" :id="shape.character.id" :svgFile="require(`../assets/characters/${shape.character.file}`)" />
+                    <Character :size="{ width: characterSize }" ref="character" :edit="false" :customised="true" :colors="shape.character.colors" :id="shape.character.id" :svgFile="require(`../assets/characters/${shape.character.file}`)" />
+                    <!-- <Character :size="{ width: characterSize, height: '37px'}" ref="character" :edit="false" :customised="true" :colors="shape.character.colors" :id="shape.character.id" :svgFile="require(`../assets/characters/${shape.character.file}`)" /> -->
                 </div>
             </div>
         </div>
@@ -24,7 +26,7 @@
 <script>
     import Character from "./Character";
     // import GroupCharacter from "./GroupCharacter";
-    import AudioPlayer from "./AudioPlayer.vue";
+    //import AudioPlayer from "./AudioPlayer";
     // import animations from '../assets/animation.scss';
 
     export default {
@@ -112,6 +114,7 @@
                         // Give the object an id and/or a class name
                         if (shapeValue !== 0) {
                             shapeObj.id = "shape_" + (++numId);
+                            // shapeObj.classList.add("hexagon");
                             shapeObj.className += " hexagon";
                         }
 
@@ -138,7 +141,8 @@
                 const sourceElement = document.querySelector('.hexagon-container');
                 const destination = sourceElement.parentNode;
                 const copy = sourceElement.cloneNode(true);
-                copy.className += " copy";
+                //copy.className += " copy";
+                copy.classList.add("copy");
                 copy.id = "copy" + copyIndex;
                 copy.querySelectorAll('.character-position').forEach(e => e.parentNode.removeChild(e));
                 destination.appendChild(copy);
@@ -161,7 +165,8 @@
             //     return undefined
             // },
 
-            //
+            // Zoom by adding class, but we do't have controls on the parameters, such as sclae values, duration, etc.
+            // Would be nice to do it with Javascript, so we can control these parameters
             zoomIn(delay) {
                 //const that = this;
                 const targets = document.querySelectorAll('.hexagon-container');
@@ -189,20 +194,23 @@
                 }, delay);
             },
 
-            //
+            // Zoom by adding class, but we do't have controls on the parameters, such as sclae values, duration, etc.
+            // Would be nice to do it with Javascript, so we can control these parameters
             zoomOut(delay) {
                 const target = document.querySelectorAll('.hexagon-container');
                 setTimeout(function() {
-                    target.forEach(e => e.className += " zoomOut");
+                    target.forEach(e => e.classList.add("zoomOut"));
                 }, delay)
             },
 
             // A way to "draw" the contour of the shapes without using borders
             // Borders are not rendering well the way shapes (hexagons in this case) are being created
+            // Zoom by adding class, but we do't have controls on the parameters, such as sclae values, duration, etc.
+            // Would be nice to do it with Javascript, so we can control these parameters
             makeContour(target, delay) {
                 const shapeTargets = document.querySelectorAll('#copy2 ' + target);
                 setTimeout(function() {
-                    shapeTargets.forEach(e => e.className += " contour");
+                    shapeTargets.forEach(e => e.classList.add("contour"));
                 }, delay)
 
             }
@@ -225,6 +233,7 @@
 
             this.characterSize = styles["hexagon-height"];
             this.characterBottomMargin = styles["character-bottom-margin"];
+
             this.buildGridIds();
 
             document.addEventListener('DOMContentLoaded', function() {
