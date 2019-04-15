@@ -23,6 +23,7 @@ export default {
         characters: Array
     },
     methods: {
+        //
         launchModal(id) {
             this.characterList.filter(obj => {
                 if (obj.id === id) {
@@ -30,6 +31,8 @@ export default {
                 }
             });
         },
+
+        //
         getCharacterListSize() {
             return this.characterList.length;
         }

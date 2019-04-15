@@ -24,7 +24,6 @@
         },
         mounted() {
             if (this.group) {
-                console.log(this.group);
                 localStorage.setItem("group", JSON.stringify(this.group));
                 this.$refs.group.addGroup(this.group);
             } else {

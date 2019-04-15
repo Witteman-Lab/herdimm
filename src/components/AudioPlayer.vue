@@ -15,6 +15,7 @@ export default {
     },
     props: {},
     methods: {
+        //
         playAudio(file) {
             if(file){
                 file.play();

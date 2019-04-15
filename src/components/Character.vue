@@ -1,15 +1,12 @@
 <template>
     <div>
         <div class="character-position">
-            <!-- <a v-if="!this.isLoaded" class="button is-large is-loading">Loading</a> -->
             <div v-on:click="createYourCharacter" ref="characterImg" v-html="this.svg" :style="{width: this.width, height: this.height}" style="width: 70px;"></div>
-            <!-- <div v-if="this.isLoaded" v-on:click="createYourCharacter" ref="characterImg" v-html="this.svg" style="width: 70px; height: 95px;"></div> -->
         </div>
     </div>
 </template>
 
 <script>
-
     export default {
         components: {},
         name: "Character",
@@ -48,24 +45,31 @@
             size: Object
         },
         methods: {
+            //
             changeShirtColor(color) {
                 this.svgColor.shirt = color;
                 this.svgColor.shirtShadow = this.getDarkerShade(color);
                 this.$refs.characterImg.children[0].children[0].innerHTML +=
                     `.st0_custom_${this.id}{fill:${this.svgColor.shirt};}.st1_custom_${this.id}{fill:${this.svgColor.shirtShadow};}`;
             },
+
+            //
             changeFaceColor(color) {
                 this.svgColor.face = color;
                 this.svgColor.faceShadow = this.getDarkerShade(color);
                 this.$refs.characterImg.children[0].children[0].innerHTML +=
                     `.st2_custom_${this.id}{fill:${this.svgColor.face};}.st3_custom_${this.id}{fill:${this.svgColor.faceShadow};}`;
             },
+
+            //
             changeHairColor(color){
                 this.svgColor.hairFront = color;
                 this.svgColor.hairBack = this.getDarkerShade(color);
                 this.$refs.characterImg.children[0].children[0].innerHTML +=
                     `.st5_custom_${this.id}{fill:${this.svgColor.hairFront};}.st4_custom_${this.id}{fill:${this.svgColor.hairBack};}`;
             },
+
+            //
             changeBeard(pos) {
                 if (pos === undefined)
                     return 0;
@@ -86,6 +90,8 @@
                     }
                 }
             },
+
+            //
             changeGlasses(pos) {
                 if (pos === undefined)
                     return 0;
@@ -106,12 +112,17 @@
                     }
                 }
             },
+
+            //
             resetFaceColor(){
                 this.$refs.characterImg.children[0].children[0].innerHTML = this.defaultColor;
             },
+
+            //
             getSvgColor() {
                 return this.svgColor
             },
+
             // For getting a darker shade for the hair or skin
             // To-do: That method could be optimized later
             getDarkerShade(selectedColorToHex) {
@@ -150,11 +161,15 @@
 
                 return "#" + hex_red + hex_green + hex_blue;
             },
+
+            //
             createYourCharacter() {
                 if (this.edit) {
                     this.$parent.launchModal(this.id);
                 }
             },
+
+            //
             editCharacterColors(colors) {
                 this.changeFaceColor(colors.face);
                 this.changeHairColor(colors.hairFront);
@@ -162,6 +177,8 @@
                 this.changeBeard(colors.beards);
                 this.changeShirtColor(colors.shirt);
             },
+
+            //
             loadSvgData() {
                 if (this.svg) {
                     this.width = this.size.width;
@@ -177,12 +194,15 @@
                     }
                 }
             },
+
             // st6 for glasses and beards
             manageAccessories(childrenPosition, accessory) {
                 childrenPosition.classList.remove("st6");
                 childrenPosition.classList.add("st6" + accessory + this.id);
                 childrenPosition.style.display = "inline";
             },
+
+            //
             manageGlasses(position) {
                 let childrenPosition = this.$refs.characterImg.children[0].children[position];
                 this.manageAccessories(childrenPosition, "_glasses_");
@@ -197,6 +217,8 @@
                 }
                 this.hasGlasses = true;
             },
+
+            //
             manageBeards(position) {
                 let childrenPosition = this.$refs.characterImg.children[0].children[position];
                 this.manageAccessories(childrenPosition, "_beards_");
@@ -221,6 +243,8 @@
                 }
                 this.hasBeard = true;
             },
+
+            //
             parseCharacterAttributes() {
                 let characterImgSVG = this.$refs.characterImg.children[0];
 
@@ -250,6 +274,8 @@
                     characterImgSVG.children[0].innerHTML = "";
                 }
             },
+
+            //
             updateCurrentSvg() {
                 this.svg = this.svgFile;
             }

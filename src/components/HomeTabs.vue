@@ -35,8 +35,6 @@
                                 <Compact
                                     :value="this.currentColorFace"
                                     @input="this.changeFaceColor"
-                                    @mouseenter="e => e.target.classList.toggle('hovered')"
-                                    @mouseleave="e => e.target.classList.toggle('notHovered')"
                                     :palette="[
                                         '#FFD6C5', '#E7C1B2', '#E4BDAD',
                                         '#FFE2C9', '#E7CBB5', '#E6C8B0',
@@ -174,6 +172,7 @@
         },
         props: {},
         methods: {
+            //
             openTab(evt, tabName) {
                 let i, x, tablinks;
                 x = document.getElementsByClassName("content-tab");
@@ -196,14 +195,20 @@
                     this.setAccessoriesPosition("40 130 225 350"); // Works for now, but a bit too arbitrary to be shared
                 }
             },
+
+            //
             changeFaceColor(color) {
                 this.currentColorFace = color.hex;
                 this.$refs.character.changeFaceColor(color.hex);
             },
+
+            //
             changeHairColor(color) {
                 this.currentColorHair = color.hex;
                 this.$refs.character.changeHairColor(color.hex);
             },
+
+            //
             resetDefault() {
                 this.currentColorFace = "#7C5235";
                 this.currentColorHair = "#412308";
@@ -213,15 +218,15 @@
                 this.$refs.character.changeGlasses(-1);
                 this.$refs.character.changeBeard(-1);
             },
+
+            //
             launch(character) {
                 if (this.$refs.listToFill.getCharacterListSize() < this.maxCharactersInGroup)  {
                     this.currentCharacter = require(`../assets/characters/${character.file}`);
                     this.currentCharacterObject = character;
                     if (this.totalCreated < json.nbAvatar) {
                         this.currentShirt = "#F67844";
-                        //console.log("pass here avatar");
                     } else {
-                        //console.log("pass here others");
                         this.currentShirt = "#BFBABE";
                     }
                     this.currentColorFace = "#7C5235";
@@ -233,6 +238,8 @@
                     this.modalTitle = this.getModalTitle(this.totalCreated, "Create");
                 }
             },
+
+            //
             launchEditModal(character, index) {
                 this.currentCharacter = require(`../assets/characters/${character.file}`);
                 this.currentCharacterObject = character;
@@ -247,33 +254,49 @@
                 this.isEdit = true;
                 this.modalTitle = this.getModalTitle(index, "Edit");
             },
+
+            //
             setAccessories(hasGlasses, hasBeard, hasHair) {
                 this.hasGlasses = hasGlasses;
                 this.hasFacialHair = hasBeard;
                 this.hasHair = hasHair;
             },
+
+            //
             getModalTitle(index, verb) {
                 return (index === 0 ?  `${verb} your avatar` : index <= json.nbVulnerable ? `${verb} a vulnerable person` : `${verb} a person around you`);
             },
+
+            //
             setGlassesList(glasses) {
                 this.glassesList = glasses;
             },
+
+            //
             setBeardsList(beards) {
                 this.beardsList = beards;
             },
+
+            //
             selectGlasses( pos) {
                 this.$refs.character.changeGlasses(pos);
                 this.isGlassesButtonEnable = false;
             },
+
+            //
             selectBeards(pos) {
                 this.$refs.character.changeBeard(pos);
                 this.isBeardsButtonEnable = false;
             },
+
+            //
             removeModal() {
                 this.isActive = false;
                 this.isHairColorButtonEnable = false;
                 this.isFaceColorButtonEnable = false;
             },
+
+            //
             saveCharacter() {
                 this.manageCharacterCount();
                 this.$refs.listToFill.addCharacterToGroup(this.currentCharacterObject,
@@ -283,11 +306,15 @@
                     this.isVisible = true;
                 }
             },
+
+            //
             saveEditCharacter() {
                 this.$refs.listToFill.editCharacter(this.currentCharacterObject,
                     this.$refs.character.getSvgColor(), this.currentCharacterObject.characterType);
                 this.removeModal();
             },
+
+            //
             getCurrentCharacterType(position) {
                 if (position <= json.nbAvatar) {
                     return "avatar";
@@ -297,34 +324,46 @@
                     return "comm";
                 }
             },
+
+            //
             loadAnimationView() {
                 let groupCharacter = this.$refs.listToFill.getCharacterList();
                 this.$router.push({name: 'Shapes', params:{group: groupCharacter}});
             },
-            openDropdownHair() {
-                this.isHairColorButtonEnable = !this.isHairColorButtonEnable;
-                this.isFaceColorButtonEnable = false;
-                this.isGlassesButtonEnable = false;
-                this.isBeardsButtonEnable = false;
-            },
-            openDropdownFace() {
-                this.isFaceColorButtonEnable = !this.isFaceColorButtonEnable;
-                this.isHairColorButtonEnable = false;
-                this.isGlassesButtonEnable = false;
-                this.isBeardsButtonEnable = false;
-            },
-            openDropdownBeards() {
-                this.isBeardsButtonEnable = !this.isBeardsButtonEnable;
-                this.isGlassesButtonEnable = false;
-                this.isFaceColorButtonEnable = false;
-                this.isHairColorButtonEnable = false;
-            },
-            openDropdownGlasses() {
-                this.isGlassesButtonEnable = !this.isGlassesButtonEnable;
-                this.isFaceColorButtonEnable = false;
-                this.isHairColorButtonEnable = false;
-                this.isBeardsButtonEnable = false;
-            },
+
+            // //
+            // openDropdownHair() {
+            //     this.isHairColorButtonEnable = !this.isHairColorButtonEnable;
+            //     this.isFaceColorButtonEnable = false;
+            //     this.isGlassesButtonEnable = false;
+            //     this.isBeardsButtonEnable = false;
+            // },
+
+            // //
+            // openDropdownFace() {
+            //     this.isFaceColorButtonEnable = !this.isFaceColorButtonEnable;
+            //     this.isHairColorButtonEnable = false;
+            //     this.isGlassesButtonEnable = false;
+            //     this.isBeardsButtonEnable = false;
+            // },
+
+            // //
+            // openDropdownBeards() {
+            //     this.isBeardsButtonEnable = !this.isBeardsButtonEnable;
+            //     this.isGlassesButtonEnable = false;
+            //     this.isFaceColorButtonEnable = false;
+            //     this.isHairColorButtonEnable = false;
+            // },
+
+            // //
+            // openDropdownGlasses() {
+            //     this.isGlassesButtonEnable = !this.isGlassesButtonEnable;
+            //     this.isFaceColorButtonEnable = false;
+            //     this.isHairColorButtonEnable = false;
+            //     this.isBeardsButtonEnable = false;
+            // },
+
+            //
             manageCharacterCount() {
                 this.totalCreated++;
                 if (this.totalCreated === json.nbAvatar) {
@@ -338,6 +377,8 @@
                     this.contextualInfo = "Press the button to start the animation";
                 }
             },
+
+            //
             setAccessoriesPosition(position) {
                 let accessories = document.getElementsByClassName("accessoriesList");
                 for (let i = 0; i < accessories.length; i++) {
@@ -372,6 +413,7 @@
     }
 </script>
 <style>
+    /* To change the visual for the color picker */
     div.vc-compact {
         width: 100%;
     }
@@ -406,12 +448,6 @@
     header.modal-card-head {
         padding: 10px;
     }
-    /* .hovered {
-        transform: scale(1.1, 1.1);
-    }
-    .notHovered {
-        transform: scale(1, 1);
-    } */
     .content-tab {
         display: none;
         margin: 0 0 1rem 0;

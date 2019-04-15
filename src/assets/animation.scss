@@ -1,4 +1,4 @@
-$hex-height: 40px;
+$hex-height: 20px;
 
 :export {
     hexagon-height: calc(#{$hex-height} - ((#{$hex-height} / 10) * 2));

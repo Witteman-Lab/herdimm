@@ -77,6 +77,7 @@
             }
         },
         methods: {
+            //
             buildGridIds() {
                 let numId = 0;
 
@@ -132,6 +133,7 @@
                 });
             },
 
+            //
             duplicateGrid(copyIndex) {
                 const sourceElement = document.querySelector('.hexagon-container');
                 const destination = sourceElement.parentNode;
@@ -159,6 +161,7 @@
             //     return undefined
             // },
 
+            //
             zoomIn(delay) {
                 //const that = this;
                 const targets = document.querySelectorAll('.hexagon-container');
@@ -186,6 +189,7 @@
                 }, delay);
             },
 
+            //
             zoomOut(delay) {
                 const target = document.querySelectorAll('.hexagon-container');
                 setTimeout(function() {
