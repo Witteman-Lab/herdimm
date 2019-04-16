@@ -13,12 +13,22 @@
 
                         <div class="tabs is-centered is-boxed is-three-quarters">
                             <ul>
+                                <!-- For testing, in case we want to group skin and hair colors in a single tab (saves space) -->
+                                <!-- <li class="tab" v-on:click="openTab($event, 'colorsSelect')">
+                                    <a>Colors</a>
+                                </li> -->
                                 <li class="tab" v-on:click="openTab($event, 'skinColorSelect')">
                                     <a>Skin color</a>
                                 </li>
                                 <li class="tab" v-if="this.hasHair" v-on:click="openTab($event, 'hairColorSelect')">
                                     <a>Hair color</a>
                                 </li>
+
+                                <!-- Maybe we could also group these 2 tabs in a single one called accessories -->
+                                <!-- Would need to take consider the v-if conditions... -->
+                                <!-- <li class="tab" v-if="(this.hasGlasses || this.hasFacialHair)" v-on:click="openTab($event, 'accessoriesSelect')">
+                                    <a>Accessories</a>
+                                </li> -->
                                 <li class="tab" v-if="this.hasGlasses" v-on:click="openTab($event, 'glassesSelect')">
                                     <a>Glasses</a>
                                 </li>
@@ -35,6 +45,13 @@
                                 <Compact
                                     :value="this.currentColorFace"
                                     @input="this.changeFaceColor"
+                                    :palette="['#FFE2C9', '#FFCBA3', '#E7B38D', '#D8905F', '#7C5235']"
+                                />
+                            </div>
+                            <!-- <div id="skinColorSelect" class="content-tab">
+                                <Compact
+                                    :value="this.currentColorFace"
+                                    @input="this.changeFaceColor"
                                     :palette="[
                                         '#FFD6C5', '#E7C1B2', '#E4BDAD',
                                         '#FFE2C9', '#E7CBB5', '#E6C8B0',
@@ -43,7 +60,7 @@
                                         '#88513A', '#7B4934', '#733E26'
                                     ]"
                                 />
-                            </div>
+                            </div> -->
 
                             <!-- Hair color -->
                             <div id="hairColorSelect" class="content-tab" v-if="this.hasHair" >
@@ -77,14 +94,17 @@
                         </div>
 
                         <br />
-                        <div class="buttons is-light is-centered">
-                            <button class="button is-centered" v-on:click="resetDefault">Reset</button>
-                        </div>
+                        <!-- <div class="buttons is-light is-centered"> -->
+                            <!-- <button class="button is-centered" v-on:click="resetDefault">Reset all</button> -->
+                        <!-- </div> -->
                     </section>
                     <footer class="modal-card-foot">
-                        <button class="button is-success" v-if="!this.isEdit" v-on:click="this.saveCharacter">Save</button>
-                        <button class="button is-success" v-if="this.isEdit" v-on:click="this.saveEditCharacter">Save Edit</button>
-                        <button class="button" v-on:click="this.removeModal">Cancel</button>
+                        <div class="buttons is-light">
+                            <button class="button is-success" v-if="!this.isEdit" v-on:click="this.saveCharacter">Save</button>
+                            <button class="button is-success" v-if="this.isEdit" v-on:click="this.saveEditCharacter">Save edit</button>
+                            <button class="button" v-on:click="this.removeModal">Cancel</button>
+                            <button class="button" v-on:click="this.resetDefault">Reset all</button>
+                        </div>
                     </footer>
                 </div>
             </div>
@@ -174,21 +194,22 @@
         methods: {
             //
             openTab(evt, tabName) {
-                let i, x, tablinks;
-                x = document.getElementsByClassName("content-tab");
+                let i, tabs, tablinks;
+                tabs = document.getElementsByClassName("content-tab");
 
-                for (i = 0; i < x.length; i++) {
-                    x[i].style.display = "none";
+                for (i = 0; i < tabs.length; i++) {
+                    tabs[i].style.display = "none";
                 }
 
                 tablinks = document.getElementsByClassName("tab");
 
-                for (i = 0; i < x.length; i++) {
+                for (i = 0; i < tabs.length; i++) {
                     tablinks[i].className = tablinks[i].className.replace(" is-active", "");
                 }
 
                 document.getElementById(tabName).style.display = "inline-block";
                 evt.currentTarget.className += " is-active";
+
                 if (tabName === "glassesSelect")
                     this.setAccessoriesPosition("0 110 315 350"); // Works for now, but a bit too arbitrary to be shared
                 else if (tabName === "facialHairSelect") {
@@ -409,6 +430,8 @@
                     this.saveEditCharacter();
                 }
             });
+
+            document. getElementById("skinColorSelect").click();
         }
     }
 </script>
