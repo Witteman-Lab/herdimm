@@ -16,7 +16,6 @@
                 <!-- Where the group members are being placed -->
                 <div :style="{height: characterSize, marginBottom: characterBottomMargin}" v-if="shape.isCharacter">
                     <Character :size="{ width: characterSize }" ref="character" :edit="false" :customised="true" :colors="shape.character.colors" :id="shape.character.id" :svgFile="require(`../assets/characters/${shape.character.file}`)" />
-                    <!-- <Character :size="{ width: characterSize, height: '37px'}" ref="character" :edit="false" :customised="true" :colors="shape.character.colors" :id="shape.character.id" :svgFile="require(`../assets/characters/${shape.character.file}`)" /> -->
                 </div>
             </div>
         </div>
@@ -239,8 +238,9 @@
             document.addEventListener('DOMContentLoaded', function() {
                 that.duplicateGrid(1);
                 that.duplicateGrid(2);
-                that.zoomIn(2000);
-                that.makeContour(".avatar", 5000);
+                //that.zoomIn(2000);
+                that.makeContour(".vulnerable", 5000);
+                // that.zoomOut(10000);
             });
         },
 
