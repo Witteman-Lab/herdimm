@@ -29,7 +29,7 @@
     // import animations from '../assets/animation.scss';
 
     export default {
-        name: "Shapes",
+        name: "Animation",
         components: {
             Character,
             //AudioPlayer

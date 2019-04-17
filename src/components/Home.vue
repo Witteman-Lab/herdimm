@@ -1,144 +1,163 @@
 <template>
     <div class="container">
+        <!-- MODAL WINDOW -->
         <div class="modal" v-bind:class="{'is-active': isActive }">
             <div class="modal-background">
                 <div class="modal-card mobile-modal">
                     <header class="modal-card-head">
                         <p class="modal-card-title">{{ modalTitle }}</p>
-                        <button class="delete" aria-label="close modal" v-on:click="removeModal"></button>
+                        <button class="delete" aria-label="close modal" v-on:click="this.removeModal"></button>
                     </header>
                     <section class="modal-card-body">
-                        <Character v-if="isActive" :edit="false" :customised="true" ref="character" :id="'current'" :svgFile="this.currentCharacter"
-                                   :colors="{face: this.currentColorFace, hairFront: this.currentColorHair, beards: this.currentBeard, glasses: this.currentGlasses}" />
-                        <div style="display: flex; justify-content: center">
-                            <div v-if="this.hasFacialHair" class="dropdown" v-bind:class="{'is-active': isBeardsButtonEnable }">
-                                <div class="dropdown-trigger">
-                                    <button v-on:click="openDropdownBeards" class="button">
-                                        <span>Beards</span>
-                                    </button>
-                                </div>
-                                <div class="dropdown-menu" role="menu">
-                                    <div class="dropdown-content">
-                                        <div v-on:click="selectBeards(-1)" style="cursor: pointer;width: 60px;">None</div>
-                                        <div v-for="(beard, index) in facialHairList" v-html="require(`../assets/facialHair/${beard.file}`)" v-on:click="selectBeards(index)"  style="max-width: 60px; max-height: 60px;cursor: pointer"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div v-if="this.hasGlasses" class="dropdown" v-bind:class="{'is-active': isGlassesButtonEnable }">
-                                <div class="dropdown-trigger">
-                                    <button v-on:click="openDropdownGlasses" class="button">
-                                        <span>Glasses</span>
-                                    </button>
-                                </div>
-                                <div class="dropdown-menu" role="menu">
-                                    <div class="dropdown-content">
-                                        <div v-on:click="selectGlasses(-1)" style="cursor: pointer;width: 60px;">None</div>
-                                        <div v-for="(glasses, index) in glassesListJson" v-on:click="selectGlasses(index)" v-html="require(`../assets/glasses/${glasses.file}`)" style="max-width: 60px; max-height: 60px;cursor: pointer"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div  v-if="this.hasHair" class="dropdown" v-bind:class="{'is-active': isHairColorButtonEnable }">
-                                <div class="dropdown-trigger">
-                                    <button v-on:click="openDropdownHair" class="button">
-                                        <span>Hair Color</span>
-                                        <span class="current-color" v-bind:style="{'background-color': this.currentColorHair }"></span>
-                                    </button>
-                                </div>
-                                <div class="dropdown-menu" role="menu">
-                                    <Compact
-                                        :value="this.currentColorHair"
-                                        @input="this.changeHairColor"
-                                        :palette="[
-                                            '#090806', '#2C222B', '#71635A',
-                                            '#B7A69E', '#D6C4C2', '#CABFB1',
-                                            '#DCD0BA', '#FFF5E1', '#E6CEA8',
-                                            '#E5C8A8', '#DEBC99', '#B89778',
-                                            '#A56B46', '#B55239', '#8D4A43',
-                                            '#91553D', '#533D32', '#3B3024',
-                                            '#554838', '#4E433F', '#504444',
-                                            '#6A4E42', '#A7856A', '#977961'
-                                        ]"
-                                    />
-                                </div>
-                            </div>
-                            <div class="dropdown" v-bind:class="{'is-active': isFaceColorButtonEnable }">
-                                <div class="dropdown-trigger">
-                                    <button v-on:click="openDropdownFace" class="button">
-                                        <span>Skin Color</span>
-                                        <span class="current-color" v-bind:style="{'background-color': this.currentColorFace }"></span>
-                                    </button>
-                                </div>
-                                <div class="dropdown-menu" role="menu">
-                                    <Compact
-                                        :value="this.currentColorFace"
-                                        @input="this.changeFaceColor"
-                                        :palette="[
-                                            '#FFD6C5', '#E7C1B2', '#E4BDAD',
-                                            '#FFE2C9', '#E7CBB5', '#E6C8B0',
-                                            '#FFCBA3', '#E8B894', '#E7B38D',
-                                            '#D8905F', '#C28155', '#BE794A',
-                                            '#88513A', '#7B4934', '#733E26'
-                                        ]"
-                                    />
-                                </div>
-                            </div>
+                        <Character v-if="isActive" :size="{width: '70px', height: '95px'}" :edit="false" :customised="true" ref="character" :id="'current'" :svgFile="this.currentCharacter"
+                                   :colors="{face: this.currentColorFace, hairFront: this.currentColorHair, beards: this.currentBeard, glasses: this.currentGlasses, shirt: this.currentShirt}" />
+
+                        <div class="tabs is-centered is-boxed is-three-quarters">
+                            <ul>
+                                <!-- For testing, in case we want to group skin and hair colors in a single tab (saves space) -->
+                                <!-- <li class="tab" v-on:click="openTab($event, 'colorsSelect')">
+                                    <a>Colors</a>
+                                </li> -->
+                                <li class="tab" id="skinColorTab" v-on:click="openTab('skinColorTab', 'skinColorSelect')">
+                                <!-- <li class="tab" id="skinColorTab" v-on:click="openTab($event, 'skinColorSelect')"> -->
+                                    <a>Skin color</a>
+                                </li>
+                                <li class="tab" id="hairColorTab" v-if="this.hasHair" v-on:click="openTab('hairColorTab', 'hairColorSelect')">
+                                <!-- <li class="tab" id="hairColorTab" v-if="this.hasHair" v-on:click="openTab($event, 'hairColorSelect')"> -->
+                                    <a>Hair color</a>
+                                </li>
+
+                                <!-- Maybe we could also group these 2 tabs in a single one called accessories -->
+                                <!-- Would need to take consider the v-if conditions... -->
+                                <!-- <li class="tab" v-if="(this.hasGlasses || this.hasFacialHair)" v-on:click="openTab($event, 'accessoriesSelect')">
+                                    <a>Accessories</a>
+                                </li> -->
+                                <li class="tab" id="glassesTab" v-if="this.hasGlasses" v-on:click="openTab('glassesTab', 'glassesSelect')">
+                                    <a>Glasses</a>
+                                </li>
+                                <li class="tab" id="facialHairTab" v-if="this.hasFacialHair" v-on:click="openTab('facialHairTab', 'facialHairSelect')">
+                                    <a>Facial hair</a>
+                                </li>
+                            </ul>
                         </div>
-                        <br/>
-                        <div class="buttons is-light is-centered">
-                            <!-- <span class="button" v-on:click="this.resetDefault">Reset</span> -->
-                            <button class="button is-centered" v-on:click="this.resetDefault">Reset</button>
+
+                        <div style="display: flex; justify-content: center">
+
+                            <!-- Skin color -->
+                            <div id="skinColorSelect" class="content-tab">
+                                <Compact
+                                    :value="this.currentColorFace"
+                                    @input="this.changeFaceColor"
+                                    :palette="['#FFE2C9', '#FFCBA3', '#E7B38D', '#D8905F', '#7C5235']"
+                                />
+                            </div>
+                            <!-- <div id="skinColorSelect" class="content-tab">
+                                <Compact
+                                    :value="this.currentColorFace"
+                                    @input="this.changeFaceColor"
+                                    :palette="[
+                                        '#FFD6C5', '#E7C1B2', '#E4BDAD',
+                                        '#FFE2C9', '#E7CBB5', '#E6C8B0',
+                                        '#FFCBA3', '#E8B894', '#E7B38D',
+                                        '#D8905F', '#C28155', '#BE794A',
+                                        '#88513A', '#7B4934', '#733E26'
+                                    ]"
+                                />
+                            </div> -->
+
+                            <!-- Hair color -->
+                            <div id="hairColorSelect" class="content-tab" v-if="this.hasHair" >
+                                <Compact
+                                    :value="this.currentColorHair"
+                                    @input="this.changeHairColor"
+                                    :palette="[
+                                        '#090806', '#2C222B', '#71635A',
+                                        '#B7A69E', '#D6C4C2', '#CABFB1',
+                                        '#DCD0BA', '#FFF5E1', '#E6CEA8',
+                                        '#E5C8A8', '#DEBC99', '#B89778',
+                                        '#A56B46', '#B55239', '#8D4A43',
+                                        '#91553D', '#533D32', '#3B3024',
+                                        '#554838', '#4E433F', '#504444',
+                                        '#6A4E42', '#A7856A', '#977961'
+                                    ]"
+                                />
+                            </div>
+
+                            <!-- Glasses -->
+                            <div id="glassesSelect" class="content-tab buttons" v-if="this.hasGlasses">
+                                <span class="accessoriesList button" v-on:click="selectGlasses(-1)">None</span>
+                                <span class="accessoriesList button" v-for="(glasses, index) in glassesListJson" v-on:click="selectGlasses(index)" v-html="require(`../assets/glasses/${glasses.file}`)"></span>
+                            </div>
+
+                            <!-- Facial hair -->
+                            <div id="facialHairSelect" class="content-tab buttons" v-if="this.hasFacialHair">
+                                <span class="accessoriesList button" v-on:click="selectBeards(-1)">None</span>
+                                <span class="accessoriesList button facialHairList" v-for="(beard, index) in facialHairList" v-html="require(`../assets/facialHair/${beard.file}`)" v-on:click="selectBeards(index)"></span>
+                            </div>
                         </div>
                     </section>
                     <footer class="modal-card-foot">
-                        <button class="button is-success" v-if="!isEdit" v-on:click="saveCharacter">Save</button>
-                        <button class="button is-success" v-if="isEdit" v-on:click="saveEditCharacter">Save Edit</button>
-                        <button class="button" v-on:click="removeModal">Cancel</button>
+                        <div class="buttons is-light">
+                            <button class="button is-success" v-if="!this.isEdit" v-on:click="this.saveCharacter">Save</button>
+                            <button class="button is-success" v-if="this.isEdit" v-on:click="this.saveEditCharacter">Save edit</button>
+                            <button class="button" v-on:click="this.removeModal">Cancel</button>
+                            <button class="button" v-on:click="this.resetDefault">Reset all</button>
+                        </div>
                     </footer>
                 </div>
             </div>
         </div>
+
+        <!-- INTERFACE -->
         <div class="is-centered is-half-desktop is-half-mobile">
             <h1>Build your group</h1>
+
             <p id="generalInfo">Click or tap on a character of your choice to select and customize it at your will.</p>
             <p id="contextualInfo">{{ contextualInfo }}</p>
-            <div class="Avatar">
-                <div class="column is-center is-four-fifths " >
+
+            <!-- List of all the characters -->
+            <div class="tool">
+                <div class="column is-center is-four-fifths">
+                    <!-- Not sure if it should be displayed here or in the CharacterList.vue -->
+                    <!-- <progress v-if="!isCharactersListLoaded" class="progress is-large is-info" max="100"></progress> -->
                     <div style="cursor: pointer">
-                        <div>
-                            <CharacterList ref="listAvailable" :characters="this.characterList" :id="this.currentCharacterObject.file"></CharacterList>
-                        </div>
+                        <CharacterList ref="listAvailable" :characters="this.characterList" :id="this.currentCharacterObject.file"></CharacterList>
                     </div>
                 </div>
             </div>
+
             <h1>Your Group</h1>
-            <div class="Avatar">
-                <div class="column is-four-fifths" >
+
+            <!-- List of the group member -->
+            <div class="tool">
+                <div class="column is-four-fifths">
                     <div style="cursor: pointer">
-                        <div>
-                            <GroupCharacter ref="listToFill"></GroupCharacter>
-                        </div>
+                        <GroupCharacter ref="listToFill"></GroupCharacter>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Button to continue to the next section (e.g. the animation) -->
         <section>
             <div class="control has-text-centered">
-                <button class="button is-primary is-success" v-if="isVisible" v-on:click="loadAnimationView()">Continue</button>
+                <p id="finalInfo">{{ finalInfo }}</p>
+                <button id="continue" class="button is-primary is-success" v-if="isVisible" v-on:click="loadAnimationView()">Continue</button>
             </div>
         </section>
     </div>
 </template>
 
 <script>
-    import Character from '../components/Character.vue'
-    import { Compact }  from 'vue-color';
+    import Character from "../components/Character.vue"
+    import { Compact }  from "vue-color";
     import CharacterList from "../components/CharacterList";
-    import json from '../assets/characters.json';
-    import glassesJson from '../assets/glasses.json';
-    import facialHairJson from '../assets/facialHair.json';
+    import json from "../assets/characters.json";
+    import glassesJson from "../assets/glasses.json";
+    import facialHairJson from "../assets/facialHair.json";
     import GroupCharacter from "../components/GroupCharacter";
     export default {
-        name: 'home',
+        name: "home",
         components: {
             GroupCharacter,
             CharacterList,
@@ -156,6 +175,7 @@
                 isGlassesButtonEnable: false,
                 beardsList: [],
                 glassesList: [],
+                currentShirt: "#BFBABE",
                 currentColorHair: '',
                 currentColorFace: '',
                 currentBeard: -1,
@@ -163,15 +183,15 @@
                 currentCharacter: "",
                 currentCharacterObject: "",
                 characterList: [],
+                isCharactersListLoaded: false,
                 contextualInfo: "",
+                finalInfo: "",
                 modalTitle: "",
                 totalCreated: 0,
                 isAvatarCreated: false,
                 areVulnerableCreated: false,
                 areCommunityCreated: false,
                 maxCharactersInGroup: 0,
-                type: String,
-                isAdult: false,
                 hasFacialHair: false,
                 hasGlasses: false,
                 hasHair: false,
@@ -181,14 +201,48 @@
         },
         props: {},
         methods: {
+            //
+            openTab(target, tabName) {
+            // openTab(evt, tabName) {
+                //console.log("evt.currentTarget", evt.currentTarget);
+                let i, tabs, tablinks;
+                tabs = document.getElementsByClassName("content-tab");
+
+                for (i = 0; i < tabs.length; i++) {
+                    tabs[i].style.display = "none";
+                }
+
+                tablinks = document.getElementsByClassName("tab");
+
+                for (i = 0; i < tablinks.length; i++) {
+                    //tablinks[i].className = tablinks[i].className.replace(" is-active", "");
+                    //tablinks[i].classList.remove("is-active");
+                    tablinks[i].className.replace(" is-active", "");
+                }
+                document.getElementById(tabName).style.display = "inline-block";
+                document.getElementById(target).className += " is-active";
+                //evt.currentTarget.className += " is-active";
+
+                if (tabName === "glassesSelect")
+                    this.setAccessoriesPosition("0 110 315 350"); // Works for now, but a bit too arbitrary to be shared
+                else if (tabName === "facialHairSelect") {
+                    this.setAccessoriesPosition("40 130 225 350"); // Works for now, but a bit too arbitrary to be shared
+                }
+            },
+
+            //
             changeFaceColor(color) {
                 this.currentColorFace = color.hex;
                 this.$refs.character.changeFaceColor(color.hex);
             },
+
+            //
             changeHairColor(color) {
                 this.currentColorHair = color.hex;
                 this.$refs.character.changeHairColor(color.hex);
             },
+
+            //
             resetDefault() {
                 this.currentColorFace = "#7C5235";
                 this.currentColorHair = "#412308";
@@ -198,12 +252,17 @@
                 this.$refs.character.changeGlasses(-1);
                 this.$refs.character.changeBeard(-1);
             },
+
+            //
             launch(character) {
                 if (this.$refs.listToFill.getCharacterListSize() < this.maxCharactersInGroup)  {
                     this.currentCharacter = require(`../assets/characters/${character.file}`);
                     this.currentCharacterObject = character;
-                    this.isAdult = (character.type === "adult");
-
+                    if (this.totalCreated < json.nbAvatar) {
+                        this.currentShirt = "#F67844";
+                    } else {
+                        this.currentShirt = "#BFBABE";
+                    }
                     this.currentColorFace = "#7C5235";
                     this.currentColorHair = "#412308";
                     this.currentGlasses = -1;
@@ -212,47 +271,68 @@
                     this.isEdit = false;
                     this.modalTitle = this.getModalTitle(this.totalCreated, "Create");
                 }
+                this.openTab("skinColorTab", "skinColorSelect");
             },
+
+            //
             launchEditModal(character, index) {
                 this.currentCharacter = require(`../assets/characters/${character.file}`);
                 this.currentCharacterObject = character;
-                this.isAdult = (character.type === "adult");
 
                 this.currentColorFace = character.colors.face;
                 this.currentColorHair = character.colors.hairFront;
                 this.currentGlasses = character.colors.glasses;
                 this.currentBeard = character.colors.beards;
+                this.currentShirt = character.colors.shirt;
+
                 this.isActive = true;
                 this.isEdit = true;
                 this.modalTitle = this.getModalTitle(index, "Edit");
+                this.openTab("skinColorTab", "skinColorSelect");
             },
+
+            //
             setAccessories(hasGlasses, hasBeard, hasHair) {
                 this.hasGlasses = hasGlasses;
                 this.hasFacialHair = hasBeard;
                 this.hasHair = hasHair;
             },
+
+            //
             getModalTitle(index, verb) {
                 return (index === 0 ?  `${verb} your avatar` : index <= json.nbVulnerable ? `${verb} a vulnerable person` : `${verb} a person around you`);
             },
+
+            //
             setGlassesList(glasses) {
                 this.glassesList = glasses;
             },
+
+            //
             setBeardsList(beards) {
                 this.beardsList = beards;
             },
-            selectGlasses(pos) {
+
+            //
+            selectGlasses( pos) {
                 this.$refs.character.changeGlasses(pos);
                 this.isGlassesButtonEnable = false;
             },
+
+            //
             selectBeards(pos) {
                 this.$refs.character.changeBeard(pos);
                 this.isBeardsButtonEnable = false;
             },
+
+            //
             removeModal() {
                 this.isActive = false;
                 this.isHairColorButtonEnable = false;
                 this.isFaceColorButtonEnable = false;
             },
+
+            //
             saveCharacter() {
                 this.manageCharacterCount();
                 this.$refs.listToFill.addCharacterToGroup(this.currentCharacterObject,
@@ -262,11 +342,15 @@
                     this.isVisible = true;
                 }
             },
+
+            //
             saveEditCharacter() {
                 this.$refs.listToFill.editCharacter(this.currentCharacterObject,
-                    this.$refs.character.getSvgColor(), this.currentCharacterObject.type);
+                    this.$refs.character.getSvgColor(), this.currentCharacterObject.characterType);
                 this.removeModal();
             },
+
+            //
             getCurrentCharacterType(position) {
                 if (position <= json.nbAvatar) {
                     return "avatar";
@@ -276,34 +360,14 @@
                     return "comm";
                 }
             },
+
+            //
             loadAnimationView() {
                 let groupCharacter = this.$refs.listToFill.getCharacterList();
-                this.$router.push({name: 'Animations', params:{group: groupCharacter}});
+                this.$router.push({name: 'Animation', params:{group: groupCharacter}});
             },
-            openDropdownHair() {
-                this.isHairColorButtonEnable = !this.isHairColorButtonEnable;
-                this.isFaceColorButtonEnable = false;
-                this.isGlassesButtonEnable = false;
-                this.isBeardsButtonEnable = false;
-            },
-            openDropdownFace() {
-                this.isFaceColorButtonEnable = !this.isFaceColorButtonEnable;
-                this.isHairColorButtonEnable = false;
-                this.isGlassesButtonEnable = false;
-                this.isBeardsButtonEnable = false;
-            },
-            openDropdownBeards() {
-                this.isBeardsButtonEnable = !this.isBeardsButtonEnable;
-                this.isGlassesButtonEnable = false;
-                this.isFaceColorButtonEnable = false;
-                this.isHairColorButtonEnable = false;
-            },
-            openDropdownGlasses() {
-                this.isGlassesButtonEnable = !this.isGlassesButtonEnable;
-                this.isFaceColorButtonEnable = false;
-                this.isHairColorButtonEnable = false;
-                this.isBeardsButtonEnable = false;
-            },
+
+            //
             manageCharacterCount() {
                 this.totalCreated++;
                 if (this.totalCreated === json.nbAvatar) {
@@ -314,7 +378,19 @@
                     this.contextualInfo = `Finally, select and customize ${json.nbCommunity} other people around you.`;
                 } else if (this.totalCreated === json.nbAvatar + json.nbVulnerable + json.nbCommunity) {
                     this.areCommunityCreated = true;
-                    this.contextualInfo = "Press the button to start the animation";
+                    this.contextualInfo = "";
+                    this.finalInfo = "Press the button to start the animation";
+                }
+            },
+
+            //
+            setAccessoriesPosition(position) {
+                let accessories = document.getElementsByClassName("accessoriesList");
+                for (let i = 0; i < accessories.length; i++) {
+                    if (accessories[i].innerHTML !== "None") {
+                        let item = accessories[i].children[0];
+                        item.setAttribute("viewBox", position);
+                    }
                 }
             }
         },
@@ -322,23 +398,43 @@
             this.characterList = json.characters;
             this.maxCharactersInGroup = json.nbAvatar + json.nbVulnerable + json.nbCommunity;
             this.contextualInfo = "First, select and customize your own avatar.";
-
             this.facialHairList = facialHairJson.beards;
             this.glassesListJson = glassesJson.glasses;
-            console.log(this.glassesListJson);
         },
         mounted() {
             document.body.addEventListener('keyup', e => {
+                // Escape key to close the modal window (customizer)
                 if (e.keyCode === 27 && this.isActive) {
                     this.removeModal();
-                } else if (e.keyCode === 13 && this.isActive) {
+                // Enter key to add a new character to the group (and close the customizer)
+                } else if (e.keyCode === 13 && this.isActive  && !this.isEdit) {
                     this.saveCharacter();
+                // Enter key to save edits to a group member (and close the customizer)
+                }  else if (e.keyCode === 13  && this.isActive && this.isEdit) {
+                    this.saveEditCharacter();
                 }
-            })
+            });
         }
     }
 </script>
-
+<style>
+    /* To change the visual for the color picker */
+    div.vc-compact {
+        width: 100%;
+    }
+    li.vc-compact-color-item {
+        width: 45px;
+        height: 45px;
+    }
+    div.vc-compact-dot {
+        width: 50%;
+        height: 50%;
+        top: 25%;
+        bottom: 25%;
+        left: 25%;
+        right: 25%;
+    }
+</style>
 <style scoped>
     h1 {
         font-weight: bold;
@@ -347,23 +443,58 @@
     p {
         margin: 10px 0;
     }
-    .Avatar {
+    .tool {
         display: flex;
         justify-content: center;
     }
     .mobile-modal {
         margin-top: calc(20vh - 40px);
     }
-    .current-color {
-        width: 20px;
-        height: 20px;
-        margin-left: 10px;
-        border-style: solid;
+    header.modal-card-head {
+        padding: 10px;
     }
+    .content-tab {
+        display: none;
+        margin: 0 0 1rem 0;
+    }
+    span.accessoriesList {
+        display: inline-block;
+        margin: 0 auto;
+        min-width: 100px;
+    }
+    span.facialHairList {
+        height: 60px;
+    }
+
+    button#continue, p#finalInfo {
+        animation: appearanceAnim 2s ease-in-out;
+    }
+    @keyframes appearanceAnim {
+      0% {
+        opacity: 0;
+      }
+      25% {
+        opacity: 0.25;
+      }
+      50% {
+        opacity: 1;
+      }
+      75% {
+        opacity: 0.25;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
     @media only screen and (max-width: 768px) {
         .mobile-modal {
             margin-top: calc(20vh - 40px);
             width: auto;
+            height: 85%;
+        }
+        header.modal-card-head {
+            padding: 5px;
         }
     }
 </style>

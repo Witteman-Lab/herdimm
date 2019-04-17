@@ -1,9 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import Home from '../components/Home'
-import Home from '../components/HomeTabs'
-import Animations from '../components/Animations'
-import Shapes from '../components/Shapes'
+import Home from '../components/Home'
+import Animation from '../components/Animation'
 
 Vue.use(Router);
 
@@ -16,19 +14,11 @@ export default new Router({
             component: Home
         },
         {
-            path: '/Animations',
-            name: 'Animations',
-            component: Animations,
-            props: true
-        },
-        {
-            path: '/Shapes',
-            name: 'Shapes',
-            component: Shapes,
+            path: '/Animation',
+            name: 'Animation',
+            component: Animation,
             props: true
         }
-
-
     ]
 
 })
