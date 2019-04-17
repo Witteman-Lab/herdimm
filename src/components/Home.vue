@@ -98,10 +98,10 @@
                     </section>
                     <footer class="modal-card-foot">
                         <div class="buttons is-light">
-                            <button class="button is-success" v-if="!this.isEdit" v-on:click="this.saveCharacter">Save</button>
-                            <button class="button is-success" v-if="this.isEdit" v-on:click="this.saveEditCharacter">Save edit</button>
-                            <button class="button" v-on:click="this.removeModal">Cancel</button>
-                            <button class="button" v-on:click="this.resetDefault">Reset all</button>
+                            <button class="button is-success" v-if="!this.isEdit" v-on:click="this.saveCharacter">{{this.labels.saveBtn}}</button>
+                            <button class="button is-success" v-if="this.isEdit" v-on:click="this.saveEditCharacter">{{this.labels.saveEditBtn}}</button>
+                            <button class="button" v-on:click="this.removeModal">{{this.labels.cancelBtn}}</button>
+                            <button class="button" v-on:click="this.resetDefault">{{this.labels.resetAllBtn}}</button>
                         </div>
                     </footer>
                 </div>
@@ -110,9 +110,9 @@
 
         <!-- INTERFACE -->
         <div class="is-centered is-half-desktop is-half-mobile">
-            <h1>Build your group</h1>
+            <h1>{{this.labels.pageTitle}}</h1>
 
-            <p id="generalInfo">Click or tap on a character of your choice to select and customize it at your will.</p>
+            <p id="generalInfo">{{this.labels.generalInfo}}</p>
             <p id="contextualInfo">{{ contextualInfo }}</p>
 
             <!-- List of all the characters -->
@@ -126,7 +126,7 @@
                 </div>
             </div>
 
-            <h1>Your Group</h1>
+            <h1>{{this.labels.subtitle}}</h1>
 
             <!-- List of the group member -->
             <div class="tool">
@@ -141,8 +141,8 @@
         <!-- Button to continue to the next section (e.g. the animation) -->
         <section>
             <div class="control has-text-centered">
-                <p id="finalInfo">{{ finalInfo }}</p>
-                <button id="continue" class="button is-primary is-success" v-if="isVisible" v-on:click="loadAnimationView()">Continue</button>
+                <p id="finalInfo" v-if="isVisible">{{this.labels.finalInfo}}</p>
+                <button id="continue" class="button is-primary is-success" v-if="isVisible" v-on:click="loadAnimationView()">{{this.labels.continueBtn}}</button>
             </div>
         </section>
     </div>
@@ -152,7 +152,8 @@
     import Character from "../components/Character.vue"
     import { Compact }  from "vue-color";
     import CharacterList from "../components/CharacterList";
-    import json from "../assets/characters.json";
+    import charactersJson from "../assets/characters.json";
+    import texts from "../assets/texts.json";
     import glassesJson from "../assets/glasses.json";
     import facialHairJson from "../assets/facialHair.json";
     import GroupCharacter from "../components/GroupCharacter";
@@ -196,7 +197,8 @@
                 hasGlasses: false,
                 hasHair: false,
                 facialHairList: [],
-                glassesListJson: []
+                glassesListJson: [],
+                texts: null
             };
         },
         props: {},
@@ -204,23 +206,28 @@
             //
             openTab(target, tabName) {
             // openTab(evt, tabName) {
-                //console.log("evt.currentTarget", evt.currentTarget);
-                let i, tabs, tablinks;
-                tabs = document.getElementsByClassName("content-tab");
+                let tabs, tablinks;
+                // let i, tabs, tablinks;
 
-                for (i = 0; i < tabs.length; i++) {
-                    tabs[i].style.display = "none";
-                }
+                tabs = document.querySelectorAll('.content-tab').forEach(e => e.style.display = "none");
 
-                tablinks = document.getElementsByClassName("tab");
+                //tabs = document.getElementsByClassName("content-tab");
+                // for (i = 0; i < tabs.length; i++) {
+                //     tabs[i].style.display = "none";
+                // }
 
-                for (i = 0; i < tablinks.length; i++) {
-                    //tablinks[i].className = tablinks[i].className.replace(" is-active", "");
-                    //tablinks[i].classList.remove("is-active");
-                    tablinks[i].className.replace(" is-active", "");
-                }
+                tablinks = document.querySelectorAll('.tab').forEach(e => e.classList.remove("is-active"));
+
+                // tablinks = document.getElementsByClassName("tab");
+                // for (i = 0; i < tablinks.length; i++) {
+                //     tablinks[i].className = tablinks[i].className.replace(" is-active", "");
+                //     tablinks[i].classList.remove("is-active");
+                // }
+
                 document.getElementById(tabName).style.display = "inline-block";
-                document.getElementById(target).className += " is-active";
+                document.getElementById(target).classList.add("is-active");
+
+                //document.getElementById(target).className += " is-active";
                 //evt.currentTarget.className += " is-active";
 
                 if (tabName === "glassesSelect")
@@ -258,7 +265,7 @@
                 if (this.$refs.listToFill.getCharacterListSize() < this.maxCharactersInGroup)  {
                     this.currentCharacter = require(`../assets/characters/${character.file}`);
                     this.currentCharacterObject = character;
-                    if (this.totalCreated < json.nbAvatar) {
+                    if (this.totalCreated < charactersJson.nbAvatar) {
                         this.currentShirt = "#F67844";
                     } else {
                         this.currentShirt = "#BFBABE";
@@ -270,8 +277,8 @@
                     this.isActive = true;
                     this.isEdit = false;
                     this.modalTitle = this.getModalTitle(this.totalCreated, "Create");
+                    this.openTab("skinColorTab", "skinColorSelect");
                 }
-                this.openTab("skinColorTab", "skinColorSelect");
             },
 
             //
@@ -300,7 +307,7 @@
 
             //
             getModalTitle(index, verb) {
-                return (index === 0 ?  `${verb} your avatar` : index <= json.nbVulnerable ? `${verb} a vulnerable person` : `${verb} a person around you`);
+                return (index === 0 ?  `${verb} your avatar` : index <= charactersJson.nbVulnerable ? `${verb} a vulnerable person` : `${verb} a person around you`);
             },
 
             //
@@ -352,11 +359,11 @@
 
             //
             getCurrentCharacterType(position) {
-                if (position <= json.nbAvatar) {
+                if (position <= charactersJson.nbAvatar) {
                     return "avatar";
-                } else if (position <= json.nbAvatar + json.nbVulnerable)   {
+                } else if (position <= charactersJson.nbAvatar + charactersJson.nbVulnerable)   {
                     return "vulnerable"
-                } else if (position <= json.nbAvatar + json.nbVulnerable + json.nbCommunity) {
+                } else if (position <= charactersJson.nbAvatar + charactersJson.nbVulnerable + charactersJson.nbCommunity) {
                     return "comm";
                 }
             },
@@ -370,16 +377,16 @@
             //
             manageCharacterCount() {
                 this.totalCreated++;
-                if (this.totalCreated === json.nbAvatar) {
+                if (this.totalCreated === charactersJson.nbAvatar) {
                     this.isAvatarCreated = true;
-                    this.contextualInfo = `Now, select and customize ${json.nbVulnerable} people you consider vulnerable.`;
-                } else if (this.totalCreated === json.nbAvatar + json.nbVulnerable) {
+                    this.contextualInfo = `Now, select and customize ${charactersJson.nbVulnerable} people you consider vulnerable.`;
+                } else if (this.totalCreated === charactersJson.nbAvatar + charactersJson.nbVulnerable) {
                     this.areVulnerableCreated = true;
-                    this.contextualInfo = `Finally, select and customize ${json.nbCommunity} other people around you.`;
-                } else if (this.totalCreated === json.nbAvatar + json.nbVulnerable + json.nbCommunity) {
+                    this.contextualInfo = `Finally, select and customize ${charactersJson.nbCommunity} other people around you.`;
+                } else if (this.totalCreated === charactersJson.nbAvatar + charactersJson.nbVulnerable + charactersJson.nbCommunity) {
                     this.areCommunityCreated = true;
                     this.contextualInfo = "";
-                    this.finalInfo = "Press the button to start the animation";
+                    //this.finalInfo = "Press the button to start the animation";
                 }
             },
 
@@ -395,8 +402,9 @@
             }
         },
         created() {
-            this.characterList = json.characters;
-            this.maxCharactersInGroup = json.nbAvatar + json.nbVulnerable + json.nbCommunity;
+            this.characterList = charactersJson.characters;
+            this.labels = texts;
+            this.maxCharactersInGroup = charactersJson.nbAvatar + charactersJson.nbVulnerable + charactersJson.nbCommunity;
             this.contextualInfo = "First, select and customize your own avatar.";
             this.facialHairList = facialHairJson.beards;
             this.glassesListJson = glassesJson.glasses;
@@ -466,12 +474,21 @@
         height: 60px;
     }
 
-    button#continue, p#finalInfo {
-        animation: appearanceAnim 2s ease-in-out;
+    button#continue, p#contextualInfo, p#finalInfo {
+        animation: appearanceAnim;
+        /* animation: appearanceAnim 2s ease-in-out; */
+        -webkit-animation-name: appearanceAnim; /* Safari 4.0 - 8.0 */
+        -webkit-animation-duration: 2s; /* Safari 4.0 - 8.0 */
+        /* -webkit-animation-iteration-count: 2; */
+        -webkit-animation-direction: alternate; /* Safari 4.0 - 8.0 */
+        animation-name: appearanceAnim;
+        animation-duration: 2s;
+        /* animation-iteration-count: 2; */
+        animation-direction: alternate;
     }
     @keyframes appearanceAnim {
       0% {
-        opacity: 0;
+        opacity: 1;
       }
       25% {
         opacity: 0.25;

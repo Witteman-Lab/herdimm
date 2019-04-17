@@ -1,3 +1,11 @@
 {
-  "item" : "text"
+    "continueBtn" : "Start the animation",
+    "saveBtn" : "Save",
+    "saveEditBtn" : "Save edit",
+    "cancelBtn" : "Cancel",
+    "resetAllBtn" : "Reset all",
+    "pageTitle" : "Build your group",
+    "subtitle" : "Your group",
+    "generalInfo" : "Click or tap on a character of your choice to select and customize it at your will.",
+    "finalInfo" : "Press the button to start the animation"
 }
