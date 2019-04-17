@@ -1,5 +1,6 @@
 <template>
     <div>
+        <progress v-if="!isCharactersListLoaded" class="progress is-large is-info" max="100"></progress>
         <div v-for="(character) in this.characterList" :key="character.id">
             <Character :size="{width: '70px', height: '95px'}" :customised="false" :edit="true" ref="character" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)"/>
         </div>
@@ -13,7 +14,8 @@ export default {
     name: "CharacterList",
     data() {
         return {
-            characterList: []
+            characterList: [],
+            isCharactersListLoaded: false,
         }
     },
     components: {
@@ -39,6 +41,7 @@ export default {
     },
     mounted() {
         this.characterList = this.characters;
+        this.isCharactersListLoaded = true;
     }
 }
 </script>
