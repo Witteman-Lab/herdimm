@@ -206,6 +206,8 @@
             openTab(target, tabName) {
                 let tabs, tablinks;
 
+                console.log(document.querySelectorAll('.tab'));
+
                 tabs = document.querySelectorAll('.content-tab').forEach(e => e.style.display = "none");
                 tablinks = document.querySelectorAll('.tab').forEach(e => e.classList.remove("is-active"));
 
@@ -249,9 +251,9 @@
                     this.currentCharacterObject = character;
                     if (this.totalCreated < charactersJson.nbAvatar) {
                         this.currentShirt = "#F67844";
-                    }/* else {
+                    } else {
                         this.currentShirt = "#BFBABE";
-                    }*/
+                    }
                     this.currentColorFace = "#7C5235";
                     this.currentColorHair = "#412308";
                     this.currentGlasses = -1;
