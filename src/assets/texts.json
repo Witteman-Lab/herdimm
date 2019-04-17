@@ -7,5 +7,9 @@
     "pageTitle" : "Build your group",
     "subtitle" : "Your group",
     "generalInfo" : "Click or tap on a character of your choice to select and customize it at your will.",
-    "finalInfo" : "Press the button to start the animation"
+    "finalInfo" : "Press the button to start the animation",
+    "skinColorTab" : "Skin color",
+    "hairColorTab" : "Hair color",
+    "glassesTab" : "Glasses",
+    "facialHairTab" : "Facial hair"
 }

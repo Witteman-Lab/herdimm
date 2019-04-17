@@ -20,11 +20,11 @@
                                 </li> -->
                                 <li class="tab" id="skinColorTab" v-on:click="openTab('skinColorTab', 'skinColorSelect')">
                                 <!-- <li class="tab" id="skinColorTab" v-on:click="openTab($event, 'skinColorSelect')"> -->
-                                    <a>Skin color</a>
+                                    <a>{{this.labels.skinColorTab}}</a>
                                 </li>
                                 <li class="tab" id="hairColorTab" v-if="this.hasHair" v-on:click="openTab('hairColorTab', 'hairColorSelect')">
                                 <!-- <li class="tab" id="hairColorTab" v-if="this.hasHair" v-on:click="openTab($event, 'hairColorSelect')"> -->
-                                    <a>Hair color</a>
+                                    <a>{{this.labels.hairColorTab}}</a>
                                 </li>
 
                                 <!-- Maybe we could also group these 2 tabs in a single one called accessories -->
@@ -33,10 +33,10 @@
                                     <a>Accessories</a>
                                 </li> -->
                                 <li class="tab" id="glassesTab" v-if="this.hasGlasses" v-on:click="openTab('glassesTab', 'glassesSelect')">
-                                    <a>Glasses</a>
+                                    <a>{{this.labels.glassesTab}}</a>
                                 </li>
                                 <li class="tab" id="facialHairTab" v-if="this.hasFacialHair" v-on:click="openTab('facialHairTab', 'facialHairSelect')">
-                                    <a>Facial hair</a>
+                                    <a>{{this.labels.facialHairTab}}</a>
                                 </li>
                             </ul>
                         </div>
@@ -50,9 +50,7 @@
                                     @input="this.changeFaceColor"
                                     :palette="['#FFE2C9', '#FFCBA3', '#E7B38D', '#D8905F', '#7C5235']"
                                 />
-                            </div>
-                            <!-- <div id="skinColorSelect" class="content-tab">
-                                <Compact
+                                <!-- <Compact
                                     :value="this.currentColorFace"
                                     @input="this.changeFaceColor"
                                     :palette="[
@@ -62,8 +60,8 @@
                                         '#D8905F', '#C28155', '#BE794A',
                                         '#88513A', '#7B4934', '#733E26'
                                     ]"
-                                />
-                            </div> -->
+                                /> -->
+                            </div>
 
                             <!-- Hair color -->
                             <div id="hairColorSelect" class="content-tab" v-if="this.hasHair" >
@@ -204,12 +202,13 @@
         methods: {
             //
             openTab(target, tabName) {
-                let tabs, tablinks;
+                //let tabs, tablinks;
 
-                console.log(document.querySelectorAll('.tab'));
+                // tabs = document.querySelectorAll('.content-tab').forEach(e => e.style.display = "none");
+                // tablinks = document.querySelectorAll('.tab').forEach(e => e.classList.remove("is-active"));
 
-                tabs = document.querySelectorAll('.content-tab').forEach(e => e.style.display = "none");
-                tablinks = document.querySelectorAll('.tab').forEach(e => e.classList.remove("is-active"));
+                document.querySelectorAll('.content-tab').forEach(e => e.style.display = "none");
+                document.querySelectorAll('.tab').forEach(e => e.classList.remove("is-active"));
 
                 document.getElementById(tabName).style.display = "inline-block";
                 document.getElementById(target).classList.add("is-active");
@@ -249,11 +248,14 @@
                 if (this.$refs.listToFill.getCharacterListSize() < this.maxCharactersInGroup)  {
                     this.currentCharacter = require(`../assets/characters/${character.file}`);
                     this.currentCharacterObject = character;
+
+                    // Avatar gets a special shirt
                     if (this.totalCreated < charactersJson.nbAvatar) {
                         this.currentShirt = "#F67844";
                     } else {
                         this.currentShirt = "#BFBABE";
                     }
+
                     this.currentColorFace = "#7C5235";
                     this.currentColorHair = "#412308";
                     this.currentGlasses = -1;
@@ -261,6 +263,8 @@
                     this.isActive = true;
                     this.isEdit = false;
                     this.modalTitle = this.getModalTitle(this.totalCreated, "Create");
+
+                    // Display the skin tab content when opening modal window
                     this.openTab("skinColorTab", "skinColorSelect");
                 }
             },
@@ -279,6 +283,8 @@
                 this.isActive = true;
                 this.isEdit = true;
                 this.modalTitle = this.getModalTitle(index, "Edit");
+
+                // Display the skin tab content when opening modal window
                 this.openTab("skinColorTab", "skinColorSelect");
             },
 
