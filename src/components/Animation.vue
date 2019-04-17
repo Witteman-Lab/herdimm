@@ -136,15 +136,20 @@
             },
 
             //
-            duplicateGrid(copyIndex) {
+            // duplicateGrid(copyIndex) {
+            duplicateGrid(nbOfCopy) {
                 const sourceElement = document.querySelector('.hexagon-container');
                 const destination = sourceElement.parentNode;
-                const copy = sourceElement.cloneNode(true);
-                //copy.className += " copy";
-                copy.classList.add("copy");
-                copy.id = "copy" + copyIndex;
-                copy.querySelectorAll('.character-position').forEach(e => e.parentNode.removeChild(e));
-                destination.appendChild(copy);
+                let copy;
+
+                for (let i = 1; i <= nbOfCopy; i++) {
+                    copy = sourceElement.cloneNode(true);
+                    //copy.className += " copy";
+                    copy.classList.add("copy");
+                    copy.id = "copy" + i;
+                    copy.querySelectorAll('.character-position').forEach(e => e.parentNode.removeChild(e));
+                    destination.appendChild(copy);
+                }
             },
 
             // gettransitionend() {
@@ -218,8 +223,9 @@
 
         },
         mounted() {
-            let that = this;
+            let styles = require('../assets/animation.scss');
 
+            // Fetch the group member if it exists
             if (this.group) {
                 localStorage.setItem("group", JSON.stringify(this.group));
                 this.characterList = this.group;
@@ -228,26 +234,30 @@
                     this.characterList = JSON.parse(localStorage.getItem("group"));
             }
 
-            let styles = require('../assets/animation.scss');
-
+            // Fetch some styles from the SCSS file
             this.characterSize = styles["hexagon-height"];
             this.characterBottomMargin = styles["character-bottom-margin"];
 
+            // Build the grid
             this.buildGridIds();
 
-            document.addEventListener('DOMContentLoaded', function() {
-                that.duplicateGrid(1);
-                that.duplicateGrid(2);
-                //that.zoomIn(2000);
-                that.makeContour(".vulnerable", 5000);
-                // that.zoomOut(10000);
+            // When content is loaded, make copies of the grid to facilitate the animation
+            document.addEventListener('DOMContentLoaded', () => {
+                this.duplicateGrid(2);
+
+                // THIS PART IS USED ONLY FOR TESTING PURPOSE
+                //this.zoomIn(2000);
+                this.makeContour(".vulnerable", 5000);
+                // this.zoomOut(10000);
             });
         },
 
         // To perform, otherwise, artefacts from the animation might subsist if we go back to the make your gang tool
         beforeDestroy() {
+            // Get all the grid copies
             const shapeTargets = document.querySelectorAll('.copy');
 
+            // If any, remove them
             if(shapeTargets) {
                 shapeTargets.forEach(e => e.parentNode.removeChild(e));
             }

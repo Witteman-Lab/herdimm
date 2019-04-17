@@ -141,8 +141,8 @@
         <!-- Button to continue to the next section (e.g. the animation) -->
         <section>
             <div class="control has-text-centered">
-                <p id="finalInfo" v-if="isVisible">{{this.labels.finalInfo}}</p>
-                <button id="continue" class="button is-primary is-success" v-if="isVisible" v-on:click="loadAnimationView()">{{this.labels.continueBtn}}</button>
+                <p id="finalInfo" v-if="isGroupComplete">{{this.labels.finalInfo}}</p>
+                <button id="continue" class="button is-primary is-success" v-if="isGroupComplete" v-on:click="loadAnimationView()">{{this.labels.continueBtn}}</button>
             </div>
         </section>
     </div>
@@ -168,7 +168,7 @@
         data() {
             return {
                 isActive: false,
-                isVisible: false,
+                isGroupComplete: false,
                 isEdit: false,
                 isHairColorButtonEnable: false,
                 isFaceColorButtonEnable: false,
@@ -191,7 +191,6 @@
                 totalCreated: 0,
                 isAvatarCreated: false,
                 areVulnerableCreated: false,
-                areCommunityCreated: false,
                 maxCharactersInGroup: 0,
                 hasFacialHair: false,
                 hasGlasses: false,
@@ -205,30 +204,13 @@
         methods: {
             //
             openTab(target, tabName) {
-            // openTab(evt, tabName) {
                 let tabs, tablinks;
-                // let i, tabs, tablinks;
 
                 tabs = document.querySelectorAll('.content-tab').forEach(e => e.style.display = "none");
-
-                //tabs = document.getElementsByClassName("content-tab");
-                // for (i = 0; i < tabs.length; i++) {
-                //     tabs[i].style.display = "none";
-                // }
-
                 tablinks = document.querySelectorAll('.tab').forEach(e => e.classList.remove("is-active"));
-
-                // tablinks = document.getElementsByClassName("tab");
-                // for (i = 0; i < tablinks.length; i++) {
-                //     tablinks[i].className = tablinks[i].className.replace(" is-active", "");
-                //     tablinks[i].classList.remove("is-active");
-                // }
 
                 document.getElementById(tabName).style.display = "inline-block";
                 document.getElementById(target).classList.add("is-active");
-
-                //document.getElementById(target).className += " is-active";
-                //evt.currentTarget.className += " is-active";
 
                 if (tabName === "glassesSelect")
                     this.setAccessoriesPosition("0 110 315 350"); // Works for now, but a bit too arbitrary to be shared
@@ -267,9 +249,9 @@
                     this.currentCharacterObject = character;
                     if (this.totalCreated < charactersJson.nbAvatar) {
                         this.currentShirt = "#F67844";
-                    } else {
+                    }/* else {
                         this.currentShirt = "#BFBABE";
-                    }
+                    }*/
                     this.currentColorFace = "#7C5235";
                     this.currentColorHair = "#412308";
                     this.currentGlasses = -1;
@@ -346,7 +328,7 @@
                     this.$refs.character.getSvgColor(), this.getCurrentCharacterType(this.totalCreated));
                 this.removeModal();
                 if (this.$refs.listToFill.getCharacterListSize() === this.maxCharactersInGroup) {
-                    this.isVisible = true;
+                    this.isGroupComplete = true;
                 }
             },
 
@@ -384,9 +366,8 @@
                     this.areVulnerableCreated = true;
                     this.contextualInfo = `Finally, select and customize ${charactersJson.nbCommunity} other people around you.`;
                 } else if (this.totalCreated === charactersJson.nbAvatar + charactersJson.nbVulnerable + charactersJson.nbCommunity) {
-                    this.areCommunityCreated = true;
+                    //this.areCommunityCreated = true;
                     this.contextualInfo = "";
-                    //this.finalInfo = "Press the button to start the animation";
                 }
             },
 
@@ -446,7 +427,7 @@
 <style scoped>
     h1 {
         font-weight: bold;
-        margin: 0 0 20px 0;
+        margin: 0 0 30px 0;
     }
     p {
         margin: 10px 0;
@@ -473,7 +454,12 @@
     span.facialHairList {
         height: 60px;
     }
-
+    p#contextualInfo {
+        /* border: 2px solid #F67844;
+        margin: 0 0;
+        width: auto; */
+        text-decoration: underline;
+    }
     button#continue, p#contextualInfo, p#finalInfo {
         animation: appearanceAnim;
         /* animation: appearanceAnim 2s ease-in-out; */
