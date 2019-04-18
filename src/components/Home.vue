@@ -93,6 +93,12 @@
                                 <span class="accessoriesList button facialHairList" v-for="(beard, index) in facialHairList" v-html="require(`../assets/facialHair/${beard.file}`)" v-on:click="selectBeards(index)"></span>
                             </div>
                         </div>
+
+                        <!-- <div class="notification is-warning">
+                            <button class="delete"></button>
+                            <p>Clicking this button reset all the characteristics you selected.<br />
+                            Are you sure you want to reset all?</p>
+                        </div> -->
                     </section>
                     <footer class="modal-card-foot">
                         <div class="buttons is-light">
@@ -202,10 +208,6 @@
         methods: {
             //
             openTab(target, tabName) {
-                //let tabs, tablinks;
-
-                // tabs = document.querySelectorAll('.content-tab').forEach(e => e.style.display = "none");
-                // tablinks = document.querySelectorAll('.tab').forEach(e => e.classList.remove("is-active"));
 
                 document.querySelectorAll('.content-tab').forEach(e => e.style.display = "none");
                 document.querySelectorAll('.tab').forEach(e => e.classList.remove("is-active"));
