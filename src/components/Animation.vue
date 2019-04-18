@@ -217,11 +217,37 @@
                     shapeTargets.forEach(e => e.classList.add("contour"));
                 }, delay)
 
+            },
+
+            //
+            fadeInOut(delay) {
+                // Fade-in transition
+                setTimeout(function() {
+                    document.body.classList.add('fade');
+                }, delay)
+
+                // Fade-out transition (back to normal)
+                setTimeout(function() {
+                    document.body.classList.remove('fade');
+                }, delay * 3)
+            },
+
+            //
+            makeBarrier(delay) {
+                const shapeTargets = document.querySelectorAll('.hexagon');
+
+                setTimeout(function() {
+                    shapeTargets.forEach((e) => {
+                        // Use this when animating for real (and remove this comment)
+                        // if(e.classList.value.indexOf("vaccinated") !== -1) {
+                        if(e.classList.value.indexOf("vulnerable") === -1) { // <-- For testing purpose
+                            e.classList.add("barrier");
+                        }
+                    });
+                }, delay)
             }
         },
-        created() {
-
-        },
+        created() {},
         mounted() {
             let styles = require('../assets/animation.scss');
 
@@ -247,8 +273,10 @@
 
                 // THIS PART IS USED ONLY FOR TESTING PURPOSE
                 //this.zoomIn(2000);
-                this.makeContour(".vulnerable", 5000);
-                // this.zoomOut(10000);
+                //this.makeContour(".vulnerable", 2000); // 5000
+                //this.fadeInOut(1000);
+                //this.zoomOut(10000);
+                this.makeBarrier(1000);
             });
         },
 
