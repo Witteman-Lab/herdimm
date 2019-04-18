@@ -297,7 +297,8 @@
     .character-position {
         display: block;
         float: left;
-        margin-right: auto;
-        margin-left: auto;
+        margin: 0 auto;
+        /* margin-right: auto;
+        margin-left: auto; */
     }
 </style>

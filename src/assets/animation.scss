@@ -15,33 +15,46 @@ $hex-height: 50px;
     --hex-transition: all 2s ease;
 
     /* Colors */
-    --color-hex-default: 	#C4BAB8;
-    --color-hex-vaccinated: #3C83B7;
-    --color-hex-infected:   #B0102C;
-    --color-copy1:          #FFFFFF;
-    --color-copy2:          #FFFFFF;
-    --color-contour:        #E9855B;
-    // --color-hex-avatar:     #00FF00;
-    // --color-hex-vulnerable: #FFFAB0;
-    // --color-hex-comm:       #3C83B7;
+    --color-hex-default: 	        #C4BAB8;
+    --color-hex-vaccinated:         #3C83B7;
+    --color-hex-vaccinated-shadow:  #2B72A6;
+    --color-hex-infected:           #B0102C;
+    --color-copy1:                  #FFFFFF;
+    --color-copy2:                  #FFFFFF;
+    --color-contour:                #E9855B;
+    --color-hex-vulnerable:         #FFFAB0;
+}
+
+body {
+    opacity: 1;
+    -webkit-transition: opacity 1s linear;
+    -moz-transition: opacity 1s linear;
+    -ms-transform: opacity 1s linear;
+    -o-transition: opacity 1s linear;
+    transition: opacity 1s linear;
+}
+
+body.fade {
+    opacity: 0;
+    -webkit-transition: opacity 1s linear;
+    -moz-transition: opacity 1s linear;
+    -ms-transform: opacity 1s linear;
+    -o-transition: opacity 1s linear;
+    transition: opacity 1s linear;
 }
 
 /* Colors */
-// div.avatar,
-// div.avatar::after,
-// div.avatar::before {
-//     background-color: var(--color-hex-avatar);
-// }
-// div.vulnerable,
-// div.vulnerable::after,
-// div.vulnerable::before {
-//     background-color: var(--color-hex-vulnerable);
-// }
-// div.comm,
-// div.comm::after,
-// div.comm::before {
-//     background-color: var(--color-hex-comm);
-// }
+div.vulnerable,
+div.vulnerable::after,
+div.vulnerable::before {
+    background-color: var(--color-hex-vulnerable);
+}
+div.copy .vulnerable,
+div.copy .vulnerable::after,
+div.copy .vulnerable::before {
+    background-color: var(--color-copy1);
+    z-index: 10;
+}
 
 div.color-infected,
 div.color-infected::after,
@@ -142,7 +155,6 @@ div#copy1 .contour,
 div#copy1 .contour::after,
 div#copy1 .contour::before {
     background-color: var(--color-contour);
-    // background-blend-mode: exclusion;
     z-index: 5;
 }
 
@@ -162,10 +174,6 @@ div#copy2 .contour,
 div#copy2 .contour::after,
 div#copy2 .contour::before {
     background-color: var(--color-contour);
-    // background-blend-mode: exclusion;
-    // mix-blend-mode: exclusion;
-    //mask-size: 100% 100%;
-    //mask-composite: exclude; //add subtract intersect exclude
     z-index: 5;
     -webkit-transition: background-color 2s linear;
     -moz-transition: background-color 2s linear;
@@ -191,4 +199,23 @@ div#copy2 .contour::before {
     -ms-transform: transform 2s linear;
     -o-transition: transform 2s linear;
     transition: transform 2s linear;
+}
+
+.barrier,
+.barrier::after,
+.barrier::before,
+div#copy2 .barrier,
+div#copy2 .barrier::after,
+div#copy2 .barrier::before {
+    background-color: var(--color-hex-vaccinated);
+    -webkit-transition: background-color .5s linear;
+    -moz-transition: background-color .5s linear;
+    -ms-transform: background-color .5s linear;
+    -o-transition: background-color .5s linear;
+    transition: background-color .5s linear;
+}
+div#copy1 .barrier,
+div#copy1 .barrier::after,
+div#copy1 .barrier::before {
+    background-color: var(--color-hex-vaccinated-shadow);
 }
