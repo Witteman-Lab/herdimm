@@ -1,15 +1,15 @@
 <template>
     <!-- Audio player to play the voice over -->
-    <!-- <div class="audioP">
-        <AudioPlayer ref="audioPlayer"></AudioPlayer>
-    </div> -->
+<!--    <div class="audioP">-->
+<!--        <AudioPlayer ref="audioPlayer"></AudioPlayer>-->
+<!--    </div>-->
 
     <!-- <div class="draw"> -->
         <!-- <svg id="connections"></svg> -->
     <!-- </div> -->
 
     <div class="hexagon-container">
-        <!-- <AudioPlayer ref="audioPlayer"></AudioPlayer> -->
+         <AudioPlayer ref="audioPlayer"></AudioPlayer>
         <!-- Grid creation -->
         <div v-for="shape in this.gridIds" ref="grid">
             <div :class="shape.className" :id="shape.id">
@@ -25,14 +25,14 @@
 <script>
     import Character from "./Character";
     // import GroupCharacter from "./GroupCharacter";
-    //import AudioPlayer from "./AudioPlayer";
+    import AudioPlayer from "./AudioPlayer";
     // import animations from '../assets/animation.scss';
 
     export default {
         name: "Animation",
         components: {
             Character,
-            //AudioPlayer
+            AudioPlayer
         },
         data() {
             return {

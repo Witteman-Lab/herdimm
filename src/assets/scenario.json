@@ -6,11 +6,13 @@
             {
                 "file" : "1E.mp3",
                 "sequence1" : [
-                    "startTime": 5000,
-                    "action" : "outline",
-                    "factor": 3,
-                    "duration": 2000,
-                    "delay": 0
+                    {
+                        "startTime": 5000,
+                        "action": "outline",
+                        "factor": 3,
+                        "duration": 2000,
+                        "delay": 0
+                    }
                 ]
             },
             {
