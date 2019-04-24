@@ -28,20 +28,26 @@
                 setTimeout(function() {
                     playPromise = ref.play();
                     if (playPromise !== undefined) {
-                        playPromise.then(()=> {
+                        // playPromise.then(_ => {
+                        playPromise.then(() => {
+                            // Autoplay started!
                             // lancer les futures animations ici
                         }).catch((error) => {
-                            console.log(error);
+                            console.log(error.name);
+                            console.log(error.message);
                             this.onplay = false;
-                            // error au niveau de l'audio
+                            // Autoplay was prevented.
+                            // Show a "Play" button so that user can start playback.
                         });
                     }
-                }, 1);
+                }, 1000);
             },
             loadAudioFiles(type) {
                 this.language = type;
                 const jsonPlaylist = audio[type].sequences;
+                //console.log("jsonPlaylist", jsonPlaylist);
                 const folder = audio.folder;
+                //console.log("folder", folder);
                 for (let i = 0; i < jsonPlaylist.length; i++) {
                     this.playlist.push(require(`../assets/${folder}/${type}/${jsonPlaylist[i].file}`));
                 }
