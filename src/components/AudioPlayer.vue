@@ -21,7 +21,7 @@
         props: {},
         methods: {
             playAudio() {
-                console.log(this.current);
+                //console.log(this.current);
                 let ref = this.$refs.audio;
                 let playPromise;
 
@@ -33,8 +33,8 @@
                             // Autoplay started!
                             // lancer les futures animations ici
                         }).catch((error) => {
-                            console.log(error.name);
-                            console.log(error.message);
+                            //console.log(error.name);
+                            //console.log(error.message);
                             this.onplay = false;
                             // Autoplay was prevented.
                             // Show a "Play" button so that user can start playback.
