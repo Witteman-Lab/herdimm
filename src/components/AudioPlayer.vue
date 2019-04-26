@@ -20,6 +20,7 @@
         },
         props: {},
         methods: {
+            // METHOD DESCRIPTION
             playAudio() {
                 //console.log(this.current);
                 let ref = this.$refs.audio;
@@ -42,16 +43,18 @@
                     }
                 }, 1000);
             },
+
+            // METHOD DESCRIPTION
             loadAudioFiles(type) {
                 this.language = type;
                 const jsonPlaylist = audio[type].sequences;
-                //console.log("jsonPlaylist", jsonPlaylist);
                 const folder = audio.folder;
-                //console.log("folder", folder);
                 for (let i = 0; i < jsonPlaylist.length; i++) {
                     this.playlist.push(require(`../assets/${folder}/${type}/${jsonPlaylist[i].file}`));
                 }
             },
+
+            // METHOD DESCRIPTION
             nextAudioFile() {
                 this.onplay = true;
                 if (this.playlist.length > 0) {

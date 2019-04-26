@@ -93,12 +93,6 @@
                                 <span class="accessoriesList button facialHairList" v-for="(beard, index) in facialHairList" v-html="require(`../assets/facialHair/${beard.file}`)" v-on:click="selectBeards(index)"></span>
                             </div>
                         </div>
-
-                        <!-- <div class="notification is-warning">
-                            <button class="delete"></button>
-                            <p>Clicking this button reset all the characteristics you selected.<br />
-                            Are you sure you want to reset all?</p>
-                        </div> -->
                     </section>
                     <footer class="modal-card-foot">
                         <div class="buttons is-light">
@@ -206,7 +200,7 @@
         },
         props: {},
         methods: {
-            //
+            // METHOD DESCRIPTION
             openTab(target, tabName) {
 
                 document.querySelectorAll('.content-tab').forEach(e => e.style.display = "none");
@@ -222,19 +216,19 @@
                 }
             },
 
-            //
+            // METHOD DESCRIPTION
             changeFaceColor(color) {
                 this.currentColorFace = color.hex;
                 this.$refs.character.changeFaceColor(color.hex);
             },
 
-            //
+            // METHOD DESCRIPTION
             changeHairColor(color) {
                 this.currentColorHair = color.hex;
                 this.$refs.character.changeHairColor(color.hex);
             },
 
-            //
+            // METHOD DESCRIPTION
             resetDefault() {
                 this.currentColorFace = "#7C5235";
                 this.currentColorHair = "#412308";
@@ -245,7 +239,7 @@
                 this.$refs.character.changeBeard(-1);
             },
 
-            //
+            // METHOD DESCRIPTION
             launch(character) {
                 if (this.$refs.listToFill.getCharacterListSize() < this.maxCharactersInGroup)  {
                     this.currentCharacter = require(`../assets/characters/${character.file}`);
@@ -271,7 +265,7 @@
                 }
             },
 
-            //
+            // METHOD DESCRIPTION
             launchEditModal(character, index) {
                 this.currentCharacter = require(`../assets/characters/${character.file}`);
                 this.currentCharacterObject = character;
@@ -290,48 +284,48 @@
                 this.openTab("skinColorTab", "skinColorSelect");
             },
 
-            //
+            // METHOD DESCRIPTION
             setAccessories(hasGlasses, hasBeard, hasHair) {
                 this.hasGlasses = hasGlasses;
                 this.hasFacialHair = hasBeard;
                 this.hasHair = hasHair;
             },
 
-            //
+            // METHOD DESCRIPTION
             getModalTitle(index, verb) {
                 return (index === 0 ?  `${verb} your avatar` : index <= charactersJson.nbVulnerable ? `${verb} a vulnerable person` : `${verb} a person around you`);
             },
 
-            //
+            // METHOD DESCRIPTION
             setGlassesList(glasses) {
                 this.glassesList = glasses;
             },
 
-            //
+            // METHOD DESCRIPTION
             setBeardsList(beards) {
                 this.beardsList = beards;
             },
 
-            //
+            // METHOD DESCRIPTION
             selectGlasses( pos) {
                 this.$refs.character.changeGlasses(pos);
                 this.isGlassesButtonEnable = false;
             },
 
-            //
+            // METHOD DESCRIPTION
             selectBeards(pos) {
                 this.$refs.character.changeBeard(pos);
                 this.isBeardsButtonEnable = false;
             },
 
-            //
+            // METHOD DESCRIPTION
             removeModal() {
                 this.isActive = false;
                 this.isHairColorButtonEnable = false;
                 this.isFaceColorButtonEnable = false;
             },
 
-            //
+            // METHOD DESCRIPTION
             saveCharacter() {
                 this.manageCharacterCount();
                 this.$refs.listToFill.addCharacterToGroup(this.currentCharacterObject,
@@ -342,14 +336,14 @@
                 }
             },
 
-            //
+            // METHOD DESCRIPTION
             saveEditCharacter() {
                 this.$refs.listToFill.editCharacter(this.currentCharacterObject,
                     this.$refs.character.getSvgColor(), this.currentCharacterObject.characterType);
                 this.removeModal();
             },
 
-            //
+            // METHOD DESCRIPTION
             getCurrentCharacterType(position) {
                 if (position <= charactersJson.nbAvatar) {
                     return "avatar";
@@ -360,13 +354,13 @@
                 }
             },
 
-            //
+            // METHOD DESCRIPTION
             loadAnimationView() {
                 let groupCharacter = this.$refs.listToFill.getCharacterList();
                 this.$router.push({name: 'Animation', params:{group: groupCharacter}});
             },
 
-            //
+            // METHOD DESCRIPTION
             manageCharacterCount() {
                 this.totalCreated++;
                 if (this.totalCreated === charactersJson.nbAvatar) {
@@ -381,7 +375,7 @@
                 }
             },
 
-            //
+            // METHOD DESCRIPTION
             setAccessoriesPosition(position) {
                 let accessories = document.getElementsByClassName("accessoriesList");
                 for (let i = 0; i < accessories.length; i++) {

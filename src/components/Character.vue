@@ -45,7 +45,7 @@
             size: Object
         },
         methods: {
-            //
+            // METHOD DESCRIPTION
             changeShirtColor(color) {
                 this.svgColor.shirt = color;
                 this.svgColor.shirtShadow = this.getDarkerShade(color);
@@ -53,7 +53,7 @@
                     `.st0_custom_${this.id}{fill:${this.svgColor.shirt};}.st1_custom_${this.id}{fill:${this.svgColor.shirtShadow};}`;
             },
 
-            //
+            // METHOD DESCRIPTION
             changeFaceColor(color) {
                 this.svgColor.face = color;
                 this.svgColor.faceShadow = this.getDarkerShade(color);
@@ -61,7 +61,7 @@
                     `.st2_custom_${this.id}{fill:${this.svgColor.face};}.st3_custom_${this.id}{fill:${this.svgColor.faceShadow};}`;
             },
 
-            //
+            // METHOD DESCRIPTION
             changeHairColor(color){
                 this.svgColor.hairFront = color;
                 this.svgColor.hairBack = this.getDarkerShade(color);
@@ -69,7 +69,7 @@
                     `.st5_custom_${this.id}{fill:${this.svgColor.hairFront};}.st4_custom_${this.id}{fill:${this.svgColor.hairBack};}`;
             },
 
-            //
+            // METHOD DESCRIPTION
             changeBeard(pos) {
                 if (pos === undefined)
                     return 0;
@@ -91,7 +91,7 @@
                 }
             },
 
-            //
+            // METHOD DESCRIPTION
             changeGlasses(pos) {
                 if (pos === undefined)
                     return 0;
@@ -113,12 +113,12 @@
                 }
             },
 
-            //
+            // METHOD DESCRIPTION
             resetFaceColor(){
                 this.$refs.characterImg.children[0].children[0].innerHTML = this.defaultColor;
             },
 
-            //
+            // METHOD DESCRIPTION
             getSvgColor() {
                 return this.svgColor
             },
@@ -162,14 +162,14 @@
                 return "#" + hex_red + hex_green + hex_blue;
             },
 
-            //
+            // METHOD DESCRIPTION
             createYourCharacter() {
                 if (this.edit) {
                     this.$parent.launchModal(this.id);
                 }
             },
 
-            //
+            // METHOD DESCRIPTION
             editCharacterColors(colors) {
                 this.changeFaceColor(colors.face);
                 this.changeHairColor(colors.hairFront);
@@ -178,7 +178,7 @@
                 this.changeShirtColor(colors.shirt);
             },
 
-            //
+            // METHOD DESCRIPTION
             loadSvgData() {
                 if (this.svg) {
                     this.width = this.size.width;
@@ -202,7 +202,7 @@
                 childrenPosition.style.display = "inline";
             },
 
-            //
+            // METHOD DESCRIPTION
             manageGlasses(position) {
                 let childrenPosition = this.$refs.characterImg.children[0].children[position];
                 this.manageAccessories(childrenPosition, "_glasses_");
@@ -218,7 +218,7 @@
                 this.hasGlasses = true;
             },
 
-            //
+            // METHOD DESCRIPTION
             manageBeards(position) {
                 let childrenPosition = this.$refs.characterImg.children[0].children[position];
                 this.manageAccessories(childrenPosition, "_beards_");
@@ -244,7 +244,7 @@
                 this.hasBeard = true;
             },
 
-            //
+            // METHOD DESCRIPTION
             parseCharacterAttributes() {
                 let characterImgSVG = this.$refs.characterImg.children[0];
 
@@ -275,7 +275,7 @@
                 }
             },
 
-            //
+            // METHOD DESCRIPTION
             updateCurrentSvg() {
                 this.svg = this.svgFile;
             }

@@ -24,13 +24,13 @@
             Character
         },
         methods: {
-            //
+            // METHOD DESCRIPTION
             addCharacterToGroup(character, characterColors, type) {
                 this.characterList.push({id: character.id + this.characterList.length + "_customised",
                     file: character.file, colors: characterColors, characterType: type});
             },
 
-            //
+            // METHOD DESCRIPTION
             editCharacter(character, characterColors, type) {
                 this.characterList.map((obj, index) => {
                     if (obj.id === character.id) {
@@ -41,7 +41,7 @@
                 });
             },
 
-            //
+            // METHOD DESCRIPTION
             launchModal(id) {
                 this.characterList.filter((obj, index) => {
                     if (obj.id === id) {
@@ -50,17 +50,17 @@
                 });
             },
 
-            //
+            // METHOD DESCRIPTION
             addGroup(characters) {
                 this.characterList = characters;
             },
 
-            //
+            // METHOD DESCRIPTION
             getCharacterListSize() {
                 return this.characterList.length;
             },
 
-            //
+            // METHOD DESCRIPTION
             getCharacterList() {
                 return this.characterList;
             }

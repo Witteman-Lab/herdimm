@@ -25,7 +25,7 @@ export default {
         characters: Array
     },
     methods: {
-        //
+        // METHOD DESCRIPTION
         launchModal(id) {
             this.characterList.filter(obj => {
                 if (obj.id === id) {
@@ -34,7 +34,7 @@ export default {
             });
         },
 
-        //
+        // METHOD DESCRIPTION
         getCharacterListSize() {
             return this.characterList.length;
         }

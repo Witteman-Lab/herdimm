@@ -78,7 +78,7 @@
             }
         },
         methods: {
-            //
+            // METHOD DESCRIPTION
             buildGridIds() {
                 let numId = 0;
 
@@ -135,7 +135,7 @@
                 });
             },
 
-            //
+            // METHOD DESCRIPTION
             // duplicateGrid(copyIndex) {
             duplicateGrid(nbOfCopy) {
                 const sourceElement = document.querySelector('.hexagon-container');
@@ -152,6 +152,7 @@
                 }
             },
 
+            // METHOD DESCRIPTION
             // gettransitionend() {
             //     var root = document.documentElement;
             //     var transitions = {
@@ -219,7 +220,7 @@
 
             },
 
-            //
+            // METHOD DESCRIPTION
             fadeInOut(delay) {
                 // Fade-in transition
                 setTimeout(function() {
@@ -232,7 +233,7 @@
                 }, delay * 3)
             },
 
-            //
+            // METHOD DESCRIPTION
             makeBarrier(delay) {
                 const shapeTargets = document.querySelectorAll('.hexagon');
 
