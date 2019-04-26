@@ -77,7 +77,6 @@ div.color-vaccinated::before {
 /* Hexagons */
 .hexagon-container {
     display: grid;
-    grid-template-columns: var(--hex-width) var(--hex-width) var(--hex-width) var(--hex-width);
     grid-template-columns: repeat(14, var(--hex-width)); // Repeat 14 times because grid contains 14 columns
     grid-auto-rows: calc(var(--hex-height) / 10);
     grid-gap: calc(var(--hex-between) / 3) calc(var(--hex-height) / 2);

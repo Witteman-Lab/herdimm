@@ -136,7 +136,6 @@
             },
 
             // METHOD DESCRIPTION
-            // duplicateGrid(copyIndex) {
             duplicateGrid(nbOfCopy) {
                 const sourceElement = document.querySelector('.hexagon-container');
                 const destination = sourceElement.parentNode;
@@ -272,7 +271,7 @@
             document.addEventListener('DOMContentLoaded', () => {
                 this.duplicateGrid(2);
 
-                // THIS PART IS USED ONLY FOR TESTING PURPOSE
+                // THIS PART IS USED ONLY FOR ANIMATION TESTING PURPOSE
                 //this.zoomIn(2000);
                 //this.makeContour(".vulnerable", 2000); // 5000
                 //this.fadeInOut(1000);
@@ -300,6 +299,9 @@
         width: auto;
         /* width: 100vw; */
         height: 100vh;
+    }
+    div.column {
+        display: grid;
     }
     #connections {
         position: absolute;
