@@ -1,0 +1,59 @@
+{
+    "folder" : "audio",
+    "fr" : {
+        "folder" : "fr",
+        "sequences" : [
+            {
+                "file" : "1F.mp3"
+            },
+            {
+                "file" : "2F.mp3"
+            },
+            {
+                "file" : "3F.mp3"
+            },
+            {
+                "file" : "4F.mp3"
+            },
+            {
+                "file" : "5F.mp3"
+            },
+            {
+                "file" : "6F.mp3"
+            },
+            {
+                "file" : "7F.mp3"
+            },
+            {
+                "file" : "8F.mp3"
+            },
+            {
+                "file" : "9F.mp3"
+            },
+            {
+                "file" : "10F.mp3"
+            },
+            {
+                "file" : "11F.mp3"
+            },
+            {
+                "file" : "12F.mp3"
+            },
+            {
+                "file" : "13F.mp3"
+            },
+            {
+                "file" : "14F.mp3"
+            },
+            {
+                "file" : "15F.mp3"
+            },
+            {
+                "file" : "16F.mp3"
+            },
+            {
+                "file" : "17F.mp3"
+            }
+        ]
+    }
+}
