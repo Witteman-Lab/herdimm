@@ -1,6 +1,7 @@
 <template>
     <div id="audioPlayer">
          <audio :src="this.current" muted="muted" ref="audio" @ended="nextAudioFile()" preload="auto"></audio>
+         <track :src="this.caption" kind="captions" srclang="en" label="english_captions">
     </div>
 </template>
 
@@ -15,6 +16,8 @@
                 language: "en",
                 playlist: [],
                 current: '',
+                captions: [],
+                caption: '',
                 onplay: false
             }
         },
@@ -51,6 +54,7 @@
                 const folder = audio.folder;
                 for (let i = 0; i < jsonPlaylist.length; i++) {
                     this.playlist.push(require(`../assets/${folder}/${type}/${jsonPlaylist[i].file}`));
+                    this.captions.push(jsonPlaylist[i].caption);
                 }
             },
 
@@ -59,9 +63,11 @@
                 this.onplay = true;
                 if (this.playlist.length > 0) {
                     this.current = this.playlist.shift();
+                    this.caption = this.captions.shift();
                     this.playAudio();
                 } else {
                     this.current = "";
+                    this.caption = "";
                     this.onplay = false;
                 }
             },

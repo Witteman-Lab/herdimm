@@ -4,55 +4,72 @@
         "folder" : "en",
         "sequences" : [
             {
-                "file" : "1E.mp3"
+                "file" : "1E.mp3",
+                "caption" : "What role does each of us play in protecting our community?"
             },
             {
-                "file" : "2E.mp3"
+                "file" : "2E.mp3",
+                "caption" : "Imagine this is you."
             },
             {
-                "file" : "3E.mp3"
+                "file" : "3E.mp3",
+                "caption" : ""
             },
             {
-                "file" : "4E.mp3"
+                "file" : "4E.mp3",
+                "caption" : ""
             },
             {
-                "file" : "5E.mp3"
+                "file" : "5E.mp3",
+                "caption" : ""
             },
             {
-                "file" : "6E.mp3"
+                "file" : "6E.mp3",
+                "caption" : ""
             },
             {
-                "file" : "7E.mp3"
+                "file" : "7E.mp3",
+                "caption" : ""
             },
             {
-                "file" : "8E.mp3"
+                "file" : "8E.mp3",
+                "caption" : ""
             },
             {
-                "file" : "9E.mp3"
+                "file" : "9E.mp3",
+                "caption" : ""
             },
             {
-                "file" : "10E.mp3"
+                "file" : "10E.mp3",
+                "caption" : ""
             },
             {
-                "file" : "11E.mp3"
+                "file" : "11E.mp3",
+                "caption" : ""
             },
             {
-                "file" : "12E.mp3"
+                "file" : "12E.mp3",
+                "caption" : ""
             },
             {
-                "file" : "13E.mp3"
+                "file" : "13E.mp3",
+                "caption" : ""
             },
             {
-                "file" : "14E.mp3"
+                "file" : "14E.mp3",
+                "caption" : ""
             },
             {
-                "file" : "15E.mp3"
+                "file" : "15E.mp3",
+                "caption" : ""
             },
             {
-                "file" : "16E.mp3"
+                "file" : "16E.mp3",
+                "caption" : ""
             },
             {
-                "file" : "17E.mp3"
+                "file" : "17E.mp3",
+                "caption" : ""
             }
         ]
     },
