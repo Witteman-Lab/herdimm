@@ -19,11 +19,11 @@
                                     <a>Colors</a>
                                 </li> -->
                                 <li class="tab" id="skinColorTab" v-on:click="openTab('skinColorTab', 'skinColorSelect')">
-                                <!-- <li class="tab" id="skinColorTab" v-on:click="openTab($event, 'skinColorSelect')"> -->
+                                    <!-- <li class="tab" id="skinColorTab" v-on:click="openTab($event, 'skinColorSelect')"> -->
                                     <a>{{this.labels.skinColorTab}}</a>
                                 </li>
                                 <li class="tab" id="hairColorTab" v-if="this.hasHair" v-on:click="openTab('hairColorTab', 'hairColorSelect')">
-                                <!-- <li class="tab" id="hairColorTab" v-if="this.hasHair" v-on:click="openTab($event, 'hairColorSelect')"> -->
+                                    <!-- <li class="tab" id="hairColorTab" v-if="this.hasHair" v-on:click="openTab($event, 'hairColorSelect')"> -->
                                     <a>{{this.labels.hairColorTab}}</a>
                                 </li>
 
@@ -46,9 +46,9 @@
                             <!-- Skin color -->
                             <div id="skinColorSelect" class="content-tab">
                                 <Compact
-                                    :value="this.currentColorFace"
-                                    @input="this.changeFaceColor"
-                                    :palette="['#FFE2C9', '#FFCBA3', '#E7B38D', '#D8905F', '#7C5235']"
+                                        :value="this.currentColorFace"
+                                        @input="this.changeFaceColor"
+                                        :palette="['#FFE2C9', '#FFCBA3', '#E7B38D', '#D8905F', '#7C5235']"
                                 />
                                 <!-- <Compact
                                     :value="this.currentColorFace"
@@ -66,9 +66,9 @@
                             <!-- Hair color -->
                             <div id="hairColorSelect" class="content-tab" v-if="this.hasHair" >
                                 <Compact
-                                    :value="this.currentColorHair"
-                                    @input="this.changeHairColor"
-                                    :palette="[
+                                        :value="this.currentColorHair"
+                                        @input="this.changeHairColor"
+                                        :palette="[
                                         '#090806', '#2C222B', '#71635A',
                                         '#B7A69E', '#D6C4C2', '#CABFB1',
                                         '#DCD0BA', '#FFF5E1', '#E6CEA8',
@@ -83,14 +83,18 @@
 
                             <!-- Glasses -->
                             <div id="glassesSelect" class="content-tab buttons" v-if="this.hasGlasses">
-                                <span class="accessoriesList button" v-on:click="selectGlasses(-1)">None</span>
-                                <span class="accessoriesList button" v-for="(glasses, index) in glassesListJson" v-on:click="selectGlasses(index)" v-html="require(`../assets/glasses/${glasses.file}`)"></span>
+                                <ul>
+                                    <li class="accessoriesList button" style="height: 15%; width: 15%;" v-on:click="selectGlasses(-1)">None</li>
+                                    <li class="accessoriesList button" v-for="(glasses, index) in glassesListJson" v-on:click="selectGlasses(index)" v-html="require(`../assets/glasses/${glasses.file}`)"></li>
+                                </ul>
                             </div>
 
                             <!-- Facial hair -->
                             <div id="facialHairSelect" class="content-tab buttons" v-if="this.hasFacialHair">
-                                <span class="accessoriesList button" v-on:click="selectBeards(-1)">None</span>
-                                <span class="accessoriesList button facialHairList" v-for="(beard, index) in facialHairList" v-html="require(`../assets/facialHair/${beard.file}`)" v-on:click="selectBeards(index)"></span>
+                                <ul>
+                                    <li class="accessoriesList button" style="height: 15%; width: 15%;" v-on:click="selectBeards(-1)">None</li>
+                                    <li class="accessoriesList button facialHairList" v-for="(beard, index) in facialHairList" v-html="require(`../assets/facialHair/${beard.file}`)" v-on:click="selectBeards(index)"></li>
+                                </ul>
                             </div>
                         </div>
                     </section>
@@ -210,9 +214,9 @@
                 document.getElementById(target).classList.add("is-active");
 
                 if (tabName === "glassesSelect")
-                    this.setAccessoriesPosition("0 110 315 350"); // Works for now, but a bit too arbitrary to be shared
+                 this.setAccessoriesPosition("100px","-30px"); // Works for now, but a bit too arbitrary to be shared
                 else if (tabName === "facialHairSelect") {
-                    this.setAccessoriesPosition("40 130 225 350"); // Works for now, but a bit too arbitrary to be shared
+                    this.setAccessoriesPosition("90px", "-43px"); // Works for now, but a bit too arbitrary to be shared
                 }
             },
 
@@ -307,7 +311,7 @@
             },
 
             // METHOD DESCRIPTION
-            selectGlasses( pos) {
+            selectGlasses(pos) {
                 this.$refs.character.changeGlasses(pos);
                 this.isGlassesButtonEnable = false;
             },
@@ -376,12 +380,14 @@
             },
 
             // METHOD DESCRIPTION
-            setAccessoriesPosition(position) {
+            setAccessoriesPosition(height, marginTop) {
                 let accessories = document.getElementsByClassName("accessoriesList");
                 for (let i = 0; i < accessories.length; i++) {
                     if (accessories[i].innerHTML !== "None") {
                         let item = accessories[i].children[0];
-                        item.setAttribute("viewBox", position);
+                        item.setAttribute("height", height);
+                        //item.setAttribute("width", "80px");
+                        item.setAttribute("style", `margin-top: ${marginTop};`);
                     }
                 }
             }
@@ -399,10 +405,10 @@
                 // Escape key to close the modal window (customizer)
                 if (e.keyCode === 27 && this.isActive) {
                     this.removeModal();
-                // Enter key to add a new character to the group (and close the customizer)
+                    // Enter key to add a new character to the group (and close the customizer)
                 } else if (e.keyCode === 13 && this.isActive  && !this.isEdit) {
                     this.saveCharacter();
-                // Enter key to save edits to a group member (and close the customizer)
+                    // Enter key to save edits to a group member (and close the customizer)
                 }  else if (e.keyCode === 13  && this.isActive && this.isEdit) {
                     this.saveEditCharacter();
                 }
@@ -450,7 +456,7 @@
         display: none;
         margin: 0 0 1rem 0;
     }
-    span.accessoriesList {
+    li.accessoriesList {
         display: inline-block;
         margin: 0 auto;
         min-width: 100px;
@@ -477,21 +483,21 @@
         animation-direction: alternate;
     }
     @keyframes appearanceAnim {
-      0% {
-        opacity: 1;
-      }
-      25% {
-        opacity: 0.25;
-      }
-      50% {
-        opacity: 1;
-      }
-      75% {
-        opacity: 0.25;
-      }
-      100% {
-        opacity: 1;
-      }
+        0% {
+            opacity: 1;
+        }
+        25% {
+            opacity: 0.25;
+        }
+        50% {
+            opacity: 1;
+        }
+        75% {
+            opacity: 0.25;
+        }
+        100% {
+            opacity: 1;
+        }
     }
 
     @media only screen and (max-width: 768px) {
