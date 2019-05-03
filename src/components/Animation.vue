@@ -1,15 +1,13 @@
 <template>
-    <!-- Audio player to play the voice over -->
-<!--    <div class="audioP">-->
-<!--        <AudioPlayer ref="audioPlayer"></AudioPlayer>-->
-<!--    </div>-->
 
-    <!-- <div class="draw"> -->
-        <!-- <svg id="connections"></svg> -->
-    <!-- </div> -->
+    <!-- <div class="draw">
+        <svg id="connections"></svg>
+    </div> -->
 
     <div class="hexagon-container">
-         <AudioPlayer ref="audioPlayer"></AudioPlayer>
+        <!-- Audio player for audio files -->
+        <AudioPlayer ref="audioPlayer"></AudioPlayer>
+
         <!-- Grid creation -->
         <div v-for="shape in this.gridIds" ref="grid">
             <div :class="shape.className" :id="shape.id">
@@ -20,6 +18,10 @@
             </div>
         </div>
     </div>
+
+    <!-- <div id="captions">
+        <p id="caption"></p>
+    </div> -->
 </template>
 
 <script>
@@ -211,16 +213,15 @@
             // Borders are not rendering well the way shapes (hexagons in this case) are being created
             // Zoom by adding class, but we do't have controls on the parameters, such as sclae values, duration, etc.
             // Would be nice to do it with Javascript, so we can control these parameters
-            makeContour(target, delay) {
+            makeContour(target, delay, classToAdd) {
                 const shapeTargets = document.querySelectorAll('#copy2 ' + target);
                 setTimeout(function() {
-                    shapeTargets.forEach(e => e.classList.add("contour"));
+                    shapeTargets.forEach(e => e.classList.add(classToAdd));
                 }, delay)
-
             },
 
             // METHOD DESCRIPTION
-            fadeInOut(delay) {
+            fadeInOut(delay, duration) {
                 // Fade-in transition
                 setTimeout(function() {
                     document.body.classList.add('fade');
@@ -229,11 +230,11 @@
                 // Fade-out transition (back to normal)
                 setTimeout(function() {
                     document.body.classList.remove('fade');
-                }, delay * 3)
+                }, delay + duration)
             },
 
             // METHOD DESCRIPTION
-            makeBarrier(delay) {
+            makeTransformer(delay) {
                 const shapeTargets = document.querySelectorAll('.hexagon');
 
                 setTimeout(function() {
@@ -272,11 +273,12 @@
                 this.duplicateGrid(2);
 
                 // THIS PART IS USED ONLY FOR ANIMATION TESTING PURPOSE
-                //this.zoomIn(2000);
-                //this.makeContour(".vulnerable", 2000); // 5000
-                //this.fadeInOut(1000);
-                //this.zoomOut(10000);
-                this.makeBarrier(1000);
+                this.zoomIn(1000);
+                this.makeContour(".vulnerable", 3000, "contour");
+                this.zoomOut(5000);
+                this.fadeInOut(7000, 2000);
+                this.makeTransformer(12000);
+                this.makeContour(".vulnerable", 15000, "barrier");
             });
         },
 
@@ -310,4 +312,10 @@
         width: 100%;
         height: 100vh;
     }
+    /* #captions {
+
+    }
+    #caption {
+
+    } */
 </style>
