@@ -3,8 +3,7 @@
     <!-- <div class="draw">
         <svg id="connections"></svg>
     </div> -->
-
-    <div class="hexagon-container">
+    <div class="hexagon-container" >
         <!-- Audio player for audio files -->
         <AudioPlayer ref="audioPlayer"></AudioPlayer>
 
@@ -269,17 +268,16 @@
             this.buildGridIds();
 
             // When content is loaded, make copies of the grid to facilitate the animation
-            document.addEventListener('DOMContentLoaded', () => {
-                this.duplicateGrid(2);
-
-                // THIS PART IS USED ONLY FOR ANIMATION TESTING PURPOSE
-                this.zoomIn(1000);
-                this.makeContour(".vulnerable", 3000, "contour");
-                this.zoomOut(5000);
-                this.fadeInOut(7000, 2000);
-                this.makeTransformer(12000);
-                this.makeContour(".vulnerable", 15000, "barrier");
-            });
+            // document.addEventListener('DOMContentLoaded', () => {
+            this.duplicateGrid(2);
+            // THIS PART IS USED ONLY FOR ANIMATION TESTING PURPOSE
+            this.zoomIn(1000);
+            this.makeContour(".vulnerable", 3000, "contour");
+            this.zoomOut(5000);
+            this.fadeInOut(7000, 2000);
+            this.makeTransformer(12000);
+            this.makeContour(".vulnerable", 15000, "barrier");
+            // });
         },
 
         // To perform, otherwise, artefacts from the animation might subsist if we go back to the make your gang tool
@@ -288,7 +286,7 @@
             const shapeTargets = document.querySelectorAll('.copy');
 
             // If any, remove them
-            if(shapeTargets) {
+            if (shapeTargets) {
                 shapeTargets.forEach(e => e.parentNode.removeChild(e));
             }
         }
@@ -312,6 +310,7 @@
         width: 100%;
         height: 100vh;
     }
+
     /* #captions {
 
     }
@@ -319,3 +318,20 @@
 
     } */
 </style>
+<!-- @media screen and (orientation: portrait){
+        .hexagon-container {
+            margin: 0;
+            width: auto;
+            /* width: 100vw; */
+            height: 100vh;
+        }
+    }
+
+    @media screen and (orientation: landscape) {
+        .hexagon-container {
+            margin: 0;
+            width: auto;
+            /* width: 100vw; */
+            height: 100vh;
+        }
+    }-->
