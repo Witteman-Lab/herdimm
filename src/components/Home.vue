@@ -113,6 +113,7 @@
         <!-- INTERFACE -->
         <div class="is-centered is-half-desktop is-half-mobile">
             <h1>{{this.labels.pageTitle}}</h1>
+            <button id="selectLanguage" class="button" v-on:click="this.changeLanguage">{{this.labels.language}}</button>
 
             <p id="generalInfo">{{this.labels.generalInfo}}</p>
             <p id="contextualInfo">{{ contextualInfo }}</p>
@@ -155,7 +156,8 @@
     import { Compact }  from "vue-color";
     import CharacterList from "../components/CharacterList";
     import charactersJson from "../assets/json/characters.json";
-    import texts from "../assets/json/texts.json";
+    import textsEng from "../assets/json/textsEng.json";
+    import textsFr from "../assets/json/textsFr.json";
     import glassesJson from "../assets/json/glasses.json";
     import facialHairJson from "../assets/json/facialHair.json";
     import GroupCharacter from "../components/GroupCharacter";
@@ -169,6 +171,7 @@
         },
         data() {
             return {
+                isLanguageChanged: true,
                 isActive: false,
                 isGroupComplete: false,
                 isEdit: false,
@@ -262,8 +265,7 @@
                     this.currentBeard = -1;
                     this.isActive = true;
                     this.isEdit = false;
-                    this.modalTitle = this.getModalTitle(this.totalCreated, "Create");
-
+                    this.modalTitle = this.getModalTitle(this.totalCreated, this.labels.createAvatar);
                     // Display the skin tab content when opening modal window
                     this.openTab("skinColorTab", "skinColorSelect");
                 }
@@ -282,7 +284,7 @@
 
                 this.isActive = true;
                 this.isEdit = true;
-                this.modalTitle = this.getModalTitle(index, "Edit");
+                this.modalTitle = this.getModalTitle(index, this.labels.editAvatar);
 
                 // Display the skin tab content when opening modal window
                 this.openTab("skinColorTab", "skinColorSelect");
@@ -297,7 +299,7 @@
 
             // METHOD DESCRIPTION
             getModalTitle(index, verb) {
-                return (index === 0 ?  `${verb} your avatar` : index <= charactersJson.nbVulnerable ? `${verb} a vulnerable person` : `${verb} a person around you`);
+                return (index === 0 ?  `${verb} ${this.labels.avatar}` : index <= charactersJson.nbVulnerable ? `${verb} ${this.labels.vulnerable}` : `${verb} ${this.labels.otherPeople}`);
             },
 
             // METHOD DESCRIPTION
@@ -331,6 +333,7 @@
 
             // METHOD DESCRIPTION
             saveCharacter() {
+                this.totalCreated++;
                 this.manageCharacterCount();
                 this.$refs.listToFill.addCharacterToGroup(this.currentCharacterObject,
                     this.$refs.character.getSvgColor(), this.getCurrentCharacterType(this.totalCreated));
@@ -366,17 +369,17 @@
 
             // METHOD DESCRIPTION
             manageCharacterCount() {
-                this.totalCreated++;
-                if (this.totalCreated === charactersJson.nbAvatar) {
-                    this.isAvatarCreated = true;
-                    this.contextualInfo = `Now, select and customize ${charactersJson.nbVulnerable} people you consider vulnerable.`;
-                } else if (this.totalCreated === charactersJson.nbAvatar + charactersJson.nbVulnerable) {
-                    this.areVulnerableCreated = true;
-                    this.contextualInfo = `Finally, select and customize ${charactersJson.nbCommunity} other people around you.`;
-                } else if (this.totalCreated === charactersJson.nbAvatar + charactersJson.nbVulnerable + charactersJson.nbCommunity) {
-                    //this.areCommunityCreated = true;
-                    this.contextualInfo = "";
-                }
+              if (this.totalCreated < charactersJson.nbAvatar)  {
+                   this.contextualInfo = this.labels.contextualInfoAvatar;
+               } else if (this.totalCreated < charactersJson.nbAvatar + charactersJson.nbVulnerable) {
+                   this.isAvatarCreated = true;
+                   this.contextualInfo = `${this.labels.nowSelect} ${charactersJson.nbVulnerable} ${this.labels.selectVulnerable}`;
+                } else if (this.totalCreated < charactersJson.nbAvatar + charactersJson.nbVulnerable + charactersJson.nbCommunity) {
+                   this.areVulnerableCreated = true;
+                   this.contextualInfo = `${this.labels.finallySelect} ${charactersJson.nbCommunity} ${this.labels.selectOthersPeople}`;
+                } else {
+                   this.contextualInfo = "";
+               }
             },
 
             // METHOD DESCRIPTION
@@ -386,17 +389,26 @@
                     if (accessories[i].innerHTML !== "None") {
                         let item = accessories[i].children[0];
                         item.setAttribute("height", height);
-                        //item.setAttribute("width", "80px");
                         item.setAttribute("style", `margin-top: ${marginTop};`);
                     }
                 }
-            }
+            },
+
+            changeLanguage() {
+                if (this.isLanguageChanged)
+                    this.labels = textsFr;
+                else
+                    this.labels = textsEng;
+                this.isLanguageChanged = !this.isLanguageChanged;
+                this.manageCharacterCount();
+                this.$forceUpdate();
+            },
         },
         created() {
             this.characterList = charactersJson.characters;
-            this.labels = texts;
+            this.labels = textsEng;
             this.maxCharactersInGroup = charactersJson.nbAvatar + charactersJson.nbVulnerable + charactersJson.nbCommunity;
-            this.contextualInfo = "First, select and customize your own avatar.";
+            this.contextualInfo = this.labels.contextualInfoAvatar;
             this.facialHairList = facialHairJson.beards;
             this.glassesListJson = glassesJson.glasses;
         },

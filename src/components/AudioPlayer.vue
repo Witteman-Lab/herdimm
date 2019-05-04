@@ -35,7 +35,7 @@
                         // playPromise.then(_ => {
                         playPromise.then(() => {
                             // Autoplay started!
-                            // lancer les futures animations ici
+                            // launch futures animations here
                         }).catch((error) => {
                             //console.log(error.name);
                             //console.log(error.message);
