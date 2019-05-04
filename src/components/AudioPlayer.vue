@@ -6,7 +6,7 @@
 </template>
 
 <script>
-    import audio from "../assets/audio.json";
+    import audio from "../assets/json/audio.json";
 
     export default {
         name: "AudioPlayer",

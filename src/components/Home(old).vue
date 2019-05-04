@@ -133,9 +133,9 @@
     import Character from '../components/Character.vue'
     import { Compact }  from 'vue-color';
     import CharacterList from "../components/CharacterList";
-    import json from '../assets/characters.json';
-    import glassesJson from '../assets/glasses.json';
-    import facialHairJson from '../assets/facialHair.json';
+    import json from '../assets/json/characters.json';
+    import glassesJson from '../assets/json/glasses.json';
+    import facialHairJson from '../assets/json/facialHair.json';
     import GroupCharacter from "../components/GroupCharacter";
     export default {
         name: 'home',

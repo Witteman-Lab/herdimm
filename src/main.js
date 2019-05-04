@@ -1,12 +1,10 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-//import VueKonva from 'vue-konva'
 
-//Vue.use(VueKonva)
 //Vue.config.productionTip = false;
-require("./assets/main.scss")
-require("./assets/animation.scss")
+require("./scss/main.scss");
+require("./scss/animation.scss");
 
 new Vue({
     router,
