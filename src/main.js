@@ -4,7 +4,7 @@ import router from './router'
 
 //Vue.config.productionTip = false;
 require("./scss/main.scss");
-require("./scss/animation.scss");
+// require("./scss/animation.scss");
 
 new Vue({
     router,

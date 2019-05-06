@@ -25,9 +25,7 @@
 
 <script>
     import Character from "./Character";
-    // import GroupCharacter from "./GroupCharacter";
     import AudioPlayer from "./AudioPlayer";
-    // import animations from '../assets/animation.scss';
 
     export default {
         name: "Animation",
@@ -249,7 +247,7 @@
         },
         created() {},
         mounted() {
-            let styles = require('../assets/animation.scss');
+            let styles = require('../scss/animation.scss');
 
             // Fetch the group member if it exists
             if (this.group) {
