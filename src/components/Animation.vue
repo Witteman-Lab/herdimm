@@ -3,12 +3,17 @@
     <!-- <div class="draw">
         <svg id="connections"></svg>
     </div> -->
+
+    <!-- <div>
+        <AudioPlayer ref="audioPlayer"></AudioPlayer>
+    </div> -->
+
     <div class="hexagon-container" >
         <!-- Audio player for audio files -->
         <AudioPlayer ref="audioPlayer"></AudioPlayer>
 
         <!-- Grid creation -->
-        <div v-for="shape in this.gridIds" ref="grid">
+        <div v-for="shape in this.gridIds">
             <div :class="shape.className" :id="shape.id">
                 <!-- Where the group members are being placed -->
                 <div :style="{height: characterSize, marginBottom: characterBottomMargin}" v-if="shape.isCharacter">
@@ -142,7 +147,9 @@
 
                 for (let i = 1; i <= nbOfCopy; i++) {
                     copy = sourceElement.cloneNode(true);
-                    //copy.className += " copy";
+                    // Remove first child (being the AudioPlayer element, which we don't need multiple times)
+                    // There might be a better way of doing this, but this works for now
+                    copy.removeChild(copy.childNodes[0]);
                     copy.classList.add("copy");
                     copy.id = "copy" + i;
                     copy.querySelectorAll('.character-position').forEach(e => e.parentNode.removeChild(e));
@@ -266,16 +273,16 @@
             this.buildGridIds();
 
             // When content is loaded, make copies of the grid to facilitate the animation
-            // document.addEventListener('DOMContentLoaded', () => {
-            this.duplicateGrid(2);
-            // THIS PART IS USED ONLY FOR ANIMATION TESTING PURPOSE
-            this.zoomIn(1000);
-            this.makeContour(".vulnerable", 3000, "contour");
-            this.zoomOut(5000);
-            this.fadeInOut(7000, 2000);
-            this.makeTransformer(12000);
-            this.makeContour(".vulnerable", 15000, "barrier");
-            // });
+            document.addEventListener('DOMContentLoaded', () => {
+                this.duplicateGrid(2);
+                // THIS PART IS USED ONLY FOR ANIMATION TESTING PURPOSE
+                this.zoomIn(1000);
+                this.makeContour(".vulnerable", 3000, "contour");
+                this.zoomOut(5000);
+                this.fadeInOut(7000, 2000);
+                this.makeTransformer(12000);
+                this.makeContour(".vulnerable", 15000, "barrier");
+            });
         },
 
         // To perform, otherwise, artefacts from the animation might subsist if we go back to the make your gang tool
