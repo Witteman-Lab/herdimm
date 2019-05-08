@@ -13,7 +13,7 @@
         <AudioPlayer ref="audioPlayer"></AudioPlayer>
 
         <!-- Grid creation -->
-        <div v-for="shape in this.gridIds">
+        <div class="animation" v-for="shape in this.gridIds">
             <div :class="shape.className" :id="shape.id">
                 <!-- Where the group members are being placed -->
                 <div :style="{height: characterSize, marginBottom: characterBottomMargin}" v-if="shape.isCharacter">
@@ -333,6 +333,14 @@
         width: 100%;
         height: 100vh;
     }
+    @media screen and (max-width: 720px) and (orientation: landscape) {
+        .hexagon-container {
+            margin: 0;
+            transform: translate(100%);
+
+        }
+    }
+
 
     /* #captions {
 
