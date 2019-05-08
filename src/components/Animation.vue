@@ -31,6 +31,8 @@
 <script>
     import Character from "./Character";
     import AudioPlayer from "./AudioPlayer";
+    // The scenario might need to be imported in AudioPlayer instead of here, I'm not sure at the moment
+    import scenario from "../assets/json/scenario_en.json";
 
     export default {
         name: "Animation",
@@ -157,6 +159,20 @@
                 }
             },
 
+            // Parse the scenario to find sequences for the animation
+            // This method might not be here (maybe in AudioPlayer, maybe not)
+            parseScenario() {
+                let action = scenario.en.sequences[0].sequence1[0].action;
+                let delay = scenario.en.sequences[0].sequence1[0].startTime;
+                this.executeFunctionByName(action, this, delay);
+            },
+
+            // Execute the appropriate function by its name received as a string as well as with arguments
+            executeFunctionByName(functionName, context, args) {
+                let newArgs = Array.prototype.slice.call(arguments, 2);
+                return context[functionName].apply(context, newArgs);
+            },
+
             // METHOD DESCRIPTION
             // gettransitionend() {
             //     var root = document.documentElement;
@@ -276,12 +292,14 @@
             document.addEventListener('DOMContentLoaded', () => {
                 this.duplicateGrid(2);
                 // THIS PART IS USED ONLY FOR ANIMATION TESTING PURPOSE
-                this.zoomIn(1000);
-                this.makeContour(".vulnerable", 3000, "contour");
-                this.zoomOut(5000);
-                this.fadeInOut(7000, 2000);
-                this.makeTransformer(12000);
-                this.makeContour(".vulnerable", 15000, "barrier");
+                // this.zoomIn(1000);
+                // this.makeContour(".vulnerable", 3000, "contour");
+                // this.zoomOut(5000);
+                // this.fadeInOut(7000, 2000);
+                // this.makeTransformer(12000);
+                // this.makeContour(".vulnerable", 15000, "barrier");
+
+                this.parseScenario();
             });
         },
 
