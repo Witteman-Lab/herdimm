@@ -12,7 +12,7 @@
                         <Character v-if="isActive" :size="{width: '70px', height: '95px'}" :edit="false" :customised="true" ref="character" :id="'current'" :svgFile="this.currentCharacter"
                                    :colors="{face: this.currentColorFace, hairFront: this.currentColorHair, beards: this.currentBeard, glasses: this.currentGlasses, shirt: this.currentShirt}" />
 
-                        <div class="tabs is-centered is-boxed is-three-quarters">
+                        <div class="tabs is-centered is-boxed is-three-quarters ">
                             <ul>
                                 <!-- For testing, in case we want to group skin and hair colors in a single tab (saves space) -->
                                 <!-- <li class="tab" v-on:click="openTab($event, 'colorsSelect')">
@@ -99,7 +99,7 @@
                         </div>
                     </section>
                     <footer class="modal-card-foot">
-                        <div class="buttons is-light">
+                        <div class="buttons is-light is-text">
                             <button class="button is-success" v-if="!this.isEdit" v-on:click="this.saveCharacter">{{this.labels.saveBtn}}</button>
                             <button class="button is-success" v-if="this.isEdit" v-on:click="this.saveEditCharacter">{{this.labels.saveEditBtn}}</button>
                             <button class="button" v-on:click="this.removeModal">{{this.labels.cancelBtn}}</button>
@@ -132,11 +132,11 @@
             <h1>{{this.labels.subtitle}}</h1>
 
             <!-- List of the group member -->
-            <div class="tool">
+            <div class="tool ">
                 <div class="column is-four-fifths">
                     <div style="cursor: pointer">
-                        <GroupCharacter ref="listToFill"></GroupCharacter>
-                    </div>
+                        <GroupCharacter  ref="listToFill"></GroupCharacter>
+                </div>
                 </div>
             </div>
         </div>
@@ -511,7 +511,36 @@
             opacity: 1;
         }
     }
+    .tab ul li{
+        /*display: inline;*/
+    }
+    /*@media (max-width: 720px) {*/
+        /*.tabs {*/
+            /*flex-direction: column;*/
+        /*}*/
+    /*}*/
+    /*.tabs {*/
+        /*display:inline-flex;*/
+        /*justify-content: center;*/
+        /*flex-wrap: wrap;*/
+    /*}*/
 
+    /*.tab{*/
+        /*flex-grow: 1;*/
+        /*vertical-align: top;*/
+    /*}*/
+    ul {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+        padding-left: 0;
+    }
+
+    li.tab {
+        display: inline-block;
+        text-align: center;
+    }
     @media only screen and (max-width: 768px) {
         .mobile-modal {
             margin-top: calc(20vh - 40px);
