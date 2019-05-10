@@ -309,6 +309,9 @@
             if (shapeTargets) {
                 shapeTargets.forEach(e => e.parentNode.removeChild(e));
             }
+
+            // Stop the audio player from playing when going back to the make your gang tool
+            AudioPlayer.stopAudio();
         }
     }
 </script>
