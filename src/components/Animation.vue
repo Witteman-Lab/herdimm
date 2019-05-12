@@ -1,31 +1,28 @@
 <template>
+    <div class="container">
+        <div class="draw">
+            <svg id="connections"></svg>
+        </div>
 
-    <!-- <div class="draw">
-        <svg id="connections"></svg>
-    </div> -->
+        <div class="hexagon-container" >
+            <!-- Audio player for audio files -->
+            <AudioPlayer ref="audioPlayer"></AudioPlayer>
 
-    <!-- <div>
-        <AudioPlayer ref="audioPlayer"></AudioPlayer>
-    </div> -->
-
-    <div class="hexagon-container" >
-        <!-- Audio player for audio files -->
-        <AudioPlayer ref="audioPlayer"></AudioPlayer>
-
-        <!-- Grid creation -->
-        <div class="animation" v-for="shape in this.gridIds">
-            <div :class="shape.className" :id="shape.id">
-                <!-- Where the group members are being placed -->
-                <div :style="{height: characterSize, marginBottom: characterBottomMargin}" v-if="shape.isCharacter">
-                    <Character :size="{ width: characterSize }" ref="character" :edit="false" :customised="true" :colors="shape.character.colors" :id="shape.character.id" :svgFile="require(`../assets/characters/${shape.character.file}`)" />
+            <!-- Grid creation -->
+            <div id="animation" v-for="shape in this.gridIds">
+                <div :class="shape.className" :id="shape.id">
+                    <!-- Where the group members are being placed -->
+                    <div :style="{height: characterSize, marginBottom: characterBottomMargin}" v-if="shape.isCharacter">
+                        <Character :size="{ width: characterSize }" ref="character" :edit="false" :customised="true" :colors="shape.character.colors" :id="shape.character.id" :svgFile="require(`../assets/characters/${shape.character.file}`)" />
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- <div id="captions">
-        <p id="caption"></p>
-    </div> -->
+        <!-- <div id="captions">
+            <p id="caption"></p>
+        </div> -->
+    </div>
 </template>
 
 <script>
@@ -164,7 +161,7 @@
             parseScenario() {
                 let action = scenario.en.sequences[0].sequence1[0].action;
                 let delay = scenario.en.sequences[0].sequence1[0].startTime;
-                this.executeFunctionByName(action, this, delay);
+                //this.executeFunctionByName(action, this, delay);
             },
 
             // Execute the appropriate function by its name received as a string as well as with arguments
@@ -312,6 +309,9 @@
             if (shapeTargets) {
                 shapeTargets.forEach(e => e.parentNode.removeChild(e));
             }
+
+            // Stop the audio player from playing when going back to the make your gang tool
+            AudioPlayer.stopAudio();
         }
     }
 </script>
@@ -334,13 +334,22 @@
         height: 100vh;
     }
     @media screen and (max-width: 720px) and (orientation: landscape) {
+
         .hexagon-container {
-            margin: 0;
-            transform: translate(100%);
+            /*margin-top: 0;*/
+            /*transform: translate(100%);*/
+            /*width:100vw;*/
+            height:auto;
+            margin: 0 auto;
+
 
         }
+
     }
 
+    /*  bottom: 25%;
+            left: 50%;
+            transform: translate(-50%, 50%); /*
 
     /* #captions {
 

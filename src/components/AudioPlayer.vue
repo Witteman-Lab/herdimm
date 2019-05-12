@@ -71,6 +71,12 @@
                     this.onplay = false;
                 }
             },
+
+            stopAudio() {
+                if (this.onplay) {
+                    this.onplay = false;
+                }
+            }
         },
         created() {},
         mounted() {
