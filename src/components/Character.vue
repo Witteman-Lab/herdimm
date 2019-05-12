@@ -189,7 +189,7 @@
                         this.defaultColor = this.$refs.characterImg.children[0].children[0].innerHTML;
 
                         // Why this?
-                        if (this.$parent.$options.name === "home")
+                        if (this.$parent.$options.name === "Modal")
                             this.$parent.setAccessories(this.hasGlasses, this.hasBeard, this.hasHair);
                     }
                 }
