@@ -306,6 +306,37 @@
         height: 60px;
     }
 
+    .tab ul li{
+        /*display: inline;*/
+    }
+    /*@media (max-width: 720px) {*/
+    /*.tabs {*/
+    /*flex-direction: column;*/
+    /*}*/
+    /*}*/
+    /*.tabs {*/
+    /*display:inline-flex;*/
+    /*justify-content: center;*/
+    /*flex-wrap: wrap;*/
+    /*}*/
+
+    /*.tab{*/
+    /*flex-grow: 1;*/
+    /*vertical-align: top;*/
+    /*}*/
+    ul {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+        padding-left: 0;
+    }
+
+    li.tab {
+        display: inline-block;
+        text-align: center;
+    }
+
     @media only screen and (max-width: 768px) {
         .mobile-modal {
             margin-top: calc(20vh - 40px);
