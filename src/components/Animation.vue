@@ -72,7 +72,8 @@
                 ],
                 gridIds: [],
                 characterSize: 0,
-                characterBottomMargin: 0
+                characterBottomMargin: 0,
+                isAnimationStarted: false
             }
         },
         props: {
@@ -81,6 +82,22 @@
             }
         },
         methods: {
+            // METHOD DESCRIPTION
+            startAnimation() {
+                // Starts true;
+                this.isAnimationStarted = true;
+                //AudioPlayer.playAudio();
+
+                // THIS PART IS USED ONLY FOR ANIMATION TESTING PURPOSE
+                // this.zoomIn(1000);
+                // this.makeContour(".vulnerable", 3000, "contour");
+                // this.zoomOut(5000);
+                // this.fadeInOut(7000, 2000);
+                // this.makeTransformer(12000);
+                // this.makeContour(".vulnerable", 15000, "barrier");
+
+                //this.parseScenario();
+            },
             // METHOD DESCRIPTION
             buildGridIds() {
                 let numId = 0;
@@ -161,7 +178,7 @@
             parseScenario() {
                 let action = scenario.en.sequences[0].sequence1[0].action;
                 let delay = scenario.en.sequences[0].sequence1[0].startTime;
-                //this.executeFunctionByName(action, this, delay);
+                this.executeFunctionByName(action, this, delay);
             },
 
             // Execute the appropriate function by its name received as a string as well as with arguments
@@ -169,24 +186,6 @@
                 let newArgs = Array.prototype.slice.call(arguments, 2);
                 return context[functionName].apply(context, newArgs);
             },
-
-            // METHOD DESCRIPTION
-            // gettransitionend() {
-            //     var root = document.documentElement;
-            //     var transitions = {
-            //         'transition':'transitionend',
-            //         'OTransition':'oTransitionEnd',
-            //         'MozTransition':'transitionend',
-            //         'WebkitTransition':'webkitTransitionEnd'
-            //     }
-            //
-            //     for (var t in transitions) {
-            //         if (root.style[t] !== undefined ){
-            //             return transitions[t];
-            //         }
-            //     }
-            //     return undefined
-            // },
 
             // Zoom by adding class, but we do't have controls on the parameters, such as sclae values, duration, etc.
             // Would be nice to do it with Javascript, so we can control these parameters
@@ -288,15 +287,16 @@
             // When content is loaded, make copies of the grid to facilitate the animation
             document.addEventListener('DOMContentLoaded', () => {
                 this.duplicateGrid(2);
+
                 // THIS PART IS USED ONLY FOR ANIMATION TESTING PURPOSE
-                // this.zoomIn(1000);
-                // this.makeContour(".vulnerable", 3000, "contour");
+                //this.zoomIn(1000);
+                //this.makeContour(".vulnerable", 3000, "contour");
                 // this.zoomOut(5000);
                 // this.fadeInOut(7000, 2000);
                 // this.makeTransformer(12000);
                 // this.makeContour(".vulnerable", 15000, "barrier");
 
-                this.parseScenario();
+                //this.parseScenario();
             });
         },
 

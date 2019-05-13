@@ -13,6 +13,7 @@
         components: {},
         data() {
             return {
+                // Languauge value should come from the selected language from Animation.vue
                 language: "en",
                 playlist: [],
                 current: '',
@@ -25,10 +26,11 @@
         methods: {
             // METHOD DESCRIPTION
             playAudio() {
-                //console.log(this.current);
                 let ref = this.$refs.audio;
                 let playPromise;
 
+                // No more autoplay, animation and audio start when the user clicks on the button,
+                // So this method needs to be adjusted
                 setTimeout(function() {
                     playPromise = ref.play();
                     if (playPromise !== undefined) {
@@ -72,6 +74,7 @@
                 }
             },
 
+            // METHOD DESCRIPTION
             stopAudio() {
                 if (this.onplay) {
                     this.onplay = false;
