@@ -1,5 +1,5 @@
 {
-    "continueBtn" : "Start the animation",
+    "continueBtn" : "Go to the animation",
     "saveBtn" : "Save",
     "saveEditBtn" : "Save edit",
     "cancelBtn" : "Cancel",
@@ -7,7 +7,7 @@
     "pageTitle" : "Build your group",
     "subtitle" : "Your group",
     "generalInfo" : "Click or tap on a character of your choice to select and customize it at your will.",
-    "finalInfo" : "Press the button to start the animation",
+    "finalInfo" : "Press the button to go to the animation",
     "skinColorTab" : "Skin color",
     "hairColorTab" : "Hair color",
     "glassesTab" : "Glasses",
@@ -22,5 +22,6 @@
     "otherPeople": "a person around you",
     "language": "Change language",
     "createAvatar": "Create",
-    "editAvatar": "Edit"
+    "editAvatar": "Edit",
+    "startAnimation": "Start animation"
 }
