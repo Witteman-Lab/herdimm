@@ -1,15 +1,19 @@
 <template>
     <div class="container">
-        <div class="draw">
-            <svg id="connections"></svg>
+
+        <!-- Where to draw the lines for infection spreading  -->
+        <div class="draw" id="draw">
+            <svg class="connections" id="connections"></svg>
         </div>
 
+        <!-- Container for the shapes (hexagons) -->
         <div class="hexagon-container" >
+
             <!-- Audio player for audio files -->
             <AudioPlayer ref="audioPlayer"></AudioPlayer>
 
             <!-- Grid creation -->
-            <div id="animation" v-for="shape in this.gridIds">
+            <div class="shape" v-for="shape in this.gridIds">
                 <div :class="shape.className" :id="shape.id">
                     <!-- Where the group members are being placed -->
                     <div :style="{height: characterSize, marginBottom: characterBottomMargin}" v-if="shape.isCharacter">
@@ -262,6 +266,26 @@
                         }
                     });
                 }, delay)
+            },
+
+            // THIS METHOD IS FOR TESTING PURPOSE, TRYING TO GET THE HEXAGONS COODINATES
+            drawCircle(hex) {
+                var drawingBoard = document.querySelector("#connections");
+                var radius = 10;
+                var app = document.querySelector("#app");
+
+                var style = app.currentStyle || window.getComputedStyle(app);
+                var str_marginLeft = style.marginLeft;
+                var marginLeft = parseInt(str_marginLeft.split("px")[0]);
+                var divider = Math.sqrt(3);
+
+                // Draw a circle
+                var circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+                circle.setAttributeNS(null, 'cx', hex.x - marginLeft + (hex.width/divider) + radius);
+                circle.setAttributeNS(null, 'cy', hex.y + hex.height/divider);
+                circle.setAttributeNS(null, 'r', radius);
+                circle.setAttributeNS(null, 'style', 'fill: blue;');
+                drawingBoard.appendChild(circle);
             }
         },
         created() {},
@@ -295,6 +319,10 @@
                 // this.fadeInOut(7000, 2000);
                 // this.makeTransformer(12000);
                 // this.makeContour(".vulnerable", 15000, "barrier");
+                var shape58 = document.querySelector('.hexagon-container #shape_58').getBoundingClientRect();
+                var shape26 = document.querySelector('.hexagon-container #shape_26').getBoundingClientRect();
+                this.drawCircle(shape58);
+                this.drawCircle(shape26);
 
                 //this.parseScenario();
             });
@@ -317,22 +345,24 @@
 </script>
 
 <style scoped>
-    .hexagon-container {
+    .hexagon-container, .copy, #draw, #connections {
         margin: 0;
-        width: auto;
-        /* width: 100vw; */
-        height: 100vh;
-    }
-    div.column {
-        display: grid;
-    }
-    #connections {
-        position: absolute;
-        top: 0;
-        left: 0;
+        /* width: auto; */
         width: 100%;
         height: 100vh;
     }
+
+    /* TEMPORARY, just so it's being displayed on top of everything */
+    #draw {
+        z-index: 999;
+    }
+
+    div.column {
+        display: grid;
+        padding: 0;
+        margin: 0;
+    }
+
     @media screen and (max-width: 720px) and (orientation: landscape) {
 
         .hexagon-container {
@@ -341,8 +371,6 @@
             /*width:100vw;*/
             height:auto;
             margin: 0 auto;
-
-
         }
 
     }
