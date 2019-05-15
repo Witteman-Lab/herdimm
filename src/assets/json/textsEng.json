@@ -23,5 +23,7 @@
     "language": "Change language",
     "createAvatar": "Create",
     "editAvatar": "Edit",
-    "startAnimation": "Start animation"
+    "startAnimation": "Start animation",
+    "nameInputLabel": "Name",
+    "nameInputPlaceHolder": "Name your character"
 }
