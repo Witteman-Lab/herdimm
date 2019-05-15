@@ -191,11 +191,11 @@
                 return context[functionName].apply(context, newArgs);
             },
 
-            // Zoom by adding class, but we do't have controls on the parameters, such as sclae values, duration, etc.
+            // Zoom by adding class, but we don't have controls on the parameters, such as scale values, duration, etc.
             // Would be nice to do it with Javascript, so we can control these parameters
             zoomIn(delay) {
                 //const that = this;
-                const targets = document.querySelectorAll('.hexagon-container');
+                const targets = document.querySelectorAll('.hexagon-container, #draw');
                 //const animParams = "scale(3,3) 2s linear";
                 //let transitionendevt = this.gettransitionend();
 
@@ -220,7 +220,7 @@
                 }, delay);
             },
 
-            // Zoom by adding class, but we do't have controls on the parameters, such as sclae values, duration, etc.
+            // Zoom by adding class, but we don't have controls on the parameters, such as scale values, duration, etc.
             // Would be nice to do it with Javascript, so we can control these parameters
             zoomOut(delay) {
                 const target = document.querySelectorAll('.hexagon-container');
@@ -231,7 +231,7 @@
 
             // A way to "draw" the contour of the shapes without using borders
             // Borders are not rendering well the way shapes (hexagons in this case) are being created
-            // Zoom by adding class, but we do't have controls on the parameters, such as sclae values, duration, etc.
+            // Zoom by adding class, but we don't have controls on the parameters, such as scale values, duration, etc.
             // Would be nice to do it with Javascript, so we can control these parameters
             makeContour(target, delay, classToAdd) {
                 const shapeTargets = document.querySelectorAll('#copy2 ' + target);
