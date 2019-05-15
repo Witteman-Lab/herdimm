@@ -141,6 +141,7 @@
               isFaceColorButtonEnable: false,
               glassesList: [],
               beardsList: [],
+              message: ""
           }
         },
         props: {
