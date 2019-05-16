@@ -231,3 +231,15 @@ div#copy1 .barrier::after,
 div#copy1 .barrier::before {
     background-color: var(--color-hex-vaccinated-shadow);
 }
+
+#connections line{
+   fill-opacity: 0;
+}
+#connections.line {
+   fill-opacity: 1;
+    -webkit-transition: opacity 3s linear;
+    -moz-transition: opacity 3s linear;
+    -ms-transform: opacity 3s linear;
+    -o-transition: opacity 3s linear;
+    transition: opacity 3s linear;
+}

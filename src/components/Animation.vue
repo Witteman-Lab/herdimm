@@ -34,6 +34,7 @@
     import AudioPlayer from "./AudioPlayer";
     // The scenario might need to be imported in AudioPlayer instead of here, I'm not sure at the moment
     import scenario from "../assets/json/scenario_en.json";
+    import connections from "../assets/json/connections.json";
 
     export default {
         name: "Animation",
@@ -267,10 +268,33 @@
                     });
                 }, delay)
             },
+            // connections for each shape in connections json
+            makeLink(connections){
+               // console.log(typeof(next));
+                for (let i = 0; i < connections.length; i++){
+                    //console.log("patate", test.connections[i].patate);
+                    let source 	= connections[i].source;
+                    let target 	= connections[i].target;
+                    let nextTarget 	= connections[i].nextTarget;
 
-            // THIS METHOD IS FOR TESTING PURPOSE, TRYING TO GET THE HEXAGONS COODINATES
-            drawCircle(hex) {
+                    let id = connections[i].id;
+
+                    this.drawLine(source,target,id);
+                   // console.log(next.length);
+                     if(nextTarget != ""){
+                         console.log("nextTarget", nextTarget);
+                         this.makeLink(nextTarget);
+                     }
+                }
+            },
+
+
+            // drawLine
+            drawLine(source, target, id){
+                //var container = connections.connections.containerId;
                 var drawingBoard = document.querySelector("#connections");
+
+                //parameters
                 var radius = 10;
                 var app = document.querySelector("#app");
 
@@ -278,29 +302,28 @@
                 var str_marginLeft = style.marginLeft;
                 var marginLeft = parseInt(str_marginLeft.split("px")[0]);
                 var divider = Math.sqrt(3);
+                var selector = '.hexagon-container #'
 
-                // Draw a circle
-                var circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-                circle.setAttributeNS(null, 'cx', hex.x - marginLeft + (hex.width/divider) + radius);
-                circle.setAttributeNS(null, 'cy', hex.y + hex.height/divider);
-                circle.setAttributeNS(null, 'r', radius);
-                circle.setAttributeNS(null, 'style', 'fill: blue;');
-                drawingBoard.appendChild(circle);
-            },
-            // drawLine
-            drawLine(x1,y1,x2,y2){
-                var drawingBoard = document.querySelector("#connections");
+                let sourceBCR = document.querySelector(selector+source).getBoundingClientRect();
+                let targetBCR = document.querySelector(selector+target).getBoundingClientRect();
+
+                console.log("sourceBCR", sourceBCR);
+                console.log("targetBCR", targetBCR);
+
+                var width = connections.linewidth;
+                var colorStroke = connections.linecolor;
 
 
+                //drawing line
                 var lineObj = document.createElementNS("http://www.w3.org/2000/svg", 'line');
-                lineObj.setAttributeNS(null, "id", "lineId");
-                lineObj.setAttributeNS(null, 'x1', x1);
-                lineObj.setAttributeNS(null, 'y1', y1);
-                lineObj.setAttributeNS(null, 'x2', x2);
-                lineObj.setAttributeNS(null, 'y2', y2);
-                lineObj.setAttributeNS(null, "stroke", 'blue');
-                lineObj.setAttributeNS(null, "stroke-width", '5');
-                //lineObj.setAttributeNS(null, 'marker-end', 'url(#markerArrow1)');
+                lineObj.setAttributeNS(null, "id", id);
+                lineObj.setAttributeNS(null, 'x1',sourceBCR.x - marginLeft + (sourceBCR.width/divider)  + radius);
+                lineObj.setAttributeNS(null, 'y1',sourceBCR.y + sourceBCR.height/divider);
+                lineObj.setAttributeNS(null, 'x2', targetBCR.x - marginLeft + (targetBCR.width/divider)  + radius);
+                lineObj.setAttributeNS(null, 'y2',  targetBCR.y + targetBCR.height/divider);
+                lineObj.setAttributeNS(null, "stroke", colorStroke);
+                lineObj.setAttributeNS(null, "stroke-width", width);
+                lineObj.classList.add("line");
                 drawingBoard.appendChild(lineObj);
             }
         },
@@ -335,27 +358,27 @@
                 // this.fadeInOut(7000, 2000);
                 // this.makeTransformer(12000);
                 // this.makeContour(".vulnerable", 15000, "barrier");
-                var shape58 = document.querySelector('.hexagon-container #shape_58').getBoundingClientRect();
-                var shape26 = document.querySelector('.hexagon-container #shape_26').getBoundingClientRect();
-                // recherche de parametres
-                var radius = 10;
-                var app = document.querySelector("#app");
-
-                var style = app.currentStyle || window.getComputedStyle(app);
-                var str_marginLeft = style.marginLeft;
-                var marginLeft = parseInt(str_marginLeft.split("px")[0]);
-                var divider = Math.sqrt(3);
-
-               // hex.x - marginLeft + (hex.width/divider) + radius
-                var x2 = shape58.x - marginLeft + (shape58.width/divider)  + radius;
-                var y2  = shape58.y + shape58.height/divider;
-                var x1 = shape26.x - marginLeft + (shape26.width/divider)  + radius;
-                var y1  = shape26.y + shape26.height/divider;
-
-
-                this.drawLine(x1, y1, x2 , y2 );
-                this.drawCircle(shape58);
-                this.drawCircle(shape26);
+               //  var shape58 = document.querySelector('.hexagon-container #shape_58').getBoundingClientRect();
+               //  var shape26 = document.querySelector('.hexagon-container #shape_26').getBoundingClientRect();
+               //  // recherche de parametres
+               //  var radius = 10;
+               //  var app = document.querySelector("#app");
+               //
+               //  var style = app.currentStyle || window.getComputedStyle(app);
+               //  var str_marginLeft = style.marginLeft;
+               //  var marginLeft = parseInt(str_marginLeft.split("px")[0]);
+               //  var divider = Math.sqrt(3);
+               //
+               // // hex.x - marginLeft + (hex.width/divider) + radius
+               //  var x2 = shape58.x - marginLeft + (shape58.width/divider)  + radius;
+               //  var y2  = shape58.y + shape58.height/divider;
+               //  var x1 = shape26.x - marginLeft + (shape26.width/divider)  + radius;
+               //  var y1  = shape26.y + shape26.height/divider;
+               //
+               //  this.drawLine(x1, y1, x2 , y2 );
+               //  //let txt = connections.connections[0];
+               //  alert(connections.connections[0].id);
+                this.makeLink(connections.connections);
 
                 //this.parseScenario();
             });
@@ -387,7 +410,7 @@
 
     /* TEMPORARY, just so it's being displayed on top of everything */
     #draw {
-        z-index: 999;
+        /*z-index: 999;*/
     }
 
     div.column {

@@ -1,59 +1,59 @@
 {
-    "containerId" : "gridContainer",
+    "containerId" : "connections",
 	"cap" : "round",
-	"strokeColor" : "#B0102C",
+	"linecolor" : "#B0102C",
 	"opacity" : "1",
 	"linewidth" : "5",
 	"connections" : [
 		{
 			"id"	 : "1",
-			"source" : "hex58",
-			"target" : "hex26",
-			"next": [
+			"source" : "shape_58",
+			"target" : "shape_26",
+			"nextTarget": [
 				{
 					"id"	 : "4",
-					"source" : "hex26",
-					"target" : "hex19",
-					"next": [
+					"source" : "shape_26",
+					"target" : "shape_19",
+					"nextTarget": [
 						{
 							"id"	 : "7",
-							"source" : "hex19",
-							"target" : "hex12",
-							"next": ""
+							"source" : "shape_19",
+							"target" : "shape_12",
+							"nextTarget": ""
 						},
 						{
 							"id"	 : "8",
-							"source" : "hex19",
-							"target" : "hex7",
-							"next": ""
+							"source" : "shape_19",
+							"target" : "shape_7",
+							"nextTarget": ""
 						}
 					]
 				},
 				{
 					"id"	 : "5",
-					"source" : "hex26",
-					"target" : "hex20",
-					"next": ""
+					"source" : "shape_26",
+					"target" : "shape_20",
+					"nextTarget": ""
 				},
 				{
 					"id"	 : "6",
-					"source" : "hex26",
-					"target" : "hex13",
-					"next": ""
+					"source" : "shape_26",
+					"target" : "shape_13",
+					"nextTarget": ""
 				}
 			]
 		},
 		{
 			"id"	 : "2",
-			"source" : "hex50",
-			"target" : "hex45",
-			"next": ""
+			"source" : "shape_50",
+			"target" : "shape_45",
+			"nextTarget": ""
 		},
 		{
 			"id"	 : "3",
-			"source" : "hex50",
-			"target" : "hex46",
-			"next": ""
+			"source" : "shape_50",
+			"target" : "shape_46",
+			"nextTarget": ""
 		}
 	]
 }
