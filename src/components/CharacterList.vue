@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div class="grid-list-character">
         <progress v-if="!isCharactersListLoaded" class="progress is-large is-info" max="100"></progress>
         <div v-for="(character) in this.characterList" :key="character.id">
-            <Character :size="{width: '70px', height: '95px'}" :customised="false" :edit="true" ref="character" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)"/>
+            <Character :size="{width: '74px', height: '80px'}" :customised="false" :edit="true" ref="character" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)"/>
         </div>
     </div>
 </template>
@@ -47,5 +47,10 @@ export default {
 </script>
 
 <style scoped>
-
+.grid-list-character {
+    display: grid;
+    /*grid-template-columns: auto auto auto auto auto auto auto auto auto;*/
+    grid-template-columns: repeat(auto-fit, minmax(55px, 1fr) );
+    grid-gap: 20px;
+}
 </style>

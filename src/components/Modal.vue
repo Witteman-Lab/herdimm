@@ -9,16 +9,16 @@
                 <section class="modal-card-body">
                     <div class="columns">
                         <div class="column is-centered ">
-                            <Character v-if="isActive" :size="{width: '70px', height: '95px'}" :edit="false" :customised="true" ref="character" :id="'current'" :svgFile="this.currentCharacter"
-                                       :colors="{face: this.currentColorFace, hairFront: this.currentColorHair, beards: this.currentBeard, glasses: this.currentGlasses, shirt: this.currentShirt}" />
+                            <Character v-if="isActive" :size="{width: '70px', height: '78px'}" :edit="false" :customised="true" ref="character" :id="'current'" :svgFile="this.currentCharacter"
+                                       :colors="{face: this.currentColorFace, hairFront: this.currentColorHair, beards: this.currentBeard, glasses: this.currentGlasses, shirt: this.currentShirt}"
+                                        :is-modal="true"/>
                             <!--<inputclass="input"type="text"placeholder="Entername">-->
                             <!--<labelclass="label">Name:<inputclass="input"v-model="message"type="text"placeholder="editname"></label>-->
-                            <div class="fieldis-one-fifth-mobile">
-                                <label class="label">Name</label>
-                                    <div class="control">
-                                        <input class="input" v-model="message" type="text" placeholder="edit name">
-                                    </div>
-                             </div>
+                            <div class="field is-one-fifth-mobile" style="margin-top: 5px">
+                                <div class="control">
+                                    <input class="input" v-model="characterName"  type="text" :placeholder="this.labels.nameInputPlaceHolder">
+                                </div>
+                            </div>
 
                         </div>
                         <div class="column is-center">
@@ -52,20 +52,20 @@
                             </div>
 
 
-                        <div style="display: flex; justify-content: center">
+                            <div style="display: flex; justify-content: center">
 
-                            <!-- Skin color -->
-                            <div id="skinColorSelect" class="content-tab">
-                                <Compact :value="this.currentColorFace" @input="this.changeFaceColor"
-                                         :palette="['#FFE2C9', '#FFCBA3', '#E7B38D', '#D8905F', '#7C5235']"/>
-                            </div>
+                                <!-- Skin color -->
+                                <div id="skinColorSelect" class="content-tab">
+                                    <Compact :value="this.currentColorFace" @input="this.changeFaceColor"
+                                             :palette="['#FFE2C9', '#FFCBA3', '#E7B38D', '#D8905F', '#7C5235']"/>
+                                </div>
 
-                            <!-- Hair color -->
-                            <div id="hairColorSelect" class="content-tab" v-if="this.hasHair" >
-                                <Compact
-                                        :value="this.currentColorHair"
-                                        @input="this.changeHairColor"
-                                        :palette="[
+                                <!-- Hair color -->
+                                <div id="hairColorSelect" class="content-tab" v-if="this.hasHair" >
+                                    <Compact
+                                            :value="this.currentColorHair"
+                                            @input="this.changeHairColor"
+                                            :palette="[
                                         '#090806', '#2C222B', '#71635A',
                                         '#B7A69E', '#D6C4C2', '#CABFB1',
                                         '#DCD0BA', '#FFF5E1', '#E6CEA8',
@@ -75,25 +75,25 @@
                                         '#554838', '#4E433F', '#504444',
                                         '#6A4E42', '#A7856A', '#977961'
                                     ]"/>
-                            </div>
+                                </div>
 
-                            <!-- Glasses -->
-                            <div id="glassesSelect" class="content-tab buttons" v-if="this.hasGlasses">
-                                <ul>
-                                    <li class="accessoriesList button" style="height: 15%; width: 15%;" v-on:click="selectGlasses(-1)">None</li>
-                                    <li class="accessoriesList button" v-for="(glasses, index) in glassesListJson" v-on:click="selectGlasses(index)" v-html="require(`../assets/glasses/${glasses.file}`)"></li>
-                                </ul>
-                            </div>
+                                <!-- Glasses -->
+                                <div id="glassesSelect" class="content-tab buttons" v-if="this.hasGlasses">
+                                    <ul>
+                                        <li class="accessoriesList button" style="height: 15%; width: 15%;" v-on:click="selectGlasses(-1)">None</li>
+                                        <li class="accessoriesList button" v-for="(glasses, index) in glassesListJson" v-on:click="selectGlasses(index)" v-html="require(`../assets/glasses/${glasses.file}`)"></li>
+                                    </ul>
+                                </div>
 
-                            <!-- Facial hair -->
-                            <div id="facialHairSelect" class="content-tab buttons" v-if="this.hasFacialHair">
-                                <ul>
-                                    <li class="accessoriesList button" style="height: 15%; width: 15%;" v-on:click="selectBeards(-1)">None</li>
-                                    <li class="accessoriesList button facialHairList" v-for="(beard, index) in facialHairListJson" v-html="require(`../assets/facialHair/${beard.file}`)" v-on:click="selectBeards(index)"></li>
-                                </ul>
-                            </div>
+                                <!-- Facial hair -->
+                                <div id="facialHairSelect" class="content-tab buttons" v-if="this.hasFacialHair">
+                                    <ul>
+                                        <li class="accessoriesList button" style="height: 15%; width: 15%;" v-on:click="selectBeards(-1)">None</li>
+                                        <li class="accessoriesList button facialHairList" v-for="(beard, index) in facialHairListJson" v-html="require(`../assets/facialHair/${beard.file}`)" v-on:click="selectBeards(index)"></li>
+                                    </ul>
+                                </div>
 
-                        </div>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -121,28 +121,34 @@
             Compact,
         },
         data() {
-          return {
-              modalTitle: "",
-              currentColorFace: '',
-              currentColorHair: '',
-              currentBeard: -1,
-              currentGlasses: -1,
-              currentCharacter: "",
-              currentShirt: "",
-              currentCharacterObject: "",
-              hasHair: false,
-              hasFacialHair: false,
-              hasGlasses: false,
-              isActive: false,
-              isEdit: false,
-              isBeardsButtonEnable: false,
-              isGlassesButtonEnable: false,
-              isHairColorButtonEnable: false,
-              isFaceColorButtonEnable: false,
-              glassesList: [],
-              beardsList: [],
-              message: ""
-          }
+            return {
+                modalTitle: "",
+                modalInputLabel: "",
+                modalInputPlaceholder: "",
+
+                currentColorFace: '',
+                currentColorHair: '',
+                currentBeard: -1,
+                currentGlasses: -1,
+                currentCharacter: "",
+                currentShirt: "",
+                currentCharacterObject: "",
+
+                hasHair: false,
+                hasFacialHair: false,
+                hasGlasses: false,
+
+                isActive: false,
+                isEdit: false,
+                isBeardsButtonEnable: false,
+                isGlassesButtonEnable: false,
+                isHairColorButtonEnable: false,
+                isFaceColorButtonEnable: false,
+
+                glassesList: [],
+                beardsList: [],
+                characterName: "",
+            }
         },
         props: {
             labels: Object,
@@ -188,6 +194,7 @@
                 this.isActive = false;
                 this.isHairColorButtonEnable = false;
                 this.isFaceColorButtonEnable = false;
+                this.characterName = "";
             },
 
             // METHOD DESCRIPTION

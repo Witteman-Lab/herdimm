@@ -1,7 +1,8 @@
 <template>
     <div>
-        <div class="character-position">
-            <div v-on:click="createYourCharacter" ref="characterImg" v-html="this.svg" :style="{width: this.width, height: this.height}" style="width: 70px;"></div>
+        <div class="character-position" :style="{width: this.characterPositionWidth}">
+            <div v-on:click="createYourCharacter" ref="characterImg" v-html="this.svg" :style="{width: this.width, height: this.height}" style="margin: auto;"></div>
+<!--            <label style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis;margin-bottom: 0.5em;">Beaucoup</label>-->
         </div>
     </div>
 </template>
@@ -12,6 +13,7 @@
         name: "Character",
         data() {
             return {
+                characterPositionWidth: "",
                 width: "0px",
                 height: "0px",
                 svg: '',
@@ -42,7 +44,8 @@
             customised: Boolean,
             colors: Object,
             edit: Boolean,
-            size: Object
+            size: Object,
+            isModal: Boolean
         },
         methods: {
             // METHOD DESCRIPTION
@@ -285,6 +288,8 @@
         },
         mounted() {
             this.loadSvgData();
+            if (!this.isModal)
+                this.characterPositionWidth = this.width;
             this.isLoaded = true;
         },
         beforeUpdate() {
@@ -295,10 +300,9 @@
 
 <style scoped>
     .character-position {
-        display: block;
-        float: left;
-        margin: 0 auto;
-        /* margin-right: auto;
-        margin-left: auto; */
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        margin-left: auto;
     }
 </style>

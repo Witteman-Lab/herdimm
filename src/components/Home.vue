@@ -12,10 +12,10 @@
 
             <!-- List of all the characters -->
             <div class="tool">
-                <div class="column is-center is-four-fifths">
+                <div style="width: 100%; margin: 12px;">
                     <!-- Not sure if it should be displayed here or in the CharacterList.vue -->
                     <!-- <progress v-if="!isCharactersListLoaded" class="progress is-large is-info" max="100"></progress> -->
-                    <div style="cursor: pointer">
+                    <div style="cursor: pointer; width: 100%">
                         <CharacterList ref="listAvailable" :characters="this.characterList"></CharacterList>
                     </div>
                 </div>
