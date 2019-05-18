@@ -9,11 +9,11 @@
             <AudioPlayer ref="audioPlayer"></AudioPlayer>
 
             <!-- Grid creation -->
-            <div id="animation" v-for="shape in this.gridIds">
+            <div id="animation" v-for="(shape) in this.gridIds">
                 <div :class="shape.className" :id="shape.id">
                     <!-- Where the group members are being placed -->
                     <div :style="{height: characterSize, marginBottom: characterBottomMargin}" v-if="shape.isCharacter">
-                        <Character :size="{ width: characterSize }" ref="character" :edit="false" :customised="true" :colors="shape.character.colors" :id="shape.character.id" :svgFile="require(`../assets/characters/${shape.character.file}`)" />
+                        <Character v-bind:ref="shape.id" :size="{ width: characterSize }"  :edit="false" :customised="true" :colors="shape.character.colors" :id="shape.character.id" :svgFile="require(`../assets/characters/${shape.character.file}`)" />
                     </div>
                 </div>
             </div>
@@ -138,6 +138,11 @@
                 });
             },
 
+            // set T-Shirt Color
+            setCharacterTShirtColor(shapeId, color) {
+                this.$refs[shapeId][0].changeShirtColor(color);
+            },
+
             // METHOD DESCRIPTION
             duplicateGrid(nbOfCopy) {
                 const sourceElement = document.querySelector('.hexagon-container');
@@ -165,6 +170,7 @@
             },
 
             // Execute the appropriate function by its name received as a string as well as with arguments
+
             executeFunctionByName(functionName, context, args) {
                 let newArgs = Array.prototype.slice.call(arguments, 2);
                 return context[functionName].apply(context, newArgs);
@@ -289,7 +295,7 @@
             document.addEventListener('DOMContentLoaded', () => {
                 this.duplicateGrid(2);
                 // THIS PART IS USED ONLY FOR ANIMATION TESTING PURPOSE
-                // this.zoomIn(1000);
+                this.zoomIn(1000);
                 // this.makeContour(".vulnerable", 3000, "contour");
                 // this.zoomOut(5000);
                 // this.fadeInOut(7000, 2000);

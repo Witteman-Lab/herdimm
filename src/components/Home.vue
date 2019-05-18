@@ -139,6 +139,7 @@
                }
             },
 
+            // METHOD DESCRIPTION
             changeLanguage() {
                 if (this.isLanguageChanged)
                     this.labels = textsFr;
