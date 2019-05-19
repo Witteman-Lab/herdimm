@@ -25,8 +25,8 @@
 
             <!-- List of the group member -->
             <div class="tool">
-                <div class="column is-four-fifths">
-                    <div style="cursor: pointer">
+                <div style="width: 100%; margin: 12px;">
+                    <div style="cursor: pointer; width: 100%">
                         <GroupCharacter ref="listToFill"></GroupCharacter>
                     </div>
                 </div>

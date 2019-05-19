@@ -2,7 +2,7 @@
     <div>
         <div class="character-position" :style="{width: this.characterPositionWidth}">
             <div v-on:click="createYourCharacter" ref="characterImg" v-html="this.svg" :style="{width: this.width, height: this.height}" style="margin: auto;"></div>
-<!--            <label style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis;margin-bottom: 0.5em;">Beaucoup</label>-->
+            <p v-if="isName" style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis;margin-bottom: 0.5em;">{{this.svgColor.name}}</p>
         </div>
     </div>
 </template>
@@ -27,7 +27,8 @@
                     hairBack: '',
                     idCharacter: String,
                     glasses: '',
-                    beards: ''
+                    beards: '',
+                    name: ''
                 },
                 glasses: [],
                 beards: [],
@@ -45,9 +46,12 @@
             colors: Object,
             edit: Boolean,
             size: Object,
-            isModal: Boolean
+            isName: Boolean
         },
         methods: {
+            setCharacterName(name) {
+                this.svgColor.name = name;
+            },
             // METHOD DESCRIPTION
             changeShirtColor(color) {
                 this.svgColor.shirt = color;
@@ -179,6 +183,7 @@
                 this.changeGlasses(colors.glasses);
                 this.changeBeard(colors.beards);
                 this.changeShirtColor(colors.shirt);
+                this.setCharacterName(colors.name);
             },
 
             // METHOD DESCRIPTION
@@ -288,7 +293,7 @@
         },
         mounted() {
             this.loadSvgData();
-            if (!this.isModal)
+            if (!this.isName)
                 this.characterPositionWidth = this.width;
             this.isLoaded = true;
         },

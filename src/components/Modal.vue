@@ -11,12 +11,12 @@
                         <div class="column is-centered ">
                             <Character v-if="isActive" :size="{width: '70px', height: '78px'}" :edit="false" :customised="true" ref="character" :id="'current'" :svgFile="this.currentCharacter"
                                        :colors="{face: this.currentColorFace, hairFront: this.currentColorHair, beards: this.currentBeard, glasses: this.currentGlasses, shirt: this.currentShirt}"
-                                        :is-modal="true"/>
+                                        :is-name="true"/>
                             <!--<inputclass="input"type="text"placeholder="Entername">-->
                             <!--<labelclass="label">Name:<inputclass="input"v-model="message"type="text"placeholder="editname"></label>-->
                             <div class="field is-one-fifth-mobile" style="margin-top: 5px">
                                 <div class="control">
-                                    <input class="input" v-model="characterName"  type="text" :placeholder="this.labels.nameInputPlaceHolder">
+                                    <input v-on:input="setCharacterName()" class="input" v-model="characterName"  type="text" :placeholder="this.labels.nameInputPlaceHolder">
                                 </div>
                             </div>
 
@@ -179,6 +179,7 @@
                     this.currentGlasses = character.colors.glasses;
                     this.currentBeard = character.colors.beards;
                     this.currentShirt = character.colors.shirt;
+                    this.characterName = character.colors.name;
                 } else {
                     // Avatar gets a special shirt
                     isAvatar ? this.currentShirt = "#F67844" : this.currentShirt = "#BFBABE";
@@ -187,6 +188,10 @@
                     this.currentGlasses = -1;
                     this.currentBeard = -1;
                 }
+            },
+
+            setCharacterName() {
+                this.$refs.character.setCharacterName(this.characterName);
             },
 
             // METHOD DESCRIPTION

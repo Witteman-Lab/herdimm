@@ -1,7 +1,7 @@
 <template>
     <div class="grid-list-character">
         <div v-for="(character) in characterList" ref="characterList" :key="character.id">
-            <Character ref="character"  :size="{width: '74px', height: '80px'}" :edit="true" :customised="true" :colors="character.colors" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" />
+            <Character ref="character"  :is-name="true" :size="{width: '74px', height: '80px'}" :edit="true" :customised="true" :colors="character.colors" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" />
         </div>
     </div>
 </template>
@@ -75,6 +75,7 @@
     }
     .grid-list-character {
         display: grid;
-        grid-template-columns: repeat( auto-fit, minmax(55px, 1fr) );
+        grid-template-columns: repeat(auto-fit, minmax(55px, 1fr) );
+        grid-gap: 20px;
     }
 </style>
