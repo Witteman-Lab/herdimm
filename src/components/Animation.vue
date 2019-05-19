@@ -35,6 +35,7 @@
     // The scenario might need to be imported in AudioPlayer instead of here, I'm not sure at the moment
     import scenario from "../assets/json/scenario_en.json";
     import connections from "../assets/json/connections.json";
+    import shapesArray from "../assets/json/shapesArray";
 
     export default {
         name: "Animation",
@@ -45,36 +46,6 @@
         data() {
             return {
                 characterList: [],
-
-                /* This array should be stored outside for users to change easily */
-                // 0 = None
-                // 1 = avatar
-                // 2 = vulnerable
-                // 3 = comm
-                // 4 = gen
-                shapesArray: [
-                    [0,0,4,0,0,0,4,0,0,0,0,0,0,0], //2
-                    [0,4,0,4,0,4,0,4,0,4,0,4,0,0], //6
-                    [4,0,4,0,0,0,4,0,4,0,4,0,4,0], //6
-                    [0,4,0,4,0,4,0,4,0,4,0,4,0,0], //6
-                    [4,0,4,0,4,0,4,0,4,0,4,0,4,0], //7
-                    [0,4,0,4,0,4,0,4,0,4,0,4,0,0], //6
-                    [0,0,0,0,4,0,3,0,4,0,0,0,4,0], //4
-                    [0,0,0,4,0,3,0,2,0,4,0,0,0,4], //5
-                    [0,0,4,0,4,0,2,0,3,0,0,0,4,0], //5
-                    [0,0,0,4,0,4,0,1,0,4,0,4,0,4], //6
-                    [0,0,4,0,4,0,3,0,3,0,4,0,4,0], //6
-                    [0,0,0,4,0,0,0,3,0,4,0,4,0,4], //5
-                    [0,0,4,0,4,0,0,0,4,0,4,0,4,0], //5
-                    [0,4,0,4,0,0,0,4,0,0,0,4,0,4], //5
-                    [0,0,4,0,4,0,0,0,4,0,0,0,4,0], //4
-                    [0,4,0,4,0,4,0,4,0,4,0,0,0,0], //5
-                    [4,0,4,0,4,0,4,0,4,0,4,0,0,0], //6
-                    [0,4,0,0,0,4,0,4,0,4,0,0,0,0], //4
-                    [4,0,0,0,0,0,4,0,4,0,4,0,0,0], //4
-                    [0,0,0,0,0,4,0,0,0,4,0,0,0,0], //2
-                    [0,0,0,0,0,0,4,0,0,0,0,0,0,0]  //1
-                ],
                 gridIds: [],
                 characterSize: 0,
                 characterBottomMargin: 0,
@@ -108,11 +79,11 @@
                 let numId = 0;
 
                 // For every row
-                for (let i = 0; i < this.shapesArray.length; i++) {
+                for (let i = 0; i < shapesArray.ShapesArrayList.length; i++) {
 
                     // For every element in each row
-                    for (let j = 0; j < this.shapesArray[i].length; j++) {
-                        let shapeValue = this.shapesArray[i][j];
+                    for (let j = 0; j < shapesArray.ShapesArrayList[i].length; j++) {
+                        let shapeValue = shapesArray.ShapesArrayList[i][j];
                         let shapeObj = new Object();
 
                         // Give the object a className
