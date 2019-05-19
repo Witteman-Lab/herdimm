@@ -1,0 +1,58 @@
+{
+  "_commentary" : "the following objects are sequences that represent the different actions in the scenario",
+
+  "actions" : [
+
+    {
+      "action": "zoomOut",
+      "props": {
+        "scale" : "2",
+        "duration" : "1000",
+        "transformOrigin_X" : "30",
+        "transformOrigin_Y": "30",
+        "startTime" : "3000"
+      }
+    },
+
+
+    {
+      "action": "zoomIn",
+      "props": {
+        "scale" : "3",
+        "duration" : "1000",
+        "transformOrigin_X" : "35",
+        "transformOrigin_Y": "45",
+        "startTime" : "3000"
+      }
+    },
+
+
+    {
+      "_commentary" : "--------------------------to erase after---------------------------------"
+    },
+
+
+    {
+      "_commentary" : "--------------------------to erase after---------------------------------"
+    },
+
+
+    {
+      "_commentary" : "--------------------------to erase after---------------------------------"
+    },
+
+
+    {
+      "_commentary" : "--------------------------to erase after---------------------------------"
+    },
+
+
+    {
+      "_commentary" : "--------------------------to erase after---------------------------------"
+    }
+
+
+
+
+  ]
+}
