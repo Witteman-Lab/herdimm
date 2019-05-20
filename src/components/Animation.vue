@@ -259,7 +259,7 @@
                     this.drawLine(source,target,id);
                    // console.log(next.length);
                      if(nextTarget != ""){
-                         console.log("nextTarget", nextTarget);
+                         //console.log("nextTarget", nextTarget);
                          this.makeLink(nextTarget);
                      }
                 }
@@ -270,6 +270,7 @@
             drawLine(source, target, id){
                 //var container = connections.connections.containerId;
                 var drawingBoard = document.querySelector("#connections");
+
 
                 //parameters
                 var radius = 10;
@@ -283,9 +284,6 @@
 
                 let sourceBCR = document.querySelector(selector+source).getBoundingClientRect();
                 let targetBCR = document.querySelector(selector+target).getBoundingClientRect();
-
-                console.log("sourceBCR", sourceBCR);
-                console.log("targetBCR", targetBCR);
 
                 var width = connections.linewidth;
                 var colorStroke = connections.linecolor;
@@ -327,7 +325,7 @@
             // When content is loaded, make copies of the grid to facilitate the animation
             document.addEventListener('DOMContentLoaded', () => {
                 this.duplicateGrid(2);
-                this.parseScenario();
+                //this.parseScenario();
 
 
                 //------------------------------------------------------------------------------------------------------
@@ -343,27 +341,6 @@
                 //------------------------------------------------------------------------------------------------------
 
 
-
-               //  var shape58 = document.querySelector('.hexagon-container #shape_58').getBoundingClientRect();
-               //  var shape26 = document.querySelector('.hexagon-container #shape_26').getBoundingClientRect();
-               //  // recherche de parametres
-               //  var radius = 10;
-               //  var app = document.querySelector("#app");
-               //
-               //  var style = app.currentStyle || window.getComputedStyle(app);
-               //  var str_marginLeft = style.marginLeft;
-               //  var marginLeft = parseInt(str_marginLeft.split("px")[0]);
-               //  var divider = Math.sqrt(3);
-               //
-               // // hex.x - marginLeft + (hex.width/divider) + radius
-               //  var x2 = shape58.x - marginLeft + (shape58.width/divider)  + radius;
-               //  var y2  = shape58.y + shape58.height/divider;
-               //  var x1 = shape26.x - marginLeft + (shape26.width/divider)  + radius;
-               //  var y1  = shape26.y + shape26.height/divider;
-               //
-               //  this.drawLine(x1, y1, x2 , y2 );
-               //  //let txt = connections.connections[0];
-               //  alert(connections.connections[0].id);
                 this.makeLink(connections.connections);
             });
         },
