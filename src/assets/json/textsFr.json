@@ -4,9 +4,9 @@
     "saveEditBtn" : "Sauvegarder l'édition",
     "cancelBtn" : "Annuler",
     "resetAllBtn" : "Restaurer",
-    "pageTitle" : "Créer votre groupe",
+    "pageTitle" : "Créez votre groupe",
     "subtitle" : "Votre groupe",
-    "generalInfo" : "Cliquer sur le personnage de votre choix afin de le personnaliser.",
+    "generalInfo" : "Cliquez sur le personnage de votre choix afin de le personnaliser.",
     "finalInfo" : "Appuyer sur le bouton pour aller à l'animation",
     "skinColorTab" : "Peau",
     "hairColorTab" : "Cheveux",
@@ -14,7 +14,7 @@
     "facialHairTab" : "Barbe/Moustache",
     "contextualInfoAvatar" : "Sélectionnez et personalisez votre propre avatar.",
     "nowSelect" : "Sélectionnez et personnalisez",
-    "selectVulnerable": "personnes que vous considérez vulnerable.",
+    "selectVulnerable": "personnes que vous considérez vulnerables.",
     "finallySelect" : "Finalement, selectionnez et personnalisez",
     "selectOthersPeople": "personnes de votre entourage.",
     "avatar": "votre avatar",
@@ -25,7 +25,7 @@
     "editAvatar": "Editez",
     "startAnimation": "Lancer l'animation",
     "nameInputLabel": "Nom",
-    "nameInputPlaceHolder": "Nommer votre personnage",
+    "nameInputPlaceHolder": "Nommez votre personnage",
     "totalCharacterCount" : "Nombre de personnages : ",
-    "defaultCharacterName" : "Personnnage"
+    "defaultCharacterName" : "Personne"
 }
