@@ -35,6 +35,7 @@
     // The scenario might need to be imported in AudioPlayer instead of here, I'm not sure at the moment
     import scenario from "../assets/json/scenario_en.json";
     import connections from "../assets/json/connections.json";
+    import shapesArray from "../assets/json/shapesArray";
 
     export default {
         name: "Animation",
@@ -45,36 +46,6 @@
         data() {
             return {
                 characterList: [],
-
-                /* This array should be stored outside for users to change easily */
-                // 0 = None
-                // 1 = avatar
-                // 2 = vulnerable
-                // 3 = comm
-                // 4 = gen
-                shapesArray: [
-                    [0,0,4,0,0,0,4,0,0,0,0,0,0,0], //2
-                    [0,4,0,4,0,4,0,4,0,4,0,4,0,0], //6
-                    [4,0,4,0,0,0,4,0,4,0,4,0,4,0], //6
-                    [0,4,0,4,0,4,0,4,0,4,0,4,0,0], //6
-                    [4,0,4,0,4,0,4,0,4,0,4,0,4,0], //7
-                    [0,4,0,4,0,4,0,4,0,4,0,4,0,0], //6
-                    [0,0,0,0,4,0,3,0,4,0,0,0,4,0], //4
-                    [0,0,0,4,0,3,0,2,0,4,0,0,0,4], //5
-                    [0,0,4,0,4,0,2,0,3,0,0,0,4,0], //5
-                    [0,0,0,4,0,4,0,1,0,4,0,4,0,4], //6
-                    [0,0,4,0,4,0,3,0,3,0,4,0,4,0], //6
-                    [0,0,0,4,0,0,0,3,0,4,0,4,0,4], //5
-                    [0,0,4,0,4,0,0,0,4,0,4,0,4,0], //5
-                    [0,4,0,4,0,0,0,4,0,0,0,4,0,4], //5
-                    [0,0,4,0,4,0,0,0,4,0,0,0,4,0], //4
-                    [0,4,0,4,0,4,0,4,0,4,0,0,0,0], //5
-                    [4,0,4,0,4,0,4,0,4,0,4,0,0,0], //6
-                    [0,4,0,0,0,4,0,4,0,4,0,0,0,0], //4
-                    [4,0,0,0,0,0,4,0,4,0,4,0,0,0], //4
-                    [0,0,0,0,0,4,0,0,0,4,0,0,0,0], //2
-                    [0,0,0,0,0,0,4,0,0,0,0,0,0,0]  //1
-                ],
                 gridIds: [],
                 characterSize: 0,
                 characterBottomMargin: 0,
@@ -108,11 +79,11 @@
                 let numId = 0;
 
                 // For every row
-                for (let i = 0; i < this.shapesArray.length; i++) {
+                for (let i = 0; i < shapesArray.ShapesArrayList.length; i++) {
 
                     // For every element in each row
-                    for (let j = 0; j < this.shapesArray[i].length; j++) {
-                        let shapeValue = this.shapesArray[i][j];
+                    for (let j = 0; j < shapesArray.ShapesArrayList[i].length; j++) {
+                        let shapeValue = shapesArray.ShapesArrayList[i][j];
                         let shapeObj = new Object();
 
                         // Give the object a className
@@ -186,54 +157,54 @@
             // Parse the scenario to find sequences for the animation
             // This method might not be here (maybe in AudioPlayer, maybe not)
             parseScenario() {
-                let action = scenario.en.sequences[0].sequence1[0].action;
-                let delay = scenario.en.sequences[0].sequence1[0].startTime;
-                this.executeFunctionByName(action, this, delay);
+                for (let i = 0; i < scenario.en.sequences.length; i++){
+                    for (let j = 0; j < scenario.en.sequences[i].actions.length; j++){
+                        let action = scenario.en.sequences[i].actions[j].action;
+                        let props = scenario.en.sequences[i].actions[j].props;
+                        this.executeFunctionByName(action, this, props);
+                    }
+                }
             },
 
             // Execute the appropriate function by its name received as a string as well as with arguments
-
             executeFunctionByName(functionName, context, args) {
                 let newArgs = Array.prototype.slice.call(arguments, 2);
                 return context[functionName].apply(context, newArgs);
+
             },
 
             // Zoom by adding class, but we don't have controls on the parameters, such as scale values, duration, etc.
             // Would be nice to do it with Javascript, so we can control these parameters
-            zoomIn(delay) {
-                //const that = this;
+            zoomIn(props) {
                 const targets = document.querySelectorAll('.hexagon-container, #draw');
-                //const animParams = "scale(3,3) 2s linear";
-                //let transitionendevt = this.gettransitionend();
-
                 setTimeout(function() {
-                    targets.forEach(e => e.classList.add("zoomIn"));
-                    // targets.forEach(e => e.className += " zoomIn");
-                    // targets.forEach((e) => {
-                    //     //e.style.webkitTransform = animParams;
-                    //     // e.style.transition = animParams;
-                    //     // e.style.OTransition = animParams;
-                    //     // e.style.MozTransition = animParams;
-                    //     // //e.style.msTransform = animParams;
-                    //     // e.style.WebkitTransition = animParams;
-                    //
-                    //     // e.style["-webkit-transition"] = animParams;
-                    //     // e.style["-moz-transition"] = animParams;
-                    //     // e.style["-ms-transition"] = animParams;
-                    //     // e.style["-o-transition"] = animParams;
-                    //     // e.style["transition"] = animParams;
-                    //     //console.log(e.style);
-                    // });
-                }, delay);
+                    //targets.forEach(e => e.classList.add("zoomIn"));    //tres important pour la suite
+                    // targets.forEach(e => e.className += "zoomIn");
+                    targets.forEach((e) => {
+                        e.style.transform = "scale("+props.scale.toString()+","+props.scale.toString()+")";
+                        e.style.transitionDuration = props.duration.toString()+"ms";
+                        e.transitionTimingFunction = "linear";
+                        e.style.transformOrigin = props.transformOrigin_X.toString()+"%"+" "+props.transformOrigin_Y.toString()+"%";       //"30% 30%"
+                        e.style.transitionDelay = props.startTime.toString()+"ms";
+                        e.style.transitionProperty = "transform";
+                    });
+                });
             },
 
             // Zoom by adding class, but we don't have controls on the parameters, such as scale values, duration, etc.
             // Would be nice to do it with Javascript, so we can control these parameters
-            zoomOut(delay) {
-                const target = document.querySelectorAll('.hexagon-container');
+            zoomOut(props) {
+                const targets = document.querySelectorAll('.hexagon-container, #draw');
                 setTimeout(function() {
-                    target.forEach(e => e.classList.add("zoomOut"));
-                }, delay)
+                    targets.forEach((e) => {
+                        e.style.transform = "scale(" + props.scale.toString() + "," + props.scale.toString() + ")";
+                        e.style.transitionDuration = props.duration.toString() + "ms";
+                        e.transitionTimingFunction = "linear";
+                        e.style.transformOrigin = props.transformOrigin_X.toString() + "%" + " " + props.transformOrigin_Y.toString() + "%";
+                        e.style.transitionDelay = props.startTime.toString() + "ms";
+                        e.style.transitionProperty = "transform";
+                    });
+                });
             },
 
             // A way to "draw" the contour of the shapes without using borders
@@ -356,7 +327,11 @@
             // When content is loaded, make copies of the grid to facilitate the animation
             document.addEventListener('DOMContentLoaded', () => {
                 this.duplicateGrid(2);
+                this.parseScenario();
 
+
+                //------------------------------------------------------------------------------------------------------
+                //------------------------------------------------------------------------------------------------------
                 // THIS PART IS USED ONLY FOR ANIMATION TESTING PURPOSE
                 //this.zoomIn(1000);
                 //this.makeContour(".vulnerable", 3000, "contour");
@@ -364,6 +339,11 @@
                 // this.fadeInOut(7000, 2000);
                 // this.makeTransformer(12000);
                 // this.makeContour(".vulnerable", 15000, "barrier");
+                //------------------------------------------------------------------------------------------------------
+                //------------------------------------------------------------------------------------------------------
+
+
+
                //  var shape58 = document.querySelector('.hexagon-container #shape_58').getBoundingClientRect();
                //  var shape26 = document.querySelector('.hexagon-container #shape_26').getBoundingClientRect();
                //  // recherche de parametres
@@ -385,8 +365,6 @@
                //  //let txt = connections.connections[0];
                //  alert(connections.connections[0].id);
                 this.makeLink(connections.connections);
-
-                //this.parseScenario();
             });
         },
 
