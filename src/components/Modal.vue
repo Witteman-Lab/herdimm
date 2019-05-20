@@ -14,7 +14,7 @@
                     <div class="columns">
                         <div class="column is-centered ">
                             <Character v-if="isActive" :size="{width: '70px', height: '78px'}" :edit="false" :customised="true" ref="character" :id="'current'" :svgFile="this.currentCharacter"
-                                       :colors="{face: this.currentColorFace, hairFront: this.currentColorHair, beards: this.currentBeard, glasses: this.currentGlasses, shirt: this.currentShirt}"
+                                       :colors="{face: this.currentColorFace, hairFront: this.currentColorHair, beards: this.currentBeard, glasses: this.currentGlasses, shirt: this.currentShirt, name: this.characterName}"
                                        :is-name="true"/>
                             <!--<inputclass="input"type="text"placeholder="Entername">-->
                             <!--<labelclass="label">Name:<inputclass="input"v-model="message"type="text"placeholder="editname"></label>-->
@@ -213,7 +213,6 @@
 
             // METHOD DESCRIPTION
             saveCharacter() {
-                console.log(this.characterName)
                 if (this.avatarNbr > this.currentCharacterNumber && !this.characterName)
                     this.setCharacterName(this.labels.avatar);
                 else if (!this.characterName)
