@@ -25,5 +25,7 @@
     "editAvatar": "Edit",
     "startAnimation": "Start animation",
     "nameInputLabel": "Name",
-    "nameInputPlaceHolder": "Name your character"
+    "nameInputPlaceHolder": "Name your character",
+    "totalCharacterCount": "Characters count : ",
+    "defaultCharacterName": "Person"
 }

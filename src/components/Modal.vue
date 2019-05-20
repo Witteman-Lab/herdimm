@@ -3,20 +3,24 @@
         <div class="modal-background">
             <div class="modal-card mobile-modal">
                 <header class="modal-card-head">
-                    <p class="modal-card-title">{{ modalTitle }}</p>
+                    <p class="modal-card-title">
+                        {{ modalTitle }}
+                        <br/>
+                        <span style="font-size: medium">{{ this.labels.totalCharacterCount }} {{this.currentCharacterNumber}} / {{totalCharactersCount}}</span>
+                    </p>
                     <button class="delete" aria-label="close modal" v-on:click="this.closeModal"></button>
                 </header>
                 <section class="modal-card-body">
                     <div class="columns">
                         <div class="column is-centered ">
                             <Character v-if="isActive" :size="{width: '70px', height: '78px'}" :edit="false" :customised="true" ref="character" :id="'current'" :svgFile="this.currentCharacter"
-                                       :colors="{face: this.currentColorFace, hairFront: this.currentColorHair, beards: this.currentBeard, glasses: this.currentGlasses, shirt: this.currentShirt}"
-                                        :is-name="true"/>
+                                       :colors="{face: this.currentColorFace, hairFront: this.currentColorHair, beards: this.currentBeard, glasses: this.currentGlasses, shirt: this.currentShirt, name: this.characterName}"
+                                       :is-name="true"/>
                             <!--<inputclass="input"type="text"placeholder="Entername">-->
                             <!--<labelclass="label">Name:<inputclass="input"v-model="message"type="text"placeholder="editname"></label>-->
                             <div class="field is-one-fifth-mobile" style="margin-top: 5px">
                                 <div class="control">
-                                    <input v-on:input="setCharacterName()" class="input" v-model="characterName"  type="text" :placeholder="this.labels.nameInputPlaceHolder">
+                                    <input v-on:input="setCharacterName(characterName)" class="input" v-model="characterName"  type="text" :placeholder="this.labels.nameInputPlaceHolder">
                                 </div>
                             </div>
 
@@ -148,12 +152,15 @@
                 glassesList: [],
                 beardsList: [],
                 characterName: "",
+                currentCharacterNumber: 0,
+                avatarNbr: 0
             }
         },
         props: {
             labels: Object,
             glassesListJson: Array,
-            facialHairListJson: Array
+            facialHairListJson: Array,
+            totalCharactersCount: Number,
         },
         methods: {
             // METHOD DESCRIPTION
@@ -165,6 +172,8 @@
 
                 this.isActive = true;
                 this.isEdit = isEdit;
+                this.currentCharacterNumber = totalCreated;
+                this.avatarNbr = nbrAvatar;
                 this.setCharacterColors(isEdit, character, totalCreated < nbrAvatar);
 
                 // Display the skin tab content when opening modal window
@@ -190,8 +199,8 @@
                 }
             },
 
-            setCharacterName() {
-                this.$refs.character.setCharacterName(this.characterName);
+            setCharacterName(name) {
+                this.$refs.character.setCharacterName(name);
             },
 
             // METHOD DESCRIPTION
@@ -204,6 +213,10 @@
 
             // METHOD DESCRIPTION
             saveCharacter() {
+                if (this.avatarNbr > this.currentCharacterNumber && !this.characterName)
+                    this.setCharacterName(this.labels.avatar);
+                else if (!this.characterName)
+                    this.setCharacterName(this.labels.defaultCharacterName + " " + (this.currentCharacterNumber));
                 this.$parent.saveCharacter(this.currentCharacterObject, this.$refs.character.getSvgColor());
                 this.closeModal();
             },

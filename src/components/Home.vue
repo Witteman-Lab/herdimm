@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <!-- MODAL WINDOW -->
-        <Modal ref="modal" :glasses-list-json="glassesListJson" :facial-hair-list-json="facialHairList" :labels="labels"/>
+        <Modal ref="modal" :total-characters-count="maxCharactersInGroup" :glasses-list-json="glassesListJson" :facial-hair-list-json="facialHairList" :labels="labels"/>
         <!-- INTERFACE -->
         <div class="is-centered is-half-desktop is-half-mobile">
             <h1>{{this.labels.pageTitle}}</h1>
@@ -9,7 +9,7 @@
 
             <p id="generalInfo">{{this.labels.generalInfo}}</p>
             <p id="contextualInfo">{{ contextualInfo }}</p>
-
+            <h2>{{ this.labels.totalCharacterCount }} {{this.totalCreated}} / {{maxCharactersInGroup}} </h2>
             <!-- List of all the characters -->
             <div class="tool">
                 <div style="width: 100%; margin: 12px;">
