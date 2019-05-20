@@ -7,25 +7,26 @@
         </div>
 
         <!-- Container for the shapes (hexagons) -->
-        <div class="hexagon-container" >
-
-            <!-- Audio player for audio files -->
-            <AudioPlayer ref="audioPlayer"></AudioPlayer>
-
-            <!-- Grid creation -->
-            <div class="shape" v-for="shape in this.gridIds">
-                <div :class="shape.className" :id="shape.id">
-                    <!-- Where the group members are being placed -->
-                    <div :style="{height: characterSize, marginBottom: characterBottomMargin}" v-if="shape.isCharacter">
-                        <Character v-bind:ref="shape.id" :size="{ width: characterSize }"  :edit="false" :customised="true" :colors="shape.character.colors" :id="shape.character.id" :svgFile="require(`../assets/characters/${shape.character.file}`)" />
+        <div style="display: flex; justify-content: center;">
+            <div class="hexagon-container">
+                <!-- Grid creation -->
+                <div class="shape" v-for="shape in this.gridIds">
+                    <div :class="shape.className" :id="shape.id">
+                        <!-- Where the group members are being placed -->
+                        <div :style="{height: characterSize, marginBottom: characterBottomMargin}" v-if="shape.isCharacter">
+                            <Character v-bind:ref="shape.id" :size="{ width: characterSize }"  :edit="false" :customised="true" :colors="shape.character.colors" :id="shape.character.id" :svgFile="require(`../assets/characters/${shape.character.file}`)" />
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- Audio player for audio files -->
+        <AudioPlayer :current-language="currentLanguage" ref="audioPlayer"></AudioPlayer>
         <!-- <div id="captions">
             <p id="caption"></p>
         </div> -->
+        <button class="button is-primary is-success" style="justify-self: center;" v-on:click="startAnimation">{{this.labels.startAnimation}}</button>
     </div>
 </template>
 
@@ -37,6 +38,9 @@
     import connections from "../assets/json/connections.json";
     import shapesArray from "../assets/json/shapesArray";
 
+    import textsEng from "../assets/json/textsEng.json";
+    import textsFr from "../assets/json/textsFr.json";
+
     export default {
         name: "Animation",
         components: {
@@ -46,23 +50,26 @@
         data() {
             return {
                 characterList: [],
+                labels: {},
                 gridIds: [],
                 characterSize: 0,
                 characterBottomMargin: 0,
-                isAnimationStarted: false
+                isAnimationStarted: false,
+                currentLanguage: ""
             }
         },
         props: {
             group: {
                 type: Array
-            }
+            },
+            labelSelected: String
         },
         methods: {
             // METHOD DESCRIPTION
             startAnimation() {
                 // Starts true;
                 this.isAnimationStarted = true;
-                //AudioPlayer.playAudio();
+                this.$refs.audioPlayer.playAudio();
 
                 // THIS PART IS USED ONLY FOR ANIMATION TESTING PURPOSE
                 // this.zoomIn(1000);
@@ -131,6 +138,14 @@
                 });
             },
 
+            selectCurrentLanguage(language) {
+                if (language === "fr")
+                    this.labels = textsFr;
+                else
+                    this.labels = textsEng;
+                this.currentLanguage = this.labels.currentLanguage;
+            },
+
             // set T-Shirt Color
             setCharacterTShirtColor(shapeId, color) {
                 this.$refs[shapeId][0].changeShirtColor(color);
@@ -156,14 +171,9 @@
 
             // Parse the scenario to find sequences for the animation
             // This method might not be here (maybe in AudioPlayer, maybe not)
-            parseScenario() {
-                for (let i = 0; i < scenario.en.sequences.length; i++){
-                    for (let j = 0; j < scenario.en.sequences[i].actions.length; j++){
-                        let action = scenario.en.sequences[i].actions[j].action;
-                        let props = scenario.en.sequences[i].actions[j].props;
-                        this.executeFunctionByName(action, this, props);
-                    }
-                }
+            launchSequence(sequence) {
+                console.log(sequence);
+                this.executeFunctionByName(sequence.action, this, sequence.props);
             },
 
             // Execute the appropriate function by its name received as a string as well as with arguments
@@ -247,7 +257,7 @@
             },
             // connections for each shape in connections json
             makeLink(connections){
-               // console.log(typeof(next));
+                // console.log(typeof(next));
                 for (let i = 0; i < connections.length; i++){
                     //console.log("patate", test.connections[i].patate);
                     let source 	= connections[i].source;
@@ -257,17 +267,17 @@
                     let id = connections[i].id;
 
                     this.drawLine(source,target,id);
-                   // console.log(next.length);
-                     if(nextTarget != ""){
-                         console.log("nextTarget", nextTarget);
-                         this.makeLink(nextTarget);
-                     }
+                    // console.log(next.length);
+                    if (nextTarget != "") {
+                        console.log("nextTarget", nextTarget);
+                        this.makeLink(nextTarget);
+                    }
                 }
             },
 
 
             // drawLine
-            drawLine(source, target, id){
+            drawLine(source, target, id) {
                 //var container = connections.connections.containerId;
                 var drawingBoard = document.querySelector("#connections");
 
@@ -307,15 +317,19 @@
         created() {},
         mounted() {
             let styles = require('../scss/animation.scss');
-
+            console.log(this.labelSelected);
             // Fetch the group member if it exists
             if (this.group) {
                 localStorage.setItem("group", JSON.stringify(this.group));
+                localStorage.setItem("language", this.labelSelected);
                 this.characterList = this.group;
+                this.selectCurrentLanguage(this.labelSelected)
             } else {
                 if (localStorage.getItem("group"))
                     this.characterList = JSON.parse(localStorage.getItem("group"));
+                this.selectCurrentLanguage(localStorage.getItem("language"));
             }
+            this.$refs.audioPlayer.loadAudioFiles(this.currentLanguage);
 
             // Fetch some styles from the SCSS file
             this.characterSize = styles["hexagon-height"];
@@ -327,7 +341,7 @@
             // When content is loaded, make copies of the grid to facilitate the animation
             document.addEventListener('DOMContentLoaded', () => {
                 this.duplicateGrid(2);
-                this.parseScenario();
+                // this.parseScenario();
 
 
                 //------------------------------------------------------------------------------------------------------
@@ -344,27 +358,27 @@
 
 
 
-               //  var shape58 = document.querySelector('.hexagon-container #shape_58').getBoundingClientRect();
-               //  var shape26 = document.querySelector('.hexagon-container #shape_26').getBoundingClientRect();
-               //  // recherche de parametres
-               //  var radius = 10;
-               //  var app = document.querySelector("#app");
-               //
-               //  var style = app.currentStyle || window.getComputedStyle(app);
-               //  var str_marginLeft = style.marginLeft;
-               //  var marginLeft = parseInt(str_marginLeft.split("px")[0]);
-               //  var divider = Math.sqrt(3);
-               //
-               // // hex.x - marginLeft + (hex.width/divider) + radius
-               //  var x2 = shape58.x - marginLeft + (shape58.width/divider)  + radius;
-               //  var y2  = shape58.y + shape58.height/divider;
-               //  var x1 = shape26.x - marginLeft + (shape26.width/divider)  + radius;
-               //  var y1  = shape26.y + shape26.height/divider;
-               //
-               //  this.drawLine(x1, y1, x2 , y2 );
-               //  //let txt = connections.connections[0];
-               //  alert(connections.connections[0].id);
-                this.makeLink(connections.connections);
+                //  var shape58 = document.querySelector('.hexagon-container #shape_58').getBoundingClientRect();
+                //  var shape26 = document.querySelector('.hexagon-container #shape_26').getBoundingClientRect();
+                //  // recherche de parametres
+                //  var radius = 10;
+                //  var app = document.querySelector("#app");
+                //
+                //  var style = app.currentStyle || window.getComputedStyle(app);
+                //  var str_marginLeft = style.marginLeft;
+                //  var marginLeft = parseInt(str_marginLeft.split("px")[0]);
+                //  var divider = Math.sqrt(3);
+                //
+                // // hex.x - marginLeft + (hex.width/divider) + radius
+                //  var x2 = shape58.x - marginLeft + (shape58.width/divider)  + radius;
+                //  var y2  = shape58.y + shape58.height/divider;
+                //  var x1 = shape26.x - marginLeft + (shape26.width/divider)  + radius;
+                //  var y1  = shape26.y + shape26.height/divider;
+                //
+                //  this.drawLine(x1, y1, x2 , y2 );
+                //  //let txt = connections.connections[0];
+                //  alert(connections.connections[0].id);
+                //  this.makeLink(connections.connections);
             });
         },
 

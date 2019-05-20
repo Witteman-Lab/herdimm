@@ -123,7 +123,7 @@
             // METHOD DESCRIPTION
             loadAnimationView() {
                 let groupCharacter = this.$refs.listToFill.getCharacterList();
-                this.$router.push({name: 'Animation', params:{group: groupCharacter}});
+                this.$router.push({name: 'Animation', params:{group: groupCharacter, labelSelected: this.labels.currentLanguage}});
             },
 
             // METHOD DESCRIPTION

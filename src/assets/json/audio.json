@@ -11,17 +11,29 @@
                         "action": "zoomIn",
                         "props": {
                             "scale" : "3",
-                            "duration" : "1000",
+                            "duration" : "3000",
                             "transformOrigin_X" : "35",
                             "transformOrigin_Y": "45",
-                            "startTime" : "3000"
+                            "startTime" : "0"
                         }
                     }
                 ]
             },
             {
                 "file" : "2E.mp3",
-                "caption" : "Imagine this is you."
+                "caption" : "Imagine this is you.",
+                "actions" : [
+                    {
+                        "action": "zoomOut",
+                        "props": {
+                            "scale" : "1",
+                            "duration" : "3000",
+                            "transformOrigin_X" : "35",
+                            "transformOrigin_Y": "45",
+                            "startTime" : "0"
+                        }
+                    }
+                ]
             },
             {
                 "file" : "3E.mp3",
@@ -90,70 +102,70 @@
         "sequences" : [
             {
                 "file" : "1F.mp3",
+                "caption" : "Test"
+            },
+            {
+                "file" : "2F.mp3",
                 "caption" : ""
             },
             {
-                "file" : "2E.mp3",
+                "file" : "3F.mp3",
                 "caption" : ""
             },
             {
-                "file" : "3E.mp3",
+                "file" : "4F.mp3",
                 "caption" : ""
             },
             {
-                "file" : "4E.mp3",
+                "file" : "5F.mp3",
                 "caption" : ""
             },
             {
-                "file" : "5E.mp3",
+                "file" : "6F.mp3",
                 "caption" : ""
             },
             {
-                "file" : "6E.mp3",
+                "file" : "7F.mp3",
                 "caption" : ""
             },
             {
-                "file" : "7E.mp3",
+                "file" : "8F.mp3",
                 "caption" : ""
             },
             {
-                "file" : "8E.mp3",
+                "file" : "9F.mp3",
                 "caption" : ""
             },
             {
-                "file" : "9E.mp3",
+                "file" : "10F.mp3",
                 "caption" : ""
             },
             {
-                "file" : "10E.mp3",
+                "file" : "11F.mp3",
                 "caption" : ""
             },
             {
-                "file" : "11E.mp3",
+                "file" : "12F.mp3",
                 "caption" : ""
             },
             {
-                "file" : "12E.mp3",
+                "file" : "13F.mp3",
                 "caption" : ""
             },
             {
-                "file" : "13E.mp3",
+                "file" : "14F.mp3",
                 "caption" : ""
             },
             {
-                "file" : "14E.mp3",
+                "file" : "15F.mp3",
                 "caption" : ""
             },
             {
-                "file" : "15E.mp3",
+                "file" : "16F.mp3",
                 "caption" : ""
             },
             {
-                "file" : "16E.mp3",
-                "caption" : ""
-            },
-            {
-                "file" : "17E.mp3",
+                "file" : "17F.mp3",
                 "caption" : ""
             }
         ]

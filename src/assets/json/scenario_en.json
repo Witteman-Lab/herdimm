@@ -7,8 +7,6 @@
                 "file" : "1E.mp3",
                 "caption" : "What role does each of us play in protecting our community?",
                 "actions" : [
-
-
                     {
                         "action": "zoomOut",
                         "props": {

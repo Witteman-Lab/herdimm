@@ -1,7 +1,7 @@
 <template>
     <div id="audioPlayer">
-         <audio :src="this.current" muted="muted" ref="audio" @ended="nextAudioFile()" preload="auto"></audio>
-         <track :src="this.caption" kind="captions" srclang="en" label="english_captions">
+        <audio :src="this.currentAudio" muted="muted" ref="audio" @ended="nextAudioFile()" preload="auto"></audio>
+        <track :src="this.caption" kind="captions" srclang="en" label="english_captions">
     </div>
 </template>
 
@@ -15,62 +15,60 @@
         components: {},
         data() {
             return {
-                // Languauge value should come from the selected language from Animation.vue
+                // Language value should come from the selected language from Animation.vue
                 language: "en",
                 playlist: [],
-                current: '',
-                captions: [],
+                currentAudio: '',
+                currentActions: [],
                 caption: '',
-                onplay: false
+                onplay: false,
+                audioPosition: 0
             }
         },
-        props: {},
+        props: {
+            currentLanguage: String
+        },
         methods: {
             // METHOD DESCRIPTION
             playAudio() {
                 let ref = this.$refs.audio;
+                let actions = this.playlist[this.audioPosition].actions;
                 let playPromise;
+                let launchSequence = this.$parent.launchSequence;
 
                 // No more autoplay, animation and audio start when the user clicks on the button,
                 // So this method needs to be adjusted
-                setTimeout(function() {
+                setTimeout(() => {
                     playPromise = ref.play();
-                    if (playPromise !== undefined) {
-                        // playPromise.then(_ => {
-                        playPromise.then(() => {
-                            // Autoplay started!
-                            // launch futures animations here
-                        }).catch((error) => {
-                            //console.log(error.name);
-                            //console.log(error.message);
-                            this.onplay = false;
-                            // Autoplay was prevented.
-                            // Show a "Play" button so that user can start playback.
+                    if (actions) {
+                        actions.forEach((sequence) => {
+                            launchSequence(sequence);
                         });
                     }
                 }, 1000);
             },
-
+            //require(`../assets/${folder}/${type}/${jsonPlaylist[i].file}`)
             // METHOD DESCRIPTION
             loadAudioFiles(type) {
                 this.language = type;
-                const jsonPlaylist = audio[type].sequences;
+                this.playlist = audio[type].sequences;
                 const folder = audio.folder;
-                for (let i = 0; i < jsonPlaylist.length; i++) {
-                    this.playlist.push(require(`../assets/${folder}/${type}/${jsonPlaylist[i].file}`));
-                    this.captions.push(jsonPlaylist[i].caption);
-                }
+                this.currentAudio = require(`../assets/${folder}/${type}/${this.playlist[this.audioPosition].file}`);
+                this.caption = this.playlist[this.audioPosition].caption;
             },
 
             // METHOD DESCRIPTION
             nextAudioFile() {
+                this.audioPosition++;
+                const folder = audio.folder;
+                const type = this.currentLanguage;
                 this.onplay = true;
-                if (this.playlist.length > 0) {
-                    this.current = this.playlist.shift();
-                    this.caption = this.captions.shift();
+                if (this.audioPosition < this.playlist.length) {
+                    this.currentAudio = require(`../assets/${folder}/${type}/${this.playlist[this.audioPosition].file}`);
+                    this.caption = this.playlist[this.audioPosition].caption;
                     this.playAudio();
                 } else {
-                    this.current = "";
+                    this.currentAudio = "";
                     this.caption = "";
                     this.onplay = false;
                 }
@@ -85,8 +83,7 @@
         },
         created() {},
         mounted() {
-            this.loadAudioFiles(audio.en.folder);
-            this.nextAudioFile();
+            // this.nextAudioFile();
         }
     }
 </script>

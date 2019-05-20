@@ -1,4 +1,5 @@
 {
+    "currentLanguage" : "en",
     "continueBtn" : "Go to the animation",
     "saveBtn" : "Save",
     "saveEditBtn" : "Save edit",
@@ -23,7 +24,7 @@
     "language": "Change language",
     "createAvatar": "Create",
     "editAvatar": "Edit",
-    "startAnimation": "Start animation",
+    "startAnimation": "Start the animation",
     "nameInputLabel": "Name",
     "nameInputPlaceHolder": "Name your character",
     "totalCharacterCount": "Characters count : ",
