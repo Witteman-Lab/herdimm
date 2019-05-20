@@ -1,155 +1,155 @@
 $hex-height: 50px;
 
 :export {
-    hexagon-height: calc(#{$hex-height} - ((#{$hex-height} / 10) * 2));
-    character-bottom-margin: calc(#{$hex-height} / 10);
+  hexagon-height: calc(#{$hex-height} - ((#{$hex-height} / 10) * 2));
+  character-bottom-margin: calc(#{$hex-height} / 10);
 }
 
 :root {
-    /* Change this to change the appearance of the hexagons */
-    --hex-height: #{$hex-height};
-    --hex-width: calc(var(--hex-height) / 1.73);    /* 1.73 = sqrt(3) */
-    --hex-between: calc(var(--hex-height) * 1.73);  /* 1.73 = sqrt(3) */
-    --hex-margin: calc(var(--hex-height) / 2);
-    --hex-border: calc(var(--hex-margin) / 1.73);   /* 1.73 = sqrt(3) */
-    --hex-transition: all 2s ease;
+  /* Change this to change the appearance of the hexagons */
+  --hex-height: #{$hex-height};
+  --hex-width: calc(var(--hex-height) / 1.73);    /* 1.73 = sqrt(3) */
+  --hex-between: calc(var(--hex-height) * 1.73);  /* 1.73 = sqrt(3) */
+  --hex-margin: calc(var(--hex-height) / 2);
+  --hex-border: calc(var(--hex-margin) / 1.73);   /* 1.73 = sqrt(3) */
+  --hex-transition: all 2s ease;
 
-    /* Colors */
-    --color-hex-default: 	        #C4BAB8;
-    --color-hex-vaccinated:         #3C83B7;
-    --color-hex-vaccinated-shadow:  #2B72A6;
-    --color-hex-infected:           #B0102C;
-    --color-copy1:                  #FFFFFF;
-    --color-copy2:                  #FFFFFF;
-    --color-contour:                #E9855B;
-    --color-barrier:                #2B72A6;
-    --color-hex-vulnerable:         #FFFAB0;
+  /* Colors */
+  --color-hex-default: 	        #C4BAB8;
+  --color-hex-vaccinated:         #3C83B7;
+  --color-hex-vaccinated-shadow:  #2B72A6;
+  --color-hex-infected:           #B0102C;
+  --color-copy1:                  #FFFFFF;
+  --color-copy2:                  #FFFFFF;
+  --color-contour:                #E9855B;
+  --color-barrier:                #2B72A6;
+  --color-hex-vulnerable:         #FFFAB0;
 }
 
 body {
-    opacity: 1;
-    -webkit-transition: opacity 1s linear;
-    -moz-transition: opacity 1s linear;
-    -ms-transform: opacity 1s linear;
-    -o-transition: opacity 1s linear;
-    transition: opacity 1s linear;
+  opacity: 1;
+  -webkit-transition: opacity 1s linear;
+  -moz-transition: opacity 1s linear;
+  -ms-transform: opacity 1s linear;
+  -o-transition: opacity 1s linear;
+  transition: opacity 1s linear;
 }
 
 body.fade {
-    opacity: 0;
-    -webkit-transition: opacity 1s linear;
-    -moz-transition: opacity 1s linear;
-    -ms-transform: opacity 1s linear;
-    -o-transition: opacity 1s linear;
-    transition: opacity 1s linear;
+  opacity: 0;
+  -webkit-transition: opacity 1s linear;
+  -moz-transition: opacity 1s linear;
+  -ms-transform: opacity 1s linear;
+  -o-transition: opacity 1s linear;
+  transition: opacity 1s linear;
 }
 
 /* Colors */
 div.vulnerable,
 div.vulnerable::after,
 div.vulnerable::before {
-    background-color: var(--color-hex-vulnerable);
+  background-color: var(--color-hex-vulnerable);
 }
 div.copy .vulnerable,
 div.copy .vulnerable::after,
 div.copy .vulnerable::before {
-    background-color: var(--color-copy1);
-    z-index: 10;
+  background-color: var(--color-copy1);
+  z-index: 10;
 }
 
 div.color-infected,
 div.color-infected::after,
 div.color-infected::before {
-    background-color: var(--color-hex-infected);
+  background-color: var(--color-hex-infected);
 }
 
 div.color-vaccinated,
 div.color-vaccinated::after,
 div.color-vaccinated::before {
-    background-color: var(--color-hex-vaccinated);
+  background-color: var(--color-hex-vaccinated);
 }
 
 .no-hexagon,
 .no-hexagon::after,
 .no-hexagon::before {
-    display: none;
+  display: none;
 }
 
 /* Hexagons */
 .hexagon-container {
-    display: grid;
-    grid-template-columns: repeat(14, var(--hex-width)); // Repeat 14 times because grid contains 14 columns
-    grid-auto-rows: calc(var(--hex-height) / 10);
-    grid-gap: calc(var(--hex-between) / 3) calc(var(--hex-height) / 2);
-    position: absolute;
-    top: 0;
-    left: 0;
-    // width: 100%;
-    // margin: 0 auto;
-    // transform: scale(3,3);
-    // transform-origin: (15% 45%);
+  display: grid;
+  grid-template-columns: repeat(14, var(--hex-width)); // Repeat 14 times because grid contains 14 columns
+  grid-auto-rows: calc(var(--hex-height) / 10);
+  grid-gap: calc(var(--hex-between) / 3) calc(var(--hex-height) / 2);
+  position: absolute;
+  top: 0;
+  left: 0;
+  // width: 100%;
+  // margin: 0 auto;
+  // transform: scale(3,3);
+  // transform-origin: (15% 45%);
 }
 
 .hexagon {
-    align-items: center;
-    display: flex;
-    height: var(--hex-height);
-    justify-content: center;
-    margin: var(--hex-border) 0;
-    position: relative;
-    width: var(--hex-width);
-    z-index: 1;
+  align-items: center;
+  display: flex;
+  height: var(--hex-height);
+  justify-content: center;
+  margin: var(--hex-border) 0;
+  position: relative;
+  width: var(--hex-width);
+  z-index: 1;
 
-    // This so it doesn't get blurry when zoomed in (and out?)
-    // Fix for Chrome (others?)
-    -webkit-backface-visibility: hidden;
-    -webkit-transform: translateZ(0) scale(1.0, 1.0);
-    transform: translateZ(0);
+  // This so it doesn't get blurry when zoomed in (and out?)
+  // Fix for Chrome (others?)
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0) scale(1.0, 1.0);
+  transform: translateZ(0);
 }
 .hexagon,
 .hexagon::after,
 .hexagon::before {
-    background-color: var(--color-hex-default);
-    height: var(--hex-height);
-    width: var(--hex-width);
+  background-color: var(--color-hex-default);
+  height: var(--hex-height);
+  width: var(--hex-width);
 }
 .hexagon::after,
 .hexagon::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 .hexagon::before {
-    transform: rotate(-60deg);
-    -o-transform: rotate(-60deg);
-    -moz-transform: rotate(-60deg);
-    -webkit-transform: rotate(-60deg);
-    -ms-transform: rotate(-60deg);
+  transform: rotate(-60deg);
+  -o-transform: rotate(-60deg);
+  -moz-transform: rotate(-60deg);
+  -webkit-transform: rotate(-60deg);
+  -ms-transform: rotate(-60deg);
 }
 .hexagon::after {
-    transform: rotate(60deg);
-    -o-transform: rotate(60deg);
-    -moz-transform: rotate(60deg);
-    -webkit-transform: rotate(60deg);
-    -ms-transform: rotate(60deg);
+  transform: rotate(60deg);
+  -o-transform: rotate(60deg);
+  -moz-transform: rotate(60deg);
+  -webkit-transform: rotate(60deg);
+  -ms-transform: rotate(60deg);
 }
 
 .hexagon > svg {
-    height: 85%;
+  height: 85%;
 }
 
 div#copy1 {
-    z-index: -2;
+  z-index: -2;
 }
 div#copy1 .hexagon {
-    transform: scale(1.1, 1.1);
+  transform: scale(1.1, 1.1);
 }
 div#copy1 .hexagon,
 div#copy1 .hexagon::after,
 div#copy1 .hexagon::before {
-    background-color: var(--color-copy1);
+  background-color: var(--color-copy1);
 }
 // div#copy1 .contour,
 // div#copy1 .contour::after,
@@ -159,39 +159,39 @@ div#copy1 .hexagon::before {
 // }
 
 div#copy2 {
-    z-index: -3;
+  z-index: -3;
 }
 div#copy2 .hexagon {
-    transform: scale(1.4, 1.4);
+  transform: scale(1.4, 1.4);
 }
 div#copy2 .hexagon,
 div#copy2 .hexagon::after,
 div#copy2 .hexagon::before {
-    background-color: var(--color-copy2);
+  background-color: var(--color-copy2);
 }
 
 div#copy2 .contour,
 div#copy2 .contour::after,
 div#copy2 .contour::before {
-    background-color: var(--color-contour);
-    z-index: 10;
-    -webkit-transition: background-color 2s linear;
-    -moz-transition: background-color 2s linear;
-    -ms-transform: background-color 2s linear;
-    -o-transition: background-color 2s linear;
-    transition: background-color 2s linear;
+  background-color: var(--color-contour);
+  z-index: 10;
+  -webkit-transition: background-color 2s linear;
+  -moz-transition: background-color 2s linear;
+  -ms-transform: background-color 2s linear;
+  -o-transition: background-color 2s linear;
+  transition: background-color 2s linear;
 }
 
 div#copy2 .barrier,
 div#copy2 .barrier::after,
 div#copy2 .barrier::before {
-    background-color: var(--color-barrier);
-    z-index: 5;
-    -webkit-transition: background-color 2s linear;
-    -moz-transition: background-color 2s linear;
-    -ms-transform: background-color 2s linear;
-    -o-transition: background-color 2s linear;
-    transition: background-color 2s linear;
+  background-color: var(--color-barrier);
+  z-index: 5;
+  -webkit-transition: background-color 2s linear;
+  -moz-transition: background-color 2s linear;
+  -ms-transform: background-color 2s linear;
+  -o-transition: background-color 2s linear;
+  transition: background-color 2s linear;
 }
 
 .barrier,
@@ -200,27 +200,45 @@ div#copy2 .barrier::before {
 div#copy2 .barrier,
 div#copy2 .barrier::after,
 div#copy2 .barrier::before {
-    background-color: var(--color-hex-vaccinated);
-    -webkit-transition: background-color .5s linear;
-    -moz-transition: background-color .5s linear;
-    -ms-transform: background-color .5s linear;
-    -o-transition: background-color .5s linear;
-    transition: background-color .5s linear;
+  background-color: var(--color-hex-vaccinated);
+  -webkit-transition: background-color .5s linear;
+  -moz-transition: background-color .5s linear;
+  -ms-transform: background-color .5s linear;
+  -o-transition: background-color .5s linear;
+  transition: background-color .5s linear;
 }
 div#copy1 .barrier,
 div#copy1 .barrier::after,
 div#copy1 .barrier::before {
-    background-color: var(--color-hex-vaccinated-shadow);
+  background-color: var(--color-hex-vaccinated-shadow);
 }
 
-#connections line{
-   fill-opacity: 0;
+//#connections line{
+//   fill-opacity: 0;
+//
+//}
+//#connections.line {
+//   fill-opacity: 1;
+//    -webkit-transition: opacity 10s linear;
+//    -moz-transition: opacity 10s linear;
+//    -ms-transform: opacity 10s linear;
+//    -o-transition: opacity 10s linear;
+//    transition: opacity 10s linear;
+//}
+//
+.line {
+  stroke-dasharray:1000;
+  stroke-dashoffset:1000;
+  //animation-name: dash;
+  //animation-duration: 2s;
+  //animation-timing-function: linear;
+  //animation-delay: 1s;
+  //animation-direction: forwards;
+  animation: dash 4s linear 0s forwards;
 }
-#connections.line {
-   fill-opacity: 1;
-    -webkit-transition: opacity 3s linear;
-    -moz-transition: opacity 3s linear;
-    -ms-transform: opacity 3s linear;
-    -o-transition: opacity 3s linear;
-    transition: opacity 3s linear;
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
 }

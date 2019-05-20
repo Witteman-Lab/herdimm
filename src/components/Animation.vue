@@ -3,7 +3,7 @@
 
         <!-- Where to draw the lines for infection spreading  -->
         <div class="draw" id="draw">
-            <svg class="connections" id="connections"></svg>
+            <svg class="connections" ref="connections" id="connections"></svg>
         </div>
 
         <!-- Container for the shapes (hexagons) -->
@@ -36,6 +36,8 @@
     import scenario from "../assets/json/scenario_en.json";
     import connections from "../assets/json/connections.json";
     import shapesArray from "../assets/json/shapesArray";
+    import animate from "animejs";
+
 
     export default {
         name: "Animation",
@@ -245,9 +247,11 @@
                     });
                 }, delay)
             },
+
             // connections for each shape in connections json
             makeLink(connections){
-               // console.log(typeof(next));
+                const drawingBoard = document.querySelector("#connections");
+                const that = this;
                 for (let i = 0; i < connections.length; i++){
                     //console.log("patate", test.connections[i].patate);
                     let source 	= connections[i].source;
@@ -256,20 +260,32 @@
 
                     let id = connections[i].id;
 
-                    this.drawLine(source,target,id);
-                   // console.log(next.length);
-                     if(nextTarget != ""){
-                         //console.log("nextTarget", nextTarget);
-                         this.makeLink(nextTarget);
-                     }
+                    let lineObj = this.drawLine(source,target,id);
+
+                    lineObj.classList.add("line");
+                    drawingBoard.appendChild(lineObj);
+                    lineObj.addEventListener("animationstart", function(){ // webkitAnimationStart
+                        console.log("animationstart");
+                        that.infectShape(source);
+                    });
+                    lineObj.addEventListener("animationend", function(){ // webkitAnimationEnd
+                        console.log("animationend");
+                        if(nextTarget != ""){
+                            that.makeLink(nextTarget);
+                        }
+                        that.infectShape(target);
+                    });
                 }
             },
 
+            infectShape(shape){
+                shape =
+                console.log("shape", shape)
+            },
 
             // drawLine
             drawLine(source, target, id){
                 //var container = connections.connections.containerId;
-                var drawingBoard = document.querySelector("#connections");
 
 
                 //parameters
@@ -285,6 +301,9 @@
                 let sourceBCR = document.querySelector(selector+source).getBoundingClientRect();
                 let targetBCR = document.querySelector(selector+target).getBoundingClientRect();
 
+               // console.log("sourceBCR", sourceBCR);
+               // console.log("targetBCR", targetBCR);
+
                 var width = connections.linewidth;
                 var colorStroke = connections.linecolor;
 
@@ -298,9 +317,38 @@
                 lineObj.setAttributeNS(null, 'y2',  targetBCR.y + targetBCR.height/divider);
                 lineObj.setAttributeNS(null, "stroke", colorStroke);
                 lineObj.setAttributeNS(null, "stroke-width", width);
-                lineObj.classList.add("line");
-                drawingBoard.appendChild(lineObj);
-            }
+
+                return lineObj;
+            } // ,
+            //
+            // //Here i'am using anime.js library to animate the line links(connections)
+            //
+            // animateLine(path){
+            //     //var path = document.querySelectorAll(path);
+            //     // for (var i = 0; i < path.length; i++) {
+            //     //     var pathEl = path[i];
+            //        // var offset = animate.setDashoffset(pathEl);
+            //        // pathEl.setAttribute('stroke-dashoffset', offset);
+            //         animate({
+            //             targets: path,
+            //             strokeDashoffset: [animate.setDashoffset, 0],
+            //             //duration: animate.random(1000, 3000),
+            //             // delay: animate.random(0, 2000),
+            //             //loop: true,
+            //             //direction: 'normal',
+            //             easing: 'easeInOutSine',
+            //             autoplay: true,
+            //             duration: (1000),
+            //             delay: (1000),
+            //             transitionDelay: (1000)
+            //
+            //
+            //
+            //
+            //         });
+            //     // }
+            // }
+
         },
         created() {},
         mounted() {
@@ -328,6 +376,8 @@
                 //this.parseScenario();
 
 
+
+
                 //------------------------------------------------------------------------------------------------------
                 //------------------------------------------------------------------------------------------------------
                 // THIS PART IS USED ONLY FOR ANIMATION TESTING PURPOSE
@@ -340,8 +390,10 @@
                 //------------------------------------------------------------------------------------------------------
                 //------------------------------------------------------------------------------------------------------
 
+               this.makeLink(connections.connections);
+               // var path = document.querySelector("#connections");
+                //this.animateLine(this.$refs.connections.children);
 
-                this.makeLink(connections.connections);
             });
         },
 
