@@ -25,5 +25,7 @@
     "editAvatar": "Editez",
     "startAnimation": "Lancer l'animation",
     "nameInputLabel": "Nom",
-    "nameInputPlaceHolder": "Nommer votre personnage"
+    "nameInputPlaceHolder": "Nommer votre personnage",
+    "totalCharacterCount" : "Nombre de personnages : ",
+    "defaultCharacterName" : "Personnnage"
 }
