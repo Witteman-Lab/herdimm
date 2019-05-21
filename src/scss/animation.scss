@@ -230,5 +230,5 @@ div#copy1 .barrier::before {
 .infectedHexagon::after,
 .infectedHexagon::before {
   background-color: var(--color-hex-infected);
-  z-index: 5;
+ // z-index: 5;
 }
