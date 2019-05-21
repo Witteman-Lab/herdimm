@@ -7,8 +7,6 @@
 
 <script>
     import audio from "../assets/json/audio.json";
-    //import scenario_en from "../assets/json/scenario_en";
-    //import scenario_fr from "../assets/json/scenario_fr";
 
     export default {
         name: "AudioPlayer",
@@ -82,9 +80,7 @@
             }
         },
         created() {},
-        mounted() {
-            // this.nextAudioFile();
-        }
+        mounted() {}
     }
 </script>
 

@@ -34,12 +34,10 @@
     import Character from "./Character";
     import AudioPlayer from "./AudioPlayer";
     // The scenario might need to be imported in AudioPlayer instead of here, I'm not sure at the moment
-    import scenario from "../assets/json/scenario_en.json";
+    // import scenario from "../assets/json/scenario_en.json";
     import connections from "../assets/json/connections.json";
     import shapesArray from "../assets/json/shapesArray";
-    import animate from "animejs";
-
-
+    // import animate from "animejs";
     import textsEng from "../assets/json/textsEng.json";
     import textsFr from "../assets/json/textsFr.json";
 
@@ -71,17 +69,7 @@
             startAnimation() {
                 // Starts true;
                 this.isAnimationStarted = true;
-                this.$refs.audioPlayer.playAudio();
-
-                // THIS PART IS USED ONLY FOR ANIMATION TESTING PURPOSE
-                // this.zoomIn(1000);
-                // this.makeContour(".vulnerable", 3000, "contour");
-                // this.zoomOut(5000);
-                // this.fadeInOut(7000, 2000);
-                // this.makeTransformer(12000);
-                // this.makeContour(".vulnerable", 15000, "barrier");
-
-                //this.parseScenario();
+                this.$refs.audioPlayer.playAudio();;
             },
             // METHOD DESCRIPTION
             buildGridIds() {
@@ -181,38 +169,19 @@
             executeFunctionByName(functionName, context, args) {
                 let newArgs = Array.prototype.slice.call(arguments, 2);
                 return context[functionName].apply(context, newArgs);
-
             },
 
-            // Zoom by adding class, but we don't have controls on the parameters, such as scale values, duration, etc.
-            // Would be nice to do it with Javascript, so we can control these parameters
-            zoomIn(props) {
+            // Zoom in or out depending on the parameters (props) received
+            zoom(props) {
                 const targets = document.querySelectorAll('.hexagon-container, #draw');
                 setTimeout(function() {
                     //targets.forEach(e => e.classList.add("zoomIn"));    //tres important pour la suite
-                    // targets.forEach(e => e.className += "zoomIn");
                     targets.forEach((e) => {
                         e.style.transform = "scale("+props.scale.toString()+","+props.scale.toString()+")";
                         e.style.transitionDuration = props.duration.toString()+"ms";
-                        e.transitionTimingFunction = "linear";
+                        e.transitionTimingFunction = props.timingFunction;
                         e.style.transformOrigin = props.transformOrigin_X.toString()+"%"+" "+props.transformOrigin_Y.toString()+"%";       //"30% 30%"
                         e.style.transitionDelay = props.startTime.toString()+"ms";
-                        e.style.transitionProperty = "transform";
-                    });
-                });
-            },
-
-            // Zoom by adding class, but we don't have controls on the parameters, such as scale values, duration, etc.
-            // Would be nice to do it with Javascript, so we can control these parameters
-            zoomOut(props) {
-                const targets = document.querySelectorAll('.hexagon-container, #draw');
-                setTimeout(function() {
-                    targets.forEach((e) => {
-                        e.style.transform = "scale(" + props.scale.toString() + "," + props.scale.toString() + ")";
-                        e.style.transitionDuration = props.duration.toString() + "ms";
-                        e.transitionTimingFunction = "linear";
-                        e.style.transformOrigin = props.transformOrigin_X.toString() + "%" + " " + props.transformOrigin_Y.toString() + "%";
-                        e.style.transitionDelay = props.startTime.toString() + "ms";
                         e.style.transitionProperty = "transform";
                     });
                 });
@@ -222,11 +191,12 @@
             // Borders are not rendering well the way shapes (hexagons in this case) are being created
             // Zoom by adding class, but we don't have controls on the parameters, such as scale values, duration, etc.
             // Would be nice to do it with Javascript, so we can control these parameters
-            makeContour(target, delay, classToAdd) {
-                const shapeTargets = document.querySelectorAll('#copy2 ' + target);
+            // makeContour(target, delay, classToAdd) {
+            makeContour(props) {
+                const shapeTargets = document.querySelectorAll('#copy2 ' + props.target);
                 setTimeout(function() {
-                    shapeTargets.forEach(e => e.classList.add(classToAdd));
-                }, delay)
+                    shapeTargets.forEach(e => e.classList.add(props.class));
+                }, props.startTime)
             },
 
             // METHOD DESCRIPTION
@@ -294,31 +264,25 @@
 
             // drawLine
             drawLine(source, target, id) {
-                //var container = connections.connections.containerId;
-
 
                 //parameters
-                var radius = 10;
-                var app = document.querySelector("#app");
+                const radius = 10;
+                const app = document.querySelector("#app");
 
-                var style = app.currentStyle || window.getComputedStyle(app);
-                var str_marginLeft = style.marginLeft;
-                var marginLeft = parseInt(str_marginLeft.split("px")[0]);
-                var divider = Math.sqrt(3);
-                var selector = '.hexagon-container #'
+                const style = app.currentStyle || window.getComputedStyle(app);
+                const str_marginLeft = style.marginLeft;
+                const marginLeft = parseInt(str_marginLeft.split("px")[0]);
+                const divider = Math.sqrt(3);
+                const selector = '.hexagon-container #'
 
-                let sourceBCR = document.querySelector(selector+source).getBoundingClientRect();
-                let targetBCR = document.querySelector(selector+target).getBoundingClientRect();
+                const sourceBCR = document.querySelector(selector+source).getBoundingClientRect();
+                const targetBCR = document.querySelector(selector+target).getBoundingClientRect();
 
-               // console.log("sourceBCR", sourceBCR);
-               // console.log("targetBCR", targetBCR);
-
-                var width = connections.linewidth;
-                var colorStroke = connections.linecolor;
-
+                const width = connections.linewidth;
+                const colorStroke = connections.linecolor;
 
                 //drawing line
-                var lineObj = document.createElementNS("http://www.w3.org/2000/svg", 'line');
+                const lineObj = document.createElementNS("http://www.w3.org/2000/svg", 'line');
                 lineObj.setAttributeNS(null, "id", id);
                 lineObj.setAttributeNS(null, 'x1',sourceBCR.x - marginLeft + (sourceBCR.width/divider)  + radius);
                 lineObj.setAttributeNS(null, 'y1',sourceBCR.y + sourceBCR.height/divider);
@@ -328,36 +292,7 @@
                 lineObj.setAttributeNS(null, "stroke-width", width);
 
                 return lineObj;
-            } // ,
-            //
-            // //Here i'am using anime.js library to animate the line links(connections)
-            //
-            // animateLine(path){
-            //     //var path = document.querySelectorAll(path);
-            //     // for (var i = 0; i < path.length; i++) {
-            //     //     var pathEl = path[i];
-            //        // var offset = animate.setDashoffset(pathEl);
-            //        // pathEl.setAttribute('stroke-dashoffset', offset);
-            //         animate({
-            //             targets: path,
-            //             strokeDashoffset: [animate.setDashoffset, 0],
-            //             //duration: animate.random(1000, 3000),
-            //             // delay: animate.random(0, 2000),
-            //             //loop: true,
-            //             //direction: 'normal',
-            //             easing: 'easeInOutSine',
-            //             autoplay: true,
-            //             duration: (1000),
-            //             delay: (1000),
-            //             transitionDelay: (1000)
-            //
-            //
-            //
-            //
-            //         });
-            //     // }
-            // }
-
+            }
         },
         created() {},
         mounted() {
@@ -386,50 +321,6 @@
             // When content is loaded, make copies of the grid to facilitate the animation
             document.addEventListener('DOMContentLoaded', () => {
                 this.duplicateGrid(2);
-                //this.parseScenario();
-
-
-
-
-                //------------------------------------------------------------------------------------------------------
-                //------------------------------------------------------------------------------------------------------
-                // THIS PART IS USED ONLY FOR ANIMATION TESTING PURPOSE
-                //this.zoomIn(1000);
-                //this.makeContour(".vulnerable", 3000, "contour");
-                // this.zoomOut(5000);
-                // this.fadeInOut(7000, 2000);
-                // this.makeTransformer(12000);
-                // this.makeContour(".vulnerable", 15000, "barrier");
-                //------------------------------------------------------------------------------------------------------
-                //------------------------------------------------------------------------------------------------------
-
-               //this.makeLink(connections.connections);
-               // var path = document.querySelector("#connections");
-                //this.animateLine(this.$refs.connections.children);
-
-
-
-                //  var shape58 = document.querySelector('.hexagon-container #shape_58').getBoundingClientRect();
-                //  var shape26 = document.querySelector('.hexagon-container #shape_26').getBoundingClientRect();
-                //  // recherche de parametres
-                //  var radius = 10;
-                //  var app = document.querySelector("#app");
-                //
-                //  var style = app.currentStyle || window.getComputedStyle(app);
-                //  var str_marginLeft = style.marginLeft;
-                //  var marginLeft = parseInt(str_marginLeft.split("px")[0]);
-                //  var divider = Math.sqrt(3);
-                //
-                // // hex.x - marginLeft + (hex.width/divider) + radius
-                //  var x2 = shape58.x - marginLeft + (shape58.width/divider)  + radius;
-                //  var y2  = shape58.y + shape58.height/divider;
-                //  var x1 = shape26.x - marginLeft + (shape26.width/divider)  + radius;
-                //  var y1  = shape26.y + shape26.height/divider;
-                //
-                //  this.drawLine(x1, y1, x2 , y2 );
-                //  //let txt = connections.connections[0];
-                //  alert(connections.connections[0].id);
-                //  this.makeLink(connections.connections);
             });
         },
 
@@ -452,7 +343,6 @@
 <style scoped>
     .hexagon-container, .copy, #draw, #connections {
         margin: 0;
-        /* width: auto; */
         width: 100%;
         height: 100vh;
     }
@@ -479,10 +369,6 @@
         }
 
     }
-
-    /*  bottom: 25%;
-            left: 50%;
-            transform: translate(-50%, 50%); /*
 
     /* #captions {
 

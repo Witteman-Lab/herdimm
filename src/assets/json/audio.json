@@ -8,13 +8,14 @@
                 "caption" : "What role does each of us play in protecting our community?",
                 "actions" : [
                     {
-                        "action": "zoomIn",
+                        "action": "zoom",
                         "props": {
-                            "scale" : "3",
-                            "duration" : "3000",
+                            "scale" : "4",
+                            "duration" : "2000",
                             "transformOrigin_X" : "35",
                             "transformOrigin_Y": "45",
-                            "startTime" : "0"
+                            "startTime" : "2000",
+                            "timingFunction": "linear"
                         }
                     }
                 ]
@@ -24,20 +25,32 @@
                 "caption" : "Imagine this is you.",
                 "actions" : [
                     {
-                        "action": "zoomOut",
+                        "action": "makeContour",
                         "props": {
-                            "scale" : "1",
-                            "duration" : "3000",
-                            "transformOrigin_X" : "35",
-                            "transformOrigin_Y": "45",
-                            "startTime" : "0"
+                            "target": ".avatar",
+                            "duration": "1000",
+                            "class": "contour",
+                            "startTime" : "500"
                         }
                     }
                 ]
             },
             {
                 "file" : "3E.mp3",
-                "caption" : ""
+                "caption" : "",
+                "actions" : [
+                    {
+                        "action": "zoom",
+                        "props": {
+                            "scale" : "3",
+                            "duration" : "1000",
+                            "transformOrigin_X" : "35",
+                            "transformOrigin_Y": "45",
+                            "startTime" : "500",
+                            "timingFunction": "linear"
+                        }
+                    }
+                ]
             },
             {
                 "file" : "4E.mp3",
