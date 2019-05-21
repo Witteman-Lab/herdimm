@@ -239,14 +239,14 @@
                     let id = connections[i].id;
 
                     let lineObj = this.drawLine(source, target, id);
-
+                    console.log("lineObj", lineObj);
                     lineObj.classList.add("line");
                     drawingBoard.appendChild(lineObj);
-                    lineObj.addEventListener("animationstart, webkitAnimationStart", function(){ // webkitAnimationStart
+                    lineObj.addEventListener("animationstart", function(){ // webkitAnimationStart
                         console.log("animationstart");
                         that.infectShape(source);
                     });
-                    lineObj.addEventListener("animationend, webkitAnimationEnd", function(){ // webkitAnimationEnd
+                    lineObj.addEventListener("animationend", function(){ // webkitAnimationEnd
                         console.log("animationend");
                         if(nextTarget != ""){
                             that.makeLink(nextTarget);
