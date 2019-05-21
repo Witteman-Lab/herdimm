@@ -222,3 +222,13 @@ div#copy1 .barrier::before {
     stroke-dashoffset: 0;
   }
 }
+//.infectedHexagon .hexagon {
+//  background-color:  var(--color-hex-infected);
+//
+//}
+.infectedHexagon,
+.infectedHexagon::after,
+.infectedHexagon::before {
+  background-color: var(--color-hex-infected);
+  z-index: 5;
+}

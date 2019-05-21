@@ -269,7 +269,12 @@
 
             infectShape(shape){
                 //shape =
-                console.log("shape", shape);
+               //let shape1 = shape.id;
+                var selector = ".hexagon-container #";
+                var src = document.querySelector(selector+shape);
+
+                src.classList.add("infectedHexagon");
+                console.log("shape",  src.x);
             },
 
             // drawLine
