@@ -235,13 +235,16 @@
                     let source = connections[i].source;
                     let target = connections[i].target;
                     let nextTarget 	= connections[i].nextTarget;
-
                     let id = connections[i].id;
-
                     let lineObj = this.drawLine(source, target, id);
-                    console.log("lineObj", lineObj);
+                    let lineLength = this.getLineLength(lineObj);
+
+                    lineObj.setAttributeNS(null, "stroke-dasharray", lineLength + " " + lineLength);
+                    lineObj.setAttributeNS(null, "stroke-dashoffset", lineLength);
                     lineObj.classList.add("line");
+
                     drawingBoard.appendChild(lineObj);
+
                     lineObj.addEventListener("animationstart", function(){ // webkitAnimationStart
                         console.log("animationstart");
                         that.infectShape(source);
@@ -254,6 +257,14 @@
                         that.infectShape(target);
                     });
                 }
+            },
+
+            getLineLength(line){
+                let x1 = line.x1.baseVal.value;
+                let x2 = line.x2.baseVal.value;
+                let y1 = line.y1.baseVal.value;
+                let y2 = line.y2.baseVal.value;
+                return Math.sqrt( (x2-=x1)*x2 + (y2-=y1)*y2 );
             },
 
             infectShape(shape){

@@ -213,28 +213,8 @@ div#copy1 .barrier::before {
   background-color: var(--color-hex-vaccinated-shadow);
 }
 
-//#connections line{
-//   fill-opacity: 0;
-//
-//}
-//#connections.line {
-//   fill-opacity: 1;
-//    -webkit-transition: opacity 10s linear;
-//    -moz-transition: opacity 10s linear;
-//    -ms-transform: opacity 10s linear;
-//    -o-transition: opacity 10s linear;
-//    transition: opacity 10s linear;
-//}
-//
 .line {
-  stroke-dasharray:1000;
-  stroke-dashoffset:1000;
-  //animation-name: dash;
-  //animation-duration: 2s;
-  //animation-timing-function: linear;
-  //animation-delay: 1s;
-  //animation-direction: forwards;
-  animation: dash 4s linear 0s forwards;
+  animation: dash 1.5s linear 0s forwards;
 }
 
 @keyframes dash {
