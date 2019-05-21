@@ -26,7 +26,7 @@
         <!-- <div id="captions">
             <p id="caption"></p>
         </div> -->
-        <button class="button is-primary is-success" style="justify-self: center;" v-on:click="startAnimation">{{this.labels.startAnimation}}</button>
+        <button class="button is-primary is-success" style="justify-self: center;" v-if="!this.isAnimationStarted" v-on:click="startAnimation">{{this.labels.startAnimation}}</button>
     </div>
 </template>
 
@@ -69,7 +69,7 @@
             startAnimation() {
                 // Starts true;
                 this.isAnimationStarted = true;
-                this.$refs.audioPlayer.playAudio();;
+                this.$refs.audioPlayer.playAudio();
             },
             // METHOD DESCRIPTION
             buildGridIds() {
@@ -196,7 +196,7 @@
                 const shapeTargets = document.querySelectorAll('#copy2 ' + props.target);
                 setTimeout(function() {
                     shapeTargets.forEach(e => e.classList.add(props.class));
-                }, props.startTime)
+                }, props.startTime);
             },
 
             // METHOD DESCRIPTION
@@ -204,12 +204,12 @@
                 // Fade-in transition
                 setTimeout(function() {
                     document.body.classList.add('fade');
-                }, delay)
+                }, delay);
 
                 // Fade-out transition (back to normal)
                 setTimeout(function() {
                     document.body.classList.remove('fade');
-                }, delay + duration)
+                }, delay + duration);
             },
 
             // METHOD DESCRIPTION
@@ -224,7 +224,7 @@
                             e.classList.add("barrier");
                         }
                     });
-                }, delay)
+                }, delay);
             },
 
             // connections for each shape in connections json
@@ -232,22 +232,21 @@
                 const drawingBoard = document.querySelector("#connections");
                 const that = this;
                 for (let i = 0; i < connections.length; i++){
-                    //console.log("patate", test.connections[i].patate);
-                    let source 	= connections[i].source;
-                    let target 	= connections[i].target;
+                    let source = connections[i].source;
+                    let target = connections[i].target;
                     let nextTarget 	= connections[i].nextTarget;
 
                     let id = connections[i].id;
 
-                    let lineObj = this.drawLine(source,target,id);
+                    let lineObj = this.drawLine(source, target, id);
 
                     lineObj.classList.add("line");
                     drawingBoard.appendChild(lineObj);
-                    lineObj.addEventListener("animationstart", function(){ // webkitAnimationStart
+                    lineObj.addEventListener("animationstart, webkitAnimationStart", function(){ // webkitAnimationStart
                         console.log("animationstart");
                         that.infectShape(source);
                     });
-                    lineObj.addEventListener("animationend", function(){ // webkitAnimationEnd
+                    lineObj.addEventListener("animationend, webkitAnimationEnd", function(){ // webkitAnimationEnd
                         console.log("animationend");
                         if(nextTarget != ""){
                             that.makeLink(nextTarget);
@@ -258,31 +257,31 @@
             },
 
             infectShape(shape){
-                shape =
-                console.log("shape", shape)
+                //shape =
+                console.log("shape", shape);
             },
 
             // drawLine
             drawLine(source, target, id) {
 
-                //parameters
-                const radius = 10;
-                const app = document.querySelector("#app");
+                // Parameters
+                var radius = 10;
+                var app = document.querySelector("#app");
 
-                const style = app.currentStyle || window.getComputedStyle(app);
-                const str_marginLeft = style.marginLeft;
-                const marginLeft = parseInt(str_marginLeft.split("px")[0]);
-                const divider = Math.sqrt(3);
-                const selector = '.hexagon-container #'
+                var style = app.currentStyle || window.getComputedStyle(app);
+                var str_marginLeft = style.marginLeft;
+                var marginLeft = parseInt(str_marginLeft.split("px")[0]);
+                var divider = Math.sqrt(3);
+                var selector = ".hexagon-container #";
 
-                const sourceBCR = document.querySelector(selector+source).getBoundingClientRect();
-                const targetBCR = document.querySelector(selector+target).getBoundingClientRect();
+                var sourceBCR = document.querySelector(selector+source).getBoundingClientRect();
+                var targetBCR = document.querySelector(selector+target).getBoundingClientRect();
 
-                const width = connections.linewidth;
-                const colorStroke = connections.linecolor;
+                var width = connections.linewidth;
+                var colorStroke = connections.linecolor;
 
                 //drawing line
-                const lineObj = document.createElementNS("http://www.w3.org/2000/svg", 'line');
+                var lineObj = document.createElementNS("http://www.w3.org/2000/svg", 'line');
                 lineObj.setAttributeNS(null, "id", id);
                 lineObj.setAttributeNS(null, 'x1',sourceBCR.x - marginLeft + (sourceBCR.width/divider)  + radius);
                 lineObj.setAttributeNS(null, 'y1',sourceBCR.y + sourceBCR.height/divider);
@@ -303,12 +302,13 @@
                 localStorage.setItem("group", JSON.stringify(this.group));
                 localStorage.setItem("language", this.labelSelected);
                 this.characterList = this.group;
-                this.selectCurrentLanguage(this.labelSelected)
+                this.selectCurrentLanguage(this.labelSelected);
             } else {
                 if (localStorage.getItem("group"))
                     this.characterList = JSON.parse(localStorage.getItem("group"));
                 this.selectCurrentLanguage(localStorage.getItem("language"));
             }
+
             this.$refs.audioPlayer.loadAudioFiles(this.currentLanguage);
 
             // Fetch some styles from the SCSS file
@@ -321,6 +321,7 @@
             // When content is loaded, make copies of the grid to facilitate the animation
             document.addEventListener('DOMContentLoaded', () => {
                 this.duplicateGrid(2);
+                this.makeLink(connections.connections);
             });
         },
 
