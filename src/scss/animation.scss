@@ -15,15 +15,15 @@ $hex-height: 50px;
   --hex-transition: all 2s ease;
 
   /* Colors */
-  --color-hex-default: 	        #C4BAB8;
-  --color-hex-vaccinated:         #3C83B7;
-  --color-hex-vaccinated-shadow:  #2B72A6;
-  --color-hex-infected:           #B0102C;
-  --color-copy1:                  #FFFFFF;
-  --color-copy2:                  #FFFFFF;
-  --color-contour:                #E9855B;
-  --color-barrier:                #2B72A6;
-  --color-hex-vulnerable:         #FFFAB0;
+  --color-hex-default: 	            #C4BAB8;
+  --color-hex-vaccinated:           #3C83B7;
+  --color-hex-vaccinated-shadow:    #2B72A6;
+  --color-hex-infected:             #B0102C;
+  --color-copy1:                    #FFFFFF;
+  --color-copy2:                    #FFFFFF;
+  --color-contour:                  #E9855B;
+  --color-barrier:                  #2B72A6;
+  --color-hex-vulnerable:           #FFFAB0;
 }
 
 body {
@@ -44,35 +44,38 @@ body.fade {
   transition: opacity 1s linear;
 }
 
-/* Colors */
-div.vulnerable,
-div.vulnerable::after,
-div.vulnerable::before {
-  background-color: var(--color-hex-vulnerable);
-}
-div.copy .vulnerable,
-div.copy .vulnerable::after,
-div.copy .vulnerable::before {
-  background-color: var(--color-copy1);
-  z-index: 10;
+/* Shapes colors */
+// div.vulnerable,
+// div.vulnerable::after,
+// div.vulnerable::before {
+//     background-color: var(--color-hex-vulnerable);
+//     -webkit-transition: background-color 0.5s linear;
+//     -moz-transition: background-color 0.5s linear;
+//     -ms-transform: background-color 0.5s linear;
+//     -o-transition: background-color 0.5s linear;
+//     transition: background-color 0.5s linear;
+// }
+
+div.infected,
+div.infected::after,
+div.infected::before {
+    background-color: var(--color-hex-infected);
+    -webkit-transition: background-color 0.5s linear;
+    -moz-transition: background-color 0.5s linear;
+    -ms-transform: background-color 0.5s linear;
+    -o-transition: background-color 0.5s linear;
+    transition: background-color 0.5s linear;
 }
 
-div.color-infected,
-div.color-infected::after,
-div.color-infected::before {
-  background-color: var(--color-hex-infected);
-}
-
-div.color-vaccinated,
-div.color-vaccinated::after,
-div.color-vaccinated::before {
-  background-color: var(--color-hex-vaccinated);
-}
-
-.no-hexagon,
-.no-hexagon::after,
-.no-hexagon::before {
-  display: none;
+div.vaccinated,
+div.vaccinated::after,
+div.vaccinated::before {
+    background-color: var(--color-hex-vaccinated);
+    -webkit-transition: background-color 0.5s linear;
+    -moz-transition: background-color 0.5s linear;
+    -ms-transform: background-color 0.5s linear;
+    -o-transition: background-color 0.5s linear;
+    transition: background-color 0.5s linear;
 }
 
 /* Hexagons */
@@ -88,8 +91,15 @@ div.color-vaccinated::before {
   // margin: 0 auto;
   // transform: scale(3,3);
   // transform-origin: (15% 45%);
-}
 
+}
+.hexagon, svg#connections {
+    // This so it doesn't get blurry when zoomed in (and out?)
+    // Fix for Chrome (others?)
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translateZ(0) scale(1.0, 1.0);
+    transform: translateZ(0);
+}
 .hexagon {
   align-items: center;
   display: flex;
@@ -99,12 +109,6 @@ div.color-vaccinated::before {
   position: relative;
   width: var(--hex-width);
   z-index: 1;
-
-  // This so it doesn't get blurry when zoomed in (and out?)
-  // Fix for Chrome (others?)
-  -webkit-backface-visibility: hidden;
-  -webkit-transform: translateZ(0) scale(1.0, 1.0);
-  transform: translateZ(0);
 }
 .hexagon,
 .hexagon::after,
@@ -134,6 +138,11 @@ div.color-vaccinated::before {
   -moz-transform: rotate(60deg);
   -webkit-transform: rotate(60deg);
   -ms-transform: rotate(60deg);
+}
+.no-hexagon,
+.no-hexagon::after,
+.no-hexagon::before {
+  display: none;
 }
 
 .hexagon > svg {
@@ -221,14 +230,4 @@ div#copy1 .barrier::before {
   to {
     stroke-dashoffset: 0;
   }
-}
-//.infectedHexagon .hexagon {
-//  background-color:  var(--color-hex-infected);
-//
-//}
-.infectedHexagon,
-.infectedHexagon::after,
-.infectedHexagon::before {
-  background-color: var(--color-hex-infected);
- // z-index: 5;
 }

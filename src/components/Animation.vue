@@ -26,7 +26,12 @@
         <!-- <div id="captions">
             <p id="caption"></p>
         </div> -->
-        <button class="button is-primary is-success" style="justify-self: center;" v-if="!this.isAnimationStarted" v-on:click="startAnimation">{{this.labels.startAnimation}}</button>
+
+        <div id="startAnimationBox" v-if="!this.isAnimationStarted">
+            <button class="button is-primary is-success" style="justify-self: center;" v-on:click="startAnimation">{{this.labels.startAnimation}}</button><br />
+            <input type="checkbox" id="showCaptions" name="showCaptions" value="">
+            <label for="showCaptions">Display captions</label>
+        </div>
     </div>
 </template>
 
@@ -70,6 +75,8 @@
                 // Starts true;
                 this.isAnimationStarted = true;
                 this.$refs.audioPlayer.playAudio();
+                // For testing (will be called by the audioPlayer in time)
+                this.makeLink(connections.connections);
             },
             // METHOD DESCRIPTION
             buildGridIds() {
@@ -246,11 +253,9 @@
                     drawingBoard.appendChild(lineObj);
 
                     lineObj.addEventListener("animationstart", function(){ // webkitAnimationStart
-                        console.log("animationstart");
                         that.infectShape(source);
                     });
                     lineObj.addEventListener("animationend", function(){ // webkitAnimationEnd
-                        console.log("animationend");
                         if(nextTarget != ""){
                             that.makeLink(nextTarget);
                         }
@@ -268,13 +273,10 @@
             },
 
             infectShape(shape){
-                //shape =
-               //let shape1 = shape.id;
-                var selector = ".hexagon-container #";
-                var src = document.querySelector(selector+shape);
+                let selector = ".hexagon-container #";
+                let shp = document.querySelector(selector+shape);
 
-                src.classList.add("infectedHexagon");
-                console.log("shape",  src.x);
+                shp.classList.add("infected");
             },
 
             // drawLine
@@ -337,7 +339,6 @@
             // When content is loaded, make copies of the grid to facilitate the animation
             document.addEventListener('DOMContentLoaded', () => {
                 this.duplicateGrid(2);
-                this.makeLink(connections.connections);
             });
         },
 
@@ -364,19 +365,24 @@
         height: 100vh;
     }
 
-    /* TEMPORARY, just so it's being displayed on top of everything */
-    #draw {
-        /*z-index: 999;*/
-    }
-
     div.column {
         display: grid;
         padding: 0;
         margin: 0;
     }
 
-    @media screen and (max-width: 720px) and (orientation: landscape) {
+    div#startAnimationBox {
+        text-align: center;
+        position: absolute;
+        top: 40%;
+        left: 40%;
+        z-index: 100;
+        background-color: #AAA;
+        border: 1px solid #999;
+        padding: 10px;
+    }
 
+    @media screen and (max-width: 720px) and (orientation: landscape) {
         .hexagon-container {
             /*margin-top: 0;*/
             /*transform: translate(100%);*/
@@ -384,15 +390,7 @@
             height:auto;
             margin: 0 auto;
         }
-
     }
-
-    /* #captions {
-
-    }
-    #caption {
-
-    } */
 </style>
 <!-- @media screen and (orientation: portrait){
         .hexagon-container {
