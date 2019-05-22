@@ -1,6 +1,12 @@
 <template>
     <div class="container">
 
+        <!-- Audio player for audio files -->
+        <AudioPlayer :current-language="currentLanguage" ref="audioPlayer"></AudioPlayer>
+        <!-- <div id="captions">
+            <p id="caption"></p>
+        </div> -->
+
         <!-- Where to draw the lines for infection spreading  -->
         <div class="draw" id="draw">
             <svg class="connections" ref="connections" id="connections"></svg>
@@ -8,7 +14,7 @@
 
         <!-- Container for the shapes (hexagons) -->
         <div style="display: flex; justify-content: center;">
-            <div class="hexagon-container">
+            <div class="hexagon-container" id="main-container">
                 <!-- Grid creation -->
                 <div class="shape" v-for="shape in this.gridIds">
                     <div :class="shape.className" :id="shape.id">
@@ -20,12 +26,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Audio player for audio files -->
-        <AudioPlayer :current-language="currentLanguage" ref="audioPlayer"></AudioPlayer>
-        <!-- <div id="captions">
-            <p id="caption"></p>
-        </div> -->
 
         <div id="startAnimationBox" v-if="!this.isAnimationStarted">
             <button class="button is-primary is-success" style="justify-self: center;" v-on:click="startAnimation">{{this.labels.startAnimation}}</button><br />
@@ -76,7 +76,7 @@
                 this.isAnimationStarted = true;
                 this.$refs.audioPlayer.playAudio();
                 // For testing (will be called by the audioPlayer in time)
-                this.makeLink(connections.connections);
+                //this.makeLink(connections.connections);
             },
             // METHOD DESCRIPTION
             buildGridIds() {
@@ -156,9 +156,6 @@
 
                 for (let i = 1; i <= nbOfCopy; i++) {
                     copy = sourceElement.cloneNode(true);
-                    // Remove first child (being the AudioPlayer element, which we don't need multiple times)
-                    // There might be a better way of doing this, but this works for now
-                    copy.removeChild(copy.childNodes[0]);
                     copy.classList.add("copy");
                     copy.id = "copy" + i;
                     copy.querySelectorAll('.character-position').forEach(e => e.parentNode.removeChild(e));
@@ -373,13 +370,14 @@
 
     div#startAnimationBox {
         text-align: center;
-        position: absolute;
-        top: 40%;
-        left: 40%;
-        z-index: 100;
-        background-color: #AAA;
+        position: fixed; /*absolute fixed*/
+        top: 50%;
+        left: 50%;
+        z-index: 999;
+        background-color: #DDD;
         border: 1px solid #999;
-        padding: 10px;
+        padding: 20px;
+        transform: translate(-50%);
     }
 
     @media screen and (max-width: 720px) and (orientation: landscape) {
