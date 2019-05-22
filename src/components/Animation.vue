@@ -76,7 +76,7 @@
                 this.isAnimationStarted = true;
                 this.$refs.audioPlayer.playAudio();
                 // For testing (will be called by the audioPlayer in time)
-                //this.makeLink(connections.connections);
+                this.makeLink(connections.connections);
             },
             // METHOD DESCRIPTION
             buildGridIds() {
@@ -275,6 +275,38 @@
 
                 shp.classList.add("infected");
             },
+
+
+            burst(props){
+                const selector = '#main-container #';
+
+                this.hexColor(selector, props.target, props.state);
+                this.changeSize(selector, props.target, props.scale, props.timingFunction, props.duration);
+
+            },
+
+            // METHOD DESCRIPTION
+            hexColor(selector, target, state){
+                let shape = document.querySelector(selector+target);
+                shape.classList.add(state);
+
+                //console.log("shape hexColor", shape);
+            },
+
+            changeSize(selector, target, scale, timingFunction, duration){
+                let shape = document.querySelector(selector+target);
+                shape.style.transform = "scale("+scale.toString()+","+scale.toString()+")";
+                shape.style.transitionTimingFunction = timingFunction;
+                shape.style.transitionDuration = duration.toString()+"ms";
+                //shape.style.backgroundColor = "yellow";
+                //shape.style.transitionProperty = "transform";
+
+                //console.log(color);
+
+            },
+
+
+
 
             // drawLine
             drawLine(source, target, id) {
