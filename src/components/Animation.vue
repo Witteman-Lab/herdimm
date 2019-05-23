@@ -70,7 +70,8 @@
             labelSelected: String
         },
         methods: {
-            // METHOD DESCRIPTION
+
+            // Start the animation when user is ready, clicks on the Start button
             startAnimation() {
                 // Starts true;
                 this.isAnimationStarted = true;
@@ -78,7 +79,8 @@
                 // For testing (will be called by the audioPlayer in time)
                 this.makeLink(connections.connections);
             },
-            // METHOD DESCRIPTION
+
+            // Build the hexagon grid based on an array
             buildGridIds() {
                 let numId = 0;
 
@@ -135,6 +137,7 @@
                 });
             },
 
+            // Change the language of the interface
             selectCurrentLanguage(language) {
                 if (language === "fr")
                     this.labels = textsFr;
@@ -143,12 +146,12 @@
                 this.currentLanguage = this.labels.currentLanguage;
             },
 
-            // set T-Shirt Color
+            // Set the character's t-shirt color
             setCharacterTShirtColor(shapeId, color) {
                 this.$refs[shapeId][0].changeShirtColor(color);
             },
 
-            // METHOD DESCRIPTION
+            // Duplicate the hexagon grid n time (nbOfCopy) to make some animations easier
             duplicateGrid(nbOfCopy) {
                 const sourceElement = document.querySelector('.hexagon-container');
                 const destination = sourceElement.parentNode;
@@ -166,7 +169,9 @@
             // Parse the scenario to find sequences for the animation
             // This method might not be here (maybe in AudioPlayer, maybe not)
             launchSequence(sequence) {
-                this.executeFunctionByName(sequence.action, this, sequence.props);
+                if (sequence.action !== null && sequence.action !== "") {
+                    this.executeFunctionByName(sequence.action, this, sequence.props);
+                }
             },
 
             // Execute the appropriate function by its name received as a string as well as with arguments
@@ -178,12 +183,12 @@
             // Zoom in or out depending on the parameters (props) received
             zoom(props) {
                 const targets = document.querySelectorAll('.hexagon-container, #draw');
-                setTimeout(function() {
+                setTimeout(() => {
                     //targets.forEach(e => e.classList.add("zoomIn"));    //tres important pour la suite
                     targets.forEach((e) => {
                         e.style.transform = "scale("+props.scale.toString()+","+props.scale.toString()+")";
                         e.style.transitionDuration = props.duration.toString()+"ms";
-                        e.transitionTimingFunction = props.timingFunction;
+                        e.style.transitionTimingFunction = props.timingFunction;
                         e.style.transformOrigin = props.transformOrigin_X.toString()+"%"+" "+props.transformOrigin_Y.toString()+"%";       //"30% 30%"
                         e.style.transitionDelay = props.startTime.toString()+"ms";
                         e.style.transitionProperty = "transform";
@@ -193,12 +198,9 @@
 
             // A way to "draw" the contour of the shapes without using borders
             // Borders are not rendering well the way shapes (hexagons in this case) are being created
-            // Zoom by adding class, but we don't have controls on the parameters, such as scale values, duration, etc.
-            // Would be nice to do it with Javascript, so we can control these parameters
-            // makeContour(target, delay, classToAdd) {
             makeContour(props) {
                 const shapeTargets = document.querySelectorAll('#copy2 ' + props.target);
-                setTimeout(function() {
+                setTimeout(() => {
                     if (props.add) {
                         shapeTargets.forEach(e => e.classList.add(props.class));
                     } else {
@@ -207,15 +209,15 @@
                 }, props.startTime);
             },
 
-            // METHOD DESCRIPTION
+            // Transition used between 2 sequences (fade to white and back)
             fadeInOut(delay, duration) {
                 // Fade-in transition
-                setTimeout(function() {
+                setTimeout(() => {
                     document.body.classList.add('fade');
                 }, delay);
 
                 // Fade-out transition (back to normal)
-                setTimeout(function() {
+                setTimeout(() => {
                     document.body.classList.remove('fade');
                 }, delay + duration);
             },
@@ -224,7 +226,7 @@
             makeTransformer(delay) {
                 const shapeTargets = document.querySelectorAll('.hexagon');
 
-                setTimeout(function() {
+                setTimeout(() => {
                     shapeTargets.forEach((e) => {
                         // Use this when animating for real (and remove this comment)
                         // if(e.classList.value.indexOf("vaccinated") !== -1) {
@@ -235,10 +237,12 @@
                 }, delay);
             },
 
-            // connections for each shape in connections json
+            // Parse the connections (JSON pattern) to establish between various shapes during infection
             makeLink(connections){
                 const drawingBoard = document.querySelector("#connections");
-                const that = this;
+                const selector = '#main-container #';
+                const state = "infected";
+
                 for (let i = 0; i < connections.length; i++){
                     let source = connections[i].source;
                     let target = connections[i].target;
@@ -253,18 +257,20 @@
 
                     drawingBoard.appendChild(lineObj);
 
-                    lineObj.addEventListener("animationstart", function(){ // webkitAnimationStart
-                        that.infectShape(source);
+                    lineObj.addEventListener("animationstart", () => { // webkitAnimationStart
+                        this.hexColor(selector, source, state);
                     });
-                    lineObj.addEventListener("animationend", function(){ // webkitAnimationEnd
+                    lineObj.addEventListener("animationend", () => { // webkitAnimationEnd
                         if(nextTarget != ""){
-                            that.makeLink(nextTarget);
+                            this.makeLink(nextTarget);
                         }
-                        that.infectShape(target);
+
+                        this.hexColor(selector, target, state);
                     });
                 }
             },
 
+            // Compute and return the length of the line for its animation
             getLineLength(line){
                 let x1 = line.x1.baseVal.value;
                 let x2 = line.x2.baseVal.value;
@@ -273,48 +279,41 @@
                 return Math.sqrt( (x2-=x1)*x2 + (y2-=y1)*y2 );
             },
 
-            infectShape(shape){
-                let selector = ".hexagon-container #";
-                let shp = document.querySelector(selector+shape);
-
-                shp.classList.add("infected");
-            },
-
-
+            // Change the shape's (target) color and size
             burst(props){
                 const selector = '#main-container #';
 
                 this.hexColor(selector, props.target, props.state);
-                this.changeSize(selector, props.target, props.scale, props.timingFunction, props.duration);
+                setTimeout(() => {
+                    this.changeSize(selector, props.target, props.scale, props.timingFunction, props.duration);
+                }, props.duration);
             },
 
-            // METHOD DESCRIPTION
+            // Change the color of the shape (target) based on its status (vaccinated, infected)
             hexColor(selector, target, state){
-                let shape = document.querySelector(selector+target);
-
-                shape.classList.add(state);
+                document.querySelector(selector+target).classList.add(state);
             },
 
+            // Change the size of the shape (target)
             changeSize(selector, target, scale, timingFunction, duration){
                 let shape = document.querySelector(selector+target);
 
+                // Scaling up
                 shape.style.transform = "scale("+scale.toString()+","+scale.toString()+")";
-                shape.style.transitionTimingFunction = timingFunction;
                 shape.style.transitionDuration = duration.toString()+"ms";
+                shape.style.transitionTimingFunction = timingFunction;
                 shape.style.transitionProperty = "transform";
 
-                setTimeout(function() {
+                // Scaling back after scaling up is done using scaleing up duration as delay
+                setTimeout(() => {
                     shape.style.transform = "scale(1,1)";
-                    shape.style.transitionTimingFunction = timingFunction;
                     shape.style.transitionDuration = duration.toString()+"ms";
+                    shape.style.transitionTimingFunction = timingFunction;
                     shape.style.transitionProperty = "transform";
                 }, duration);
             },
 
-
-
-
-            // drawLine
+            // Draw the lines of infections (when infection is spreading)
             drawLine(source, target, id) {
 
                 // Parameters
