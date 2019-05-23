@@ -200,7 +200,7 @@
             // makeContour(target, delay, classToAdd) {
             makeContour(props) {
                 const shapeTargets = document.querySelectorAll('#copy2 '+ props.target);
-                console.log(shapeTargets);
+                //console.log(shapeTargets);
                 setTimeout(function() {
                     if (props.add) {
                         shapeTargets.forEach(e => e.classList.add(props.class));
@@ -285,37 +285,45 @@
 
 
 
+            //
+            // burst(props){
+            //     const selector = '#main-container #';
+            //
+            //     this.hexColor(selector, props.target, props.state);
+            //     this.changeSize(selector, props.target, props.scale, props.timingFunction, props.duration);
+            // },
+            //
+            // // METHOD DESCRIPTION
+            // hexColor(selector, target, state){
+            //     let shape = document.querySelector(selector+target);
+            //
+            //     shape.classList.add(state);
+            // },
+            //
+            // changeSize(selector, target, scale, timingFunction, duration){
+            //     let shape = document.querySelector(selector+target);
+            //
+            //     shape.style.transform = "scale("+scale.toString()+","+scale.toString()+")";
+            //     shape.style.transitionTimingFunction = timingFunction;
+            //     shape.style.transitionDuration = duration.toString()+"ms";
+            //     shape.style.transitionProperty = "transform";
+            //
+            //     setTimeout(function() {
+            //         shape.style.transform = "scale(1,1)";
+            //         shape.style.transitionTimingFunction = timingFunction;
+            //         shape.style.transitionDuration = duration.toString()+"ms";
+            //         shape.style.transitionProperty = "transform";
+            //     }, duration);
+            // },
 
-            burst(props){
-                const selector = '#main-container #';
 
-                this.hexColor(selector, props.target, props.state);
-                this.changeSize(selector, props.target, props.scale, props.timingFunction, props.duration);
-            },
 
             // METHOD DESCRIPTION
-            hexColor(selector, target, state){
-                let shape = document.querySelector(selector+target);
-
-                shape.classList.add(state);
+            hexColor(props){
+                let shape = document.querySelectorAll(props.state);
+                shape.item(0).classList.add("vulnerability");
+                shape.item(1).classList.add("vulnerability");
             },
-
-            changeSize(selector, target, scale, timingFunction, duration){
-                let shape = document.querySelector(selector+target);
-
-                shape.style.transform = "scale("+scale.toString()+","+scale.toString()+")";
-                shape.style.transitionTimingFunction = timingFunction;
-                shape.style.transitionDuration = duration.toString()+"ms";
-                shape.style.transitionProperty = "transform";
-
-                setTimeout(function() {
-                    shape.style.transform = "scale(1,1)";
-                    shape.style.transitionTimingFunction = timingFunction;
-                    shape.style.transitionDuration = duration.toString()+"ms";
-                    shape.style.transitionProperty = "transform";
-                }, duration);
-            },
-
 
             // drawLine
             drawLine(source, target, id) {

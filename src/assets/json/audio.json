@@ -85,10 +85,17 @@
                         "action": "makeContour",
                         "props": {
                             "target": ".vulnerable",
-                            "duration": "1000",
+                            "duration": "3000",
                             "class": "contour",
                             "startTime" : "2000",
                             "add" : false
+                        }
+                    },
+
+                    {
+                        "action": "hexColor",
+                        "props": {
+                            "state": ".vulnerable"
                         }
                     }
 
