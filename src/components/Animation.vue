@@ -199,7 +199,11 @@
             makeContour(props) {
                 const shapeTargets = document.querySelectorAll('#copy2 ' + props.target);
                 setTimeout(function() {
-                    shapeTargets.forEach(e => e.classList.add(props.class));
+                    if (props.add) {
+                        shapeTargets.forEach(e => e.classList.add(props.class));
+                    } else {
+                        shapeTargets.forEach(e => e.classList.remove(props.class));
+                    }
                 }, props.startTime);
             },
 
@@ -282,27 +286,29 @@
 
                 this.hexColor(selector, props.target, props.state);
                 this.changeSize(selector, props.target, props.scale, props.timingFunction, props.duration);
-
             },
 
             // METHOD DESCRIPTION
             hexColor(selector, target, state){
                 let shape = document.querySelector(selector+target);
-                shape.classList.add(state);
 
-                //console.log("shape hexColor", shape);
+                shape.classList.add(state);
             },
 
             changeSize(selector, target, scale, timingFunction, duration){
                 let shape = document.querySelector(selector+target);
+
                 shape.style.transform = "scale("+scale.toString()+","+scale.toString()+")";
                 shape.style.transitionTimingFunction = timingFunction;
                 shape.style.transitionDuration = duration.toString()+"ms";
-                //shape.style.backgroundColor = "yellow";
-                //shape.style.transitionProperty = "transform";
+                shape.style.transitionProperty = "transform";
 
-                //console.log(color);
-
+                setTimeout(function() {
+                    shape.style.transform = "scale(1,1)";
+                    shape.style.transitionTimingFunction = timingFunction;
+                    shape.style.transitionDuration = duration.toString()+"ms";
+                    shape.style.transitionProperty = "transform";
+                }, duration);
             },
 
 
