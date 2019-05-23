@@ -60,22 +60,22 @@ div.infected,
 div.infected::after,
 div.infected::before {
     background-color: var(--color-hex-infected);
-    -webkit-transition: background-color 0.5s linear;
-    -moz-transition: background-color 0.5s linear;
-    -ms-transform: background-color 0.5s linear;
-    -o-transition: background-color 0.5s linear;
-    transition: background-color 0.5s linear;
+    -webkit-transition: background-color 0.25s linear;
+    -moz-transition: background-color 0.25s linear;
+    -ms-transform: background-color 0.25s linear;
+    -o-transition: background-color 0.25s linear;
+    transition: background-color 0.25s linear;
 }
 
 div.vaccinated,
 div.vaccinated::after,
 div.vaccinated::before {
     background-color: var(--color-hex-vaccinated);
-    -webkit-transition: background-color 0.5s linear;
-    -moz-transition: background-color 0.5s linear;
-    -ms-transform: background-color 0.5s linear;
-    -o-transition: background-color 0.5s linear;
-    transition: background-color 0.5s linear;
+    -webkit-transition: background-color 0.25s linear;
+    -moz-transition: background-color 0.25s linear;
+    -ms-transform: background-color 0.25s linear;
+    -o-transition: background-color 0.25s linear;
+    transition: background-color 0.25s linear;
 }
 
 /* Hexagons */
