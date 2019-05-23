@@ -76,7 +76,7 @@
                 this.isAnimationStarted = true;
                 this.$refs.audioPlayer.playAudio();
                 // For testing (will be called by the audioPlayer in time)
-                this.makeLink(connections.connections);
+                //this.makeLink(connections.connections);
             },
             // METHOD DESCRIPTION
             buildGridIds() {
@@ -191,13 +191,16 @@
                 });
             },
 
+
+
             // A way to "draw" the contour of the shapes without using borders
             // Borders are not rendering well the way shapes (hexagons in this case) are being created
             // Zoom by adding class, but we don't have controls on the parameters, such as scale values, duration, etc.
             // Would be nice to do it with Javascript, so we can control these parameters
             // makeContour(target, delay, classToAdd) {
             makeContour(props) {
-                const shapeTargets = document.querySelectorAll('#copy2 ' + props.target);
+                const shapeTargets = document.querySelectorAll('#copy2 '+ props.target);
+                console.log(shapeTargets);
                 setTimeout(function() {
                     if (props.add) {
                         shapeTargets.forEach(e => e.classList.add(props.class));
@@ -281,6 +284,8 @@
             },
 
 
+
+
             burst(props){
                 const selector = '#main-container #';
 
@@ -310,8 +315,6 @@
                     shape.style.transitionProperty = "transform";
                 }, duration);
             },
-
-
 
 
             // drawLine
