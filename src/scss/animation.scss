@@ -45,16 +45,18 @@ body.fade {
 }
 
 /* Shapes colors */
-// div.vulnerable,
-// div.vulnerable::after,
-// div.vulnerable::before {
-//     background-color: var(--color-hex-vulnerable);
-//     -webkit-transition: background-color 0.5s linear;
-//     -moz-transition: background-color 0.5s linear;
-//     -ms-transform: background-color 0.5s linear;
-//     -o-transition: background-color 0.5s linear;
-//     transition: background-color 0.5s linear;
-// }
+ div.vulnerability,
+ div.vulnerability::after,
+ div.vulnerability::before {
+   background-color: var(--color-hex-vulnerable);
+   -webkit-transition: background-color 0.5s linear;
+   -moz-transition: background-color 0.5s linear;
+   -ms-transform: background-color 0.5s linear;
+   -o-transition: background-color 0.5s linear;
+   transition: background-color 0.5s linear;
+ }
+
+
 
 div.infected,
 div.infected::after,
@@ -110,6 +112,7 @@ div.vaccinated::before {
   width: var(--hex-width);
   z-index: 1;
 }
+
 .hexagon,
 .hexagon::after,
 .hexagon::before {

@@ -77,7 +77,7 @@
                 this.isAnimationStarted = true;
                 this.$refs.audioPlayer.playAudio();
                 // For testing (will be called by the audioPlayer in time)
-                this.makeLink(connections.connections);
+                //this.makeLink(connections.connections);
             },
 
             // Build the hexagon grid based on an array
@@ -195,6 +195,8 @@
                     });
                 });
             },
+
+
 
             // A way to "draw" the contour of the shapes without using borders
             // Borders are not rendering well the way shapes (hexagons in this case) are being created

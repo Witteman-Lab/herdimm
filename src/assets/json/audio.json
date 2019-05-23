@@ -12,16 +12,17 @@
                     {
                         "action": "zoom",
                         "props": {
-                            "scale" : "3",
+                            "scale" : "4",
                             "duration" : "2000",
-                            "transformOrigin_X" : "35",
-                            "transformOrigin_Y" : "45",
-                            "startTime" : "2000",
-                            "timingFunction" : "linear"
+                            "transformOrigin_X" : "25",
+                            "transformOrigin_Y": "30",
+                            "startTime" : "500",
+                            "timingFunction": "linear"
                         }
                     }
                 ]
             },
+
             {
                 "file" : "2E.mp3",
                 "captions" : [
@@ -50,6 +51,7 @@
                     }
                 ]
             },
+
             {
                 "file" : "3E.mp3",
                 "captions" : [
@@ -57,12 +59,23 @@
                 ],
                 "actions" : [
                     {
+                        "action": "makeContour",
+                        "props": {
+                            "target": ".avatar",
+                            "duration": "1000",
+                            "class": "contour",
+                            "startTime" : "2500",
+                            "add" : false
+                        }
+                    },
+
+                    {
                         "action": "zoom",
                         "props": {
-                            "scale" : "2",
+                            "scale" : "1.01",
                             "duration" : "1000",
-                            "transformOrigin_X" : "35",
-                            "transformOrigin_Y": "45",
+                            "transformOrigin_X" : "25",
+                            "transformOrigin_Y": "30",
                             "startTime" : "500",
                             "timingFunction": "linear"
                         }
