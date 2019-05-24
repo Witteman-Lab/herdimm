@@ -14,15 +14,14 @@
                         "props": {
                             "scale" : "4",
                             "duration" : "2000",
-                            "transformOrigin_X" : "25",
-                            "transformOrigin_Y": "30",
+                            "transformOrigin_X" : "35",
+                            "transformOrigin_Y": "45",
                             "startTime" : "500",
                             "timingFunction": "linear"
                         }
                     }
                 ]
             },
-
             {
                 "file" : "2E.mp3",
                 "captions" : [
@@ -38,20 +37,9 @@
                             "startTime" : "500",
                             "add" : true
                         }
-                    },
-                    {
-                        "action" : "makeContour",
-                        "props" : {
-                            "target" : ".avatar",
-                            "duration" : "1000",
-                            "class" : "contour",
-                            "startTime" : "2500",
-                            "add" : false
-                        }
                     }
                 ]
             },
-
             {
                 "file" : "3E.mp3",
                 "captions" : [
@@ -64,19 +52,18 @@
                             "target": ".avatar",
                             "duration": "1000",
                             "class": "contour",
-                            "startTime" : "2500",
+                            "startTime" : "1000",
                             "add" : false
                         }
                     },
-
                     {
                         "action": "zoom",
                         "props": {
-                            "scale" : "1.01",
+                            "scale" : "1.00",
                             "duration" : "1000",
-                            "transformOrigin_X" : "25",
-                            "transformOrigin_Y": "30",
-                            "startTime" : "500",
+                            "transformOrigin_X" : "35",
+                            "transformOrigin_Y": "45",
+                            "startTime" : "1500",
                             "timingFunction": "linear"
                         }
                     }

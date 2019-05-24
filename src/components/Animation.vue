@@ -201,6 +201,7 @@
             // A way to "draw" the contour of the shapes without using borders
             // Borders are not rendering well the way shapes (hexagons in this case) are being created
             makeContour(props) {
+                console.log("props", props);
                 const shapeTargets = document.querySelectorAll('#copy2 ' + props.target);
                 setTimeout(() => {
                     if (props.add) {
