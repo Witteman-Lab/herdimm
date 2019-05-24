@@ -14,8 +14,8 @@
                         "props": {
                             "scale" : "4",
                             "duration" : "2000",
-                            "transformOrigin_X" : "35",
-                            "transformOrigin_Y": "45",
+                            "transformOrigin_X" : "25",
+                            "transformOrigin_Y": "30",
                             "startTime" : "500",
                             "timingFunction": "linear"
                         }
@@ -61,8 +61,8 @@
                         "props": {
                             "scale" : "1.00",
                             "duration" : "1000",
-                            "transformOrigin_X" : "35",
-                            "transformOrigin_Y": "45",
+                            "transformOrigin_X" : "25",
+                            "transformOrigin_Y": "30",
                             "startTime" : "1500",
                             "timingFunction": "linear"
                         }
@@ -76,11 +76,43 @@
                 ],
                 "actions" : [
                     {
+                        "action": "makeContour",
+                        "props": {
+                            "target": ".vulnerable",
+                            "duration": "1000",
+                            "class": "contour",
+                            "startTime" : "500",
+                            "add" : true
+                        }
+                    },
+
+                    {
+                        "action": "makeContour",
+                        "props": {
+                            "target": ".vulnerable",
+                            "duration": "3000",
+                            "class": "contour",
+                            "startTime" : "2500",
+                            "add" : false
+                        }
+                    },
+                    {
                         "action": "burst",
                         "props": {
-                            "target": "shape_67",
-                            "scale": "1.2",
-                            "state": "infected",
+                            "target": "shape_45",
+                            "scale": "1",
+                            "state": "vulnerability",
+                            "timingFunction": "linear",
+                            "duration" : "250"
+                        }
+                    },
+
+                    {
+                        "action": "burst",
+                        "props": {
+                            "target": "shape_40",
+                            "scale": "1",
+                            "state": "vulnerability",
                             "timingFunction": "linear",
                             "duration" : "250"
                         }
@@ -90,8 +122,10 @@
             {
                 "file" : "5E.mp3",
                 "captions" : [
-                    "...are more vulnerable to diseases, either because they can catch them more easily, or the diseases can make them sicker."
+                    "...are more vulnerable to diseases, either because they can catch them more easily, or the diseases\n can make them sicker."
+
                 ],
+                "_commentary" : "--------------------------No action for that scenario---------------------------------",
                 "actions" : [
                     {
                         "action": "",
@@ -108,11 +142,28 @@
                 ],
                 "actions" : [
                     {
-                        "action": "",
+                        "action": "burst",
+                        "props": {
+                            "target": "shape_41",
+                            "scale": "1.2",
+                            "state": "infected",
+                            "timingFunction": "linear",
+                            "duration" : "250"
+                        }
+                    },
+                    {
+                        "action": "spreading",
+                        "props": {
+
+                        }
+                    },
+                    {
+                        "action": "fadeToWhite",
                         "props": {
 
                         }
                     }
+
                 ]
             },
             {
@@ -124,7 +175,45 @@
                 ],
                 "actions" : [
                     {
-                        "action": "",
+                        "action": "fadeToBack",
+                        "props": {
+
+                        }
+                    },
+                    {
+                        "action": "backToNormal",
+                        "props": {
+
+                        }
+                    },
+                    {
+                        "action": "burst",
+                        "props": {
+                            "target": "shape_67",
+                            "scale": "1.2",
+                            "state": "infected",
+                            "timingFunction": "linear",
+                            "duration" : "250"
+                        }
+                    },
+                    {
+                        "action": "vaccination",
+                        "props": {
+
+                        }
+                    },
+                    {
+                        "action": "burst",
+                        "props": {
+                            "target": "shape_67",
+                            "scale": "1.2",
+                            "state": "infected",
+                            "timingFunction": "linear",
+                            "duration" : "250"
+                        }
+                    },
+                    {
+                        "action": "spreading",
                         "props": {
 
                         }
@@ -138,9 +227,30 @@
                 ],
                 "actions" : [
                     {
-                        "action": "",
+                        "action": "spreading",
                         "props": {
 
+                        }
+                    },
+                    {
+                        "action": "burst",
+                        "props": {
+                            "target": "shape_67",
+                            "scale": "1.2",
+                            "state": "infected",
+                            "timingFunction": "linear",
+                            "duration" : "250"
+                        }
+                    },
+
+                    {
+                        "action": "burst",
+                        "props": {
+                            "target": "shape_67",
+                            "scale": "1.2",
+                            "state": "infected",
+                            "timingFunction": "linear",
+                            "duration" : "250"
                         }
                     }
                 ]

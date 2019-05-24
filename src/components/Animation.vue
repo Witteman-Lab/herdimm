@@ -76,8 +76,9 @@
                 // Starts true;
                 this.isAnimationStarted = true;
                 this.$refs.audioPlayer.playAudio();
+                this.test3dHexgone();
                 // For testing (will be called by the audioPlayer in time)
-                //this.makeLink(connections.connections);
+                //his.makeLink(connections.connections);
             },
 
             // Build the hexagon grid based on an array
@@ -201,7 +202,6 @@
             // A way to "draw" the contour of the shapes without using borders
             // Borders are not rendering well the way shapes (hexagons in this case) are being created
             makeContour(props) {
-                console.log("props", props);
                 const shapeTargets = document.querySelectorAll('#copy2 ' + props.target);
                 setTimeout(() => {
                     if (props.add) {
@@ -315,6 +315,40 @@
                     shape.style.transitionProperty = "transform";
                 }, duration);
             },
+
+
+            //METHOD DESCRIPTION
+            spreading(){
+                //console.log("Execution of spreading function");
+            },
+
+
+            //METHOD DESCRIPTION
+            fadeToWhite(){
+                //console.log("Execution of fadeToWhite function");
+            },
+
+            // METHOD DESCRIPTION
+            fadeToBack(){
+                //console.log("Execution of fadeToback function");
+            },
+
+            // METHOD DESCRIPTION
+            backToNormal(){
+              //console.log(" Execution of backToNormal function");
+            },
+
+
+            // METHOD DESCRIPTION
+            vaccination(){
+                //console.log(" Execution of vaccination function");
+            },
+
+
+
+
+
+
 
             // Draw the lines of infections (when infection is spreading)
             drawLine(source, target, id) {
