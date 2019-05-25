@@ -31,13 +31,12 @@
             playAudio() {
                 let ref = this.$refs.audio;
                 let actions = this.playlist[this.audioPosition].actions;
-                let playPromise;
                 let launchSequence = this.$parent.launchSequence;
 
                 // No more autoplay, animation and audio start when the user clicks on the button,
                 // So this method needs to be adjusted
                 setTimeout(() => {
-                    playPromise = ref.play();
+                    ref.play();
                     if (actions) {
                         actions.forEach((sequence) => {
                             launchSequence(sequence);
@@ -66,9 +65,11 @@
                     this.caption = this.playlist[this.audioPosition].caption;
                     this.playAudio();
                 } else {
-                    this.currentAudio = "";
-                    this.caption = "";
+                    this.audioPosition = 0;
+                    this.currentAudio = require(`../assets/${folder}/${type}/${this.playlist[this.audioPosition].file}`);
+                    this.caption = this.playlist[this.audioPosition].caption;
                     this.onplay = false;
+                    this.$parent.reloadAnimation();
                 }
             },
 

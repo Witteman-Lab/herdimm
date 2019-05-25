@@ -25,6 +25,7 @@
     "createAvatar": "Create",
     "editAvatar": "Edit",
     "startAnimation": "Start the animation",
+    "restartAnimation" : "Restart the animation",
     "nameInputLabel": "Name",
     "nameInputPlaceHolder": "Name your character",
     "totalCharacterCount": "Characters count : ",

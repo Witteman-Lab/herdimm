@@ -25,6 +25,7 @@
     "createAvatar": "Créez",
     "editAvatar": "Editez",
     "startAnimation": "Lancer l'animation",
+    "restartAnimation" : "Relancer l'animation",
     "nameInputLabel": "Nom",
     "nameInputPlaceHolder": "Nommez votre personnage",
     "totalCharacterCount" : "Nombre de personnages : ",

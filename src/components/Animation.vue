@@ -28,7 +28,8 @@
         </div>
 
         <div id="startAnimationBox" v-if="!this.isAnimationStarted">
-            <button class="button is-primary is-success" style="justify-self: center;" v-on:click="startAnimation">{{this.labels.startAnimation}}</button><br />
+            <button class="button is-primary is-success" style="justify-self: center;" v-on:click="startAnimation">{{textButtonAnimation}}</button>
+            <br />
             <input type="checkbox" id="showCaptions" name="showCaptions" value="">
             <label for="showCaptions">{{this.labels.displayCaptions}}</label>
         </div>
@@ -60,7 +61,8 @@
                 characterSize: 0,
                 characterBottomMargin: 0,
                 isAnimationStarted: false,
-                currentLanguage: ""
+                currentLanguage: "",
+                textButtonAnimation: ''
             }
         },
         props: {
@@ -76,9 +78,15 @@
                 // Starts true;
                 this.isAnimationStarted = true;
                 this.$refs.audioPlayer.playAudio();
-                this.test3dHexgone();
+                // this.test3dHexgone();
                 // For testing (will be called by the audioPlayer in time)
                 //his.makeLink(connections.connections);
+            },
+
+            // reload
+            reloadAnimation() {
+              this.isAnimationStarted = false;
+              this.textButtonAnimation = this.labels.restartAnimation;
             },
 
             // Build the hexagon grid based on an array
@@ -401,7 +409,7 @@
             }
 
             this.$refs.audioPlayer.loadAudioFiles(this.currentLanguage);
-
+            this.textButtonAnimation = this.labels.startAnimation;
             // Fetch some styles from the SCSS file
             this.characterSize = styles["hexagon-height"];
             this.characterBottomMargin = styles["character-bottom-margin"];
