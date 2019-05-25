@@ -53,9 +53,9 @@
                 this.svgColor.name = name;
             },
             // METHOD DESCRIPTION
-            changeShirtColor(color) {
+            changeShirtColor(color, proportion) {
                 this.svgColor.shirt = color;
-                this.svgColor.shirtShadow = this.getDarkerShade(color);
+                this.svgColor.shirtShadow = this.getDarkerShade(color, proportion);
                 this.$refs.characterImg.children[0].children[0].innerHTML +=
                     `.st0_custom_${this.id}{fill:${this.svgColor.shirt};}.st1_custom_${this.id}{fill:${this.svgColor.shirtShadow};}`;
             },
@@ -63,7 +63,7 @@
             // METHOD DESCRIPTION
             changeFaceColor(color) {
                 this.svgColor.face = color;
-                this.svgColor.faceShadow = this.getDarkerShade(color);
+                this.svgColor.faceShadow = this.getDarkerShade(color, 0.8);
                 this.$refs.characterImg.children[0].children[0].innerHTML +=
                     `.st2_custom_${this.id}{fill:${this.svgColor.face};}.st3_custom_${this.id}{fill:${this.svgColor.faceShadow};}`;
             },
@@ -71,7 +71,7 @@
             // METHOD DESCRIPTION
             changeHairColor(color){
                 this.svgColor.hairFront = color;
-                this.svgColor.hairBack = this.getDarkerShade(color);
+                this.svgColor.hairBack = this.getDarkerShade(color, 0.8);
                 this.$refs.characterImg.children[0].children[0].innerHTML +=
                     `.st5_custom_${this.id}{fill:${this.svgColor.hairFront};}.st4_custom_${this.id}{fill:${this.svgColor.hairBack};}`;
             },
@@ -132,8 +132,8 @@
 
             // For getting a darker shade for the hair or skin
             // To-do: That method could be optimized later
-            getDarkerShade(selectedColorToHex) {
-                const proportion = 0.8;
+            getDarkerShade(selectedColorToHex, proportion) {
+                // const proportion = 0.8;
 
                 let red 	= selectedColorToHex.substr(1,2);
                 let green 	= selectedColorToHex.substr(3,2);
@@ -182,7 +182,7 @@
                 this.changeHairColor(colors.hairFront);
                 this.changeGlasses(colors.glasses);
                 this.changeBeard(colors.beards);
-                this.changeShirtColor(colors.shirt);
+                this.changeShirtColor(colors.shirt, 0.8);
                 this.setCharacterName(colors.name);
             },
 

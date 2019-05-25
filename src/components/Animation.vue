@@ -30,7 +30,7 @@
         <div id="startAnimationBox" v-if="!this.isAnimationStarted">
             <button class="button is-primary is-success" style="justify-self: center;" v-on:click="startAnimation">{{this.labels.startAnimation}}</button><br />
             <input type="checkbox" id="showCaptions" name="showCaptions" value="">
-            <label for="showCaptions">Display captions</label>
+            <label for="showCaptions">{{this.labels.displayCaptions}}</label>
         </div>
     </div>
 </template>
@@ -149,7 +149,9 @@
 
             // Set the character's t-shirt color
             setCharacterTShirtColor(shapeId, color) {
-                this.$refs[shapeId][0].changeShirtColor(color);
+                // TODO try different proportion
+                let darkerColor = this.$refs[shapeId][0].getDarkerShade(color, 1.2);
+                this.$refs[shapeId][0].changeShirtColor(darkerColor, 0.8);
             },
 
             // Duplicate the hexagon grid n time (nbOfCopy) to make some animations easier

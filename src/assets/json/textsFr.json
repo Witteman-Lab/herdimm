@@ -28,5 +28,6 @@
     "nameInputLabel": "Nom",
     "nameInputPlaceHolder": "Nommez votre personnage",
     "totalCharacterCount" : "Nombre de personnages : ",
-    "defaultCharacterName" : "Personne"
+    "defaultCharacterName" : "Personne",
+    "displayCaptions" : "Afficher les sous-titres"
 }

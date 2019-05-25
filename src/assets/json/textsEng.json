@@ -28,5 +28,6 @@
     "nameInputLabel": "Name",
     "nameInputPlaceHolder": "Name your character",
     "totalCharacterCount": "Characters count : ",
-    "defaultCharacterName": "Person"
+    "defaultCharacterName": "Person",
+    "displayCaptions": "Display captions"
 }
