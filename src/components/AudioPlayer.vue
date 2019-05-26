@@ -1,6 +1,6 @@
 <template>
     <div id="audioPlayer">
-        <audio :src="this.currentAudio" muted="muted" ref="audio" @ended="nextAudioFile()" preload="auto"></audio>
+        <audio :src="this.currentAudio" muted="muted" ref="audio" @ended="nextAudio()" preload="auto"></audio>
         <track :src="this.caption" kind="captions" srclang="en" label="english_captions">
     </div>
 </template>
@@ -27,8 +27,17 @@
             currentLanguage: String
         },
         methods: {
+            loadAudioFiles(type) {
+                this.language = type;
+                this.playlist = audio[type].sequences;
+                const folder = audio.folder;
+                this.currentAudio = require(`../assets/${folder}/${type}/${this.playlist[this.audioPosition].file}`);
+                this.caption = this.playlist[this.audioPosition].caption;
+            },
+
             // METHOD DESCRIPTION
             playAudio() {
+                this.onplay = true;
                 let ref = this.$refs.audio;
                 let actions = this.playlist[this.audioPosition].actions;
                 let launchSequence = this.$parent.launchSequence;
@@ -44,41 +53,78 @@
                     }
                 }, 1000);
             },
-            //require(`../assets/${folder}/${type}/${jsonPlaylist[i].file}`)
-            // METHOD DESCRIPTION
-            loadAudioFiles(type) {
-                this.language = type;
-                this.playlist = audio[type].sequences;
-                const folder = audio.folder;
-                this.currentAudio = require(`../assets/${folder}/${type}/${this.playlist[this.audioPosition].file}`);
-                this.caption = this.playlist[this.audioPosition].caption;
-            },
-
-            // METHOD DESCRIPTION
-            nextAudioFile() {
-                this.audioPosition++;
-                const folder = audio.folder;
-                const type = this.currentLanguage;
-                this.onplay = true;
-                if (this.audioPosition < this.playlist.length) {
-                    this.currentAudio = require(`../assets/${folder}/${type}/${this.playlist[this.audioPosition].file}`);
-                    this.caption = this.playlist[this.audioPosition].caption;
-                    this.playAudio();
-                } else {
-                    this.audioPosition = 0;
-                    this.currentAudio = require(`../assets/${folder}/${type}/${this.playlist[this.audioPosition].file}`);
-                    this.caption = this.playlist[this.audioPosition].caption;
-                    this.onplay = false;
-                    this.$parent.reloadAnimation();
-                }
-            },
 
             // METHOD DESCRIPTION
             stopAudio() {
                 if (this.onplay) {
                     this.onplay = false;
+                    let ref = this.$refs.audio;
+                    ref.pause();
                 }
+            },
+
+            restartAudio() {
+                if (!this.onplay) {
+                    this.onplay = true;
+                    let ref = this.$refs.audio;
+                    ref.play();
+                }
+            },
+
+            firstAudio() {
+                this.audioPosition = 0;
+                const folder = audio.folder;
+                const type = this.currentLanguage;
+                this.currentAudio = require(`../assets/${folder}/${type}/${this.playlist[this.audioPosition].file}`);
+                this.caption = this.playlist[this.audioPosition].caption;
+                this.playAudio();
+            },
+
+            lastAudio() {
+                this.audioPosition = this.playlist.length - 1;
+                const folder = audio.folder;
+                const type = this.currentLanguage;
+                this.currentAudio = require(`../assets/${folder}/${type}/${this.playlist[this.audioPosition].file}`);
+                this.caption = this.playlist[this.audioPosition].caption;
+                this.playAudio();
+            },
+
+            // METHOD DESCRIPTION
+            previousAudio() {
+                if (this.audioPosition > 0) {
+                    this.audioPosition--;
+                    const folder = audio.folder;
+                    const type = this.currentLanguage;
+                    this.currentAudio = require(`../assets/${folder}/${type}/${this.playlist[this.audioPosition].file}`);
+                    this.caption = this.playlist[this.audioPosition].caption;
+                    this.playAudio();
+                }
+            },
+
+            // METHOD DESCRIPTION
+            nextAudio() {
+                this.audioPosition++;
+                if (this.audioPosition < this.playlist.length) {
+                    const folder = audio.folder;
+                    const type = this.currentLanguage;
+                    this.currentAudio = require(`../assets/${folder}/${type}/${this.playlist[this.audioPosition].file}`);
+                    this.caption = this.playlist[this.audioPosition].caption;
+                    this.playAudio();
+                } else {
+                    const folder = audio.folder;
+                    const type = this.currentLanguage;
+                    this.audioPosition = 0;
+                    this.currentAudio = require(`../assets/${folder}/${type}/${this.playlist[this.audioPosition].file}`);
+                    this.caption = this.playlist[this.audioPosition].caption;
+                    this.$parent.reloadAnimation();
+                }
+            },
+
+            getAudioStatus() {
+                return this.onplay;
             }
+
+
         },
         created() {},
         mounted() {}

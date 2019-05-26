@@ -33,6 +33,14 @@
             <input type="checkbox" id="showCaptions" name="showCaptions" value="">
             <label for="showCaptions">{{this.labels.displayCaptions}}</label>
         </div>
+        <div id="commandAnimationBox" style="display: flex; justify-content: space-between" v-if="this.isAnimationStarted">
+            <a v-if=""><font-awesome-icon style="margin: 10px;" icon="fast-backward" size="lg" v-on:click="manageAudioPlayer('begin')"/></a>
+            <a><font-awesome-icon style="margin: 10px;" icon="step-backward" size="lg" v-on:click="manageAudioPlayer('before')"/></a>
+            <a v-if="!isAudioPlaying"><font-awesome-icon style="margin: 10px;" icon="play" size="lg" v-on:click="manageAudioPlayer('restart')"/></a>
+            <a v-if="isAudioPlaying"><font-awesome-icon style="margin: 10px;" icon="pause" size="lg" v-on:click="manageAudioPlayer('pause')"/></a>
+            <a><font-awesome-icon style="margin: 10px;" icon="step-forward" size="lg" v-on:click="manageAudioPlayer('next')"/></a>
+            <a><font-awesome-icon style="margin: 10px;" icon="fast-forward" size="lg" v-on:click="manageAudioPlayer('end')"/></a>
+        </div>
     </div>
 </template>
 
@@ -62,7 +70,8 @@
                 characterBottomMargin: 0,
                 isAnimationStarted: false,
                 currentLanguage: "",
-                textButtonAnimation: ''
+                textButtonAnimation: '',
+                isAudioPlaying: false
             }
         },
         props: {
@@ -78,15 +87,36 @@
                 // Starts true;
                 this.isAnimationStarted = true;
                 this.$refs.audioPlayer.playAudio();
+                this.isAnimationPlaying();
                 // this.test3dHexgone();
                 // For testing (will be called by the audioPlayer in time)
                 //his.makeLink(connections.connections);
             },
 
+            manageAudioPlayer(action) {
+                if (action === "begin")
+                    this.$refs.audioPlayer.firstAudio();
+                else if (action === "end")
+                    this.$refs.audioPlayer.lastAudio();
+                else if (action ===  "before")
+                    this.$refs.audioPlayer.previousAudio();
+                else if (action === "next")
+                    this.$refs.audioPlayer.nextAudio();
+                else if (action === "pause")
+                    this.$refs.audioPlayer.stopAudio();
+                else if (action === "restart")
+                    this.$refs.audioPlayer.restartAudio();
+                this.isAnimationPlaying();
+            },
+
+            isAnimationPlaying() {
+                this.isAudioPlaying = this.$refs.audioPlayer.getAudioStatus();
+            },
+
             // reload
             reloadAnimation() {
-              this.isAnimationStarted = false;
-              this.textButtonAnimation = this.labels.restartAnimation;
+                this.isAnimationStarted = false;
+                this.textButtonAnimation = this.labels.restartAnimation;
             },
 
             // Build the hexagon grid based on an array
@@ -345,7 +375,7 @@
 
             // METHOD DESCRIPTION
             backToNormal(){
-              //console.log(" Execution of backToNormal function");
+                //console.log(" Execution of backToNormal function");
             },
 
 
@@ -453,6 +483,18 @@
     }
 
     div#startAnimationBox {
+        text-align: center;
+        position: fixed; /*absolute fixed*/
+        top: 50%;
+        left: 50%;
+        z-index: 999;
+        background-color: #DDD;
+        border: 1px solid #999;
+        padding: 20px;
+        transform: translate(-50%);
+    }
+
+    div#commandAnimationBox {
         text-align: center;
         position: fixed; /*absolute fixed*/
         top: 50%;
