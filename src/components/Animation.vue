@@ -490,20 +490,20 @@
         z-index: 999;
         background-color: #DDD;
         border: 1px solid #999;
-        padding: 20px;
+        padding: 10px;
         transform: translate(-50%);
     }
 
     div#commandAnimationBox {
         text-align: center;
         position: fixed; /*absolute fixed*/
-        top: 50%;
-        left: 50%;
+        bottom: 0%;
+        right: 0%;
         z-index: 999;
         background-color: #DDD;
         border: 1px solid #999;
-        padding: 20px;
-        transform: translate(-50%);
+        padding: 5px;
+        /* transform: translate(-50%); */
     }
 
     @media screen and (max-width: 720px) and (orientation: landscape) {
