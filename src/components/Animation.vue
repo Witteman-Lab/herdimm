@@ -416,9 +416,19 @@
                 }, props.duration);
             },
 
+
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param {number} props
+             * @return none
+             */
             changeShapeColor(props) {
-                const selector = '#main-container #';
-                this.hexColor(selector, props.target, props.state)
+                setTimeout(() => {
+                    const shapeTargets = document.querySelectorAll(props.target);
+                    for (var i = 0; i < shapeTargets.length; ++i) {
+                        shapeTargets.item(i).classList.add(props.state);
+                    }
+                }, props.duration);
             },
 
             /**
@@ -430,6 +440,15 @@
              */
             hexColor(selector, target, state){
                 document.querySelector(selector+target).classList.add(state);
+                //console.log(document.querySelector(selector+target));
+
+
+                const shapeTargets = document.querySelectorAll('#copy2 ' + ".vulnerable");
+                for (var i = 0; i < shapeTargets.length; ++i) {
+                    var div = shapeTargets.item(i);
+                    console.log(div);
+                }
+
             },
 
             /**

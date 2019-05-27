@@ -10,6 +10,16 @@
                 ],
                 "actions" : [
                     {
+                        "action": "changeShapeColor",
+                        "props": {
+                            "target": ".vulnerable",
+                            "state": "vulnerability",
+                            "duration": "2000"
+
+
+                        }
+                    },
+                    {
                         "action": "zoom",
                         "props": {
                             "scale" : "4",
@@ -59,7 +69,7 @@
                     {
                         "action": "zoom",
                         "props": {
-                            "scale" : "1.00",
+                            "scale" : "3.00",
                             "duration" : "1000",
                             "transformOrigin_X" : "25",
                             "transformOrigin_Y": "30",
@@ -93,14 +103,6 @@
                             "class": "contour",
                             "startTime" : "2500",
                             "add" : false
-                        }
-                    },
-                    {
-                        "action": "changeShapeColor",
-                        "props": {
-                            "target": ".vulnerable",
-                            "state": "vulnerability",
-                            "startTime" : "4000"
                         }
                     }
                 ]
