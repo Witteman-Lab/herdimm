@@ -156,12 +156,6 @@
                         "props": {
 
                         }
-                    },
-                    {
-                        "action": "fadeToWhite",
-                        "props": {
-
-                        }
                     }
 
                 ]
@@ -174,18 +168,6 @@
                     "Even for everyone else, vaccines are not perfect."
                 ],
                 "actions" : [
-                    {
-                        "action": "fadeToBack",
-                        "props": {
-
-                        }
-                    },
-                    {
-                        "action": "backToNormal",
-                        "props": {
-
-                        }
-                    },
                     {
                         "action": "burst",
                         "props": {
