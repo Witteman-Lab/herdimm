@@ -99,7 +99,7 @@
 
             /**
              * ---> Start the animation when user is ready, clicks on the Start button
-             * @param {}action
+             * @param {string} action
              * @return none
              */
             manageAudioPlayer(action) {
@@ -120,7 +120,6 @@
 
             /**
              * ---> ------------------ will be completed soon -------------------
-             * @param {}none
              * @return none
              */
             isAnimationPlaying() {
@@ -207,7 +206,7 @@
 
             /**
              * ---> Change the language of the interface
-             * @param {number} language
+             * @param {string} language
              * @return none
              */
             selectCurrentLanguage(language) {
@@ -228,6 +227,7 @@
                 // TODO try different proportion
                 let darkerColor = this.$refs[shapeId][0].getDarkerShade(color, 1.2);
                 this.$refs[shapeId][0].changeShirtColor(darkerColor, 0.8);
+
             },
 
             /**
@@ -338,7 +338,7 @@
              * @return
              */
             makeTransformer(delay) {
-                const shapeTargets = document.querySelectorAll('.hexagon');
+                const shapeTargets = document.querySelectorAll('.hexagon'); // <------------
 
                 setTimeout(() => {
                     shapeTargets.forEach((e) => {
@@ -462,34 +462,6 @@
              */
             spreading(){
                 //console.log("Execution of spreading function");
-            },
-
-
-            /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param {$ElementType} none
-             * @return none
-             */
-            fadeToWhite(){
-                //console.log("Execution of fadeToWhite function");
-            },
-
-            /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param {$ElementType} none
-             * @return none
-             */
-            fadeToBack(){
-                //console.log("Execution of fadeToback function");
-            },
-
-            /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param {$ElementType} none
-             * @return none
-             */
-            backToNormal(){
-                //console.log(" Execution of backToNormal function");
             },
 
 
