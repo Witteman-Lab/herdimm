@@ -163,7 +163,17 @@
             totalCharactersCount: Number,
         },
         methods: {
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param {}index
+             * @param {}character
+             * @param {}totalCreated
+             * @param {}nbrVulnerable
+             * @param {}nbrAvatar
+             * @param {}isEdit
+             * @param {}label
+             * @return none
+             */
             openModal(index, character, totalCreated, nbrVulnerable, nbrAvatar, isEdit, label) {
                 this.modalTitle = this.getModalTitle(index, label, nbrVulnerable);
 
@@ -180,7 +190,13 @@
                 this.openTab("skinColorTab", "skinColorSelect");
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param isEdit
+             * @param character
+             * @param isAvatar
+             * @return none
+             */
             setCharacterColors(isEdit, character, isAvatar) {
                 if (isEdit) {
                     this.currentColorFace = character.colors.face;
@@ -199,11 +215,20 @@
                 }
             },
 
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param {}name
+             * @return none
+             */
             setCharacterName(name) {
                 this.$refs.character.setCharacterName(name);
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param none
+             * @return none
+             */
             closeModal() {
                 this.isActive = false;
                 this.isHairColorButtonEnable = false;
@@ -211,7 +236,11 @@
                 this.characterName = "";
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param none
+             * @return none
+             */
             saveCharacter() {
                 if (this.avatarNbr > this.currentCharacterNumber && !this.characterName)
                     this.setCharacterName(this.labels.avatar);
@@ -221,41 +250,70 @@
                 this.closeModal();
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param none
+             * @return none
+             */
             saveEditCharacter() {
                 this.$parent.editCharacter(this.currentCharacterObject, this.$refs.character.getSvgColor());
                 this.closeModal();
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param none
+             * @return none
+             */
             setAccessories(hasGlasses, hasBeard, hasHair) {
                 this.hasGlasses = hasGlasses;
                 this.hasFacialHair = hasBeard;
                 this.hasHair = hasHair;
             },
-            // METHOD DESCRIPTION
+
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param none
+             * @return none
+             */
             setGlassesList(glasses) {
                 this.glassesList = glasses;
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param {}beards
+             * @return none
+             */
             setBeardsList(beards) {
                 this.beardsList = beards;
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param {}pos
+             * @return none
+             */
             selectGlasses(pos) {
                 this.$refs.character.changeGlasses(pos);
                 this.isGlassesButtonEnable = false;
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param none
+             * @return none
+             */
             selectBeards(pos) {
                 this.$refs.character.changeBeard(pos);
                 this.isBeardsButtonEnable = false;
             },
 
-            //METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param none
+             * @return none
+             */
             resetDefault() {
                 this.currentColorFace = "#7C5235";
                 this.currentColorHair = "#412308";
@@ -265,7 +323,13 @@
                 this.$refs.character.changeGlasses(-1);
                 this.$refs.character.changeBeard(-1);
             },
-            // METHOD DESCRIPTION
+
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param target
+             * @param tabName
+             * @return none
+             */
             openTab(target, tabName) {
 
                 document.querySelectorAll('.content-tab').forEach(e => e.style.display = "none");
@@ -281,7 +345,12 @@
                 }
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param height
+             * @param marginTop
+             * @return none
+             */
             setAccessoriesPosition(height, marginTop) {
                 let accessories = document.getElementsByClassName("accessoriesList");
                 for (let i = 0; i < accessories.length; i++) {
@@ -293,19 +362,33 @@
                 }
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param color
+             * @return none
+             */
             changeFaceColor(color) {
                 this.currentColorFace = color.hex;
                 this.$refs.character.changeFaceColor(color.hex);
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param color
+             * @return none
+             */
             changeHairColor(color) {
                 this.currentColorHair = color.hex;
                 this.$refs.character.changeHairColor(color.hex);
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param index
+             * @param verb
+             * @param nbVulnerable
+             * @return none
+             */
             getModalTitle(index, verb, nbVulnerable) {
                 return (index === 0 ?  `${verb} ${this.labels.avatar}` : index <= nbVulnerable ? `${verb} ${this.labels.vulnerable}` : `${verb} ${this.labels.otherPeople}`);
             },

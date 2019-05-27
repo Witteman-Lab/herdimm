@@ -78,7 +78,11 @@
         },
         props: {},
         methods: {
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param none
+             * @return none
+             */
             launch(character) {
                 if (this.$refs.listToFill.getCharacterListSize() < this.maxCharactersInGroup)  {
                     this.$refs.modal.openModal(this.totalCreated, character, this.totalCreated,
@@ -86,13 +90,21 @@
                 }
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param none
+             * @return none
+             */
             launchEditModal(character, index) {
                 this.$refs.modal.openModal(index, character, this.totalCreated,
                     charactersJson.nbVulnerable, charactersJson.nbAvatar, true,  this.labels.editAvatar);
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param none
+             * @return none
+             */
             saveCharacter(character, colors) {
                 this.totalCreated++;
                 this.manageCharacterCount();
@@ -103,13 +115,21 @@
                 }
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param none
+             * @return none
+             */
             editCharacter(character, colors) {
                 this.$refs.listToFill.editCharacter(character,
                     colors, character.characterType);
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param none
+             * @return none
+             */
             getCurrentCharacterType(position) {
                 if (position <= charactersJson.nbAvatar) {
                     return "avatar";
@@ -120,13 +140,21 @@
                 }
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param none
+             * @return none
+             */
             loadAnimationView() {
                 let groupCharacter = this.$refs.listToFill.getCharacterList();
                 this.$router.push({name: 'Animation', params:{group: groupCharacter, labelSelected: this.labels.currentLanguage}});
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param none
+             * @return none
+             */
             manageCharacterCount() {
               if (this.totalCreated < charactersJson.nbAvatar)  {
                    this.contextualInfo = this.labels.contextualInfoAvatar;
@@ -139,7 +167,11 @@
                }
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param none
+             * @return none
+             */
             changeLanguage() {
                 if (this.isLanguageChanged)
                     this.labels = textsFr;
@@ -150,6 +182,12 @@
                 this.$forceUpdate();
             },
         },
+
+        /**
+         * ---> ------------------ will be completed soon -------------------
+         * @param none
+         * @return none
+         */
         created() {
             this.characterList = charactersJson.characters;
             this.labels = textsEng;
