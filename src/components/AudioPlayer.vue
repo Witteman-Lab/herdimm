@@ -27,6 +27,11 @@
             currentLanguage: String
         },
         methods: {
+            /**
+             *  ---> ------------------ will be completed soon -------------------
+             * @param {}type
+             * @return none
+             */
             loadAudioFiles(type) {
                 this.language = type;
                 this.playlist = audio[type].sequences;

@@ -82,7 +82,11 @@
         },
         methods: {
 
-            // Start the animation when user is ready, clicks on the Start button
+            /**
+             * ---> Start the animation when user is ready, clicks on the Start button
+             * @param none
+             * @return none
+             */
             startAnimation() {
                 // Starts true;
                 this.isAnimationStarted = true;
@@ -119,7 +123,13 @@
                 this.textButtonAnimation = this.labels.restartAnimation;
             },
 
-            // Build the hexagon grid based on an array
+
+
+            /**
+             * ---> Build the hexagon grid based on an array
+             * @param none
+             * @return none
+             */
             buildGridIds() {
                 let numId = 0;
 
@@ -163,7 +173,11 @@
                 }
             },
 
-            // To place the right group member in the right shape
+            /**
+             * ---> To place the right group member in the right shape
+             * @param {number} language
+             * @return none
+             */
             getCharacterFromList(shapeObj) {
                 let isCharacter = false;
                 this.characterList.map((character, index) => {
@@ -176,7 +190,12 @@
                 });
             },
 
-            // Change the language of the interface
+
+            /**
+             * ---> Change the language of the interface
+             * @param {number} language
+             * @return none
+             */
             selectCurrentLanguage(language) {
                 if (language === "fr")
                     this.labels = textsFr;
@@ -185,14 +204,23 @@
                 this.currentLanguage = this.labels.currentLanguage;
             },
 
-            // Set the character's t-shirt color
+            /**
+             * ---> Set the character's t-shirt color
+             * @param {number} shapeId
+             * @param {string} color
+             * @return none
+             */
             setCharacterTShirtColor(shapeId, color) {
                 // TODO try different proportion
                 let darkerColor = this.$refs[shapeId][0].getDarkerShade(color, 1.2);
                 this.$refs[shapeId][0].changeShirtColor(darkerColor, 0.8);
             },
 
-            // Duplicate the hexagon grid n time (nbOfCopy) to make some animations easier
+            /**
+             * ---> Duplicate the hexagon grid n time (nbOfCopy) to make some animations easier
+             * @param {number} sequence
+             * @return none
+             */
             duplicateGrid(nbOfCopy) {
                 const sourceElement = document.querySelector('.hexagon-container');
                 const destination = sourceElement.parentNode;
@@ -207,21 +235,35 @@
                 }
             },
 
-            // Parse the scenario to find sequences for the animation
-            // This method might not be here (maybe in AudioPlayer, maybe not)
+            /**
+             * ---> Parse the scenario to find sequences for the animation
+             * ---> This method might not be here (maybe in AudioPlayer, maybe not)
+             * @param {number} sequence
+             * @return none
+             */
             launchSequence(sequence) {
                 if (sequence.action !== null && sequence.action !== "") {
                     this.executeFunctionByName(sequence.action, this, sequence.props);
                 }
             },
 
-            // Execute the appropriate function by its name received as a string as well as with arguments
+
+            /**
+             * ---> Execute the appropriate function by its name received as a string as well as with arguments
+             * @param {number} delay
+             * @param {number} duration
+             * @return none
+             */
             executeFunctionByName(functionName, context, args) {
                 let newArgs = Array.prototype.slice.call(arguments, 2);
                 return context[functionName].apply(context, newArgs);
             },
 
-            // Zoom in or out depending on the parameters (props) received
+            /**
+             * ---> Zoom in or out depending on the parameters (props) received
+             * @param {number} props
+             * @return none
+             */
             zoom(props) {
                 const targets = document.querySelectorAll('.hexagon-container, #draw');
                 setTimeout(() => {
@@ -239,8 +281,13 @@
 
 
 
-            // A way to "draw" the contour of the shapes without using borders
-            // Borders are not rendering well the way shapes (hexagons in this case) are being created
+            /**
+             * ---> A way to "draw" the contour of the shapes without using borders
+             * ---> Borders are not rendering well the way shapes (hexagons in this case) are being created
+             * @param {number} delay
+             * @param {number} duration
+             * @return none
+             */
             makeContour(props) {
                 const shapeTargets = document.querySelectorAll('#copy2 ' + props.target);
                 setTimeout(() => {
@@ -252,7 +299,12 @@
                 }, props.startTime);
             },
 
-            // Transition used between 2 sequences (fade to white and back)
+            /**
+             * ---> Transition used between 2 sequences (fade to white and back)
+             * @param {number} delay
+             * @param {number} duration
+             * @return none
+             */
             fadeInOut(delay, duration) {
                 // Fade-in transition
                 setTimeout(() => {
@@ -265,7 +317,11 @@
                 }, delay + duration);
             },
 
-            // METHOD DESCRIPTION
+
+            /**--->  ---------------------------------- It's will be completed later ------------------------------
+             *@param {} delay
+             * @return
+             */
             makeTransformer(delay) {
                 const shapeTargets = document.querySelectorAll('.hexagon');
 
@@ -280,7 +336,11 @@
                 }, delay);
             },
 
-            // Parse the connections (JSON pattern) to establish between various shapes during infection
+            /**
+             * ---> Parse the connections (JSON pattern) to establish between various shapes during infection
+             * @param {number} connections
+             * @return none
+             */
             makeLink(connections){
                 const drawingBoard = document.querySelector("#connections");
                 const selector = '#main-container #';
@@ -313,7 +373,11 @@
                 }
             },
 
-            // Compute and return the length of the line for its animation
+            /**
+             * ---> Compute and return the length of the line for its animation
+             * @param {number} line
+             * @return none
+             */
             getLineLength(line){
                 let x1 = line.x1.baseVal.value;
                 let x2 = line.x2.baseVal.value;
@@ -322,7 +386,12 @@
                 return Math.sqrt( (x2-=x1)*x2 + (y2-=y1)*y2 );
             },
 
-            // Change the shape's (target) color and size
+
+            /**
+             * ---> Compute and return the length of the line for its animation
+             * @param {number} props
+             * @return none
+             */
             burst(props){
                 const selector = '#main-container #';
 
@@ -332,12 +401,20 @@
                 }, props.duration);
             },
 
-            // Change the color of the shape (target) based on its status (vaccinated, infected)
+            /**
+             * ---> Change the color of the shape (target) based on its status (vaccinated, infected)
+             * @param {number} props
+             * @return none
+             */
             hexColor(selector, target, state){
                 document.querySelector(selector+target).classList.add(state);
             },
 
-            // Change the size of the shape (target)
+            /**
+             * ---> Change the size of the shape (target)
+             * @param {number} props
+             * @return none
+             */
             changeSize(selector, target, scale, timingFunction, duration){
                 let shape = document.querySelector(selector+target);
 
@@ -357,29 +434,49 @@
             },
 
 
-            //METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param {$ElementType} none
+             * @return none
+             */
             spreading(){
                 //console.log("Execution of spreading function");
             },
 
 
-            //METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param {$ElementType} none
+             * @return none
+             */
             fadeToWhite(){
                 //console.log("Execution of fadeToWhite function");
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param {$ElementType} none
+             * @return none
+             */
             fadeToBack(){
                 //console.log("Execution of fadeToback function");
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param {$ElementType} none
+             * @return none
+             */
             backToNormal(){
                 //console.log(" Execution of backToNormal function");
             },
 
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param {$ElementType} none
+             * @return none
+             */
             vaccination(){
                 //console.log(" Execution of vaccination function");
             },
@@ -390,7 +487,13 @@
 
 
 
-            // Draw the lines of infections (when infection is spreading)
+            /**
+             * ---> Draw the lines of infections (when infection is spreading)
+             * @param {number} source
+             * @param {number} target
+             * @param {number} id
+             * @return none
+             */
             drawLine(source, target, id) {
 
                 // Parameters
@@ -453,7 +556,13 @@
             });
         },
 
-        // To perform, otherwise, artefacts from the animation might subsist if we go back to the make your gang tool
+        /**
+         * ---> To perform, otherwise, artefacts from the animation might subsist if we go back to the make your gang tool
+         * @param {number} source
+         * @param {number} target
+         * @param {number} id
+         * @return none
+         */
         beforeDestroy() {
             // Get all the grid copies
             const shapeTargets = document.querySelectorAll('.copy');
