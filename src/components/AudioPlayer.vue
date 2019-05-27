@@ -28,8 +28,9 @@
         },
         methods: {
             /**
-             *  ---> ------------------ will be completed soon -------------------
-             * @param {}type
+             *  ---> This method loads the audio file
+             *  @function {loadAudioFiles}
+             * @param {string} type
              * @return none
              */
             loadAudioFiles(type) {
@@ -41,8 +42,8 @@
             },
 
             /**
-             *  ---> ------------------ will be completed soon -------------------
-             * @param {}type
+             *  ---> This method plays the audio file
+             *  @function {playAudio}
              * @return none
              */
             playAudio() {
@@ -64,8 +65,8 @@
             },
 
             /**
-             *  ---> ------------------ will be completed soon -------------------
-             * @param {}type
+             *  ---> This method stops playing the audio file
+             *  @function {stopAudio}
              * @return none
              */
             stopAudio() {
@@ -77,7 +78,8 @@
             },
 
             /**
-             *  ---> ------------------ will be completed soon -------------------
+             *  ---> This method restart playing the audio file
+             *  @function {restartAudio}
              * @param {}type
              * @return none
              */
@@ -91,6 +93,7 @@
 
             /**
              *  ---> ------------------ will be completed soon -------------------
+             *  @function {firstAudio}
              * @param {}type
              * @return none
              */
@@ -105,6 +108,7 @@
 
             /**
              *  ---> ------------------ will be completed soon -------------------
+             *  @function {lastAudio}
              * @param {}type
              * @return none
              */
@@ -119,6 +123,7 @@
 
             /**
              *  ---> ------------------ will be completed soon -------------------
+             *  @function {previousAudio}
              * @param {}type
              * @return none
              */
@@ -135,6 +140,7 @@
 
             /**
              *  ---> ------------------ will be completed soon -------------------
+             *
              * @param {}type
              * @return none
              */
@@ -160,8 +166,8 @@
 
 
             /**
-             *  ---> ------------------ will be completed soon -------------------
-             * @param {}type
+             *  ---> This function allows you to have audio status
+             *  @function {getAudioStatus}
              * @return none
              */
             getAudioStatus() {
