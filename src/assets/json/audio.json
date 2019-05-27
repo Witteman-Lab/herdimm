@@ -85,36 +85,22 @@
                             "add" : true
                         }
                     },
-
                     {
                         "action": "makeContour",
                         "props": {
                             "target": ".vulnerable",
-                            "duration": "3000",
+                            "duration": "1000",
                             "class": "contour",
                             "startTime" : "2500",
                             "add" : false
                         }
                     },
                     {
-                        "action": "burst",
+                        "action": "changeShapeColor",
                         "props": {
-                            "target": "shape_45",
-                            "scale": "1",
+                            "target": ".vulnerable",
                             "state": "vulnerability",
-                            "timingFunction": "linear",
-                            "duration" : "250"
-                        }
-                    },
-
-                    {
-                        "action": "burst",
-                        "props": {
-                            "target": "shape_40",
-                            "scale": "1",
-                            "state": "vulnerability",
-                            "timingFunction": "linear",
-                            "duration" : "250"
+                            "startTime" : "4000"
                         }
                     }
                 ]

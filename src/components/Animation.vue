@@ -416,6 +416,11 @@
                 }, props.duration);
             },
 
+            changeShapeColor(props) {
+                const selector = '#main-container #';
+                this.hexColor(selector, props.target, props.state)
+            },
+
             /**
              * ---> Change the color of the shape (target) based on its status (vaccinated, infected)
              * @param {number} selector
