@@ -52,7 +52,13 @@
             setCharacterName(name) {
                 this.svgColor.name = name;
             },
-            // METHOD DESCRIPTION
+
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param {}color
+             * @param {}proportion
+             * @return none
+             */
             changeShirtColor(color, proportion) {
                 this.svgColor.shirt = color;
                 this.svgColor.shirtShadow = this.getDarkerShade(color, proportion);
@@ -60,7 +66,11 @@
                     `.st0_custom_${this.id}{fill:${this.svgColor.shirt};}.st1_custom_${this.id}{fill:${this.svgColor.shirtShadow};}`;
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param {}id
+             * @return none
+             */
             changeFaceColor(color) {
                 this.svgColor.face = color;
                 this.svgColor.faceShadow = this.getDarkerShade(color, 0.8);
@@ -68,7 +78,11 @@
                     `.st2_custom_${this.id}{fill:${this.svgColor.face};}.st3_custom_${this.id}{fill:${this.svgColor.faceShadow};}`;
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param {}color
+             * @return none
+             */
             changeHairColor(color){
                 this.svgColor.hairFront = color;
                 this.svgColor.hairBack = this.getDarkerShade(color, 0.8);
@@ -76,7 +90,11 @@
                     `.st5_custom_${this.id}{fill:${this.svgColor.hairFront};}.st4_custom_${this.id}{fill:${this.svgColor.hairBack};}`;
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param {}pos
+             * @return none
+             */
             changeBeard(pos) {
                 if (pos === undefined)
                     return 0;
@@ -98,7 +116,11 @@
                 }
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param {}pos
+             * @return none
+             */
             changeGlasses(pos) {
                 if (pos === undefined)
                     return 0;
@@ -120,18 +142,32 @@
                 }
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param {}none
+             * @return none
+             */
             resetFaceColor(){
                 this.$refs.characterImg.children[0].children[0].innerHTML = this.defaultColor;
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param {}none
+             * @return none
+             */
             getSvgColor() {
                 return this.svgColor
             },
 
-            // For getting a darker shade for the hair or skin
-            // To-do: That method could be optimized later
+
+            /**
+             * ---> For getting a darker shade for the hair or skin
+             * --->  To-do: That method could be optimized later
+             * @param {}selectedColorToHex
+             * @param {}proportion
+             * @return none
+             */
             getDarkerShade(selectedColorToHex, proportion) {
                 // const proportion = 0.8;
 
@@ -169,14 +205,22 @@
                 return "#" + hex_red + hex_green + hex_blue;
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param {}none
+             * @return none
+             */
             createYourCharacter() {
                 if (this.edit) {
                     this.$parent.launchModal(this.id);
                 }
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param {}colors
+             * @return none
+             */
             editCharacterColors(colors) {
                 this.changeFaceColor(colors.face);
                 this.changeHairColor(colors.hairFront);
@@ -186,7 +230,11 @@
                 this.setCharacterName(colors.name);
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param {}none
+             * @return none
+             */
             loadSvgData() {
                 if (this.svg) {
                     this.width = this.size.width;
@@ -203,14 +251,24 @@
                 }
             },
 
-            // st6 for glasses and beards
+
+            /**
+             * ---> st6 for glasses and beards
+             * @param {}childrenPosition
+             * @param {}accessory
+             * @return none
+             */
             manageAccessories(childrenPosition, accessory) {
                 childrenPosition.classList.remove("st6");
                 childrenPosition.classList.add("st6" + accessory + this.id);
                 childrenPosition.style.display = "inline";
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param {}position
+             * @return none
+             */
             manageGlasses(position) {
                 let childrenPosition = this.$refs.characterImg.children[0].children[position];
                 this.manageAccessories(childrenPosition, "_glasses_");
@@ -226,7 +284,11 @@
                 this.hasGlasses = true;
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param {}position
+             * @return none
+             */
             manageBeards(position) {
                 let childrenPosition = this.$refs.characterImg.children[0].children[position];
                 this.manageAccessories(childrenPosition, "_beards_");
@@ -252,7 +314,11 @@
                 this.hasBeard = true;
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param {}id
+             * @return none
+             */
             parseCharacterAttributes() {
                 let characterImgSVG = this.$refs.characterImg.children[0];
 
@@ -283,7 +349,11 @@
                 }
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param {}id
+             * @return none
+             */
             updateCurrentSvg() {
                 this.svg = this.svgFile;
             }

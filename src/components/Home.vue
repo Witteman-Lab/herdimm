@@ -182,6 +182,12 @@
                 this.$forceUpdate();
             },
         },
+
+        /**
+         * ---> ------------------ will be completed soon -------------------
+         * @param none
+         * @return none
+         */
         created() {
             this.characterList = charactersJson.characters;
             this.labels = textsEng;

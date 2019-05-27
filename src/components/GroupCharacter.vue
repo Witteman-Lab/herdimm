@@ -25,13 +25,26 @@
             Character
         },
         methods: {
-            // METHOD DESCRIPTION
+
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param {}character
+             * @param {}characterColors
+             * @param {}type
+             * @return none
+             */
             addCharacterToGroup(character, characterColors, type) {
                 this.characterList.push({id: character.id + this.characterList.length + "_customised",
                     file: character.file, colors: characterColors, characterType: type});
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param {}character
+             * @param {}characterColors
+             * @param {}type
+             * @return none
+             */
             editCharacter(character, characterColors, type) {
                 this.characterList.map((obj, index) => {
                     if (obj.id === character.id) {
@@ -42,7 +55,11 @@
                 });
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param {}id
+             * @return none
+             */
             launchModal(id) {
                 this.characterList.filter((obj, index) => {
                     if (obj.id === id) {
@@ -51,17 +68,29 @@
                 });
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param {}characters
+             * @return none
+             */
             addGroup(characters) {
                 this.characterList = characters;
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param none
+             * @return none
+             */
             getCharacterListSize() {
                 return this.characterList.length;
             },
 
-            // METHOD DESCRIPTION
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param none
+             * @return none
+             */
             getCharacterList() {
                 return this.characterList;
             }

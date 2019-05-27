@@ -40,7 +40,11 @@
                 this.caption = this.playlist[this.audioPosition].caption;
             },
 
-            // METHOD DESCRIPTION
+            /**
+             *  ---> ------------------ will be completed soon -------------------
+             * @param {}type
+             * @return none
+             */
             playAudio() {
                 this.onplay = true;
                 let ref = this.$refs.audio;
@@ -59,7 +63,11 @@
                 }, 1000);
             },
 
-            // METHOD DESCRIPTION
+            /**
+             *  ---> ------------------ will be completed soon -------------------
+             * @param {}type
+             * @return none
+             */
             stopAudio() {
                 if (this.onplay) {
                     this.onplay = false;
@@ -68,6 +76,11 @@
                 }
             },
 
+            /**
+             *  ---> ------------------ will be completed soon -------------------
+             * @param {}type
+             * @return none
+             */
             restartAudio() {
                 if (!this.onplay) {
                     this.onplay = true;
@@ -76,6 +89,11 @@
                 }
             },
 
+            /**
+             *  ---> ------------------ will be completed soon -------------------
+             * @param {}type
+             * @return none
+             */
             firstAudio() {
                 this.audioPosition = 0;
                 const folder = audio.folder;
@@ -85,6 +103,11 @@
                 this.playAudio();
             },
 
+            /**
+             *  ---> ------------------ will be completed soon -------------------
+             * @param {}type
+             * @return none
+             */
             lastAudio() {
                 this.audioPosition = this.playlist.length - 1;
                 const folder = audio.folder;
@@ -94,7 +117,11 @@
                 this.playAudio();
             },
 
-            // METHOD DESCRIPTION
+            /**
+             *  ---> ------------------ will be completed soon -------------------
+             * @param {}type
+             * @return none
+             */
             previousAudio() {
                 if (this.audioPosition > 0) {
                     this.audioPosition--;
@@ -106,7 +133,11 @@
                 }
             },
 
-            // METHOD DESCRIPTION
+            /**
+             *  ---> ------------------ will be completed soon -------------------
+             * @param {}type
+             * @return none
+             */
             nextAudio() {
                 this.audioPosition++;
                 if (this.audioPosition < this.playlist.length) {
@@ -125,6 +156,14 @@
                 }
             },
 
+
+
+
+            /**
+             *  ---> ------------------ will be completed soon -------------------
+             * @param {}type
+             * @return none
+             */
             getAudioStatus() {
                 return this.onplay;
             }

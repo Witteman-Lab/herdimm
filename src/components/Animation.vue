@@ -97,6 +97,11 @@
                 //his.makeLink(connections.connections);
             },
 
+            /**
+             * ---> Start the animation when user is ready, clicks on the Start button
+             * @param {}action
+             * @return none
+             */
             manageAudioPlayer(action) {
                 if (action === "begin")
                     this.$refs.audioPlayer.firstAudio();
@@ -113,11 +118,20 @@
                 this.isAnimationPlaying();
             },
 
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param {}none
+             * @return none
+             */
             isAnimationPlaying() {
                 this.isAudioPlaying = this.$refs.audioPlayer.getAudioStatus();
             },
 
-            // reload
+            /**
+             * ---> Reload function
+             * @param {}none
+             * @return none
+             */
             reloadAnimation() {
                 this.isAnimationStarted = false;
                 this.textButtonAnimation = this.labels.restartAnimation;
@@ -175,7 +189,7 @@
 
             /**
              * ---> To place the right group member in the right shape
-             * @param {number} language
+             * @param {number} shapeObj
              * @return none
              */
             getCharacterFromList(shapeObj) {
@@ -218,7 +232,7 @@
 
             /**
              * ---> Duplicate the hexagon grid n time (nbOfCopy) to make some animations easier
-             * @param {number} sequence
+             * @param {number} nbOfCopy
              * @return none
              */
             duplicateGrid(nbOfCopy) {
@@ -250,12 +264,14 @@
 
             /**
              * ---> Execute the appropriate function by its name received as a string as well as with arguments
-             * @param {number} delay
-             * @param {number} duration
+             * @param {number} functionName
+             * @param {number} context
+             * @param {number} args
              * @return none
              */
             executeFunctionByName(functionName, context, args) {
                 let newArgs = Array.prototype.slice.call(arguments, 2);
+                console.log(functionName);
                 return context[functionName].apply(context, newArgs);
             },
 
@@ -284,8 +300,7 @@
             /**
              * ---> A way to "draw" the contour of the shapes without using borders
              * ---> Borders are not rendering well the way shapes (hexagons in this case) are being created
-             * @param {number} delay
-             * @param {number} duration
+             * @param {number} props
              * @return none
              */
             makeContour(props) {
@@ -403,7 +418,9 @@
 
             /**
              * ---> Change the color of the shape (target) based on its status (vaccinated, infected)
-             * @param {number} props
+             * @param {number} selector
+             * @param {number} target
+             * @param {number} state
              * @return none
              */
             hexColor(selector, target, state){
@@ -412,7 +429,11 @@
 
             /**
              * ---> Change the size of the shape (target)
-             * @param {number} props
+             * @param {number} selector
+             * @param {number} target
+             * @param {number} scale
+             * @param {number} timingFunction
+             * @param {number} duration
              * @return none
              */
             changeSize(selector, target, scale, timingFunction, duration){
@@ -548,6 +569,7 @@
             this.characterBottomMargin = styles["character-bottom-margin"];
 
             // Build the grid
+
             this.buildGridIds();
 
             // When content is loaded, make copies of the grid to facilitate the animation
