@@ -440,15 +440,6 @@
              */
             hexColor(selector, target, state){
                 document.querySelector(selector+target).classList.add(state);
-                //console.log(document.querySelector(selector+target));
-
-
-                const shapeTargets = document.querySelectorAll('#copy2 ' + ".vulnerable");
-                for (var i = 0; i < shapeTargets.length; ++i) {
-                    var div = shapeTargets.item(i);
-                    console.log(div);
-                }
-
             },
 
             /**
