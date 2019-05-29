@@ -91,12 +91,13 @@
             startAnimation() {
                 // Starts true;
                 this.isAnimationStarted = true;
-                //this.$refs.audioPlayer.playAudio();
-                //this.isAnimationPlaying();
+                this.$refs.audioPlayer.playAudio();
+                this.isAnimationPlaying();
                         // this.test3dHexgone();
                 // For testing (will be called by the audioPlayer in time)
                 //this.spreadInfection(connections.connections);
-                this.testFunction(connections.connections);
+
+                //this.testFunction(connections.connections);
 
             },
 
@@ -360,44 +361,7 @@
              * @param {number} connections
              * @return none
              */
-            // spreadInfection(connections){
-            //     const drawingBoard = document.querySelector("#connections");
-            //     const selector = '#main-container #';
-            //     const state = "infected";
-            //
-            //     for (let i = 0; i < connections.length; i++){
-            //         let source = connections[i].source;
-            //         let target = connections[i].target;
-            //         let nextTarget 	= connections[i].nextTarget;
-            //         let id = connections[i].id;
-            //         let lineObj = this.drawLine(source, target, id);
-            //         let lineLength = this.getLineLength(lineObj);
-            //
-            //         lineObj.setAttributeNS(null, "stroke-dasharray", lineLength + " " + lineLength);
-            //         lineObj.setAttributeNS(null, "stroke-dashoffset", lineLength);
-            //         lineObj.classList.add("line");
-            //
-            //         drawingBoard.appendChild(lineObj);
-            //
-            //         lineObj.addEventListener("animationstart", () => { // webkitAnimationStart
-            //             this.hexColor(selector, source, state);
-            //         });
-            //         lineObj.addEventListener("animationend", () => { // webkitAnimationEnd
-            //             if(nextTarget != ""){
-            //                 this.makeLink(nextTarget);
-            //             }
-            //
-            //             this.hexColor(selector, target, state);
-            //         });
-            //     }
-            // },
-
-
-
-
-
-
-            testFunction(connections){
+            spreadInfection(connections){
                 const drawingBoard = document.querySelector("#connections");
                 const selector = '#main-container #';
                 const state = "infected";
@@ -428,6 +392,43 @@
                     });
                 }
             },
+
+
+
+
+
+
+            // testFunction(connections){
+            //     const drawingBoard = document.querySelector("#connections");
+            //     const selector = '#main-container #';
+            //     const state = "infected";
+            //
+            //     for (let i = 0; i < connections.length; i++){
+            //         let source = connections[i].source;
+            //         let target = connections[i].target;
+            //         let nextTarget 	= connections[i].nextTarget;
+            //         let id = connections[i].id;
+            //         let lineObj = this.drawLine(source, target, id);
+            //         let lineLength = this.getLineLength(lineObj);
+            //
+            //         lineObj.setAttributeNS(null, "stroke-dasharray", lineLength + " " + lineLength);
+            //         lineObj.setAttributeNS(null, "stroke-dashoffset", lineLength);
+            //         lineObj.classList.add("line");
+            //
+            //         drawingBoard.appendChild(lineObj);
+            //
+            //         lineObj.addEventListener("animationstart", () => { // webkitAnimationStart
+            //             this.hexColor(selector, source, state);
+            //         });
+            //         lineObj.addEventListener("animationend", () => { // webkitAnimationEnd
+            //             if(nextTarget != ""){
+            //                 this.makeLink(nextTarget);
+            //             }
+            //
+            //             this.hexColor(selector, target, state);
+            //         });
+            //     }
+            // },
 
             /**
              * ---> Compute and return the length of the line for its animation

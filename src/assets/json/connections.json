@@ -1,57 +1,5 @@
 {
     "containerId" : "connections",
 	"linecolor" : "#B0102C",
-	"linewidth" : "5",
-	"connections" : [
-		{
-			"id"	 : "1",
-			"source" : "shape_58",
-			"target" : "shape_26",
-			"nextTarget": [
-				{
-					"id"	 : "4",
-					"source" : "shape_26",
-					"target" : "shape_19",
-					"nextTarget": [
-						{
-							"id"	 : "7",
-							"source" : "shape_19",
-							"target" : "shape_12",
-							"nextTarget": ""
-						},
-						{
-							"id"	 : "8",
-							"source" : "shape_19",
-							"target" : "shape_7",
-							"nextTarget": ""
-						}
-					]
-				},
-				{
-					"id"	 : "5",
-					"source" : "shape_26",
-					"target" : "shape_20",
-					"nextTarget": ""
-				},
-				{
-					"id"	 : "6",
-					"source" : "shape_26",
-					"target" : "shape_13",
-					"nextTarget": ""
-				}
-			]
-		},
-		{
-			"id"	 : "2",
-			"source" : "shape_50",
-			"target" : "shape_45",
-			"nextTarget": ""
-		},
-		{
-			"id"	 : "3",
-			"source" : "shape_50",
-			"target" : "shape_46",
-			"nextTarget": ""
-		}
-	]
+	"linewidth" : "5"
 }
