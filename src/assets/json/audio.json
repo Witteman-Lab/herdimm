@@ -10,16 +10,16 @@
                 ],
                 "actions" : [
                     {
-                        "action": "spreadInfection",
+                        "action": "parseSpreadInfection",
                         "props": {
-                            "file": "connections1"
+                            "file": "spreadinfections3.json"
                         }
                     },
 
                     {
                         "action": "zoom",
                         "props": {
-                            "scale" : "4",
+                            "scale" : "1",
                             "duration" : "2000",
                             "transformOrigin_X" : "25",
                             "transformOrigin_Y": "30",

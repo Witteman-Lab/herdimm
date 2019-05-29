@@ -55,10 +55,7 @@
     import textsFr from "../assets/json/textsFr.json";
 
     import connections from "../assets/json/connections.json";
-    import connections1 from "../assets/json/spreadinfections1.json";
-    import connections2 from "../assets/json/spreadinfections2.json";
-    import connections3 from "../assets/json/spreadinfections3.json";
-    import connections4 from "../assets/json/spreadinfections4.json";
+
 
     export default {
         name: "Animation",
@@ -360,44 +357,54 @@
                 }, delay);
             },
 
+
+            /**--->  ---------------------------------- It's will be completed later ------------------------------
+             *@param {} props
+             * @return
+             */
+            parseSpreadInfection(props){
+                let variable = require("../assets/json/"+props.file);
+                this.spreadInfection(variable.connections);
+
+            },
+
+
+
             /**
              * ---> Parse the connections (JSON pattern) to establish between various shapes during infection
              * @param {number} connections
              * @return none
              */
-            spreadInfection(props){
+            spreadInfection(pattern){
+                const drawingBoard = document.querySelector("#connections");
+                const selector = '#main-container #';
+                const state = "infected";
 
-                console.log("ma valeur", typeof 12);
+                for (let i = 0; i < pattern.length; i++){
+                    let source = pattern[i].source;
+                    let target = pattern[i].target;
+                    let nextTarget 	= pattern[i].nextTarget;
+                    let id = pattern[i].id;
+                    let lineObj = this.drawLine(source, target, id);
+                    let lineLength = this.getLineLength(lineObj);
 
-                // const drawingBoard = document.querySelector("#connections");
-                // const selector = '#main-container #';
-                // const state = "infected";
-                //
-                // for (let i = 0; i < props.file.connections.length; i++){
-                //     let source = props.file.connections[i].source;
-                //     let target = props.file.connections[i].target;
-                //     let nextTarget 	= props.file.connections[i].nextTarget;
-                //     let id = props.file.connections[i].id;
-                //     let lineObj = this.drawLine(source, target, id);
-                //     let lineLength = this.getLineLength(lineObj);
-                //
-                //     lineObj.setAttributeNS(null, "stroke-dasharray", lineLength + " " + lineLength);
-                //     lineObj.setAttributeNS(null, "stroke-dashoffset", lineLength);
-                //     lineObj.classList.add("line");
-                //
-                //     drawingBoard.appendChild(lineObj);
-                //
-                //     lineObj.addEventListener("animationstart", () => { // webkitAnimationStart
-                //         this.hexColor(selector, source, state);
-                //     });
-                //     lineObj.addEventListener("animationend", () => { // webkitAnimationEnd
-                //         if(nextTarget != ""){
-                //             this.spreadInfection(nextTarget);
-                //         }
-                //
-                //         this.hexColor(selector, target, state);
-                //     });
-                // }
+                    lineObj.setAttributeNS(null, "stroke-dasharray", lineLength + " " + lineLength);
+                    lineObj.setAttributeNS(null, "stroke-dashoffset", lineLength);
+                    lineObj.classList.add("line");
+
+                    drawingBoard.appendChild(lineObj);
+
+                    lineObj.addEventListener("animationstart", () => { // webkitAnimationStart
+                        this.hexColor(selector, source, state);
+                    });
+                    lineObj.addEventListener("animationend", () => { // webkitAnimationEnd
+                        if(nextTarget != ""){
+                            this.spreadInfection(nextTarget);
+                        }
+
+                        this.hexColor(selector, target, state);
+                    });
+                }
             },
 
 
