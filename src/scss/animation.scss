@@ -119,6 +119,11 @@ div.vaccinated::before {
   background-color: var(--color-hex-default);
   height: var(--hex-height);
   width: var(--hex-width);
+  -webkit-transition: background-color 0.5s linear;
+  -moz-transition: background-color 0.5s linear;
+  -ms-transform: background-color 0.5s linear;
+  -o-transition: background-color 0.5s linear;
+  transition: background-color 0.5s linear;
 }
 .hexagon::after,
 .hexagon::before {

@@ -49,11 +49,12 @@
     import AudioPlayer from "./AudioPlayer";
     // The scenario might need to be imported in AudioPlayer instead of here, I'm not sure at the moment
     // import scenario from "../assets/json/scenario_en.json";
-    import connections from "../assets/json/connections.json";
+    //import connections from "../assets/json/connections.json";
     import shapesArray from "../assets/json/shapesArray";
     // import animate from "animejs";
     import textsEng from "../assets/json/textsEng.json";
     import textsFr from "../assets/json/textsFr.json";
+    import connections from "../assets/json/spreadinfections3.json";
 
     export default {
         name: "Animation",
@@ -90,11 +91,13 @@
             startAnimation() {
                 // Starts true;
                 this.isAnimationStarted = true;
-                this.$refs.audioPlayer.playAudio();
-                this.isAnimationPlaying();
-                // this.test3dHexgone();
+                //this.$refs.audioPlayer.playAudio();
+                //this.isAnimationPlaying();
+                        // this.test3dHexgone();
                 // For testing (will be called by the audioPlayer in time)
-                //his.makeLink(connections.connections);
+                //this.spreadInfection(connections.connections);
+                this.testFunction(connections.connections);
+
             },
 
             /**
@@ -283,7 +286,6 @@
             zoom(props) {
                 const targets = document.querySelectorAll('.hexagon-container, #draw');
                 setTimeout(() => {
-                    //targets.forEach(e => e.classList.add("zoomIn"));    //tres important pour la suite
                     targets.forEach((e) => {
                         e.style.transform = "scale("+props.scale.toString()+","+props.scale.toString()+")";
                         e.style.transitionDuration = props.duration.toString()+"ms";
@@ -316,20 +318,22 @@
 
             /**
              * ---> Transition used between 2 sequences (fade to white and back)
-             * @param {number} delay
+             * @param {number} startTime
              * @param {number} duration
              * @return none
              */
-            fadeInOut(delay, duration) {
+            fadeInOut(startTime, duration) {
                 // Fade-in transition
                 setTimeout(() => {
+                    console.log("fadeIn");
                     document.body.classList.add('fade');
-                }, delay);
+                }, startTime);
 
                 // Fade-out transition (back to normal)
                 setTimeout(() => {
+                    console.log("fadeOut");
                     document.body.classList.remove('fade');
-                }, delay + duration);
+                }, startTime + duration);
             },
 
 
@@ -356,7 +360,44 @@
              * @param {number} connections
              * @return none
              */
-            makeLink(connections){
+            // spreadInfection(connections){
+            //     const drawingBoard = document.querySelector("#connections");
+            //     const selector = '#main-container #';
+            //     const state = "infected";
+            //
+            //     for (let i = 0; i < connections.length; i++){
+            //         let source = connections[i].source;
+            //         let target = connections[i].target;
+            //         let nextTarget 	= connections[i].nextTarget;
+            //         let id = connections[i].id;
+            //         let lineObj = this.drawLine(source, target, id);
+            //         let lineLength = this.getLineLength(lineObj);
+            //
+            //         lineObj.setAttributeNS(null, "stroke-dasharray", lineLength + " " + lineLength);
+            //         lineObj.setAttributeNS(null, "stroke-dashoffset", lineLength);
+            //         lineObj.classList.add("line");
+            //
+            //         drawingBoard.appendChild(lineObj);
+            //
+            //         lineObj.addEventListener("animationstart", () => { // webkitAnimationStart
+            //             this.hexColor(selector, source, state);
+            //         });
+            //         lineObj.addEventListener("animationend", () => { // webkitAnimationEnd
+            //             if(nextTarget != ""){
+            //                 this.makeLink(nextTarget);
+            //             }
+            //
+            //             this.hexColor(selector, target, state);
+            //         });
+            //     }
+            // },
+
+
+
+
+
+
+            testFunction(connections){
                 const drawingBoard = document.querySelector("#connections");
                 const selector = '#main-container #';
                 const state = "infected";
@@ -413,7 +454,7 @@
                 this.hexColor(selector, props.target, props.state);
                 setTimeout(() => {
                     this.changeSize(selector, props.target, props.scale, props.timingFunction, props.duration);
-                }, props.duration);
+                }, props.startTime);
             },
 
 
@@ -423,13 +464,17 @@
              * @return none
              */
             changeShapeColor(props) {
+                const selector = '#main-container ';
                 setTimeout(() => {
-                    const shapeTargets = document.querySelectorAll(props.target);
-                    for (var i = 0; i < shapeTargets.length; ++i) {
+                    const shapeTargets = document.querySelectorAll(selector + props.target);
+                    for (var i = 0; i < shapeTargets.length; i++) {
+                        //console.log("i", i);
                         shapeTargets.item(i).classList.add(props.state);
                     }
-                }, props.duration);
+                }, props.startTime);
             },
+
+
 
             /**
              * ---> Change the color of the shape (target) based on its status (vaccinated, infected)
@@ -467,16 +512,6 @@
                     shape.style.transitionTimingFunction = timingFunction;
                     shape.style.transitionProperty = "transform";
                 }, duration);
-            },
-
-
-            /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param {$ElementType} none
-             * @return none
-             */
-            spreading(){
-                //console.log("Execution of spreading function");
             },
 
 

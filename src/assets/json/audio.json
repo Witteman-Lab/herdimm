@@ -9,16 +9,7 @@
                     "What role does each of us play in protecting our community?"
                 ],
                 "actions" : [
-                    {
-                        "action": "changeShapeColor",
-                        "props": {
-                            "target": ".vulnerable",
-                            "state": "vulnerability",
-                            "duration": "2000"
 
-
-                        }
-                    },
                     {
                         "action": "zoom",
                         "props": {
@@ -44,8 +35,18 @@
                             "target" : ".avatar",
                             "duration" : "1000",
                             "class" : "contour",
-                            "startTime" : "500",
+                            "startTime" : "0",
                             "add" : true
+                        }
+                    },
+                    {
+                        "action": "makeContour",
+                        "props": {
+                            "target": ".avatar",
+                            "duration": "1000",
+                            "class": "contour",
+                            "startTime" : "1500",
+                            "add" : false
                         }
                     }
                 ]
@@ -57,23 +58,13 @@
                 ],
                 "actions" : [
                     {
-                        "action": "makeContour",
-                        "props": {
-                            "target": ".avatar",
-                            "duration": "1000",
-                            "class": "contour",
-                            "startTime" : "1000",
-                            "add" : false
-                        }
-                    },
-                    {
                         "action": "zoom",
                         "props": {
                             "scale" : "3.00",
                             "duration" : "1000",
                             "transformOrigin_X" : "25",
                             "transformOrigin_Y": "30",
-                            "startTime" : "1500",
+                            "startTime" : "1000",
                             "timingFunction": "linear"
                         }
                     }
@@ -104,6 +95,15 @@
                             "startTime" : "2500",
                             "add" : false
                         }
+                    },
+                    {
+                        "action": "changeShapeColor",
+                        "props": {
+                            "target": ".vulnerable",
+                            "state": "vulnerability",
+                            "startTime": "2000",
+                            "duration": "1000"
+                        }
                     }
                 ]
             },
@@ -113,7 +113,7 @@
                     "...are more vulnerable to diseases, either because they can catch them more easily, or the diseases\n can make them sicker."
 
                 ],
-                "_commentary" : "--------------------------No action for that scenario---------------------------------",
+                "_commentary" : "------------------------ No action for that scenario ---------------------------------",
                 "actions" : [
                     {
                         "action": "",
@@ -136,16 +136,23 @@
                             "scale": "1.2",
                             "state": "infected",
                             "timingFunction": "linear",
+                            "startTime" : "500",
                             "duration" : "250"
                         }
                     },
                     {
-                        "action": "spreading",
+                        "action": "spreadInfection",
                         "props": {
-
+                            "file": ""
+                        }
+                    },
+                    {
+                        "action": "fadeInOut",
+                        "props": {
+                            "startTime" : "1500",
+                            "duration": "2000"
                         }
                     }
-
                 ]
             },
             {
@@ -159,10 +166,11 @@
                     {
                         "action": "burst",
                         "props": {
-                            "target": "shape_67",
+                            "target": "shape_50",
                             "scale": "1.2",
-                            "state": "infected",
+                            "state": "vaccinated",
                             "timingFunction": "linear",
+                            "startTime" : "250",
                             "duration" : "250"
                         }
                     },
@@ -175,17 +183,28 @@
                     {
                         "action": "burst",
                         "props": {
-                            "target": "shape_67",
+                            "target": "shape_41",
                             "scale": "1.2",
                             "state": "infected",
                             "timingFunction": "linear",
+                            "startTime" : "6500",
+                            "duration" : "250"
+                        }
+                    },
+                    {
+                        "action": "changeShapeColor",
+                        "props": {
+                            "target": "#shape_61",
+                            "state": "infected",
+                            "timingFunction": "linear",
+                            "startTime" : "7000",
                             "duration" : "250"
                         }
                     },
                     {
                         "action": "spreading",
                         "props": {
-
+                            "file" : ""
                         }
                     }
                 ]
@@ -202,25 +221,17 @@
 
                         }
                     },
-                    {
-                        "action": "burst",
+                    {   "_commentary" : "------------changeShapeColor ( waning vaccines ) ----------------------------",
+                        "action": "",
                         "props": {
-                            "target": "shape_67",
-                            "scale": "1.2",
-                            "state": "infected",
-                            "timingFunction": "linear",
-                            "duration" : "250"
+
                         }
                     },
-
                     {
-                        "action": "burst",
+                        "_commentary" : "------------------------ changeShapeColor ( vaccines update ) ---------------",
+                        "action": "",
                         "props": {
-                            "target": "shape_67",
-                            "scale": "1.2",
-                            "state": "infected",
-                            "timingFunction": "linear",
-                            "duration" : "250"
+
                         }
                     }
                 ]
@@ -232,6 +243,18 @@
                 ],
                 "actions" : [
                     {
+                        "action": "zoom",
+                        "props": {
+                            "scale" : "1.00",
+                            "duration" : "1000",
+                            "transformOrigin_X" : "25",
+                            "transformOrigin_Y": "30",
+                            "startTime" : "1500",
+                            "timingFunction": "linear"
+                        }
+                    },
+                    {
+                        "_commentary" : "------------------------ changeShapeColor ( vaccines update ) ---------------",
                         "action": "",
                         "props": {
 
@@ -246,9 +269,9 @@
                 ],
                 "actions" : [
                     {
-                        "action": "",
+                        "action": "makeTransformer",
                         "props": {
-
+                            "delay" : "100"
                         }
                     }
                 ]
@@ -258,6 +281,7 @@
                 "captions" : [
                     "This protective barrier is different for different contagious diseases. Some diseases spread faster than others. Diseases that spread faster need more people to be vaccinated to create this protective barrier."
                 ],
+                "_commentary" : "------------------------ swap vaccination coverage ---------------",
                 "actions" : [
                     {
                         "action": "",
@@ -274,7 +298,17 @@
                 ],
                 "actions" : [
                     {
-                        "action": "",
+                        "action": "burst",
+                        "props": {
+                            "target": "shape_33",
+                            "scale": "1.2",
+                            "state": "infected",
+                            "timingFunction": "linear",
+                            "duration" : "250"
+                        }
+                    },
+                    {
+                        "action": "spreading",
                         "props": {
 
                         }
@@ -288,6 +322,7 @@
                 ],
                 "actions" : [
                     {
+                        "_commentary" : "------------------------ swap vaccinated converge---------------",
                         "action": "",
                         "props": {
 
@@ -302,7 +337,7 @@
                 ],
                 "actions" : [
                     {
-                        "action": "",
+                        "action": "spreading",
                         "props": {
 
                         }
@@ -316,7 +351,24 @@
                 ],
                 "actions" : [
                     {
+                        "_commentary" : "------------------------ swap coverage (hexColor)---------------",
                         "action": "",
+                        "props": {
+
+                        }
+                    },
+                    {
+                        "action": "burst",
+                        "props": {
+                            "target": "shape_33",
+                            "scale": "1.4",
+                            "state": "vaccinated",
+                            "timingFunction": "linear",
+                            "duration": "250"
+                        }
+                    },
+                    {
+                        "action": "vaccination",
                         "props": {
 
                         }
@@ -330,8 +382,25 @@
                 ],
                 "actions" : [
                     {
-                        "action": "",
+                        "action": "makeTransformer",
                         "props": {
+                            "delay" : "100"
+                        }
+                    },
+                    {
+                        "action" : "makeContour",
+                        "props" : {
+                            "target" : ".vulnerable",
+                            "duration" : "1000",
+                            "class" : "barrier",
+                            "startTime" : "500",
+                            "add" : true
+                        }
+                    },
+                    {
+                        "_commentary" : "------------------------ barrierScaling---------------",
+                        "action" : "",
+                        "props" : {
 
                         }
                     }
@@ -342,6 +411,7 @@
                 "captions" : [
                     "This means that your decision to get vaccinated or not has an impact on other people in your community."
                 ],
+                "_commentary" : "------------------------ No action for that scenario (TO VERIFY) ---------------------------------",
                 "actions" : [
                     {
                         "action": "",

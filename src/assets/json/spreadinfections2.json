@@ -1,0 +1,13 @@
+{
+  "containerId" : "connections",
+  "linecolor" : "#B0102C",
+  "linewidth" : "5",
+  "connections" : [
+    {
+      "id"	 : "1",
+      "source" : "shape_41",
+      "target" : "shape_51",
+      "nextTarget": ""
+    }
+  ]
+}
