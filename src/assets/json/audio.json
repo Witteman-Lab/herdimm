@@ -9,6 +9,12 @@
                     "What role does each of us play in protecting our community?"
                 ],
                 "actions" : [
+                    {
+                        "action": "spreadInfection",
+                        "props": {
+                            "file": "connections1"
+                        }
+                    },
 
                     {
                         "action": "zoom",

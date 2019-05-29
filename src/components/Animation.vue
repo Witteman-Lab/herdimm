@@ -49,12 +49,16 @@
     import AudioPlayer from "./AudioPlayer";
     // The scenario might need to be imported in AudioPlayer instead of here, I'm not sure at the moment
     // import scenario from "../assets/json/scenario_en.json";
-    //import connections from "../assets/json/connections.json";
     import shapesArray from "../assets/json/shapesArray";
     // import animate from "animejs";
     import textsEng from "../assets/json/textsEng.json";
     import textsFr from "../assets/json/textsFr.json";
-    import connections from "../assets/json/spreadinfections3.json";
+
+    import connections from "../assets/json/connections.json";
+    import connections1 from "../assets/json/spreadinfections1.json";
+    import connections2 from "../assets/json/spreadinfections2.json";
+    import connections3 from "../assets/json/spreadinfections3.json";
+    import connections4 from "../assets/json/spreadinfections4.json";
 
     export default {
         name: "Animation",
@@ -361,43 +365,46 @@
              * @param {number} connections
              * @return none
              */
-            spreadInfection(connections){
-                const drawingBoard = document.querySelector("#connections");
-                const selector = '#main-container #';
-                const state = "infected";
+            spreadInfection(props){
 
-                for (let i = 0; i < connections.length; i++){
-                    let source = connections[i].source;
-                    let target = connections[i].target;
-                    let nextTarget 	= connections[i].nextTarget;
-                    let id = connections[i].id;
-                    let lineObj = this.drawLine(source, target, id);
-                    let lineLength = this.getLineLength(lineObj);
+                console.log("ma valeur", typeof 12);
 
-                    lineObj.setAttributeNS(null, "stroke-dasharray", lineLength + " " + lineLength);
-                    lineObj.setAttributeNS(null, "stroke-dashoffset", lineLength);
-                    lineObj.classList.add("line");
-
-                    drawingBoard.appendChild(lineObj);
-
-                    lineObj.addEventListener("animationstart", () => { // webkitAnimationStart
-                        this.hexColor(selector, source, state);
-                    });
-                    lineObj.addEventListener("animationend", () => { // webkitAnimationEnd
-                        if(nextTarget != ""){
-                            this.makeLink(nextTarget);
-                        }
-
-                        this.hexColor(selector, target, state);
-                    });
-                }
+                // const drawingBoard = document.querySelector("#connections");
+                // const selector = '#main-container #';
+                // const state = "infected";
+                //
+                // for (let i = 0; i < props.file.connections.length; i++){
+                //     let source = props.file.connections[i].source;
+                //     let target = props.file.connections[i].target;
+                //     let nextTarget 	= props.file.connections[i].nextTarget;
+                //     let id = props.file.connections[i].id;
+                //     let lineObj = this.drawLine(source, target, id);
+                //     let lineLength = this.getLineLength(lineObj);
+                //
+                //     lineObj.setAttributeNS(null, "stroke-dasharray", lineLength + " " + lineLength);
+                //     lineObj.setAttributeNS(null, "stroke-dashoffset", lineLength);
+                //     lineObj.classList.add("line");
+                //
+                //     drawingBoard.appendChild(lineObj);
+                //
+                //     lineObj.addEventListener("animationstart", () => { // webkitAnimationStart
+                //         this.hexColor(selector, source, state);
+                //     });
+                //     lineObj.addEventListener("animationend", () => { // webkitAnimationEnd
+                //         if(nextTarget != ""){
+                //             this.spreadInfection(nextTarget);
+                //         }
+                //
+                //         this.hexColor(selector, target, state);
+                //     });
+                // }
             },
 
 
 
 
 
-
+            //
             // testFunction(connections){
             //     const drawingBoard = document.querySelector("#connections");
             //     const selector = '#main-container #';
@@ -422,7 +429,7 @@
             //         });
             //         lineObj.addEventListener("animationend", () => { // webkitAnimationEnd
             //             if(nextTarget != ""){
-            //                 this.makeLink(nextTarget);
+            //                 this.testFunction(nextTarget);
             //             }
             //
             //             this.hexColor(selector, target, state);
