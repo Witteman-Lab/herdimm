@@ -29,8 +29,8 @@
         methods: {
             /**
              *  ---> This method loads the audio file
-             *  @function {loadAudioFiles}
-             * @param {string} type
+             * @function {loadAudioFiles}
+             * @param {String} type
              * @return none
              */
             loadAudioFiles(type) {
@@ -43,7 +43,8 @@
 
             /**
              *  ---> This method plays the audio file
-             *  @function {playAudio}
+             * @function {playAudio}
+             * @param none
              * @return none
              */
             playAudio() {
@@ -53,7 +54,6 @@
                 let launchSequence = this.$parent.launchSequence;
 
                 // No more autoplay, animation and audio start when the user clicks on the button,
-                // So this method needs to be adjusted
                 setTimeout(() => {
                     ref.play();
                     if (actions) {
@@ -66,7 +66,8 @@
 
             /**
              *  ---> This method stops playing the audio file
-             *  @function {stopAudio}
+             * @function {stopAudio}
+             * @param none
              * @return none
              */
             stopAudio() {
@@ -79,8 +80,8 @@
 
             /**
              *  ---> This method restart playing the audio file
-             *  @function {restartAudio}
-             * @param {}type
+             * @function {restartAudio}
+             * @param none
              * @return none
              */
             restartAudio() {
@@ -93,8 +94,8 @@
 
             /**
              *  ---> ------------------ will be completed soon -------------------
-             *  @function {firstAudio}
-             * @param {}type
+             * @function {firstAudio}
+             * @param none
              * @return none
              */
             firstAudio() {
@@ -108,8 +109,8 @@
 
             /**
              *  ---> ------------------ will be completed soon -------------------
-             *  @function {lastAudio}
-             * @param {}type
+             * @function {lastAudio}
+             * @param none
              * @return none
              */
             lastAudio() {
@@ -123,8 +124,8 @@
 
             /**
              *  ---> ------------------ will be completed soon -------------------
-             *  @function {previousAudio}
-             * @param {}type
+             * @function {previousAudio}
+             * @param none
              * @return none
              */
             previousAudio() {
@@ -141,7 +142,7 @@
             /**
              *  ---> ------------------ will be completed soon -------------------
              *
-             * @param {}type
+             * @param none
              * @return none
              */
             nextAudio() {
@@ -162,12 +163,10 @@
                 }
             },
 
-
-
-
             /**
              *  ---> This function allows you to have audio status
-             *  @function {getAudioStatus}
+             * @function {getAudioStatus}
+             * @param none
              * @return none
              */
             getAudioStatus() {
