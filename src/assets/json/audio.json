@@ -147,7 +147,7 @@
                         }
                     },
                     {
-                        "action": "spreadInfection",
+                        "action": "parseSpreadInfection",
                         "props": {
                             "file": ""
                         }
@@ -208,7 +208,7 @@
                         }
                     },
                     {
-                        "action": "spreading",
+                        "action": "parseSpreadInfection",
                         "props": {
                             "file" : ""
                         }
@@ -222,19 +222,12 @@
                 ],
                 "actions" : [
                     {
-                        "action": "spreading",
+                        "action": "parseSpreadInfection",
                         "props": {
 
                         }
                     },
                     {   "_commentary" : "------------changeShapeColor ( waning vaccines ) ----------------------------",
-                        "action": "",
-                        "props": {
-
-                        }
-                    },
-                    {
-                        "_commentary" : "------------------------ changeShapeColor ( vaccines update ) ---------------",
                         "action": "",
                         "props": {
 
@@ -249,6 +242,13 @@
                 ],
                 "actions" : [
                     {
+                        "_commentary" : "------------------------ changeShapeColor ( vaccines update ) ---------------",
+                        "action": "",
+                        "props": {
+
+                        }
+                    },
+                    {
                         "action": "zoom",
                         "props": {
                             "scale" : "1.00",
@@ -260,7 +260,7 @@
                         }
                     },
                     {
-                        "_commentary" : "------------------------ changeShapeColor ( vaccines update ) ---------------",
+                        "_commentary" : "------------------------ changeShapeColor ( from infected to vaccinated ) ---------------",
                         "action": "",
                         "props": {
 
@@ -287,8 +287,20 @@
                 "captions" : [
                     "This protective barrier is different for different contagious diseases. Some diseases spread faster than others. Diseases that spread faster need more people to be vaccinated to create this protective barrier."
                 ],
-                "_commentary" : "------------------------ swap vaccination coverage ---------------",
+                "_commentary" : "------------------------ swap vaccination coverage, keeping transformers ---------------",
                 "actions" : [
+                    {
+                        "action": "",
+                        "props": {
+
+                        }
+                    },
+                    {
+                        "action": "",
+                        "props": {
+
+                        }
+                    },
                     {
                         "action": "",
                         "props": {
@@ -314,7 +326,19 @@
                         }
                     },
                     {
-                        "action": "spreading",
+                        "action": "parseSpreadInfection",
+                        "props": {
+
+                        }
+                    },
+                    {
+                        "action": "parseSpreadInfection",
+                        "props": {
+
+                        }
+                    },
+                    {
+                        "action": "parseSpreadInfection",
                         "props": {
 
                         }
@@ -328,8 +352,14 @@
                 ],
                 "actions" : [
                     {
-                        "_commentary" : "------------------------ swap vaccinated converge---------------",
+                        "_commentary" : "------------------------ swap vaccinated coverage (from more to less)---------------",
                         "action": "",
+                        "props": {
+
+                        }
+                    },
+                    {
+                        "action": "burst",
                         "props": {
 
                         }
@@ -343,7 +373,7 @@
                 ],
                 "actions" : [
                     {
-                        "action": "spreading",
+                        "action": "parseSpreadInfection",
                         "props": {
 
                         }
@@ -357,7 +387,7 @@
                 ],
                 "actions" : [
                     {
-                        "_commentary" : "------------------------ swap coverage (hexColor)---------------",
+                        "_commentary" : "------------------------ reset/remove infection ---------------",
                         "action": "",
                         "props": {
 
@@ -404,7 +434,7 @@
                         }
                     },
                     {
-                        "_commentary" : "------------------------ barrierScaling---------------",
+                        "_commentary" : "------------------------ barrierScaling (burst on #copy2) ---------------",
                         "action" : "",
                         "props" : {
 
@@ -417,7 +447,7 @@
                 "captions" : [
                     "This means that your decision to get vaccinated or not has an impact on other people in your community."
                 ],
-                "_commentary" : "------------------------ No action for that scenario (TO VERIFY) ---------------------------------",
+                "_commentary" : "------------------------ No action for that scenario (confirmed)) ---------------------------------",
                 "actions" : [
                     {
                         "action": "",
