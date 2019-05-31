@@ -4,22 +4,26 @@
       "id"	 : "1",
       "source" : "shape_58",
       "target" : "shape_26",
+      "targetGetsInfected": true,
       "nextTarget": [
         {
           "id"	 : "4",
           "source" : "shape_26",
           "target" : "shape_19",
+          "targetGetsInfected": true,
           "nextTarget": [
             {
               "id"	 : "7",
               "source" : "shape_19",
               "target" : "shape_12",
+              "targetGetsInfected": true,
               "nextTarget": ""
             },
             {
               "id"	 : "8",
               "source" : "shape_19",
               "target" : "shape_7",
+              "targetGetsInfected": false,
               "nextTarget": ""
             }
           ]
@@ -28,12 +32,14 @@
           "id"	 : "5",
           "source" : "shape_26",
           "target" : "shape_20",
+          "targetGetsInfected": false,
           "nextTarget": ""
         },
         {
           "id"	 : "6",
           "source" : "shape_26",
           "target" : "shape_13",
+          "targetGetsInfected": true,
           "nextTarget": ""
         }
       ]
@@ -42,12 +48,14 @@
       "id"	 : "2",
       "source" : "shape_50",
       "target" : "shape_45",
+      "targetGetsInfected": false,
       "nextTarget": ""
     },
     {
       "id"	 : "3",
       "source" : "shape_50",
       "target" : "shape_46",
+      "targetGetsInfected": true,
       "nextTarget": ""
     }
   ]

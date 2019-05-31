@@ -12,7 +12,7 @@
                     {
                         "action": "parseSpreadInfection",
                         "props": {
-                            "file": "spreadinfections3.json"
+                            "file": "spreadinfections4.json"
                         }
                     },
 

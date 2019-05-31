@@ -104,7 +104,7 @@
 
             /**
              * ---> Start the animation when user is ready, clicks on the Start button
-             * @param {string} action
+             * @param {String} action
              * @return none
              */
             manageAudioPlayer(action) {
@@ -125,6 +125,7 @@
 
             /**
              * ---> ------------------ will be completed soon -------------------
+             * @param none
              * @return none
              */
             isAnimationPlaying() {
@@ -133,7 +134,7 @@
 
             /**
              * ---> Reload function
-             * @param {}none
+             * @param none
              * @return none
              */
             reloadAnimation() {
@@ -193,7 +194,7 @@
 
             /**
              * ---> To place the right group member in the right shape
-             * @param {number} shapeObj
+             * @param {Object} shapeObj
              * @return none
              */
             getCharacterFromList(shapeObj) {
@@ -211,7 +212,7 @@
 
             /**
              * ---> Change the language of the interface
-             * @param {string} language
+             * @param {String} language
              * @return none
              */
             selectCurrentLanguage(language) {
@@ -224,20 +225,19 @@
 
             /**
              * ---> Set the character's t-shirt color
-             * @param {number} shapeId
-             * @param {string} color
+             * @param {String} shapeId
+             * @param {String} color
              * @return none
              */
             setCharacterTShirtColor(shapeId, color) {
-                // TODO try different proportion
+                // TO-DO: try different proportion
                 let darkerColor = this.$refs[shapeId][0].getDarkerShade(color, 1.2);
                 this.$refs[shapeId][0].changeShirtColor(darkerColor, 0.8);
-
             },
 
             /**
              * ---> Duplicate the hexagon grid n time (nbOfCopy) to make some animations easier
-             * @param {number} nbOfCopy
+             * @param {Number} nbOfCopy
              * @return none
              */
             duplicateGrid(nbOfCopy) {
@@ -257,7 +257,7 @@
             /**
              * ---> Parse the scenario to find sequences for the animation
              * ---> This method might not be here (maybe in AudioPlayer, maybe not)
-             * @param {number} sequence
+             * @param {Object} sequence
              * @return none
              */
             launchSequence(sequence) {
@@ -269,9 +269,9 @@
 
             /**
              * ---> Execute the appropriate function by its name received as a string as well as with arguments
-             * @param {number} functionName
-             * @param {number} context
-             * @param {number} args
+             * @param {String} functionName
+             * @param {Object} context
+             * @param {Array} args
              * @return none
              */
             executeFunctionByName(functionName, context, args) {
@@ -282,7 +282,7 @@
 
             /**
              * ---> Zoom in or out depending on the parameters (props) received
-             * @param {number} props
+             * @param {Object} props
              * @return none
              */
             zoom(props) {
@@ -304,7 +304,7 @@
             /**
              * ---> A way to "draw" the contour of the shapes without using borders
              * ---> Borders are not rendering well the way shapes (hexagons in this case) are being created
-             * @param {number} props
+             * @param {Object} props
              * @return none
              */
             makeContour(props) {
@@ -320,8 +320,8 @@
 
             /**
              * ---> Transition used between 2 sequences (fade to white and back)
-             * @param {number} startTime
-             * @param {number} duration
+             * @param {Number} startTime
+             * @param {Number} duration
              * @return none
              */
             fadeInOut(startTime, duration) {
@@ -340,7 +340,7 @@
 
 
             /**--->  ---------------------------------- It's will be completed later ------------------------------
-             *@param {} delay
+             * @param {Number} delay
              * @return
              */
             makeTransformer(delay) {
@@ -359,20 +359,19 @@
 
 
             /**--->  ---------------------------------- It's will be completed later ------------------------------
-             *@param {} props
-             * @return
+             * @param {Object} props
+             * @return none
              */
             parseSpreadInfection(props){
                 let variable = require("../assets/json/"+props.file);
                 this.spreadInfection(variable.connections);
-
             },
 
 
 
             /**
-             * ---> Parse the connections (JSON pattern) to establish between various shapes during infection
-             * @param {number} connections
+             * ---> Parse the pattern (JSON pattern) to draw lines between various shapes during infection
+             * @param {Object} pattern
              * @return none
              */
             spreadInfection(pattern){
@@ -383,6 +382,7 @@
                 for (let i = 0; i < pattern.length; i++){
                     let source = pattern[i].source;
                     let target = pattern[i].target;
+                    let targetGetsInfected = pattern[i].targetGetsInfected;
                     let nextTarget 	= pattern[i].nextTarget;
                     let id = pattern[i].id;
                     let lineObj = this.drawLine(source, target, id);
@@ -390,63 +390,39 @@
 
                     lineObj.setAttributeNS(null, "stroke-dasharray", lineLength + " " + lineLength);
                     lineObj.setAttributeNS(null, "stroke-dashoffset", lineLength);
-                    lineObj.classList.add("line");
 
+                    // Check if the target gets infected to add the proper class (CSS animation)
+                    if(targetGetsInfected) {
+                        lineObj.classList.add("line");
+                    } else {
+                        lineObj.classList.add("lineBouncingOff");
+                    }
+
+                    // Add the line to the drawingboard (SVG element)
                     drawingBoard.appendChild(lineObj);
 
+                    // When the animation starts, source gets infected, its color changes
                     lineObj.addEventListener("animationstart", () => { // webkitAnimationStart
                         this.hexColor(selector, source, state);
                     });
+                    // When the animation ends, check if there is a next target
                     lineObj.addEventListener("animationend", () => { // webkitAnimationEnd
                         if(nextTarget != ""){
                             this.spreadInfection(nextTarget);
                         }
 
-                        this.hexColor(selector, target, state);
+                        // If target gets infected, its color changes
+                        if(targetGetsInfected) {
+                            this.hexColor(selector, target, state);
+                        }
                     });
                 }
             },
 
 
-
-
-
-            //
-            // testFunction(connections){
-            //     const drawingBoard = document.querySelector("#connections");
-            //     const selector = '#main-container #';
-            //     const state = "infected";
-            //
-            //     for (let i = 0; i < connections.length; i++){
-            //         let source = connections[i].source;
-            //         let target = connections[i].target;
-            //         let nextTarget 	= connections[i].nextTarget;
-            //         let id = connections[i].id;
-            //         let lineObj = this.drawLine(source, target, id);
-            //         let lineLength = this.getLineLength(lineObj);
-            //
-            //         lineObj.setAttributeNS(null, "stroke-dasharray", lineLength + " " + lineLength);
-            //         lineObj.setAttributeNS(null, "stroke-dashoffset", lineLength);
-            //         lineObj.classList.add("line");
-            //
-            //         drawingBoard.appendChild(lineObj);
-            //
-            //         lineObj.addEventListener("animationstart", () => { // webkitAnimationStart
-            //             this.hexColor(selector, source, state);
-            //         });
-            //         lineObj.addEventListener("animationend", () => { // webkitAnimationEnd
-            //             if(nextTarget != ""){
-            //                 this.testFunction(nextTarget);
-            //             }
-            //
-            //             this.hexColor(selector, target, state);
-            //         });
-            //     }
-            // },
-
             /**
              * ---> Compute and return the length of the line for its animation
-             * @param {number} line
+             * @param {Object} line
              * @return none
              */
             getLineLength(line){
@@ -460,7 +436,7 @@
 
             /**
              * ---> Compute and return the length of the line for its animation
-             * @param {number} props
+             * @param {Object} props
              * @return none
              */
             burst(props){
@@ -475,7 +451,7 @@
 
             /**
              * ---> ------------------ will be completed soon -------------------
-             * @param {number} props
+             * @param {Object} props
              * @return none
              */
             changeShapeColor(props) {
@@ -489,13 +465,11 @@
                 }, props.startTime);
             },
 
-
-
             /**
              * ---> Change the color of the shape (target) based on its status (vaccinated, infected)
-             * @param {number} selector
-             * @param {number} target
-             * @param {number} state
+             * @param {String} selector
+             * @param {String} target
+             * @param {String} state
              * @return none
              */
             hexColor(selector, target, state){
@@ -504,11 +478,11 @@
 
             /**
              * ---> Change the size of the shape (target)
-             * @param {number} selector
-             * @param {number} target
-             * @param {number} scale
-             * @param {number} timingFunction
-             * @param {number} duration
+             * @param {String} selector
+             * @param {String} target
+             * @param {String} scale
+             * @param {String} timingFunction
+             * @param {String} duration
              * @return none
              */
             changeSize(selector, target, scale, timingFunction, duration){
@@ -529,28 +503,21 @@
                 }, duration);
             },
 
-
             /**
              * ---> ------------------ will be completed soon -------------------
-             * @param {$ElementType} none
+             * @param none
              * @return none
              */
             vaccination(){
                 //console.log(" Execution of vaccination function");
             },
 
-
-
-
-
-
-
             /**
              * ---> Draw the lines of infections (when infection is spreading)
-             * @param {number} source
-             * @param {number} target
-             * @param {number} id
-             * @return none
+             * @param {String} source
+             * @param {String} target
+             * @param {String} id
+             * @return {Object}
              */
             drawLine(source, target, id) {
 
@@ -605,8 +572,7 @@
             this.characterSize = styles["hexagon-height"];
             this.characterBottomMargin = styles["character-bottom-margin"];
 
-            // Build the grid
-
+            // Build the shapes grid
             this.buildGridIds();
 
             // When content is loaded, make copies of the grid to facilitate the animation
@@ -617,9 +583,7 @@
 
         /**
          * ---> To perform, otherwise, artefacts from the animation might subsist if we go back to the make your gang tool
-         * @param {number} source
-         * @param {number} target
-         * @param {number} id
+         * @param none
          * @return none
          */
         beforeDestroy() {
