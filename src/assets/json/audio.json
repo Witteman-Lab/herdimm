@@ -12,7 +12,7 @@
                     {
                         "action": "parseSpreadInfection",
                         "props": {
-                            "file": "flu.json"
+                            "file": "measles.json"
                         }
                     },
 

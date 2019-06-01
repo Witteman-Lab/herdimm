@@ -1,0 +1,221 @@
+{
+  "connections" : [
+    {
+      "id": "1",
+      "source": "shape_33",
+      "target": "shape_26",
+      "targetGetsInfected": true,
+      "nextTarget": [
+        {
+          "id": "1",
+          "source": "shape_26",
+          "target": "shape_32",
+          "targetGetsInfected": true,
+          "nextTarget": [
+            {
+              "id": "1",
+              "source": "shape_32",
+              "target": "shape_36",
+              "targetGetsInfected": true,
+              "nextTarget":[
+                {
+                  "id": "1",
+                  "source": "shape_36",
+                  "target": "shape_46",
+                  "targetGetsInfected": true,
+                  "nextTarget": [
+                    {
+                      "id": "1",
+                      "source": "shape_46",
+                      "target": "shape_57",
+                      "targetGetsInfected": true,
+                      "nextTarget": [
+                        {
+                          "id": "1",
+                          "source": "shape_57",
+                          "target": "shape_67",
+                          "targetGetsInfected": true,
+                          "nextTarget":[
+                            {
+                              "id": "1",
+                              "source": "shape_67",
+                              "target": "shape_77",
+                              "targetGetsInfected": true,
+                              "nextTarget": [
+                                {
+                                  "id": "1",
+                                  "source": "shape_77",
+                                  "target": "shape_88",
+                                  "targetGetsInfected": true,
+                                  "nextTarget":[
+                                    {
+                                      "id": "1",
+                                      "source": "shape_88",
+                                      "target": "shape_93",
+                                      "targetGetsInfected": true,
+                                      "nextTarget": [
+                                        {
+                                          "id": "1",
+                                          "source": "shape_93",
+                                          "target": "shape_89",
+                                          "targetGetsInfected": true,
+                                          "nextTarget":[
+                                            {
+                                              "id": "1",
+                                              "source": "shape_89",
+                                              "target": "shape_83",
+                                              "targetGetsInfected": true,
+                                              "nextTarget":[
+                                                {
+                                                  "id": "1",
+                                                  "source": "shape_83",
+                                                  "target": "shape_62",
+                                                  "targetGetsInfected": true,
+                                                  "nextTarget":[
+                                                    {
+                                                      "id": "1",
+                                                      "source": "shape_62",
+                                                      "target": "shape_51",
+                                                      "targetGetsInfected": true,
+                                                      "nextTarget":[
+                                                        {
+                                                          "id": "1",
+                                                          "source": "shape_51",
+                                                          "target": "shape_58",
+                                                          "targetGetsInfected": true,
+                                                          "nextTarget":[
+                                                            {
+                                                              "id": "1",
+                                                              "source": "shape_58",
+                                                              "target": "shape_63",
+                                                              "targetGetsInfected": true,
+                                                              "nextTarget":[
+                                                                {
+                                                                  "id": "1",
+                                                                  "source": "shape_63",
+                                                                  "target": "shape_68",
+                                                                  "targetGetsInfected": true,
+                                                                  "nextTarget":[
+                                                                    {
+                                                                      "id": "1",
+                                                                      "source": "shape_69",
+                                                                      "target": "shape_74",
+                                                                      "targetGetsInfected": true,
+                                                                      "nextTarget":[
+                                                                        {
+                                                                          "id": "1",
+                                                                          "source": "shape_40",
+                                                                          "target": "shape_35",
+                                                                          "targetGetsInfected": true,
+                                                                          "nextTarget":[
+                                                                            {
+                                                                              "id": "1",
+                                                                              "source": "shape_35",
+                                                                              "target": "shape_30",
+                                                                              "targetGetsInfected": true,
+                                                                              "nextTarget":[
+                                                                                {
+                                                                                  "id": "1",
+                                                                                  "source": "shape_30",
+                                                                                  "target": "shape_34",
+                                                                                  "targetGetsInfected": true,
+                                                                                  "nextTarget":[
+                                                                                    {
+                                                                                      "id": "1",
+                                                                                      "source": "shape_34",
+                                                                                      "target": "shape_44",
+                                                                                      "targetGetsInfected": true,
+                                                                                      "nextTarget":[
+                                                                                        {
+                                                                                          "id": "1",
+                                                                                          "source": "shape_47",
+                                                                                          "target": "shape_37",
+                                                                                          "targetGetsInfected": true,
+                                                                                          "nextTarget":""
+                                                                                        },
+                                                                                        {
+                                                                                          "id": "1",
+                                                                                          "source": "shape_44",
+                                                                                          "target": "shape_55",
+                                                                                          "targetGetsInfected": true,
+                                                                                          "nextTarget":""
+                                                                                        },
+                                                                                        {
+                                                                                          "id": "1",
+                                                                                          "source": "shape_25",
+                                                                                          "target": "shape_12",
+                                                                                          "targetGetsInfected": true,
+                                                                                          "nextTarget":""
+                                                                                        }
+                                                                                      ]
+                                                                                    },
+                                                                                    {
+                                                                                      "id": "1",
+                                                                                      "source": "shape_42",
+                                                                                      "target": "shape_47",
+                                                                                      "targetGetsInfected": true,
+                                                                                      "nextTarget":""
+                                                                                    },
+                                                                                    {
+                                                                                      "id": "1",
+                                                                                      "source": "shape_31",
+                                                                                      "target": "shape_25",
+                                                                                      "targetGetsInfected": true,
+                                                                                      "nextTarget":""
+                                                                                    }
+                                                                                  ]
+                                                                                },
+                                                                                {
+                                                                                  "id": "1",
+                                                                                  "source": "shape_53",
+                                                                                  "target": "shape_42",
+                                                                                  "targetGetsInfected": true,
+                                                                                  "nextTarget":""
+                                                                                }
+                                                                              ]
+                                                                            }
+                                                                          ]
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                },
+                                                                {
+                                                                  "id": "1",
+                                                                  "source": "shape_63",
+                                                                  "target": "shape_69",
+                                                                  "targetGetsInfected": true,
+                                                                  "nextTarget":""
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
