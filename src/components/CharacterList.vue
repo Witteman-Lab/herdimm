@@ -25,10 +25,9 @@ export default {
         characters: Array
     },
     methods: {
-
         /**
-         * ---> ------------------ will be completed soon -------------------
-         * @param {}id
+         * ---> Search the character object with the id given and launch create modal with the character
+         * @param {String} id
          * @return none
          */
         launchModal(id) {
@@ -38,15 +37,6 @@ export default {
                 }
             });
         },
-
-        /**
-         * ---> ------------------ will be completed soon -------------------
-         * @param {}id
-         * @return none
-         */
-        getCharacterListSize() {
-            return this.characterList.length;
-        }
     },
     mounted() {
         this.characterList = this.characters;

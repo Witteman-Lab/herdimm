@@ -17,7 +17,7 @@
                 characterSize: {
                     width: "70px",
                     height: "95px",
-                     border: "5px"
+                    border: "5px"
                 }
             }
         },
@@ -27,10 +27,10 @@
         methods: {
 
             /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param {}character
-             * @param {}characterColors
-             * @param {}type
+             * ---> Add a character with its attributes to the group list
+             * @param {Object} character
+             * @param {Object} characterColors
+             * @param {String} type
              * @return none
              */
             addCharacterToGroup(character, characterColors, type) {
@@ -39,10 +39,10 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param {}character
-             * @param {}characterColors
-             * @param {}type
+             * ---> Edit character attributes
+             * @param {Object} character
+             * @param {Object} characterColors
+             * @param {String} type
              * @return none
              */
             editCharacter(character, characterColors, type) {
@@ -56,8 +56,8 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param {}id
+             * ---> Search the character object with the id given and launch edit modal with the character
+             * @param {String} id
              * @return none
              */
             launchModal(id) {
@@ -69,8 +69,8 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param {}characters
+             * ---> Set a list of characters
+             * @param {Array} characters
              * @return none
              */
             addGroup(characters) {
@@ -78,18 +78,18 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
+             * ---> Get the current number of character in the group to manage "Go to the animation" button
              * @param none
-             * @return none
+             * @return {Number} characters number
              */
             getCharacterListSize() {
                 return this.characterList.length;
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
+             * ---> Get the character list in order send it to the animation page
              * @param none
-             * @return none
+             * @return {Array} character list
              */
             getCharacterList() {
                 return this.characterList;

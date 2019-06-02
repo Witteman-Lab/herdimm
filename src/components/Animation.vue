@@ -103,7 +103,7 @@
             },
 
             /**
-             * ---> Start the animation when user is ready, clicks on the Start button
+             * ---> Manage actions on the audio player (play, pause, first audio, end audio, previous, next)
              * @param {String} action
              * @return none
              */
@@ -124,7 +124,7 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
+             * ---> Update audio status to show or hide play or pause button
              * @param none
              * @return none
              */
@@ -133,7 +133,7 @@
             },
 
             /**
-             * ---> Reload function
+             * ---> Initialize variables to reload the animation
              * @param none
              * @return none
              */

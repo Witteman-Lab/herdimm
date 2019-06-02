@@ -164,14 +164,14 @@
         },
         methods: {
             /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param {}index
-             * @param {}character
-             * @param {}totalCreated
-             * @param {}nbrVulnerable
-             * @param {}nbrAvatar
-             * @param {}isEdit
-             * @param {}label
+             * ---> Show create or edit modal and adapt the different tabs
+             * @param {Number} index
+             * @param {Object} character
+             * @param {Number} totalCreated
+             * @param {Number} nbrVulnerable
+             * @param {Number} nbrAvatar
+             * @param {Boolean} isEdit
+             * @param {String} label
              * @return none
              */
             openModal(index, character, totalCreated, nbrVulnerable, nbrAvatar, isEdit, label) {
@@ -191,10 +191,10 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param isEdit
-             * @param character
-             * @param isAvatar
+             * ---> Apply character attributes when edit or default attributes when create
+             * @param {Boolean} isEdit
+             * @param {characters} character
+             * @param {Boolean} isAvatar
              * @return none
              */
             setCharacterColors(isEdit, character, isAvatar) {
@@ -216,8 +216,8 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param {}name
+             * ---> Set user input (name) for the current character
+             * @param {String} name
              * @return none
              */
             setCharacterName(name) {
@@ -225,7 +225,7 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
+             * ---> Close the modal and reset default parameter
              * @param none
              * @return none
              */
@@ -237,13 +237,13 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
+             * ---> Manage character name if user type a name or not and save the character in the group list
              * @param none
              * @return none
              */
             saveCharacter() {
                 if (this.avatarNbr > this.currentCharacterNumber && !this.characterName)
-                    this.setCharacterName(this.labels.avatar);
+                    this.setCharacterName(this.labels.avatarName);
                 else if (!this.characterName)
                     this.setCharacterName(this.labels.defaultCharacterName + " " + (this.currentCharacterNumber));
                 this.$parent.saveCharacter(this.currentCharacterObject, this.$refs.character.getSvgColor());
@@ -251,7 +251,7 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
+             * ---> Save the edited character in the group list
              * @param none
              * @return none
              */
@@ -261,8 +261,10 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param none
+             * ---> Set accessories tabs
+             * @param {Boolean} hasGlasses
+             * @param {Boolean} hasBeard
+             * @param {Boolean} hasHair
              * @return none
              */
             setAccessories(hasGlasses, hasBeard, hasHair) {
@@ -272,8 +274,8 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param none
+             * ---> Set the glasses list show on the modal
+             * @param {Array} glasses
              * @return none
              */
             setGlassesList(glasses) {
@@ -281,8 +283,8 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param {}beards
+             * ---> Set the beards list show on the modal
+             * @param {Array} beards
              * @return none
              */
             setBeardsList(beards) {
@@ -290,8 +292,8 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param {}pos
+             * ---> Apply the glasses at the given position to the character
+             * @param {Number} pos
              * @return none
              */
             selectGlasses(pos) {
@@ -300,8 +302,8 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param none
+             * ---> Apply the beards at the given position to the character
+             * @param {Number} pos
              * @return none
              */
             selectBeards(pos) {
@@ -310,7 +312,7 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
+             * ---> Reset character attributes
              * @param none
              * @return none
              */
@@ -325,9 +327,9 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param target
-             * @param tabName
+             * ---> Open tab based on the content and the name
+             * @param {String} target
+             * @param {String} tabName
              * @return none
              */
             openTab(target, tabName) {
@@ -346,9 +348,10 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param height
-             * @param marginTop
+             * ---> May need some refactor or find another solution
+             * ---> Apply specific position to glasses and beards buttons
+             * @param {String} height
+             * @param {String} marginTop
              * @return none
              */
             setAccessoriesPosition(height, marginTop) {
@@ -363,8 +366,8 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param color
+             * ---> Apply the chosen color on the current character skin
+             * @param {String} color
              * @return none
              */
             changeFaceColor(color) {
@@ -373,8 +376,8 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param color
+             * ---> Apply the chosen color on the current character hair
+             * @param {String} color
              * @return none
              */
             changeHairColor(color) {
@@ -383,11 +386,11 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param index
-             * @param verb
-             * @param nbVulnerable
-             * @return none
+             * ---> Get modal title based on the position of the character to create/edit
+             * @param {Number} index
+             * @param {String} verb
+             * @param {Number} nbVulnerable
+             * @return {String} modal Title
              */
             getModalTitle(index, verb, nbVulnerable) {
                 return (index === 0 ?  `${verb} ${this.labels.avatar}` : index <= nbVulnerable ? `${verb} ${this.labels.vulnerable}` : `${verb} ${this.labels.otherPeople}`);

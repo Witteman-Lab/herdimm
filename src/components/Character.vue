@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="character-position" :style="{width: this.characterPositionWidth}">
-            <div v-on:click="createYourCharacter" ref="characterImg" v-html="this.svg" :style="{width: this.width, height: this.height}" style="margin: auto;"></div>
+            <div v-on:click="selectYourCharacter" ref="characterImg" v-html="this.svg" :style="{width: this.width, height: this.height}" style="margin: auto;"></div>
             <p v-if="isName" style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis;margin-bottom: 0.5em;">{{this.svgColor.name}}</p>
         </div>
     </div>
@@ -49,14 +49,20 @@
             isName: Boolean
         },
         methods: {
+
+            /***
+             * ---> Change character name and save it in svgColor
+             * @param {String} name
+             * @return none
+             */
             setCharacterName(name) {
                 this.svgColor.name = name;
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param {}color
-             * @param {}proportion
+             * ---> Apply the color on the character shirt svg (style) with a given proportion
+             * @param {String} color
+             * @param {Number} proportion
              * @return none
              */
             changeShirtColor(color, proportion) {
@@ -67,8 +73,8 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param {}id
+             * ---> Apply the color on the character face svg (style)
+             * @param {String} color
              * @return none
              */
             changeFaceColor(color) {
@@ -79,8 +85,8 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param {}color
+             * ---> Apply the color on the character hair svg (style)
+             * @param {String} color
              * @return none
              */
             changeHairColor(color){
@@ -91,9 +97,9 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param {}pos
-             * @return none
+             * ---> Choose the beard on the given position
+             * @param {Number} pos
+             * @return {Number} 0 (to end the function)
              */
             changeBeard(pos) {
                 if (pos === undefined)
@@ -117,9 +123,9 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param {}pos
-             * @return none
+             * ---> Choose the glasses on the given position
+             * @param {Number} pos
+             * @return {Number} 0 (to end the function)
              */
             changeGlasses(pos) {
                 if (pos === undefined)
@@ -143,18 +149,18 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param {}none
+             * ---> Reset colors and accessories
+             * @param {} none
              * @return none
              */
-            resetFaceColor(){
+            resetFaceColor() {
                 this.$refs.characterImg.children[0].children[0].innerHTML = this.defaultColor;
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param {}none
-             * @return none
+             * ---> Getter for all character properties (used to access character properties from another component)
+             * @param {} none
+             * @return svgColor
              */
             getSvgColor() {
                 return this.svgColor
@@ -162,11 +168,11 @@
 
 
             /**
-             * ---> For getting a darker shade for the hair or skin
+             * ---> For getting a darker shade for the hair, skin, face and shirt
              * --->  To-do: That method could be optimized later
-             * @param {}selectedColorToHex
-             * @param {}proportion
-             * @return none
+             * @param {String} selectedColorToHex
+             * @param {Number} proportion
+             * @return {String} color
              */
             getDarkerShade(selectedColorToHex, proportion) {
                 // const proportion = 0.8;
@@ -206,19 +212,19 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param {}none
+             * ---> Load Modal to create or edit your character
+             * @param {} none
              * @return none
              */
-            createYourCharacter() {
+            selectYourCharacter() {
                 if (this.edit) {
                     this.$parent.launchModal(this.id);
                 }
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param {}colors
+             * ---> Apply properties on the character (colors is most likely given as props)
+             * @param {Object} colors
              * @return none
              */
             editCharacterColors(colors) {
@@ -231,8 +237,8 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param {}none
+             * ---> Load svg into component and apply properties (if given as prop)
+             * @param {} none
              * @return none
              */
             loadSvgData() {
@@ -244,7 +250,7 @@
                         this.editCharacterColors(this.colors);
                         this.defaultColor = this.$refs.characterImg.children[0].children[0].innerHTML;
 
-                        // Why this?
+                        // Set Modal content after knowing if the character has glasses, has hair or beard
                         if (this.$parent.$options.name === "Modal")
                             this.$parent.setAccessories(this.hasGlasses, this.hasBeard, this.hasHair);
                     }
@@ -254,8 +260,8 @@
 
             /**
              * ---> st6 for glasses and beards
-             * @param {}childrenPosition
-             * @param {}accessory
+             * @param {Object} childrenPosition
+             * @param {Object} accessory
              * @return none
              */
             manageAccessories(childrenPosition, accessory) {
@@ -265,8 +271,8 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param {}position
+             * ---> Modify svg character style in order to apply glasses
+             * @param {Number} position
              * @return none
              */
             manageGlasses(position) {
@@ -285,8 +291,8 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param {}position
+             * ---> Modify svg character style in order to apply beards
+             * @param {Number} position
              * @return none
              */
             manageBeards(position) {
@@ -315,8 +321,8 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param {}id
+             * ---> Modify svg character style in order to apply face, shirt and hair color
+             * @param {} none
              * @return none
              */
             parseCharacterAttributes() {
@@ -350,8 +356,8 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param {}id
+             * ---> Update svg in case color doesn't apply
+             * @param {} none
              * @return none
              */
             updateCurrentSvg() {

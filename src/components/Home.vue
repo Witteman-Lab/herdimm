@@ -79,8 +79,8 @@
         props: {},
         methods: {
             /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param none
+             * ---> Launch modal with the given character object
+             * @param {Object} character
              * @return none
              */
             launch(character) {
@@ -91,8 +91,9 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param none
+             * ---> Launch edit modal with the given character object (might need refactoring)
+             * @param {Object} character
+             * @param {Number} index
              * @return none
              */
             launchEditModal(character, index) {
@@ -101,8 +102,9 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param none
+             * ---> Update Home information and add the character to the groupList
+             * @param {Object} character
+             * @param {Object} colors
              * @return none
              */
             saveCharacter(character, colors) {
@@ -116,8 +118,9 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param none
+             * ---> Edit groupList character
+             * @param {Object} character
+             * @param {Object} colors
              * @return none
              */
             editCharacter(character, colors) {
@@ -126,9 +129,9 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param none
-             * @return none
+             * ---> Return current Character type based on the position in the groupList
+             * @param {Number} position
+             * @return {String} character Type
              */
             getCurrentCharacterType(position) {
                 if (position <= charactersJson.nbAvatar) {
@@ -141,7 +144,7 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
+             * ---> Go to the animation Page. Send the current language and the character groupList
              * @param none
              * @return none
              */
@@ -151,7 +154,7 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
+             * ---> Manage messages on the Home page based on the character group number created
              * @param none
              * @return none
              */
@@ -168,7 +171,7 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
+             * ---> Change the language of the Application
              * @param none
              * @return none
              */
@@ -184,7 +187,7 @@
         },
 
         /**
-         * ---> ------------------ will be completed soon -------------------
+         * ---> Load json data and labels
          * @param none
          * @return none
          */

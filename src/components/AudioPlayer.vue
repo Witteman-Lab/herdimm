@@ -42,7 +42,7 @@
             },
 
             /**
-             *  ---> This method plays the audio file
+             *  ---> This method plays the current audio file
              * @function {playAudio}
              * @param none
              * @return none
@@ -79,7 +79,7 @@
             },
 
             /**
-             *  ---> This method restart playing the audio file
+             *  ---> This method restart playing the current audio file
              * @function {restartAudio}
              * @param none
              * @return none
@@ -93,7 +93,7 @@
             },
 
             /**
-             *  ---> ------------------ will be completed soon -------------------
+             *  ---> This method load the first audio of the playlist and play it
              * @function {firstAudio}
              * @param none
              * @return none
@@ -108,7 +108,7 @@
             },
 
             /**
-             *  ---> ------------------ will be completed soon -------------------
+             *  ---> This method load the last audio of the playlist and play it
              * @function {lastAudio}
              * @param none
              * @return none
@@ -123,7 +123,7 @@
             },
 
             /**
-             *  ---> ------------------ will be completed soon -------------------
+             *  ---> This method load the previous audio of the playlist and play it
              * @function {previousAudio}
              * @param none
              * @return none
@@ -140,7 +140,7 @@
             },
 
             /**
-             *  ---> ------------------ will be completed soon -------------------
+             *  ---> This method load the next audio of the playlist and play it
              *
              * @param none
              * @return none
@@ -164,7 +164,7 @@
             },
 
             /**
-             *  ---> This function allows you to have audio status
+             *  ---> This function allows you to have the current audio status
              * @function {getAudioStatus}
              * @param none
              * @return none

@@ -30,5 +30,6 @@
     "nameInputPlaceHolder": "Nommez votre personnage",
     "totalCharacterCount" : "Nombre de personnages : ",
     "defaultCharacterName" : "Personne",
-    "displayCaptions" : "Afficher les sous-titres"
+    "displayCaptions" : "Afficher les sous-titres",
+    "avatarName" : "Votre avatar"
 }
