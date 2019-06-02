@@ -1,7 +1,10 @@
 <template>
     <div class="grid-list-character">
         <div v-for="(character) in characterList" ref="characterList" :key="character.id">
-            <Character ref="character"  :is-name="true" :size="{width: '74px', height: '80px'}" :edit="true" :customised="true" :colors="character.colors" :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)" />
+            <Character ref="character"  :is-name="true" :size="{width: '74px', height: '80px'}"
+                       :edit="true" :customised="true" :colors="character.colors" :id="character.id"
+                       :svgFile="require(`../assets/characters/${character.file}`)" />
+            <div class="line">Test</div>
         </div>
     </div>
 </template>
@@ -34,6 +37,7 @@
              * @return none
              */
             addCharacterToGroup(character, characterColors, type) {
+                console.log(type);
                 this.characterList.push({id: character.id + this.characterList.length + "_customised",
                     file: character.file, colors: characterColors, characterType: type});
             },
@@ -106,5 +110,10 @@
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(55px, 1fr) );
         grid-gap: 20px;
+    }
+    .line {
+        justify-self: center;
+        height: 47px;
+        border-top: 1px solid black;
     }
 </style>
