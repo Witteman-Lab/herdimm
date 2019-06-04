@@ -98,9 +98,7 @@
 
 
 
-
-
-                        // this.test3dHexgone();
+                // this.test3dHexgone();
                 // For testing (will be called by the audioPlayer in time)
                 //this.spreadInfection(connections.connections);
 
@@ -378,24 +376,25 @@
              * @return none
              */
             parseSpreadInfection(props){
-                if(props.file.length != 0){
-                    var value;
-                    if (props.file.length == 1){
-                        value = 0;
+                if(typeof(props.file) == "object") {
+                    if (props.file.length != 0) {
+                        var value;
+                        if (props.file.length == 1) {
+                            value = 0;
+                        } else {
+                            value = this.getRandomInt(props.file.length);
+                        }
+                        let variable = require("../assets/json/" + props.file[value]);
+                        this.spreadInfection(variable.connections);
+                    } else {
+                        alert("Add the name of json file in array to have infection sequences");
                     }
-                    else{
-                        value = this.getRandomInt(props.file.length);
-                    }
-
-                    let variable = require("../assets/json/"+props.file[value]);
-                    this.spreadInfection(variable.connections);
                 }
                 else{
-                    alert("Add the name of json file in array to have infection sequences");
+                    let variable = require("../assets/json/" + props.file);
+                    this.spreadInfection(variable.connections);
                 }
             },
-
-
 
 
 
@@ -417,7 +416,6 @@
                 const drawingBoard = document.querySelector("#connections");
                 const selector = '#main-container #';
                 const state = "infected";
-
                 console.log(document.querySelectorAll("container"));
                 //console.log(document.querySelector("#connections"));
 
@@ -445,10 +443,10 @@
                     drawingBoard.appendChild(lineObj);
 
 
-
                     // When the animation starts, source gets infected, its color changes
                     lineObj.addEventListener("animationstart", () => { // webkitAnimationStart
                         this.hexColor(selector, source, state);
+
                     });
                     // When the animation ends, check if there is a next target
                     lineObj.addEventListener("animationend", () => { // webkitAnimationEnd
@@ -459,6 +457,7 @@
                         // If target gets infected, its color changes
                         if(targetGetsInfected) {
                             this.hexColor(selector, target, state);
+
                         }
                     });
                 }
