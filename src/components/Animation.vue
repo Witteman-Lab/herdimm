@@ -391,7 +391,7 @@
                     this.spreadInfection(variable.connections);
                 }
                 else{
-                    alert(" Add the name of json file in array to have infection sequences");
+                    alert("Add the name of json file in array to have infection sequences");
                 }
             },
 
