@@ -414,12 +414,14 @@
              * @return {Boolean}
              */
             avatarChecking(shape_id){
-                let value = false;
-                let variable = document.querySelectorAll("#main-container #"+shape_id)[0].getAttribute("class");
-                let array = variable.split(" ");
-                if(array[0] == "comm" || array[0] == "avatar" || array[0] == "vulnerable"){
-                    value = true;
-                }
+                var value = false;
+                var variable = document.querySelectorAll("#main-container #"+shape_id);
+                variable.forEach(e => {
+                    let array = (e.getAttribute("class")).split(" ");
+                    if(array[0] == "comm" || array[0] == "avatar" || array[0] == "vulnerable"){
+                        value = true;
+                    }
+                });
                 return value;
             },
 
