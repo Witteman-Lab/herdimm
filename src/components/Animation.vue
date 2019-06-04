@@ -92,13 +92,20 @@
             startAnimation() {
                 // Starts true;
                 this.isAnimationStarted = true;
+                //this.setCharacterTShirtColor("shape_57", "#B0102C");
                 this.$refs.audioPlayer.playAudio();
                 this.isAnimationPlaying();
+
+
+
+
+
                         // this.test3dHexgone();
                 // For testing (will be called by the audioPlayer in time)
                 //this.spreadInfection(connections.connections);
 
                 //this.testFunction(connections.connections);
+
 
             },
 
@@ -231,7 +238,7 @@
              */
             setCharacterTShirtColor(shapeId, color) {
                 // TO-DO: try different proportion
-                let darkerColor = this.$refs[shapeId][0].getDarkerShade(color, 1.2);
+                let darkerColor = this.$refs[shapeId][0].getDarkerShade(color, 0.8);
                 this.$refs[shapeId][0].changeShirtColor(darkerColor, 0.8);
             },
 
@@ -276,7 +283,7 @@
              */
             executeFunctionByName(functionName, context, args) {
                 let newArgs = Array.prototype.slice.call(arguments, 2);
-                console.log(functionName);
+                //console.log(functionName);
                 return context[functionName].apply(context, newArgs);
             },
 
@@ -327,13 +334,11 @@
             fadeInOut(startTime, duration) {
                 // Fade-in transition
                 setTimeout(() => {
-                    console.log("fadeIn");
                     document.body.classList.add('fade');
                 }, startTime);
 
                 // Fade-out transition (back to normal)
                 setTimeout(() => {
-                    console.log("fadeOut");
                     document.body.classList.remove('fade');
                 }, startTime + duration);
             },
@@ -357,17 +362,51 @@
                 }, delay);
             },
 
-
-            /**--->  ---------------------------------- It's will be completed later ------------------------------
-             * @param {Object} props
-             * @return none
+            /**
+             * ---> This function randomly returns between [0-2]
+             *  @param {number} value
+             *  @return {number}
              */
-            parseSpreadInfection(props){
-                let variable = require("../assets/json/"+props.file);
-                this.spreadInfection(variable.connections);
+            getRandomInt(value){
+              return Math.floor(Math.random()*Math.floor(value));
             },
 
 
+            /**
+             * --->  ---------------------------------- It's will be completed later ------------------------------
+             * @param {Array} props
+             * @return none
+             */
+            parseSpreadInfection(props){
+                if(props.file.length != 0){
+                    var value;
+                    if (props.file.length == 1){
+                        value = 0;
+                    }
+                    else{
+                        value = this.getRandomInt(props.file.length);
+                    }
+
+                    let variable = require("../assets/json/"+props.file[value]);
+                    this.spreadInfection(variable.connections);
+                }
+                else{
+                    alert(" Add the name of json file in array to have infection sequences");
+                }
+            },
+
+
+
+
+
+            /**
+             * --->  ---------------------------------- It's will be completed later ------------------------------
+             * @param {Object} props
+             * @return none
+             */
+            removeLine(){
+
+            },
 
             /**
              * ---> Parse the pattern (JSON pattern) to draw lines between various shapes during infection
@@ -378,6 +417,9 @@
                 const drawingBoard = document.querySelector("#connections");
                 const selector = '#main-container #';
                 const state = "infected";
+
+                console.log(document.querySelectorAll("container"));
+                //console.log(document.querySelector("#connections"));
 
                 for (let i = 0; i < pattern.length; i++){
                     let source = pattern[i].source;
@@ -394,12 +436,15 @@
                     // Check if the target gets infected to add the proper class (CSS animation)
                     if(targetGetsInfected) {
                         lineObj.classList.add("line");
+
                     } else {
                         lineObj.classList.add("lineBouncingOff");
                     }
 
                     // Add the line to the drawingboard (SVG element)
                     drawingBoard.appendChild(lineObj);
+
+
 
                     // When the animation starts, source gets infected, its color changes
                     lineObj.addEventListener("animationstart", () => { // webkitAnimationStart
