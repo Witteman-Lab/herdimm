@@ -407,6 +407,23 @@
 
             },
 
+
+            /**
+             * --->  this methode checks if the shape contains avatar
+             * @param {string} shape_id
+             * @return {Boolean}
+             */
+            avatarChecking(shape_id){
+                let value = false;
+                let variable = document.querySelectorAll("#main-container #"+shape_id)[0].getAttribute("class");
+                let array = variable.split(" ");
+                if(array[0] == "comm" || array[0] == "avatar" || array[0] == "vulnerable"){
+                    value = true;
+                }
+                return value;
+            },
+
+
             /**
              * ---> Parse the pattern (JSON pattern) to draw lines between various shapes during infection
              * @param {Object} pattern
@@ -416,9 +433,6 @@
                 const drawingBoard = document.querySelector("#connections");
                 const selector = '#main-container #';
                 const state = "infected";
-                console.log(document.querySelectorAll("container"));
-                //console.log(document.querySelector("#connections"));
-
                 for (let i = 0; i < pattern.length; i++){
                     let source = pattern[i].source;
                     let target = pattern[i].target;
@@ -438,7 +452,6 @@
                     } else {
                         lineObj.classList.add("lineBouncingOff");
                     }
-
                     // Add the line to the drawingboard (SVG element)
                     drawingBoard.appendChild(lineObj);
 
@@ -446,7 +459,11 @@
                     // When the animation starts, source gets infected, its color changes
                     lineObj.addEventListener("animationstart", () => { // webkitAnimationStart
                         this.hexColor(selector, source, state);
+                        if(this.avatarChecking(source) == true)
+                        {
+                            this.setCharacterTShirtColor(source, "#B0102C");
 
+                        }
                     });
                     // When the animation ends, check if there is a next target
                     lineObj.addEventListener("animationend", () => { // webkitAnimationEnd
@@ -457,7 +474,11 @@
                         // If target gets infected, its color changes
                         if(targetGetsInfected) {
                             this.hexColor(selector, target, state);
+                            if(this.avatarChecking(target) == true)
+                            {
+                                this.setCharacterTShirtColor(target, "#B0102C");
 
+                            }
                         }
                     });
                 }
