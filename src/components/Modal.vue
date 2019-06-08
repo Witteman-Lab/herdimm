@@ -14,13 +14,20 @@
                     <div class="columns">
                         <div class="column is-centered ">
                             <Character v-if="isActive" :size="{width: '70px', height: '78px'}" :edit="false" :customised="true" ref="character" :id="'current'" :svgFile="this.currentCharacter"
-                                       :colors="{face: this.currentColorFace, hairFront: this.currentColorHair, beards: this.currentBeard, glasses: this.currentGlasses, shirt: this.currentShirt, name: this.characterName}"
+                                       :colors="{face: this.currentColorFace, hairFront: this.currentColorHair, beards: this.currentBeard,
+                                       glasses: this.currentGlasses, shirt: this.currentShirt, name: this.characterName, option: this.currentOption}"
                                        :is-name="true"/>
                             <!--<inputclass="input"type="text"placeholder="Entername">-->
                             <!--<labelclass="label">Name:<inputclass="input"v-model="message"type="text"placeholder="editname"></label>-->
                             <div class="field is-one-fifth-mobile" style="margin-top: 5px">
                                 <div class="control">
                                     <input v-on:input="setCharacterName(characterName)" class="input" v-model="characterName"  type="text" :placeholder="this.labels.nameInputPlaceHolder">
+                                </div>
+                                <div v-for="(option) in options" class="control radio-list">
+                                    <label class="radio">
+                                        <input v-on:click="setCharacterOption(option.name)" type="radio" name="option" v-bind:ref="option.name" :checked="option.defaultSelection">
+                                        {{option.name}}
+                                    </label>
                                 </div>
                             </div>
 
@@ -117,6 +124,7 @@
 <script>
     import Character from "../components/Character.vue"
     import { Compact }  from "vue-color";
+    import characterOptions from "../assets/json/characterOptions.json";
 
     export default {
         name: "Modal",
@@ -137,6 +145,7 @@
                 currentCharacter: "",
                 currentShirt: "",
                 currentCharacterObject: "",
+                currentOption: "",
 
                 hasHair: false,
                 hasFacialHair: false,
@@ -153,7 +162,8 @@
                 beardsList: [],
                 characterName: "",
                 currentCharacterNumber: 0,
-                avatarNbr: 0
+                avatarNbr: 0,
+                options: [],
             }
         },
         props: {
@@ -176,7 +186,6 @@
              */
             openModal(index, character, totalCreated, nbrVulnerable, nbrAvatar, isEdit, label) {
                 this.modalTitle = this.getModalTitle(index, label, nbrVulnerable);
-
                 this.currentCharacter = require(`../assets/characters/${character.file}`);
                 this.currentCharacterObject = character;
 
@@ -184,8 +193,8 @@
                 this.isEdit = isEdit;
                 this.currentCharacterNumber = totalCreated;
                 this.avatarNbr = nbrAvatar;
+                this.resetRadioButtons();
                 this.setCharacterColors(isEdit, character, totalCreated < nbrAvatar);
-
                 // Display the skin tab content when opening modal window
                 this.openTab("skinColorTab", "skinColorSelect");
             },
@@ -205,6 +214,7 @@
                     this.currentBeard = character.colors.beards;
                     this.currentShirt = character.colors.shirt;
                     this.characterName = character.colors.name;
+                    this.setRadioButton(character.colors.option);
                 } else {
                     // Avatar gets a special shirt
                     isAvatar ? this.currentShirt = "#F67844" : this.currentShirt = "#BFBABE";
@@ -222,6 +232,15 @@
              */
             setCharacterName(name) {
                 this.$refs.character.setCharacterName(name);
+            },
+
+            /***
+             * --> Set character option
+             * @param {String} name
+             * @return none
+             */
+            setCharacterOption(name) {
+                this.$refs.character.setCharacterOption(name);
             },
 
             /**
@@ -324,6 +343,35 @@
                 this.$refs.character.changeHairColor(this.currentColorHair);
                 this.$refs.character.changeGlasses(-1);
                 this.$refs.character.changeBeard(-1);
+                this.resetRadioButtons();
+            },
+
+            /***
+             * --> reset radio buttons to default value and set default name for character
+             * @param none
+             * @return none
+             **/
+            resetRadioButtons() {
+                this.options.map((option) => {
+                    if (option.defaultSelection) {
+                        this.$refs[option.name][0].checked = true;
+                        this.currentOption = option.name;
+                    }
+                });
+            },
+
+            /***
+             * --> set checked button based on the option name
+             * @param {String} name
+             * @return none
+             **/
+            setRadioButton(name) {
+                this.options.map((option) => {
+                    if (option.name === name) {
+                        this.$refs[option.name][0].checked = true;
+                        this.currentOption = option.name;
+                    }
+                });
             },
 
             /**
@@ -397,6 +445,7 @@
             },
         },
         mounted() {
+            this.options = characterOptions.options;
             document.body.addEventListener('keyup', e => {
                 // Escape key to close the modal window (customizer)
                 if (e.keyCode === 27 && this.isActive) {
@@ -462,6 +511,9 @@
     li.tab {
         display: inline-block;
         text-align: center;
+    }
+    .radio-list {
+        margin-top: 2vh;
     }
 
     @media only screen and (max-width: 768px) {

@@ -1,0 +1,24 @@
+{
+  "options" : [
+    {
+      "name" : "Option 1",
+      "defaultSelection" : false
+    },
+    {
+      "name" : "Option 2",
+      "defaultSelection" : false
+    },
+    {
+      "name" : "Option 3",
+      "defaultSelection" : false
+    },
+    {
+      "name" : "Option 4",
+      "defaultSelection" : true
+    },
+    {
+      "name" : "Option 5",
+      "defaultSelection" : false
+    }
+  ]
+}
