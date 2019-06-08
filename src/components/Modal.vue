@@ -245,7 +245,7 @@
                 if (this.avatarNbr > this.currentCharacterNumber && !this.characterName)
                     this.setCharacterName(this.labels.avatarName);
                 else if (!this.characterName)
-                    this.setCharacterName(this.labels.defaultCharacterName + " " + (this.currentCharacterNumber));
+                    this.setCharacterName(this.labels.defaultCharacterName + " " + (this.currentCharacterNumber + 1));
                 this.$parent.saveCharacter(this.currentCharacterObject, this.$refs.character.getSvgColor());
                 this.closeModal();
             },
