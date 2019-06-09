@@ -25,10 +25,8 @@
 
             <!-- List of the group member -->
             <div class="tool">
-                <div style="width: 100%; margin: 12px;">
-                    <div style="cursor: pointer; width: 100%">
-                        <GroupCharacter ref="listToFill"></GroupCharacter>
-                    </div>
+                <div style="width: 100%; margin: 12px; display: flex; justify-content: center;">
+                    <GroupCharacter ref="listToFill"></GroupCharacter>
                 </div>
             </div>
         </div>
@@ -159,15 +157,15 @@
              * @return none
              */
             manageCharacterCount() {
-              if (this.totalCreated < charactersJson.nbAvatar)  {
-                   this.contextualInfo = this.labels.contextualInfoAvatar;
-               } else if (this.totalCreated < charactersJson.nbAvatar + charactersJson.nbVulnerable) {
-                   this.contextualInfo = `${this.labels.nowSelect} ${charactersJson.nbVulnerable} ${this.labels.selectVulnerable}`;
+                if (this.totalCreated < charactersJson.nbAvatar)  {
+                    this.contextualInfo = this.labels.contextualInfoAvatar;
+                } else if (this.totalCreated < charactersJson.nbAvatar + charactersJson.nbVulnerable) {
+                    this.contextualInfo = `${this.labels.nowSelect} ${charactersJson.nbVulnerable} ${this.labels.selectVulnerable}`;
                 } else if (this.totalCreated < charactersJson.nbAvatar + charactersJson.nbVulnerable + charactersJson.nbCommunity) {
-                   this.contextualInfo = `${this.labels.finallySelect} ${charactersJson.nbCommunity} ${this.labels.selectOthersPeople}`;
+                    this.contextualInfo = `${this.labels.finallySelect} ${charactersJson.nbCommunity} ${this.labels.selectOthersPeople}`;
                 } else {
-                   this.contextualInfo = "";
-               }
+                    this.contextualInfo = "";
+                }
             },
 
             /**

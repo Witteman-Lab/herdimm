@@ -1,13 +1,53 @@
 <template>
-    <div class="grid-list-character">
-        <div v-for="(character) in characterList" ref="characterList" :key="character.id">
-            <Character ref="character"  :is-name="true" :size="{width: '74px', height: '80px'}"
-                       :edit="true" :customised="true" :colors="character.colors" :id="character.id"
-                       :svgFile="require(`../assets/characters/${character.file}`)" />
+    <div class="grid-category">
+        <div class="fit-content-avatar">
+            <div style="display: flex; justify-content: center;">
+                <div v-for="(character) in characterList" ref="characterList" :key="character.id">
+                    <div class="grid-list-character" v-if="character.characterType === 'avatar'">
+                        <Character ref="character"  :is-name="true" :size="{width: '74px', height: '80px'}"
+                                   :edit="true" :customised="true" :colors="character.colors" :id="character.id"
+                                   :svgFile="require(`../assets/characters/${character.file}`)" />
+                    </div>
+                </div>
+            </div>
+            <div class="line">Test</div>
+        </div>
+        <div class="fit-content-vulnerable">
+            <div style="display: flex; justify-content: center;">
+                <div v-for="(character) in characterList" ref="characterList" :key="character.id">
+                    <div class="grid-list-character" v-if="character.characterType === 'vulnerable'">
+                        <Character ref="character"  :is-name="true" :size="{width: '74px', height: '80px'}"
+                                   :edit="true" :customised="true" :colors="character.colors" :id="character.id"
+                                   :svgFile="require(`../assets/characters/${character.file}`)" />
+                    </div>
+                </div>
+            </div>
+            <div class="line">Test</div>
+        </div>
+
+        <div class="fit-content-comm">
+            <div style="display: flex; justify-content: center;">
+                <div v-for="(character) in characterList" ref="characterList" :key="character.id">
+                    <div class="grid-list-character" v-if="character.characterType === 'comm'">
+                        <Character ref="character"  :is-name="true" :size="{width: '74px', height: '80px'}"
+                                   :edit="true" :customised="true" :colors="character.colors" :id="character.id"
+                                   :svgFile="require(`../assets/characters/${character.file}`)" />
+                    </div>
+                </div>
+            </div>
             <div class="line">Test</div>
         </div>
     </div>
 </template>
+
+<!--
+v-for="(character) in characterList" ref="characterList" :key="character.id"
+<div class="grid-list-character">
+                    <Character ref="character"  :is-name="true" :size="{width: '74px', height: '80px'}"
+                               :edit="true" :customised="true" :colors="character.colors" :id="character.id"
+                               :svgFile="require(`../assets/characters/${character.file}`)" />
+                    <div class="line">Test</div>
+                </div>-->
 
 <script>
     import Character from './Character.vue'
@@ -103,17 +143,33 @@
 </script>
 
 <style scoped>
-    .test{
-        /*border: 2px solid black;*/
+    .fit-content-avatar {
+        width:fit-content;
+        height:fit-content;
+        grid-column: span 0.25;
+    }
+    .fit-content-vulnerable {
+        width:fit-content;
+        height:fit-content;
+        grid-column: span 0.5;
+    }
+    .fit-content-comm {
+        width:fit-content;
+        height:fit-content;
+        grid-column: span 1.5;
     }
     .grid-list-character {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(55px, 1fr) );
         grid-gap: 20px;
     }
+    .grid-category {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        grid-gap: 10px;
+    }
     .line {
         justify-self: center;
-        height: 47px;
         border-top: 1px solid black;
     }
 </style>
