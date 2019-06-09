@@ -23,7 +23,7 @@
                                 <div class="control">
                                     <input v-on:input="setCharacterName(characterName)" class="input" v-model="characterName"  type="text" :placeholder="this.labels.nameInputPlaceHolder">
                                 </div>
-                                <div v-for="(option) in options" class="control radio-list">
+                                <div v-show="isCharacterVulnerable" v-for="(option) in options" class="control radio-list">
                                     <label class="radio">
                                         <input v-on:click="setCharacterOption(option.name)" type="radio" name="option" v-bind:ref="option.name" :checked="option.defaultSelection">
                                         {{option.name}}
@@ -157,12 +157,14 @@
                 isGlassesButtonEnable: false,
                 isHairColorButtonEnable: false,
                 isFaceColorButtonEnable: false,
+                isCharacterVulnerable: false,
 
                 glassesList: [],
                 beardsList: [],
                 characterName: "",
                 currentCharacterNumber: 0,
                 avatarNbr: 0,
+                vulnerableNbr: 0,
                 options: [],
             }
         },
@@ -173,6 +175,14 @@
             totalCharactersCount: Number,
         },
         methods: {
+            /***
+             *
+             *
+             **/
+            checkCharacterVulnerable() {
+                return this.currentCharacterNumber >= this.avatarNbr &&
+                    this.currentCharacterNumber < this.vulnerableNbr + this.avatarNbr;
+            },
             /**
              * ---> Show create or edit modal and adapt the different tabs
              * @param {Number} index
@@ -191,8 +201,10 @@
 
                 this.isActive = true;
                 this.isEdit = isEdit;
-                this.currentCharacterNumber = totalCreated;
+                this.isEdit ? this.currentCharacterNumber = index : this.currentCharacterNumber = totalCreated;
                 this.avatarNbr = nbrAvatar;
+                this.vulnerableNbr = nbrVulnerable;
+                this.isCharacterVulnerable = this.checkCharacterVulnerable();
                 this.resetRadioButtons();
                 this.setCharacterColors(isEdit, character, totalCreated < nbrAvatar);
                 // Display the skin tab content when opening modal window
@@ -202,7 +214,7 @@
             /**
              * ---> Apply character attributes when edit or default attributes when create
              * @param {Boolean} isEdit
-             * @param {characters} character
+             * @param {Object} character
              * @param {Boolean} isAvatar
              * @return none
              */
@@ -347,17 +359,19 @@
             },
 
             /***
-             * --> reset radio buttons to default value and set default name for character
+             * --> reset radio buttons to default value and set default name for character (only vulnerable)
              * @param none
              * @return none
              **/
             resetRadioButtons() {
-                this.options.map((option) => {
-                    if (option.defaultSelection) {
-                        this.$refs[option.name][0].checked = true;
-                        this.currentOption = option.name;
-                    }
-                });
+                if (this.isCharacterVulnerable) {
+                    this.options.map((option) => {
+                        if (option.defaultSelection) {
+                            this.$refs[option.name][0].checked = true;
+                            this.currentOption = option.name;
+                        }
+                    });
+                }
             },
 
             /***

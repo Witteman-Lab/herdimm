@@ -165,6 +165,7 @@ v-for="(character) in characterList" ref="characterList" :key="character.id"
     }
     .grid-category {
         display: grid;
+        cursor: pointer;
         grid-template-columns: auto auto auto;
         grid-gap: 10px;
     }
