@@ -1,52 +1,22 @@
 <template>
     <div class="grid-category">
-        <div class="fit-content">
+        <div v-for="(category, index) in this.labels.categories" class="fit-content">
             <div style="display: flex; justify-content: center;">
-                <div v-for="(character) in characterList" ref="characterList" :key="character.id">
-                    <div class="grid-list-character" v-if="character.characterType === 'avatar'">
+                <div :key="character.id" ref="characterList"
+                     v-for="(character) in characterList" v-if="character.characterType === isCharacterType[index]">
+                    <div class="grid-list-character" v-if="">
                         <Character ref="character"  :is-name="true" :size="{width: '74px', height: '80px'}"
                                    :edit="true" :customised="true" :colors="character.colors" :id="character.id"
                                    :svgFile="require(`../assets/characters/${character.file}`)" />
                     </div>
                 </div>
             </div>
-            <div class="line"><div class="position-text-category">{{this.labels.categories[0]}}</div></div>
-        </div>
-        <div class="fit-content">
-            <div style="display: flex; justify-content: center;">
-                <div v-for="(character) in characterList" ref="characterList" :key="character.id">
-                    <div class="grid-list-character" v-if="character.characterType === 'vulnerable'">
-                        <Character ref="character"  :is-name="true" :size="{width: '74px', height: '80px'}"
-                                   :edit="true" :customised="true" :colors="character.colors" :id="character.id"
-                                   :svgFile="require(`../assets/characters/${character.file}`)" />
-                    </div>
-                </div>
+            <div v-if="isCharacterType[index]" class="line">
+                <div class="position-text-category">{{category}}</div>
             </div>
-            <div class="line"><div class="position-text-category">{{this.labels.categories[1]}}</div></div>
-        </div>
-        <div class="fit-content">
-            <div style="display: flex; justify-content: center;">
-                <div v-for="(character) in characterList" ref="characterList" :key="character.id">
-                    <div class="grid-list-character" v-if="character.characterType === 'comm'">
-                        <Character ref="character"  :is-name="true" :size="{width: '74px', height: '80px'}"
-                                   :edit="true" :customised="true" :colors="character.colors" :id="character.id"
-                                   :svgFile="require(`../assets/characters/${character.file}`)" />
-                    </div>
-                </div>
-            </div>
-            <div class="line"><div class="position-text-category">{{this.labels.categories[2]}}</div></div>
         </div>
     </div>
 </template>
-
-<!--
-v-for="(character) in characterList" ref="characterList" :key="character.id"
-<div class="grid-list-character">
-                    <Character ref="character"  :is-name="true" :size="{width: '74px', height: '80px'}"
-                               :edit="true" :customised="true" :colors="character.colors" :id="character.id"
-                               :svgFile="require(`../assets/characters/${character.file}`)" />
-                    <div class="line">Test</div>
-                </div>-->
 
 <script>
     import Character from './Character.vue'
@@ -56,11 +26,12 @@ v-for="(character) in characterList" ref="characterList" :key="character.id"
         data() {
             return {
                 characterList: [],
+                isCharacterType: [],
                 characterSize: {
                     width: "70px",
                     height: "95px",
                     border: "5px"
-                }
+                },
             }
         },
         components: {
@@ -70,6 +41,11 @@ v-for="(character) in characterList" ref="characterList" :key="character.id"
           labels: Object
         },
         methods: {
+            setCharacterCategory(type) {
+                if (type === "avatar")  this.isCharacterType[0] = type;
+                else if (type === "vulnerable")  this.isCharacterType[1] = type;
+                else if (type === "comm")  this.isCharacterType[2] = type;
+            },
             /**
              * ---> Add a character with its attributes to the group list
              * @param {Object} character
@@ -78,7 +54,7 @@ v-for="(character) in characterList" ref="characterList" :key="character.id"
              * @return none
              */
             addCharacterToGroup(character, characterColors, type) {
-                console.log(type);
+                this.setCharacterCategory(type);
                 this.characterList.push({id: character.id + this.characterList.length + "_customised",
                     file: character.file, colors: characterColors, characterType: type});
             },
