@@ -144,4 +144,14 @@
         justify-self: center;
         border-top: 0.10rem solid #848484;
     }
+    @media only screen and (max-width: 500px) {
+        .fit-content {
+            width:fit-content;
+            height:fit-content;
+            display: inline;
+        }
+        .grid-category {
+            display: inline;;
+        }
+    }
 </style>
