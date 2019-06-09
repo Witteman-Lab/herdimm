@@ -2,7 +2,7 @@
     <div>
         <div class="character-position" :style="{width: this.characterPositionWidth}">
             <div v-on:click="selectYourCharacter" ref="characterImg" v-html="this.svg" :style="{width: this.width, height: this.height}" style="margin: auto;"></div>
-            <p v-if="isName" style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis;margin-bottom: 0.5em;">{{this.svgColor.name}}</p>
+            <span v-if="isName" style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis;margin-bottom: 0.5em;color: #848484;font-size: 14px;">{{this.svgColor.name}}</span>
         </div>
     </div>
 </template>

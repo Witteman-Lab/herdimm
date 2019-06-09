@@ -1,6 +1,6 @@
 <template>
     <div class="grid-category">
-        <div class="fit-content-avatar">
+        <div class="fit-content">
             <div style="display: flex; justify-content: center;">
                 <div v-for="(character) in characterList" ref="characterList" :key="character.id">
                     <div class="grid-list-character" v-if="character.characterType === 'avatar'">
@@ -10,9 +10,9 @@
                     </div>
                 </div>
             </div>
-            <div class="line">Test</div>
+            <div class="line"><div class="position-text-category">{{this.labels.categories[0]}}</div></div>
         </div>
-        <div class="fit-content-vulnerable">
+        <div class="fit-content">
             <div style="display: flex; justify-content: center;">
                 <div v-for="(character) in characterList" ref="characterList" :key="character.id">
                     <div class="grid-list-character" v-if="character.characterType === 'vulnerable'">
@@ -22,10 +22,9 @@
                     </div>
                 </div>
             </div>
-            <div class="line">Test</div>
+            <div class="line"><div class="position-text-category">{{this.labels.categories[1]}}</div></div>
         </div>
-
-        <div class="fit-content-comm">
+        <div class="fit-content">
             <div style="display: flex; justify-content: center;">
                 <div v-for="(character) in characterList" ref="characterList" :key="character.id">
                     <div class="grid-list-character" v-if="character.characterType === 'comm'">
@@ -35,7 +34,7 @@
                     </div>
                 </div>
             </div>
-            <div class="line">Test</div>
+            <div class="line"><div class="position-text-category">{{this.labels.categories[2]}}</div></div>
         </div>
     </div>
 </template>
@@ -67,8 +66,10 @@ v-for="(character) in characterList" ref="characterList" :key="character.id"
         components: {
             Character
         },
+        props: {
+          labels: Object
+        },
         methods: {
-
             /**
              * ---> Add a character with its attributes to the group list
              * @param {Object} character
@@ -143,20 +144,14 @@ v-for="(character) in characterList" ref="characterList" :key="character.id"
 </script>
 
 <style scoped>
-    .fit-content-avatar {
+    .fit-content {
         width:fit-content;
         height:fit-content;
-        grid-column: span 0.25;
     }
-    .fit-content-vulnerable {
-        width:fit-content;
-        height:fit-content;
-        grid-column: span 0.5;
-    }
-    .fit-content-comm {
-        width:fit-content;
-        height:fit-content;
-        grid-column: span 1.5;
+    .position-text-category {
+        margin-top: 1vh;
+        font-size: 15px;
+        color: #848484;
     }
     .grid-list-character {
         display: grid;
@@ -171,6 +166,6 @@ v-for="(character) in characterList" ref="characterList" :key="character.id"
     }
     .line {
         justify-self: center;
-        border-top: 1px solid black;
+        border-top: 0.10rem solid #848484;
     }
 </style>

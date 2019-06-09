@@ -31,5 +31,6 @@
     "totalCharacterCount" : "Nombre de personnages : ",
     "defaultCharacterName" : "Personne",
     "displayCaptions" : "Afficher les sous-titres",
-    "avatarName" : "Votre avatar"
+    "avatarName" : "Votre avatar",
+    "categories" : ["Vous", "Personnes vulnerables", "Personnes autour de vous"]
 }

@@ -31,5 +31,6 @@
     "totalCharacterCount": "Characters count : ",
     "defaultCharacterName": "Person",
     "displayCaptions": "Display captions",
-    "avatarName" : "Your avatar"
+    "avatarName" : "Your avatar",
+    "categories" : ["You", "Vulnerable people", "People around you"]
 }

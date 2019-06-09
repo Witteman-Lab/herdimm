@@ -26,7 +26,7 @@
             <!-- List of the group member -->
             <div class="tool">
                 <div style="width: 100%; margin: 12px; display: flex; justify-content: center;">
-                    <GroupCharacter ref="listToFill"></GroupCharacter>
+                    <GroupCharacter :labels='labels' ref="listToFill"></GroupCharacter>
                 </div>
             </div>
         </div>

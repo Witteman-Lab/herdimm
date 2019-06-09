@@ -176,8 +176,8 @@
         },
         methods: {
             /***
-             *
-             *
+             *--> Check if the current character is vulnerable or not
+             * @return {Boolean} isCharacterVulnerable
              **/
             checkCharacterVulnerable() {
                 return this.currentCharacterNumber >= this.avatarNbr &&
