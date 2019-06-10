@@ -410,9 +410,6 @@
                     let duration = (delay/1000).toString()+"s";
                     console.log("duration", duration);
                     nodeListLine.forEach(e => {
-                        //e.parentNode.removeChild(e)
-                        //e.style.borderColor = "#1AFFF6";
-                        //e.style.stroke = "#D223E8";
                         e.style.strokeOpacity = "0";
                         e.style.transition = "opacity";
                         e.style.transitionDuration = duration;
@@ -454,9 +451,6 @@
                 const selector = '#main-container #';
                 const state = "infected";
                 var endOfTheSequence;
-                //console.log((document.querySelectorAll("line"))[0]);
-
-
                 for (let i = 0; i < pattern.length; i++){
                     let source = pattern[i].source;
                     let target = pattern[i].target;
