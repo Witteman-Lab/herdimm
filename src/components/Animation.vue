@@ -93,7 +93,6 @@
                 this.isAnimationStarted = true;
                 this.$refs.audioPlayer.playAudio();
                 this.isAnimationPlaying();
-
             },
 
             /**
@@ -318,16 +317,20 @@
              * @param {Number} duration
              * @return none
              */
-            fadeInOut(startTime, duration) {
+            fadeInOut(props) {
                 // Fade-in transition
                 setTimeout(() => {
                     document.body.classList.add('fade');
-                }, startTime);
+                    console.log(" fade in ");
+                }, props.startTime);
 
                 // Fade-out transition (back to normal)
                 setTimeout(() => {
                     document.body.classList.remove('fade');
-                }, startTime + duration);
+                    console.log(" fade out ");
+                }, props.startTime + props.duration);
+
+                console.log("execution de la fonction fadeInOut");
             },
 
 
