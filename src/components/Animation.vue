@@ -90,20 +90,9 @@
              * @return none
              */
             startAnimation() {
-                // Starts true;
                 this.isAnimationStarted = true;
-                //this.setCharacterTShirtColor("shape_57", "#B0102C");
                 this.$refs.audioPlayer.playAudio();
                 this.isAnimationPlaying();
-
-
-
-                // this.test3dHexgone();
-                // For testing (will be called by the audioPlayer in time)
-                //this.spreadInfection(connections.connections);
-
-                //this.testFunction(connections.connections);
-
 
             },
 
@@ -351,8 +340,6 @@
 
                 setTimeout(() => {
                     shapeTargets.forEach((e) => {
-                        // Use this when animating for real (and remove this comment)
-                        // if(e.classList.value.indexOf("vaccinated") !== -1) {
                         if(e.classList.value.indexOf("vulnerable") === -1) { // <-- For testing purpose
                             e.classList.add("barrier");
                         }
