@@ -399,17 +399,35 @@
 
 
             /**
-             * --->  ---------------------------------- It's will be completed later ------------------------------
+             * --->  this method allows the gradual disappearance of lines and its removal
              * @param {Object} props
              * @return none
              */
             removeLine(){
+                setTimeout(() => {
+                    let nodeListLine = document.querySelectorAll("line");
+                    let delay = 1000;
+                    let duration = (delay/1000).toString()+"s";
+                    console.log("duration", duration);
+                    nodeListLine.forEach(e => {
+                        //e.parentNode.removeChild(e)
+                        //e.style.borderColor = "#1AFFF6";
+                        //e.style.stroke = "#D223E8";
+                        e.style.strokeOpacity = "0";
+                        e.style.transition = "opacity";
+                        e.style.transitionDuration = duration;
+                        e.style.transitionProperty = "all";
+                        setTimeout(()=> {
+                            e.parentNode.removeChild(e);
+                        }, delay)
+                    });
 
+                }, 2000);
             },
 
 
             /**
-             * --->  this methode checks if the shape contains avatar
+             * --->  this method checks if the shape contains avatar
              * @param {string} shape_id
              * @return {Boolean}
              */
@@ -418,7 +436,7 @@
                 var variable = document.querySelectorAll("#main-container #"+shape_id);
                 variable.forEach(e => {
                     let array = (e.getAttribute("class")).split(" ");
-                    if(array[0] == "comm" || array[0] == "avatar" || array[0] == "vulnerable"){
+                    if(array[0] === "comm" || array[0] === "avatar" || array[0] === "vulnerable"){
                         value = true;
                     }
                 });
@@ -435,9 +453,14 @@
                 const drawingBoard = document.querySelector("#connections");
                 const selector = '#main-container #';
                 const state = "infected";
+                var endOfTheSequence;
+                //console.log((document.querySelectorAll("line"))[0]);
+
+
                 for (let i = 0; i < pattern.length; i++){
                     let source = pattern[i].source;
                     let target = pattern[i].target;
+                    endOfTheSequence = pattern[0].endOfTheSequence;
                     let targetGetsInfected = pattern[i].targetGetsInfected;
                     let nextTarget 	= pattern[i].nextTarget;
                     let id = pattern[i].id;
@@ -461,28 +484,29 @@
                     // When the animation starts, source gets infected, its color changes
                     lineObj.addEventListener("animationstart", () => { // webkitAnimationStart
                         this.hexColor(selector, source, state);
-                        if(this.avatarChecking(source) == true)
+                        if(this.avatarChecking(source) === true)
                         {
                             this.setCharacterTShirtColor(source, "#B0102C");
-
                         }
                     });
                     // When the animation ends, check if there is a next target
                     lineObj.addEventListener("animationend", () => { // webkitAnimationEnd
-                        if(nextTarget != ""){
+                        if(nextTarget !== ""){
                             this.spreadInfection(nextTarget);
                         }
 
                         // If target gets infected, its color changes
                         if(targetGetsInfected) {
                             this.hexColor(selector, target, state);
-                            if(this.avatarChecking(target) == true)
+                            if(this.avatarChecking(target) === true)
                             {
                                 this.setCharacterTShirtColor(target, "#B0102C");
-
                             }
                         }
                     });
+                }
+                if(endOfTheSequence){
+                    this.removeLine();
                 }
             },
 

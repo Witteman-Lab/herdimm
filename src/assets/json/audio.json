@@ -15,7 +15,6 @@
                             "file": ["pertussis.json", "flu.json", "measles.json"]
                         }
                     },
-
                     {
                         "action": "zoom",
                         "props": {
