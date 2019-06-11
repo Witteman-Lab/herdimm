@@ -1,6 +1,7 @@
 {
     "containerId" : "connections",
 	"linecolor" : "#B0102C",
-	"linewidth" : "5"
-
+	"linewidth" : "5",
+    "infectedShirtColor" : "#B0102C",
+    "vaccinatedShirtColor" : "#3C83B7"
 }
