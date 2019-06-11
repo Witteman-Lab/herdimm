@@ -1,0 +1,18 @@
+{
+    "connections" : [
+        {
+            "id"	 : "1",
+            "source" : "shape_41",
+            "target" : "shape_51",
+            "targetGetsInfected": true,
+            "nextTarget": ""
+        },
+        {
+            "id"	 : "2",
+            "source" : "shape_41",
+            "target" : "shape_46",
+            "targetGetsInfected": false,
+            "nextTarget": ""
+        }
+    ]
+}
