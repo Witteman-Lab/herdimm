@@ -50,7 +50,6 @@
     // The scenario might need to be imported in AudioPlayer instead of here, I'm not sure at the moment
     // import scenario from "../assets/json/scenario_en.json";
     import shapesArray from "../assets/json/shapesArray";
-    // import animate from "animejs";
     import textsEng from "../assets/json/textsEng.json";
     import textsFr from "../assets/json/textsFr.json";
 
@@ -92,7 +91,6 @@
             startAnimation() {
                 // Starts true;
                 this.isAnimationStarted = true;
-                //this.setCharacterTShirtColor("shape_57", "#B0102C");
                 this.$refs.audioPlayer.playAudio();
                 this.isAnimationPlaying();
 
@@ -385,14 +383,20 @@
                             value = this.getRandomInt(props.file.length);
                         }
                         let variable = require("../assets/json/" + props.file[value]);
-                        this.spreadInfection(variable.connections);
+                        //this.spreadInfection(variable.connections, props.startTime);
+                        setTimeout(() => {
+                            this.spreadInfection(variable.connections);
+                        }, props.startTime);
                     } else {
                         alert("Add the name of json file in array to have infection sequences");
                     }
                 }
                 else{
                     let variable = require("../assets/json/" + props.file);
-                    this.spreadInfection(variable.connections);
+                    //this.spreadInfection(variable.connections, props.startTime);
+                    setTimeout(() => {
+                        this.spreadInfection(variable.connections);
+                    }, props.startTime);
                 }
             },
 
@@ -439,6 +443,7 @@
                     let source = pattern[i].source;
                     let target = pattern[i].target;
                     let targetGetsInfected = pattern[i].targetGetsInfected;
+                    let infectionIsBouncing = pattern[i].infectionIsBouncing;
                     let nextTarget 	= pattern[i].nextTarget;
                     let id = pattern[i].id;
                     let lineObj = this.drawLine(source, target, id);
@@ -448,12 +453,17 @@
                     lineObj.setAttributeNS(null, "stroke-dashoffset", lineLength);
 
                     // Check if the target gets infected to add the proper class (CSS animation)
-                    if(targetGetsInfected) {
-                        lineObj.classList.add("line");
-
+                    if (targetGetsInfected) {
+                        // Target might get infected, but we still want the infection lines to bounce, so we check if infectionIsBouncing is true
+                        if (infectionIsBouncing) {
+                            lineObj.classList.add("lineBouncingOff");
+                        } else {
+                            lineObj.classList.add("line");
+                        }
                     } else {
                         lineObj.classList.add("lineBouncingOff");
                     }
+
                     // Add the line to the drawingboard (SVG element)
                     drawingBoard.appendChild(lineObj);
 
@@ -461,25 +471,23 @@
                     // When the animation starts, source gets infected, its color changes
                     lineObj.addEventListener("animationstart", () => { // webkitAnimationStart
                         this.hexColor(selector, source, state);
-                        if(this.avatarChecking(source) == true)
+                        if(this.avatarChecking(source) === true)
                         {
-                            this.setCharacterTShirtColor(source, "#B0102C");
-
+                            this.setCharacterTShirtColor(source, connections.infectedShirtColor);
                         }
                     });
                     // When the animation ends, check if there is a next target
                     lineObj.addEventListener("animationend", () => { // webkitAnimationEnd
-                        if(nextTarget != ""){
+                        if(nextTarget !== ""){
                             this.spreadInfection(nextTarget);
                         }
 
                         // If target gets infected, its color changes
                         if(targetGetsInfected) {
                             this.hexColor(selector, target, state);
-                            if(this.avatarChecking(target) == true)
+                            if(this.avatarChecking(target) === true)
                             {
-                                this.setCharacterTShirtColor(target, "#B0102C");
-
+                                this.setCharacterTShirtColor(target, connections.infectedShirtColor);
                             }
                         }
                     });
@@ -507,6 +515,7 @@
              * @return none
              */
             burst(props){
+                console.log("burst");
                 const selector = '#main-container #';
 
                 this.hexColor(selector, props.target, props.state);
@@ -526,7 +535,6 @@
                 setTimeout(() => {
                     const shapeTargets = document.querySelectorAll(selector + props.target);
                     for (var i = 0; i < shapeTargets.length; i++) {
-                        //console.log("i", i);
                         shapeTargets.item(i).classList.add(props.state);
                     }
                 }, props.startTime);
@@ -540,6 +548,7 @@
              * @return none
              */
             hexColor(selector, target, state){
+                console.log("hexColor");
                 document.querySelector(selector+target).classList.add(state);
             },
 
@@ -553,6 +562,7 @@
              * @return none
              */
             changeSize(selector, target, scale, timingFunction, duration){
+                console.log("changeSize");
                 let shape = document.querySelector(selector+target);
 
                 // Scaling up
@@ -577,6 +587,7 @@
              */
             vaccination(){
                 //console.log(" Execution of vaccination function");
+                //this.setCharacterTShirtColor(target, connections.vaccinatedShirtColor);
             },
 
             /**
