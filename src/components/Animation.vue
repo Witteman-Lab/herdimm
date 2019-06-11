@@ -321,13 +321,13 @@
                 setTimeout(() => {
                     document.body.classList.add('fade');
                     console.log(" fade in ");
-                }, props.startTime);
+                }, parseInt(props.startTime));
 
                 // Fade-out transition (back to normal)
                 setTimeout(() => {
                     document.body.classList.remove('fade');
                     console.log(" fade out ");
-                }, props.startTime + props.duration);
+                },parseInt(props.startTime) + parseInt(props.duration));
 
                 console.log("execution de la fonction fadeInOut");
             },
