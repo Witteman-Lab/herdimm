@@ -230,9 +230,10 @@ div#copy1 .barrier::before {
   background-color: var(--color-hex-vaccinated-shadow);
 }
 
+
 .line {
   -webkit-animation: dash 0.5s linear 0s forwards;
-  animation: dash 0.5s linear 0s forwards;
+  animation: dash 0.25s linear 0s forwards;
 }
 .lineBouncingOff {
   -webkit-animation: dash 0.25s linear 0s 6 alternate;

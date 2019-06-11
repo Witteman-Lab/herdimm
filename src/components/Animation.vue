@@ -89,20 +89,9 @@
              * @return none
              */
             startAnimation() {
-                // Starts true;
                 this.isAnimationStarted = true;
                 this.$refs.audioPlayer.playAudio();
                 this.isAnimationPlaying();
-
-
-
-                // this.test3dHexgone();
-                // For testing (will be called by the audioPlayer in time)
-                //this.spreadInfection(connections.connections);
-
-                //this.testFunction(connections.connections);
-
-
             },
 
             /**
@@ -327,16 +316,20 @@
              * @param {Number} duration
              * @return none
              */
-            fadeInOut(startTime, duration) {
+            fadeInOut(props) {
                 // Fade-in transition
                 setTimeout(() => {
                     document.body.classList.add('fade');
-                }, startTime);
+                    console.log(" fade in ");
+                }, props.startTime);
 
                 // Fade-out transition (back to normal)
                 setTimeout(() => {
                     document.body.classList.remove('fade');
-                }, startTime + duration);
+                    console.log(" fade out ");
+                }, props.startTime + props.duration);
+
+                console.log("execution de la fonction fadeInOut");
             },
 
 
@@ -349,8 +342,6 @@
 
                 setTimeout(() => {
                     shapeTargets.forEach((e) => {
-                        // Use this when animating for real (and remove this comment)
-                        // if(e.classList.value.indexOf("vaccinated") !== -1) {
                         if(e.classList.value.indexOf("vulnerable") === -1) { // <-- For testing purpose
                             e.classList.add("barrier");
                         }
@@ -403,17 +394,32 @@
 
 
             /**
-             * --->  ---------------------------------- It's will be completed later ------------------------------
+             * --->  this method allows the gradual disappearance of lines and its removal
              * @param {Object} props
              * @return none
              */
             removeLine(){
+                setTimeout(() => {
+                    let nodeListLine = document.querySelectorAll("line");
+                    let delay = 1000;
+                    let duration = (delay/1000).toString()+"s";
+                    console.log("duration", duration);
+                    nodeListLine.forEach(e => {
+                        e.style.strokeOpacity = "0";
+                        e.style.transition = "opacity";
+                        e.style.transitionDuration = duration;
+                        e.style.transitionProperty = "all";
+                        setTimeout(()=> {
+                            e.parentNode.removeChild(e);
+                        }, delay)
+                    });
 
+                }, 2000);
             },
 
 
             /**
-             * --->  this methode checks if the shape contains avatar
+             * --->  this method checks if the shape contains avatar
              * @param {string} shape_id
              * @return {Boolean}
              */
@@ -422,7 +428,7 @@
                 var variable = document.querySelectorAll("#main-container #"+shape_id);
                 variable.forEach(e => {
                     let array = (e.getAttribute("class")).split(" ");
-                    if(array[0] == "comm" || array[0] == "avatar" || array[0] == "vulnerable"){
+                    if(array[0] === "comm" || array[0] === "avatar" || array[0] === "vulnerable"){
                         value = true;
                     }
                 });
@@ -439,9 +445,11 @@
                 const drawingBoard = document.querySelector("#connections");
                 const selector = '#main-container #';
                 const state = "infected";
+                var endOfTheSequence;
                 for (let i = 0; i < pattern.length; i++){
                     let source = pattern[i].source;
                     let target = pattern[i].target;
+                    endOfTheSequence = pattern[0].endOfTheSequence;
                     let targetGetsInfected = pattern[i].targetGetsInfected;
                     let infectionIsBouncing = pattern[i].infectionIsBouncing;
                     let nextTarget 	= pattern[i].nextTarget;
@@ -491,6 +499,9 @@
                             }
                         }
                     });
+                }
+                if(endOfTheSequence){
+                    this.removeLine();
                 }
             },
 

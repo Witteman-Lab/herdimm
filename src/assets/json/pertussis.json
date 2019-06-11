@@ -203,6 +203,7 @@
                                                                                                                                           "source": "shape_4",
                                                                                                                                           "target": "shape_1",
                                                                                                                                           "targetGetsInfected": true,
+                                                                                                                                          "endOfTheSequence": true,
                                                                                                                                           "nextTarget": ""
                                                                                                                                         }
                                                                                                                                       ]
