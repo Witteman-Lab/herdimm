@@ -235,8 +235,8 @@ div#copy1 .barrier::before {
   animation: dash 0.5s linear 0s forwards;
 }
 .lineBouncingOff {
-  -webkit-animation: dash 0.5s linear 0s 6 alternate;
-  animation: dash 0.5s linear 0s 6 alternate;
+  -webkit-animation: dash 0.25s linear 0s 6 alternate;
+  animation: dash 0.25s linear 0s 6 alternate;
 }
 
 @keyframes dash {
