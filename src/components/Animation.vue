@@ -268,7 +268,6 @@
              */
             executeFunctionByName(functionName, context, args) {
                 let newArgs = Array.prototype.slice.call(arguments, 2);
-                //console.log(functionName);
                 return context[functionName].apply(context, newArgs);
             },
 
@@ -320,16 +319,12 @@
                 // Fade-in transition
                 setTimeout(() => {
                     document.body.classList.add('fade');
-                    console.log(" fade in ");
                 }, props.startTime);
 
                 // Fade-out transition (back to normal)
                 setTimeout(() => {
                     document.body.classList.remove('fade');
-                    console.log(" fade out ");
-                }, props.startTime + props.duration);
-
-                console.log("execution de la fonction fadeInOut");
+                }, (parseInt(props.startTime) + parseInt(props.duration)).toString());
             },
 
 
@@ -374,7 +369,6 @@
                             value = this.getRandomInt(props.file.length);
                         }
                         let variable = require("../assets/json/" + props.file[value]);
-                        //this.spreadInfection(variable.connections, props.startTime);
                         setTimeout(() => {
                             this.spreadInfection(variable.connections);
                         }, props.startTime);
@@ -384,7 +378,6 @@
                 }
                 else{
                     let variable = require("../assets/json/" + props.file);
-                    //this.spreadInfection(variable.connections, props.startTime);
                     setTimeout(() => {
                         this.spreadInfection(variable.connections);
                     }, props.startTime);
@@ -403,7 +396,6 @@
                     let nodeListLine = document.querySelectorAll("line");
                     let delay = 1000;
                     let duration = (delay/1000).toString()+"s";
-                    console.log("duration", duration);
                     nodeListLine.forEach(e => {
                         e.style.strokeOpacity = "0";
                         e.style.transition = "opacity";
@@ -445,7 +437,7 @@
                 const drawingBoard = document.querySelector("#connections");
                 const selector = '#main-container #';
                 const state = "infected";
-                var endOfTheSequence;
+                let endOfTheSequence;
                 for (let i = 0; i < pattern.length; i++){
                     let source = pattern[i].source;
                     let target = pattern[i].target;
@@ -526,7 +518,6 @@
              * @return none
              */
             burst(props){
-                console.log("burst");
                 const selector = '#main-container #';
 
                 this.hexColor(selector, props.target, props.state);
@@ -559,8 +550,26 @@
              * @return none
              */
             hexColor(selector, target, state){
-                console.log("hexColor");
                 document.querySelector(selector+target).classList.add(state);
+            },
+
+            /**
+             * ---> Reset all the shapes (the grid) to their initial states
+             * @param {Object} props
+             * @return none
+             */
+            resetGrid(props) {
+                //const selector = '#main-container ';
+                const shapes = document.querySelectorAll(".hexagon");
+
+                setTimeout(() => {
+                    shapes.forEach((e) => {
+                        e.classList.remove("infected");
+                        e.classList.remove("vaccinated");
+
+                        this.setCharacterTShirtColor("#"+e.id, connections.defaultShirtColor);
+                    });
+                }, props.startTime);
             },
 
             /**
@@ -573,7 +582,6 @@
              * @return none
              */
             changeSize(selector, target, scale, timingFunction, duration){
-                console.log("changeSize");
                 let shape = document.querySelector(selector+target);
 
                 // Scaling up
