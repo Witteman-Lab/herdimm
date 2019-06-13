@@ -51,6 +51,7 @@
     import textsFr from "../assets/json/textsFr.json";
     import glassesJson from "../assets/json/glasses.json";
     import facialHairJson from "../assets/json/facialHair.json";
+    import animationParameter from "../assets/json/animation_parameter.json";
 
     export default {
         name: "home",
@@ -86,7 +87,16 @@
                     this.$refs.modal.openModal(this.totalCreated, character, this.totalCreated,
                         charactersJson.nbVulnerable, charactersJson.nbAvatar, false, this.labels.createAvatar);
                 }
+                window.scrollTo(0,document.querySelector('.container').scrollHeight);
+                console.log("nombre total :", this.totalCreated);
+                if(this.totalCreated <9)
+                    setTimeout(() => {
+                            //window.scrollTo(0,-document.querySelector('.container').scrollHeight);
+                            window.scrollTo({ top: 0, behavior: 'smooth', x: 0, y:-document.querySelector('.container').scrollHeight})
+                        },
+                        parseInt(animationParameter.scrollingTimeControl));
             },
+
 
             /**
              * ---> Launch edit modal with the given character object (might need refactoring)
@@ -147,8 +157,10 @@
              * @return none
              */
             loadAnimationView() {
+
                 let groupCharacter = this.$refs.listToFill.getCharacterList();
                 this.$router.push({name: 'Animation', params:{group: groupCharacter, labelSelected: this.labels.currentLanguage}});
+
             },
 
             /**

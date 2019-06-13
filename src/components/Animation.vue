@@ -394,7 +394,7 @@
             removeLine(){
                 setTimeout(() => {
                     let nodeListLine = document.querySelectorAll("line");
-                    let delay = 1000;
+                    let delay = parseInt(connections.removelineDuration);
                     let duration = (delay/1000).toString()+"s";
                     nodeListLine.forEach(e => {
                         e.style.strokeOpacity = "0";
@@ -406,7 +406,7 @@
                         }, delay)
                     });
 
-                }, 2000);
+                }, parseInt(connections.delayCallRemoveline));
             },
 
 

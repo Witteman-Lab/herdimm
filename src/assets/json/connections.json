@@ -5,5 +5,7 @@
     "defaultShirtColor" : "#BFBABE",
     "vulnerableShirtColor" : "#FFFAB0",
     "infectedShirtColor" : "#B0102C",
-    "vaccinatedShirtColor" : "#3C83B7"
+    "vaccinatedShirtColor" : "#3C83B7",
+    "delayCallRemoveline" : "2000",
+    "removelineDuration" : "1000"
 }
