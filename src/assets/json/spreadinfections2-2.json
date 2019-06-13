@@ -27,6 +27,7 @@
             "target" : "shape_57",
             "targetGetsInfected": true,
             "infectionIsBouncing": true,
+            "endOfTheSequence": true,
             "nextTarget": ""
         }
     ]

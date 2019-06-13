@@ -12,6 +12,7 @@
             "source" : "shape_41",
             "target" : "shape_46",
             "targetGetsInfected": false,
+            "endOfTheSequence": true,
             "nextTarget": ""
         }
     ]
