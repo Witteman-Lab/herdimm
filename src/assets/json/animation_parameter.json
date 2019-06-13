@@ -1,4 +1,4 @@
 {
-  "_commentary" : "------------------------ No action for that scenario ---------------------------------",
-  "scrollingTimeControl" : "3000"
+  "_commentary" : "-------------------------- We assume that time here is counted in millisecond ---------------------------------------",
+  "scrollingTimeControl" : "2000"
 }

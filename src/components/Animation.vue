@@ -649,6 +649,7 @@
         },
         created() {},
         mounted() {
+            window.scrollTo({ top: 0, behavior: 'smooth', x: 0, y:-document.querySelector('.container').scrollHeight});
             let styles = require('../scss/animation.scss');
 
             // Fetch the group member if it exists

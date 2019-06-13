@@ -1,4 +1,5 @@
 {
+    "_commentary" : "-------------------------- We assume that time here is counted in millisecond ---------------------------------------",
     "containerId" : "connections",
 	"linecolor" : "#B0102C",
 	"linewidth" : "5",
