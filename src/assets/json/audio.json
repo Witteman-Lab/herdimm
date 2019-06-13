@@ -52,7 +52,7 @@
                             "target": ".avatar",
                             "duration": "1000",
                             "class": "contour",
-                            "startTime" : "1500",
+                            "startTime" : "2000",
                             "add" : false
                         }
                     }
@@ -87,9 +87,9 @@
                         "action": "makeContour",
                         "props": {
                             "target": ".vulnerable",
-                            "duration": "1000",
                             "class": "contour",
-                            "startTime" : "500",
+                            "startTime" : "100",
+                            "duration": "1000",
                             "add" : true
                         }
                     },
@@ -97,9 +97,9 @@
                         "action": "makeContour",
                         "props": {
                             "target": ".vulnerable",
-                            "duration": "1000",
                             "class": "contour",
-                            "startTime" : "2500",
+                            "startTime" : "4000",
+                            "duration": "1000",
                             "add" : false
                         }
                     },
@@ -108,7 +108,7 @@
                         "props": {
                             "target": ".vulnerable",
                             "state": "vulnerability",
-                            "startTime": "2000",
+                            "startTime": "4000",
                             "duration": "1000"
                         }
                     }
@@ -157,8 +157,14 @@
                     {
                         "action": "fadeInOut",
                         "props": {
-                            "startTime" : "1500",
+                            "startTime" : "10000",
                             "duration": "2000"
+                        }
+                    },
+                    {
+                        "action": "resetGrid",
+                        "props": {
+                            "startTime" : "11000"
                         }
                     }
                 ]
