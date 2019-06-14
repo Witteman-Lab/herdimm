@@ -6,7 +6,7 @@
 </template>
 
 <script>
-    import audio from "../assets/json/audio.json";
+    import scenario from "../assets/json/scenario.json";
 
     export default {
         name: "AudioPlayer",
@@ -35,8 +35,8 @@
              */
             loadAudioFiles(type) {
                 this.language = type;
-                this.playlist = audio[type].sequences;
-                const folder = audio.folder;
+                this.playlist = scenario[type].sequences;
+                const folder = scenario.folder;
                 this.currentAudio = require(`../assets/${folder}/${type}/${this.playlist[this.audioPosition].file}`);
                 this.caption = this.playlist[this.audioPosition].caption;
             },
@@ -100,7 +100,7 @@
              */
             firstAudio() {
                 this.audioPosition = 0;
-                const folder = audio.folder;
+                const folder = scenario.folder;
                 const type = this.currentLanguage;
                 this.currentAudio = require(`../assets/${folder}/${type}/${this.playlist[this.audioPosition].file}`);
                 this.caption = this.playlist[this.audioPosition].caption;
@@ -115,7 +115,7 @@
              */
             lastAudio() {
                 this.audioPosition = this.playlist.length - 1;
-                const folder = audio.folder;
+                const folder = scenario.folder;
                 const type = this.currentLanguage;
                 this.currentAudio = require(`../assets/${folder}/${type}/${this.playlist[this.audioPosition].file}`);
                 this.caption = this.playlist[this.audioPosition].caption;
@@ -131,7 +131,7 @@
             previousAudio() {
                 if (this.audioPosition > 0) {
                     this.audioPosition--;
-                    const folder = audio.folder;
+                    const folder = scenario.folder;
                     const type = this.currentLanguage;
                     this.currentAudio = require(`../assets/${folder}/${type}/${this.playlist[this.audioPosition].file}`);
                     this.caption = this.playlist[this.audioPosition].caption;
@@ -148,13 +148,13 @@
             nextAudio() {
                 this.audioPosition++;
                 if (this.audioPosition < this.playlist.length) {
-                    const folder = audio.folder;
+                    const folder = scenario.folder;
                     const type = this.currentLanguage;
                     this.currentAudio = require(`../assets/${folder}/${type}/${this.playlist[this.audioPosition].file}`);
                     this.caption = this.playlist[this.audioPosition].caption;
                     this.playAudio();
                 } else {
-                    const folder = audio.folder;
+                    const folder = scenario.folder;
                     const type = this.currentLanguage;
                     this.audioPosition = 0;
                     this.currentAudio = require(`../assets/${folder}/${type}/${this.playlist[this.audioPosition].file}`);
