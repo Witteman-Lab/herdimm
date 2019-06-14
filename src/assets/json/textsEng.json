@@ -32,5 +32,27 @@
     "defaultCharacterName": "Person",
     "displayCaptions": "Display captions",
     "avatarName" : "Your avatar",
-    "categories" : ["You", "Vulnerable people", "People around you"]
+    "categories" : ["You", "Vulnerable people", "People around you"],
+    "vulnerableOptions": [
+      {
+        "name" : "Reason 1",
+        "defaultSelection" : true
+      },
+      {
+        "name" : "Reason 2",
+        "defaultSelection" : false
+      },
+      {
+        "name" : "Reason 3",
+        "defaultSelection" : false
+      },
+      {
+        "name" : "Reason 4",
+        "defaultSelection" : false
+      },
+      {
+        "name" : "Reason 5",
+        "defaultSelection" : false
+      }
+    ]
 }
