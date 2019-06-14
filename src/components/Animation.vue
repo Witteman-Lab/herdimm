@@ -659,9 +659,12 @@
                 this.characterList = this.group;
                 this.selectCurrentLanguage(this.labelSelected);
             } else {
-                if (localStorage.getItem("group"))
+                if (localStorage.getItem("group")) {
                     this.characterList = JSON.parse(localStorage.getItem("group"));
-                this.selectCurrentLanguage(localStorage.getItem("language"));
+                    this.selectCurrentLanguage(localStorage.getItem("language"));
+                } else {
+                    this.$router.push({name: 'Home'});
+                }
             }
 
             this.$refs.audioPlayer.loadAudioFiles(this.currentLanguage);
