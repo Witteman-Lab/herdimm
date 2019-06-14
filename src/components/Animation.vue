@@ -306,7 +306,7 @@
                     } else {
                         shapeTargets.forEach(e => e.classList.remove(props.class));
                     }
-                }, props.startTime);
+                }, parseInt(props.startTime));
             },
 
             /**
@@ -319,12 +319,12 @@
                 // Fade-in transition
                 setTimeout(() => {
                     document.body.classList.add('fade');
-                }, props.startTime);
+                }, parseInt(props.startTime));
 
                 // Fade-out transition (back to normal)
                 setTimeout(() => {
                     document.body.classList.remove('fade');
-                }, (parseInt(props.startTime) + parseInt(props.duration)).toString());
+                }, (parseInt(props.startTime) + parseInt(props.duration)));
             },
 
 
@@ -380,7 +380,7 @@
                     let variable = require("../assets/json/" + props.file);
                     setTimeout(() => {
                         this.spreadInfection(variable.connections);
-                    }, props.startTime);
+                    }, parseInt(props.startTime));
                 }
             },
 
@@ -523,7 +523,7 @@
                 this.hexColor(selector, props.target, props.state);
                 setTimeout(() => {
                     this.changeSize(selector, props.target, props.scale, props.timingFunction, props.duration);
-                }, props.startTime);
+                }, parseInt(props.startTime));
             },
 
 
@@ -539,7 +539,7 @@
                     for (var i = 0; i < shapeTargets.length; i++) {
                         shapeTargets.item(i).classList.add(props.state);
                     }
-                }, props.startTime);
+                }, parseInt(props.startTime));
             },
 
             /**
@@ -569,7 +569,7 @@
 
                         this.setCharacterTShirtColor("#"+e.id, connections.defaultShirtColor);
                     });
-                }, props.startTime);
+                }, parseInt(props.startTime));
             },
 
             /**
@@ -596,7 +596,7 @@
                     shape.style.transitionDuration = duration.toString()+"ms";
                     shape.style.transitionTimingFunction = timingFunction;
                     shape.style.transitionProperty = "transform";
-                }, duration);
+                }, parseInt(duration));
             },
 
             /**
@@ -649,7 +649,7 @@
         },
         created() {},
         mounted() {
-            window.scrollTo({ top: 0, behavior: 'smooth', x: 0, y:-document.querySelector('.container').scrollHeight});
+            window.scrollTo({ top: 0, behavior: 'smooth', x: 0});
             let styles = require('../scss/animation.scss');
 
             // Fetch the group member if it exists

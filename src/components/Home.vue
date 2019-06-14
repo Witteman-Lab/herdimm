@@ -51,7 +51,7 @@
     import textsFr from "../assets/json/textsFr.json";
     import glassesJson from "../assets/json/glasses.json";
     import facialHairJson from "../assets/json/facialHair.json";
-    import animationParameter from "../assets/json/animation_parameter.json";
+
 
     export default {
         name: "home",
@@ -87,14 +87,6 @@
                     this.$refs.modal.openModal(this.totalCreated, character, this.totalCreated,
                         charactersJson.nbVulnerable, charactersJson.nbAvatar, false, this.labels.createAvatar);
                 }
-                window.scrollTo(0,document.querySelector('.container').scrollHeight);
-                console.log("nombre total :", this.totalCreated);
-                if(this.totalCreated <9)
-                    setTimeout(() => {
-                            //window.scrollTo(0,-document.querySelector('.container').scrollHeight);
-                            window.scrollTo({ top: 0, behavior: 'smooth', x: 0, y:-document.querySelector('.container').scrollHeight})
-                        },
-                        parseInt(animationParameter.scrollingTimeControl));
             },
 
 
@@ -123,6 +115,14 @@
                 if (this.$refs.listToFill.getCharacterListSize() === this.maxCharactersInGroup) {
                     this.isGroupComplete = true;
                 }
+
+                window.scrollTo(0, document.body.scrollHeight);
+                console.log("nombre total :", this.totalCreated);
+                if(this.totalCreated <this.maxCharactersInGroup)
+                    setTimeout(() => {
+                            window.scrollTo({ top: 0, behavior: 'smooth', x: 0})
+                        },
+                        parseInt(charactersJson.scrollingTimeControl));
             },
 
             /**
