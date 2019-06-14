@@ -23,11 +23,19 @@
                                 <div class="control">
                                     <input v-on:input="setCharacterName(characterName)" class="input" v-model="characterName"  type="text" :placeholder="this.labels.nameInputPlaceHolder">
                                 </div>
-                                <div v-show="isCharacterVulnerable" v-for="(option) in options" class="control radio-list">
+                                <!-- <div v-show="isCharacterVulnerable" v-for="(option) in options" class="control radio-list">
                                     <label class="radio">
                                         <input v-on:click="setCharacterOption(option.name)" type="radio" name="option" v-bind:ref="option.name" :checked="option.defaultSelection">
                                         {{option.name}}
                                     </label>
+                                </div> -->
+
+                                <div v-show="isCharacterVulnerable" class="control">
+                                    <p></p>
+                                    <select @change="setCharacterOption($event)" v-model="optionSelected">
+                                        <option v-for="(option) in this.labels.vulnerableOptions" :value="option.name" v-bind:ref="option.name">{{option.name}}</option>
+                                    </select>
+                                    <!-- {{this.labels.vulnerableOptions}} -->
                                 </div>
                             </div>
 
@@ -67,25 +75,27 @@
 
                                 <!-- Skin color -->
                                 <div id="skinColorSelect" class="content-tab">
-                                    <Compact :value="this.currentColorFace" @input="this.changeFaceColor"
-                                             :palette="['#FFE2C9', '#FFCBA3', '#E7B38D', '#D8905F', '#7C5235']"/>
+                                    <Compact
+                                        :value="this.currentColorFace"
+                                        @input="this.changeFaceColor"
+                                        :palette="['#FFE2C9', '#FFCBA3', '#E7B38D', '#D8905F', '#7C5235']"/>
                                 </div>
 
                                 <!-- Hair color -->
                                 <div id="hairColorSelect" class="content-tab" v-if="this.hasHair" >
                                     <Compact
-                                            :value="this.currentColorHair"
-                                            @input="this.changeHairColor"
-                                            :palette="[
-                                        '#090806', '#2C222B', '#71635A',
-                                        '#B7A69E', '#D6C4C2', '#CABFB1',
-                                        '#DCD0BA', '#FFF5E1', '#E6CEA8',
-                                        '#E5C8A8', '#DEBC99', '#B89778',
-                                        '#A56B46', '#B55239', '#8D4A43',
-                                        '#91553D', '#533D32', '#3B3024',
-                                        '#554838', '#4E433F', '#504444',
-                                        '#6A4E42', '#A7856A', '#977961'
-                                    ]"/>
+                                        :value="this.currentColorHair"
+                                        @input="this.changeHairColor"
+                                        :palette="[
+                                            '#090806', '#2C222B', '#71635A',
+                                            '#B7A69E', '#D6C4C2', '#CABFB1',
+                                            '#DCD0BA', '#FFF5E1', '#E6CEA8',
+                                            '#E5C8A8', '#DEBC99', '#B89778',
+                                            '#A56B46', '#B55239', '#8D4A43',
+                                            '#91553D', '#533D32', '#3B3024',
+                                            '#554838', '#4E433F', '#504444',
+                                            '#6A4E42', '#A7856A', '#977961'
+                                        ]"/>
                                 </div>
 
                                 <!-- Glasses -->
@@ -124,7 +134,7 @@
 <script>
     import Character from "../components/Character.vue"
     import { Compact }  from "vue-color";
-    import characterOptions from "../assets/json/characterOptions.json";
+    // import characterOptions from "../assets/json/characterOptions.json";
 
     export default {
         name: "Modal",
@@ -166,6 +176,7 @@
                 avatarNbr: 0,
                 vulnerableNbr: 0,
                 options: [],
+                optionSelected: "",
             }
         },
         props: {
@@ -173,6 +184,7 @@
             glassesListJson: Array,
             facialHairListJson: Array,
             totalCharactersCount: Number,
+            vulnerableOptions: Array
         },
         methods: {
             /***
@@ -201,11 +213,12 @@
 
                 this.isActive = true;
                 this.isEdit = isEdit;
-                this.isEdit ? this.currentCharacterNumber = index : this.currentCharacterNumber = totalCreated;
+                // this.isEdit ? this.currentCharacterNumber = index : this.currentCharacterNumber = totalCreated;
+                this.currentCharacterNumber = totalCreated;
                 this.avatarNbr = nbrAvatar;
                 this.vulnerableNbr = nbrVulnerable;
                 this.isCharacterVulnerable = this.checkCharacterVulnerable();
-                this.resetRadioButtons();
+                //this.resetVulnerableOption();
                 this.setCharacterColors(isEdit, character, totalCreated < nbrAvatar);
                 // Display the skin tab content when opening modal window
                 this.openTab("skinColorTab", "skinColorSelect");
@@ -226,7 +239,7 @@
                     this.currentBeard = character.colors.beards;
                     this.currentShirt = character.colors.shirt;
                     this.characterName = character.colors.name;
-                    this.setRadioButton(character.colors.option);
+                    this.setVulnerableOption(character.colors.option);
                 } else {
                     // Avatar gets a special shirt
                     isAvatar ? this.currentShirt = "#F67844" : this.currentShirt = "#BFBABE";
@@ -251,8 +264,9 @@
              * @param {String} name
              * @return none
              */
-            setCharacterOption(name) {
-                this.$refs.character.setCharacterOption(name);
+            setCharacterOption(evt) {
+                //console.log("evt.target.value", evt.target.value);
+                this.$refs.character.setCharacterOption(evt.target.value);
             },
 
             /**
@@ -355,7 +369,7 @@
                 this.$refs.character.changeHairColor(this.currentColorHair);
                 this.$refs.character.changeGlasses(-1);
                 this.$refs.character.changeBeard(-1);
-                this.resetRadioButtons();
+                //this.resetVulnerableOption();
             },
 
             /***
@@ -363,11 +377,11 @@
              * @param none
              * @return none
              **/
-            resetRadioButtons() {
+            resetVulnerableOption() {
                 if (this.isCharacterVulnerable) {
                     this.options.map((option) => {
                         if (option.defaultSelection) {
-                            this.$refs[option.name][0].checked = true;
+                            //this.$refs[option.name][0].checked = true;
                             this.currentOption = option.name;
                         }
                     });
@@ -379,10 +393,10 @@
              * @param {String} name
              * @return none
              **/
-            setRadioButton(name) {
+            setVulnerableOption(name) {
                 this.options.map((option) => {
                     if (option.name === name) {
-                        this.$refs[option.name][0].checked = true;
+                        //this.$refs[option.name][0].checked = true;
                         this.currentOption = option.name;
                     }
                 });
@@ -459,7 +473,8 @@
             },
         },
         mounted() {
-            this.options = characterOptions.options;
+            // this.options = characterOptions.options;
+            this.options = this.labels.vulnerableOptions;
             document.body.addEventListener('keyup', e => {
                 // Escape key to close the modal window (customizer)
                 if (e.keyCode === 27 && this.isActive) {
@@ -499,21 +514,6 @@
     .tab ul li{
         /*display: inline;*/
     }
-    /*@media (max-width: 720px) {*/
-    /*.tabs {*/
-    /*flex-direction: column;*/
-    /*}*/
-    /*}*/
-    /*.tabs {*/
-    /*display:inline-flex;*/
-    /*justify-content: center;*/
-    /*flex-wrap: wrap;*/
-    /*}*/
-
-    /*.tab{*/
-    /*flex-grow: 1;*/
-    /*vertical-align: top;*/
-    /*}*/
     ul {
         display: flex;
         flex-direction: row;
