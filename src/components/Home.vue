@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <!-- MODAL WINDOW -->
-        <Modal ref="modal" :total-characters-count="maxCharactersInGroup" :glasses-list-json="glassesListJson" :facial-hair-list-json="facialHairList" :labels="labels"/>
+        <Modal ref="modal" :skin-colors="skinColors" :hair-colors="hairColors" :total-characters-count="maxCharactersInGroup" :glasses-list-json="glassesListJson" :facial-hair-list-json="facialHairList" :labels="labels"/>
         <!-- INTERFACE -->
         <div class="is-centered is-half-desktop is-half-mobile">
             <h1>{{this.labels.pageTitle}}</h1>
@@ -72,7 +72,9 @@
                 maxCharactersInGroup: 0,
                 facialHairList: [],
                 glassesListJson: [],
-                texts: ''
+                texts: '',
+                skinColors: [],
+                hairColors: []
             };
         },
         props: {},
@@ -208,6 +210,8 @@
             this.contextualInfo = this.labels.contextualInfoAvatar;
             this.facialHairList = facialHairJson.beards;
             this.glassesListJson = glassesJson.glasses;
+            this.skinColors = charactersJson.skinColors;
+            this.hairColors = charactersJson.hairColors;
         }
     }
 </script>
