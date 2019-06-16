@@ -2,10 +2,10 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faPlay, faPause, faStepForward, faStepBackward, faFastBackward, faFastForward } from '@fortawesome/free-solid-svg-icons'
+import { faPlay, faPause, faStepForward, faStepBackward, faFastBackward, faFastForward, faAngleDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faPlay, faPause, faStepForward, faStepBackward, faFastBackward, faFastForward);
+library.add(faPlay, faPause, faStepForward, faStepBackward, faFastBackward, faFastForward, faAngleDown);
 
 //Vue.config.productionTip = false;
 require("./scss/main.scss");

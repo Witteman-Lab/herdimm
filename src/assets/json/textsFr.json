@@ -33,6 +33,7 @@
     "displayCaptions" : "Afficher les sous-titres",
     "avatarName" : "Votre avatar",
     "categories" : ["Vous", "Personnes vulnerables", "Personnes autour de vous"],
+    "reason" : "Raisons",
     "vulnerableOptions": [
       {
         "name" : "Raison 1",

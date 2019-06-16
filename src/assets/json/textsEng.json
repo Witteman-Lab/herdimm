@@ -33,6 +33,7 @@
     "displayCaptions": "Display captions",
     "avatarName" : "Your avatar",
     "categories" : ["You", "Vulnerable people", "People around you"],
+    "reason" : "Reasons",
     "vulnerableOptions": [
       {
         "name" : "Reason 1",
