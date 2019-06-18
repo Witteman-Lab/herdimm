@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-
+        <meta name="viewport" content="width=device-width, user-scalable=no">
         <!-- Audio player for audio files -->
         <AudioPlayer :current-language="currentLanguage" ref="audioPlayer"></AudioPlayer>
         <!-- <div id="captions">
