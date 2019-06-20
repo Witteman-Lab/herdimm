@@ -739,30 +739,4 @@
         /* transform: translate(-50%); */
     }
 
-    @media screen and (max-width: 720px) and (orientation: landscape) {
-        .hexagon-container {
-            /*margin-top: 0;*/
-            /*transform: translate(100%);*/
-            /*width:100vw;*/
-            height:auto;
-            margin: 0 auto;
-        }
-    }
 </style>
-<!-- @media screen and (orientation: portrait){
-        .hexagon-container {
-            margin: 0;
-            width: auto;
-            /* width: 100vw; */
-            height: 100vh;
-        }
-    }
-
-    @media screen and (orientation: landscape) {
-        .hexagon-container {
-            margin: 0;
-            width: auto;
-            /* width: 100vw; */
-            height: 100vh;
-        }
-    }-->
