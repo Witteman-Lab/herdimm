@@ -1,6 +1,7 @@
-//$hex-height: 1px;
-//$hex-height: 6.5vw;
-$hex-height: 6.5vh;
+
+$hex-height: 4vmax;
+
+//$hex-height: 6.5vh; // à conserver
 
 :export {
   hexagon-height: calc(#{$hex-height} - ((#{$hex-height} / 10) * 2));
@@ -272,7 +273,7 @@ div#copy1 .barrier::before {
 
 
 @media only screen  and (orientation: portrait){
-  //$hex-height: 6.5vw;
+  $hex-height: 6.5vw;
   :export {
     hexagon-height: calc(#{$hex-height} - ((#{$hex-height} / 10) * 2));
     character-bottom-margin: calc(#{$hex-height} / 10);
