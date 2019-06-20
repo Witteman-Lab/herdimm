@@ -252,7 +252,7 @@ div#copy1 .barrier::before {
 
 @media only screen  and (orientation: landscape){
 
-  $hex-height: 6.5vh;
+  $hex-height: 3.3vw;
 
   :export {
     hexagon-height: calc(#{$hex-height} - ((#{$hex-height} / 10) * 2));
@@ -268,6 +268,8 @@ div#copy1 .barrier::before {
     --hex-transition: all 2s ease;
   }
 }
+
+
 
 @media only screen  and (orientation: portrait){
   $hex-height: 6.5vw;
