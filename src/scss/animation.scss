@@ -1,6 +1,6 @@
-$hex-height: 6.5vw;
-//$hex-height: 6.5vh;
-
+//$hex-height: 1px;
+//$hex-height: 6.5vw;
+$hex-height: 6.5vh;
 
 :export {
   hexagon-height: calc(#{$hex-height} - ((#{$hex-height} / 10) * 2));
@@ -251,9 +251,7 @@ div#copy1 .barrier::before {
 
 
 @media only screen  and (orientation: landscape){
-
-  $hex-height: 3.3vw;
-
+  $hex-height: 6.5vh;
   :export {
     hexagon-height: calc(#{$hex-height} - ((#{$hex-height} / 10) * 2));
     character-bottom-margin: calc(#{$hex-height} / 10);
@@ -271,9 +269,10 @@ div#copy1 .barrier::before {
 
 
 
-@media only screen  and (orientation: portrait){
-  $hex-height: 6.5vw;
 
+
+@media only screen  and (orientation: portrait){
+  //$hex-height: 6.5vw;
   :export {
     hexagon-height: calc(#{$hex-height} - ((#{$hex-height} / 10) * 2));
     character-bottom-margin: calc(#{$hex-height} / 10);
@@ -287,5 +286,4 @@ div#copy1 .barrier::before {
     --hex-border: calc(var(--hex-margin) / 1.73);   /* 1.73 = sqrt(3) */
     --hex-transition: all 2s ease;
   }
-
 }
