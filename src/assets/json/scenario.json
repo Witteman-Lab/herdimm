@@ -10,10 +10,19 @@
                 ],
                 "actions" : [
                     {
+                        "action": "vaccination",
+                        "props": {
+                            "state": "vaccinated",
+                            "startTime" : "2000",
+                            "file": "vaccineCoverage94.json",
+                            "duration" : "100"
+                        }
+                    },
+                    {
                         "action": "parseSpreadInfection",
                         "props": {
                             "file": ["pertussis.json", "flu.json", "measles.json"],
-                            "startTime": "500"
+                            "startTime": "900000"
                         }
                     },
 
@@ -24,7 +33,7 @@
                             "duration" : "2000",
                             "transformOrigin_X" : "25",
                             "transformOrigin_Y": "30",
-                            "startTime" : "500",
+                            "startTime" : "9000",
                             "timingFunction": "linear"
                         }
                     }

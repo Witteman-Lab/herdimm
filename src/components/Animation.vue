@@ -54,6 +54,7 @@
     import textsFr from "../assets/json/textsFr.json";
 
     import connections from "../assets/json/connections.json";
+    import vaccineCoverage94 from "../assets/json/vaccineCoverage94.json";
 
 
     export default {
@@ -604,9 +605,18 @@
              * @param none
              * @return none
              */
-            vaccination(){
-                //console.log(" Execution of vaccination function");
-                //this.setCharacterTShirtColor(target, connections.vaccinatedShirtColor);
+            vaccination(props){
+                const selector = '#main-container #';
+                let value = 0;
+                let file = require("../assets/json/" + props.file);
+                let coverage = file.coverage;
+                let vaccineCoverage = setInterval( ()=> {
+                    this.hexColor(selector, coverage[value++], props.state);
+                    if (value === coverage.length) {
+                        clearInterval(vaccineCoverage);
+                    }
+                }, props.duration);
+
             },
 
             /**
@@ -651,6 +661,8 @@
         mounted() {
             window.scrollTo({ top: 0, behavior: 'smooth', x: 0});
             let styles = require('../scss/animation.scss');
+
+            //this.vaccination();
 
             // Fetch the group member if it exists
             if (this.group) {
@@ -703,7 +715,7 @@
 </script>
 
 <style scoped>
-    .hexagon-container, .copy, #draw, #connections {
+    .hexagon-container, #draw, #connections {
         margin: 0;
         width: 100%;
         height: 100vh;
