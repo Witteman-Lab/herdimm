@@ -278,8 +278,8 @@
              * @return none
              */
             zoom(props) {
-               // const targets = document.querySelectorAll('.hexagon-container, #columns');
-                const targets = document.querySelectorAll('.hexagon-container, #draw');
+               const targets = document.querySelectorAll('.hexagon-container');
+               //const targets = document.querySelectorAll('.hexagon-container, #draw');
                 setTimeout(() => {
                     targets.forEach((e) => {
                         e.style.transform = "scale("+props.scale.toString()+","+props.scale.toString()+")";
@@ -394,21 +394,21 @@
              * @return none
              */
             removeLine(){
-                setTimeout(() => {
-                    let nodeListLine = document.querySelectorAll("line");
-                    let delay = parseInt(connections.removelineDuration);
-                    let duration = (delay/1000).toString()+"s";
-                    nodeListLine.forEach(e => {
-                        e.style.strokeOpacity = "0";
-                        e.style.transition = "opacity";
-                        e.style.transitionDuration = duration;
-                        e.style.transitionProperty = "all";
-                        setTimeout(()=> {
-                            e.parentNode.removeChild(e);
-                        }, delay)
-                    });
-
-                }, parseInt(connections.delayCallRemoveline));
+                // setTimeout(() => {
+                //     let nodeListLine = document.querySelectorAll("line");
+                //     let delay = parseInt(connections.removelineDuration);
+                //     let duration = (delay/1000).toString()+"s";
+                //     nodeListLine.forEach(e => {
+                //         e.style.strokeOpacity = "0";
+                //         e.style.transition = "opacity";
+                //         e.style.transitionDuration = duration;
+                //         e.style.transitionProperty = "all";
+                //         setTimeout(()=> {
+                //             e.parentNode.removeChild(e);
+                //         }, delay)
+                //     });
+                //
+                // }, parseInt(connections.delayCallRemoveline));
             },
 
 
