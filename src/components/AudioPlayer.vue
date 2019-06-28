@@ -7,6 +7,7 @@
 
 <script>
     import scenario from "../assets/json/scenario.json";
+    //import scenario from "../assets/json/SupFile.json";
 
     export default {
         name: "AudioPlayer",

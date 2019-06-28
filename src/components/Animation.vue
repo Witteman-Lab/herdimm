@@ -278,6 +278,7 @@
              * @return none
              */
             zoom(props) {
+               // const targets = document.querySelectorAll('.hexagon-container, #columns');
                 const targets = document.querySelectorAll('.hexagon-container, #draw');
                 setTimeout(() => {
                     targets.forEach((e) => {
@@ -653,6 +654,22 @@
                 lineObj.setAttributeNS(null, 'y2',  targetBCR.y + targetBCR.height/divider);
                 lineObj.setAttributeNS(null, "stroke", colorStroke);
                 lineObj.setAttributeNS(null, "stroke-width", width);
+
+
+
+
+               // lineObj.setAttributeNS(null, 'borderColor', "#E83EFF");
+               // lineObj.setAttributeNS(null, 'borderStyle', "solid");
+
+                //lineObj.setAttributeNS(null, "transformOrigin_X", "25");
+                //lineObj.setAttributeNS(null, "transformOrigin_Y", "30");
+                //lineObj.setAttributeNS(null, "transform", "scale(1,1)");
+                //lineObj.setAttributeNodeNS(null, "scalex", 3);
+
+
+
+
+
 
                 return lineObj;
             }

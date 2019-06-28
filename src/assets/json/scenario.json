@@ -10,30 +10,13 @@
                 ],
                 "actions" : [
                     {
-                        "action": "vaccination",
-                        "props": {
-                            "state": "vaccinated",
-                            "startTime" : "2000",
-                            "file": "vaccineCoverage94.json",
-                            "duration" : "100"
-                        }
-                    },
-                    {
-                        "action": "parseSpreadInfection",
-                        "props": {
-                            "file": ["pertussis.json", "flu.json", "measles.json"],
-                            "startTime": "900000"
-                        }
-                    },
-
-                    {
                         "action": "zoom",
                         "props": {
-                            "scale" : "1",
-                            "duration" : "2000",
+                            "scale" : "3",
+                            "duration" : "1000",
                             "transformOrigin_X" : "25",
                             "transformOrigin_Y": "30",
-                            "startTime" : "9000",
+                            "startTime" : "500",
                             "timingFunction": "linear"
                         }
                     }
@@ -76,11 +59,11 @@
                     {
                         "action": "zoom",
                         "props": {
-                            "scale" : "1",
+                            "scale" : "2",
                             "duration" : "1000",
                             "transformOrigin_X" : "25",
                             "transformOrigin_Y": "30",
-                            "startTime" : "1000",
+                            "startTime" : "100",
                             "timingFunction": "linear"
                         }
                     }
@@ -200,6 +183,9 @@
                     {
                         "action": "vaccination",
                         "props": {
+                            "file" : "vaccineCoverage94.json",
+                            "duration": "30",
+                            "state": "vaccinated"
 
                         }
                     },
@@ -210,7 +196,7 @@
                             "scale": "1.2",
                             "state": "infected",
                             "timingFunction": "linear",
-                            "startTime" : "6500",
+                            "startTime" : "8000",
                             "duration" : "250"
                         }
                     },
