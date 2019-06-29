@@ -4,9 +4,9 @@
         <div v-for="(character) in this.characterList" :key="character.id">
             <Character :size="{width: '74px', height: '80px'}" :customised="true" :edit="true" ref="character"
                        :id="character.id" :svgFile="require(`../assets/characters/${character.file}`)"
-            :colors="{face: defaultCharacterColors.defaultSkinColor,
-                      hairFront: defaultCharacterColors.defaultHairColor,
-                      shirt: defaultCharacterColors.defaultSkinColorCharacters}"/>
+            :colors="{face: defaultCharacterColors.SkinColor,
+                      hairFront: defaultCharacterColors.HairColor,
+                      shirt: defaultCharacterColors.ShirtColorCharacters}"/>
         </div>
     </div>
 </template>

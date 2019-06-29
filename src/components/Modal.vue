@@ -247,10 +247,10 @@
                     this.setVulnerableOption(character.colors.option);
                 } else {
                     // Avatar gets a special shirt
-                    isAvatar ? this.currentShirt = this.defaultCharacterColors.defaultShirtColorAvatar  :
-                        this.currentShirt = this.defaultCharacterColors.defaultSkinColorCharacters;
-                    this.currentColorFace = this.defaultCharacterColors.defaultSkinColor;
-                    this.currentColorHair = this.defaultCharacterColors.defaultHairColor;
+                    isAvatar ? this.currentShirt = this.defaultCharacterColors.ShirtColorAvatar  :
+                        this.currentShirt = this.defaultCharacterColors.ShirtColorCharacters;
+                    this.currentColorFace = this.defaultCharacterColors.SkinColor;
+                    this.currentColorHair = this.defaultCharacterColors.HairColor;
                     this.currentGlasses = -1;
                     this.currentBeard = -1;
                 }

@@ -2,10 +2,12 @@
     "nbAvatar" : 1,
     "nbVulnerable" : 2,
     "nbCommunity" : 6,
-    "defaultHairColor": "#A56B46",
-    "defaultSkinColor": "#E7B38D",
-    "defaultShirtColorAvatar": "#F67844",
-    "defaultSkinColorCharacters": "#BFBABE",
+    "defaultColors" : {
+      "HairColor": "#A56B46",
+      "SkinColor": "#E7B38D",
+      "ShirtColorAvatar": "#F67844",
+      "ShirtColorCharacters": "#BFBABE"
+    },
     "scrollingTimeControl" : "2000",
     "folder" : "characters",
     "skinColors" : ["#FFE2C9", "#FFCBA3", "#E7B38D", "#D8905F", "#7C5235"],

@@ -120,7 +120,6 @@
                 }
 
                 window.scrollTo(0, document.body.scrollHeight);
-                console.log("nombre total :", this.totalCreated);
                 if(this.totalCreated <this.maxCharactersInGroup)
                     setTimeout(() => {
                             window.scrollTo({ top: 0, behavior: 'smooth', x: 0})
@@ -196,19 +195,6 @@
                 this.manageCharacterCount();
                 this.$forceUpdate();
             },
-
-            /**
-             * ---> Set default characters color for Modal and CharacterList props
-             * @param {Object} charactersInfo
-             * @return none
-             */
-            setDefaultCharacterColors(charactersInfo) {
-                this.defaultCharacterColors.defaultHairColor = (charactersInfo.defaultHairColor);
-                this.defaultCharacterColors.defaultSkinColor = (charactersInfo.defaultSkinColor);
-                this.defaultCharacterColors.defaultShirtColorAvatar = (charactersInfo.defaultShirtColorAvatar);
-                this.defaultCharacterColors.defaultSkinColorCharacters = (charactersInfo.defaultSkinColorCharacters);
-            },
-
         },
 
         /**
@@ -225,7 +211,7 @@
             this.glassesListJson = glassesJson.glasses;
             this.skinColors = charactersJson.skinColors;
             this.hairColors = charactersJson.hairColors;
-            this.setDefaultCharacterColors(charactersJson)
+            this.defaultCharacterColors = charactersJson.defaultColors;
         }
     }
 </script>
