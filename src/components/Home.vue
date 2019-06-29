@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <!-- MODAL WINDOW -->
-        <Modal ref="modal" :skin-colors="skinColors" :hair-colors="hairColors" :total-characters-count="maxCharactersInGroup" :glasses-list-json="glassesListJson" :facial-hair-list-json="facialHairList" :labels="labels"/>
+        <Modal ref="modal" :defaultCharacterColors="defaultCharacterColors" :skin-colors="skinColors" :hair-colors="hairColors" :total-characters-count="maxCharactersInGroup" :glasses-list-json="glassesListJson" :facial-hair-list-json="facialHairList" :labels="labels"/>
         <!-- INTERFACE -->
         <div class="is-centered is-half-desktop is-half-mobile">
             <h1>{{this.labels.pageTitle}}</h1>
@@ -15,8 +15,8 @@
                 <div style="width: 100%; margin: 12px;">
                     <!-- Not sure if it should be displayed here or in the CharacterList.vue -->
                     <!-- <progress v-if="!isCharactersListLoaded" class="progress is-large is-info" max="100"></progress> -->
-                    <div style="cursor: pointer; width: 100%">
-                        <CharacterList ref="listAvailable" :characters="this.characterList"></CharacterList>
+                    <div style="width: 100%">
+                        <CharacterList :defaultCharacterColors="defaultCharacterColors" ref="listAvailable" :characters="this.characterList"></CharacterList>
                     </div>
                 </div>
             </div>
@@ -74,7 +74,8 @@
                 glassesListJson: [],
                 texts: '',
                 skinColors: [],
-                hairColors: []
+                hairColors: [],
+                defaultCharacterColors: {}
             };
         },
         props: {},
@@ -159,7 +160,6 @@
              * @return none
              */
             loadAnimationView() {
-
                 let groupCharacter = this.$refs.listToFill.getCharacterList();
                 this.$router.push({name: 'Animation', params:{group: groupCharacter, labelSelected: this.labels.currentLanguage}});
 
@@ -196,6 +196,19 @@
                 this.manageCharacterCount();
                 this.$forceUpdate();
             },
+
+            /**
+             * ---> Set default characters color for Modal and CharacterList props
+             * @param {Object} charactersInfo
+             * @return none
+             */
+            setDefaultCharacterColors(charactersInfo) {
+                this.defaultCharacterColors.defaultHairColor = (charactersInfo.defaultHairColor);
+                this.defaultCharacterColors.defaultSkinColor = (charactersInfo.defaultSkinColor);
+                this.defaultCharacterColors.defaultShirtColorAvatar = (charactersInfo.defaultShirtColorAvatar);
+                this.defaultCharacterColors.defaultSkinColorCharacters = (charactersInfo.defaultSkinColorCharacters);
+            },
+
         },
 
         /**
@@ -212,6 +225,7 @@
             this.glassesListJson = glassesJson.glasses;
             this.skinColors = charactersJson.skinColors;
             this.hairColors = charactersJson.hairColors;
+            this.setDefaultCharacterColors(charactersJson)
         }
     }
 </script>
