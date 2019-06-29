@@ -10,17 +10,6 @@
         ],
         "actions": [
           {
-            "action": "zoom",
-            "props": {
-              "scale": "2",
-              "duration": "1000",
-              "transformOrigin_X": "25",
-              "transformOrigin_Y": "30",
-              "startTime": "500",
-              "timingFunction": "linear"
-            }
-          },
-          {
             "action": "parseSpreadInfection",
             "props": {
               "file": [
@@ -28,7 +17,13 @@
                 "flu.json",
                 "measles.json"
               ],
-              "startTime": "2000"
+              "startTime": "1000"
+            }
+          },
+          {
+            "action": "resetGrid",
+            "props": {
+              "startTime" : "11000"
             }
           }
         ]

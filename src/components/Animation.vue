@@ -394,21 +394,21 @@
              * @return none
              */
             removeLine(){
-                // setTimeout(() => {
-                //     let nodeListLine = document.querySelectorAll("line");
-                //     let delay = parseInt(connections.removelineDuration);
-                //     let duration = (delay/1000).toString()+"s";
-                //     nodeListLine.forEach(e => {
-                //         e.style.strokeOpacity = "0";
-                //         e.style.transition = "opacity";
-                //         e.style.transitionDuration = duration;
-                //         e.style.transitionProperty = "all";
-                //         setTimeout(()=> {
-                //             e.parentNode.removeChild(e);
-                //         }, delay)
-                //     });
-                //
-                // }, parseInt(connections.delayCallRemoveline));
+                setTimeout(() => {
+                    let nodeListLine = document.querySelectorAll("line");
+                    let delay = parseInt(connections.removelineDuration);
+                    let duration = (delay/1000).toString()+"s";
+                    nodeListLine.forEach(e => {
+                        e.style.strokeOpacity = "0";
+                        e.style.transition = "opacity";
+                        e.style.transitionDuration = duration;
+                        e.style.transitionProperty = "all";
+                        setTimeout(()=> {
+                            e.parentNode.removeChild(e);
+                        }, delay)
+                    });
+
+                }, parseInt(connections.delayCallRemoveline));
             },
 
 
@@ -561,18 +561,20 @@
              * @return none
              */
             resetGrid(props) {
-                //const selector = '#main-container ';
-                const shapes = document.querySelectorAll(".hexagon");
-
+                //let shapes =  document.querySelectorAll(".hexagon-container");
+                let shapes =  document.querySelectorAll("#main-container");
                 setTimeout(() => {
                     shapes.forEach((e) => {
-                        e.classList.remove("infected");
-                        e.classList.remove("vaccinated");
-
-                        this.setCharacterTShirtColor("#"+e.id, connections.defaultShirtColor);
+                       (e.childNodes).forEach((value) =>
+                       {
+                           ((((value).childNodes))[0]).classList.remove("infected");
+                           ((((value).childNodes))[0]).classList.remove("vaccinated");
+                           ((((value).childNodes))[0]).classList.remove("comm");
+                       });
                     });
                 }, parseInt(props.startTime));
             },
+
 
             /**
              * ---> Change the size of the shape (target)

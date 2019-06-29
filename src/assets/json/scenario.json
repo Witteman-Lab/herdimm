@@ -154,10 +154,10 @@
                         }
                     },
                     {
-                        "action": "resetGrid",
-                        "props": {
-                            "startTime" : "11000"
-                        }
+                      "action": "resetGrid",
+                      "props": {
+                        "startTime" : "12000"
+                      }
                     }
                 ]
             },
