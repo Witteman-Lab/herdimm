@@ -23,7 +23,7 @@
           {
             "action": "resetGrid",
             "props": {
-              "startTime" : "11000"
+              "startTime" : "11900"
             }
           }
         ]

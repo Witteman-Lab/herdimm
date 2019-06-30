@@ -4,6 +4,7 @@
 	"linecolor" : "#B0102C",
 	"linewidth" : "5",
     "defaultShirtColor" : "#BFBABE",
+    "secondDefaultShirtColor": "#F67844",
     "vulnerableShirtColor" : "#FFFAB0",
     "infectedShirtColor" : "#B0102C",
     "vaccinatedShirtColor" : "#3C83B7",

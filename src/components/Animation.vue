@@ -222,10 +222,12 @@
              * @param {String} color
              * @return none
              */
-            setCharacterTShirtColor(shapeId, color) {
+            setCharacterTShirtColor(shapeId, color, opacity) {
                 // TO-DO: try different proportion
-                let darkerColor = this.$refs[shapeId][0].getDarkerShade(color, 0.8);
-                this.$refs[shapeId][0].changeShirtColor(darkerColor, 0.8);
+                // let darkerColor = this.$refs[shapeId][0].getDarkerShade(color, 0.8);
+                // this.$refs[shapeId][0].changeShirtColor(darkerColor, 0.8);
+                let darkerColor = this.$refs[shapeId][0].getDarkerShade(color, opacity);
+                this.$refs[shapeId][0].changeShirtColor(darkerColor, opacity);
             },
 
             /**
@@ -475,7 +477,7 @@
                         this.hexColor(selector, source, state);
                         if(this.avatarChecking(source) === true)
                         {
-                            this.setCharacterTShirtColor(source, connections.infectedShirtColor);
+                            this.setCharacterTShirtColor(source, connections.infectedShirtColor, 0.8);
                         }
                     });
                     // When the animation ends, check if there is a next target
@@ -489,7 +491,7 @@
                             this.hexColor(selector, target, state);
                             if(this.avatarChecking(target) === true)
                             {
-                                this.setCharacterTShirtColor(target, connections.infectedShirtColor);
+                                this.setCharacterTShirtColor(target, connections.infectedShirtColor, 0.8);
                             }
                         }
                     });
@@ -565,12 +567,24 @@
                 let shapes =  document.querySelectorAll("#main-container");
                 setTimeout(() => {
                     shapes.forEach((e) => {
-                       (e.childNodes).forEach((value) =>
-                       {
-                           ((((value).childNodes))[0]).classList.remove("infected");
-                           ((((value).childNodes))[0]).classList.remove("vaccinated");
-                           ((((value).childNodes))[0]).classList.remove("comm");
-                       });
+                        (e.childNodes).forEach((value) =>
+                        {
+                            ((((value).childNodes))[0]).classList.remove("infected");
+                            ((((value).childNodes))[0]).classList.remove("vaccinated");
+                            //((((value).childNodes))[0]).classList.remove("comm");
+                            //((((value).childNodes))[0]).classList.remove("vulnerable");
+                            let id_shape = ((((value).childNodes))[0]).id;
+                            if (id_shape != ""){
+                                if(this.avatarChecking(id_shape)){
+                                    if(id_shape != "shape_50"){
+                                        this.setCharacterTShirtColor(id_shape, connections.defaultShirtColor, 0.9);
+                                    }
+                                    else{
+                                        this.setCharacterTShirtColor(id_shape, connections.secondDefaultShirtColor, 0.9);
+                                    }
+                                }
+                            }
+                        });
                     });
                 }, parseInt(props.startTime));
             },
