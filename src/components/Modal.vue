@@ -180,7 +180,8 @@
             totalCharactersCount: Number,
             vulnerableOptions: Array,
             skinColors: Array,
-            hairColors: Array
+            hairColors: Array,
+            defaultCharacterColors: Object
         },
         methods: {
             /***
@@ -246,9 +247,10 @@
                     this.setVulnerableOption(character.colors.option);
                 } else {
                     // Avatar gets a special shirt
-                    isAvatar ? this.currentShirt = "#F67844" : this.currentShirt = "#BFBABE";
-                    this.currentColorFace = "#7C5235";
-                    this.currentColorHair = "#412308";
+                    isAvatar ? this.currentShirt = this.defaultCharacterColors.ShirtColorAvatar  :
+                        this.currentShirt = this.defaultCharacterColors.ShirtColorCharacters;
+                    this.currentColorFace = this.defaultCharacterColors.SkinColor;
+                    this.currentColorHair = this.defaultCharacterColors.HairColor;
                     this.currentGlasses = -1;
                     this.currentBeard = -1;
                 }
