@@ -1,5 +1,5 @@
 <template>
-    <div class="modal" v-bind:class="{'is-active': isActive }">
+    <div  class="modal" v-bind:class="{'is-active': isActive }">
         <div class="modal-background">
             <div class="modal-card mobile-modal">
                 <header class="modal-card-head">
@@ -92,18 +92,18 @@
                                 </div>
 
                                 <!-- Glasses -->
-                                <div id="glassesSelect" class="content-tab buttons" v-if="this.hasGlasses">
+                                <div id="glassesSelect" style="justify-content: center;" class="content-tab buttons" v-if="this.hasGlasses">
                                     <ul>
-                                        <li class="accessoriesList button" style="height: 15%; width: 15%;" v-on:click="selectGlasses(-1)">None</li>
-                                        <li class="accessoriesList button" v-for="(glasses, index) in glassesListJson" v-on:click="selectGlasses(index)" v-html="require(`../assets/glasses/${glasses.file}`)"></li>
+                                        <li class="accessoriesList button" style="overflow: hidden" v-on:click="selectGlasses(-1)">None</li>
+                                        <li class="accessoriesList button" style="overflow: hidden" v-for="(glasses, index) in glassesListJson" v-on:click="selectGlasses(index)" v-html="require(`../assets/glasses/${glasses.file}`)"></li>
                                     </ul>
                                 </div>
 
                                 <!-- Facial hair -->
-                                <div id="facialHairSelect" class="content-tab buttons" v-if="this.hasFacialHair">
+                                <div id="facialHairSelect" style="justify-content: center;" class="content-tab buttons" v-if="this.hasFacialHair">
                                     <ul>
-                                        <li class="accessoriesList button" style="height: 15%; width: 15%;" v-on:click="selectBeards(-1)">None</li>
-                                        <li class="accessoriesList button facialHairList" v-for="(beard, index) in facialHairListJson" v-html="require(`../assets/facialHair/${beard.file}`)" v-on:click="selectBeards(index)"></li>
+                                        <li class="accessoriesList button" style="overflow: hidden" v-on:click="selectBeards(-1)">None</li>
+                                        <li class="accessoriesList button facialHairList"  style="overflow: hidden" v-for="(beard, index) in facialHairListJson" v-html="require(`../assets/facialHair/${beard.file}`)" v-on:click="selectBeards(index)"></li>
                                     </ul>
                                 </div>
 
@@ -370,8 +370,8 @@
              * @return none
              */
             resetDefault() {
-                this.currentColorFace = "#7C5235";
-                this.currentColorHair = "#412308";
+                this.currentColorFace = this.defaultCharacterColors.SkinColor;
+                this.currentColorHair = this.defaultCharacterColors.HairColor;
                 this.currentOption = '';
                 this.$refs.character.resetFaceColor();
                 this.$refs.character.changeFaceColor(this.currentColorFace);
@@ -494,7 +494,9 @@
     li.accessoriesList {
         display: inline-block;
         margin: 0 auto;
-        min-width: 100px;
+        min-width: 115px;
+        margin-right: auto !important;
+        margin-bottom: 10px;
     }
     .mobile-modal {
         margin-top: calc(20vh - 40px);
