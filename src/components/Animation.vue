@@ -52,9 +52,8 @@
     import shapesArray from "../assets/json/shapesArray";
     import textsEng from "../assets/json/textsEng.json";
     import textsFr from "../assets/json/textsFr.json";
-
     import connections from "../assets/json/connections.json";
-    import vaccineCoverage94 from "../assets/json/vaccineCoverage94.json";
+
 
 
     export default {
@@ -571,7 +570,6 @@
                         {
                             ((((value).childNodes))[0]).classList.remove("infected");
                             ((((value).childNodes))[0]).classList.remove("vaccinated");
-                            //((((value).childNodes))[0]).classList.remove("comm");
                             //((((value).childNodes))[0]).classList.remove("vulnerable");
                             let id_shape = ((((value).childNodes))[0]).id;
                             if (id_shape != ""){
@@ -670,23 +668,6 @@
                 lineObj.setAttributeNS(null, 'y2',  targetBCR.y + targetBCR.height/divider);
                 lineObj.setAttributeNS(null, "stroke", colorStroke);
                 lineObj.setAttributeNS(null, "stroke-width", width);
-
-
-
-
-               // lineObj.setAttributeNS(null, 'borderColor', "#E83EFF");
-               // lineObj.setAttributeNS(null, 'borderStyle', "solid");
-
-                //lineObj.setAttributeNS(null, "transformOrigin_X", "25");
-                //lineObj.setAttributeNS(null, "transformOrigin_Y", "30");
-                //lineObj.setAttributeNS(null, "transform", "scale(1,1)");
-                //lineObj.setAttributeNodeNS(null, "scalex", 3);
-
-
-
-
-
-
                 return lineObj;
             }
         },
