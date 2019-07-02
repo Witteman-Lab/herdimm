@@ -221,12 +221,12 @@
              * @param {String} color
              * @return none
              */
-            setCharacterTShirtColor(shapeId, color, opacity) {
+            setCharacterTShirtColor(shapeId, color, proportion) {
                 // TO-DO: try different proportion
                 // let darkerColor = this.$refs[shapeId][0].getDarkerShade(color, 0.8);
                 // this.$refs[shapeId][0].changeShirtColor(darkerColor, 0.8);
-                let darkerColor = this.$refs[shapeId][0].getDarkerShade(color, opacity);
-                this.$refs[shapeId][0].changeShirtColor(darkerColor, opacity);
+                let darkerColor = this.$refs[shapeId][0].getDarkerShade(color, proportion);
+                this.$refs[shapeId][0].changeShirtColor(darkerColor, proportion);
             },
 
             /**
@@ -562,28 +562,23 @@
              * @return none
              */
             resetGrid(props) {
-                //let shapes =  document.querySelectorAll(".hexagon-container");
-                let shapes =  document.querySelectorAll("#main-container");
+                let shapes =  document.querySelector("#main-container");
                 setTimeout(() => {
-                    shapes.forEach((e) => {
-                        (e.childNodes).forEach((value) =>
-                        {
-                            ((((value).childNodes))[0]).classList.remove("infected");
-                            ((((value).childNodes))[0]).classList.remove("vaccinated");
-                            //((((value).childNodes))[0]).classList.remove("vulnerable");
-                            let id_shape = ((((value).childNodes))[0]).id;
+                        (shapes.childNodes).forEach((value) => {
+                            value.childNodes[0].classList.remove("infected");
+                            value.childNodes[0].classList.remove("vaccinated");
+                            let id_shape = value.childNodes[0].id;
                             if (id_shape != ""){
                                 if(this.avatarChecking(id_shape)){
                                     if(id_shape != "shape_50"){
-                                        this.setCharacterTShirtColor(id_shape, connections.defaultShirtColor, 0.9);
+                                        this.setCharacterTShirtColor(id_shape, connections.defaultShirtColor, 0.8);
                                     }
                                     else{
-                                        this.setCharacterTShirtColor(id_shape, connections.secondDefaultShirtColor, 0.9);
+                                        this.setCharacterTShirtColor(id_shape, connections.secondDefaultShirtColor, 0.8);
                                     }
                                 }
                             }
                         });
-                    });
                 }, parseInt(props.startTime));
             },
 
