@@ -10,20 +10,23 @@
         ],
         "actions": [
           {
-            "action": "parseSpreadInfection",
+            "action": "changeShapeColor",
             "props": {
-              "file": [
-                "pertussis.json",
-                "flu.json",
-                "measles.json"
-              ],
-              "startTime": "1000"
+              "target": "#shape_61",
+              "state": "vaccinated",
+              "timingFunction": "linear",
+              "startTime" : "70",
+              "duration" : "250"
             }
           },
           {
-            "action": "resetGrid",
+            "action": "changeShapeColor",
             "props": {
-              "startTime" : "11900"
+              "target": "#shape_61",
+              "state": "infected",
+              "timingFunction": "linear",
+              "startTime" : "90",
+              "duration" : "250"
             }
           }
         ]

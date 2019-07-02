@@ -365,8 +365,8 @@
             parseSpreadInfection(props){
                 if(typeof(props.file) == "object") {
                     if (props.file.length != 0) {
-                        var value;
-                        if (props.file.length == 1) {
+                        let value;
+                        if (props.file.length === 1) {
                             value = 0;
                         } else {
                             value = this.getRandomInt(props.file.length);
@@ -476,7 +476,7 @@
                         this.hexColor(selector, source, state);
                         if(this.avatarChecking(source) === true)
                         {
-                            this.setCharacterTShirtColor(source, connections.infectedShirtColor, 0.8);
+                            this.setCharacterTShirtColor(source, connections.infectedShirtColor, connections.proportion);
                         }
                     });
                     // When the animation ends, check if there is a next target
@@ -490,7 +490,7 @@
                             this.hexColor(selector, target, state);
                             if(this.avatarChecking(target) === true)
                             {
-                                this.setCharacterTShirtColor(target, connections.infectedShirtColor, 0.8);
+                                this.setCharacterTShirtColor(target, connections.infectedShirtColor, connections.proportion);
                             }
                         }
                     });
@@ -523,10 +523,34 @@
             burst(props){
                 const selector = '#main-container #';
 
-                this.hexColor(selector, props.target, props.state);
-                setTimeout(() => {
-                    this.changeSize(selector, props.target, props.scale, props.timingFunction, props.duration);
-                }, parseInt(props.startTime));
+                if(props.add) {
+                    this.hexColor(selector, props.target, props.state);
+                    setTimeout(() => {
+                        this.changeSize(selector, props.target, props.scale, props.timingFunction, props.duration);
+                        if (this.avatarChecking(props.target)) {
+                            if (props.state === "infected") {
+                                this.setCharacterTShirtColor(props.target, connections.infectedShirtColor, connections.proportion);
+                            } else if (props.state === "vaccinated") {
+                                this.setCharacterTShirtColor(props.target, connections.vaccinatedShirtColor, connections.proportion);
+                            }
+                        }
+                    }, parseInt(props.startTime));
+                }
+                else{
+                    setTimeout(()=>{
+                        document.querySelector(selector+props.target).classList.remove(props.state);
+                        if(this.avatarChecking(props.target)){
+                            if(props.target != "shape_50"){
+                                this.setCharacterTShirtColor(props.target, connections.defaultShirtColor, connections.proportion);
+                            }
+                            else{
+                                this.setCharacterTShirtColor(props.target, connections.secondDefaultShirtColor, connections.proportion);
+                            }
+                        }
+
+                    }, parseInt(props.startTime));
+                }
+
             },
 
 
@@ -539,6 +563,7 @@
                 const selector = '#main-container ';
                 setTimeout(() => {
                     const shapeTargets = document.querySelectorAll(selector + props.target);
+                    console.log("magniol :", shapeTargets);
                     for (var i = 0; i < shapeTargets.length; i++) {
                         shapeTargets.item(i).classList.add(props.state);
                     }
@@ -553,6 +578,8 @@
              * @return none
              */
             hexColor(selector, target, state){
+                document.querySelector(selector+target).classList.remove("infected");
+                document.querySelector(selector+target).classList.remove("vaccinated");
                 document.querySelector(selector+target).classList.add(state);
             },
 
@@ -571,10 +598,10 @@
                             if (id_shape != ""){
                                 if(this.avatarChecking(id_shape)){
                                     if(id_shape != "shape_50"){
-                                        this.setCharacterTShirtColor(id_shape, connections.defaultShirtColor, 0.8);
+                                        this.setCharacterTShirtColor(id_shape, connections.defaultShirtColor, connections.proportion);
                                     }
                                     else{
-                                        this.setCharacterTShirtColor(id_shape, connections.secondDefaultShirtColor, 0.8);
+                                        this.setCharacterTShirtColor(id_shape, connections.secondDefaultShirtColor, connections.proportion);
                                     }
                                 }
                             }
@@ -620,12 +647,30 @@
                 let value = 0;
                 let file = require("../assets/json/" + props.file);
                 let coverage = file.coverage;
-                let vaccineCoverage = setInterval( ()=> {
-                    this.hexColor(selector, coverage[value++], props.state);
-                    if (value === coverage.length) {
-                        clearInterval(vaccineCoverage);
-                    }
-                }, props.duration);
+                setTimeout(()=> {
+                    let vaccineCoverage = setInterval(() => {
+                        let incrementation = coverage[value++];
+
+                        if (props.add) {
+                            this.hexColor(selector, incrementation, props.state);
+                            if (this.avatarChecking(incrementation)) {
+                                this.setCharacterTShirtColor(incrementation, connections.vaccinatedShirtColor, connections.proportion);
+                            }
+                        } else {
+                            document.querySelector(selector + incrementation).classList.remove(props.state);
+                            if (this.avatarChecking(incrementation)) {
+                                if (incrementation != "shape_50") {
+                                    this.setCharacterTShirtColor(incrementation, connections.defaultShirtColor, connections.proportion);
+                                } else {
+                                    this.setCharacterTShirtColor(incrementation, connections.secondDefaultShirtColor, connections.proportion);
+                                }
+                            }
+                        }
+                        if (value === coverage.length) {
+                            clearInterval(vaccineCoverage);
+                        }
+                    }, props.duration);
+                },props.startTime);
 
             },
 
