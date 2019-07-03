@@ -201,7 +201,9 @@ div#copy2 .contour::before {
   -o-transition: background-color 2s linear;
   transition: background-color 2s linear;
 }
-
+div#copy1 .barrier,
+div#copy1 .barrier::after,
+div#copy1 .barrier::before,
 div#copy2 .barrier,
 div#copy2 .barrier::after,
 div#copy2 .barrier::before {
@@ -214,12 +216,12 @@ div#copy2 .barrier::before {
   transition: background-color 2s linear;
 }
 
-.barrier,
-.barrier::after,
-.barrier::before,
-div#copy2 .barrier,
-div#copy2 .barrier::after,
-div#copy2 .barrier::before {
+.transformer,
+.transformer::after,
+.transformer::before,
+div#copy2 .transformer,
+div#copy2 .transformer::after,
+div#copy2 .transformer::before {
   background-color: var(--color-hex-vaccinated);
   -webkit-transition: background-color .5s linear;
   -moz-transition: background-color .5s linear;
@@ -227,9 +229,9 @@ div#copy2 .barrier::before {
   -o-transition: background-color .5s linear;
   transition: background-color .5s linear;
 }
-div#copy1 .barrier,
-div#copy1 .barrier::after,
-div#copy1 .barrier::before {
+div#copy1 .transformer,
+div#copy1 .transformer::after,
+div#copy1 .transformer::before {
   background-color: var(--color-hex-vaccinated-shadow);
 }
 

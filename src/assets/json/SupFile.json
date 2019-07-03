@@ -10,23 +10,39 @@
         ],
         "actions": [
           {
-            "action": "changeShapeColor",
-            "props": {
-              "target": "#shape_61",
-              "state": "vaccinated",
-              "timingFunction": "linear",
-              "startTime" : "70",
-              "duration" : "250"
+            "action" : "makeContour",
+            "props" : {
+              "target" : ".avatar",
+              "duration" : "1000",
+              "class" : "contour",
+              "startTime" : "0",
+              "add" : true
             }
           },
           {
-            "action": "changeShapeColor",
+            "action": "makeContour",
             "props": {
-              "target": "#shape_61",
-              "state": "infected",
-              "timingFunction": "linear",
-              "startTime" : "90",
-              "duration" : "250"
+              "target": ".vulnerable",
+              "duration": "1000",
+              "class": "barrier",
+              "startTime": "500",
+              "add": true
+            }
+          },
+          {
+            "action": "vaccination",
+            "props": {
+              "file" : "vaccineCoverage4.json",
+              "duration": "30",
+              "state": "vaccinated",
+              "startTime" : "1000",
+              "add": true
+            }
+          },
+          {
+            "action": "makeTransformer",
+            "props": {
+              "startTime" : "1700"
             }
           }
         ]

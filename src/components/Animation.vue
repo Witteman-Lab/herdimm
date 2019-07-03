@@ -302,7 +302,14 @@
              * @return none
              */
             makeContour(props) {
-                const shapeTargets = document.querySelectorAll('#copy2 ' + props.target);
+                let shapeTargets = "";
+
+                if (props.class === "contour") {
+                    shapeTargets = document.querySelectorAll('#copy2 ' + props.target);
+                } else if (props.class === "barrier") {
+                    shapeTargets = document.querySelectorAll('.copy ' + props.target);
+                }
+
                 setTimeout(() => {
                     if (props.add) {
                         shapeTargets.forEach(e => e.classList.add(props.class));
@@ -335,16 +342,18 @@
              * @param {Number} delay
              * @return
              */
-            makeTransformer(delay) {
-                const shapeTargets = document.querySelectorAll('.hexagon'); // <------------
-
+            makeTransformer(props) {
                 setTimeout(() => {
+                    const shapeTargets = document.querySelectorAll('.hexagon');
+                    //const containerCopy2 = document.getElementById("copy2");
                     shapeTargets.forEach((e) => {
-                        if(e.classList.value.indexOf("vulnerable") === -1) { // <-- For testing purpose
-                            e.classList.add("barrier");
-                        }
+                        //console.log("containerCopy2.getElementById(e.id)", containerCopy2.getElementById(e.id));
+                        //if(e.classList.value.indexOf("vulnerable") === -1) { // <-- For testing purpose
+                        //e.classList.add("transformer");
+                        //}
                     });
-                }, delay);
+                }, parseInt(props.startTime));
+                //console.log("shape : ", shapeTargets);
             },
 
             /**
@@ -563,7 +572,6 @@
                 const selector = '#main-container ';
                 setTimeout(() => {
                     const shapeTargets = document.querySelectorAll(selector + props.target);
-                    console.log("magniol :", shapeTargets);
                     for (var i = 0; i < shapeTargets.length; i++) {
                         shapeTargets.item(i).classList.add(props.state);
                     }
@@ -670,8 +678,7 @@
                             clearInterval(vaccineCoverage);
                         }
                     }, props.duration);
-                },props.startTime);
-
+                },parseInt(props.startTime));
             },
 
             /**

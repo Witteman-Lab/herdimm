@@ -188,23 +188,12 @@
                             "file" : "vaccineCoverage94.json",
                             "duration": "30",
                             "state": "vaccinated",
-                            "starTime" : "100",
+                            "startTime" : "800",
                             "add": true
 
                         }
                     },
-                    {
-                        "action": "burst",
-                        "props": {
-                            "target": "shape_41",
-                            "scale": "1.2",
-                            "state": "infected",
-                            "timingFunction": "linear",
-                            "startTime" : "8000",
-                            "duration" : "250",
-                            "add": true
-                        }
-                    },
+
                     {
                         "action": "changeShapeColor",
                         "props": {
@@ -252,16 +241,31 @@
                             "file" : "vaccineCoverage93.json",
                             "duration": "30",
                             "state": "vaccinated",
-                            "starTime" : "100",
+                            "startTime" : "100",
                             "add": false
-
                         }
                     },
-                    {   "_commentary" : "------------changeShapeColor ( waning vaccines ) ----------------------------",
-                        "action": "",
-                        "props": {
+                    {
+                      "action": "vaccination",
+                      "props": {
+                        "file" : "vaccineCoverage91.json",
+                        "duration": "30",
+                        "state": "vaccinated",
+                        "startTime" : "3500",
+                        "add": true
 
-                        }
+                      }
+                    },
+                    {
+                      "action": "vaccination",
+                      "props": {
+                        "file" : "vaccineCoverage4.json",
+                        "duration": "30",
+                        "state": "vaccinated",
+                        "startTime" : "9500",
+                        "add": true
+
+                      }
                     }
                 ]
             },
@@ -271,13 +275,6 @@
                     "And need to be updated."
                 ],
                 "actions" : [
-                    {
-                        "_commentary" : "------------------------ changeShapeColor ( vaccines update ) ---------------",
-                        "action": "",
-                        "props": {
-
-                        }
-                    },
                     {
                         "action": "zoom",
                         "props": {
@@ -307,7 +304,7 @@
                     {
                         "action": "makeTransformer",
                         "props": {
-                            "delay" : "100"
+                          "startTime" : "100"
                         }
                     }
                 ]
