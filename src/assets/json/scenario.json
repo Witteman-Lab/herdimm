@@ -314,26 +314,35 @@
                 "captions" : [
                     "This protective barrier is different for different contagious diseases. Some diseases spread faster than others. Diseases that spread faster need more people to be vaccinated to create this protective barrier."
                 ],
-                "_commentary" : "------------------------ swap vaccination coverage, keeping transformers ---------------",
                 "actions" : [
-                    {
-                        "action": "",
-                        "props": {
+                  {
+                    "action": "vaccination",
+                    "props": {
+                      "file" : "vaccineCoverageAdd2.json",
+                      "duration": "0",
+                      "state": "vaccinated",
+                      "startTime" : "100",
+                      "add": true
 
-                        }
-                    },
-                    {
-                        "action": "",
-                        "props": {
-
-                        }
-                    },
-                    {
-                        "action": "",
-                        "props": {
-
-                        }
                     }
+                  },
+                  {
+                    "action": "vaccination",
+                    "props": {
+                      "file" : "vaccineCoverageRemove24.json",
+                      "duration": "1",
+                      "state": "vaccinated",
+                      "startTime" : "100",
+                      "add": false
+
+                    }
+                  },
+                  {
+                    "action": "makeTransformer",
+                    "props": {
+                      "startTime" : "200"
+                    }
+                  }
                 ]
             },
             {

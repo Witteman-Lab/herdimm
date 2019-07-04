@@ -10,41 +10,56 @@
         ],
         "actions": [
           {
-            "action" : "makeContour",
-            "props" : {
-              "target" : ".avatar",
-              "duration" : "1000",
-              "class" : "contour",
-              "startTime" : "0",
-              "add" : true
-            }
-          },
-          {
-            "action": "makeContour",
+            "action": "vaccination",
             "props": {
-              "target": ".vulnerable",
-              "duration": "1000",
-              "class": "barrier",
-              "startTime": "500",
+              "file" : "vaccineCoverageAdd91.json",
+              "duration": "0",
+              "state": "vaccinated",
+              "startTime" : "100",
               "add": true
+
             }
           },
           {
             "action": "vaccination",
             "props": {
-              "file" : "vaccineCoverage4.json",
-              "duration": "30",
+              "file" : "vaccineCoverageRemove24.json",
+              "duration": "0",
               "state": "vaccinated",
-              "startTime" : "1000",
-              "add": true
+              "startTime" : "200",
+              "add": false
+
             }
           },
           {
             "action": "makeTransformer",
             "props": {
-              "startTime" : "1700"
+              "startTime" : "1000"
+            }
+          },
+          {
+            "action": "vaccination",
+            "props": {
+              "file" : "vaccineCoverageRemove24.json",
+              "duration": "0",
+              "state": "vaccinated",
+              "startTime" : "200",
+              "add": false
+
+            }
+          },
+          {
+            "action": "vaccination",
+            "props": {
+              "file" : "vaccineCoverageRemove31.json",
+              "duration": "0",
+              "state": "vaccinated",
+              "startTime" : "3500",
+              "add": false
+
             }
           }
+
         ]
       }
     ]
