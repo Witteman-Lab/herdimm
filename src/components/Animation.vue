@@ -346,24 +346,16 @@
                 setTimeout(() => {
                     const shapeTargets = document.querySelectorAll('.hexagon');
                     const shapeTargetsVaccinated = document.querySelectorAll('.vaccinated');
-                    //console.log("ma liste :", document.querySelectorAll('.vaccinated'));
-                    //const containerCopy2 = document.getElementById("copy2");
-                    //console.log("ma liste :", document.querySelectorAll('.hexagon'));
                     shapeTargets.forEach((e) => {
-                        //console.log("containerCopy2.getElementById(e.id)", containerCopy2.getElementById(e.id));
                         if(e.classList.value.indexOf("vulnerable") === -1){ // <-- For testing purpose
-
                             shapeTargetsVaccinated.forEach((b) => {
                                 if(e.id === b.id){
                                     e.classList.add("barrier");
                                 }
                             });
-
-                            //console.log("mon affiche : ", e.id);
                         }
                     });
                 }, parseInt(props.startTime));
-                //console.log("shape : ", shapeTargets);
             },
 
             /**

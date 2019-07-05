@@ -8,58 +8,15 @@
         "captions": [
           "What role does each of us play in protecting our community?"
         ],
-        "actions": [
+        "actions":
+        [
           {
-            "action": "vaccination",
+            "action": "parseSpreadInfection",
             "props": {
-              "file" : "vaccineCoverageAdd91.json",
-              "duration": "0",
-              "state": "vaccinated",
-              "startTime" : "100",
-              "add": true
-
-            }
-          },
-          {
-            "action": "vaccination",
-            "props": {
-              "file" : "vaccineCoverageRemove24.json",
-              "duration": "0",
-              "state": "vaccinated",
-              "startTime" : "200",
-              "add": false
-
-            }
-          },
-          {
-            "action": "makeTransformer",
-            "props": {
-              "startTime" : "1000"
-            }
-          },
-          {
-            "action": "vaccination",
-            "props": {
-              "file" : "vaccineCoverageRemove24.json",
-              "duration": "0",
-              "state": "vaccinated",
-              "startTime" : "200",
-              "add": false
-
-            }
-          },
-          {
-            "action": "vaccination",
-            "props": {
-              "file" : "vaccineCoverageRemove31.json",
-              "duration": "0",
-              "state": "vaccinated",
-              "startTime" : "3500",
-              "add": false
-
+              "file" : "spreadinfections7.json",
+              "startTime" : "500"
             }
           }
-
         ]
       }
     ]
@@ -73,12 +30,111 @@
           "Quel est le rôle de chacun dans la protection de la communauté?"
         ],
         "actions" : [
+
           {
-            "action": "",
+            "action": "vaccination",
             "props": {
+              "file" : "vaccineCoverageAdd91.json",
+              "duration": "0",
+              "state": "vaccinated",
+              "startTime" : "500",
+              "add": true
 
             }
+          },
+          {
+            "action": "vaccination",
+            "props": {
+              "file" : "vaccineCoverageAdd4.json",
+              "duration": "0",
+              "state": "vaccinated",
+              "startTime" : "500",
+              "add": true
+
+            }
+          },
+          {
+            "action": "makeTransformer",
+            "props": {
+              "startTime" : "1000"
+            }
+          },
+          {
+            "action": "vaccination",
+            "props": {
+              "file" : "vaccineCoverageAdd2.json",
+              "duration": "0",
+              "state": "vaccinated",
+              "startTime" : "3000",
+              "add": true
+
+            }
+          },
+          {
+            "action": "vaccination",
+            "props": {
+              "file" : "vaccineCoverageRemove24.json",
+              "duration": "0",
+              "state": "vaccinated",
+              "startTime" : "5000",
+              "add": false
+
+            }
+          },
+          {
+            "action": "makeTransformer",
+            "props": {
+              "startTime" : "4000"
+            }
+          },
+
+
+          {
+            "action": "vaccination",
+            "props": {
+              "file" : "vaccineCoverageRemove5.json",
+              "duration": "0",
+              "state": "vaccinated",
+              "startTime" : "8000",
+              "add": false
+
+            }
+          },
+          {
+            "action": "vaccination",
+            "props": {
+              "file" : "vaccineCoverageAdd20.json",
+              "duration": "0",
+              "state": "vaccinated",
+              "startTime" : "9000",
+              "add": true
+
+            }
+          },
+          {
+            "action": "makeTransformer",
+            "props": {
+              "startTime" : "9200"
+            }
+          },
+          {
+            "action": "vaccination",
+            "props": {
+              "file" : "vaccineCoverageAdd7.json",
+              "duration": "0",
+              "state": "vaccinated",
+              "startTime" : "9500",
+              "add": true
+
+            }
+          },
+          {
+            "action": "makeTransformer",
+            "props": {
+              "startTime" : "9600"
+            }
           }
+
         ]
       },
       {

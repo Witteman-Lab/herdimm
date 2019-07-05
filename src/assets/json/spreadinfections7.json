@@ -1,0 +1,48 @@
+{
+  "connections" : [
+    {
+      "id"	 : "1",
+      "source" : "shape_11",
+      "target" : "shape_24",
+      "targetGetsInfected": false,
+      "nextTarget": ""
+    },
+    {
+      "id"	 : "2",
+      "source" : "shape_11",
+      "target" : "shape_6",
+      "targetGetsInfected": false,
+      "nextTarget": ""
+    },
+    {
+      "id"	 : "3",
+      "source" : "shape_11",
+      "target" : "shape_17",
+      "targetGetsInfected": false,
+      "nextTarget": [
+        {
+          "id"	 : "4",
+          "source" : "shape_11",
+          "target" : "shape_6",
+          "targetGetsInfected": false,
+          "nextTarget": ""
+        },
+        {
+          "id"	 : "5",
+          "source" : "shape_11",
+          "target" : "shape_17",
+          "targetGetsInfected": false,
+          "nextTarget": [
+            {
+              "id"	 : "6",
+              "source" : "shape_11",
+              "target" : "shape_17",
+              "targetGetsInfected": false,
+              "nextTarget": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
