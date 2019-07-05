@@ -539,9 +539,9 @@
                     setTimeout(() => {
                         this.changeSize(selector, props.target, props.scale, props.timingFunction, props.duration);
                         if (this.avatarChecking(props.target)) {
-                            if (props.state === "infected") {
+                            if (props.state === connections.stateInfected) {
                                 this.setCharacterTShirtColor(props.target, connections.infectedShirtColor, connections.proportion);
-                            } else if (props.state === "vaccinated") {
+                            } else if (props.state === connections.stateVaccinated) {
                                 this.setCharacterTShirtColor(props.target, connections.vaccinatedShirtColor, connections.proportion);
                             }
                         }
@@ -588,8 +588,8 @@
              * @return none
              */
             hexColor(selector, target, state){
-                document.querySelector(selector+target).classList.remove("infected");
-                document.querySelector(selector+target).classList.remove("vaccinated");
+                document.querySelector(selector+target).classList.remove(connections.stateInfected);
+                document.querySelector(selector+target).classList.remove(connections.stateVaccinated);
                 document.querySelector(selector+target).classList.add(state);
             },
 
@@ -602,8 +602,8 @@
                 let shapes =  document.querySelector("#main-container");
                 setTimeout(() => {
                         (shapes.childNodes).forEach((value) => {
-                            value.childNodes[0].classList.remove("infected");
-                            value.childNodes[0].classList.remove("vaccinated");
+                            value.childNodes[0].classList.remove(connections.stateInfected);
+                            value.childNodes[0].classList.remove(connections.stateVaccinated);
                             let id_shape = value.childNodes[0].id;
                             if (id_shape != ""){
                                 if(this.avatarChecking(id_shape)){

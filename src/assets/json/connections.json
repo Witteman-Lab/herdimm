@@ -10,5 +10,7 @@
     "vaccinatedShirtColor" : "#3C83B7",
     "delayCallRemoveline" : "2000",
     "removelineDuration" : "1000",
-    "proportion" : "0.8"
+    "proportion" : "0.8",
+    "stateInfected": "infected",
+    "stateVaccinated": "vaccinated"
 }

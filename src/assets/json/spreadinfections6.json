@@ -20,7 +20,7 @@
           "targetGetsInfected": true,
           "nextTarget": [
             {
-              "id"	 : "1",
+              "id"	 : "4",
               "source" : "shape_83",
               "target" : "shape_93",
               "targetGetsInfected": true,

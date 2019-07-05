@@ -13,7 +13,7 @@
           {
             "action": "parseSpreadInfection",
             "props": {
-              "file" : "spreadinfections7.json",
+              "file" : "spreadinfections6.json",
               "startTime" : "500"
             }
           }
@@ -30,6 +30,7 @@
           "Quel est le rôle de chacun dans la protection de la communauté?"
         ],
         "actions" : [
+
 
           {
             "action": "vaccination",
@@ -56,7 +57,7 @@
           {
             "action": "makeTransformer",
             "props": {
-              "startTime" : "1000"
+              "startTime" : "1500"
             }
           },
           {
