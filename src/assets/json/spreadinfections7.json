@@ -19,30 +19,7 @@
       "source" : "shape_11",
       "target" : "shape_17",
       "targetGetsInfected": false,
-      "nextTarget": [
-        {
-          "id"	 : "4",
-          "source" : "shape_11",
-          "target" : "shape_6",
-          "targetGetsInfected": false,
-          "nextTarget": ""
-        },
-        {
-          "id"	 : "5",
-          "source" : "shape_11",
-          "target" : "shape_17",
-          "targetGetsInfected": false,
-          "nextTarget": [
-            {
-              "id"	 : "6",
-              "source" : "shape_11",
-              "target" : "shape_17",
-              "targetGetsInfected": false,
-              "nextTarget": ""
-            }
-          ]
-        }
-      ]
+      "nextTarget": ""
     }
   ]
 }
