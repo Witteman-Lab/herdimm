@@ -20,7 +20,7 @@
                     <div :class="shape.className" :id="shape.id">
                         <!-- Where the group members are being placed -->
                         <div :style="{height: characterSize, marginBottom: characterBottomMargin}" v-if="shape.isCharacter">
-                            <Character v-bind:ref="shape.id" :size="{ width: characterSize }"  :edit="false" :customised="true" :colors="shape.character.colors" :id="shape.character.id" :svgFile="require(`../assets/characters/${shape.character.file}`)" />
+                            <Character :characterType="shape.character.characterType" v-bind:ref="shape.id" :size="{ width: characterSize }"  :edit="false" :customised="true" :colors="shape.character.colors" :id="shape.character.id" :svgFile="require(`../assets/characters/${shape.character.file}`)" />
                         </div>
                     </div>
                 </div>
@@ -348,9 +348,9 @@
                     const shapeTargets = document.querySelectorAll('.hexagon');
                     const shapeTargetsVaccinated = document.querySelectorAll('.vaccinated');
                     shapeTargets.forEach((e) => {
-                        if(e.classList.value.indexOf("vulnerable") === -1){ // <-- For testing purpose
+                        if (e.classList.value.indexOf("vulnerable") === -1) { // <-- For testing purpose
                             shapeTargetsVaccinated.forEach((b) => {
-                                if(e.id === b.id){
+                                if (e.id === b.id) {
                                     e.classList.add("barrier");
                                 }
                             });
@@ -386,16 +386,16 @@
              * @param {Number} delay
              * @return
              */
-            remove(props){
+            remove(props) {
                 setTimeout(() => {
                     const shapeTargets = document.querySelectorAll('.infected');
                     shapeTargets.forEach((e) => {
                         e.classList.remove("infected");
-                        if(this.avatarChecking(e.id)){
-                            if(e.id != "shape_50"){
+                        if (this.characterChecking(e.id)) {
+                            let characterType = e.children[0].children[0].getAttribute('characterType');
+                            if (characterType !== "avatar") {
                                 this.setCharacterTShirtColor(e.id, connections.defaultShirtColor, connections.proportion);
-                            }
-                            else{
+                            } else {
                                 this.setCharacterTShirtColor(e.id, connections.secondDefaultShirtColor, connections.proportion);
                             }
                         }
@@ -419,7 +419,7 @@
              * @return none
              */
             parseSpreadInfection(props){
-                if(typeof(props.file) == "object") {
+                if (typeof(props.file) === "object") {
                     if (props.file.length != 0) {
                         let value;
                         if (props.file.length === 1) {
@@ -474,12 +474,12 @@
              * @param {string} shape_id
              * @return {Boolean}
              */
-            avatarChecking(shape_id){
-                var value = false;
-                var variable = document.querySelectorAll("#main-container #"+shape_id);
+            characterChecking(shape_id){
+                let value = false;
+                let variable = document.querySelectorAll("#main-container #"+shape_id);
                 variable.forEach(e => {
                     let array = (e.getAttribute("class")).split(" ");
-                    if(array[0] === "comm" || array[0] === "avatar" || array[0] === "vulnerable"){
+                    if (array[0] === "comm" || array[0] === "avatar" || array[0] === "vulnerable"){
                         value = true;
                     }
                 });
@@ -534,28 +534,26 @@
                     // When the animation starts, source gets infected, its color changes
                     lineObj.addEventListener("animationstart", () => { // webkitAnimationStart
                         this.hexColor(selector, source, state);
-                        if(this.avatarChecking(source) === true)
-                        {
+                        if (this.characterChecking(source) === true) {
                             this.setCharacterTShirtColor(source, connections.infectedShirtColor, connections.proportion);
                         }
                     });
                     // When the animation ends, check if there is a next target
                     lineObj.addEventListener("animationend", () => { // webkitAnimationEnd
-                        if(nextTarget !== ""){
+                        if (nextTarget !== "") {
                             this.spreadInfection(nextTarget);
                         }
 
                         // If target gets infected, its color changes
-                        if(targetGetsInfected) {
+                        if (targetGetsInfected) {
                             this.hexColor(selector, target, state);
-                            if(this.avatarChecking(target) === true)
-                            {
+                            if (this.characterChecking(target) === true) {
                                 this.setCharacterTShirtColor(target, connections.infectedShirtColor, connections.proportion);
                             }
                         }
                     });
                 }
-                if(endOfTheSequence){
+                if (endOfTheSequence) {
                     this.removeLine();
                 }
             },
@@ -564,14 +562,14 @@
             /**
              * ---> Compute and return the length of the line for its animation
              * @param {Object} line
-             * @return none
+             * @return number
              */
             getLineLength(line){
                 let x1 = line.x1.baseVal.value;
                 let x2 = line.x2.baseVal.value;
                 let y1 = line.y1.baseVal.value;
                 let y2 = line.y2.baseVal.value;
-                return Math.sqrt( (x2-=x1)*x2 + (y2-=y1)*y2 );
+                return Math.sqrt((x2 -= x1) * x2 + (y2 -= y1) * y2);
             },
 
 
@@ -587,7 +585,7 @@
                     this.hexColor(selector, props.target, props.state);
                     setTimeout(() => {
                         this.changeSize(selector, props.target, props.scale, props.timingFunction, props.duration);
-                        if (this.avatarChecking(props.target)) {
+                        if (this.characterChecking(props.target)) {
                             if (props.state === connections.stateInfected) {
                                 this.setCharacterTShirtColor(props.target, connections.infectedShirtColor, connections.proportion);
                             } else if (props.state === connections.stateVaccinated) {
@@ -598,12 +596,12 @@
                 }
                 else{
                     setTimeout(()=>{
-                        document.querySelector(selector+props.target).classList.remove(props.state);
-                        if(this.avatarChecking(props.target)){
-                            if(props.target != "shape_50"){
+                        document.querySelector(selector + props.target).classList.remove(props.state);
+                        if (this.characterChecking(props.target)) {
+                            let characterType = document.querySelector(selector + props.target).children[0].children[0].getAttribute('characterType');
+                            if (characterType !== "avatar") {
                                 this.setCharacterTShirtColor(props.target, connections.defaultShirtColor, connections.proportion);
-                            }
-                            else{
+                            } else {
                                 this.setCharacterTShirtColor(props.target, connections.secondDefaultShirtColor, connections.proportion);
                             }
                         }
@@ -623,7 +621,7 @@
                 const selector = '#main-container ';
                 setTimeout(() => {
                     const shapeTargets = document.querySelectorAll(selector + props.target);
-                    for (var i = 0; i < shapeTargets.length; i++) {
+                    for (let i = 0; i < shapeTargets.length; i++) {
                         shapeTargets.item(i).classList.add(props.state);
                     }
                 }, parseInt(props.startTime));
@@ -655,12 +653,12 @@
                             value.childNodes[0].classList.remove(connections.stateVaccinated);
                             value.childNodes[0].classList.remove(connections.stateBarrier);
                             let id_shape = value.childNodes[0].id;
-                            if (id_shape != ""){
-                                if(this.avatarChecking(id_shape)){
-                                    if(id_shape != "shape_50"){
+                            if (id_shape !== "") {
+                                if (this.characterChecking(id_shape)) {
+                                    let characterType = value.children[0].children[0].children[0].getAttribute('characterType');
+                                    if (characterType !== "avatar") {
                                         this.setCharacterTShirtColor(id_shape, connections.defaultShirtColor, connections.proportion);
-                                    }
-                                    else{
+                                    } else {
                                         this.setCharacterTShirtColor(id_shape, connections.secondDefaultShirtColor, connections.proportion);
                                     }
                                 }
@@ -705,16 +703,15 @@
             vaccination(props){
                 const selector = '#main-container #';
                 let value = 0;
-                var coverage;
-                if(props.file === "" && props.autoVaccination === true && props.add === true){
+                let coverage;
+                if (props.file === "" && props.autoVaccination === true && props.add === true) {
                     this.autoCompleteVaccination();
                     coverage = this.autoVaccinationArray;
                     console.log(this.autoVaccinationArray);
-                }
-                else{
+                } else {
                     let file = require("../assets/json/" + props.file);
                     coverage = file.coverage;
-                    console.log("coverage 1: ", coverage);
+                    // console.log("coverage 1: ", coverage);
                 }
                 setTimeout(()=> {
                     let vaccineCoverage = setInterval(() => {
@@ -722,20 +719,21 @@
 
                         if (props.add) {
                             this.hexColor(selector, incrementation, props.state);
-                            if (this.avatarChecking(incrementation)) {
+                            if (this.characterChecking(incrementation)) {
                                 this.setCharacterTShirtColor(incrementation, connections.vaccinatedShirtColor, connections.proportion);
                             }
                         } else {
                             document.querySelector(selector + incrementation).classList.remove(props.state);
                             let list = document.querySelector(selector + incrementation).classList;
                             list.forEach((e) => {
-                                if(e === "barrier"){
+                                if (e === "barrier") {
                                     document.querySelector("#copy2 #" + incrementation).classList.remove(e);
                                     document.querySelector("#copy1 #" + incrementation).classList.remove(e);
                                 }
                             });
-                            if (this.avatarChecking(incrementation)) {
-                                if (incrementation != "shape_50") {
+                            if (this.characterChecking(incrementation)) {
+                                let characterType = document.querySelector(selector + incrementation).children[0].children[0].getAttribute('characterType');
+                                if (characterType !== "avatar") {
                                     this.setCharacterTShirtColor(incrementation, connections.defaultShirtColor, connections.proportion);
                                 } else {
                                     this.setCharacterTShirtColor(incrementation, connections.secondDefaultShirtColor, connections.proportion);
@@ -760,10 +758,10 @@
                 let target = document.querySelectorAll('#main-container');
                 let valeur = target[0].childNodes;
                 valeur.forEach((e) => {
-                    if(!e.firstChild.className.split(" ").includes("vaccinated")){
+                    if (!e.firstChild.className.split(" ").includes("vaccinated")) {
                         //e.firstChild.classList.add("vaccinated");
-                        if(e.firstChild.id !== ""){
-                            if(e.firstChild.id !== "shape_11" || e.firstChild.id !== "shape_88"){
+                        if (e.firstChild.id !== "") {
+                            if (e.firstChild.id !== "shape_11" || e.firstChild.id !== "shape_88") {
                                 this.autoVaccinationArray.push(e.firstChild.id);
                             }
                         }
