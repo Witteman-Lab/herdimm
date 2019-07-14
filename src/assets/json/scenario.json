@@ -189,7 +189,8 @@
                             "duration": "30",
                             "state": "vaccinated",
                             "startTime" : "800",
-                            "add": true
+                            "add": true,
+                            "autoVaccination" : false
 
                         }
                     },
@@ -242,7 +243,8 @@
                             "duration": "30",
                             "state": "vaccinated",
                             "startTime" : "100",
-                            "add": false
+                            "add": false,
+                            "autoVaccination" : false
                         }
                     },
                     {
@@ -252,7 +254,8 @@
                         "duration": "30",
                         "state": "vaccinated",
                         "startTime" : "3500",
-                        "add": true
+                        "add": true,
+                        "autoVaccination" : false
 
                       }
                     },
@@ -263,7 +266,8 @@
                         "duration": "30",
                         "state": "vaccinated",
                         "startTime" : "9500",
-                        "add": true
+                        "add": true,
+                        "autoVaccination" : false
 
                       }
                     }
@@ -322,7 +326,8 @@
                       "duration": "0",
                       "state": "vaccinated",
                       "startTime" : "100",
-                      "add": true
+                      "add": true,
+                      "autoVaccination" : false
 
                     }
                   },
@@ -333,7 +338,8 @@
                       "duration": "1",
                       "state": "vaccinated",
                       "startTime" : "100",
-                      "add": false
+                      "add": false,
+                      "autoVaccination" : false
 
                     }
                   },
@@ -341,6 +347,53 @@
                     "action": "makeTransformer",
                     "props": {
                       "startTime" : "200"
+                    }
+                  },
+                  {
+                    "action": "vaccination",
+                    "props": {
+                      "file" : "vaccineCoverageRemove5.json",
+                      "duration": "0",
+                      "state": "vaccinated",
+                      "startTime" : "1000",
+                      "add": false,
+                      "autoVaccination": false
+
+                    }
+                  },
+                  {
+                    "action": "vaccination",
+                    "props": {
+                      "file" : "vaccineCoverageAdd20.json",
+                      "duration": "0",
+                      "state": "vaccinated",
+                      "startTime" : "2000",
+                      "add": true,
+                      "autoVaccination" : false
+
+                    }
+                  },
+                  {
+                    "action": "makeTransformer",
+                    "props": {
+                      "startTime" : "2500"
+                    }
+                  },
+                  {
+                    "action": "vaccination",
+                    "props": {
+                      "file" : "vaccineCoverageAdd7.json",
+                      "duration": "0",
+                      "state": "vaccinated",
+                      "startTime" : "3000",
+                      "add": true,
+                      "autoVaccination" : false
+                    }
+                  },
+                  {
+                    "action": "makeTransformer",
+                    "props": {
+                      "startTime" : "3200"
                     }
                   }
                 ]
@@ -352,33 +405,37 @@
                 ],
                 "actions" : [
                     {
-                        "action": "burst",
-                        "props": {
-                            "target": "shape_33",
-                            "scale": "1.2",
-                            "state": "infected",
-                            "timingFunction": "linear",
-                            "duration" : "250",
-                            "add" : true
-                        }
+                      "action": "parseSpreadInfection",
+                      "props": {
+                        "file" : "spreadinfections5.json",
+                        "startTime" : "500"
+                      }
                     },
                     {
-                        "action": "parseSpreadInfection",
-                        "props": {
-
-                        }
+                      "action": "parseSpreadInfection",
+                      "props": {
+                        "file" : "spreadinfections6.json",
+                        "startTime" : "1000"
+                      }
                     },
                     {
-                        "action": "parseSpreadInfection",
-                        "props": {
+                      "action": "vaccination",
+                      "props": {
+                        "file" : "vaccineCoverageRemove3.json",
+                        "duration": "0",
+                        "state": "vaccinated",
+                        "startTime" : "1400",
+                        "add": false,
+                        "autoVaccination" : false
 
-                        }
+                      }
                     },
                     {
-                        "action": "parseSpreadInfection",
-                        "props": {
-
-                        }
+                      "action": "parseSpreadInfection",
+                      "props": {
+                        "file" : "spreadinfections7.json",
+                        "startTime" : "3500"
+                      }
                     }
                 ]
             },
@@ -388,19 +445,29 @@
                     "But if not enough people are vaccinated, community immunity cannot exist and your community will not be protected."
                 ],
                 "actions" : [
-                    {
-                        "_commentary" : "------------------------ swap vaccinated coverage (from more to less)---------------",
-                        "action": "",
-                        "props": {
-
-                        }
-                    },
-                    {
-                        "action": "burst",
-                        "props": {
-
-                        }
+                  {
+                    "action": "vaccination",
+                    "props": {
+                      "file" : "vaccineCoverageRemove31.json",
+                      "duration": "0",
+                      "state": "vaccinated",
+                      "startTime" : "500",
+                      "add": false,
+                      "autoVaccination" : false
                     }
+                  },
+                  {
+                    "action": "removeBarrier",
+                    "props": {
+                      "startTime" : "700"
+                    }
+                  },
+                  {
+                    "action": "remove",
+                    "props": {
+                      "startTime" : "1000"
+                    }
+                  }
                 ]
             },
             {
@@ -410,10 +477,17 @@
                 ],
                 "actions" : [
                     {
-                        "action": "parseSpreadInfection",
-                        "props": {
-
-                        }
+                      "action": "parseSpreadInfection",
+                      "props": {
+                        "file" : ["flu.json","measles.json","pertussis.json"],
+                        "startTime" : "500"
+                      }
+                    },
+                    {
+                      "action": "remove",
+                      "props": {
+                        "startTime" : "14000"
+                      }
                     }
                 ]
             },
@@ -423,29 +497,35 @@
                     "Whenever your community has community immunity, everyone is protected."
                 ],
                 "actions" : [
-                    {
-                        "_commentary" : "------------------------ reset/remove infection ---------------",
-                        "action": "",
-                        "props": {
-
-                        }
-                    },
-                    {
-                        "action": "burst",
-                        "props": {
-                            "target": "shape_33",
-                            "scale": "1.4",
-                            "state": "vaccinated",
-                            "timingFunction": "linear",
-                            "duration": "250"
-                        }
-                    },
-                    {
-                        "action": "vaccination",
-                        "props": {
-
-                        }
+                  {
+                    "action": "burst",
+                    "props": {
+                      "target": "shape_50",
+                      "scale": "1.2",
+                      "state": "vaccinated",
+                      "timingFunction": "linear",
+                      "startTime" : "1500",
+                      "duration" : "250",
+                      "add": true
                     }
+                  },
+                  {
+                    "action": "vaccination",
+                    "props": {
+                      "file" : "",
+                      "duration": "0",
+                      "state": "vaccinated",
+                      "startTime" : "3500",
+                      "add": true,
+                      "autoVaccination" : true
+                    }
+                  },
+                  {
+                    "action": "makeTransformer",
+                    "props": {
+                      "startTime" : "5000"
+                    }
+                  }
                 ]
             },
             {
@@ -454,22 +534,7 @@
                     "Including vulnerable people who cannot be effectively vaccinated."
                 ],
                 "actions" : [
-                    {
-                        "action": "makeTransformer",
-                        "props": {
-                            "delay" : "100"
-                        }
-                    },
-                    {
-                        "action" : "makeContour",
-                        "props" : {
-                            "target" : ".vulnerable",
-                            "duration" : "1000",
-                            "class" : "barrier",
-                            "startTime" : "500",
-                            "add" : true
-                        }
-                    },
+
                     {
                         "_commentary" : "------------------------ barrierScaling (burst on #copy2) ---------------",
                         "action" : "",

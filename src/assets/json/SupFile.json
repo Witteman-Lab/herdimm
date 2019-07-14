@@ -11,10 +11,24 @@
         "actions":
         [
           {
-            "action": "parseSpreadInfection",
+            "action": "vaccination",
             "props": {
-              "file" : "spreadinfections7.json",
-              "startTime" : "500"
+              "file" : "vaccineCoverageAdd94.json",
+              "duration": "0",
+              "state": "vaccinated",
+              "startTime" : "200",
+              "add": true
+            }
+          },
+          {
+            "action": "vaccination",
+            "props": {
+              "file" : "",
+              "duration": "0",
+              "state": "vaccinated",
+              "startTime" : "1000",
+              "add": true,
+              "autoVaccination" : true
             }
           }
         ]

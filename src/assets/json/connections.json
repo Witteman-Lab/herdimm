@@ -12,5 +12,6 @@
     "removelineDuration" : "1000",
     "proportion" : "0.8",
     "stateInfected": "infected",
-    "stateVaccinated": "vaccinated"
+    "stateVaccinated": "vaccinated",
+    "stateBarrier": "barrier"
 }

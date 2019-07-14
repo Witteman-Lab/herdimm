@@ -72,7 +72,8 @@
                 isAnimationStarted: false,
                 currentLanguage: "",
                 textButtonAnimation: '',
-                isAudioPlaying: false
+                isAudioPlaying: false,
+                autoVaccinationArray : []
             }
         },
         props: {
@@ -358,6 +359,50 @@
                 }, parseInt(props.startTime));
             },
 
+
+
+            /**--->  ---------------------------------- It's will be completed later ------------------------------
+             * @param {Number} delay
+             * @return
+             */
+            removeBarrier(props){
+                setTimeout(() => {
+                    const shapeTargets = document.querySelectorAll('.hexagon');
+                    const shapeTargetsVaccinated = document.querySelectorAll('.vaccinated');
+                    shapeTargets.forEach((e) => {
+                        if(e.classList.value.indexOf("vulnerable") === -1){ // <-- For testing purpose
+                            shapeTargetsVaccinated.forEach((b) => {
+                                if(e.id === b.id){
+                                    e.classList.remove("barrier");
+                                }
+                            });
+                        }
+                    });
+                }, parseInt(props.startTime));
+            },
+
+
+            /**--->  ---------------------------------- It's will be completed later ------------------------------
+             * @param {Number} delay
+             * @return
+             */
+            remove(props){
+                setTimeout(() => {
+                    const shapeTargets = document.querySelectorAll('.infected');
+                    shapeTargets.forEach((e) => {
+                        e.classList.remove("infected");
+                        if(this.avatarChecking(e.id)){
+                            if(e.id != "shape_50"){
+                                this.setCharacterTShirtColor(e.id, connections.defaultShirtColor, connections.proportion);
+                            }
+                            else{
+                                this.setCharacterTShirtColor(e.id, connections.secondDefaultShirtColor, connections.proportion);
+                            }
+                        }
+                    });
+                }, parseInt(props.startTime));
+            },
+
             /**
              * ---> This function randomly returns between [0-2]
              *  @param {number} value
@@ -439,6 +484,10 @@
                     }
                 });
                 return value;
+            },
+
+            test(props){
+
             },
 
 
@@ -604,6 +653,7 @@
                         (shapes.childNodes).forEach((value) => {
                             value.childNodes[0].classList.remove(connections.stateInfected);
                             value.childNodes[0].classList.remove(connections.stateVaccinated);
+                            value.childNodes[0].classList.remove(connections.stateBarrier);
                             let id_shape = value.childNodes[0].id;
                             if (id_shape != ""){
                                 if(this.avatarChecking(id_shape)){
@@ -655,8 +705,17 @@
             vaccination(props){
                 const selector = '#main-container #';
                 let value = 0;
-                let file = require("../assets/json/" + props.file);
-                let coverage = file.coverage;
+                var coverage;
+                if(props.file === "" && props.autoVaccination === true && props.add === true){
+                    this.autoCompleteVaccination();
+                    coverage = this.autoVaccinationArray;
+                    console.log(this.autoVaccinationArray);
+                }
+                else{
+                    let file = require("../assets/json/" + props.file);
+                    coverage = file.coverage;
+                    console.log("coverage 1: ", coverage);
+                }
                 setTimeout(()=> {
                     let vaccineCoverage = setInterval(() => {
                         let incrementation = coverage[value++];
@@ -689,6 +748,30 @@
                     }, props.duration);
                 },parseInt(props.startTime));
             },
+
+
+
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param none
+             * @return none
+             */
+            autoCompleteVaccination(){
+                let target = document.querySelectorAll('#main-container');
+                let valeur = target[0].childNodes;
+                valeur.forEach((e) => {
+                    if(!e.firstChild.className.split(" ").includes("vaccinated")){
+                        //e.firstChild.classList.add("vaccinated");
+                        if(e.firstChild.id !== ""){
+                            if(e.firstChild.id !== "shape_11" || e.firstChild.id !== "shape_88"){
+                                this.autoVaccinationArray.push(e.firstChild.id);
+                            }
+                        }
+                    }
+                });
+            },
+
+
 
             /**
              * ---> Draw the lines of infections (when infection is spreading)
