@@ -72,8 +72,7 @@
                 isAnimationStarted: false,
                 currentLanguage: "",
                 textButtonAnimation: '',
-                isAudioPlaying: false,
-                autoVaccinationArray : []
+                isAudioPlaying: false
             }
         },
         props: {
@@ -304,13 +303,11 @@
              */
             makeContour(props) {
                 let shapeTargets = "";
-
                 if (props.class === "contour") {
                     shapeTargets = document.querySelectorAll('#copy2 ' + props.target);
                 } else if (props.class === "barrier") {
                     shapeTargets = document.querySelectorAll('.copy ' + props.target);
                 }
-
                 setTimeout(() => {
                     if (props.add) {
                         shapeTargets.forEach(e => e.classList.add(props.class));
@@ -582,8 +579,8 @@
                 const selector = '#main-container #';
 
                 if(props.add) {
-                    this.hexColor(selector, props.target, props.state);
                     setTimeout(() => {
+                        this.hexColor(selector, props.target, props.state);
                         this.changeSize(selector, props.target, props.scale, props.timingFunction, props.duration);
                         if (this.characterChecking(props.target)) {
                             if (props.state === connections.stateInfected) {
@@ -703,16 +700,8 @@
             vaccination(props){
                 const selector = '#main-container #';
                 let value = 0;
-                let coverage;
-                if (props.file === "" && props.autoVaccination === true && props.add === true) {
-                    this.autoCompleteVaccination();
-                    coverage = this.autoVaccinationArray;
-                    console.log(this.autoVaccinationArray);
-                } else {
-                    let file = require("../assets/json/" + props.file);
-                    coverage = file.coverage;
-                    // console.log("coverage 1: ", coverage);
-                }
+                let file = require("../assets/json/" + props.file);
+                let coverage = file.coverage;
                 setTimeout(()=> {
                     let vaccineCoverage = setInterval(() => {
                         let incrementation = coverage[value++];
@@ -745,28 +734,6 @@
                         }
                     }, props.duration);
                 },parseInt(props.startTime));
-            },
-
-
-
-            /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param none
-             * @return none
-             */
-            autoCompleteVaccination(){
-                let target = document.querySelectorAll('#main-container');
-                let valeur = target[0].childNodes;
-                valeur.forEach((e) => {
-                    if (!e.firstChild.className.split(" ").includes("vaccinated")) {
-                        //e.firstChild.classList.add("vaccinated");
-                        if (e.firstChild.id !== "") {
-                            if (e.firstChild.id !== "shape_11" || e.firstChild.id !== "shape_88") {
-                                this.autoVaccinationArray.push(e.firstChild.id);
-                            }
-                        }
-                    }
-                });
             },
 
 

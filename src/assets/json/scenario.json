@@ -189,8 +189,7 @@
                             "duration": "30",
                             "state": "vaccinated",
                             "startTime" : "800",
-                            "add": true,
-                            "autoVaccination" : false
+                            "add": true
 
                         }
                     },
@@ -243,8 +242,7 @@
                             "duration": "30",
                             "state": "vaccinated",
                             "startTime" : "100",
-                            "add": false,
-                            "autoVaccination" : false
+                            "add": false
                         }
                     },
                     {
@@ -254,8 +252,7 @@
                         "duration": "30",
                         "state": "vaccinated",
                         "startTime" : "3500",
-                        "add": true,
-                        "autoVaccination" : false
+                        "add": true
 
                       }
                     },
@@ -266,8 +263,7 @@
                         "duration": "30",
                         "state": "vaccinated",
                         "startTime" : "9500",
-                        "add": true,
-                        "autoVaccination" : false
+                        "add": true
 
                       }
                     }
@@ -326,8 +322,7 @@
                       "duration": "0",
                       "state": "vaccinated",
                       "startTime" : "100",
-                      "add": true,
-                      "autoVaccination" : false
+                      "add": true
 
                     }
                   },
@@ -338,8 +333,7 @@
                       "duration": "1",
                       "state": "vaccinated",
                       "startTime" : "100",
-                      "add": false,
-                      "autoVaccination" : false
+                      "add": false
 
                     }
                   },
@@ -356,9 +350,7 @@
                       "duration": "0",
                       "state": "vaccinated",
                       "startTime" : "1000",
-                      "add": false,
-                      "autoVaccination": false
-
+                      "add": false
                     }
                   },
                   {
@@ -368,9 +360,7 @@
                       "duration": "0",
                       "state": "vaccinated",
                       "startTime" : "2000",
-                      "add": true,
-                      "autoVaccination" : false
-
+                      "add": true
                     }
                   },
                   {
@@ -386,8 +376,7 @@
                       "duration": "0",
                       "state": "vaccinated",
                       "startTime" : "3000",
-                      "add": true,
-                      "autoVaccination" : false
+                      "add": true
                     }
                   },
                   {
@@ -421,13 +410,11 @@
                     {
                       "action": "vaccination",
                       "props": {
-                        "file" : "vaccineCoverageRemove3.json",
+                        "file" : "vaccineCoverageRemove3-1.json",
                         "duration": "0",
                         "state": "vaccinated",
                         "startTime" : "1400",
-                        "add": false,
-                        "autoVaccination" : false
-
+                        "add": false
                       }
                     },
                     {
@@ -452,8 +439,7 @@
                       "duration": "0",
                       "state": "vaccinated",
                       "startTime" : "500",
-                      "add": false,
-                      "autoVaccination" : false
+                      "add": false
                     }
                   },
                   {
@@ -504,7 +490,7 @@
                       "scale": "1.2",
                       "state": "vaccinated",
                       "timingFunction": "linear",
-                      "startTime" : "1500",
+                      "startTime" : "2000",
                       "duration" : "250",
                       "add": true
                     }
@@ -512,18 +498,47 @@
                   {
                     "action": "vaccination",
                     "props": {
-                      "file" : "",
+                      "file" : "vaccineCoverageAdd98.json",
                       "duration": "0",
                       "state": "vaccinated",
-                      "startTime" : "3500",
-                      "add": true,
-                      "autoVaccination" : true
+                      "startTime" : "2500",
+                      "add": true
+                    }
+                  },
+                  {
+                    "action": "vaccination",
+                    "props": {
+                      "file" : "vaccineCoverageRemove3-2.json",
+                      "duration": "0",
+                      "state": "vaccinated",
+                      "startTime" : "2700",
+                      "add": false
                     }
                   },
                   {
                     "action": "makeTransformer",
                     "props": {
                       "startTime" : "5000"
+                    }
+                  },
+                  {
+                    "action": "makeContour",
+                    "props": {
+                      "target": ".vulnerable",
+                      "class": "barrier",
+                      "startTime" : "7000",
+                      "duration": "700",
+                      "add" : true
+                    }
+                  },
+                  {
+                    "action": "makeContour",
+                    "props": {
+                      "target": ".vulnerable",
+                      "class": "contour",
+                      "startTime" : "90000",
+                      "duration": "700",
+                      "add" : false
                     }
                   }
                 ]
