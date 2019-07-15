@@ -2,15 +2,22 @@
   "connections" : [
     {
       "id"	 : "1",
-      "source" : "shape_33",
-      "target" : "shape_41",
+      "source" : "shape_11",
+      "target" : "shape_24",
       "targetGetsInfected": false,
       "nextTarget": ""
     },
     {
       "id"	 : "2",
-      "source" : "shape_33",
-      "target" : "shape_52",
+      "source" : "shape_11",
+      "target" : "shape_6",
+      "targetGetsInfected": false,
+      "nextTarget": ""
+    },
+    {
+      "id"	 : "3",
+      "source" : "shape_11",
+      "target" : "shape_17",
       "targetGetsInfected": false,
       "nextTarget": ""
     }
