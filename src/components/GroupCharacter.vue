@@ -143,6 +143,7 @@
     .line {
         justify-self: center;
         border-top: 0.10rem solid #848484;
+        margin-bottom: 30px;
     }
     @media only screen and (max-width: 500px) {
         .fit-content {
