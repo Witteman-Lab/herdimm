@@ -12,10 +12,10 @@
                     {
                         "action": "zoom",
                         "props": {
-                            "scale" : "3",
+                            "scale" : "4",
                             "duration" : "1000",
-                            "transformOrigin_X" : "25",
-                            "transformOrigin_Y": "30",
+                            "transformOrigin_X" : "30",
+                            "transformOrigin_Y": "40",
                             "startTime" : "500",
                             "timingFunction": "linear"
                         }
@@ -59,10 +59,10 @@
                     {
                         "action": "zoom",
                         "props": {
-                            "scale" : "2",
+                            "scale" : "3",
                             "duration" : "1000",
-                            "transformOrigin_X" : "25",
-                            "transformOrigin_Y": "30",
+                            "transformOrigin_X" : "30",
+                            "transformOrigin_Y": "40",
                             "startTime" : "100",
                             "timingFunction": "linear"
                         }
@@ -131,7 +131,7 @@
                     {
                         "action": "burst",
                         "props": {
-                            "target": "shape_41",
+                            "target": "#shape_41",
                             "scale": "1.2",
                             "state": "infected",
                             "timingFunction": "linear",
@@ -173,7 +173,7 @@
                     {
                         "action": "burst",
                         "props": {
-                            "target": "shape_50",
+                            "target": "#shape_50",
                             "scale": "1.2",
                             "state": "vaccinated",
                             "timingFunction": "linear",
@@ -229,7 +229,7 @@
                     {
                         "action": "burst",
                         "props": {
-                            "target": "shape_50",
+                            "target": "#shape_50",
                             "state": "vaccinated",
                             "startTime" : "250",
                             "add": false
@@ -280,8 +280,8 @@
                         "props": {
                             "scale" : "1.00",
                             "duration" : "1000",
-                            "transformOrigin_X" : "25",
-                            "transformOrigin_Y": "30",
+                            "transformOrigin_X" : "30",
+                            "transformOrigin_Y": "40",
                             "startTime" : "1500",
                             "timingFunction": "linear"
                         }
@@ -396,14 +396,14 @@
                     {
                       "action": "parseSpreadInfection",
                       "props": {
-                        "file" : "spreadinfections5.json",
+                        "file" : "spreadinfections3.json",
                         "startTime" : "500"
                       }
                     },
                     {
                       "action": "parseSpreadInfection",
                       "props": {
-                        "file" : "spreadinfections6.json",
+                        "file" : "spreadinfections4.json",
                         "startTime" : "1000"
                       }
                     },
@@ -420,7 +420,7 @@
                     {
                       "action": "parseSpreadInfection",
                       "props": {
-                        "file" : "spreadinfections7.json",
+                        "file" : "spreadinfections5.json",
                         "startTime" : "3500"
                       }
                     }
@@ -449,7 +449,7 @@
                     }
                   },
                   {
-                    "action": "remove",
+                    "action": "removeInfection",
                     "props": {
                       "startTime" : "1000"
                     }
@@ -470,7 +470,7 @@
                       }
                     },
                     {
-                      "action": "remove",
+                      "action": "removeInfection",
                       "props": {
                         "startTime" : "14000"
                       }
@@ -486,6 +486,7 @@
                   {
                     "action": "burst",
                     "props": {
+                      "prefix": "#",
                       "target": "shape_50",
                       "scale": "1.2",
                       "state": "vaccinated",
@@ -498,21 +499,11 @@
                   {
                     "action": "vaccination",
                     "props": {
-                      "file" : "vaccineCoverageAdd98.json",
+                      "file" : "vaccineCoverageAdd95.json",
                       "duration": "0",
                       "state": "vaccinated",
                       "startTime" : "2500",
                       "add": true
-                    }
-                  },
-                  {
-                    "action": "vaccination",
-                    "props": {
-                      "file" : "vaccineCoverageRemove3-2.json",
-                      "duration": "0",
-                      "state": "vaccinated",
-                      "startTime" : "2700",
-                      "add": false
                     }
                   },
                   {
@@ -525,20 +516,21 @@
                     "action": "makeContour",
                     "props": {
                       "target": ".vulnerable",
-                      "class": "barrier",
+                      "class": "vulnerableContour",
                       "startTime" : "7000",
                       "duration": "700",
                       "add" : true
                     }
                   },
                   {
-                    "action": "makeContour",
+                    "action": "burstContour",
                     "props": {
                       "target": ".vulnerable",
-                      "class": "contour",
-                      "startTime" : "90000",
-                      "duration": "700",
-                      "add" : false
+                      "scale": "1.6",
+                      "state": "vaccinated",
+                      "timingFunction": "linear",
+                      "startTime" : "7700",
+                      "duration" : "500"
                     }
                   }
                 ]

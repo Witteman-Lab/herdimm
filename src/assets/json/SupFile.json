@@ -4,20 +4,20 @@
     "folder" : "en",
     "sequences" : [
       {
-        "file": "1E.mp3",
-        "captions": [
-          "What role does each of us play in protecting our community?"
+        "file" : "15E.mp3",
+        "captions" : [
+          "Whenever your community has community immunity, everyone is protected."
         ],
-        "actions":
-        [
+        "actions" : [
           {
             "action": "burst",
             "props": {
+              "prefix": "#",
               "target": "shape_50",
               "scale": "1.2",
               "state": "vaccinated",
               "timingFunction": "linear",
-              "startTime" : "1500",
+              "startTime" : "2000",
               "duration" : "250",
               "add": true
             }
@@ -25,21 +25,11 @@
           {
             "action": "vaccination",
             "props": {
-              "file" : "vaccineCoverageAdd98.json",
+              "file" : "vaccineCoverageAdd95.json",
               "duration": "0",
               "state": "vaccinated",
               "startTime" : "2500",
               "add": true
-            }
-          },
-          {
-            "action": "vaccination",
-            "props": {
-              "file" : "vaccineCoverageRemove3-2.json",
-              "duration": "0",
-              "state": "vaccinated",
-              "startTime" : "2700",
-              "add": false
             }
           },
           {
@@ -52,20 +42,23 @@
             "action": "makeContour",
             "props": {
               "target": ".vulnerable",
-              "class": "contour",
-              "startTime" : "6000",
+              "class": "vulnerableContour",
+              "startTime" : "7000",
               "duration": "700",
               "add" : true
             }
           },
           {
-            "action": "makeContour",
+            "action": "burst",
             "props": {
-              "target": ".vulnerable",
-              "class": "contour",
-              "startTime" : "80000",
-              "duration": "700",
-              "add" : false
+              "prefix": ".",
+              "target": "vulnerable",
+              "scale": "1.6",
+              "state": "vaccinated",
+              "timingFunction": "linear",
+              "startTime" : "7700",
+              "duration" : "500",
+              "add": true
             }
           }
         ]

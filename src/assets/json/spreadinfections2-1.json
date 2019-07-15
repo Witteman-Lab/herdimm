@@ -3,17 +3,19 @@
         {
             "id"	 : "1",
             "source" : "shape_41",
-            "target" : "shape_46",
-            "targetGetsInfected": false,
-            "nextTarget": ""
-        },
-        {
-            "id"	 : "2",
-            "source" : "shape_41",
             "target" : "shape_51",
             "targetGetsInfected": true,
-            "endOfTheSequence": true,
-            "nextTarget": ""
+            "endOfTheSequence": false,
+            "nextTarget": [
+                {
+                    "id"	 : "2",
+                    "source" : "shape_51",
+                    "target" : "shape_46",
+                    "targetGetsInfected": false,
+                    "endOfTheSequence": true,
+                    "nextTarget": ""
+                }
+            ]
         }
     ]
 }

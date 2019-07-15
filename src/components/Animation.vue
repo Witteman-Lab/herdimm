@@ -225,6 +225,7 @@
                 // TO-DO: try different proportion
                 // let darkerColor = this.$refs[shapeId][0].getDarkerShade(color, 0.8);
                 // this.$refs[shapeId][0].changeShirtColor(darkerColor, 0.8);
+                console.log("shapeId", shapeId);
                 let darkerColor = this.$refs[shapeId][0].getDarkerShade(color, proportion);
                 this.$refs[shapeId][0].changeShirtColor(darkerColor, proportion);
             },
@@ -286,7 +287,7 @@
                         e.style.transform = "scale("+props.scale.toString()+","+props.scale.toString()+")";
                         e.style.transitionDuration = props.duration.toString()+"ms";
                         e.style.transitionTimingFunction = props.timingFunction;
-                        e.style.transformOrigin = props.transformOrigin_X.toString()+"%"+" "+props.transformOrigin_Y.toString()+"%";       //"30% 30%"
+                        e.style.transformOrigin = props.transformOrigin_X.toString()+"%"+" "+props.transformOrigin_Y.toString()+"%"; //"30% 30%"
                         e.style.transitionDelay = props.startTime.toString()+"ms";
                         e.style.transitionProperty = "transform";
                     });
@@ -305,7 +306,7 @@
                 let shapeTargets = "";
                 if (props.class === "contour") {
                     shapeTargets = document.querySelectorAll('#copy2 ' + props.target);
-                } else if (props.class === "barrier") {
+                } else if (props.class === "vulnerableContour") {
                     shapeTargets = document.querySelectorAll('.copy ' + props.target);
                 }
                 setTimeout(() => {
@@ -383,7 +384,7 @@
              * @param {Number} delay
              * @return
              */
-            remove(props) {
+            removeInfection(props) {
                 setTimeout(() => {
                     const shapeTargets = document.querySelectorAll('.infected');
                     shapeTargets.forEach((e) => {
@@ -473,7 +474,7 @@
              */
             characterChecking(shape_id){
                 let value = false;
-                let variable = document.querySelectorAll("#main-container #"+shape_id);
+                let variable = document.querySelectorAll("#main-container "+shape_id);
                 variable.forEach(e => {
                     let array = (e.getAttribute("class")).split(" ");
                     if (array[0] === "comm" || array[0] === "avatar" || array[0] === "vulnerable"){
@@ -569,6 +570,19 @@
                 return Math.sqrt((x2 -= x1) * x2 + (y2 -= y1) * y2);
             },
 
+            burstContour(props) {
+                const selector = '#copy1 ';
+
+                setTimeout(() => {
+                    const shapeTargets = document.querySelectorAll(selector + props.prefix + props.target);
+
+                    shapeTargets.forEach((e) => {
+                        this.changeSize(selector, props.prefix + props.target, props.scale, props.timingFunction, props.duration);
+                        this.hexColor(selector, props.prefix + props.target, props.state);
+                    });
+                }, parseInt(props.startTime));
+            },
+
 
             /**
              * ---> Compute and return the length of the line for its animation
@@ -576,13 +590,13 @@
              * @return none
              */
             burst(props){
-                const selector = '#main-container #';
+                const selector = '#main-container ';
 
                 if(props.add) {
                     setTimeout(() => {
-                        this.hexColor(selector, props.target, props.state);
-                        this.changeSize(selector, props.target, props.scale, props.timingFunction, props.duration);
-                        if (this.characterChecking(props.target)) {
+                        this.changeSize(selector, props.prefix + props.target, props.scale, props.timingFunction, props.duration);
+                        this.hexColor(selector, props.prefix + props.target, props.state);
+                        if (this.characterChecking(props.prefix + props.target)) {
                             if (props.state === connections.stateInfected) {
                                 this.setCharacterTShirtColor(props.target, connections.infectedShirtColor, connections.proportion);
                             } else if (props.state === connections.stateVaccinated) {
@@ -593,9 +607,9 @@
                 }
                 else{
                     setTimeout(()=>{
-                        document.querySelector(selector + props.target).classList.remove(props.state);
-                        if (this.characterChecking(props.target)) {
-                            let characterType = document.querySelector(selector + props.target).children[0].children[0].getAttribute('characterType');
+                        document.querySelector(selector + props.prefix + props.target).classList.remove(props.state);
+                        if (this.characterChecking(props.prefix + props.target)) {
+                            let characterType = document.querySelector(selector + props.prefix + props.target).children[0].children[0].getAttribute('characterType');
                             if (characterType !== "avatar") {
                                 this.setCharacterTShirtColor(props.target, connections.defaultShirtColor, connections.proportion);
                             } else {
@@ -634,7 +648,9 @@
             hexColor(selector, target, state){
                 document.querySelector(selector+target).classList.remove(connections.stateInfected);
                 document.querySelector(selector+target).classList.remove(connections.stateVaccinated);
-                document.querySelector(selector+target).classList.add(state);
+                if (state !== "") {
+                    document.querySelector(selector+target).classList.add(state);
+                }
             },
 
             /**
@@ -704,28 +720,30 @@
                 let coverage = file.coverage;
                 setTimeout(()=> {
                     let vaccineCoverage = setInterval(() => {
-                        let incrementation = coverage[value++];
+                        let target = coverage[value++];
 
                         if (props.add) {
-                            this.hexColor(selector, incrementation, props.state);
-                            if (this.characterChecking(incrementation)) {
-                                this.setCharacterTShirtColor(incrementation, connections.vaccinatedShirtColor, connections.proportion);
+                            // For now, if the shape already has the class vaccinated, it doesn't create any problem
+                            // But if it does in some browsers, maybe we're going to want to check if the element already has the class
+                            this.hexColor(selector, target, props.state);
+                            if (this.characterChecking(target)) {
+                                this.setCharacterTShirtColor(target, connections.vaccinatedShirtColor, connections.proportion);
                             }
                         } else {
-                            document.querySelector(selector + incrementation).classList.remove(props.state);
-                            let list = document.querySelector(selector + incrementation).classList;
+                            document.querySelector(selector + target).classList.remove(props.state);
+                            let list = document.querySelector(selector + target).classList;
                             list.forEach((e) => {
                                 if (e === "barrier") {
-                                    document.querySelector("#copy2 #" + incrementation).classList.remove(e);
-                                    document.querySelector("#copy1 #" + incrementation).classList.remove(e);
+                                    document.querySelector("#copy2 #" + target).classList.remove(e);
+                                    document.querySelector("#copy1 #" + target).classList.remove(e);
                                 }
                             });
-                            if (this.characterChecking(incrementation)) {
-                                let characterType = document.querySelector(selector + incrementation).children[0].children[0].getAttribute('characterType');
+                            if (this.characterChecking(target)) {
+                                let characterType = document.querySelector(selector + target).children[0].children[0].getAttribute('characterType');
                                 if (characterType !== "avatar") {
-                                    this.setCharacterTShirtColor(incrementation, connections.defaultShirtColor, connections.proportion);
+                                    this.setCharacterTShirtColor(target, connections.defaultShirtColor, connections.proportion);
                                 } else {
-                                    this.setCharacterTShirtColor(incrementation, connections.secondDefaultShirtColor, connections.proportion);
+                                    this.setCharacterTShirtColor(target, connections.secondDefaultShirtColor, connections.proportion);
                                 }
                             }
                         }
