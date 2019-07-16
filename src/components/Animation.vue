@@ -474,7 +474,7 @@
              */
             characterChecking(shape_id){
                 let value = false;
-                let variable = document.querySelectorAll("#main-container "+shape_id);
+                let variable = document.querySelectorAll("#main-container #"+shape_id);
                 variable.forEach(e => {
                     let array = (e.getAttribute("class")).split(" ");
                     if (array[0] === "comm" || array[0] === "avatar" || array[0] === "vulnerable"){
@@ -590,13 +590,13 @@
              * @return none
              */
             burst(props){
-                const selector = '#main-container ';
+                const selector = '#main-container #';
 
                 if(props.add) {
                     setTimeout(() => {
-                        this.changeSize(selector, props.prefix + props.target, props.scale, props.timingFunction, props.duration);
-                        this.hexColor(selector, props.prefix + props.target, props.state);
-                        if (this.characterChecking(props.prefix + props.target)) {
+                        this.changeSize(selector, props.target, props.scale, props.timingFunction, props.duration);
+                        this.hexColor(selector, props.target, props.state);
+                        if (this.characterChecking(props.target)) {
                             if (props.state === connections.stateInfected) {
                                 this.setCharacterTShirtColor(props.target, connections.infectedShirtColor, connections.proportion);
                             } else if (props.state === connections.stateVaccinated) {
@@ -607,9 +607,9 @@
                 }
                 else{
                     setTimeout(()=>{
-                        document.querySelector(selector + props.prefix + props.target).classList.remove(props.state);
-                        if (this.characterChecking(props.prefix + props.target)) {
-                            let characterType = document.querySelector(selector + props.prefix + props.target).children[0].children[0].getAttribute('characterType');
+                        document.querySelector(selector + props.target).classList.remove(props.state);
+                        if (this.characterChecking(props.target)) {
+                            let characterType = document.querySelector(selector + props.target).children[0].children[0].getAttribute('characterType');
                             if (characterType !== "avatar") {
                                 this.setCharacterTShirtColor(props.target, connections.defaultShirtColor, connections.proportion);
                             } else {
@@ -857,8 +857,9 @@
         height: 100vh;
     }
     .hexagon-container{
-        margin-top: 40px;
-        align-items: center;
+        /*margin-top: 10px;*/
+        /*align-items: center;*/
+        vertical-align: middle;
         justify-content: center;
     }
 

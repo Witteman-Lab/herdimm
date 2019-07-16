@@ -131,7 +131,7 @@
                     {
                         "action": "burst",
                         "props": {
-                            "target": "#shape_41",
+                            "target": "shape_41",
                             "scale": "1.2",
                             "state": "infected",
                             "timingFunction": "linear",
@@ -173,7 +173,7 @@
                     {
                         "action": "burst",
                         "props": {
-                            "target": "#shape_50",
+                            "target": "shape_50",
                             "scale": "1.2",
                             "state": "vaccinated",
                             "timingFunction": "linear",
@@ -195,13 +195,15 @@
                     },
 
                     {
-                        "action": "changeShapeColor",
+                        "action": "burst",
                         "props": {
-                            "target": "#shape_61",
+                            "target": "shape_61",
                             "state": "infected",
                             "timingFunction": "linear",
                             "startTime" : "7000",
-                            "duration" : "250"
+                            "duration" : "250",
+                            "scale": "1.0",
+                            "add": true
                         }
                     },
                     {
@@ -229,8 +231,11 @@
                     {
                         "action": "burst",
                         "props": {
-                            "target": "#shape_50",
+                            "target": "shape_50",
+                            "scale": "1.2",
                             "state": "vaccinated",
+                            "timingFunction": "linear",
+                            "duration" : "250",
                             "startTime" : "250",
                             "add": false
                         }
@@ -486,7 +491,6 @@
                   {
                     "action": "burst",
                     "props": {
-                      "prefix": "#",
                       "target": "shape_50",
                       "scale": "1.2",
                       "state": "vaccinated",
