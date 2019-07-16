@@ -97,7 +97,6 @@ div.vaccinated::before {
   // margin: 0 auto;
   // transform: scale(3,3);
   // transform-origin: (15% 45%);
-
 }
 .hexagon, svg#connections {
     // This so it doesn't get blurry when zoomed in (and out?)
@@ -308,3 +307,4 @@ div#copy1 .transformer::before {
     --hex-transition: all 2s ease;
   }
 }
+

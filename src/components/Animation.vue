@@ -856,6 +856,11 @@
         width: 100%;
         height: 100vh;
     }
+    .hexagon-container{
+        margin-top: 40px;
+        align-items: center;
+        justify-content: center;
+    }
 
     div.column {
         display: grid;
@@ -885,6 +890,13 @@
         border: 1px solid #999;
         padding: 5px;
         /* transform: translate(-50%); */
+    }
+
+
+    @media only screen and (max-width: 768px){
+        .hexagon-container{
+            margin-top: 10px;
+        }
     }
 
 </style>
