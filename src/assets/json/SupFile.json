@@ -10,55 +10,12 @@
         ],
         "actions" : [
           {
-            "action": "burst",
-            "props": {
-              "prefix": "#",
-              "target": "shape_50",
-              "scale": "1.2",
-              "state": "vaccinated",
-              "timingFunction": "linear",
-              "startTime" : "2000",
-              "duration" : "250",
-              "add": true
-            }
-          },
-          {
-            "action": "vaccination",
-            "props": {
-              "file" : "vaccineCoverageAdd95.json",
-              "duration": "0",
-              "state": "vaccinated",
-              "startTime" : "2500",
-              "add": true
-            }
-          },
-          {
-            "action": "makeTransformer",
-            "props": {
-              "startTime" : "5000"
-            }
-          },
-          {
-            "action": "makeContour",
+            "action": "changeShapeColor",
             "props": {
               "target": ".vulnerable",
-              "class": "vulnerableContour",
-              "startTime" : "7000",
-              "duration": "700",
-              "add" : true
-            }
-          },
-          {
-            "action": "burst",
-            "props": {
-              "prefix": ".",
-              "target": "vulnerable",
-              "scale": "1.6",
-              "state": "vaccinated",
-              "timingFunction": "linear",
-              "startTime" : "7700",
-              "duration" : "500",
-              "add": true
+              "state": "vulnerability",
+              "startTime": "400",
+              "duration": "1000"
             }
           }
         ]

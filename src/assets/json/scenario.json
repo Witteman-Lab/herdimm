@@ -195,15 +195,13 @@
                     },
 
                     {
-                        "action": "burst",
+                        "action": "changeShapeColor",
                         "props": {
-                            "target": "shape_61",
+                            "target": "#shape_61",
                             "state": "infected",
                             "timingFunction": "linear",
                             "startTime" : "7000",
-                            "duration" : "250",
-                            "scale": "1.0",
-                            "add": true
+                            "duration" : "250"
                         }
                     },
                     {

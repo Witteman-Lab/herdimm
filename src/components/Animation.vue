@@ -632,9 +632,22 @@
                 const selector = '#main-container ';
                 setTimeout(() => {
                     const shapeTargets = document.querySelectorAll(selector + props.target);
-                    for (let i = 0; i < shapeTargets.length; i++) {
-                        shapeTargets.item(i).classList.add(props.state);
-                    }
+                    //console.log("shapeTarget :", shapeTargets);
+                    shapeTargets.forEach((e) => {
+                        e.classList.add(props.state);
+                        if (this.characterChecking(e.id)) {
+                            console.log("ca marhe ");
+                            if (props.state === connections.stateInfected) {
+                                this.setCharacterTShirtColor(e.id, connections.infectedShirtColor, connections.proportion);
+                            } else if (props.state === connections.stateVaccinated) {
+                                this.setCharacterTShirtColor(e.id, connections.vaccinatedShirtColor, connections.proportion);
+                            }
+                            else if(props.state === connections.stateVulnerable){
+                                this.setCharacterTShirtColor(e.id, connections.vulnerableShirtColor, connections.proportion);
+                            }
+                        }
+                    });
+
                 }, parseInt(props.startTime));
             },
 
