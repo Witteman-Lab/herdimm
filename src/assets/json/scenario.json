@@ -205,6 +205,18 @@
                         }
                     },
                     {
+                      "action": "burst",
+                      "props": {
+                        "target": "shape_41",
+                        "scale": "1.2",
+                        "state": "infected",
+                        "timingFunction": "linear",
+                        "startTime" : "7200",
+                        "duration" : "250",
+                        "add": true
+                      }
+                    },
+                    {
                         "action": "parseSpreadInfection",
                         "props": {
                             "file" : "spreadinfections2-1.json",
@@ -265,8 +277,10 @@
                         "file" : "vaccineCoverageAdd4.json",
                         "duration": "30",
                         "state": "vaccinated",
-                        "startTime" : "9500",
-                        "add": true
+                        "startTime" : "9000",
+                        "add": true,
+                        "makeTransformer": true,
+                        "startTimeMakeTransformer": "-200"
 
                       }
                     }
@@ -288,13 +302,6 @@
                             "startTime" : "1500",
                             "timingFunction": "linear"
                         }
-                    },
-                    {
-                        "_commentary" : "------------------------ changeShapeColor ( from infected to vaccinated ) ---------------",
-                        "action": "",
-                        "props": {
-
-                        }
                     }
                 ]
             },
@@ -304,12 +311,7 @@
                     "When you and enough people around you are vaccinated, this creates a protective barrier around everyone in your community."
                 ],
                 "actions" : [
-                    {
-                        "action": "makeTransformer",
-                        "props": {
-                          "startTime" : "100"
-                        }
-                    }
+
                 ]
             },
             {
@@ -325,7 +327,9 @@
                       "duration": "0",
                       "state": "vaccinated",
                       "startTime" : "100",
-                      "add": true
+                      "add": true,
+                      "makeTransformer": true,
+                      "startTimeMakeTransformer": "0"
 
                     }
                   },
@@ -336,14 +340,10 @@
                       "duration": "1",
                       "state": "vaccinated",
                       "startTime" : "100",
-                      "add": false
+                      "add": false,
+                      "makeTransformer": true,
+                      "startTimeMakeTransformer": "0"
 
-                    }
-                  },
-                  {
-                    "action": "makeTransformer",
-                    "props": {
-                      "startTime" : "200"
                     }
                   },
                   {
@@ -352,8 +352,10 @@
                       "file" : "vaccineCoverageRemove5.json",
                       "duration": "0",
                       "state": "vaccinated",
-                      "startTime" : "1000",
-                      "add": false
+                      "startTime" : "5000",
+                      "add": false,
+                      "makeTransformer": true,
+                      "startTimeMakeTransformer": "0"
                     }
                   },
                   {
@@ -362,14 +364,10 @@
                       "file" : "vaccineCoverageAdd20.json",
                       "duration": "0",
                       "state": "vaccinated",
-                      "startTime" : "2000",
-                      "add": true
-                    }
-                  },
-                  {
-                    "action": "makeTransformer",
-                    "props": {
-                      "startTime" : "2500"
+                      "startTime" : "7000",
+                      "add": true,
+                      "makeTransformer": true,
+                      "startTimeMakeTransformer": "0"
                     }
                   },
                   {
@@ -378,14 +376,10 @@
                       "file" : "vaccineCoverageAdd7.json",
                       "duration": "0",
                       "state": "vaccinated",
-                      "startTime" : "3000",
-                      "add": true
-                    }
-                  },
-                  {
-                    "action": "makeTransformer",
-                    "props": {
-                      "startTime" : "3200"
+                      "startTime" : "9000",
+                      "add": true,
+                      "makeTransformer": true,
+                      "startTimeMakeTransformer": "0"
                     }
                   }
                 ]
@@ -417,7 +411,9 @@
                         "duration": "0",
                         "state": "vaccinated",
                         "startTime" : "1400",
-                        "add": false
+                        "add": false,
+                        "makeTransformer": true,
+                        "startTimeMakeTransformer": "0"
                       }
                     },
                     {
@@ -442,7 +438,9 @@
                       "duration": "0",
                       "state": "vaccinated",
                       "startTime" : "500",
-                      "add": false
+                      "add": false,
+                      "makeTransformer": false,
+                      "startTimeMakeTransformer": "0"
                     }
                   },
                   {
@@ -505,13 +503,9 @@
                       "duration": "0",
                       "state": "vaccinated",
                       "startTime" : "2500",
-                      "add": true
-                    }
-                  },
-                  {
-                    "action": "makeTransformer",
-                    "props": {
-                      "startTime" : "5000"
+                      "add": true,
+                      "makeTransformer": true,
+                      "startTimeMakeTransformer": "0"
                     }
                   },
                   {

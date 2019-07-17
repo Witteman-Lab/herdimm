@@ -10,12 +10,16 @@
         ],
         "actions" : [
           {
-            "action": "changeShapeColor",
+            "action": "parseSpreadInfection",
             "props": {
-              "target": ".vulnerable",
-              "state": "vulnerability",
-              "startTime": "400",
-              "duration": "1000"
+              "file" : ["flu.json","measles.json","pertussis.json"],
+              "startTime" : "500"
+            }
+          },
+          {
+            "action": "removeInfection",
+            "props": {
+              "startTime" : "13000"
             }
           }
         ]

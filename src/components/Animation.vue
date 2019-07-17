@@ -341,7 +341,7 @@
              * @param {Number} delay
              * @return
              */
-            makeTransformer(props) {
+            makeTransformer(startTime) {
                 setTimeout(() => {
                     const shapeTargets = document.querySelectorAll('.hexagon');
                     const shapeTargetsVaccinated = document.querySelectorAll('.vaccinated');
@@ -354,7 +354,7 @@
                             });
                         }
                     });
-                }, parseInt(props.startTime));
+                }, parseInt(startTime));
             },
 
 
@@ -391,10 +391,13 @@
                         e.classList.remove("infected");
                         if (this.characterChecking(e.id)) {
                             let characterType = e.children[0].children[0].getAttribute('characterType');
-                            if (characterType !== "avatar") {
-                                this.ChangeTShirtColor(e.id, connections.defaultShirtColor, connections.proportion);
-                            } else {
+                            console.log("valeur :", characterType);
+                            if (characterType === "avatar") {
                                 this.ChangeTShirtColor(e.id, connections.secondDefaultShirtColor, connections.proportion);
+                            } else if(characterType === "vulnerable") {
+                                this.ChangeTShirtColor(e.id, connections.vulnerableShirtColor, connections.proportion);
+                            }else{
+                                this.ChangeTShirtColor(e.id, connections.defaultShirtColor, connections.proportion);
                             }
                         }
                     });
@@ -604,10 +607,12 @@
                         document.querySelector(selector + props.target).classList.remove(props.state);
                         if (this.characterChecking(props.target)) {
                             let characterType = document.querySelector(selector + props.target).children[0].children[0].getAttribute('characterType');
-                            if (characterType !== "avatar") {
-                                this.ChangeTShirtColor(props.target, connections.defaultShirtColor, connections.proportion);
-                            } else {
+                            if (characterType === "avatar") {
                                 this.ChangeTShirtColor(props.target, connections.secondDefaultShirtColor, connections.proportion);
+                            } else if(characterType === "vulnerable") {
+                                this.ChangeTShirtColor(props.target, connections.vulnerableShirtColor, connections.proportion);
+                            }else{
+                                this.ChangeTShirtColor(props.target, connections.defaultShirtColor, connections.proportion);
                             }
                         }
 
@@ -684,10 +689,12 @@
                             if (id_shape !== "") {
                                 if (this.characterChecking(id_shape)) {
                                     let characterType = value.children[0].children[0].children[0].getAttribute('characterType');
-                                    if (characterType !== "avatar") {
-                                        this.ChangeTShirtColor(id_shape, connections.defaultShirtColor, connections.proportion);
-                                    } else {
+                                    if (characterType === "avatar") {
                                         this.ChangeTShirtColor(id_shape, connections.secondDefaultShirtColor, connections.proportion);
+                                    } else if(characterType === "vulnerable") {
+                                        this.ChangeTShirtColor(id_shape, connections.vulnerableShirtColor, connections.proportion);
+                                    }else{
+                                        this.ChangeTShirtColor(id_shape, connections.defaultShirtColor, connections.proportion);
                                     }
                                 }
                             }
@@ -755,15 +762,20 @@
                             });
                             if (this.characterChecking(target)) {
                                 let characterType = document.querySelector(selector + target).children[0].children[0].getAttribute('characterType');
-                                if (characterType !== "avatar") {
-                                    this.ChangeTShirtColor(target, connections.defaultShirtColor, connections.proportion);
-                                } else {
+                                if (characterType === "avatar") {
                                     this.ChangeTShirtColor(target, connections.secondDefaultShirtColor, connections.proportion);
+                                } else if(characterType === "vulnerable") {
+                                    this.ChangeTShirtColor(target, connections.vulnerableShirtColor, connections.proportion);
+                                }else{
+                                    this.ChangeTShirtColor(target, connections.defaultShirtColor, connections.proportion);
                                 }
                             }
                         }
                         if (value === coverage.length) {
                             clearInterval(vaccineCoverage);
+                        }
+                        if(props.makeTransformer){
+                            this.makeTransformer(parseInt(props.duration)+parseInt(props.startTime)+parseInt(props.startTimeMakeTransformer));
                         }
                     }, props.duration);
                 },parseInt(props.startTime));
