@@ -221,7 +221,7 @@
              * @param {String} color
              * @return none
              */
-            setCharacterTShirtColor(shapeId, color, proportion) {
+            ChangeTShirtColor(shapeId, color, proportion) {
                 // TO-DO: try different proportion
                 // let darkerColor = this.$refs[shapeId][0].getDarkerShade(color, 0.8);
                 // this.$refs[shapeId][0].changeShirtColor(darkerColor, 0.8);
@@ -392,9 +392,9 @@
                         if (this.characterChecking(e.id)) {
                             let characterType = e.children[0].children[0].getAttribute('characterType');
                             if (characterType !== "avatar") {
-                                this.setCharacterTShirtColor(e.id, connections.defaultShirtColor, connections.proportion);
+                                this.ChangeTShirtColor(e.id, connections.defaultShirtColor, connections.proportion);
                             } else {
-                                this.setCharacterTShirtColor(e.id, connections.secondDefaultShirtColor, connections.proportion);
+                                this.ChangeTShirtColor(e.id, connections.secondDefaultShirtColor, connections.proportion);
                             }
                         }
                     });
@@ -533,7 +533,7 @@
                     lineObj.addEventListener("animationstart", () => { // webkitAnimationStart
                         this.hexColor(selector, source, state);
                         if (this.characterChecking(source) === true) {
-                            this.setCharacterTShirtColor(source, connections.infectedShirtColor, connections.proportion);
+                            this.ChangeTShirtColor(source, connections.infectedShirtColor, connections.proportion);
                         }
                     });
                     // When the animation ends, check if there is a next target
@@ -546,7 +546,7 @@
                         if (targetGetsInfected) {
                             this.hexColor(selector, target, state);
                             if (this.characterChecking(target) === true) {
-                                this.setCharacterTShirtColor(target, connections.infectedShirtColor, connections.proportion);
+                                this.ChangeTShirtColor(target, connections.infectedShirtColor, connections.proportion);
                             }
                         }
                     });
@@ -596,13 +596,7 @@
                     setTimeout(() => {
                         this.changeSize(selector, props.target, props.scale, props.timingFunction, props.duration);
                         this.hexColor(selector, props.target, props.state);
-                        if (this.characterChecking(props.target)) {
-                            if (props.state === connections.stateInfected) {
-                                this.setCharacterTShirtColor(props.target, connections.infectedShirtColor, connections.proportion);
-                            } else if (props.state === connections.stateVaccinated) {
-                                this.setCharacterTShirtColor(props.target, connections.vaccinatedShirtColor, connections.proportion);
-                            }
-                        }
+                        this.setCharacterTshirtColor(props.target, props.state);
                     }, parseInt(props.startTime));
                 }
                 else{
@@ -611,9 +605,9 @@
                         if (this.characterChecking(props.target)) {
                             let characterType = document.querySelector(selector + props.target).children[0].children[0].getAttribute('characterType');
                             if (characterType !== "avatar") {
-                                this.setCharacterTShirtColor(props.target, connections.defaultShirtColor, connections.proportion);
+                                this.ChangeTShirtColor(props.target, connections.defaultShirtColor, connections.proportion);
                             } else {
-                                this.setCharacterTShirtColor(props.target, connections.secondDefaultShirtColor, connections.proportion);
+                                this.ChangeTShirtColor(props.target, connections.secondDefaultShirtColor, connections.proportion);
                             }
                         }
 
@@ -635,20 +629,28 @@
                     //console.log("shapeTarget :", shapeTargets);
                     shapeTargets.forEach((e) => {
                         e.classList.add(props.state);
-                        if (this.characterChecking(e.id)) {
-                            console.log("ca marhe ");
-                            if (props.state === connections.stateInfected) {
-                                this.setCharacterTShirtColor(e.id, connections.infectedShirtColor, connections.proportion);
-                            } else if (props.state === connections.stateVaccinated) {
-                                this.setCharacterTShirtColor(e.id, connections.vaccinatedShirtColor, connections.proportion);
-                            }
-                            else if(props.state === connections.stateVulnerable){
-                                this.setCharacterTShirtColor(e.id, connections.vulnerableShirtColor, connections.proportion);
-                            }
-                        }
+                        this.setCharacterTshirtColor(e.id, props.state);
                     });
 
                 }, parseInt(props.startTime));
+            },
+
+            /**
+             * ---> ------------------ will be completed soon -------------------
+             * @param {Object} props
+             * @return none
+             */
+            setCharacterTshirtColor(target, state){
+                if (this.characterChecking(target)) {
+                    if (state === connections.stateInfected) {
+                        this.ChangeTShirtColor(target, connections.infectedShirtColor, connections.proportion);
+                    } else if (state === connections.stateVaccinated) {
+                        this.ChangeTShirtColor(target, connections.vaccinatedShirtColor, connections.proportion);
+                    }
+                    else if(state === connections.stateVulnerable){
+                        this.ChangeTShirtColor(target, connections.vulnerableShirtColor, connections.proportion);
+                    }
+                }
             },
 
             /**
@@ -683,9 +685,9 @@
                                 if (this.characterChecking(id_shape)) {
                                     let characterType = value.children[0].children[0].children[0].getAttribute('characterType');
                                     if (characterType !== "avatar") {
-                                        this.setCharacterTShirtColor(id_shape, connections.defaultShirtColor, connections.proportion);
+                                        this.ChangeTShirtColor(id_shape, connections.defaultShirtColor, connections.proportion);
                                     } else {
-                                        this.setCharacterTShirtColor(id_shape, connections.secondDefaultShirtColor, connections.proportion);
+                                        this.ChangeTShirtColor(id_shape, connections.secondDefaultShirtColor, connections.proportion);
                                     }
                                 }
                             }
@@ -740,7 +742,7 @@
                             // But if it does in some browsers, maybe we're going to want to check if the element already has the class
                             this.hexColor(selector, target, props.state);
                             if (this.characterChecking(target)) {
-                                this.setCharacterTShirtColor(target, connections.vaccinatedShirtColor, connections.proportion);
+                                this.ChangeTShirtColor(target, connections.vaccinatedShirtColor, connections.proportion);
                             }
                         } else {
                             document.querySelector(selector + target).classList.remove(props.state);
@@ -754,9 +756,9 @@
                             if (this.characterChecking(target)) {
                                 let characterType = document.querySelector(selector + target).children[0].children[0].getAttribute('characterType');
                                 if (characterType !== "avatar") {
-                                    this.setCharacterTShirtColor(target, connections.defaultShirtColor, connections.proportion);
+                                    this.ChangeTShirtColor(target, connections.defaultShirtColor, connections.proportion);
                                 } else {
-                                    this.setCharacterTShirtColor(target, connections.secondDefaultShirtColor, connections.proportion);
+                                    this.ChangeTShirtColor(target, connections.secondDefaultShirtColor, connections.proportion);
                                 }
                             }
                         }

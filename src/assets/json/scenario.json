@@ -14,8 +14,8 @@
                         "props": {
                             "scale" : "4",
                             "duration" : "1000",
-                            "transformOrigin_X" : "50",
-                            "transformOrigin_Y": "40",
+                            "transformOrigin_X" : "52",
+                            "transformOrigin_Y": "43",
                             "startTime" : "500",
                             "timingFunction": "linear"
                         }
@@ -61,8 +61,8 @@
                         "props": {
                             "scale" : "3",
                             "duration" : "1000",
-                            "transformOrigin_X" : "50",
-                            "transformOrigin_Y": "40",
+                            "transformOrigin_X" : "52",
+                            "transformOrigin_Y": "43",
                             "startTime" : "100",
                             "timingFunction": "linear"
                         }
@@ -283,8 +283,8 @@
                         "props": {
                             "scale" : "1.00",
                             "duration" : "1000",
-                            "transformOrigin_X" : "50",
-                            "transformOrigin_Y": "40",
+                            "transformOrigin_X" : "52",
+                            "transformOrigin_Y": "43",
                             "startTime" : "1500",
                             "timingFunction": "linear"
                         }
