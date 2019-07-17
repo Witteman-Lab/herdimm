@@ -285,6 +285,14 @@ div#copy1 .transformer::before {
     --hex-border: calc(var(--hex-margin) / 1.73);   /* 1.73 = sqrt(3) */
     --hex-transition: all 2s ease;
   }
+
+  .hexagon-container{
+    /*margin-top: 10px;*/
+    //align-items: center;
+    vertical-align: middle;
+    justify-content: center;
+    //flex-direction:column-reverse;
+  }
 }
 
 
@@ -306,5 +314,13 @@ div#copy1 .transformer::before {
     --hex-border: calc(var(--hex-margin) / 1.73);   /* 1.73 = sqrt(3) */
     --hex-transition: all 2s ease;
   }
+
+  .hexagon-container{
+    align-content: center;
+    justify-content: center;
+    //flex-direction: row;
+    //horiz-align: center;
+  }
+
 }
 

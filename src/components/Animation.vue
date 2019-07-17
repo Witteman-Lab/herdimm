@@ -883,12 +883,14 @@
         width: 100%;
         height: 100vh;
     }
-    .hexagon-container{
-        /*margin-top: 10px;*/
-        /*align-items: center;*/
-        vertical-align: middle;
-        justify-content: center;
-    }
+
+    /*.hexagon-container{*/
+    /*    !*margin-top: 10px;*!*/
+    /*    !*align-items: center;*!*/
+    /*    vertical-align: middle;*/
+    /*    justify-content: center;*/
+    /*    horiz-align: center;*/
+    /*}*/
 
     div.column {
         display: grid;
