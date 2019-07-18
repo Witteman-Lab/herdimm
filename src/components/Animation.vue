@@ -579,19 +579,12 @@
 
                 this.hexColor(selector, props.target, props.state);
 
-                // setTimeout(() => {
-                //     selector += "#";
-                //     shapeTargets.forEach((e) => {
-                //         this.changeSize(selector, e.id, props.scale, props.timingFunction, props.duration);
-                //     });
-                // }, parseInt(props.startTime));
-
-                selector += "#";
-                shapeTargets.forEach((e) => {
-                    setTimeout(() => {
+                setTimeout(() => {
+                    selector += "#";
+                    shapeTargets.forEach((e) => {
                         this.changeSize(selector, e.id, props.scale, props.timingFunction, props.duration);
-                    }, parseInt(props.startTime));
-                });
+                    });
+                }, parseInt(props.startTime));
             },
 
 
