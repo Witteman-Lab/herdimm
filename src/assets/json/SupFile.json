@@ -10,16 +10,15 @@
         ],
         "actions" : [
           {
-            "action": "parseSpreadInfection",
+            "action": "burst",
             "props": {
-              "file" : ["flu.json","measles.json","pertussis.json"],
-              "startTime" : "500"
-            }
-          },
-          {
-            "action": "removeInfection",
-            "props": {
-              "startTime" : "13000"
+              "target": "shape_50",
+              "scale": "6",
+              "state": "vaccinated",
+              "timingFunction": "linear",
+              "startTime" : "200",
+              "duration" : "2500",
+              "add": true
             }
           }
         ]
