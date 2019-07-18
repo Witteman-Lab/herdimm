@@ -596,9 +596,9 @@
                 const selector = '#main-container #';
 
                 if(props.add) {
+                    this.hexColor(selector, props.target, props.state);
                     setTimeout(() => {
                         this.changeSize(selector, props.target, props.scale, props.timingFunction, props.duration);
-                        this.hexColor(selector, props.target, props.state);
                         this.setCharacterTshirtColor(props.target, props.state);
                     }, parseInt(props.startTime));
                 }
@@ -720,7 +720,6 @@
                 shape.style.transitionDuration = duration.toString()+"ms";
                 shape.style.transitionTimingFunction = timingFunction;
                 shape.style.transitionProperty = "transform";
-
                 // Scaling back after scaling up is done using scaleing up duration as delay
                 setTimeout(() => {
                     shape.style.transform = "scale(1,1)";
