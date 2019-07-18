@@ -883,14 +883,6 @@
         height: 100vh;
     }
 
-    /*.hexagon-container{*/
-    /*    !*margin-top: 10px;*!*/
-    /*    !*align-items: center;*!*/
-    /*    vertical-align: middle;*/
-    /*    justify-content: center;*/
-    /*    horiz-align: center;*/
-    /*}*/
-
     .container {
         overflow: hidden;
     }
