@@ -3,83 +3,197 @@
 
   "actions" : [
 
-      {
-        "action": "zoomIn",
-        "props": {
-          "scale" : "3",
-          "duration" : "1000",
-          "transformOrigin_X" : "35",
-          "transformOrigin_Y": "45",
-          "startTime" : "3000"
-        }
-      },
-
-      {
-      "action": "zoomOut",
+    {
+      "action": "zoom",
       "props": {
-        "scale" : "2",
+        "scale" : "4",
         "duration" : "1000",
-        "transformOrigin_X" : "30",
-        "transformOrigin_Y": "30",
-        "startTime" : "3000"
+        "transformOrigin_X" : "52",
+        "transformOrigin_Y": "43",
+        "startTime" : "500",
+        "timingFunction": "linear"
       }
     },
 
     {
-        "action" : "makeContour",
-        "props" : {
-            "target" : ".avatar",
-            "duration" : "1000",
-            "class" : "contour",
-            "startTime" : "500",
-            "add" : true
-        }
+      "--------------------------------------------------" : "--------------------------------------------------------"
     },
 
     {
-        "action": "burst",
-        "props": {
-            "target": "shape_67",
-            "scale": "1.3",
-            "state": "infected",
-            "timingFunction": "linear",
-            "duration" : "250"
-        }
+      "action" : "makeContour",
+      "props" : {
+        "target" : ".avatar",
+        "duration" : "1000",
+        "class" : "contour",
+        "startTime" : "0",
+        "add" : true
+      }
     },
 
     {
-      "_commentary" : "--------------------------to erase after---------------------------------"
+      "--------------------------------------------------" : "--------------------------------------------------------"
     },
 
-
     {
-      "_commentary" : "--------------------------to erase after---------------------------------"
+      "action": "makeContour",
+      "props": {
+        "target": ".avatar",
+        "duration": "1000",
+        "class": "contour",
+        "startTime" : "2000",
+        "add" : false
+      }
     },
 
+    {
+      "--------------------------------------------------" : "--------------------------------------------------------"
+    },
 
     {
-      "_commentary" : "--------------------------to erase after---------------------------------"
+      "action": "changeShapeColor",
+      "props": {
+        "target": ".vulnerable",
+        "state": "vulnerability",
+        "startTime": "4000",
+        "duration": "1000"
+      }
+    },
+
+    {
+      "--------------------------------------------------" : "--------------------------------------------------------"
+    },
+
+    {
+      "action": "burst",
+      "props": {
+        "target": "shape_41",
+        "scale": "1.2",
+        "state": "infected",
+        "timingFunction": "linear",
+        "startTime" : "500",
+        "duration" : "250",
+        "add" : true
+      }
+    },
+
+    {
+      "--------------------------------------------------" : "--------------------------------------------------------"
+    },
+
+    {
+      "action": "parseSpreadInfection",
+      "props": {
+        "file": "spreadinfections1.json",
+        "startTime": "1000"
+      }
+    },
+
+    {
+      "--------------------------------------------------" : "--------------------------------------------------------"
+    },
+
+    {
+      "action": "fadeInOut",
+      "props": {
+        "startTime" : "10000",
+        "duration": "2000"
+      }
+    },
+
+    {
+      "--------------------------------------------------" : "--------------------------------------------------------"
+    },
+
+    {
+      "action": "resetGrid",
+      "props": {
+        "startTime" : "11000"
+      }
+    },
+
+    {
+      "--------------------------------------------------" : "--------------------------------------------------------"
+    },
+
+    {
+      "action": "changeShapeColor",
+      "props": {
+        "target": "#shape_61",
+        "state": "infected",
+        "timingFunction": "linear",
+        "startTime" : "7000",
+        "duration" : "250"
+      }
+    },
+
+    {
+      "--------------------------------------------------" : "--------------------------------------------------------"
     },
 
     {
       "action": "vaccination",
       "props": {
+        "file" : "vaccineCoverageAdd2.json",
+        "duration": "0",
         "state": "vaccinated",
-        "startTime" : "2000",
-        "file": "vaccineCoverage94.json",
-        "duration" : "100"
+        "startTime" : "100",
+        "add": true,
+        "makeTransformer": true,
+        "startTimeMakeTransformer": "0"
+
       }
     },
+
+    {
+      "--------------------------------------------------" : "--------------------------------------------------------"
+    },
+
+    {
+      "action": "vaccination",
+      "props": {
+        "file" : "vaccineCoverageRemove24.json",
+        "duration": "1",
+        "state": "vaccinated",
+        "startTime" : "100",
+        "add": false,
+        "makeTransformer": true,
+        "startTimeMakeTransformer": "0"
+
+      }
+    },
+
+    {
+      "--------------------------------------------------" : "--------------------------------------------------------"
+    },
+
+    {
+      "action": "removeBarrier",
+      "props": {
+        "startTime" : "700"
+      }
+    },
+
+    {
+      "--------------------------------------------------" : "--------------------------------------------------------"
+    },
+
+    {
+      "action": "removeInfection",
+      "props": {
+        "startTime" : "1000"
+      }
+    },
+
+    {
+      "--------------------------------------------------" : "--------------------------------------------------------"
+    },
+
     {
       "action": "parseSpreadInfection",
       "props": {
-        "file": ["pertussis.json", "flu.json", "measles.json"],
-        "startTime": "1000"
+        "file" : ["flu.json","measles.json","pertussis.json"],
+        "startTime" : "500"
       }
     }
-
-
-
-
   ]
 }
