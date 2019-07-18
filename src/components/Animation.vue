@@ -876,6 +876,12 @@
     }
 </script>
 
+<style>
+    div.hexagon div.character-position {
+        cursor: default;
+    }
+</style>
+
 <style scoped>
     .hexagon-container, #draw, #connections {
         margin: 0;

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="character-position" :style="{width: this.characterPositionWidth}" style="cursor: pointer;" >
+        <div class="character-position" :style="{width: this.characterPositionWidth}">
             <div v-on:click="selectYourCharacter" ref="characterImg" v-html="this.svg" :style="{width: this.width, height: this.height}" style="margin: auto;"></div>
             <span v-if="isName" style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis;margin-bottom: 0.5em;color: #848484;font-size: 14px;">{{this.svgColor.name}}</span>
         </div>
@@ -396,5 +396,6 @@
         justify-content: center;
         flex-direction: column;
         margin-left: auto;
+        cursor: pointer;
     }
 </style>
