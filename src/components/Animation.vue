@@ -574,16 +574,24 @@
             },
 
             burstContour(props) {
-                const selector = '#copy1 ';
+                let selector = '#copy1 ';
+                const shapeTargets = document.querySelectorAll(selector + props.target);
 
-                setTimeout(() => {
-                    const shapeTargets = document.querySelectorAll(selector + props.prefix + props.target);
+                this.hexColor(selector, props.target, props.state);
 
-                    shapeTargets.forEach((e) => {
-                        this.changeSize(selector, props.prefix + props.target, props.scale, props.timingFunction, props.duration);
-                        this.hexColor(selector, props.prefix + props.target, props.state);
-                    });
-                }, parseInt(props.startTime));
+                // setTimeout(() => {
+                //     selector += "#";
+                //     shapeTargets.forEach((e) => {
+                //         this.changeSize(selector, e.id, props.scale, props.timingFunction, props.duration);
+                //     });
+                // }, parseInt(props.startTime));
+
+                selector += "#";
+                shapeTargets.forEach((e) => {
+                    setTimeout(() => {
+                        this.changeSize(selector, e.id, props.scale, props.timingFunction, props.duration);
+                    }, parseInt(props.startTime));
+                });
             },
 
 
