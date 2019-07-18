@@ -13,10 +13,10 @@
                         "action": "zoom",
                         "props": {
                             "scale" : "4",
-                            "duration" : "1000",
+                            "duration" : "2000",
                             "transformOrigin_X" : "52",
                             "transformOrigin_Y": "43",
-                            "startTime" : "500",
+                            "startTime" : "1000",
                             "timingFunction": "linear"
                         }
                     }
@@ -150,14 +150,14 @@
                     {
                         "action": "fadeInOut",
                         "props": {
-                            "startTime" : "10000",
+                            "startTime" : "11000",
                             "duration": "2000"
                         }
                     },
                     {
                       "action": "resetGrid",
                       "props": {
-                        "startTime" : "11000"
+                        "startTime" : "12000"
                       }
                     }
                 ]
@@ -177,7 +177,7 @@
                             "scale": "1.2",
                             "state": "vaccinated",
                             "timingFunction": "linear",
-                            "startTime" : "250",
+                            "startTime" : "1000",
                             "duration" : "250",
                             "add": true
                         }
@@ -188,14 +188,13 @@
                             "file" : "vaccineCoverageAdd94.json",
                             "duration": "30",
                             "state": "vaccinated",
-                            "startTime" : "800",
+                            "startTime" : "1500",
                             "add": true,
                             "makeTransformer": false,
                             "startTimeMakeTransformer": "0"
 
                         }
                     },
-
                     {
                         "action": "changeShapeColor",
                         "props": {
@@ -258,37 +257,11 @@
                             "file" : "vaccineCoverageRemove93.json",
                             "duration": "30",
                             "state": "vaccinated",
-                            "startTime" : "100",
+                            "startTime" : "2500",
                             "add": false,
                             "makeTransformer": false,
                             "startTimeMakeTransformer": "0"
                         }
-                    },
-                    {
-                      "action": "vaccination",
-                      "props": {
-                        "file" : "vaccineCoverageAdd91.json",
-                        "duration": "30",
-                        "state": "vaccinated",
-                        "startTime" : "3500",
-                        "add": true,
-                        "makeTransformer": false,
-                        "startTimeMakeTransformer": "0"
-
-                      }
-                    },
-                    {
-                      "action": "vaccination",
-                      "props": {
-                        "file" : "vaccineCoverageAdd4.json",
-                        "duration": "30",
-                        "state": "vaccinated",
-                        "startTime" : "9000",
-                        "add": true,
-                        "makeTransformer": true,
-                        "startTimeMakeTransformer": "-200"
-
-                      }
                     }
                 ]
             },
@@ -299,6 +272,19 @@
                 ],
                 "actions" : [
                     {
+                      "action": "vaccination",
+                      "props": {
+                        "file" : "vaccineCoverageAdd91.json",
+                        "duration": "30",
+                        "state": "vaccinated",
+                        "startTime" : "500",
+                        "add": true,
+                        "makeTransformer": false,
+                        "startTimeMakeTransformer": "0"
+
+                      }
+                    },
+                    {
                         "action": "zoom",
                         "props": {
                             "scale" : "1.00",
@@ -308,6 +294,18 @@
                             "startTime" : "1500",
                             "timingFunction": "linear"
                         }
+                    },
+                    {
+                      "action": "vaccination",
+                      "props": {
+                        "file" : "vaccineCoverageAdd4.json",
+                        "duration": "30",
+                        "state": "vaccinated",
+                        "startTime" : "2500",
+                        "add": true,
+                        "makeTransformer": true,
+                        "startTimeMakeTransformer": "-200"
+                      }
                     }
                 ]
             },
