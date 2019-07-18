@@ -892,6 +892,10 @@
     /*    horiz-align: center;*/
     /*}*/
 
+    .container {
+        overflow: hidden;
+    }
+
     div.column {
         display: grid;
         padding: 0;
