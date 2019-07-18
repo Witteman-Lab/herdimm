@@ -189,7 +189,9 @@
                             "duration": "30",
                             "state": "vaccinated",
                             "startTime" : "800",
-                            "add": true
+                            "add": true,
+                            "makeTransformer": false,
+                            "startTimeMakeTransformer": "0"
 
                         }
                     },
@@ -257,7 +259,9 @@
                             "duration": "30",
                             "state": "vaccinated",
                             "startTime" : "100",
-                            "add": false
+                            "add": false,
+                            "makeTransformer": false,
+                            "startTimeMakeTransformer": "0"
                         }
                     },
                     {
@@ -267,7 +271,9 @@
                         "duration": "30",
                         "state": "vaccinated",
                         "startTime" : "3500",
-                        "add": true
+                        "add": true,
+                        "makeTransformer": false,
+                        "startTimeMakeTransformer": "0"
 
                       }
                     },
