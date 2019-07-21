@@ -19,7 +19,7 @@
                 <div class="shape" v-for="shape in this.gridIds">
                     <div :class="shape.className" :id="shape.id">
                         <!-- Where the group members are being placed -->
-                        <div :style="{height: characterSize, marginBottom: characterBottomMargin}" v-if="shape.isCharacter">
+                        <div v-if="shape.isCharacter">
                             <Character :characterType="shape.character.characterType" v-bind:ref="shape.id" :size="{ width: characterSize }"  :edit="false" :customised="true" :colors="shape.character.colors" :id="shape.character.id" :svgFile="require(`../assets/characters/${shape.character.file}`)" />
                         </div>
                     </div>
@@ -72,7 +72,8 @@
                 isAnimationStarted: false,
                 currentLanguage: "",
                 textButtonAnimation: '',
-                isAudioPlaying: false
+                isAudioPlaying: false,
+                diseaseName: ''
             }
         },
         props: {
@@ -421,7 +422,7 @@
              */
             parseSpreadInfection(props){
                 if (typeof(props.file) === "object") {
-                    if (props.file.length != 0) {
+                    if (props.file.length !== 0) {
                         let value;
                         if (props.file.length === 1) {
                             value = 0;
@@ -841,6 +842,9 @@
                     this.$router.push({name: 'Home'});
                 }
             }
+
+            if (this.$route.query.d)
+                this.diseaseName = this.$route.query.d;
 
             this.$refs.audioPlayer.loadAudioFiles(this.currentLanguage);
             this.textButtonAnimation = this.labels.startAnimation;

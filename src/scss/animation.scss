@@ -4,7 +4,7 @@ $hex-height: 4vmax;
 //$hex-height: 6.5vh; // à conserver
 
 :export {
-  hexagon-height: calc(#{$hex-height} - ((#{$hex-height} / 10) * 2));
+  hexagon-height: 2.5vmax;
   character-bottom-margin: calc(#{$hex-height} / 10);
 }
 
