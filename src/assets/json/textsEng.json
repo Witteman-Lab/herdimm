@@ -36,23 +36,15 @@
     "reason" : "Reasons",
     "vulnerableOptions": [
       {
-        "name" : "Reason 1",
+        "name" : "Younger people (babies, young children)",
         "defaultSelection" : true
       },
       {
-        "name" : "Reason 2",
+        "name" : "Older person (senior)",
         "defaultSelection" : false
       },
       {
-        "name" : "Reason 3",
-        "defaultSelection" : false
-      },
-      {
-        "name" : "Reason 4",
-        "defaultSelection" : false
-      },
-      {
-        "name" : "Reason 5",
+        "name" : "A person with a more fragile immune system (cancer, diabetes, or other conditions)",
         "defaultSelection" : false
       }
     ]

@@ -36,23 +36,15 @@
     "reason" : "Raisons",
     "vulnerableOptions": [
       {
-        "name" : "Raison 1",
+        "name" : "Une personne plus jeune (bébé, jeune enfant)",
         "defaultSelection" : true
       },
       {
-        "name" : "Raison 2",
+        "name" : "Une personne plus agée (senior)",
         "defaultSelection" : false
       },
       {
-        "name" : "Raison 3",
-        "defaultSelection" : false
-      },
-      {
-        "name" : "Raison 4",
-        "defaultSelection" : false
-      },
-      {
-        "name" : "Raison 5",
+        "name" : "Une personne avec un système immunitaire plus faible (cancer, diabète ou autres conditions)",
         "defaultSelection" : false
       }
     ]
