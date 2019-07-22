@@ -10,15 +10,11 @@
         ],
         "actions" : [
           {
-            "action": "burst",
+            "action": "parseSpreadInfection",
             "props": {
-              "target": "shape_50",
-              "scale": "6",
-              "state": "vaccinated",
-              "timingFunction": "linear",
-              "startTime" : "200",
-              "duration" : "2500",
-              "add": true
+              "file": "spreadinfections1.json",
+              "startTime": "1000",
+              "duration": "1000"
             }
           }
         ]

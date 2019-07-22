@@ -421,6 +421,7 @@
              * @return none
              */
             parseSpreadInfection(props){
+                let duration = (parseInt(props.duration)/1000).toString()
                 if (typeof(props.file) === "object") {
                     if (props.file.length !== 0) {
                         let value;
@@ -431,7 +432,7 @@
                         }
                         let variable = require("../assets/json/" + props.file[value]);
                         setTimeout(() => {
-                            this.spreadInfection(variable.connections);
+                            this.spreadInfection(variable.connections, duration);
                         }, props.startTime);
                     } else {
                         alert("Add the name of json file in array to have infection sequences");
@@ -440,7 +441,7 @@
                 else{
                     let variable = require("../assets/json/" + props.file);
                     setTimeout(() => {
-                        this.spreadInfection(variable.connections);
+                        this.spreadInfection(variable.connections, duration);
                     }, parseInt(props.startTime));
                 }
             },
@@ -498,7 +499,7 @@
              * @param {Object} pattern
              * @return none
              */
-            spreadInfection(pattern){
+            spreadInfection(pattern, duration){
                 const drawingBoard = document.querySelector("#connections");
                 const selector = '#main-container #';
                 const state = "infected";
@@ -516,7 +517,8 @@
 
                     lineObj.setAttributeNS(null, "stroke-dasharray", lineLength + " " + lineLength);
                     lineObj.setAttributeNS(null, "stroke-dashoffset", lineLength);
-
+                    lineObj.style.webkitAnimation = "dash "+duration+"s"+" linear 0s forwards";
+                    lineObj.style.animation = "dash "+duration+"s"+" linear 0s forwards";
                     // Check if the target gets infected to add the proper class (CSS animation)
                     if (targetGetsInfected) {
                         // Target might get infected, but we still want the infection lines to bounce, so we check if infectionIsBouncing is true
@@ -543,7 +545,7 @@
                     // When the animation ends, check if there is a next target
                     lineObj.addEventListener("animationend", () => { // webkitAnimationEnd
                         if (nextTarget !== "") {
-                            this.spreadInfection(nextTarget);
+                            this.spreadInfection(nextTarget, duration);
                         }
 
                         // If target gets infected, its color changes
@@ -574,7 +576,7 @@
                 return Math.sqrt((x2 -= x1) * x2 + (y2 -= y1) * y2);
             },
 
-            burstContour(props) {
+            burstscrollingTimeControlContour(props) {
                 let selector = '#copy1 ';
                 const shapeTargets = document.querySelectorAll(selector + props.target);
 

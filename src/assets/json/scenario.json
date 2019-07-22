@@ -144,7 +144,8 @@
                         "action": "parseSpreadInfection",
                         "props": {
                             "file": "spreadinfections1.json",
-                            "startTime": "1000"
+                            "startTime": "1000",
+                            "duration": "1000"
                         }
                     },
                     {
@@ -221,7 +222,8 @@
                         "action": "parseSpreadInfection",
                         "props": {
                             "file" : "spreadinfections2-1.json",
-                            "startTime" : "7500"
+                            "startTime" : "7500",
+                            "duration": "125"
                         }
                     }
                 ]
@@ -236,7 +238,8 @@
                         "action": "parseSpreadInfection",
                         "props": {
                             "file" : "spreadinfections2-2.json",
-                            "startTime" : "500"
+                            "startTime" : "500",
+                            "duration": "125"
                         }
                     },
                     {
@@ -398,14 +401,16 @@
                       "action": "parseSpreadInfection",
                       "props": {
                         "file" : "spreadinfections3.json",
-                        "startTime" : "500"
+                        "startTime" : "500",
+                        "duration": "125"
                       }
                     },
                     {
                       "action": "parseSpreadInfection",
                       "props": {
                         "file" : "spreadinfections4.json",
-                        "startTime" : "1000"
+                        "startTime" : "1000",
+                        "duration": "125"
                       }
                     },
                     {
@@ -424,7 +429,8 @@
                       "action": "parseSpreadInfection",
                       "props": {
                         "file" : "spreadinfections5.json",
-                        "startTime" : "3500"
+                        "startTime" : "3500",
+                        "duration": "125"
                       }
                     }
                 ]
@@ -471,7 +477,8 @@
                       "action": "parseSpreadInfection",
                       "props": {
                         "file" : ["flu.json","measles.json","pertussis.json"],
-                        "startTime" : "500"
+                        "startTime" : "500",
+                        "duration": "125"
                       }
                     },
                     {
