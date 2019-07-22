@@ -252,7 +252,7 @@ div#copy1 .transformer::before {
   background-color: var(--color-hex-vaccinated-shadow);
 }
 
-
+//
 //.line {
 //  -webkit-animation: dash 0.5s linear 0s forwards;
 //  animation: dash 0.25s linear 0s forwards;
@@ -260,10 +260,10 @@ div#copy1 .transformer::before {
 //}
 
 
-.lineBouncingOff {
-  -webkit-animation: dash 0.25s linear 0s 6 alternate;
-  animation: dash 0.25s linear 0s 6 alternate;
-}
+//.lineBouncingOff {
+//  -webkit-animation: dash 0.25s linear 0s 6 alternate;
+//  animation: dash 0.25s linear 0s 6 alternate;
+//}
 
 @keyframes dash {
   to {

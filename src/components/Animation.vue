@@ -517,19 +517,26 @@
 
                     lineObj.setAttributeNS(null, "stroke-dasharray", lineLength + " " + lineLength);
                     lineObj.setAttributeNS(null, "stroke-dashoffset", lineLength);
-                    lineObj.style.webkitAnimation = "dash "+duration+"s"+" linear 0s forwards";
-                    lineObj.style.animation = "dash "+duration+"s"+" linear 0s forwards";
+                    // lineObj.style.webkitAnimation = "dash "+duration+"s"+" linear 0s forwards";
+                    // lineObj.style.animation = "dash "+duration+"s"+" linear 0s forwards";
                     // Check if the target gets infected to add the proper class (CSS animation)
                     if (targetGetsInfected) {
                         // Target might get infected, but we still want the infection lines to bounce, so we check if infectionIsBouncing is true
                         if (infectionIsBouncing) {
-                            lineObj.classList.add("lineBouncingOff");
+                            //lineObj.classList.add("lineBouncingOff");
+                            lineObj.style.webkitAnimation = "dash "+duration+"s"+" linear 0s 6 alternate";
+                            lineObj.style.animation = "dash "+duration+"s"+" linear 0s 6 alternate";
                         } else {
-                            lineObj.classList.add("line");
+                            //lineObj.classList.add("line");
+                            lineObj.style.webkitAnimation = "dash "+duration+"s"+" linear 0s forwards";
+                            lineObj.style.animation = "dash "+duration+"s"+" linear 0s forwards";
                         }
                     } else {
-                        lineObj.classList.add("lineBouncingOff");
+                        //lineObj.classList.add("lineBouncingOff");
+                        lineObj.style.webkitAnimation = "dash "+duration+"s"+" linear 0s 6 alternate";
+                        lineObj.style.animation = "dash "+duration+"s"+" linear 0s 6 alternate";
                     }
+
 
                     // Add the line to the drawingboard (SVG element)
                     drawingBoard.appendChild(lineObj);
