@@ -784,7 +784,7 @@
                             clearInterval(vaccineCoverage);
                         }
                         if(props.makeTransformer){
-                            this.makeTransformer(parseInt(props.duration)+parseInt(props.startTime)+parseInt(props.startTimeMakeTransformer));
+                            //this.makeTransformer(parseInt(props.duration)+parseInt(props.startTime)+parseInt(props.startTimeMakeTransformer));
                         }
                     }, props.duration);
                 },parseInt(props.startTime));
