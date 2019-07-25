@@ -10,11 +10,28 @@
         ],
         "actions" : [
           {
-            "action": "parseSpreadInfection",
+            "action": "vaccination",
             "props": {
-              "file" : "spreadinfections2-2.json",
+              "file" : "vaccineCoverageAdd20.json",
+              "duration": "0",
+              "state": "vaccinated",
               "startTime" : "500",
-              "duration": "2000"
+              "add": true,
+              "makeTransformer": true,
+              "startTimeMakeTransformer": "0"
+            }
+          },
+
+          {
+            "action": "vaccination",
+            "props": {
+              "file" : "vaccineCoverageRemove3-1.json",
+              "duration": "0",
+              "state": "vaccinated",
+              "startTime" : "100",
+              "add": false,
+              "makeTransformer": true,
+              "startTimeMakeTransformer": "0"
             }
           }
         ]

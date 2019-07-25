@@ -6,8 +6,8 @@
 </template>
 
 <script>
-    import scenario from "../assets/json/scenario.json";
-    //import scenario from "../assets/json/SupFile.json";
+    //import scenario from "../assets/json/scenario.json";
+    import scenario from "../assets/json/SupFile.json";
 
     export default {
         name: "AudioPlayer",
@@ -25,7 +25,8 @@
             }
         },
         props: {
-            currentLanguage: String
+            currentLanguage: String,
+            voice : String
         },
         methods: {
             /**
@@ -34,11 +35,11 @@
              * @param {String} type
              * @return none
              */
-            loadAudioFiles(type) {
+            loadAudioFiles(type, voice) {
                 this.language = type;
                 this.playlist = scenario[type].sequences;
                 const folder = scenario.folder;
-                this.currentAudio = require(`../assets/${folder}/${type}/${this.playlist[this.audioPosition].file}`);
+                this.currentAudio = require(`../assets/${folder}/${type}/${voice}/${this.playlist[this.audioPosition].file}`);
                 this.caption = this.playlist[this.audioPosition].caption;
             },
 
@@ -103,7 +104,8 @@
                 this.audioPosition = 0;
                 const folder = scenario.folder;
                 const type = this.currentLanguage;
-                this.currentAudio = require(`../assets/${folder}/${type}/${this.playlist[this.audioPosition].file}`);
+                const voiceType  = this.voice;
+                this.currentAudio = require(`../assets/${folder}/${type}/${voiceType}/${this.playlist[this.audioPosition].file}`);
                 this.caption = this.playlist[this.audioPosition].caption;
                 this.playAudio();
             },
@@ -118,7 +120,8 @@
                 this.audioPosition = this.playlist.length - 1;
                 const folder = scenario.folder;
                 const type = this.currentLanguage;
-                this.currentAudio = require(`../assets/${folder}/${type}/${this.playlist[this.audioPosition].file}`);
+                const voiceType  = this.voice;
+                this.currentAudio = require(`../assets/${folder}/${type}/${voiceType}/${this.playlist[this.audioPosition].file}`);
                 this.caption = this.playlist[this.audioPosition].caption;
                 this.playAudio();
             },
@@ -134,7 +137,8 @@
                     this.audioPosition--;
                     const folder = scenario.folder;
                     const type = this.currentLanguage;
-                    this.currentAudio = require(`../assets/${folder}/${type}/${this.playlist[this.audioPosition].file}`);
+                    const voiceType  = this.voice;
+                    this.currentAudio = require(`../assets/${folder}/${type}/${voiceType}/${this.playlist[this.audioPosition].file}`);
                     this.caption = this.playlist[this.audioPosition].caption;
                     this.playAudio();
                 }
@@ -151,14 +155,16 @@
                 if (this.audioPosition < this.playlist.length) {
                     const folder = scenario.folder;
                     const type = this.currentLanguage;
-                    this.currentAudio = require(`../assets/${folder}/${type}/${this.playlist[this.audioPosition].file}`);
+                    const voiceType  = this.voice;
+                    this.currentAudio = require(`../assets/${folder}/${type}/${voiceType}/${this.playlist[this.audioPosition].file}`);
                     this.caption = this.playlist[this.audioPosition].caption;
                     this.playAudio();
                 } else {
                     const folder = scenario.folder;
                     const type = this.currentLanguage;
+                    const voiceType  = this.voice;
                     this.audioPosition = 0;
-                    this.currentAudio = require(`../assets/${folder}/${type}/${this.playlist[this.audioPosition].file}`);
+                    this.currentAudio = require(`../assets/${folder}/${type}/${voiceType}/${this.playlist[this.audioPosition].file}`);
                     this.caption = this.playlist[this.audioPosition].caption;
                     this.$parent.reloadAnimation();
                 }

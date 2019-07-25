@@ -2,7 +2,7 @@
     <div class="container">
         <!-- <meta name="viewport" content="width=device-width, user-scalable=no"> -->
         <!-- Audio player for audio files -->
-        <AudioPlayer :current-language="currentLanguage" ref="audioPlayer"></AudioPlayer>
+        <AudioPlayer :current-language="currentLanguage" :voice="voiceToPlay" ref="audioPlayer"></AudioPlayer>
         <!-- <div id="captions">
             <p id="caption"></p>
         </div> -->
@@ -73,7 +73,8 @@
                 currentLanguage: "",
                 textButtonAnimation: '',
                 isAudioPlaying: false,
-                diseaseName: ''
+                diseaseToAnimate: '',
+                voiceToPlay : '',
             }
         },
         props: {
@@ -226,7 +227,6 @@
                 // TO-DO: try different proportion
                 // let darkerColor = this.$refs[shapeId][0].getDarkerShade(color, 0.8);
                 // this.$refs[shapeId][0].changeShirtColor(darkerColor, 0.8);
-                console.log("shapeId", shapeId);
                 let darkerColor = this.$refs[shapeId][0].getDarkerShade(color, proportion);
                 this.$refs[shapeId][0].changeShirtColor(darkerColor, proportion);
             },
@@ -351,6 +351,7 @@
                             shapeTargetsVaccinated.forEach((b) => {
                                 if (e.id === b.id) {
                                     e.classList.add("barrier");
+                                    console.log("est appeler");
                                 }
                             });
                         }
@@ -392,7 +393,6 @@
                         e.classList.remove("infected");
                         if (this.characterChecking(e.id)) {
                             let characterType = e.children[0].children[0].getAttribute('characterType');
-                            console.log("valeur :", characterType);
                             if (characterType === "avatar") {
                                 this.ChangeTShirtColor(e.id, connections.secondDefaultShirtColor, connections.proportion);
                             } else if(characterType === "vulnerable") {
@@ -642,7 +642,6 @@
                 const selector = '#main-container ';
                 setTimeout(() => {
                     const shapeTargets = document.querySelectorAll(selector + props.target);
-                    //console.log("shapeTarget :", shapeTargets);
                     shapeTargets.forEach((e) => {
                         e.classList.add(props.state);
                         this.setCharacterTshirtColor(e.id, props.state);
@@ -835,32 +834,42 @@
             window.scrollTo({ top: 0, behavior: 'smooth', x: 0});
             let styles = require('../scss/animation.scss');
 
-            //this.vaccination();
-
             // Fetch the group member if it exists
             if (this.group) {
                 localStorage.setItem("group", JSON.stringify(this.group));
                 localStorage.setItem("language", this.labelSelected);
+
+                localStorage.setItem("disease", this.$route.params.disease);
+                localStorage.setItem("voice", this.$route.params.voice);
                 this.characterList = this.group;
                 this.selectCurrentLanguage(this.labelSelected);
+
+                console.log("fonctionne");
             } else {
                 if (localStorage.getItem("group")) {
-                    this.characterList = JSON.parse(localStorage.getItem("group"));
+                    this.characterList = JSON.parse(localStorage.getItem("group")); // <====== A demander à @Martin
                     this.selectCurrentLanguage(localStorage.getItem("language"));
+                    console.log("fonctionne pas");
                 } else {
                     this.$router.push({name: 'Home'});
                 }
             }
 
-            if (this.$route.query.d)
-                this.diseaseName = this.$route.query.d;
+            // if (this.$route.query.d)
+            //     this.diseaseToAnimate = this.$route.query.d;
 
-            this.$refs.audioPlayer.loadAudioFiles(this.currentLanguage);
+
+            // if (this.$route.query.v)
+            //     this.voiceToPlay = this.$route.query.v;
+
+            this.$refs.audioPlayer.loadAudioFiles(this.currentLanguage, localStorage.getItem("voice"));
+            this.voiceToPlay = localStorage.getItem("voice");
+
+
             this.textButtonAnimation = this.labels.startAnimation;
             // Fetch some styles from the SCSS file
             this.characterSize = styles["hexagon-height"];
             this.characterBottomMargin = styles["character-bottom-margin"];
-
             // Build the shapes grid
             this.buildGridIds();
 
@@ -868,6 +877,8 @@
             document.addEventListener('DOMContentLoaded', () => {
                 this.duplicateGrid(2);
             });
+
+            console.log("fin de la sequence");
         },
 
         /**

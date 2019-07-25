@@ -75,7 +75,10 @@
                 texts: '',
                 skinColors: [],
                 hairColors: [],
-                defaultCharacterColors: {}
+                defaultCharacterColors: {},
+                diseaseToAnimate:"",
+                voiceToPlay : ""
+
             };
         },
         props: {},
@@ -153,6 +156,25 @@
                 }
             },
 
+            getDiseaseToAnimate(){
+
+                if (this.$route.query.d === "flu" ||  this.$route.query.d === "measles" || this.$route.query.d === "pertussis"){
+                    this.diseaseToAnimate = this.$route.query.d;
+                }
+                else{
+                    this.diseaseToAnimate = "measles";
+                }
+            },
+
+            getVoiceToPlay(){
+                if (this.$route.query.v === "male" ||  this.$route.query.v === "female"){
+                    this.voiceToPlay = this.$route.query.v;
+                }
+                else{
+                    this.voiceToPlay = "male";
+                }
+            },
+
             /**
              * ---> Go to the animation Page. Send the current language and the character groupList
              * @param none
@@ -160,7 +182,10 @@
              */
             loadAnimationView() {
                 let groupCharacter = this.$refs.listToFill.getCharacterList();
-                this.$router.push({name: 'Animation', params:{group: groupCharacter, labelSelected: this.labels.currentLanguage}});
+                //this.$router.push({name: 'Animation', params:{group: groupCharacter, labelSelected: this.labels.currentLanguage}});
+                this.getDiseaseToAnimate();
+                this.getVoiceToPlay();
+                this.$router.push({name: 'Animation', params:{group: groupCharacter, labelSelected: this.labels.currentLanguage, disease: this.diseaseToAnimate, voice: this.voiceToPlay}});
 
             },
 
