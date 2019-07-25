@@ -2,7 +2,7 @@
     <div class="container">
         <!-- <meta name="viewport" content="width=device-width, user-scalable=no"> -->
         <!-- Audio player for audio files -->
-        <AudioPlayer :current-language="currentLanguage" :voice="voiceToPlay" ref="audioPlayer"></AudioPlayer>
+        <AudioPlayer :current-language="currentLanguage" :voice="voiceToPlayAtAnimation" ref="audioPlayer"></AudioPlayer>
         <!-- <div id="captions">
             <p id="caption"></p>
         </div> -->
@@ -73,15 +73,18 @@
                 currentLanguage: "",
                 textButtonAnimation: '',
                 isAudioPlaying: false,
-                diseaseToAnimate: '',
-                voiceToPlay : '',
+                voiceToPlayAtAnimation : '',
             }
         },
         props: {
             group: {
                 type: Array
             },
-            labelSelected: String
+            labelSelected: String,
+            diseaseToPlay : String,
+            voiceToPlay: String
+
+
         },
         methods: {
 
@@ -351,7 +354,6 @@
                             shapeTargetsVaccinated.forEach((b) => {
                                 if (e.id === b.id) {
                                     e.classList.add("barrier");
-                                    console.log("est appeler");
                                 }
                             });
                         }
@@ -488,11 +490,6 @@
                 });
                 return value;
             },
-
-            test(props){
-
-            },
-
 
             /**
              * ---> Parse the pattern (JSON pattern) to draw lines between various shapes during infection
@@ -784,7 +781,7 @@
                             clearInterval(vaccineCoverage);
                         }
                         if(props.makeTransformer){
-                            //this.makeTransformer(parseInt(props.duration)+parseInt(props.startTime)+parseInt(props.startTimeMakeTransformer));
+                            this.makeTransformer(parseInt(props.duration)+parseInt(props.startTime)+parseInt(props.startTimeMakeTransformer));
                         }
                     }, props.duration);
                 },parseInt(props.startTime));
@@ -838,32 +835,23 @@
             if (this.group) {
                 localStorage.setItem("group", JSON.stringify(this.group));
                 localStorage.setItem("language", this.labelSelected);
+                localStorage.setItem("disease", this.diseaseToPlay);
+                localStorage.setItem("voice", this.voiceToPlay);
 
-                localStorage.setItem("disease", this.$route.params.disease);
-                localStorage.setItem("voice", this.$route.params.voice);
                 this.characterList = this.group;
                 this.selectCurrentLanguage(this.labelSelected);
 
-                console.log("fonctionne");
             } else {
                 if (localStorage.getItem("group")) {
                     this.characterList = JSON.parse(localStorage.getItem("group")); // <====== A demander à @Martin
                     this.selectCurrentLanguage(localStorage.getItem("language"));
-                    console.log("fonctionne pas");
                 } else {
                     this.$router.push({name: 'Home'});
                 }
             }
 
-            // if (this.$route.query.d)
-            //     this.diseaseToAnimate = this.$route.query.d;
-
-
-            // if (this.$route.query.v)
-            //     this.voiceToPlay = this.$route.query.v;
-
             this.$refs.audioPlayer.loadAudioFiles(this.currentLanguage, localStorage.getItem("voice"));
-            this.voiceToPlay = localStorage.getItem("voice");
+            this.voiceToPlayAtAnimation = localStorage.getItem("voice");
 
 
             this.textButtonAnimation = this.labels.startAnimation;
@@ -878,7 +866,6 @@
                 this.duplicateGrid(2);
             });
 
-            console.log("fin de la sequence");
         },
 
         /**
@@ -896,7 +883,8 @@
             }
 
             // Stop the audio player from playing when going back to the make your gang tool
-            AudioPlayer.stopAudio();
+            //AudioPlayer.stopAudio();
+            this.$refs.audioPlayer.stopAudio();
         }
     }
 </script>

@@ -76,8 +76,8 @@
                 skinColors: [],
                 hairColors: [],
                 defaultCharacterColors: {},
-                diseaseToAnimate:"",
-                voiceToPlay : ""
+                diseaseHome:"",
+                voiceHome : ""
 
             };
         },
@@ -159,19 +159,19 @@
             getDiseaseToAnimate(){
 
                 if (this.$route.query.d === "flu" ||  this.$route.query.d === "measles" || this.$route.query.d === "pertussis"){
-                    this.diseaseToAnimate = this.$route.query.d;
+                    this.diseaseHome = this.$route.query.d;
                 }
                 else{
-                    this.diseaseToAnimate = "measles";
+                    this.diseaseHome = "measles";
                 }
             },
 
             getVoiceToPlay(){
                 if (this.$route.query.v === "male" ||  this.$route.query.v === "female"){
-                    this.voiceToPlay = this.$route.query.v;
+                    this.voiceHome = this.$route.query.v;
                 }
                 else{
-                    this.voiceToPlay = "male";
+                    this.voiceHome = "male";
                 }
             },
 
@@ -185,7 +185,7 @@
                 //this.$router.push({name: 'Animation', params:{group: groupCharacter, labelSelected: this.labels.currentLanguage}});
                 this.getDiseaseToAnimate();
                 this.getVoiceToPlay();
-                this.$router.push({name: 'Animation', params:{group: groupCharacter, labelSelected: this.labels.currentLanguage, disease: this.diseaseToAnimate, voice: this.voiceToPlay}});
+                this.$router.push({name: 'Animation', params:{group: groupCharacter, labelSelected: this.labels.currentLanguage, diseaseToPlay: this.diseaseHome, voiceToPlay: this.voiceHome}});
 
             },
 
@@ -237,6 +237,8 @@
             this.skinColors = charactersJson.skinColors;
             this.hairColors = charactersJson.hairColors;
             this.defaultCharacterColors = charactersJson.defaultColors;
+        },
+        mounted() {
         }
     }
 </script>

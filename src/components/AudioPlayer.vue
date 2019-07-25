@@ -190,7 +190,6 @@
         },
         created() {},
         mounted() {
-
         }
 
     }

@@ -25,17 +25,17 @@
 		"character5" : { 
 			"file" 	 : "F-1.svg",
 			"type" 	 : "adult",
-			"voiceToPlay": "woman"
+			"voiceHome": "woman"
 		},
 		"character6" : { 
 			"file" : "F-2.svg",
 			"type" : "adult",
-			"voiceToPlay": "woman"
+			"voiceHome": "woman"
 		},
 		"character7" : { 
 			"file" : "F-3.svg",
 			"type" : "adult",
-			"voiceToPlay": "woman"
+			"voiceHome": "woman"
 		},
 		"character8" : { 
 			"file" : "F-4.svg",
@@ -44,142 +44,142 @@
 		"character9" : { 
 			"file" : "F-5.svg",
 			"type" : "adult",
-			"voiceToPlay": "woman"
+			"voiceHome": "woman"
 		},
 		"character10" : { 
 			"file" : "F-6.svg",
 			"type" : "adult",
-			"voiceToPlay": "woman"
+			"voiceHome": "woman"
 		},
 		"character11" : { 
 			"file" : "F-7.svg",
 			"type" : "adult",
-			"voiceToPlay": "woman"
+			"voiceHome": "woman"
 		},
 		"character12" : { 
 			"file" : "F-8.svg",
 			"type" : "adult",
-			"voiceToPlay": "woman"
+			"voiceHome": "woman"
 		},
 		"character13" : { 
 			"file" : "F-9.svg",
 			"type" : "adult",
-			"voiceToPlay": "woman"
+			"voiceHome": "woman"
 		},
 		"character14" : { 
 			"file" : "F-10.svg",
 			"type" : "adult",
-			"voiceToPlay": "woman"
+			"voiceHome": "woman"
 		},
 		"character15" : { 
 			"file" : "F-11.svg",
 			"type" : "adult",
-			"voiceToPlay": "woman"
+			"voiceHome": "woman"
 		},
 		"character16" : { 
 			"file" : "F-12.svg",
 			"type" : "adult",
-			"voiceToPlay": "woman"
+			"voiceHome": "woman"
 		},
 		"character17" : { 
 			"file" : "F-13.svg",
 			"type" : "adult",
-			"voiceToPlay": "woman"
+			"voiceHome": "woman"
 		},
 		"character18" : { 
 			"file" : "F-14.svg",
 			"type" : "adult",
-			"voiceToPlay": "woman"
+			"voiceHome": "woman"
 		},
 		"character19" : { 
 			"file" : "F-15.svg",
 			"type" : "adult",
-			"voiceToPlay": "woman"
+			"voiceHome": "woman"
 		},
 		"character20" : { 
 			"file" : "F-16.svg",
 			"type" : "adult",
-			"voiceToPlay": "woman"
+			"voiceHome": "woman"
 		},
 		"character21" : { 
 			"file" : "H-1.svg",
 			"type" : "adult",
-			"voiceToPlay": "man"
+			"voiceHome": "man"
 		},
 		"character22" : { 
 			"file" : "H-2.svg",
 			"type" : "adult",
-			"voiceToPlay": "man"
+			"voiceHome": "man"
 		},
 		"character23" : { 
 			"file" : "H-3.svg",
 			"type" : "adult",
-			"voiceToPlay": "man"
+			"voiceHome": "man"
 		},
 		"character24" : { 
 			"file" : "H-4.svg",
 			"type" : "adult",
-			"voiceToPlay": "man"
+			"voiceHome": "man"
 		},
 		"character25" : { 
 			"file" : "H-5.svg",
 			"type" : "adult",
-			"voiceToPlay": "man"
+			"voiceHome": "man"
 		},
 		"character26" : { 
 			"file" : "H-6.svg",
 			"type" : "adult",
-			"voiceToPlay": "man"
+			"voiceHome": "man"
 		},
 		"character27" : { 
 			"file" : "H-7.svg",
 			"type" : "adult",
-			"voiceToPlay": "man"
+			"voiceHome": "man"
 		},
 		"character28" : { 
 			"file" : "H-8.svg",
 			"type" : "adult",
-			"voiceToPlay": "man"
+			"voiceHome": "man"
 		},
 		"character29" : { 
 			"file" : "H-9.svg",
 			"type" : "adult",
-			"voiceToPlay": "man"
+			"voiceHome": "man"
 		},
 		"character30" : { 
 			"file" : "H-10.svg",
 			"type" : "adult",
-			"voiceToPlay": "man"
+			"voiceHome": "man"
 		},
 		"character31" : { 
 			"file" : "H-11.svg",
 			"type" : "adult",
-			"voiceToPlay": "man"
+			"voiceHome": "man"
 		},
 		"character32" : { 
 			"file" : "H-12.svg",
 			"type" : "adult",
-			"voiceToPlay": "man"
+			"voiceHome": "man"
 		},
 		"character33" : { 
 			"file" : "H-13.svg",
 			"type" : "adult",
-			"voiceToPlay": "man"
+			"voiceHome": "man"
 		},
 		"character34" : { 
 			"file" : "H-14.svg",
 			"type" : "adult",
-			"voiceToPlay": "man"
+			"voiceHome": "man"
 		},
 		"character35" : { 
 			"file" : "H-15.svg",
 			"type" : "adult",
-			"voiceToPlay": "man"
+			"voiceHome": "man"
 		},
 		"character36" : { 
 			"file" : "H-16.svg",
 			"type" : "adult",
-			"voiceToPlay": "man"
+			"voiceHome": "man"
 		}
 	}
 }
