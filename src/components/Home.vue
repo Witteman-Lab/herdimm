@@ -76,8 +76,8 @@
                 skinColors: [],
                 hairColors: [],
                 defaultCharacterColors: {},
-                gender:"",
-                voiceHome : ""
+                diseaseHome:"",
+                gender : ""
 
             };
         },
@@ -159,19 +159,19 @@
             setDiseaseToAnimate(){
 
                 if (this.$route.query.d === "flu" ||  this.$route.query.d === "measles" || this.$route.query.d === "pertussis"){
-                    this.gender = this.$route.query.d;
+                    this.diseaseHome = this.$route.query.d;
                 }
                 else{
-                    this.gender = "measles";
+                    this.diseaseHome = "measles";
                 }
             },
 
             setVoiceToPlay(){
                 if (this.$route.query.v === "male" ||  this.$route.query.v === "female"){
-                    this.voiceHome = this.$route.query.v;
+                    this.gender = this.$route.query.v;
                 }
                 else{
-                    this.voiceHome = "male";
+                    this.gender = "male";
                 }
             },
 
@@ -182,7 +182,7 @@
              */
             loadAnimationView() {
                 let groupCharacter = this.$refs.listToFill.getCharacterList();
-                this.$router.push({name: 'Animation', params:{group: groupCharacter, labelSelected: this.labels.currentLanguage, diseaseToPlay: this.gender, voiceToPlay: this.voiceHome}});
+                this.$router.push({name: 'Animation', params:{group: groupCharacter, labelSelected: this.labels.currentLanguage, diseaseToPlay: this.diseaseHome, voiceToPlay: this.gender}});
 
             },
 
