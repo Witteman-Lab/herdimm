@@ -1,14 +1,15 @@
 {
+    "folder" : "audio",
     "fr" : {
         "folder" : "fr",
         "sequences" : [
             {
-                "file" : "1F.mp3",
-                "caption" : ""
+                "file" : "1E.mp3",
+                "caption" : "What role does each of us play in protecting our community?"
             },
             {
                 "file" : "2E.mp3",
-                "caption" : ""
+                "caption" : "Imagine this is you."
             },
             {
                 "file" : "3E.mp3",

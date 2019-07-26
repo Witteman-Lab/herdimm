@@ -1,23 +1,11 @@
 {
     "folder" : "audio",
-    "en" : {
-        "folder" : "en",
+    "fr" : {
+        "folder" : "fr",
         "sequences" : [
             {
                 "file" : "1E.mp3",
-                "caption" : "What role does each of us play in protecting our community?",
-                "actions" : [
-                    {
-                        "action": "zoomOut",
-                        "props": {
-                            "scale" : "2",
-                            "duration" : "1000",
-                            "transformOrigin_X" : "30",
-                            "transformOrigin_Y": "30",
-                            "startTime" : "3000"
-                        }
-                    }
-                ]
+                "caption" : "What role does each of us play in protecting our community?"
             },
             {
                 "file" : "2E.mp3",

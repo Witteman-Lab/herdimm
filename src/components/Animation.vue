@@ -48,7 +48,6 @@
     import Character from "./Character";
     import AudioPlayer from "./AudioPlayer";
     // The scenario might need to be imported in AudioPlayer instead of here, I'm not sure at the moment
-    // import scenario from "../assets/json/scenario_en.json";
     import shapesArray from "../assets/json/shapesArray";
     import textsEng from "../assets/json/textsEng.json";
     import textsFr from "../assets/json/textsFr.json";
