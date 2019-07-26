@@ -479,7 +479,7 @@
           {
             "action": "removeInfection",
             "props": {
-              "startTime" : "14000"
+              "startTime" : "9000"
             }
           }
         ]
