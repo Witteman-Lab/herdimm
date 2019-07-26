@@ -423,7 +423,9 @@
              * @return none
              */
             parseSpreadInfection(props){
-                let duration = (parseInt(props.duration)/1000).toString()
+                let durationLine = (parseInt(props.durationLine)/1000).toString();
+                let durationLineBouncingOff = (parseInt(props.durationLineBouncingOff)/1000).toString();
+                let path="";
                 if (typeof(props.file) === "object") {
                     if (props.file.length !== 0) {
                         let value;
@@ -432,22 +434,21 @@
                         } else {
                             value = this.getRandomInt(props.file.length);
                         }
-                        let variable = require("../assets/json/" + props.file[value]);
+                        path = require("../assets/json/" + props.file[value]);
                         setTimeout(() => {
-                            this.spreadInfection(variable.connections, duration);
+                            this.spreadInfection(path.connections, durationLine, durationLineBouncingOff);
                         }, props.startTime);
                     } else {
                         alert("Add the name of json file in array to have infection sequences");
                     }
                 }
                 else{
-                    let variable = require("../assets/json/" + props.file);
+                    path = require("../assets/json/" + props.file);
                     setTimeout(() => {
-                        this.spreadInfection(variable.connections, duration);
+                        this.spreadInfection(path.connections, durationLine, durationLineBouncingOff);
                     }, parseInt(props.startTime));
                 }
             },
-
 
 
             /**
@@ -496,7 +497,7 @@
              * @param {Object} pattern
              * @return none
              */
-            spreadInfection(pattern, duration){
+            spreadInfection(pattern, durationLine, durationLineBouncingOff){
                 const drawingBoard = document.querySelector("#connections");
                 const selector = '#main-container #';
                 const state = "infected";
@@ -521,17 +522,18 @@
                         // Target might get infected, but we still want the infection lines to bounce, so we check if infectionIsBouncing is true
                         if (infectionIsBouncing) {
                             //lineObj.classList.add("lineBouncingOff");
-                            lineObj.style.webkitAnimation = "dash "+duration+"s"+" linear 0s 6 alternate";
-                            lineObj.style.animation = "dash "+duration+"s"+" linear 0s 6 alternate";
+                            lineObj.style.webkitAnimation = "dash "+durationLineBouncingOff+"s"+" linear 0s 6 alternate";
+                            lineObj.style.animation = "dash "+durationLineBouncingOff+"s"+" linear 0s 6 alternate";
+
                         } else {
                             //lineObj.classList.add("line");
-                            lineObj.style.webkitAnimation = "dash "+duration+"s"+" linear 0s forwards";
-                            lineObj.style.animation = "dash "+duration+"s"+" linear 0s forwards";
+                            lineObj.style.webkitAnimation = "dash "+durationLine+"s"+" linear 0s forwards";
+                            lineObj.style.animation = "dash "+durationLine+"s"+" linear 0s forwards";
                         }
                     } else {
                         //lineObj.classList.add("lineBouncingOff");
-                        lineObj.style.webkitAnimation = "dash "+duration+"s"+" linear 0s 6 alternate";
-                        lineObj.style.animation = "dash "+duration+"s"+" linear 0s 6 alternate";
+                        lineObj.style.webkitAnimation = "dash "+durationLineBouncingOff+"s"+" linear 0s 6 alternate";
+                        lineObj.style.animation = "dash "+durationLineBouncingOff+"s"+" linear 0s 6 alternate";
                     }
 
 
@@ -549,7 +551,7 @@
                     // When the animation ends, check if there is a next target
                     lineObj.addEventListener("animationend", () => { // webkitAnimationEnd
                         if (nextTarget !== "") {
-                            this.spreadInfection(nextTarget, duration);
+                            this.spreadInfection(nextTarget, durationLine, durationLineBouncingOff);
                         }
 
                         // If target gets infected, its color changes
