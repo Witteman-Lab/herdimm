@@ -73,6 +73,7 @@
                 textButtonAnimation: '',
                 isAudioPlaying: false,
                 voiceToPlayAtAnimation : '',
+                counter: 0
             }
         },
         props: {
@@ -314,9 +315,22 @@
                 }
                 setTimeout(() => {
                     if (props.add) {
-                        shapeTargets.forEach(e => e.classList.add(props.class));
+                        shapeTargets.forEach(e => {
+                            e.style.zIndex = "3000";
+                            e.classList.add(props.class);
+                        });
                     } else {
-                        shapeTargets.forEach(e => e.classList.remove(props.class));
+                        shapeTargets.forEach(e => {
+                            this.counter++;
+                            e.style.zIndex = "0";
+                            e.classList.remove(props.class);
+                            //e.style.zIndex = "999";
+                            if(this.counter <= 1)
+                                e.style.zIndex = "10";
+                            else{
+                                e.style.zIndex = "999";
+                            }
+                        });
                     }
                 }, parseInt(props.startTime));
             },
