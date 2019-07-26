@@ -10,15 +10,23 @@
         ],
         "actions" : [
           {
-            "action": "vaccination",
+            "action" : "makeContour",
+            "props" : {
+              "target" : ".avatar",
+              "duration" : "1000",
+              "class" : "contour",
+              "startTime" : "500",
+              "add" : true
+            }
+          },
+          {
+            "action": "makeContour",
             "props": {
-              "file" : "vaccineCoverageAdd20.json",
-              "duration": "0",
-              "state": "vaccinated",
-              "startTime" : "4000",
-              "add": true,
-              "makeTransformer": true,
-              "startTimeMakeTransformer": "-3000"
+              "target": ".avatar",
+              "duration": "1000",
+              "class": "contour",
+              "startTime" : "2000",
+              "add" : false
             }
           }
         ]

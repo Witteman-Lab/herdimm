@@ -605,8 +605,9 @@
                 const selector = '#main-container #';
 
                 if(props.add) {
-                    this.hexColor(selector, props.target, props.state);
+                    // this.hexColor(selector, props.target, props.state);
                     setTimeout(() => {
+                        this.hexColor(selector, props.target, props.state);
                         this.changeSize(selector, props.target, props.scale, props.timingFunction, props.duration);
                         this.setCharacterTshirtColor(props.target, props.state);
                     }, parseInt(props.startTime));

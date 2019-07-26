@@ -208,6 +208,18 @@
             }
           },
           {
+            "action": "burst",
+            "props": {
+              "target": "shape_41",
+              "scale": "1.2",
+              "state": "infected",
+              "timingFunction": "linear",
+              "startTime" : "7400",
+              "duration" : "250",
+              "add": true
+            }
+          },
+          {
             "action": "parseSpreadInfection",
             "props": {
               "file" : "spreadinfections2-1.json",
@@ -295,7 +307,7 @@
               "file" : "vaccineCoverageAdd4.json",
               "duration": "30",
               "state": "vaccinated",
-              "startTime" : "2500",
+              "startTime" : "3000",
               "add": true,
               "makeTransformer": true,
               "startTimeMakeTransformer": "5000"
@@ -508,7 +520,7 @@
               "file" : "vaccineCoverageAdd95.json",
               "duration": "0",
               "state": "vaccinated",
-              "startTime" : "5500",
+              "startTime" : "5300",
               "add": true,
               "makeTransformer": true,
               "startTimeMakeTransformer": "0"
@@ -519,7 +531,7 @@
             "props": {
               "target": ".vulnerable",
               "class": "vulnerableContour",
-              "startTime" : "10000",
+              "startTime" : "12000",
               "duration": "700",
               "add" : true
             }
@@ -531,7 +543,7 @@
               "scale": "1.6",
               "state": "vaccinated",
               "timingFunction": "linear",
-              "startTime" : "17700",
+              "startTime" : "19000",
               "duration" : "500"
             }
           }

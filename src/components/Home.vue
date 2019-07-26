@@ -157,21 +157,21 @@
             },
 
             setDiseaseToAnimate(){
-
-                if (this.$route.query.d === "flu" ||  this.$route.query.d === "measles" || this.$route.query.d === "pertussis"){
+                if (this.$route.query.d === "flu" ||  this.$route.query.d === "measles" || this.$route.query.d === "pertussis")
                     this.diseaseHome = this.$route.query.d;
-                }
                 else{
                     this.diseaseHome = "measles";
                 }
             },
 
             setVoiceToPlay(){
-                if (this.$route.query.v === "male" ||  this.$route.query.v === "female"){
+                if (this.$route.query.v === "male" ||  this.$route.query.v === "female")
                     this.gender = this.$route.query.v;
-                }
-                else{
+                else if(this.$route.query.v == null)
                     this.gender = "male";
+                else{
+                    let voiceType = ["male", "female"];
+                    this.gender = voiceType[this.getRandomInt(voiceType.length)];
                 }
             },
 
@@ -201,6 +201,14 @@
                 } else {
                     this.contextualInfo = "";
                 }
+            },
+            /**
+             * ---> This function randomly returns between [0-2]
+             *  @param {number} value
+             *  @return {number}
+             */
+            getRandomInt(value){
+                return Math.floor(Math.random()*Math.floor(value));
             },
 
             /**

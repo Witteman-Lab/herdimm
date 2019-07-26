@@ -15,6 +15,12 @@
     import scenario from "../assets/json/scenario.json";
     //import scenario from "../assets/json/SupFile.json";
 
+
+    // import scenarioFemaleEn from "../assets/json/scenario_female_en.json";
+    // import scenarioFemaleFr from "../assets/json/scenario_female_fr.json";
+    // import scenarioMaleEn from "../assets/json/scenario_male_en.json";
+    // import scenarioMaleFr from "../assets/json/scenario_male_fr.json";
+
     export default {
         name: "AudioPlayer",
         components: {},
@@ -27,7 +33,7 @@
                 currentActions: [],
                 caption: '',
                 onplay: false,
-                audioPosition: 0
+                audioPosition: 0,
             }
         },
         props: {
@@ -185,7 +191,27 @@
             getAudioStatus() {
                 return this.onplay;
             }
-
+            //
+            // /**
+            //  * --->  ---------------------------------- It's will be completed later ------------------------------
+            //  * @param {Array} props
+            //  * @return none
+            //  */
+            // selectScenario(){
+            //     let scenariotop
+            //     if(this.currentLanguage === "en" && this.voice === "female")
+            //        scenariotop = scenarioFemaleEn;
+            //     else if(this.currentLanguage === "fr" && this.voice === "female")
+            //         scenariotop = scenarioFemaleFr;
+            //     else if(this.currentLanguage === "en" && this.voice === "male")
+            //         scenariotop = scenarioMaleEn;
+            //     else if(this.currentLanguage === "fr" && this.voice === "male")
+            //         scenariotop = scenarioMaleFr
+            //     else{
+            //         scenariotop = scenarioFemaleEn;
+            //     }
+            //     console.log("le scenarion choisit est :", scenariotop);
+            // }
 
         },
         created() {},
