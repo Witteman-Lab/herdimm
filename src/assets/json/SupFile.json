@@ -10,37 +10,15 @@
         ],
         "actions" : [
           {
-            "action": "burst",
-            "props": {
-              "target": "shape_50",
-              "scale": "1.2",
-              "state": "vaccinated",
-              "timingFunction": "linear",
-              "startTime" : "2000",
-              "duration" : "250",
-              "add": true
-            }
-          },
-          {
             "action": "vaccination",
             "props": {
-              "file" : "vaccineCoverageAdd95.json",
+              "file" : "vaccineCoverageAdd20.json",
               "duration": "0",
               "state": "vaccinated",
-              "startTime" : "2500",
+              "startTime" : "4000",
               "add": true,
               "makeTransformer": true,
-              "startTimeMakeTransformer": "0"
-            }
-          },
-          {
-            "action": "makeContour",
-            "props": {
-              "target": ".vulnerable",
-              "class": "vulnerableContour",
-              "startTime" : "7000",
-              "duration": "700",
-              "add" : true
+              "startTimeMakeTransformer": "-3000"
             }
           }
         ]
