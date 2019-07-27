@@ -71,6 +71,7 @@
                 isAnimationStarted: false,
                 currentLanguage: "",
                 textButtonAnimation: '',
+                reloadAnimationPage: false,
                 isAudioPlaying: false,
                 voiceToPlayAtAnimation : '',
                 counter: 0
@@ -94,9 +95,13 @@
              * @return none
              */
             startAnimation() {
-                this.isAnimationStarted = true;
-                this.$refs.audioPlayer.playAudio();
-                this.isAnimationPlaying();
+                if (this.reloadAnimationPage)
+                    window.location.reload();
+                else {
+                    this.isAnimationStarted = true;
+                    this.$refs.audioPlayer.playAudio();
+                    this.isAnimationPlaying();
+                }
             },
 
             /**
@@ -136,6 +141,7 @@
              */
             reloadAnimation() {
                 this.isAnimationStarted = false;
+                this.reloadAnimationPage = true;
                 this.textButtonAnimation = this.labels.restartAnimation;
             },
 

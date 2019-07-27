@@ -156,20 +156,20 @@
                 }
             },
 
-            setDiseaseToAnimate(){
+            setDiseaseToAnimate() {
                 if (this.$route.query.d === "flu" ||  this.$route.query.d === "measles" || this.$route.query.d === "pertussis")
                     this.diseaseHome = this.$route.query.d;
-                else{
+                else {
                     this.diseaseHome = "measles";
                 }
             },
 
-            setVoiceToPlay(){
+            setVoiceToPlay() {
                 if (this.$route.query.v === "male" ||  this.$route.query.v === "female")
                     this.gender = this.$route.query.v;
-                else if(this.$route.query.v == null)
+                else if (this.$route.query.v == null)
                     this.gender = "male";
-                else{
+                else {
                     let voiceType = ["male", "female"];
                     this.gender = voiceType[this.getRandomInt(voiceType.length)];
                 }
