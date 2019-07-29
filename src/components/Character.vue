@@ -29,7 +29,7 @@
                     glasses: '',
                     beards: '',
                     name: '',
-                    option: ''
+                    options: []
                 },
                 glasses: [],
                 beards: [],
@@ -61,12 +61,12 @@
             },
 
             /***
-             * ---> Change character option and save it in svgColor
-             * @param {String} name
+             * ---> Change character options and save it in svgColor
+             * @param {Array} options
              * @return none
              */
-            setCharacterOption(name) {
-                this.svgColor.option = name;
+            setCharacterOption(options) {
+                this.svgColor.options = options
             },
 
             /**
@@ -244,7 +244,7 @@
                 this.changeBeard(colors.beards);
                 this.changeShirtColor(colors.shirt, 0.8);
                 this.setCharacterName(colors.name);
-                this.setCharacterOption(colors.option);
+                this.setCharacterOption(colors.options);
             },
 
             /**

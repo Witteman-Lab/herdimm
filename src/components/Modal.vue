@@ -15,7 +15,7 @@
                         <div class="column is-centered ">
                             <Character v-if="isActive" :size="{width: '70px', height: '78px'}" :edit="false" :customised="true" ref="character" :id="'current'" :svgFile="this.currentCharacter"
                                        :colors="{face: this.currentColorFace, hairFront: this.currentColorHair, beards: this.currentBeard,
-                                       glasses: this.currentGlasses, shirt: this.currentShirt, name: this.characterName, option: this.currentOption}"
+                                       glasses: this.currentGlasses, shirt: this.currentShirt, name: this.characterName, options: this.options}"
                                        :is-name="true"/>
                             <!--<inputclass="input"type="text"placeholder="Entername">-->
                             <!--<labelclass="label">Name:<inputclass="input"v-model="message"type="text"placeholder="editname"></label>-->
@@ -23,21 +23,12 @@
                                 <div class="control">
                                     <input v-on:input="setCharacterName(characterName)" class="input" v-model="characterName"  type="text" :placeholder="this.labels.nameInputPlaceHolder">
                                 </div>
-                                <div style="overflow: visible" v-show="isCharacterVulnerable" class="control">
-                                    <div style="margin-top: 10px" class="dropdown" v-on:click="activeDropdown" v-bind:class="{'is-active': isDropdownActive }">
-                                        <div class="dropdown-trigger">
-                                            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
-                                                <span>{{this.currentOption ? this.currentOption : this.labels.reason}}</span>
-                                                <font-awesome-icon style="margin-left: 10px;" icon="angle-down" size="lg"/>
-                                            </button>
-                                        </div>
-                                        <div class="dropdown-menu" id="dropdown-menu" role="menu">
-                                            <div style="position: fixed;" class="dropdown-content">
-                                                <a v-for="(option) in this.labels.vulnerableOptions" v-bind:ref="option.name" class="dropdown-item" v-on:click="setCharacterOption(option.name)">
-                                                    {{option.name}}
-                                                </a>
-                                            </div>
-                                        </div>
+                                <div style="overflow: visible;margin-top: 10px;" v-show="isCharacterVulnerable" class="control">
+                                    <div v-for="(option, index) in this.labels.vulnerableOptions" v-on:click="setCharacterOption(option.name, index)">
+                                        <label class="checkbox">
+                                            <input type="checkbox">
+                                            {{option.name}}
+                                        </label>
                                     </div>
                                 </div>
                             </div>
@@ -148,7 +139,6 @@
                 currentCharacter: "",
                 currentShirt: "",
                 currentCharacterObject: "",
-                currentOption: "",
 
                 hasHair: false,
                 hasFacialHair: false,
@@ -170,7 +160,6 @@
                 avatarNbr: 0,
                 vulnerableNbr: 0,
                 options: [],
-                optionSelected: "",
             }
         },
         props: {
@@ -184,12 +173,6 @@
             defaultCharacterColors: Object
         },
         methods: {
-            /***
-             *--> Enable dropdown for options
-             **/
-            activeDropdown() {
-                this.isDropdownActive = !this.isDropdownActive;
-            },
             /***
              *--> Check if the current character is vulnerable or not
              * @return {Boolean} isCharacterVulnerable
@@ -244,7 +227,7 @@
                     this.currentBeard = character.colors.beards;
                     this.currentShirt = character.colors.shirt;
                     this.characterName = character.colors.name;
-                    this.setVulnerableOption(character.colors.option);
+                    this.setVulnerableOption(character.colors.options);
                 } else {
                     // Avatar gets a special shirt
                     isAvatar ? this.currentShirt = this.defaultCharacterColors.ShirtColorAvatar  :
@@ -270,9 +253,12 @@
              * @param {String} name
              * @return none
              */
-            setCharacterOption(name) {
-                this.currentOption = name;
-                this.$refs.character.setCharacterOption(name);
+            setCharacterOption(name, index) {
+                console.log(name);
+                if (this.options[index] === '')
+                    this.options[index] = name;
+                else
+                    this.options[index] = '';
             },
 
             /**
@@ -286,7 +272,6 @@
                 this.isHairColorButtonEnable = false;
                 this.isFaceColorButtonEnable = false;
                 this.characterName = "";
-                this.currentOption = '';
             },
 
             /**
@@ -295,6 +280,10 @@
              * @return none
              */
             saveCharacter() {
+                if (this.isCharacterVulnerable) {
+                    console.log(this.options);
+                    this.$refs.character.setCharacterOption(this.options);
+                }
                 if (this.avatarNbr > this.currentCharacterNumber && !this.characterName)
                     this.setCharacterName(this.labels.avatarName);
                 else if (!this.characterName)
@@ -385,10 +374,10 @@
              * @param {String} name
              * @return none
              **/
-            setVulnerableOption(name) {
-                this.options.map((option) => {
-                    if (option.name === name) {
-                        this.is
+            setVulnerableOption(options) {
+                this.options = options;
+                this.options.map((option, index) => {
+                    if (option === this.labels.vulnerableOptions[index]) {
                         this.currentOption = option.name;
                     }
                 });
@@ -465,8 +454,8 @@
             },
         },
         mounted() {
-            // this.options = characterOptions.options;
-            this.options = this.labels.vulnerableOptions;
+            this.options = new Array(this.labels.vulnerableOptions.length).fill(this.labels.vulnerableOptions.length).map((v,i) => i = "");
+            console.log(this.options);
             document.body.addEventListener('keyup', e => {
                 // Escape key to close the modal window (customizer)
                 if (e.keyCode === 27 && this.isActive) {
