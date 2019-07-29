@@ -887,7 +887,9 @@
             document.addEventListener('DOMContentLoaded', () => {
                 this.duplicateGrid(2);
             });
-
+            window.addEventListener('gesturestart', e => e.preventDefault());
+            window.addEventListener('gesturechange', e => e.preventDefault());
+            window.addEventListener('gestureend', e => e.preventDefault());
         },
 
         /**
