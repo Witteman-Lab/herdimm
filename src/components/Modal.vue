@@ -254,7 +254,6 @@
              * @return none
              */
             setCharacterOption(name, index) {
-                console.log(name);
                 if (this.options[index] === '')
                     this.options[index] = name;
                 else
@@ -281,7 +280,6 @@
              */
             saveCharacter() {
                 if (this.isCharacterVulnerable) {
-                    console.log(this.options);
                     this.$refs.character.setCharacterOption(this.options);
                 }
                 if (this.avatarNbr > this.currentCharacterNumber && !this.characterName)
@@ -455,7 +453,6 @@
         },
         mounted() {
             this.options = new Array(this.labels.vulnerableOptions.length).fill(this.labels.vulnerableOptions.length).map((v,i) => i = "");
-            console.log(this.options);
             document.body.addEventListener('keyup', e => {
                 // Escape key to close the modal window (customizer)
                 if (e.keyCode === 27 && this.isActive) {

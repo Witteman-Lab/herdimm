@@ -183,7 +183,8 @@
             loadAnimationView() {
                 let groupCharacter = this.$refs.listToFill.getCharacterList();
                 this.$router.push({name: 'Animation', params:{group: groupCharacter, labelSelected: this.labels.currentLanguage, diseaseToPlay: this.diseaseHome, voiceToPlay: this.gender}});
-
+                localStorage.setItem("currentLanguage", this.labels.currentLanguage);
+                localStorage.setItem("gender", this.gender);
             },
 
             /**
@@ -244,6 +245,7 @@
             this.defaultCharacterColors = charactersJson.defaultColors;
         },
         mounted() {
+            localStorage.clear();
             this.setDiseaseToAnimate();
             this.setVoiceToPlay();
         }

@@ -12,14 +12,14 @@
 </template>
 
 <script>
-    import scenario from "../assets/json/scenario.json";
+    //import valeurtest from "../assets/json/scenario.json";
     //import scenario from "../assets/json/SupFile.json";
 
+    import scenarioFemaleEn from "../assets/json/scenario_female_en.json";
+    import scenarioFemaleFr from "../assets/json/scenario_female_fr.json";
+    import scenarioMaleEn from "../assets/json/scenario_male_en.json";
+    import scenarioMaleFr from "../assets/json/scenario_male_fr.json";
 
-    // import scenarioFemaleEn from "../assets/json/scenario_female_en.json";
-    // import scenarioFemaleFr from "../assets/json/scenario_female_fr.json";
-    // import scenarioMaleEn from "../assets/json/scenario_male_en.json";
-    // import scenarioMaleFr from "../assets/json/scenario_male_fr.json";
 
     export default {
         name: "AudioPlayer",
@@ -34,6 +34,8 @@
                 caption: '',
                 onplay: false,
                 audioPosition: 0,
+                scenario : []
+
             }
         },
         props: {
@@ -49,8 +51,8 @@
              */
             loadAudioFiles(type, voice) {
                 this.language = type;
-                this.playlist = scenario[type].sequences;
-                const folder = scenario.folder;
+                this.playlist = this.scenario[0][type].sequences;
+                const folder = this.scenario[0].folder;
                 this.currentAudio = require(`../assets/${folder}/${type}/${voice}/${this.playlist[this.audioPosition].file}`);
                 this.caption = this.playlist[this.audioPosition].caption;
             },
@@ -114,7 +116,7 @@
              */
             firstAudio() {
                 this.audioPosition = 0;
-                const folder = scenario.folder;
+                const folder = this.scenario[0].folder;
                 const type = this.currentLanguage;
                 const voiceType  = this.voice;
                 this.currentAudio = require(`../assets/${folder}/${type}/${voiceType}/${this.playlist[this.audioPosition].file}`);
@@ -130,7 +132,7 @@
              */
             lastAudio() {
                 this.audioPosition = this.playlist.length - 1;
-                const folder = scenario.folder;
+                const folder = this.scenario[0].folder;
                 const type = this.currentLanguage;
                 const voiceType  = this.voice;
                 this.currentAudio = require(`../assets/${folder}/${type}/${voiceType}/${this.playlist[this.audioPosition].file}`);
@@ -147,7 +149,7 @@
             previousAudio() {
                 if (this.audioPosition > 0) {
                     this.audioPosition--;
-                    const folder = scenario.folder;
+                    const folder = this.scenario[0].folder;
                     const type = this.currentLanguage;
                     const voiceType  = this.voice;
                     this.currentAudio = require(`../assets/${folder}/${type}/${voiceType}/${this.playlist[this.audioPosition].file}`);
@@ -165,14 +167,14 @@
             nextAudio() {
                 this.audioPosition++;
                 if (this.audioPosition < this.playlist.length) {
-                    const folder = scenario.folder;
+                    const folder = this.scenario[0].folder;
                     const type = this.currentLanguage;
                     const voiceType  = this.voice;
                     this.currentAudio = require(`../assets/${folder}/${type}/${voiceType}/${this.playlist[this.audioPosition].file}`);
                     this.caption = this.playlist[this.audioPosition].caption;
                     this.playAudio();
                 } else {
-                    const folder = scenario.folder;
+                    const folder = this.scenario[0].folder;
                     const type = this.currentLanguage;
                     const voiceType  = this.voice;
                     this.audioPosition = 0;
@@ -190,32 +192,62 @@
              */
             getAudioStatus() {
                 return this.onplay;
+            },
+
+            /**
+             * --->  ---------------------------------- It's will be completed later ------------------------------
+             * @param {Array} props
+             * @return none
+             */
+            selectScenario(){
+                // if(localStorage.getItem("currentLanguage") === "en" && localStorage.getItem("gender") === "female")
+                //     this.scenario.push(scenarioFemaleEn);
+                // else if(localStorage.getItem("currentLanguage") === "fr" && localStorage.getItem("gender") === "female")
+                //     this.scenario.push(scenarioFemaleFr);
+                // else if(localStorage.getItem("currentLanguage") === "en" && localStorage.getItem("gender") === "male")
+                //     this.scenario.push(scenarioMaleEn);
+                // else if(localStorage.getItem("currentLanguage") === "fr" && localStorage.getItem("gender") === "male")
+                //     this.scenario.push(scenarioMaleFr);
+                // else{
+                //     this.scenario.push(scenarioFemaleEn);
+                // }
+
+                if(localStorage.getItem("currentLanguage") === "en" && localStorage.getItem("gender") === "female"){
+                    this.scenario.push(scenarioFemaleEn);
+                    console.log("1");
+                    console.log("scenarioFemaleEn");
+                }
+                else if(localStorage.getItem("currentLanguage") === "fr" && localStorage.getItem("gender") === "female")
+                {
+                    this.scenario.push(scenarioFemaleFr);
+                    console.log("2");
+                    console.log("scenarioFemaleFr");
+                }
+                else if(localStorage.getItem("currentLanguage") === "en" && localStorage.getItem("gender") === "male")
+                {
+                    this.scenario.push(scenarioMaleEn);
+                    console.log("3");
+                    console.log("scenarioMaleEn");
+                }
+                else if(localStorage.getItem("currentLanguage") === "fr" && localStorage.getItem("gender") === "male")
+                {
+                    this.scenario.push(scenarioMaleFr);
+                    console.log("4");
+                    console.log("scenarioMaleFr");
+                }
+                else{
+                    this.scenario.push(scenarioFemaleEn);
+                    console.log("par defaut");
+                    console.log("5");
+                }
             }
-            //
-            // /**
-            //  * --->  ---------------------------------- It's will be completed later ------------------------------
-            //  * @param {Array} props
-            //  * @return none
-            //  */
-            // selectScenario(){
-            //     let scenariotop
-            //     if(this.currentLanguage === "en" && this.voice === "female")
-            //        scenariotop = scenarioFemaleEn;
-            //     else if(this.currentLanguage === "fr" && this.voice === "female")
-            //         scenariotop = scenarioFemaleFr;
-            //     else if(this.currentLanguage === "en" && this.voice === "male")
-            //         scenariotop = scenarioMaleEn;
-            //     else if(this.currentLanguage === "fr" && this.voice === "male")
-            //         scenariotop = scenarioMaleFr
-            //     else{
-            //         scenariotop = scenarioFemaleEn;
-            //     }
-            //     console.log("le scenarion choisit est :", scenariotop);
-            // }
 
         },
-        created() {},
+        created() {
+        },
         mounted() {
+            this.selectScenario();
+            console.log("la valeur du local est ", localStorage.getItem("currentLanguage"));
         }
 
     }

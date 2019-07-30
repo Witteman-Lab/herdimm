@@ -874,8 +874,6 @@
 
             this.$refs.audioPlayer.loadAudioFiles(this.currentLanguage, localStorage.getItem("voice"));
             this.voiceToPlayAtAnimation = localStorage.getItem("voice");
-
-
             this.textButtonAnimation = this.labels.startAnimation;
             // Fetch some styles from the SCSS file
             this.characterSize = styles["hexagon-height"];
