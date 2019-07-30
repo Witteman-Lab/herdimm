@@ -253,7 +253,7 @@
               "state": "vaccinated",
               "timingFunction": "linear",
               "duration" : "250",
-              "startTime" : "250",
+              "startTime" : "2000",
               "add": false
             }
           },
@@ -484,7 +484,7 @@
             "props": {
               "file" : ["flu.json","measles.json","pertussis.json"],
               "startTime" : "500",
-              "durationLine": "125",
+              "durationLine": "200",
               "durationLineBouncingOff": "250"
             }
           },
