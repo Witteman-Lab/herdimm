@@ -199,50 +199,50 @@
              * @param {Array} props
              * @return none
              */
-            selectScenario(){
-                // if(localStorage.getItem("currentLanguage") === "en" && localStorage.getItem("gender") === "female")
-                //     this.scenario.push(scenarioFemaleEn);
-                // else if(localStorage.getItem("currentLanguage") === "fr" && localStorage.getItem("gender") === "female")
-                //     this.scenario.push(scenarioFemaleFr);
-                // else if(localStorage.getItem("currentLanguage") === "en" && localStorage.getItem("gender") === "male")
-                //     this.scenario.push(scenarioMaleEn);
-                // else if(localStorage.getItem("currentLanguage") === "fr" && localStorage.getItem("gender") === "male")
-                //     this.scenario.push(scenarioMaleFr);
-                // else{
-                //     this.scenario.push(scenarioFemaleEn);
-                //     }
-
-                if(localStorage.getItem("currentLanguage") === "en" && localStorage.getItem("gender") === "female"){
+            selectScenarioFile(){
+                if(localStorage.getItem("currentLanguage") === "en" && localStorage.getItem("gender") === "female")
                     this.scenario.push(scenarioFemaleEn);
-                    console.log("scenarioFemaleEn");
-                }
                 else if(localStorage.getItem("currentLanguage") === "fr" && localStorage.getItem("gender") === "female")
-                {
                     this.scenario.push(scenarioFemaleFr);
-                    console.log("scenarioFemaleFr");
-                }
                 else if(localStorage.getItem("currentLanguage") === "en" && localStorage.getItem("gender") === "male")
-                {
                     this.scenario.push(scenarioMaleEn);
-                    console.log("scenarioMaleEn");
-                }
                 else if(localStorage.getItem("currentLanguage") === "fr" && localStorage.getItem("gender") === "male")
-                {
                     this.scenario.push(scenarioMaleFr);
-                    console.log("scenarioMaleFr");
-
-                }
                 else{
                     this.scenario.push(scenarioFemaleEn);
-                    console.log("par defaut");
-                }
+                    }
+
+                // if(localStorage.getItem("currentLanguage") === "en" && localStorage.getItem("gender") === "female"){
+                //     this.scenario.push(scenarioFemaleEn);
+                //     console.log("scenarioFemaleEn");
+                // }
+                // else if(localStorage.getItem("currentLanguage") === "fr" && localStorage.getItem("gender") === "female")
+                // {
+                //     this.scenario.push(scenarioFemaleFr);
+                //     console.log("scenarioFemaleFr");
+                // }
+                // else if(localStorage.getItem("currentLanguage") === "en" && localStorage.getItem("gender") === "male")
+                // {
+                //     this.scenario.push(scenarioMaleEn);
+                //     console.log("scenarioMaleEn");
+                // }
+                // else if(localStorage.getItem("currentLanguage") === "fr" && localStorage.getItem("gender") === "male")
+                // {
+                //     this.scenario.push(scenarioMaleFr);
+                //     console.log("scenarioMaleFr");
+                //
+                // }
+                // else{
+                //     this.scenario.push(scenarioFemaleEn);
+                //     console.log("par defaut");
+                // }
             }
 
         },
         created() {
         },
         mounted() {
-            this.selectScenario();
+            this.selectScenarioFile();
         }
 
     }
