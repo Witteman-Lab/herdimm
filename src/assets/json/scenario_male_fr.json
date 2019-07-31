@@ -179,7 +179,7 @@
                             "scale": "1.2",
                             "state": "vaccinated",
                             "timingFunction": "linear",
-                            "startTime" : "1000",
+                            "startTime" : "1200",
                             "duration" : "250",
                             "add": true
                         }
@@ -188,7 +188,7 @@
                         "action": "vaccination",
                         "props": {
                             "file" : "vaccineCoverageAdd94.json",
-                            "duration": "100",
+                            "duration": "50",
                             "state": "vaccinated",
                             "startTime" : "1700",
                             "add": true,
@@ -198,12 +198,24 @@
                         }
                     },
                     {
+                        "action": "burst",
+                        "props": {
+                            "target": "shape_41",
+                            "scale": "1.2",
+                            "state": "infected",
+                            "timingFunction": "linear",
+                            "startTime" : "4000",
+                            "duration" : "250",
+                            "add": true
+                        }
+                    },
+                    {
                         "action": "changeShapeColor",
                         "props": {
                             "target": "#shape_61",
                             "state": "infected",
                             "timingFunction": "linear",
-                            "startTime" : "7000",
+                            "startTime" : "4200",
                             "duration" : "250"
                         }
                     },
@@ -211,7 +223,7 @@
                         "action": "parseSpreadInfection",
                         "props": {
                             "file" : "spreadinfections2-1.json",
-                            "startTime" : "7500",
+                            "startTime" : "4100",
                             "durationLine": "125",
                             "durationLineBouncingOff": "250"
                         }
@@ -241,7 +253,7 @@
                             "state": "vaccinated",
                             "timingFunction": "linear",
                             "duration" : "250",
-                            "startTime" : "250",
+                            "startTime" : "2200",
                             "add": false
                         }
                     },
@@ -471,7 +483,7 @@
                         "action": "parseSpreadInfection",
                         "props": {
                             "file" : ["flu.json","measles.json","pertussis.json"],
-                            "startTime" : "500",
+                            "startTime" : "300",
                             "durationLine": "125",
                             "durationLineBouncingOff": "250"
                         }
@@ -508,7 +520,7 @@
                             "file" : "vaccineCoverageAdd95.json",
                             "duration": "0",
                             "state": "vaccinated",
-                            "startTime" : "5500",
+                            "startTime" : "4000",
                             "add": true,
                             "makeTransformer": true,
                             "startTimeMakeTransformer": "0"
