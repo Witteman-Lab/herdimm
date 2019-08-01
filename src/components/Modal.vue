@@ -20,17 +20,19 @@
                             <!--<inputclass="input"type="text"placeholder="Entername">-->
                             <!--<labelclass="label">Name:<inputclass="input"v-model="message"type="text"placeholder="editname"></label>-->
                             <div class="field is-one-fifth-mobile" style="margin-top: 5px">
-                                <div class="control">
-                                    <input v-on:input="setCharacterName(characterName)" class="input" v-model="characterName"  type="text" :placeholder="this.labels.nameInputPlaceHolder">
-                                </div>
-                                <div style="overflow: visible;margin-top: 10px;" v-show="isCharacterVulnerable" class="control">
-                                    <div v-for="(option, index) in this.labels.vulnerableOptions" v-on:click="setCharacterOption(option.name, index)">
-                                        <label class="checkbox">
-                                            <input type="checkbox">
-                                            {{option.name}}
-                                        </label>
+                                <form action="/vulnerable" method="post">
+                                    <div class="control">
+                                        <input v-on:input="setCharacterName(characterName)" class="input" v-model="characterName"  type="text" :placeholder="this.labels.nameInputPlaceHolder">
                                     </div>
-                                </div>
+                                    <div style="overflow: visible;margin-top: 10px;" v-show="isCharacterVulnerable" class="control">
+                                        <div v-for="(option, index) in this.labels.vulnerableOptions" v-on:click="setCharacterOption(option.name, index)">
+                                            <label class="checkbox">
+                                                <input type="checkbox">
+                                                {{option.name}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                         <div class="column is-center">
@@ -104,10 +106,13 @@
                 </section>
                 <footer class="modal-card-foot">
                     <div class="buttons is-light">
-                        <button class="button is-success" v-if="!this.isEdit" v-on:click="this.saveCharacter">{{this.labels.saveBtn}}</button>
-                        <button class="button is-success" v-if="this.isEdit" v-on:click="this.saveEditCharacter">{{this.labels.saveEditBtn}}</button>
-                        <button class="button" v-on:click="this.closeModal">{{this.labels.cancelBtn}}</button>
-                        <button class="button" v-on:click="this.resetDefault">{{this.labels.resetAllBtn}}</button>
+                        <form action="/" method="post">
+                            <button class="button is-success" v-if="!this.isEdit" v-on:click="this.saveCharacter">{{this.labels.saveBtn}}</button>
+                            <button class="button is-success" v-if="this.isEdit" v-on:click="this.saveEditCharacter">{{this.labels.saveEditBtn}}</button>
+                            <button class="button" v-on:click="this.closeModal">{{this.labels.cancelBtn}}</button>
+                            <button class="button" v-on:click="this.resetDefault">{{this.labels.resetAllBtn}}</button>
+                        </form>
+
                     </div>
                 </footer>
             </div>

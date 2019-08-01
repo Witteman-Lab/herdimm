@@ -5,7 +5,10 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "main": "api.js",
+    "license": "ISC",
+    "description": "Restfull API with Node.js, Express, and PostgreSQL"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.19",
@@ -14,6 +17,9 @@
     "animejs": "^3.0.1",
     "autoprefixer": "^9.6.1",
     "bulma": "^0.7.5",
+    "express": "^4.17.1",
+    "nodemon": "^1.19.1",
+    "pg": "^7.12.0",
     "vue": "^2.6.10",
     "vue-color": "^2.7.0",
     "vue-router": "^3.0.7"
