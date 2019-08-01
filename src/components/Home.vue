@@ -157,17 +157,15 @@
             },
 
             setDiseaseToAnimate() {
-                if (this.$route.query.d === "flu" ||  this.$route.query.d === "measles" || this.$route.query.d === "pertussis")
-                    this.diseaseHome = this.$route.query.d;
-                else {
-                    this.diseaseHome = "measles";
-                }
+                let diseaseToLowerCase = (this.$route.query.d).toLowerCase()
+                if (diseaseToLowerCase === "flu" ||  diseaseToLowerCase === "measles" || diseaseToLowerCase === "pertussis")
+                    this.diseaseHome = diseaseToLowerCase;
             },
 
             setVoiceToPlay() {
                 if (this.$route.query.v === "male" ||  this.$route.query.v === "female")
                     this.gender = this.$route.query.v;
-                else if (this.$route.query.v == null)
+                else if (this.$route.query.v === null)
                     this.gender = "male";
                 else {
                     let voiceType = ["male", "female"];

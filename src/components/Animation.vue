@@ -66,6 +66,7 @@
                 characterList: [],
                 labels: {},
                 gridIds: [],
+                diseaseArray : ["flu", "measles", "pertussis"],
                 characterSize: 0,
                 characterBottomMargin: 0,
                 isAnimationStarted: false,
@@ -446,19 +447,28 @@
                 let durationLineBouncingOff = (parseInt(props.durationLineBouncingOff)/1000).toString();
                 let path="";
                 if (typeof(props.file) === "object") {
-                    if (props.file.length !== 0) {
-                        let value;
-                        if (props.file.length === 1) {
-                            value = 0;
-                        } else {
-                            value = this.getRandomInt(props.file.length);
-                        }
-                        path = require("../assets/json/" + props.file[value]);
+                    if (localStorage.getItem("disease") === this.diseaseArray[0] || localStorage.getItem("disease") === this.diseaseArray[1] || localStorage.getItem("disease") === this.diseaseArray[2])
+                    {
+                        path = require("../assets/json/" + localStorage.getItem("disease")+".json");
                         setTimeout(() => {
                             this.spreadInfection(path.connections, durationLine, durationLineBouncingOff);
                         }, props.startTime);
-                    } else {
-                        alert("Add the name of json file in array to have infection sequences");
+                    }
+                    else {
+                        if (props.file.length !== 0) {
+                            let value;
+                            if (props.file.length === 1) {
+                                value = 0;
+                            } else {
+                                value = this.getRandomInt(props.file.length);
+                            }
+                            path = require("../assets/json/" + props.file[value]);
+                            setTimeout(() => {
+                                this.spreadInfection(path.connections, durationLine, durationLineBouncingOff);
+                            }, props.startTime);
+                        } else {
+                            alert("Add the name of json file in array to have infection sequences");
+                        }
                     }
                 }
                 else{

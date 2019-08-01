@@ -10,23 +10,12 @@
         ],
         "actions" : [
           {
-            "action" : "makeContour",
-            "props" : {
-              "target" : ".avatar",
-              "duration" : "1000",
-              "class" : "contour",
-              "startTime" : "500",
-              "add" : true
-            }
-          },
-          {
-            "action": "makeContour",
+            "action": "parseSpreadInfection",
             "props": {
-              "target": ".avatar",
-              "duration": "1000",
-              "class": "contour",
-              "startTime" : "2000",
-              "add" : false
+              "file" : ["flu.json","measles.json","pertussis.json"],
+              "startTime" : "500",
+              "durationLine": "200",
+              "durationLineBouncingOff": "250"
             }
           }
         ]
