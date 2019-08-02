@@ -72,7 +72,7 @@
             {
                 "file" : "4F.mp3",
                 "captions" : [
-                    "Il y a des personnes dans ce groupe, par exemple des bébés, des personnes âgées ou des personnes avec un système immunitaire affaibli, comme les patients atteints du cancer."
+                    "Il y a des personnes dans ce groupe, par exemple des bébés, des personnes âgées ou des personnes avec un système immunitaire affaibli, comme les patients atteints du cancer..."
                 ],
                 "actions" : [
                     {
@@ -109,7 +109,7 @@
             {
                 "file" : "5F.mp3",
                 "captions" : [
-                    "Ces personnes sont considérées comme étant plus vulnérables, car elles peuvent attraper les maladies plus facilement, et les maladies peuvent les rendre plus malades."
+                    "...Ces personnes sont considérées comme étant plus vulnérables, car elles peuvent attraper les maladies plus facilement, et les maladies peuvent les rendre plus malades "
 
                 ],
                 "_commentary" : "------------------------ No action for that scenario ---------------------------------",
@@ -167,7 +167,7 @@
             {
                 "file" : "7F.mp3",
                 "captions" : [
-                    "Des vaccins existent pour nous protéger de certaines maladies contagieuses. Ces vaccins entraînent le corps à lutter contre les maladies. Les personnes vaccinées sont moins susceptibles d’attraper et de transmettre la maladie."
+                    "Des vaccins existent pour nous protéger de certaines maladies contagieuses. Ces vaccins entraînent le corps à lutter contre les maladies. Les personnes vaccinées sont moins susceptibles d’attraper et de transmettre la maladie"
                 ],
                 "actions" : [
                     {
@@ -231,7 +231,7 @@
             {
                 "file" : "8F.mp3",
                 "captions" : [
-                    "Mais les vaccins ne fonctionnent pas toujours parfaitement. Ils ne fonctionnent pas à tout coup, et leur efficacité peut diminuer avec le temps."
+                    "Mais les vaccins ne fonctionnent pas toujours parfaitement. Ils ne fonctionnent pas à tout coup, et leur efficacité peut diminuer avec le temps"
                 ],
                 "actions" : [
                     {
@@ -316,7 +316,7 @@
             {
                 "file" : "10F.mp3",
                 "captions" : [
-                    "Quand vous êtes vacciné et qu’assez de personnes autour de vous sont vaccinées, cela crée une barrière protectrice autour de toute la communauté."
+                    "Quand vous êtes vacciné et qu’assez de personnes autour de vous sont vaccinées, cela crée une barrière protectrice autour de toute la communauté"
                 ],
                 "actions" : [
 
@@ -395,7 +395,7 @@
             {
                 "file" : "12F.mp3",
                 "captions" : [
-                    "Certaines maladies se répandent plus facilement que d'autres. C’est pourquoi plus de personnes doivent être vaccinées contre ces maladies pour créer l'immunité collective."
+                    "Certaines maladies se répandent plus facilement que d'autres. C’est pourquoi plus de personnes doivent être vaccinées contre ces maladies pour créer l'immunité collective"
                 ],
                 "actions" : [
                     {

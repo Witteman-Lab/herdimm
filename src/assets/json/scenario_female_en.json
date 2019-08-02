@@ -53,7 +53,7 @@
             {
                 "file" : "3E.mp3",
                 "captions" : [
-                    "These are people around you--people you see often, like your family or your coworkers, and then the people around them that they see often."
+                    "These are people around you--people you see often, like your family or your coworkers, and the people around them that they see often."
                 ],
                 "actions" : [
                     {
@@ -72,7 +72,7 @@
             {
                 "file" : "4E.mp3",
                 "captions" : [
-                    "Some of these people, like babies, older people, or those with fragile immune systems (for example, cancer patients)..."
+                    "Some of these people, like babies, older people, or those with fragile immune systems (for example, cancer patients) ..."
                 ],
                 "actions" : [
                     {
@@ -109,7 +109,7 @@
             {
                 "file" : "5E.mp3",
                 "captions" : [
-                    "...are more vulnerable to diseases, either because they can catch them more easily, or the diseases\n can make them sicker."
+                    "… are more vulnerable to contagious diseases, either because they can catch them more easily, or the diseases can make them sicker."
 
                 ],
                 "_commentary" : "------------------------ No action for that scenario ---------------------------------",
@@ -125,7 +125,7 @@
             {
                 "file" : "6E.mp3",
                 "captions" : [
-                    "When a contagious disease is going around, anyone can catch it, pass it on to others, get sick, or even die from it, especially vulnerable people."
+                    "When a contagious disease enters your community, people can catch it, pass it on to those around them, get sick, or even die from it, especially vulnerable people."
                 ],
                 "actions" : [
                     {
@@ -167,9 +167,7 @@
             {
                 "file" : "7E.mp3",
                 "captions" : [
-                    "Some contagious diseases have vaccines to protect us. Vaccines train your immune system--your body’s protection system--to fight against diseases. People who are vaccinated are less likely to catch and pass on the disease.",
-                    "Sometimes, vulnerable people may not be able to be vaccinated, or the vaccines might not work as well for them because their body doesn’t respond as well to the vaccine.",
-                    "Even for everyone else, vaccines are not perfect."
+                    "For some contagious diseases, we have vaccines to protect us. Vaccines train our immune system--the body’s protection system--to fight against diseases. People who are vaccinated are less likely to catch and pass on those diseases."
                 ],
                 "actions" : [
                     {
@@ -208,6 +206,18 @@
                         }
                     },
                     {
+                        "action": "burst",
+                        "props": {
+                            "target": "shape_41",
+                            "scale": "1.2",
+                            "state": "infected",
+                            "timingFunction": "linear",
+                            "startTime" : "7400",
+                            "duration" : "250",
+                            "add": true
+                        }
+                    },
+                    {
                         "action": "parseSpreadInfection",
                         "props": {
                             "file" : "spreadinfections2-1.json",
@@ -221,7 +231,7 @@
             {
                 "file" : "8E.mp3",
                 "captions" : [
-                    "They don’t work every time, and can wane over time."
+                    "But vaccines are not perfect. They don’t work every time. And their protection can fade over time..."
                 ],
                 "actions" : [
                     {
@@ -241,7 +251,7 @@
                             "state": "vaccinated",
                             "timingFunction": "linear",
                             "duration" : "250",
-                            "startTime" : "250",
+                            "startTime" : "2000",
                             "add": false
                         }
                     },
@@ -262,7 +272,7 @@
             {
                 "file" : "9E.mp3",
                 "captions" : [
-                    "And need to be updated."
+                    "..making additional doses of vaccine necessary to ensure protection."
                 ],
                 "actions" : [
                     {
@@ -295,7 +305,7 @@
                             "file" : "vaccineCoverageAdd4.json",
                             "duration": "30",
                             "state": "vaccinated",
-                            "startTime" : "2500",
+                            "startTime" : "3000",
                             "add": true,
                             "makeTransformer": true,
                             "startTimeMakeTransformer": "5000"
@@ -306,7 +316,7 @@
             {
                 "file" : "10E.mp3",
                 "captions" : [
-                    "When you and enough people around you are vaccinated, this creates a protective barrier around everyone in your community."
+                    "When you and enough people around you are vaccinated, this creates a protective barrier for your community."
                 ],
                 "actions" : [
 
@@ -315,7 +325,7 @@
             {
                 "file" : "11E.mp3",
                 "captions" : [
-                    "This protective barrier is different for different contagious diseases. Some diseases spread faster than others. Diseases that spread faster need more people to be vaccinated to create this protective barrier."
+                    "This barrier is known as “herd immunity” or “community immunity”. Community immunity helps prevent contagious diseases from spreading from one person to another."
                 ],
                 "actions" : [
                     {
@@ -385,7 +395,7 @@
             {
                 "file" : "12E.mp3",
                 "captions" : [
-                    "This barrier is known as herd immunity or community immunity. Community immunity prevents contagious diseases from spreading from one person to another."
+                    "Some diseases spread more easily than others and need more people to be vaccinated to create community immunity."
                 ],
                 "actions" : [
                     {
@@ -432,7 +442,7 @@
             {
                 "file" : "13E.mp3",
                 "captions" : [
-                    "But if not enough people are vaccinated, community immunity cannot exist and your community will not be protected."
+                    "If not enough people are vaccinated, your community will not be protected."
                 ],
                 "actions" : [
                     {
@@ -464,7 +474,7 @@
             {
                 "file" : "14E.mp3",
                 "captions" : [
-                    "Then, diseases can easily spread and reach you, the people around you, and others in your community, including vulnerable people."
+                    "Then, diseases can more easily spread and reach you, the people around you, and others in your community, including vulnerable people."
                 ],
                 "actions" : [
                     {
@@ -472,7 +482,7 @@
                         "props": {
                             "file" : ["flu.json","measles.json","pertussis.json"],
                             "startTime" : "500",
-                            "durationLine": "125",
+                            "durationLine": "200",
                             "durationLineBouncingOff": "250"
                         }
                     },
@@ -487,7 +497,7 @@
             {
                 "file" : "15E.mp3",
                 "captions" : [
-                    "Whenever your community has community immunity, everyone is protected."
+                    "When your community has community immunity, your community is protected."
                 ],
                 "actions" : [
                     {
@@ -508,7 +518,7 @@
                             "file" : "vaccineCoverageAdd95.json",
                             "duration": "0",
                             "state": "vaccinated",
-                            "startTime" : "5500",
+                            "startTime" : "5300",
                             "add": true,
                             "makeTransformer": true,
                             "startTimeMakeTransformer": "0"
@@ -519,7 +529,7 @@
                         "props": {
                             "target": ".vulnerable",
                             "class": "vulnerableContour",
-                            "startTime" : "10000",
+                            "startTime" : "12000",
                             "duration": "700",
                             "add" : true
                         }
@@ -531,7 +541,7 @@
                             "scale": "1.6",
                             "state": "vaccinated",
                             "timingFunction": "linear",
-                            "startTime" : "17700",
+                            "startTime" : "19000",
                             "duration" : "500"
                         }
                     }
@@ -540,7 +550,7 @@
             {
                 "file" : "16E.mp3",
                 "captions" : [
-                    "Including vulnerable people who cannot be effectively vaccinated."
+                    "….including vulnerable people who depend on those around them for protection."
                 ],
                 "actions" : [
 
@@ -556,7 +566,7 @@
             {
                 "file" : "17E.mp3",
                 "captions" : [
-                    "This means that your decision to get vaccinated or not has an impact on other people in your community."
+                    "This means that your decision to get vaccinated or not has an impact not only on you, but also on other people in your community."
                 ],
                 "_commentary" : "------------------------ No action for that scenario (confirmed)) ---------------------------------",
                 "actions" : [
