@@ -12,13 +12,6 @@
 </template>
 
 <script>
-    //import valeurtest from "../assets/json/scenario.json";
-    //import supFile from "../assets/json/SupFile.json";
-
-    import scenarioFemaleEn from "../assets/json/scenario_female_en.json";
-    import scenarioFemaleFr from "../assets/json/scenario_female_fr.json";
-    import scenarioMaleEn from "../assets/json/scenario_male_en.json";
-    import scenarioMaleFr from "../assets/json/scenario_male_fr.json";
 
 
     export default {
@@ -201,15 +194,15 @@
              */
             selectScenarioFile(){
                 if (localStorage.getItem("currentLanguage") === "en" && localStorage.getItem("gender") === "female")
-                    this.scenario.push(scenarioFemaleEn);
+                    this.scenario.push(require("../assets/json/scenario_female_en.json"));
                 else if (localStorage.getItem("currentLanguage") === "fr" && localStorage.getItem("gender") === "female")
-                    this.scenario.push(scenarioFemaleFr);
+                    this.scenario.push(require("../assets/json/scenario_female_fr.json"));
                 else if (localStorage.getItem("currentLanguage") === "en" && localStorage.getItem("gender") === "male")
-                    this.scenario.push(scenarioMaleEn);
+                    this.scenario.push(require("../assets/json/scenario_male_en.json"));
                 else if (localStorage.getItem("currentLanguage") === "fr" && localStorage.getItem("gender") === "male")
-                    this.scenario.push(scenarioMaleFr);
+                    this.scenario.push(require("../assets/json/scenario_male_fr.json"));
                 else{
-                    this.scenario.push(scenarioFemaleEn);
+                    this.scenario.push(require("../assets/json/scenario_female_en.json"));
                     }
 
                 // if(localStorage.getItem("currentLanguage") === "en" && localStorage.getItem("gender") === "female"){

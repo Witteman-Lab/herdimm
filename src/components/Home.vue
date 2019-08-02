@@ -157,9 +157,8 @@
             },
 
             setDiseaseToAnimate() {
-                let diseaseToLowerCase = (this.$route.query.d).toLowerCase()
-                if (diseaseToLowerCase === "flu" ||  diseaseToLowerCase === "measles" || diseaseToLowerCase === "pertussis")
-                    this.diseaseHome = diseaseToLowerCase;
+                if (this.$route.query.d === "flu" ||  this.$route.query.d === "measles" || this.$route.query.d === "pertussis")
+                    this.diseaseHome = this.$route.query.d;
             },
 
             setVoiceToPlay() {
