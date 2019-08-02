@@ -2,119 +2,116 @@
     <div  class="modal" v-bind:class="{'is-active': isActive }">
         <div class="modal-background">
             <div class="modal-card mobile-modal">
-                <header class="modal-card-head">
-                    <p class="modal-card-title">
-                        {{ modalTitle }}
-                        <br/>
-                        <span style="font-size: medium">{{ this.labels.totalCharacterCount }} {{this.currentCharacterNumber}} / {{totalCharactersCount}}</span>
-                    </p>
-                    <button class="delete" aria-label="close modal" v-on:click="this.closeModal"></button>
-                </header>
-                <section class="modal-card-body">
-                    <div class="columns">
-                        <div class="column is-centered ">
-                            <Character v-if="isActive" :size="{width: '70px', height: '78px'}" :edit="false" :customised="true" ref="character" :id="'current'" :svgFile="this.currentCharacter"
-                                       :colors="{face: this.currentColorFace, hairFront: this.currentColorHair, beards: this.currentBeard,
-                                       glasses: this.currentGlasses, shirt: this.currentShirt, name: this.characterName, options: this.options}"
-                                       :is-name="true"/>
-                            <!--<inputclass="input"type="text"placeholder="Entername">-->
-                            <!--<labelclass="label">Name:<inputclass="input"v-model="message"type="text"placeholder="editname"></label>-->
-                            <div class="field is-one-fifth-mobile" style="margin-top: 5px">
-                                <form action="/vulnerable" method="post">
-                                    <div class="control">
-                                        <input v-on:input="setCharacterName(characterName)" class="input" v-model="characterName"  type="text" :placeholder="this.labels.nameInputPlaceHolder">
-                                    </div>
-                                    <div style="overflow: visible;margin-top: 10px;" v-show="isCharacterVulnerable" class="control">
-                                        <div v-for="(option, index) in this.labels.vulnerableOptions" v-on:click="setCharacterOption(option.name, index)">
-                                            <label class="checkbox">
-                                                <input type="checkbox">
-                                                {{option.name}}
-                                            </label>
+                <form action="/vulnerable" method="post">
+                    <header class="modal-card-head">
+                        <p class="modal-card-title">
+                            {{ modalTitle }}
+                            <br/>
+                            <span style="font-size: medium">{{ this.labels.totalCharacterCount }} {{this.currentCharacterNumber}} / {{totalCharactersCount}}</span>
+                        </p>
+                        <button class="delete" aria-label="close modal" v-on:click="this.closeModal"></button>
+                    </header>
+                    <section class="modal-card-body">
+                        <div class="columns">
+                            <div class="column is-centered ">
+                                <Character v-if="isActive" :size="{width: '70px', height: '78px'}" :edit="false" :customised="true" ref="character" :id="'current'" :svgFile="this.currentCharacter"
+                                           :colors="{face: this.currentColorFace, hairFront: this.currentColorHair, beards: this.currentBeard,
+                                           glasses: this.currentGlasses, shirt: this.currentShirt, name: this.characterName, options: this.options}"
+                                           :is-name="true"/>
+                                <!--<inputclass="input"type="text"placeholder="Entername">-->
+                                <!--<labelclass="label">Name:<inputclass="input"v-model="message"type="text"placeholder="editname"></label>-->
+                                <div class="field is-one-fifth-mobile" style="margin-top: 5px">
+                                        <div class="control">
+                                            <input v-on:input="setCharacterName(characterName)" class="input" v-model="characterName"  type="text" :placeholder="this.labels.nameInputPlaceHolder" name="characterName">
                                         </div>
+                                        <div style="overflow: visible;margin-top: 10px;" v-show="isCharacterVulnerable" class="control">
+                                            <div v-for="(option, index) in this.labels.vulnerableOptions" v-on:click="setCharacterOption(option.name, index)">
+                                                <label class="checkbox">
+                                                    <input type="checkbox" name="reason">
+                                                    {{option.name}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="column is-center">
+                                <div class="tabs is-centered is-boxed is-three-quarters">
+                                    <ul>
+                                        <!-- For testing, in case we want to group skin and hair colors in a single tab (saves space) -->
+                                        <!-- <li class="tab" v-on:click="openTab($event, 'colorsSelect')">
+                                            <a>Colors</a>
+                                        </li> -->
+                                        <li class="tab" id="skinColorTab" v-on:click="openTab('skinColorTab', 'skinColorSelect')">
+                                            <!-- <li class="tab" id="skinColorTab" v-on:click="openTab($event, 'skinColorSelect')"> -->
+                                            <a>{{this.labels.skinColorTab}}</a>
+                                        </li>
+                                        <li class="tab" id="hairColorTab" v-if="this.hasHair" v-on:click="openTab('hairColorTab', 'hairColorSelect')">
+                                            <!-- <li class="tab" id="hairColorTab" v-if="this.hasHair" v-on:click="openTab($event, 'hairColorSelect')"> -->
+                                            <a>{{this.labels.hairColorTab}}</a>
+                                        </li>
+
+                                        <!-- Maybe we could also group these 2 tabs in a single one called accessories -->
+                                        <!-- Would need to take consider the v-if conditions... -->
+                                        <!-- <li class="tab" v-if="(this.hasGlasses || this.hasFacialHair)" v-on:click="openTab($event, 'accessoriesSelect')">
+                                            <a>Accessories</a>
+                                        </li> -->
+                                        <li class="tab" id="glassesTab" v-if="this.hasGlasses" v-on:click="openTab('glassesTab', 'glassesSelect')">
+                                            <a>{{this.labels.glassesTab}}</a>
+                                        </li>
+                                        <li class="tab" id="facialHairTab" v-if="this.hasFacialHair" v-on:click="openTab('facialHairTab', 'facialHairSelect')">
+                                            <a>{{this.labels.facialHairTab}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+
+                                <div style="display: flex; justify-content: center">
+
+                                    <!-- Skin color -->
+                                    <div id="skinColorSelect" class="content-tab">
+                                        <Compact
+                                                :value="this.currentColorFace"
+                                                @input="this.changeFaceColor"
+                                                :palette="skinColors"/>
                                     </div>
-                                </form>
+
+                                    <!-- Hair color -->
+                                    <div id="hairColorSelect" class="content-tab" v-if="this.hasHair" >
+                                        <Compact
+                                                :value="this.currentColorHair"
+                                                @input="this.changeHairColor"
+                                                :palette="hairColors"/>
+                                    </div>
+
+                                    <!-- Glasses -->
+                                    <div id="glassesSelect" style="justify-content: center;" class="content-tab buttons" v-if="this.hasGlasses">
+                                        <ul>
+                                            <li class="accessoriesList button" style="overflow: hidden" v-on:click="selectGlasses(-1)">None</li>
+                                            <li class="accessoriesList button" style="overflow: hidden" v-for="(glasses, index) in glassesListJson" v-on:click="selectGlasses(index)" v-html="require(`../assets/glasses/${glasses.file}`)"></li>
+                                        </ul>
+                                    </div>
+
+                                    <!-- Facial hair -->
+                                    <div id="facialHairSelect" style="justify-content: center;" class="content-tab buttons" v-if="this.hasFacialHair">
+                                        <ul>
+                                            <li class="accessoriesList button" style="overflow: hidden" v-on:click="selectBeards(-1)">None</li>
+                                            <li class="accessoriesList button facialHairList"  style="overflow: hidden" v-for="(beard, index) in facialHairListJson" v-html="require(`../assets/facialHair/${beard.file}`)" v-on:click="selectBeards(index)"></li>
+                                        </ul>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
-                        <div class="column is-center">
-                            <div class="tabs is-centered is-boxed is-three-quarters">
-                                <ul>
-                                    <!-- For testing, in case we want to group skin and hair colors in a single tab (saves space) -->
-                                    <!-- <li class="tab" v-on:click="openTab($event, 'colorsSelect')">
-                                        <a>Colors</a>
-                                    </li> -->
-                                    <li class="tab" id="skinColorTab" v-on:click="openTab('skinColorTab', 'skinColorSelect')">
-                                        <!-- <li class="tab" id="skinColorTab" v-on:click="openTab($event, 'skinColorSelect')"> -->
-                                        <a>{{this.labels.skinColorTab}}</a>
-                                    </li>
-                                    <li class="tab" id="hairColorTab" v-if="this.hasHair" v-on:click="openTab('hairColorTab', 'hairColorSelect')">
-                                        <!-- <li class="tab" id="hairColorTab" v-if="this.hasHair" v-on:click="openTab($event, 'hairColorSelect')"> -->
-                                        <a>{{this.labels.hairColorTab}}</a>
-                                    </li>
-
-                                    <!-- Maybe we could also group these 2 tabs in a single one called accessories -->
-                                    <!-- Would need to take consider the v-if conditions... -->
-                                    <!-- <li class="tab" v-if="(this.hasGlasses || this.hasFacialHair)" v-on:click="openTab($event, 'accessoriesSelect')">
-                                        <a>Accessories</a>
-                                    </li> -->
-                                    <li class="tab" id="glassesTab" v-if="this.hasGlasses" v-on:click="openTab('glassesTab', 'glassesSelect')">
-                                        <a>{{this.labels.glassesTab}}</a>
-                                    </li>
-                                    <li class="tab" id="facialHairTab" v-if="this.hasFacialHair" v-on:click="openTab('facialHairTab', 'facialHairSelect')">
-                                        <a>{{this.labels.facialHairTab}}</a>
-                                    </li>
-                                </ul>
-                            </div>
-
-
-                            <div style="display: flex; justify-content: center">
-
-                                <!-- Skin color -->
-                                <div id="skinColorSelect" class="content-tab">
-                                    <Compact
-                                            :value="this.currentColorFace"
-                                            @input="this.changeFaceColor"
-                                            :palette="skinColors"/>
-                                </div>
-
-                                <!-- Hair color -->
-                                <div id="hairColorSelect" class="content-tab" v-if="this.hasHair" >
-                                    <Compact
-                                            :value="this.currentColorHair"
-                                            @input="this.changeHairColor"
-                                            :palette="hairColors"/>
-                                </div>
-
-                                <!-- Glasses -->
-                                <div id="glassesSelect" style="justify-content: center;" class="content-tab buttons" v-if="this.hasGlasses">
-                                    <ul>
-                                        <li class="accessoriesList button" style="overflow: hidden" v-on:click="selectGlasses(-1)">None</li>
-                                        <li class="accessoriesList button" style="overflow: hidden" v-for="(glasses, index) in glassesListJson" v-on:click="selectGlasses(index)" v-html="require(`../assets/glasses/${glasses.file}`)"></li>
-                                    </ul>
-                                </div>
-
-                                <!-- Facial hair -->
-                                <div id="facialHairSelect" style="justify-content: center;" class="content-tab buttons" v-if="this.hasFacialHair">
-                                    <ul>
-                                        <li class="accessoriesList button" style="overflow: hidden" v-on:click="selectBeards(-1)">None</li>
-                                        <li class="accessoriesList button facialHairList"  style="overflow: hidden" v-for="(beard, index) in facialHairListJson" v-html="require(`../assets/facialHair/${beard.file}`)" v-on:click="selectBeards(index)"></li>
-                                    </ul>
-                                </div>
-
-                            </div>
+                    </section>
+                    <footer class="modal-card-foot">
+                        <div class="buttons is-light">
+                                <button class="button is-success" v-if="!this.isEdit" v-on:click="this.saveCharacter">{{this.labels.saveBtn}}</button>
+                                <button class="button is-success" v-if="this.isEdit" v-on:click="this.saveEditCharacter">{{this.labels.saveEditBtn}}</button>
+                                <button class="button" v-on:click="this.closeModal">{{this.labels.cancelBtn}}</button>
+                                <button class="button" v-on:click="this.resetDefault">{{this.labels.resetAllBtn}}</button>
                         </div>
-                    </div>
-                </section>
-                <footer class="modal-card-foot">
-                    <div class="buttons is-light">
-                        <form action="/" method="post">
-                            <button class="button is-success" v-if="!this.isEdit" v-on:click="this.saveCharacter">{{this.labels.saveBtn}}</button>
-                            <button class="button is-success" v-if="this.isEdit" v-on:click="this.saveEditCharacter">{{this.labels.saveEditBtn}}</button>
-                            <button class="button" v-on:click="this.closeModal">{{this.labels.cancelBtn}}</button>
-                            <button class="button" v-on:click="this.resetDefault">{{this.labels.resetAllBtn}}</button>
-                        </form>
-
-                    </div>
-                </footer>
+                    </footer>
+                </form>
             </div>
         </div>
     </div>
