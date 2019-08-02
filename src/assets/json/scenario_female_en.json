@@ -72,7 +72,7 @@
             {
                 "file" : "4E.mp3",
                 "captions" : [
-                    "Some of these people, like babies, older people, or those with fragile immune systems (for example, cancer patients) ..."
+                    "Some of these people, like babies, older people, or those with fragile immune systems (for example, cancer patients)..."
                 ],
                 "actions" : [
                     {
@@ -109,7 +109,7 @@
             {
                 "file" : "5E.mp3",
                 "captions" : [
-                    "… are more vulnerable to contagious diseases, either because they can catch them more easily, or the diseases can make them sicker."
+                    "...are more vulnerable to contagious diseases, either because they can catch them more easily, or the diseases can make them sicker."
 
                 ],
                 "_commentary" : "------------------------ No action for that scenario ---------------------------------",
@@ -231,7 +231,7 @@
             {
                 "file" : "8E.mp3",
                 "captions" : [
-                    "But vaccines are not perfect. They don’t work every time. And their protection can fade over time..."
+                    "But vaccines are not perfect. They don’t work every time, and their protection can fade over time..."
                 ],
                 "actions" : [
                     {
@@ -272,7 +272,7 @@
             {
                 "file" : "9E.mp3",
                 "captions" : [
-                    "..making additional doses of vaccine necessary to ensure protection."
+                    "...making additional doses of vaccine necessary to ensure protection."
                 ],
                 "actions" : [
                     {
@@ -497,7 +497,7 @@
             {
                 "file" : "15E.mp3",
                 "captions" : [
-                    "When your community has community immunity, your community is protected."
+                    "When your community has community immunity, your community is protected..."
                 ],
                 "actions" : [
                     {
@@ -550,7 +550,7 @@
             {
                 "file" : "16E.mp3",
                 "captions" : [
-                    "….including vulnerable people who depend on those around them for protection."
+                    "...including vulnerable people who depend on those around them for protection."
                 ],
                 "actions" : [
 
