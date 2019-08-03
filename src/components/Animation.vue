@@ -30,8 +30,10 @@
         <div id="startAnimationBox" v-if="!this.isAnimationStarted">
             <button class="button is-primary is-success" style="justify-self: center;" v-on:click="startAnimation">{{textButtonAnimation}}</button>
             <br />
-            <input type="checkbox" id="showCaptions" name="showCaptions" value="">
-            <label for="showCaptions">{{this.labels.displayCaptions}}</label>
+            <div  v-if="!this.reloadAnimationPage">
+                <input type="checkbox" id="showCaptions" name="showCaptions" value="">
+                <label for="showCaptions">{{this.labels.displayCaptions}}</label>
+            </div>
         </div>
         <div id="commandAnimationBox" style="display: flex; justify-content: space-between" v-if="this.isAnimationStarted">
             <a v-if=""><font-awesome-icon style="margin: 10px;" icon="fast-backward" size="lg" v-on:click="manageAudioPlayer('begin')"/></a>

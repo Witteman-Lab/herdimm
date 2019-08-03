@@ -258,7 +258,6 @@
              * @return none
              */
             setCharacterOption(name, index) {
-                console.log("pass here to save option");
                 if (this.options[index] === '')
                     this.options[index] = name;
                 else
@@ -285,7 +284,6 @@
              */
             saveCharacter() {
                 if (this.isCharacterVulnerable) {
-                    console.log(this.options);
                     this.$refs.character.setCharacterOption(this.options);
                 }
                 if (this.avatarNbr > this.currentCharacterNumber && !this.characterName)
