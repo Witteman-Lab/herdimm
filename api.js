@@ -15,7 +15,7 @@ const client = new Client({
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
-        extended: true,
+        extended: false,
     })
 )
 app.use(express.static(path.join(__dirname, 'dist')));
@@ -33,8 +33,23 @@ client.connect()
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html')); });
 
-app.post('/', (req, res) => {
+app.post('/save', (req, res) => {
     console.log("create new user");
+    const name = req.body.characterName;
+    const reason = req.body.reason;
+    console.log("name", + req.body.characterName);
+    console.log("reason", + req.body.reason);
+    client.query("INSERT INTO vulnerable(name, reasonone,  reasontwo, reasonthree) VALUES (?,?,?,?)", [name, reason, reason, reason], (err, results, fields) => {
+        if(err){
+            console.log("failed to insert", + err);
+            res.sendStatus(500);
+            return
+        }
+        console.log("inserted a new vulnerable with id: " + results);
+        res.end();
+
+    })
+
     res.end();
 })
 

@@ -2,7 +2,7 @@
     <div  class="modal" v-bind:class="{'is-active': isActive }">
         <div class="modal-background">
             <div class="modal-card mobile-modal">
-                <form action="/vulnerable" method="post">
+                <form action="/save" method="post">
                     <header class="modal-card-head">
                         <p class="modal-card-title">
                             {{ modalTitle }}
