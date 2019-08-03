@@ -894,9 +894,16 @@
             this.buildGridIds();
 
             // When content is loaded, make copies of the grid to facilitate the animation
-            document.addEventListener('DOMContentLoaded', () => {
-                this.duplicateGrid(2);
-            });
+            if (document.readyState !== 'loading' ) {
+                setTimeout(() => {
+                    this.duplicateGrid(2);
+                }, 500);
+            } else {
+                document.addEventListener('DOMContentLoaded', () => {
+                    this.duplicateGrid(2);
+                });
+            }
+
             window.addEventListener('gesturestart', e => e.preventDefault());
             window.addEventListener('gesturechange', e => e.preventDefault());
             window.addEventListener('gestureend', e => e.preventDefault());
