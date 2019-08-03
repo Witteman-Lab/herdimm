@@ -24,9 +24,9 @@
                                     <input v-on:input="setCharacterName(characterName)" class="input" v-model="characterName"  type="text" :placeholder="this.labels.nameInputPlaceHolder">
                                 </div>
                                 <div style="overflow: visible;margin-top: 10px;" v-show="isCharacterVulnerable" class="control">
-                                    <div v-for="(option, index) in this.labels.vulnerableOptions" v-on:click="setCharacterOption(option.name, index)">
-                                        <label class="checkbox">
-                                            <input type="checkbox">
+                                    <div v-for="(option, index) in this.labels.vulnerableOptions" >
+                                        <label class="checkbox" >
+                                            <input v-on:click="setCharacterOption(option.name, index)" type="checkbox" :checked="options[index] === option.name">
                                             {{option.name}}
                                         </label>
                                     </div>
@@ -181,6 +181,9 @@
                 return index >= this.avatarNbr &&
                     index < this.vulnerableNbr + this.avatarNbr;
             },
+            resetVulnerableOption() {
+                this.options = new Array(this.labels.vulnerableOptions.length).fill(this.labels.vulnerableOptions.length).map((v,i) => i = "");
+            },
             /**
              * ---> Show create or edit modal and adapt the different tabs
              * @param {Number} index
@@ -204,7 +207,7 @@
                 this.avatarNbr = nbrAvatar;
                 this.vulnerableNbr = nbrVulnerable;
                 this.isCharacterVulnerable = this.checkCharacterVulnerable(this.currentCharacterNumber);
-                //this.resetVulnerableOption();
+                this.resetVulnerableOption();
                 this.setCharacterColors(isEdit, character, totalCreated < nbrAvatar, index);
                 // Display the skin tab content when opening modal window
                 this.openTab("skinColorTab", "skinColorSelect");
@@ -251,9 +254,11 @@
             /***
              * --> Set character option
              * @param {String} name
+             * @param {Number} index
              * @return none
              */
             setCharacterOption(name, index) {
+                console.log("pass here to save option");
                 if (this.options[index] === '')
                     this.options[index] = name;
                 else
@@ -280,6 +285,7 @@
              */
             saveCharacter() {
                 if (this.isCharacterVulnerable) {
+                    console.log(this.options);
                     this.$refs.character.setCharacterOption(this.options);
                 }
                 if (this.avatarNbr > this.currentCharacterNumber && !this.characterName)
@@ -359,12 +365,12 @@
             resetDefault() {
                 this.currentColorFace = this.defaultCharacterColors.SkinColor;
                 this.currentColorHair = this.defaultCharacterColors.HairColor;
-                this.currentOption = '';
                 this.$refs.character.resetFaceColor();
                 this.$refs.character.changeFaceColor(this.currentColorFace);
                 this.$refs.character.changeHairColor(this.currentColorHair);
                 this.$refs.character.changeGlasses(-1);
                 this.$refs.character.changeBeard(-1);
+                this.resetVulnerableOption();
             },
 
             /***
@@ -374,11 +380,11 @@
              **/
             setVulnerableOption(options) {
                 this.options = options;
-                this.options.map((option, index) => {
-                    if (option === this.labels.vulnerableOptions[index]) {
-                        this.currentOption = option.name;
-                    }
-                });
+                // this.options.map((option, index) => {
+                //     if (option === this.labels.vulnerableOptions[index]) {
+                //         this.currentOption = option.name;
+                //     }
+                // });
             },
 
             /**
@@ -452,7 +458,7 @@
             },
         },
         mounted() {
-            this.options = new Array(this.labels.vulnerableOptions.length).fill(this.labels.vulnerableOptions.length).map((v,i) => i = "");
+            // this.resetVulnerableOption();
             document.body.addEventListener('keyup', e => {
                 // Escape key to close the modal window (customizer)
                 if (e.keyCode === 27 && this.isActive) {
