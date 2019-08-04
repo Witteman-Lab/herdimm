@@ -907,6 +907,18 @@
             window.addEventListener('gesturestart', e => e.preventDefault());
             window.addEventListener('gesturechange', e => e.preventDefault());
             window.addEventListener('gestureend', e => e.preventDefault());
+
+            const manageAudioPlayerEvent = this.manageAudioPlayer;
+            // when the user changes tab or put the browser on background
+            window.onblur = function () {
+                // Problem : there are some timing issues (for example when change tabs when the currentAudio is changing)
+                manageAudioPlayerEvent('pause');
+            };
+            // when the user go back to the animation
+            window.onfocus = function () {
+                // console.log("back focus");
+            };
+
         },
 
         /**
