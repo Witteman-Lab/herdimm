@@ -1,23 +1,25 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const path = require('path')
-const app = express()
-const port = 8080
-const Client = require('pg').Client
+const express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path');
+const app = express();
+const { url, port, user, host, database, password, dbPort } = require('./config');
+
+
+const Client = require('pg/lib').Client;
 const client = new Client({
-    user: 'naddyn',
-    host: 'localhost',
-    database: 'api_herdimm',
-    password: '1234',
-    port: 5432,
-})
+    user,
+    host,
+    database,
+    password,
+    port: dbPort,
+});
 
 
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
         extended: false,
     })
-)
+);
 app.use(express.static(path.join(__dirname, 'dist')));
 
 
@@ -27,7 +29,7 @@ client.connect()
     .then( () => client.query("select * from vulnerable"))
     .then( results => console.table(results.rows))
     .catch( e => console.log(e))
-    .finally( () => client.end())
+    .finally( () => client.end());
 
 
 app.get('/', (req, res) => {
@@ -40,20 +42,18 @@ app.post('/save', (req, res) => {
     console.log("name", + req.body.characterName);
     console.log("reason", + req.body.reason);
     client.query("INSERT INTO vulnerable(name, reasonone,  reasontwo, reasonthree) VALUES (?,?,?,?)", [name, reason, reason, reason], (err, results, fields) => {
-        if(err){
+        if (err) {
             console.log("failed to insert", + err);
             res.sendStatus(500);
             return
         }
         console.log("inserted a new vulnerable with id: " + results);
         res.end();
-
-    })
-
+    });
     res.end();
-})
+});
 
 
 app.listen(port, () => {
     console.log(`app running on port ${port}.`)
-})
+});

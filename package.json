@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "main": "api.js",
+    "main": "nodemon api/api.js",
     "license": "ISC",
     "description": "Restfull API with Node.js, Express, and PostgreSQL"
   },
