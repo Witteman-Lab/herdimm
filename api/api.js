@@ -17,19 +17,24 @@ const client = new Client({
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-        extended: false,
+        extended: true,
     })
 );
 app.use(express.static(path.join(__dirname, 'dist')));
 
 
 //to check if the app is connected to the database
-client.connect()
-    .then(() => console.log("Connecté"))
-    .then( () => client.query("select * from vulnerable"))
-    .then( results => console.table(results.rows))
-    .catch( e => console.log(e))
-    .finally( () => client.end());
+client.connect();
+
+client.query('SELECT * from character', (err, res) =>{
+    console.log(err,res);
+    client.end();
+})
+    // .then(() => console.log("Connecté"))
+    // .then( () => client.query("select * from AvataR"))
+    // .then( results => console.table(results.rows))
+    // .catch( e => console.log(e))
+    // .finally( () => client.end());
 
 
 app.get('/', (req, res) => {
@@ -39,8 +44,8 @@ app.post('/save', (req, res) => {
     console.log("create new user");
     const name = req.params.characterName;
     const reason = req.params.reason;
-    console.log("name", + req.params.characterName);
-    console.log("reason", + req.params.reason);
+    console.log("name", req.params.characterName);
+    console.log("reason", req.params.reason);
     //         client.query("INSERT INTO vulnerable(name, reasonone,  reasontwo, reasonthree) VALUES (?,?,?,?)", [name, reason, reason, reason], (err, results, fields) => {
     //             if (err) {
     //         console.log("failed to insert", + err);

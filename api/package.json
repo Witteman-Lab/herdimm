@@ -1,13 +1,15 @@
 {
   "name": "api-herdimm",
   "version": "1.0.0",
+  "main": "api.js",
+  "license": "ISC",
   "scripts": {
     "start": "nodemon api.js"
   },
   "dependencies": {
+    "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "nodemon": "^1.19.1",
-    "pg": "^7.12.0",
-    "dotenv": "^8.0.0"
+    "pg": "^7.12.0"
   }
 }
