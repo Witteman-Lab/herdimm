@@ -22,6 +22,7 @@
             </div>
 
             <h1>{{this.labels.subtitle}}</h1>
+            <p>hello world</p>
 
             <!-- List of the group member -->
             <div class="tool">

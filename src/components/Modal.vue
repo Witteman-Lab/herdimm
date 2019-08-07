@@ -2,7 +2,7 @@
     <div  class="modal" v-bind:class="{'is-active': isActive }">
         <div class="modal-background">
             <div class="modal-card mobile-modal">
-                <form action="/save" method="post">
+<!--                <form action="/save" method="post">-->
                     <header class="modal-card-head">
                         <p class="modal-card-title">
                             {{ modalTitle }}
@@ -22,7 +22,10 @@
                                 <!--<labelclass="label">Name:<inputclass="input"v-model="message"type="text"placeholder="editname"></label>-->
                                 <div class="field is-one-fifth-mobile" style="margin-top: 5px">
                                         <div class="control">
-                                            <input v-on:input="setCharacterName(characterName)" class="input" v-model="characterName"  type="text" :placeholder="this.labels.nameInputPlaceHolder" name="characterName">
+                                            <form  class="form" action="/hello" method="post">
+                                                <input v-on:input="setCharacterName(characterName)" class="input" v-model="characterName"  type="text" :placeholder="this.labels.nameInputPlaceHolder" name="characterName">
+                                                <input type="submit" value="Submit">
+                                            </form>
                                         </div>
                                         <div style="overflow: visible;margin-top: 10px;" v-show="isCharacterVulnerable" class="control">
                                             <div v-for="(option, index) in this.labels.vulnerableOptions" v-on:click="setCharacterOption(option.name, index)">
@@ -111,7 +114,7 @@
                                 <button class="button" v-on:click="this.resetDefault">{{this.labels.resetAllBtn}}</button>
                         </div>
                     </footer>
-                </form>
+<!--                </form>-->
             </div>
         </div>
     </div>
