@@ -37,15 +37,15 @@
     "vulnerableOptions": [
       {
         "name" : "Une personne plus jeune (bébé, jeune enfant)",
-        "defaultSelection" : true
+        "id" : 0
       },
       {
         "name" : "Une personne plus agée (senior)",
-        "defaultSelection" : false
+        "id" : 1
       },
       {
         "name" : "Une personne avec un système immunitaire plus faible (cancer, diabète ou autres conditions)",
-        "defaultSelection" : false
+        "id" : 2
       }
     ]
 }
