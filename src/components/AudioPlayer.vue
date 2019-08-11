@@ -61,7 +61,6 @@
                 let ref = this.$refs.audio;
                 let actions = this.playlist[this.audioPosition].actions;
                 let launchSequence = this.$parent.launchSequence;
-
                 // No more autoplay, animation and audio start when the user clicks on the button,
                 setTimeout(() => {
                     ref.play();
@@ -204,31 +203,6 @@
                 else{
                     this.scenario.push(require("../assets/json/scenario_female_en.json"));
                     }
-
-                // if(localStorage.getItem("currentLanguage") === "en" && localStorage.getItem("gender") === "female"){
-                //     this.scenario.push(scenarioFemaleEn);
-                //     console.log("scenarioFemaleEn");
-                // }
-                // else if(localStorage.getItem("currentLanguage") === "fr" && localStorage.getItem("gender") === "female")
-                // {
-                //     this.scenario.push(scenarioFemaleFr);
-                //     console.log("scenarioFemaleFr");
-                // }
-                // else if(localStorage.getItem("currentLanguage") === "en" && localStorage.getItem("gender") === "male")
-                // {
-                //     this.scenario.push(scenarioMaleEn);
-                //     console.log("scenarioMaleEn");
-                // }
-                // else if(localStorage.getItem("currentLanguage") === "fr" && localStorage.getItem("gender") === "male")
-                // {
-                //     this.scenario.push(scenarioMaleFr);
-                //     console.log("scenarioMaleFr");
-                //
-                // }
-                // else{
-                //     this.scenario.push(scenarioFemaleEn);
-                //     console.log("par defaut");
-                // }
             }
 
         },
