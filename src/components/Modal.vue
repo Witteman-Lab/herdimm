@@ -26,7 +26,7 @@
                                 <div style="overflow: visible;margin-top: 10px;" v-show="isCharacterVulnerable" class="control">
                                     <div v-for="(option, index) in this.labels.vulnerableOptions" >
                                         <label class="checkbox" >
-                                            <input v-on:click="setCharacterOption(option.name, index)" type="checkbox" :checked="options[index] === option.name">
+                                            <input v-on:click="setCharacterOption(option, index)" type="checkbox" :checked="options[index] ? options[index].id === option.id : ''">
                                             {{option.name}}
                                         </label>
                                     </div>
@@ -182,7 +182,10 @@
                     index < this.vulnerableNbr + this.avatarNbr;
             },
             resetVulnerableOption() {
-                this.options = new Array(this.labels.vulnerableOptions.length).fill(this.labels.vulnerableOptions.length).map((v,i) => i = "");
+                this.options = [];
+                this.labels.vulnerableOptions.forEach((option) => {
+                    this.options.push({id: -1})
+                });
             },
             /**
              * ---> Show create or edit modal and adapt the different tabs
@@ -257,11 +260,12 @@
              * @param {Number} index
              * @return none
              */
-            setCharacterOption(name, index) {
-                if (this.options[index] === '')
-                    this.options[index] = name;
-                else
-                    this.options[index] = '';
+            setCharacterOption(option, index) {
+                if (this.options[index].id === -1)
+                    this.options[index] = option;
+                else {
+                    this.options[index] = {id: -1};
+                }
             },
 
             /**
@@ -378,11 +382,6 @@
              **/
             setVulnerableOption(options) {
                 this.options = options;
-                // this.options.map((option, index) => {
-                //     if (option === this.labels.vulnerableOptions[index]) {
-                //         this.currentOption = option.name;
-                //     }
-                // });
             },
 
             /**
