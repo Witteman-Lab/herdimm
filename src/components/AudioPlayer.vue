@@ -61,7 +61,7 @@
                 let actions = this.playlist[this.audioPosition].actions;
                 let launchSequence = this.$parent.launchSequence;
                 this.caption = this.playlist[this.audioPosition].captions[0];
-                document.getElementById("captions").innerHTML = this.caption;
+                document.getElementById("paragraph").innerHTML = this.caption;
                 // No more autoplay, animation and audio start when the user clicks on the button,
                 setTimeout(() => {
                     ref.play();

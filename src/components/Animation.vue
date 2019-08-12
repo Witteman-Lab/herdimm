@@ -4,8 +4,8 @@
         <!-- Audio player for audio files -->
         <AudioPlayer :current-language="currentLanguage" :voice="voiceToPlayAtAnimation" ref="audioPlayer"></AudioPlayer>
 
-        <div id="captions" class="captions">
-<!--            <p id="caption"></p>-->
+        <div id="captions" class="captions" v-if="this.checkboxState">
+            <p id="paragraph" class="paragraph"></p>
         </div>
 
         <!-- Where to draw the lines for infection spreading  -->
@@ -72,11 +72,12 @@
                 diseaseArray : ["flu", "measles", "pertussis"],
                 characterSize: 0,
                 characterBottomMargin: 0,
-                isAnimationStarted: false,
                 currentLanguage: "",
                 textButtonAnimation: '',
                 reloadAnimationPage: false,
+                isAnimationStarted: false,
                 isAudioPlaying: false,
+                checkboxState: true,
                 voiceToPlayAtAnimation : '',
                 counter: 0
 
@@ -107,7 +108,7 @@
                     this.$refs.audioPlayer.playAudio();
                     this.isAnimationPlaying();
                 }
-                //this.magniol = this.$refs.audioPlayer.testTest();
+                this.checkboxState = document.getElementById("showCaptions").checked;
             },
 
             /**
@@ -997,6 +998,23 @@
         .hexagon-container{
             margin-top: 10px;
         }
+    }
+
+    .captions{
+        background: #666666;
+        opacity: 0.8;
+        border: 1px solid #666666;
+        border-radius: 8px;
+        filter: alpha(opacity=50);
+        z-index: 999999;
+        position: absolute;
+        left: 10%;
+        right: 10%;
+
+    }
+
+    .paragraph{
+        color: white;
     }
 
 </style>
