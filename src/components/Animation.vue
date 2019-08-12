@@ -3,9 +3,10 @@
         <!-- <meta name="viewport" content="width=device-width, user-scalable=no"> -->
         <!-- Audio player for audio files -->
         <AudioPlayer :current-language="currentLanguage" :voice="voiceToPlayAtAnimation" ref="audioPlayer"></AudioPlayer>
-        <!-- <div id="captions">
-            <p id="caption"></p>
-        </div> -->
+
+        <div id="captions" class="captions">
+<!--            <p id="caption"></p>-->
+        </div>
 
         <!-- Where to draw the lines for infection spreading  -->
         <div class="draw" id="draw">
@@ -78,6 +79,7 @@
                 isAudioPlaying: false,
                 voiceToPlayAtAnimation : '',
                 counter: 0
+
             }
         },
         props: {
@@ -105,6 +107,7 @@
                     this.$refs.audioPlayer.playAudio();
                     this.isAnimationPlaying();
                 }
+                //this.magniol = this.$refs.audioPlayer.testTest();
             },
 
             /**

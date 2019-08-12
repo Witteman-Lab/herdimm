@@ -2,7 +2,6 @@
     <div id="audioPlayer">
         <audio controls :src="this.currentAudio"  ref="audio" @ended="nextAudio()" preload="auto"></audio>
         <track :src="this.caption" kind="captions" srclang="en" label="english_captions">
-
 <!-- test for audio not playing -->
 <!--        <audio controls="controls" ref="audio"  @ended="nextAudio()" preload="auto">-->
 <!--            <source :src="this.currentAudio"  type="audio/mpeg"/>-->
@@ -47,7 +46,7 @@
                 this.playlist = this.scenario[0][type].sequences;
                 const folder = this.scenario[0].folder;
                 this.currentAudio = require(`../assets/${folder}/${type}/${voice}/${this.playlist[this.audioPosition].file}`);
-                this.caption = this.playlist[this.audioPosition].caption;
+                this.caption = this.playlist[this.audioPosition].captions[0];
             },
 
             /**
@@ -61,6 +60,8 @@
                 let ref = this.$refs.audio;
                 let actions = this.playlist[this.audioPosition].actions;
                 let launchSequence = this.$parent.launchSequence;
+                this.caption = this.playlist[this.audioPosition].captions[0];
+                document.getElementById("captions").innerHTML = this.caption;
                 // No more autoplay, animation and audio start when the user clicks on the button,
                 setTimeout(() => {
                     ref.play();
@@ -112,7 +113,7 @@
                 const type = this.currentLanguage;
                 const voiceType  = this.voice;
                 this.currentAudio = require(`../assets/${folder}/${type}/${voiceType}/${this.playlist[this.audioPosition].file}`);
-                this.caption = this.playlist[this.audioPosition].caption;
+                this.caption = this.playlist[this.audioPosition].captions[0];
                 this.playAudio();
             },
 
@@ -128,7 +129,7 @@
                 const type = this.currentLanguage;
                 const voiceType  = this.voice;
                 this.currentAudio = require(`../assets/${folder}/${type}/${voiceType}/${this.playlist[this.audioPosition].file}`);
-                this.caption = this.playlist[this.audioPosition].caption;
+                this.caption = this.playlist[this.audioPosition].captions[0];
                 this.playAudio();
             },
 
@@ -145,7 +146,7 @@
                     const type = this.currentLanguage;
                     const voiceType  = this.voice;
                     this.currentAudio = require(`../assets/${folder}/${type}/${voiceType}/${this.playlist[this.audioPosition].file}`);
-                    this.caption = this.playlist[this.audioPosition].caption;
+                    this.caption = this.playlist[this.audioPosition].captions[0];
                     this.playAudio();
                 }
             },
@@ -163,7 +164,7 @@
                     const type = this.currentLanguage;
                     const voiceType  = this.voice;
                     this.currentAudio = require(`../assets/${folder}/${type}/${voiceType}/${this.playlist[this.audioPosition].file}`);
-                    this.caption = this.playlist[this.audioPosition].caption;
+                    this.caption = this.playlist[this.audioPosition].captions[0];
                     this.playAudio();
                 } else {
                     const folder = this.scenario[0].folder;
@@ -171,7 +172,7 @@
                     const voiceType  = this.voice;
                     this.audioPosition = 0;
                     this.currentAudio = require(`../assets/${folder}/${type}/${voiceType}/${this.playlist[this.audioPosition].file}`);
-                    this.caption = this.playlist[this.audioPosition].caption;
+                    this.caption = this.playlist[this.audioPosition].captions[0];
                     this.$parent.reloadAnimation();
                 }
             },
