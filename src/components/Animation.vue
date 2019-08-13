@@ -2,7 +2,7 @@
     <div class="container">
         <!-- <meta name="viewport" content="width=device-width, user-scalable=no"> -->
         <!-- Audio player for audio files -->
-        <AudioPlayer :current-language="currentLanguage" :voice="voiceToPlayAtAnimation" :checkbox-State="checkboxState" ref="audioPlayer"></AudioPlayer>
+        <AudioPlayer :current-language="currentLanguage" :voice="voiceToPlayAtAnimation" :checkbox-state-audio-player="checkboxState" ref="audioPlayer"></AudioPlayer>
 
         <div id="captions" class="captions" v-if="this.checkboxState">
             <p id="paragraph" class="paragraph"></p>
@@ -109,6 +109,7 @@
                     this.isAnimationPlaying();
                 }
                 this.checkboxState = document.getElementById("showCaptions").checked;
+                console.log("valeur animation :", this.checkboxState);
             },
 
             /**
