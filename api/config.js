@@ -1,12 +1,13 @@
-const dotenv = require('dotenv');
-dotenv.config();
-
+/*
+Config file for postgresSQL
+ */
 module.exports = {
-    url: process.env.API_URL,
-    port: process.env.PORT,
-    user: process.env.DB_USER,
-    host:  process.env.DB_HOST,
-    database: process.env.DB_NAME,
-    password:  process.env.DB_PASSWORD,
-    dbPort:  process.env.DB_PORT,
+    url: 'http://localhost',
+    port: 8081,
+    user: 'herdimm',
+    host:  'localhost',
+    database: 'api_herdimm',
+    password:  'herdimm',
+    dbPort:  5432,
 };
+
