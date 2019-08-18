@@ -32,6 +32,7 @@
             <br />
             <input type="checkbox" id="showCaptions" name="showCaptions" value="">
             <label for="showCaptions">{{this.labels.displayCaptions}}</label>
+            <button v-on:click="sendCharactersToApi('mongodb')">Send characters</button>
         </div>
         <div id="commandAnimationBox" style="display: flex; justify-content: space-between" v-if="this.isAnimationStarted">
             <a v-if=""><font-awesome-icon style="margin: 10px;" icon="fast-backward" size="lg" v-on:click="manageAudioPlayer('begin')"/></a>
@@ -88,6 +89,18 @@
 
         },
         methods: {
+
+            sendCharactersToApi(chosenDB) {
+                const url =`http://localhost:8081/api/${chosenDB}/herdimm`;
+                fetch(url, {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json;charset=utf-8'
+                    },
+                    body: localStorage.getItem("group")
+                }).then((response) => console.log(response));
+            },
 
             /**
              * ---> Start the animation when user is ready, clicks on the Start button

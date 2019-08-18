@@ -15,9 +15,19 @@ const client = new Client({
 client.connect();
 
 const createCharacter = (request, response) => {
-    // const { name, email } = request.body;
-    const character = {userid: 0, name: 'John', type: 'avatar', vulnerabilities: [],
-        svgFile: 'adult01', facecolor: 'red', haircolor: 'blue', glassesid: 0, beardsid: 0};
+    const characterList = request.body;
+    console.log(request.body);
+    const character = {
+        userid: 0,
+        name: characterList[0].colors.name,
+        type: characterList[0].characterType,
+        vulnerabilities: characterList[0].colors.options,
+        svgFile: characterList[0].file,
+        facecolor: characterList[0].colors.face,
+        haircolor: characterList[0].colors.hairFront,
+        glassesid: 0,
+        beardsid: 0
+    };
     client.query('INSERT INTO characters (userid, name, type, vulnerabilities, svgfile, facecolor, haircolor, glassesid, beardsid) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)',
         [character.userid, character.name, character.type, character.vulnerabilities, character.svgFile,
             character.facecolor, character.haircolor, character.glassesid, character.beardsid], (error, results) => {
@@ -26,10 +36,6 @@ const createCharacter = (request, response) => {
         }
         response.status(201).send(`User added with ID: ${character.userid}`)
     })
-};
-
-const createListeCharacter = (request, response) => {
-
 };
 
 router.post('/herdimm', createCharacter);
