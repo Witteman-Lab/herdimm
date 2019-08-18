@@ -32,7 +32,8 @@
             <br />
             <input type="checkbox" id="showCaptions" name="showCaptions" value="">
             <label for="showCaptions">{{this.labels.displayCaptions}}</label>
-            <button v-on:click="sendCharactersToApi('mongodb')">Send characters</button>
+            <button v-on:click="sendCharactersToApi('mongodb')">Send characters with mongoDB</button>
+            <button v-on:click="sendCharactersToApi('postgres')">Send characters with postgresSQL</button>
         </div>
         <div id="commandAnimationBox" style="display: flex; justify-content: space-between" v-if="this.isAnimationStarted">
             <a v-if=""><font-awesome-icon style="margin: 10px;" icon="fast-backward" size="lg" v-on:click="manageAudioPlayer('begin')"/></a>

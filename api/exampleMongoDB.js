@@ -1,26 +1,32 @@
 var express = require('express');
 var router = express.Router();
 
+// initialise mongoose for mongodb
 var mongoose = require("mongoose");
 mongoose.connect('mongodb://localhost:27017/api_herdimm', { useNewUrlParser: true });
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 
-var mongoOp = require("./models/mongo");
+var characterSchema = require("./models/characterSchema");
 
-const createCharacter = (request, response) => {
+const saveCharacters = (request, response) => {
+    // check if the characters are sent by the herdimm app
     console.log(request.body);
-    var characterDb = new mongoOp();
-    var res = {};
-    // fetch email and password from REST request.
-    // Add strict validation when you use this in Production.
 
+    // create schema instance which will save the datas
+    var characterDB = new characterSchema();
+
+    // response for the client (herdimm application)
+    var res = {};
+
+    // character list created with the same element as the characterSchema
     const characterList = charactersList(request.body);
 
-    characterDb.collection.insertMany(characterList, function (err, docs) {
+    //  add all elements from character list in the db
+    characterDB.collection.insertMany(characterList, function (err, docs) {
         if (err) {
-                return console.error(err);
+            return console.error(err);
         } else {
             console.log("Multiple documents inserted to Collection");
         }
@@ -28,6 +34,12 @@ const createCharacter = (request, response) => {
     });
 };
 
+/**
+ * Create an array list of character based on the schema
+ * with the characterList sent by the herdimm app
+ * @param characterList
+ * @returns {Array}
+ */
 const charactersList = (characterList) => {
     const characterDbList = [];
     characterList.forEach((character) => {
@@ -45,15 +57,8 @@ const charactersList = (characterList) => {
         characterDbList.push(characterObject);
     });
     return characterDbList;
-}
+};
 
-
-router.post('/herdimm', createCharacter);
-
-
-
-
-
-
+router.post('/herdimm', saveCharacters);
 
 module.exports = router;

@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const app = express();
 var postgres = require('./examplePostgresSQL');
 var mongodb = require('./exampleMongoDB');
-const { port } = require('./config');
+const { port } = require('./configPostgres');
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');

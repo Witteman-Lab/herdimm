@@ -1,9 +1,6 @@
 var mongoose = require("mongoose");
-mongoose.connect('mongodb://localhost:27017/api_herdimm');
-// create instance of Schema
-var mongoSchema = mongoose.Schema;
 // create schema
-var characterSchema  = {
+var characterSchema  = mongoose.Schema({
     "userId" : String,
     "name" : String,
     "type": String,
@@ -13,6 +10,6 @@ var characterSchema  = {
     "hairColor": String,
     "glassesId": Number,
     "beardsId": Number
-};
+});
 // create model if not exists.
 module.exports = mongoose.model('character', characterSchema);
