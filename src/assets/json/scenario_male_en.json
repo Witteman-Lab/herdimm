@@ -482,7 +482,7 @@
                         "props": {
                             "file" : ["flu.json","measles.json","pertussis.json"],
                             "startTime" : "500",
-                            "durationLine": "200",
+                            "durationLine": "160",
                             "durationLineBouncingOff": "250"
                         }
                     },
