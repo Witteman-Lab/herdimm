@@ -334,11 +334,10 @@
                             "file" : "vaccineCoverageAdd2.json",
                             "duration": "0",
                             "state": "vaccinated",
-                            "startTime" : "100",
+                            "startTime" : "5500",
                             "add": true,
                             "makeTransformer": true,
-                            "startTimeMakeTransformer": "50"
-
+                            "startTimeMakeTransformer": "-5400"
                         }
                     },
                     {
@@ -347,10 +346,10 @@
                             "file" : "vaccineCoverageRemove24.json",
                             "duration": "1",
                             "state": "vaccinated",
-                            "startTime" : "100",
+                            "startTime" : "5510",
                             "add": false,
                             "makeTransformer": true,
-                            "startTimeMakeTransformer": "30"
+                            "startTimeMakeTransformer": "-5500"
 
                         }
                     },
@@ -360,10 +359,10 @@
                             "file" : "vaccineCoverageRemove5.json",
                             "duration": "0",
                             "state": "vaccinated",
-                            "startTime" : "5000",
+                            "startTime" : "9000",
                             "add": false,
                             "makeTransformer": true,
-                            "startTimeMakeTransformer": "30"
+                            "startTimeMakeTransformer": "-9000"
                         }
                     },
                     {
@@ -372,10 +371,10 @@
                             "file" : "vaccineCoverageAdd20.json",
                             "duration": "0",
                             "state": "vaccinated",
-                            "startTime" : "7000",
+                            "startTime" : "9100",
                             "add": true,
                             "makeTransformer": true,
-                            "startTimeMakeTransformer": "-7000"
+                            "startTimeMakeTransformer": "-9100"
                         }
                     },
                     {
@@ -507,7 +506,7 @@
                             "scale": "1.2",
                             "state": "vaccinated",
                             "timingFunction": "linear",
-                            "startTime" : "5000",
+                            "startTime" : "2000",
                             "duration" : "250",
                             "add": true
                         }
@@ -518,7 +517,7 @@
                             "file" : "vaccineCoverageAdd95.json",
                             "duration": "0",
                             "state": "vaccinated",
-                            "startTime" : "5300",
+                            "startTime" : "2100",
                             "add": true,
                             "makeTransformer": true,
                             "startTimeMakeTransformer": "0"
@@ -529,7 +528,7 @@
                         "props": {
                             "target": ".vulnerable",
                             "class": "vulnerableContour",
-                            "startTime" : "12000",
+                            "startTime" : "7000",
                             "duration": "700",
                             "add" : true
                         }
@@ -541,7 +540,7 @@
                             "scale": "1.6",
                             "state": "vaccinated",
                             "timingFunction": "linear",
-                            "startTime" : "19000",
+                            "startTime" : "9000",
                             "duration" : "500"
                         }
                     }

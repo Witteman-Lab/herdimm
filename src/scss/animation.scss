@@ -30,7 +30,7 @@ $hex-height: 4vmax;
   --color-vulnerable-contour:       #204c71;
 }
 
-body:not(.shape) {
+body {
   opacity: 1;
   -webkit-transition: opacity 1s linear;
   -moz-transition: opacity 1s linear;
@@ -39,7 +39,7 @@ body:not(.shape) {
   transition: opacity 1s linear;
 }
 
-body.fade:not(.shape) {
+body.fade {
   opacity: 0;
   -webkit-transition: opacity 1s linear;
   -moz-transition: opacity 1s linear;

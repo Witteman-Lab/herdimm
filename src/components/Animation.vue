@@ -1011,6 +1011,7 @@
         position: absolute;
         left: 10%;
         right: 10%;
+        bottom: 0;
 
     }
 
