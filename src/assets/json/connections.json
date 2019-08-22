@@ -2,7 +2,7 @@
     "_commentary" : "-------------------------- We assume that time here is counted in millisecond ---------------------------------------",
     "containerId" : "connections",
 	"linecolor" : "#B0102C",
-	"linewidth" : "5",
+	"linewidth" : "12",
     "defaultShirtColor" : "#BFBABE",
     "secondDefaultShirtColor": "#F67844",
     "vulnerableShirtColor" : "#FFFAB0",
