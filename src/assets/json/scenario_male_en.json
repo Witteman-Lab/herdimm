@@ -34,7 +34,7 @@
                             "target" : ".avatar",
                             "duration" : "1000",
                             "class" : "contour",
-                            "startTime" : "0",
+                            "startTime" : "300",
                             "add" : true
                         }
                     },
