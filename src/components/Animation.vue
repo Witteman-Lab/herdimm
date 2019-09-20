@@ -171,8 +171,11 @@
                         let shapeValue = shapesArray.ShapesArrayList[i][j];
                         let shapeObj = new Object();
 
+                        // Get the integer part of the shape value (when shape value is floating)
+                        let integr = Math.trunc(shapeValue);
+
                         // Give the object a className
-                        switch(shapeValue) {
+                        switch(integr) {
                             case 1:
                                 shapeObj.className = "avatar";
                                 break;
@@ -180,7 +183,11 @@
                                 shapeObj.className = "vulnerable";
                                 break;
                             case 3:
+                                // Get the decimal part (and make it integer) of the shape value so we can get the ordering
+                                let decimal = Math.round((shapeValue - integr) * 10, 0);
                                 shapeObj.className = "comm";
+                                // Indicate its position (-1 because o-based array)
+                                shapeObj.position = decimal + integr - 1;
                                 break;
                             case 4:
                                 shapeObj.className = "gen";
@@ -210,12 +217,31 @@
              */
             getCharacterFromList(shapeObj) {
                 let isCharacter = false;
+
+                // For each character in the characterList
                 this.characterList.map((character, index) => {
-                    if (character.characterType === shapeObj.className && !isCharacter) {
-                        shapeObj.character = character;
-                        shapeObj.isCharacter = true;
+                    // If the character's type corresponds to the shape's class name (e.g. avatar/vulnerable/comm)
+                    // AND if isCharacter is false (not sure of the usefulness of this check)
+                    // AND if character is not already positioned in a shape (shapeObj)
+                    if (character.characterType === shapeObj.className && !isCharacter && !character.isPositioned) {
+                        let char;
+
                         isCharacter = true;
-                        this.characterList.splice(index, 1);
+                        shapeObj.isCharacter = isCharacter;
+
+                        // Check if character is of type "comm" (special treatment for positioning them in a certain order)
+                        // NOTE: Using slice() instead of splice() allows to maintain characters' position in the characterList
+                        // splice() removes the item from the characterList while slice() keeps it there
+                        if (character.characterType === "comm") {
+                            char = this.characterList.slice(shapeObj.position, shapeObj.position + 1);
+                        } else {
+                            char = this.characterList.slice(index, index + 1);
+                        }
+
+                        // Indicate that the character has been positioned in it's shape so we don't try to position it once again
+                        character.isPositioned = true;
+                        // Assign the appropriate character to its shape
+                        shapeObj.character = char[0];
                     }
                 });
             },
