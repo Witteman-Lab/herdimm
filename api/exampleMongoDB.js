@@ -33,6 +33,29 @@ const saveCharacters = (request, response) => {
         response.json(res);
     });
 };
+// const postCharacters = (request, response) => {
+//     // check if the characters are sent by the herdimm app
+//     console.log(request.body);
+//
+//     // create schema instance which will save the datas
+//     var characterDB = new characterSchema();
+//
+//     // response for the client (herdimm application)
+//     var res = {};
+//
+//     // character list created with the same element as the characterSchema
+//     const characterList = charactersList(request.body);
+//
+//     //  add all elements from character list in the db
+//     characterDB.collection.insertMany(characterList, function (err, docs) {
+//         if (err) {
+//             return console.error(err);
+//         } else {
+//             console.log("Multiple documents inserted to Collection");
+//         }
+//         response.json(res);
+//     });
+// };
 
 /**
  * Create an array list of character based on the schema
@@ -60,5 +83,6 @@ const charactersList = (characterList) => {
 };
 
 router.post('/herdimm', saveCharacters);
+// router.get('/herdimm', postCharacters);
 
 module.exports = router;
