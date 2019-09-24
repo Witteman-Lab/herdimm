@@ -1,13 +1,11 @@
 <template>
   <v-app>
     <v-content>
-
-        <div class="container" id="app">
+        <div class="container" id="ourApp">
           <div class="columns">
             <router-view class="column"/>
           </div>
         </div>
-
     </v-content>
   </v-app>
 </template>
@@ -28,7 +26,7 @@ export default {
 
 
 <style scoped>
-  #app {
+  #ourApp {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
