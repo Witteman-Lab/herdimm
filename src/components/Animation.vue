@@ -977,6 +977,10 @@
     div.hexagon div.character-position {
         cursor: default;
     }
+
+    .theme--light.v-application {
+        background:none;
+    }
 </style>
 
 <style scoped>
