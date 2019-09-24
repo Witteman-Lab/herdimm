@@ -3,6 +3,8 @@
         <!-- MODAL WINDOW -->
         <Modal ref="modal" :defaultCharacterColors="defaultCharacterColors" :skin-colors="skinColors" :hair-colors="hairColors" :total-characters-count="maxCharactersInGroup" :glasses-list-json="glassesListJson" :facial-hair-list-json="facialHairList" :labels="labels"/>
         <!-- INTERFACE -->
+        <Carousel ref="Carousel"></Carousel>
+
         <div class="is-centered is-half-desktop is-half-mobile">
             <h1>{{this.labels.pageTitle}}</h1>
             <button id="selectLanguage" class="button" v-on:click="this.changeLanguage">{{this.labels.language}}</button>
@@ -45,6 +47,7 @@
     import CharacterList from "./CharacterList";
     import GroupCharacter from "./GroupCharacter";
     import Modal from "./Modal";
+    import Carousel from "./Carousel";
 
     import charactersJson from "../assets/json/characters.json";
     import textsEng from "../assets/json/textsEng.json";
@@ -59,6 +62,7 @@
             Modal,
             GroupCharacter,
             CharacterList,
+            Carousel
         },
         data() {
             return {

@@ -4,6 +4,7 @@ import router from './router'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faPlay, faPause, faStepForward, faStepBackward, faFastBackward, faFastForward, faAngleDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import vuetify from './plugins/vuetify';
 
 library.add(faPlay, faPause, faStepForward, faStepBackward, faFastBackward, faFastForward, faAngleDown);
 
@@ -14,5 +15,6 @@ Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 new Vue({
     router,
-    render: h => h(App),
+    vuetify,
+    render: h => h(App)
 }).$mount('#app');
