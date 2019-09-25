@@ -535,7 +535,7 @@
                         }
                     },
                     {
-                        "action": "burstContour",
+                        "action": "burstscrollingTimeControlContour",
                         "props": {
                             "target": ".vulnerable",
                             "scale": "1.6",
