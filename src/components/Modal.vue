@@ -24,6 +24,7 @@
                                     <input v-on:input="setCharacterName(characterName)" class="input" v-model="characterName"  type="text" :placeholder="this.labels.nameInputPlaceHolder">
                                 </div>
                                 <div style="overflow: visible;margin-top: 10px;" v-show="isCharacterVulnerable" class="control">
+                                    <p id="vulnerableDescription">Why is this person at greater risk? This person is: (check all that apply)</p>
                                     <div v-for="(option, index) in this.labels.vulnerableOptions" >
                                         <label class="checkbox" >
                                             <input v-on:click="setCharacterOption(option, index)" type="checkbox" :checked="options[index] ? options[index].id === option.id : ''">
@@ -473,6 +474,10 @@
 </script>
 
 <style scoped>
+    #vulnerableDescription {
+        font-weight: bold;
+        margin: 1rem 0;
+    }
     header.modal-card-head {
         padding: 10px;
     }
