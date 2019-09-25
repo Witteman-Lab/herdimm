@@ -34,6 +34,7 @@
     "avatarName" : "Your avatar",
     "categories" : ["You", "Vulnerable people", "People around you"],
     "reason" : "Reasons",
+    "vulnerableDescription" : "Why is this person at greater risk? This person is: (check all that apply)",
     "vulnerableOptions": [
       {
         "name" : "Younger people (babies, young children)",
