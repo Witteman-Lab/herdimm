@@ -9,7 +9,7 @@
 
             <p id="generalInfo">{{this.labels.generalInfo}}</p>
             <p id="contextualInfo">{{ contextualInfo }}</p>
-            <h2>{{ this.labels.totalCharacterCount }} {{this.totalCreated}} / {{maxCharactersInGroup}} </h2>
+            <!-- <h2>{{ this.labels.totalCharacterCount }} {{this.totalCreated}} / {{maxCharactersInGroup}} </h2> -->
             <!-- List of all the characters -->
             <div class="tool">
                 <div style="width: 100%; margin: 12px;">
@@ -21,7 +21,7 @@
                 </div>
             </div>
 
-            <h1>{{this.labels.subtitle}}</h1>
+            <h2>{{this.labels.subtitle}} ({{ this.labels.totalCharacterCount }} {{this.totalCreated}} / {{maxCharactersInGroup}})</h2>
 
             <!-- List of the group member -->
             <div class="tool">
@@ -268,8 +268,14 @@
 </style>
 <style scoped>
     h1 {
+        font-size: 2rem;
         font-weight: bold;
         margin: 0 0 30px 0;
+    }
+    h2 {
+        font-size: 1.3rem;
+        font-weight: bold;
+        /* margin: 0 0 30px 0; */
     }
     p {
         margin: 10px 0;
