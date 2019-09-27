@@ -202,7 +202,7 @@
     }
 
     .stepper{
-        background-color: red;
+        background-color: white;
         justify-content: center;
         align-items: center;
         position: center;
