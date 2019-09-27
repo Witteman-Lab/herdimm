@@ -32,7 +32,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Button to continue to the next section (e.g. the animation) -->
         <section>
             <div class="control has-text-centered">
@@ -85,7 +84,8 @@
 
             };
         },
-        props: {},
+        props: {
+        },
         methods: {
             /**
              * ---> Launch modal with the given character object

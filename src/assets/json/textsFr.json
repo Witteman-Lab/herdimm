@@ -47,5 +47,16 @@
         "name" : "Une personne avec un système immunitaire plus faible (cancer, diabète ou autres conditions)",
         "id" : 2
       }
-    ]
+    ],
+
+    "Étape 1": "FR : Choose and customize your avatar.",
+    "Étape 2":"FR : Enter your name",
+    "Étape 3":"FR : Choose your skin tone",
+    "Étape 4":"FR : Choose your  hair colour. Select accessories (glasses, facial hair) if you want, and save your avatar.",
+    "Étape 5":"FR : Now choose and customize 2 avatars of people around you who are at greater risk if they get sick: babies or children, older people, people dealing with a health condition (cancer, diabetes, asthma, etc.) or people who have other health risks.",
+    "Étape 6":"FR : Finally, select and customize 6 other people who are around you. Repeat the same steps as above for creating avatars.",
+    "Étape 7":"FR : Once the total 9 avatars are made, press the green button to go to the animation.",
+    "Étape 8":"FR : Start the animation.",
+    "Continue-btn" : "FR : Continue",
+    "Cancel-btn" : "FR : Cancel"
 }

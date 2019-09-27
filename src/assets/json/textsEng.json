@@ -47,5 +47,15 @@
         "name" : "A person with a more fragile immune system (cancer, diabetes, or other conditions)",
         "id" : 2
       }
-    ]
+    ],
+    "Step 1": "Choose and customize your avatar.",
+    "Step 2":"Enter your name",
+    "Step 3":"Choose your skin tone",
+    "Step 4":"Choose your  hair colour. Select accessories (glasses, facial hair) if you want, and save your avatar.",
+    "Step 5":"Now choose and customize 2 avatars of people around you who are at greater risk if they get sick: babies or children, older people, people dealing with a health condition (cancer, diabetes, asthma, etc.) or people who have other health risks.",
+    "Step 6":"Finally, select and customize 6 other people who are around you. Repeat the same steps as above for creating avatars.",
+    "Step 7":"Once the total 9 avatars are made, press the green button to go to the animation.",
+    "Step 8":"Start the animation.",
+    "Continue-btn" : "Continue",
+    "Cancel-btn" : "Cancel"
 }
