@@ -34,6 +34,31 @@
     "avatarName" : "Votre avatar",
     "categories" : ["Vous", "Personnes vulnerables", "Personnes autour de vous"],
     "reason" : "Raisons",
+
+    "commentary" : "--------------------------------- Carousel.vue  -------------------------------------------------",
+    "step1": "FR : Tutorial instructions for making avatar",
+    "step2": "FR : Choose and customize your avatar.",
+    "step3": "FR : Enter your name",
+    "step4": "FR : Choose your skin tone",
+    "step5": "FR : Choose your hair colour. Select accessories (glasses, facial hair) if you want, and save your avatar.",
+    "step6": "FR : Now choose and customize 2 avatars of people around you who are at greater risk if they get sick: babies or children, older people, people dealing with a health condition (cancer, diabetes, asthma, etc.) or people who have other health risks.",
+    "step7": "FR : Finally, choose and customize 6 other avatars. These represent other people around you.",
+    "step8": "FR : Once all 9 avatars are made, click or tap the green button to go to the animation.",
+    "step9": "FR : Press green button to start animation.",
+    "continueBtn" : "Continuez",
+    "cancelBtn" : "Annuler",
+    "backBtn" : "Retour",
+    "letsGetStart" : "Commençons",
+    "stepText1" : "Étape 1",
+    "stepText2" : "Étape 2",
+    "stepText3" : "Étape 3",
+    "stepText4" : "Étape 4",
+    "stepText5" : "Étape 5",
+    "stepText6" : "Étape 6",
+    "stepText7" : "Étape 7",
+    "stepText8" : "Étape 8",
+    "stepText9" : "Étape 9",
+
     "vulnerableOptions": [
       {
         "name" : "Une personne plus jeune (bébé, jeune enfant)",
@@ -47,16 +72,5 @@
         "name" : "Une personne avec un système immunitaire plus faible (cancer, diabète ou autres conditions)",
         "id" : 2
       }
-    ],
-
-    "Étape 1": "FR : Choose and customize your avatar.",
-    "Étape 2":"FR : Enter your name",
-    "Étape 3":"FR : Choose your skin tone",
-    "Étape 4":"FR : Choose your  hair colour. Select accessories (glasses, facial hair) if you want, and save your avatar.",
-    "Étape 5":"FR : Now choose and customize 2 avatars of people around you who are at greater risk if they get sick: babies or children, older people, people dealing with a health condition (cancer, diabetes, asthma, etc.) or people who have other health risks.",
-    "Étape 6":"FR : Finally, select and customize 6 other people who are around you. Repeat the same steps as above for creating avatars.",
-    "Étape 7":"FR : Once the total 9 avatars are made, press the green button to go to the animation.",
-    "Étape 8":"FR : Start the animation.",
-    "Continue-btn" : "FR : Continue",
-    "Cancel-btn" : "FR : Cancel"
+    ]
 }

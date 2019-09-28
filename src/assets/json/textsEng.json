@@ -34,6 +34,31 @@
     "avatarName" : "Your avatar",
     "categories" : ["You", "Vulnerable people", "People around you"],
     "reason" : "Reasons",
+
+    "commentary" : "--------------------------------- Carousel.vue  -------------------------------------------------",
+    "step1": "Tutorial instructions for making avatar",
+    "step2": "Choose and customize your avatar.",
+    "step3": "Enter your name",
+    "step4": "Choose your skin tone",
+    "step5": "Choose your hair colour. Select accessories (glasses, facial hair) if you want, and save your avatar.",
+    "step6": "Now choose and customize 2 avatars of people around you who are at greater risk if they get sick: babies or children, older people, people dealing with a health condition (cancer, diabetes, asthma, etc.) or people who have other health risks.",
+    "step7": "Finally, choose and customize 6 other avatars. These represent other people around you.",
+    "step8": "Once all 9 avatars are made, click or tap the green button to go to the animation.",
+    "step9": "Press green button to start animation.",
+    "continueBtn" : "Continue",
+    "cancelBtn" : "Cancel",
+    "backBtn" : "Back",
+    "letsGetStart" : "Let's get start",
+    "stepText1" : "Step 1",
+    "stepText2" : "Step 2",
+    "stepText3" : "Step 3",
+    "stepText4" : "Step 4",
+    "stepText5" : "Step 5",
+    "stepText6" : "Step 6",
+    "stepText7" : "Step 7",
+    "stepText8" : "Step 8",
+    "stepText9" : "Step 9",
+
     "vulnerableOptions": [
       {
         "name" : "Younger people (babies, young children)",
@@ -47,15 +72,6 @@
         "name" : "A person with a more fragile immune system (cancer, diabetes, or other conditions)",
         "id" : 2
       }
-    ],
-    "Step 1": "Choose and customize your avatar.",
-    "Step 2":"Enter your name",
-    "Step 3":"Choose your skin tone",
-    "Step 4":"Choose your  hair colour. Select accessories (glasses, facial hair) if you want, and save your avatar.",
-    "Step 5":"Now choose and customize 2 avatars of people around you who are at greater risk if they get sick: babies or children, older people, people dealing with a health condition (cancer, diabetes, asthma, etc.) or people who have other health risks.",
-    "Step 6":"Finally, select and customize 6 other people who are around you. Repeat the same steps as above for creating avatars.",
-    "Step 7":"Once the total 9 avatars are made, press the green button to go to the animation.",
-    "Step 8":"Start the animation.",
-    "Continue-btn" : "Continue",
-    "Cancel-btn" : "Cancel"
+    ]
+
 }

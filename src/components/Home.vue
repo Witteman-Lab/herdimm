@@ -3,7 +3,7 @@
         <!-- MODAL WINDOW -->
         <Modal ref="modal" :defaultCharacterColors="defaultCharacterColors" :skin-colors="skinColors" :hair-colors="hairColors" :total-characters-count="maxCharactersInGroup" :glasses-list-json="glassesListJson" :facial-hair-list-json="facialHairList" :labels="labels"/>
         <!-- INTERFACE -->
-        <Carousel ref="Carousel"></Carousel>
+        <Carousel ref="Carousel" :labels="labels"></Carousel>
 
         <div class="is-centered is-half-desktop is-half-mobile">
             <h1>{{this.labels.pageTitle}}</h1>
