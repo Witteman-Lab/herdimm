@@ -1,5 +1,5 @@
 <template>
-    <div class="modal-background" v-if="this.test">
+    <div class="modal-background" >
         <div >
             <v-stepper v-model="e1" class="stepper" :vertical="false" :alt-labels="true">
                 <v-stepper-header>
@@ -165,8 +165,7 @@
         name: "Carousel",
         data () {
             return {
-                e1: 0,
-                test: true
+                e1: 0
             }
         },
         props:{
@@ -180,8 +179,6 @@
              * @return none
              */
             closeModal() {
-                this.test = false;
-
             }
         },
         created(){
@@ -195,10 +192,6 @@
                     this.closeModal();
                   }
             });
-
-            console.log(this.$refs.audio)
-
-
         }
 
     }
