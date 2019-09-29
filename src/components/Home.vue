@@ -3,13 +3,13 @@
         <!-- MODAL WINDOW -->
         <Modal ref="modal" :defaultCharacterColors="defaultCharacterColors" :skin-colors="skinColors" :hair-colors="hairColors" :total-characters-count="maxCharactersInGroup" :glasses-list-json="glassesListJson" :facial-hair-list-json="facialHairList" :labels="labels"/>
         <!-- INTERFACE -->
-        <Carousel ref="Carousel" :labels="labels"></Carousel>
+        <Carousel ref="Carousel" :labels="labels" ></Carousel>
 
         <div class="is-centered is-half-desktop is-half-mobile">
             <h1>{{this.labels.pageTitle}}</h1>
-            <button id="selectLanguage" class="button" v-on:click="this.changeLanguage">{{this.labels.language}}</button>
-
+            <v-btn id="selectLanguage" color="primary" style="z-index: 20" class="button" v-on:click="this.changeLanguage">{{this.labels.language}}</v-btn>
             <p id="generalInfo">{{this.labels.generalInfo}}</p>
+            <v-btn style="z-index: -1" color="secondary">{{this.labels.tutorial}}</v-btn>
             <p id="contextualInfo">{{ contextualInfo }}</p>
             <h2>{{ this.labels.totalCharacterCount }} {{this.totalCreated}} / {{maxCharactersInGroup}} </h2>
             <!-- List of all the characters -->

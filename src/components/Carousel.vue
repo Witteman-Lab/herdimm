@@ -1,5 +1,5 @@
 <template>
-    <div class="modal-background" >
+    <div class="modal-background" v-if="isActive">
         <div >
             <v-stepper v-model="e1" class="stepper" :vertical="false" :alt-labels="true">
                 <v-stepper-header>
@@ -40,7 +40,7 @@
                             <p class="text-presentation">{{this.labels.step1}}</p>
                         </v-card>
                         <div class="btn-group">
-                            <v-btn  color="secondary" v-on:click="this.closeModal" >{{this.labels.cancelBtn}}</v-btn>
+                            <v-btn  color="secondary" v-on:click="this.onBoarding" >{{this.labels.cancelBtn}}</v-btn>
                             <v-btn  color="primary" @click="e1 = 2">{{this.labels.continueBtn}}</v-btn>
                         </div>
                     </v-stepper-content>
@@ -144,7 +144,7 @@
                         </v-card>
                         <div class="btn-group">
                         <v-btn  color="secondary" @click="e1 = 8" >{{this.labels.backBtn}}</v-btn>
-                        <v-btn color="primary" v-on:click="this.closeModal">{{this.labels.letsGetStart}}</v-btn>
+                        <v-btn color="primary" v-on:click="this.onBoarding">{{this.labels.letsGetStart}}</v-btn>
                         </div>
                     </v-stepper-content>
 
@@ -165,6 +165,7 @@
         name: "Carousel",
         data () {
             return {
+                isActive : true,
                 e1: 0
             }
         },
@@ -178,7 +179,8 @@
              * @param none
              * @return none
              */
-            closeModal() {
+            onBoarding() {
+                this.isActive = false;
             }
         },
         created(){
@@ -189,7 +191,7 @@
             document.body.addEventListener('keyup', e => {
                 // Escape key to close the modal window (customizer)
                 if (e.keyCode === 27 && this.isActive) {
-                    this.closeModal();
+                    this.onBoarding();
                   }
             });
         }

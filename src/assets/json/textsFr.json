@@ -58,8 +58,9 @@
     "stepText7" : "Étape 7",
     "stepText8" : "Étape 8",
     "stepText9" : "Étape 9",
+    "tutorial"  : "tutoriel",
 
-    "vulnerableOptions": [
+  "vulnerableOptions": [
       {
         "name" : "Une personne plus jeune (bébé, jeune enfant)",
         "id" : 0
