@@ -37,7 +37,7 @@
                     <!-- stepper-content 1 -->
                     <v-stepper-content step="1">
                         <v-card class="mb-12" color="grey lighten-1" height="500px">
-                            <p class="text-presentation">{{this.labels.step1}}</p>
+                            <p style="font-size: xx-large; padding-top: 20%; text-align: center; vertical-align: middle;" class="text-presentation">{{this.labels.step1}}</p>
                         </v-card>
                         <div class="btn-group">
                             <v-btn  color="secondary" v-on:click="this.onBoarding" >{{this.labels.cancelBtn}}</v-btn>
@@ -228,7 +228,7 @@
     .text-presentation{
         text-align: center;
         color: black ;
-        font-size: xx-large;
+        font-size: x-large;
         vertical-align: middle;
     }
 
