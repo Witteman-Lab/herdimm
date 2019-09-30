@@ -36,7 +36,7 @@
                 <v-stepper-items>
                     <!-- stepper-content 1 -->
                     <v-stepper-content step="1">
-                        <v-card class="mb-12" color="grey lighten-1" height="500px">
+                        <v-card class="mb-12" color="#2196F3" height="500px">
                             <p style="font-size: xx-large; padding-top: 20%; text-align: center; vertical-align: middle;" class="text-presentation">{{this.labels.step1}}</p>
                         </v-card>
                         <div class="btn-group">
@@ -47,7 +47,7 @@
 
                     <!-- stepper-content 2 -->
                     <v-stepper-content step="2">
-                        <v-card class="mb-12" color="grey lighten-1" height="500px">
+                        <v-card class="mb-12" color="#2196F3" height="500px">
                             <img src="../assets/Image/Image1.jpg" alt="My Picture">
                             <p class="text-presentation">{{this.labels.step2}}</p>
                         </v-card>
@@ -60,7 +60,7 @@
 
                     <!-- stepper-content 3 -->
                     <v-stepper-content step="3">
-                        <v-card class="mb-12" color="grey lighten-1" height="500px">
+                        <v-card class="mb-12" color="#2196F3" height="500px">
                             <img src="../assets/Image/Image2.jpg" alt="My Picture">
                             <p class="text-presentation">{{this.labels.step3}}</p>
                         </v-card>
@@ -74,7 +74,7 @@
 
                     <!-- stepper-content 3 -->
                     <v-stepper-content step="4">
-                        <v-card class="mb-12" color="grey lighten-1" height="500px">
+                        <v-card class="mb-12" color="#2196F3" height="500px">
                             <img src="../assets/Image/Image3.jpg" alt="My Picture">
                             <p class="text-presentation">{{this.labels.step4}}</p>
                         </v-card>
@@ -87,7 +87,7 @@
 
                     <!-- stepper-content 3 -->
                     <v-stepper-content step="5">
-                        <v-card class="mb-12" color="grey lighten-1" height="500px">
+                        <v-card class="mb-12" color="#2196F3" height="500px">
                             <img src="../assets/Image/Image4.jpg" alt="My Picture">
                             <p class="text-presentation">{{this.labels.step5}}</p>
                         </v-card>
@@ -101,7 +101,7 @@
 
                     <!-- stepper-content 3 -->
                     <v-stepper-content step="6">
-                        <v-card class="mb-12" color="grey lighten-1" height="500px">
+                        <v-card class="mb-12" color="#2196F3" height="500px">
                             <img src="../assets/Image/Image5.jpg" alt="My Picture">
                             <p class="text-presentation">{{this.labels.step6}}</p>
                         </v-card>
@@ -113,7 +113,7 @@
 
                     <!-- stepper-content 3 -->
                     <v-stepper-content step="7">
-                        <v-card class="mb-12" color="grey lighten-1" height="500px">
+                        <v-card class="mb-12" color="#2196F3" height="500px">
                             <img src="../assets/Image/Image6.jpg" alt="My Picture">
                             <p class="text-presentation">{{this.labels.step7}}</p>
                         </v-card>
@@ -126,7 +126,7 @@
 
                     <!-- stepper-content 3 -->
                     <v-stepper-content step="8">
-                        <v-card class="mb-12" color="grey lighten-1" height="500px">
+                        <v-card class="mb-12" color="#2196F3" height="500px">
                             <img src="../assets/Image/Image7.jpg" alt="My Picture">
                             <p class="text-presentation">{{this.labels.step8}}</p>
                         </v-card>
@@ -138,7 +138,7 @@
 
                     <!-- stepper-content 3 -->
                     <v-stepper-content step="9">
-                        <v-card class="mb-12" color="grey lighten-1" height="500px">
+                        <v-card class="mb-12" color="#2196F3" height="500px">
                             <img src="../assets/Image/Image8.jpg" alt="My Picture">
                             <p class="text-presentation">{{this.labels.step9}}</p>
                         </v-card>
@@ -227,7 +227,7 @@
 
     .text-presentation{
         text-align: center;
-        color: black ;
+        color: white ;
         font-size: x-large;
         vertical-align: middle;
     }
