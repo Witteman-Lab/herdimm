@@ -22,10 +22,7 @@
                                 <!--<labelclass="label">Name:<inputclass="input"v-model="message"type="text"placeholder="editname"></label>-->
                                 <div class="field is-one-fifth-mobile" style="margin-top: 5px">
                                         <div class="control">
-                                            <form  class="form" action="/hello" method="post">
-                                                <input v-on:input="setCharacterName(characterName)" class="input" v-model="characterName"  type="text" :placeholder="this.labels.nameInputPlaceHolder" name="characterName">
-                                                <input type="submit" value="Submit">
-                                            </form>
+                                            <input v-on:input="setCharacterName(characterName)" class="input" v-model="characterName"  type="text" :placeholder="this.labels.nameInputPlaceHolder" name="characterName">
                                         </div>
                                         <div style="overflow: visible;margin-top: 10px;" v-show="isCharacterVulnerable" class="control">
                                             <div v-for="(option, index) in this.labels.vulnerableOptions" v-on:click="setCharacterOption(option.name, index)">

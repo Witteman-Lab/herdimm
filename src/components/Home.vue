@@ -22,7 +22,6 @@
             </div>
 
             <h1>{{this.labels.subtitle}}</h1>
-            <p>hello world</p>
 
             <!-- List of the group member -->
             <div class="tool">
@@ -87,7 +86,7 @@
 
             setTimeOut(){
                 let start = Date.now();
-                console.log("starting timer", start);
+                // console.log("starting timer", start);
                 // var checkBox = document.getElementById("continue");
                 // if(checkBox.click() == true){
                 //     console.log("starting timer", start);
