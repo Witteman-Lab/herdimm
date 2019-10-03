@@ -84,6 +84,16 @@
         },
         props: {},
         methods: {
+
+            setTimeOut(){
+                let start = Date.now();
+                console.log("starting timer", start);
+                // var checkBox = document.getElementById("continue");
+                // if(checkBox.click() == true){
+                //     console.log("starting timer", start);
+                //     alert("button was clicked");
+                // }
+            },
             /**
              * ---> Launch modal with the given character object
              * @param {Object} character
@@ -246,6 +256,7 @@
             this.defaultCharacterColors = charactersJson.defaultColors;
         },
         mounted() {
+            this.setTimeOut();
             localStorage.clear();
             this.setDiseaseToAnimate();
             this.setVoiceToPlay();
