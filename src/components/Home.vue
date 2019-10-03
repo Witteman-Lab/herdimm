@@ -3,13 +3,13 @@
         <!-- MODAL WINDOW -->
         <Modal ref="modal" :defaultCharacterColors="defaultCharacterColors" :skin-colors="skinColors" :hair-colors="hairColors" :total-characters-count="maxCharactersInGroup" :glasses-list-json="glassesListJson" :facial-hair-list-json="facialHairList" :labels="labels"/>
         <!-- INTERFACE -->
-        <Carousel ref="Carousel" :labels="labels" ></Carousel>
+        <Carousel id="Carousel" class="Carousel" ref="Carousel" :labels="labels" ></Carousel>
 
         <div class="is-centered is-half-desktop is-half-mobile">
             <h1>{{this.labels.pageTitle}}</h1>
             <v-btn id="selectLanguage" color="primary" style="z-index: 20" class="button" v-on:click="this.changeLanguage">{{this.labels.language}}</v-btn>
             <p id="generalInfo">{{this.labels.generalInfo}}</p>
-            <v-btn style="z-index: -1" color="secondary">{{this.labels.tutorial}}</v-btn>
+            <v-btn style="z-index: 1" class="button_tutorial" color="secondary" @click="showCarousel">{{this.labels.tutorial}}</v-btn>
             <p id="contextualInfo">{{ contextualInfo }}</p>
             <h2>{{ this.labels.totalCharacterCount }} {{this.totalCreated}} / {{maxCharactersInGroup}} </h2>
             <!-- List of all the characters -->
@@ -42,7 +42,10 @@
     </div>
 </template>
 
-<script>
+
+
+<script >
+
     import CharacterList from "./CharacterList";
     import GroupCharacter from "./GroupCharacter";
     import Modal from "./Modal";
@@ -87,6 +90,16 @@
         props: {
         },
         methods: {
+
+            /**
+             * ---> ---------  completed soon -------
+             * @param none
+             * @return none
+             */
+            showCarousel() {
+                this.$refs.Carousel.openOnBoarding()
+            },
+
             /**
              * ---> Launch modal with the given character object
              * @param {Object} character
@@ -271,6 +284,11 @@
     }
 </style>
 <style scoped>
+
+    .button_tutorial:hover{
+        cursor: pointer;
+    }
+
     h1 {
         font-weight: bold;
         margin: 0 0 30px 0;

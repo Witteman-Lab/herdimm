@@ -174,6 +174,15 @@
         },
 
         methods: {
+
+            /**
+             * ---> ---------  completed soon -------
+             * @param none
+             * @return none
+             */
+            openOnBoarding(){
+                this.isActive = true;
+            },
             /**
              * ---> Close the modal and reset default parameter
              * @param none
