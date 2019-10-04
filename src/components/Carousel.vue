@@ -9,7 +9,6 @@
                     <v-stepper-step class="stepper-step" @click="e1 = 2" :complete="e1 > 2" step="2">{{this.labels.stepText2}}</v-stepper-step>
                     <v-divider></v-divider>
 
-
                     <v-stepper-step class="stepper-step" @click="e1 = 3" :complete="e1 > 3" step="3">{{this.labels.stepText3}}</v-stepper-step>
                     <v-divider></v-divider>
 
@@ -144,7 +143,7 @@
                         </v-card>
                         <div class="btn-group">
                         <v-btn  color="secondary" @click="e1 = 8" >{{this.labels.backBtn}}</v-btn>
-                        <v-btn color="primary" v-on:click="this.onBoarding">{{this.labels.letsGetStart}}</v-btn>
+                        <v-btn color="primary" v-on:click="this.onBoarding" @click="e1 = 1">{{this.labels.letsGetStart}}</v-btn>
                         </div>
                     </v-stepper-content>
 
