@@ -143,7 +143,7 @@
                         </v-card>
                         <div class="btn-group">
                         <v-btn  color="secondary" @click="e1 = 8" >{{this.labels.backBtn}}</v-btn>
-                        <v-btn color="primary" v-on:click="this.onBoarding" @click="e1 = 1">{{this.labels.letsGetStart}}</v-btn>
+                        <v-btn color="primary" v-on:click="this.onBoarding" >{{this.labels.letsGetStart}}</v-btn>
                         </div>
                     </v-stepper-content>
 
@@ -189,6 +189,7 @@
              */
             onBoarding() {
                 this.isActive = false;
+                this.e1 = 0;
             }
         },
         created(){
