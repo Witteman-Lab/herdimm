@@ -78,34 +78,19 @@
                 defaultCharacterColors: {},
                 diseaseHome:"",
                 gender : "",
-                timeSpendMYG: 0
+                timeSpendMYG: 0,
+                startTime: Date.now(),
 
             };
         },
-        props: {},
+        props: {
+        },
         methods: {
-            //getTime give time in millisecondes
-            //now give time in millisecondes
-            //so /1000 to get in secondes
-            //uses Math.round(new date() / 1000
-            // setTimeOut(){
-            //
-            // },
-            setTimeOut(divElement){
-                let startTime, endTime, spendTime;
-                startTime = Date.now();
-                // var el = document.getElementsByClassName(divElement);
-                // el.addEventListener("click", () => {
-                //     // console.log(el);
-                //     endTime = Date.now()/1000;
-                //     spendTime= endTime - startTime;
-                //     console.log("time spend on make your group", spendTime);
-                // });
-                var btn = document.getElementById("continue");
-                btn.addEventListener("click", () => {
-                    alert("hello");
-                });
 
+            setTimeOut(){
+                let endTime = Date.now();
+                let  spendTime = Math.round((endTime - this.startTime));
+                this.timeSpendMYG = spendTime;
             },
             /**
              * ---> Launch modal with the given character object
@@ -206,7 +191,9 @@
              */
             loadAnimationView() {
                 let groupCharacter = this.$refs.listToFill.getCharacterList();
-                this.$router.push({name: 'Animation', params:{group: groupCharacter, labelSelected: this.labels.currentLanguage, diseaseToPlay: this.diseaseHome, voiceToPlay: this.gender}});
+                this.setTimeOut();
+                this.$router.push(
+                    {name: 'Animation', params:{group: groupCharacter, labelSelected: this.labels.currentLanguage, diseaseToPlay: this.diseaseHome, voiceToPlay: this.gender}});
                 localStorage.setItem("currentLanguage", this.labels.currentLanguage);
                 localStorage.setItem("gender", this.gender);
             },
@@ -270,9 +257,6 @@
 
         },
         mounted() {
-            document.addEventListener('DOMContentLoaded', () => {
-            });
-            this.setTimeOut("continue");
             localStorage.clear();
             this.setDiseaseToAnimate();
             this.setVoiceToPlay();

@@ -10,6 +10,7 @@ mongoose.set('useCreateIndex', true);
 let userId = Math.floor(Math.random() * 1000000);
 
 var characterSchema = require("./models/characterSchema");
+var mygSchema = require("./models/MYGSchema");
 
 const saveCharacters = (request, response) => {
     // check if the characters are sent by the herdimm app

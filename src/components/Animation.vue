@@ -85,7 +85,8 @@
             },
             labelSelected: String,
             diseaseToPlay : String,
-            voiceToPlay: String
+            voiceToPlay: String,
+            timeSpendMYG: Number
 
 
         },
