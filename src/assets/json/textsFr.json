@@ -35,7 +35,32 @@
     "categories" : ["Vous", "Personnes vulnerables", "Personnes autour de vous"],
     "reason" : "Raisons",
     "vulnerableDescription" : "Pourquoi cette personne est-elle plus à risque? Cette personne est : (cochez tout ce qui s'applique)",
-    "vulnerableOptions": [
+    "commentary" : "--------------------------------- Carousel.vue  -------------------------------------------------",
+    "step1": "Tutoriel d'instructions pour la création d'avatar",
+    "step2": "Choisir et personnaliser un avatar pour vous représenter.",
+    "step3": "Entrez votre nom",
+    "step4": "Choisissez votre teint de peau.",
+    "step5": "Choisissez votre couleur de cheveux. Sélectionnez les accessoires (lunettes, poils faciaux) si vous le souhaitez, et sauvegardez votre avatar.",
+    "step6": "Maintenant, choisissez et personnalisez 2 avatars de personnes autour de vous qui sont plus à risque s'ils tombent malades : bébés ou enfants, personnes âgées, personnes souffrant d'un problème de santé (cancer, diabète, asthme, etc.) ou personnes qui ont d'autres risques sanitaires.",
+    "step7": "Enfin, choisissez et personnalisez 6 autres avatars. Ils représentent d'autres personnes autour de vous.",
+    "step8": "Une fois les 9 avatars créés, cliquez ou appuyez sur le bouton vert pour accéder à l'animation.",
+    "step9": "Cliquez sur le bouton vert pour démarrer l'animation.",
+    "continueBtn" : "Continuez",
+    "cancelBtn" : "Annuler",
+    "backBtn" : "Retour",
+    "letsGetStart" : "Commençons",
+    "stepText1" : "Étape 1",
+    "stepText2" : "Étape 2",
+    "stepText3" : "Étape 3",
+    "stepText4" : "Étape 4",
+    "stepText5" : "Étape 5",
+    "stepText6" : "Étape 6",
+    "stepText7" : "Étape 7",
+    "stepText8" : "Étape 8",
+    "stepText9" : "Étape 9",
+    "tutorial"  : "tutoriel",
+
+  "vulnerableOptions": [
       {
         "name" : "Une personne plus jeune (bébé, jeune enfant)",
         "id" : 0

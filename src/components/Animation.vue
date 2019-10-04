@@ -865,7 +865,7 @@
 
                 // Parameters
                 var radius = 10;
-                var app = document.querySelector("#app");
+                var app = document.querySelector("#ourApp");
 
                 var style = app.currentStyle || window.getComputedStyle(app);
                 var str_marginLeft = style.marginLeft;
@@ -977,6 +977,10 @@
     div.hexagon div.character-position {
         cursor: default;
     }
+
+    .theme--light.v-application {
+        background:none;
+    }
 </style>
 
 <style scoped>
@@ -988,6 +992,7 @@
 
     .container {
         overflow: hidden;
+        padding: 0;
     }
 
     div.column {

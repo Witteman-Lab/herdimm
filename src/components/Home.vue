@@ -3,11 +3,13 @@
         <!-- MODAL WINDOW -->
         <Modal ref="modal" :defaultCharacterColors="defaultCharacterColors" :skin-colors="skinColors" :hair-colors="hairColors" :total-characters-count="maxCharactersInGroup" :glasses-list-json="glassesListJson" :facial-hair-list-json="facialHairList" :labels="labels"/>
         <!-- INTERFACE -->
+        <Carousel id="Carousel" class="Carousel" ref="Carousel" :labels="labels" ></Carousel>
+
         <div class="is-centered is-half-desktop is-half-mobile">
             <h1>{{this.labels.pageTitle}}</h1>
-            <button id="selectLanguage" class="button" v-on:click="this.changeLanguage">{{this.labels.language}}</button>
-
+            <v-btn id="selectLanguage" color="primary" style="z-index: 20" class="button" v-on:click="this.changeLanguage">{{this.labels.language}}</v-btn>
             <p id="generalInfo">{{this.labels.generalInfo}}</p>
+            <v-btn style="z-index: 1" class="button_tutorial" color="secondary" @click="showCarousel">{{this.labels.tutorial}}</v-btn>
             <p id="contextualInfo">{{ contextualInfo }}</p>
             <!-- <h2>{{ this.labels.totalCharacterCount }} {{this.totalCreated}} / {{maxCharactersInGroup}} </h2> -->
             <!-- List of all the characters -->
@@ -30,7 +32,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Button to continue to the next section (e.g. the animation) -->
         <section>
             <div class="control has-text-centered">
@@ -41,10 +42,14 @@
     </div>
 </template>
 
-<script>
+
+
+<script >
+
     import CharacterList from "./CharacterList";
     import GroupCharacter from "./GroupCharacter";
     import Modal from "./Modal";
+    import Carousel from "./Carousel";
 
     import charactersJson from "../assets/json/characters.json";
     import textsEng from "../assets/json/textsEng.json";
@@ -59,6 +64,7 @@
             Modal,
             GroupCharacter,
             CharacterList,
+            Carousel
         },
         data() {
             return {
@@ -81,8 +87,19 @@
 
             };
         },
-        props: {},
+        props: {
+        },
         methods: {
+
+            /**
+             * ---> ---------  completed soon -------
+             * @param none
+             * @return none
+             */
+            showCarousel() {
+                this.$refs.Carousel.openOnBoarding()
+            },
+
             /**
              * ---> Launch modal with the given character object
              * @param {Object} character
@@ -267,6 +284,11 @@
     }
 </style>
 <style scoped>
+
+    .button_tutorial:hover{
+        cursor: pointer;
+    }
+
     h1 {
         font-size: 2rem;
         font-weight: bold;
