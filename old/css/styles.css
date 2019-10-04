@@ -9,7 +9,7 @@ div.reveal .slides {
 	zoom: 1 !important;
 }
 div.reveal div.slides section.slide.present {
-	
+
 }
 div.reveal div.slides h1, div.reveal div.slides h2 {
 	margin: 1% 0;
@@ -68,7 +68,7 @@ p#loader {
 p#instructions {
 	margin: 20px 0;
 }
- 
+
 
 /************************************
  * Characters
@@ -85,10 +85,10 @@ div#characterCustomizer {
 }
 .wrap_character:after {
 	content: "";
-	position: absolute; 
-	top: 0; 
-	right: 0; 
-	bottom: 0; 
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
 	left: 0;
 }
 .wrap_character {
@@ -227,7 +227,7 @@ button span.shortcut {
 	color: #666;
 }
 
-#continue {
+#continueAnimation {
 	padding: 10px;
 	margin: 20px 0 0 0;
 	border: 1px solid #FFF;
@@ -238,7 +238,7 @@ button span.shortcut {
 	visibility: hidden;
 }
 a#continuer:link, a#continuer:visited{
-	
+
 }
 a#continuer:hover{
 	background-color: #678;

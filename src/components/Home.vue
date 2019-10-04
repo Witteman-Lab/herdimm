@@ -35,7 +35,7 @@
         <section>
             <div class="control has-text-centered">
                 <p id="finalInfo" v-if="isGroupComplete">{{this.labels.finalInfo}}</p>
-                <button id="continue" class="button is-primary is-success" v-if="isGroupComplete" v-on:click="loadAnimationView()">{{this.labels.continueBtn}}</button>
+                <button id="continue" class="continue button is-primary is-success" v-if="isGroupComplete" v-on:click="loadAnimationView()">{{this.labels.continueBtn}}</button>
             </div>
         </section>
     </div>
@@ -77,21 +77,35 @@
                 hairColors: [],
                 defaultCharacterColors: {},
                 diseaseHome:"",
-                gender : ""
+                gender : "",
+                timeSpendMYG: 0
 
             };
         },
         props: {},
         methods: {
+            //getTime give time in millisecondes
+            //now give time in millisecondes
+            //so /1000 to get in secondes
+            //uses Math.round(new date() / 1000
+            // setTimeOut(){
+            //
+            // },
+            setTimeOut(divElement){
+                let startTime, endTime, spendTime;
+                startTime = Date.now();
+                // var el = document.getElementsByClassName(divElement);
+                // el.addEventListener("click", () => {
+                //     // console.log(el);
+                //     endTime = Date.now()/1000;
+                //     spendTime= endTime - startTime;
+                //     console.log("time spend on make your group", spendTime);
+                // });
+                var btn = document.getElementById("continue");
+                btn.addEventListener("click", () => {
+                    alert("hello");
+                });
 
-            setTimeOut(){
-                let start = Date.now();
-                // console.log("starting timer", start);
-                // var checkBox = document.getElementById("continue");
-                // if(checkBox.click() == true){
-                //     console.log("starting timer", start);
-                //     alert("button was clicked");
-                // }
             },
             /**
              * ---> Launch modal with the given character object
@@ -253,9 +267,12 @@
             this.skinColors = charactersJson.skinColors;
             this.hairColors = charactersJson.hairColors;
             this.defaultCharacterColors = charactersJson.defaultColors;
+
         },
         mounted() {
-            this.setTimeOut();
+            document.addEventListener('DOMContentLoaded', () => {
+            });
+            this.setTimeOut("continue");
             localStorage.clear();
             this.setDiseaseToAnimate();
             this.setVoiceToPlay();
@@ -299,7 +316,7 @@
         width: auto; */
         text-decoration: underline;
     }
-    button#continue, p#contextualInfo, p#finalInfo {
+    button#continueAnimation, p#contextualInfo, p#finalInfo {
         animation: appearanceAnim;
         /* animation: appearanceAnim 2s ease-in-out; */
         -webkit-animation-name: appearanceAnim; /* Safari 4.0 - 8.0 */
