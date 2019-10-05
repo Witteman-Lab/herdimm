@@ -90,8 +90,6 @@
             labelSelected: String,
             diseaseToPlay : String,
             voiceToPlay: String
-
-
         },
         methods: {
 
