@@ -69,7 +69,7 @@ const charactersList = (characterList) => {
             hairColor: character.colors.hairFront,
             glassesId: character.colors.glasses,
             beardsId: character.colors.beards,
-            attTime: character.attTime
+            characterTime: character.characterTime
         };
         characterDbList.push(characterObject);
     });

@@ -80,7 +80,7 @@
                 gender : "",
                 totalTime: 0,
                 startTime: Date.now(),
-                attTime: 0
+                characterTime: 0
 
             };
         },
@@ -88,10 +88,26 @@
         },
         methods: {
 
-            setTimeOut(){
+            /**
+             * ---> calculate total time spend for a user
+             * @param  none
+             * @return none
+             */
+            calculateTotalTime(){
                 let endTime = Date.now();
                 let  spendTime = Math.round((endTime - this.startTime));
                 this.totalTime = spendTime;
+            },
+            /**
+             * ---> Launch modal with the given character object
+             * @param {Object} character
+             * @return none
+             */
+            calculateTimeForACharacter(){
+                // let startCharacterTime = Date.now()
+                // let endTime = Date.now();
+                // let  spendTime = Math.round((endTime - this.startTime));
+                // this.totalTime = spendTime;
             },
             /**
              * ---> Launch modal with the given character object
@@ -127,7 +143,7 @@
                 this.totalCreated++;
                 this.manageCharacterCount();
                 this.$refs.listToFill.addCharacterToGroup(character,
-                    colors, this.getCurrentCharacterType(this.totalCreated), this.totalTime);
+                    colors, this.getCurrentCharacterType(this.totalCreated), this.characterTime);
                 if (this.$refs.listToFill.getCharacterListSize() === this.maxCharactersInGroup) {
                     this.isGroupComplete = true;
                 }
@@ -192,7 +208,7 @@
              */
             loadAnimationView() {
                 let groupCharacter = this.$refs.listToFill.getCharacterList();
-                this.setTimeOut();
+                this.calculateTotalTime();
                 this.$router.push({name: 'Animation', params:{group: groupCharacter, labelSelected: this.labels.currentLanguage, diseaseToPlay: this.diseaseHome, voiceToPlay: this.gender, totalTime:[this.totalTime]}});
                 localStorage.setItem("currentLanguage", this.labels.currentLanguage);
                 localStorage.setItem("gender", this.gender);
@@ -260,6 +276,7 @@
             localStorage.clear();
             this.setDiseaseToAnimate();
             this.setVoiceToPlay();
+            this.calculateTimeForACharacter();
         }
     }
 </script>

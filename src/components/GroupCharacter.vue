@@ -53,10 +53,10 @@
              * @param {String} type
              * @return none
              */
-            addCharacterToGroup(character, characterColors, type,timeSpendMYG) {
+            addCharacterToGroup(character, characterColors, type, characterTime) {
                 this.setCharacterCategory(type);
                 this.characterList.push({id: character.id + this.characterList.length + "_customised",
-                    file: character.file, colors: characterColors, characterType: type, attTime: timeSpendMYG});
+                    file: character.file, colors: characterColors, characterType: type, characterTime: characterTime});
             },
 
             /**
