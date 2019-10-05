@@ -85,7 +85,7 @@
             labelSelected: String,
             diseaseToPlay : String,
             voiceToPlay: String,
-            timeSpendMYG: Array
+            totalTime: Array
 
 
 
@@ -94,7 +94,7 @@
 
             sendCharactersToApi(chosenDB) {
                 const url =`http://localhost:8081/api/${chosenDB}/herdimm`;
-                let dataSent = {group: JSON.parse(localStorage.getItem("group")), timeSpend: JSON.parse(localStorage.getItem("timeSpendMYG"))}
+                let dataSent = {group: JSON.parse(localStorage.getItem("group")), totalTime: JSON.parse(localStorage.getItem("totalTime"))}
                 fetch(url, {
                     method: 'POST',
                     mode: 'cors',
@@ -177,7 +177,7 @@
                     // For every element in each row
                     for (let j = 0; j < shapesArray.ShapesArrayList[i].length; j++) {
                         let shapeValue = shapesArray.ShapesArrayList[i][j];
-                        let shapeObj = new Object();
+                        let shapeObj = {};
 
                         // Give the object a className
                         switch(shapeValue) {
@@ -872,7 +872,7 @@
             // Fetch the group member if it exists
             if (this.group) {
                 localStorage.setItem("group", JSON.stringify(this.group));
-                localStorage.setItem("timeSpendMYG", JSON.stringify(this.timeSpendMYG));
+                localStorage.setItem("totalTime", JSON.stringify(this.totalTime));
                 localStorage.setItem("language", this.labelSelected);
                 localStorage.setItem("disease", this.diseaseToPlay);
                 localStorage.setItem("voice", this.voiceToPlay);

@@ -78,7 +78,7 @@
                 defaultCharacterColors: {},
                 diseaseHome:"",
                 gender : "",
-                timeSpendMYG: 0,
+                totalTime: 0,
                 startTime: Date.now(),
                 attTime: 0
 
@@ -91,7 +91,7 @@
             setTimeOut(){
                 let endTime = Date.now();
                 let  spendTime = Math.round((endTime - this.startTime));
-                this.timeSpendMYG = spendTime;
+                this.totalTime = spendTime;
             },
             /**
              * ---> Launch modal with the given character object
@@ -116,7 +116,7 @@
                 this.$refs.modal.openModal(index, character, this.totalCreated,
                     charactersJson.nbVulnerable, charactersJson.nbAvatar, true,  this.labels.editAvatar);
             },
-
+            //add element to character
             /**
              * ---> Update Home information and add the character to the groupList
              * @param {Object} character
@@ -126,10 +126,8 @@
             saveCharacter(character, colors) {
                 this.totalCreated++;
                 this.manageCharacterCount();
-                //add element to character
-                console.log(character);
                 this.$refs.listToFill.addCharacterToGroup(character,
-                    colors, this.getCurrentCharacterType(this.totalCreated), this.timeSpendMYG);
+                    colors, this.getCurrentCharacterType(this.totalCreated), this.totalTime);
                 if (this.$refs.listToFill.getCharacterListSize() === this.maxCharactersInGroup) {
                     this.isGroupComplete = true;
                 }
@@ -195,7 +193,7 @@
             loadAnimationView() {
                 let groupCharacter = this.$refs.listToFill.getCharacterList();
                 this.setTimeOut();
-                this.$router.push({name: 'Animation', params:{group: groupCharacter, labelSelected: this.labels.currentLanguage, diseaseToPlay: this.diseaseHome, voiceToPlay: this.gender,timeSpendMYG:[this.timeSpendMYG]}});
+                this.$router.push({name: 'Animation', params:{group: groupCharacter, labelSelected: this.labels.currentLanguage, diseaseToPlay: this.diseaseHome, voiceToPlay: this.gender, totalTime:[this.totalTime]}});
                 localStorage.setItem("currentLanguage", this.labels.currentLanguage);
                 localStorage.setItem("gender", this.gender);
             },

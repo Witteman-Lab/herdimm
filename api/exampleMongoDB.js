@@ -18,17 +18,17 @@ const saveCharacters = (request, response) => {
 
     // create schema instance which will save the datas
     var characterDB = new characterSchema();
-    var spentTimeMYG = new mygSchema();
+    var totalTimeMYG = new mygSchema();
 
     // response for the client (herdimm application)
     var res = {};
 
     // character list created with the same element as the characterSchema
     const characterList = charactersList(request.body.group);
-    const spentTime = mygSpentTime(request.body.timeSpend);
+    const spentTime = mygSpentTime(request.body.totalTime);
 
-    //  add all elements from character list in the db
-    spentTimeMYG.collection.insert(spentTime, function (err, docs) {
+    //  add all elements from spent time in the db
+    totalTimeMYG.collection.insert(spentTime, function (err, docs) {
         if (err) {
             return console.error(err);
         } else {
@@ -76,12 +76,18 @@ const charactersList = (characterList) => {
     return characterDbList;
 };
 
-const mygSpentTime = (spentTimeList) => {
-    let mygSpentTimeDB = {
+/**
+ * Create a list of total time spend based on the schema
+ * with the total time list sent by the herdimm app
+ * @param characterList
+ * @returns []
+ */
+const mygSpentTime = (totalTimeList) => {
+    let totalTimeDB = {
         userId: userId,
-        creationTime: spentTimeList[0]
+        totalTime: totalTimeList[0]
     };
-    return mygSpentTimeDB;
+    return totalTimeDB;
 
 };
 
