@@ -6,7 +6,6 @@
         <!-- <div id="captions">
             <p id="caption"></p>
         </div> -->
-
         <!-- Where to draw the lines for infection spreading  -->
         <div class="draw" id="draw">
             <svg class="connections" ref="connections" id="connections"></svg>
@@ -86,7 +85,8 @@
             labelSelected: String,
             diseaseToPlay : String,
             voiceToPlay: String,
-            timeSpendMYG: Number
+            timeSpendMYG: Array
+
 
 
         },
@@ -94,13 +94,14 @@
 
             sendCharactersToApi(chosenDB) {
                 const url =`http://localhost:8081/api/${chosenDB}/herdimm`;
+                let dataSent = {group: JSON.parse(localStorage.getItem("group")), timeSpend: JSON.parse(localStorage.getItem("timeSpendMYG"))}
                 fetch(url, {
                     method: 'POST',
                     mode: 'cors',
                     headers: {
                         'Content-Type': 'application/json;charset=utf-8'
                     },
-                    body: localStorage.getItem("group")
+                    body: JSON.stringify(dataSent)
                 }).then((response) => console.log(response));
             },
 
@@ -871,6 +872,7 @@
             // Fetch the group member if it exists
             if (this.group) {
                 localStorage.setItem("group", JSON.stringify(this.group));
+                localStorage.setItem("timeSpendMYG", JSON.stringify(this.timeSpendMYG));
                 localStorage.setItem("language", this.labelSelected);
                 localStorage.setItem("disease", this.diseaseToPlay);
                 localStorage.setItem("voice", this.voiceToPlay);

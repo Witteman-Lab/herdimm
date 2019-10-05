@@ -80,6 +80,7 @@
                 gender : "",
                 timeSpendMYG: 0,
                 startTime: Date.now(),
+                attTime: 0
 
             };
         },
@@ -125,8 +126,10 @@
             saveCharacter(character, colors) {
                 this.totalCreated++;
                 this.manageCharacterCount();
+                //add element to character
+                console.log(character);
                 this.$refs.listToFill.addCharacterToGroup(character,
-                    colors, this.getCurrentCharacterType(this.totalCreated));
+                    colors, this.getCurrentCharacterType(this.totalCreated), this.timeSpendMYG);
                 if (this.$refs.listToFill.getCharacterListSize() === this.maxCharactersInGroup) {
                     this.isGroupComplete = true;
                 }
@@ -192,8 +195,7 @@
             loadAnimationView() {
                 let groupCharacter = this.$refs.listToFill.getCharacterList();
                 this.setTimeOut();
-                this.$router.push(
-                    {name: 'Animation', params:{group: groupCharacter, labelSelected: this.labels.currentLanguage, diseaseToPlay: this.diseaseHome, voiceToPlay: this.gender}});
+                this.$router.push({name: 'Animation', params:{group: groupCharacter, labelSelected: this.labels.currentLanguage, diseaseToPlay: this.diseaseHome, voiceToPlay: this.gender,timeSpendMYG:[this.timeSpendMYG]}});
                 localStorage.setItem("currentLanguage", this.labels.currentLanguage);
                 localStorage.setItem("gender", this.gender);
             },

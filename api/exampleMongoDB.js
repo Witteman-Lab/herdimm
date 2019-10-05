@@ -18,12 +18,23 @@ const saveCharacters = (request, response) => {
 
     // create schema instance which will save the datas
     var characterDB = new characterSchema();
+    var spentTimeMYG = new mygSchema();
 
     // response for the client (herdimm application)
     var res = {};
 
     // character list created with the same element as the characterSchema
-    const characterList = charactersList(request.body);
+    const characterList = charactersList(request.body.group);
+    const spentTime = mygSpentTime(request.body.timeSpend);
+
+    //  add all elements from character list in the db
+    spentTimeMYG.collection.insert(spentTime, function (err, docs) {
+        if (err) {
+            return console.error(err);
+        } else {
+            console.log("Spent time added to collection");
+        }
+    });
 
     //  add all elements from character list in the db
     characterDB.collection.insertMany(characterList, function (err, docs) {
@@ -47,6 +58,7 @@ const charactersList = (characterList) => {
     const characterDbList = [];
     // let userId = Math.floor(Math.random() * 1000000);
     characterList.forEach((character) => {
+        console.log(character);
         var characterObject = {
             userId: userId,
             name: character.colors.name,
@@ -56,11 +68,21 @@ const charactersList = (characterList) => {
             faceColor: character.colors.face,
             hairColor: character.colors.hairFront,
             glassesId: character.colors.glasses,
-            beardsId: character.colors.beards
+            beardsId: character.colors.beards,
+            attTime: character.attTime
         };
         characterDbList.push(characterObject);
     });
     return characterDbList;
+};
+
+const mygSpentTime = (spentTimeList) => {
+    let mygSpentTimeDB = {
+        userId: userId,
+        creationTime: spentTimeList[0]
+    };
+    return mygSpentTimeDB;
+
 };
 
 router.post('/herdimm', saveCharacters);
