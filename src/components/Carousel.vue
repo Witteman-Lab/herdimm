@@ -3,7 +3,8 @@
         <div>
             <v-stepper v-model="e1" class="stepper" :vertical="false" :alt-labels="true">
                 <div style="display: flex;justify-content: flex-end;">
-                    <button class="delete" style="margin: 5px 10px 5px 5px;" aria-label="close modal" v-on:click="this.onBoarding"></button>
+                    <button class="delete" style="margin: 5px 10px 5px 5px; background-color: red;" aria-label="close modal" v-on:click="this.onBoarding">
+                    </button>
                 </div>
                 <v-stepper-header>
                     <v-stepper-step class="stepper-step" @click="e1 = 1" :complete="e1 > 1" step="1">{{this.labels.stepText1}}</v-stepper-step>
@@ -46,7 +47,6 @@
                             <v-btn  color="primary" @click="e1 = 2">{{this.labels.continueBtn}}</v-btn>
                         </div>
                     </v-stepper-content>
-
                     <!-- stepper-content 2 -->
                     <v-stepper-content step="2">
                         <v-card color="#2196F3">
@@ -206,6 +206,7 @@
                     this.onBoarding();
                   }
             });
+            console.log(this.labels.sourceImage);
         }
 
     }

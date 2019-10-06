@@ -59,6 +59,7 @@
     "stepText8" : "Step 8",
     "stepText9" : "Step 9",
     "tutorial"  : "tutorial",
+    "sourceImage": "../assets/Image/En/",
 
     "vulnerableOptions": [
       {
