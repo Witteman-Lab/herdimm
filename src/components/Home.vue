@@ -87,8 +87,7 @@
 
             };
         },
-        props: {
-        },
+        props: {},
         methods: {
 
             /**
@@ -135,16 +134,19 @@
                 this.manageCharacterCount();
                 this.$refs.listToFill.addCharacterToGroup(character,
                     colors, this.getCurrentCharacterType(this.totalCreated));
+
                 if (this.$refs.listToFill.getCharacterListSize() === this.maxCharactersInGroup) {
                     this.isGroupComplete = true;
                 }
 
                 window.scrollTo(0, document.body.scrollHeight);
-                if(this.totalCreated <this.maxCharactersInGroup)
+
+                if(this.totalCreated <this.maxCharactersInGroup) {
                     setTimeout(() => {
-                            window.scrollTo({ top: 0, behavior: 'smooth', x: 0})
-                        },
-                        parseInt(charactersJson.scrollingTimeControl));
+                        window.scrollTo({ top: 0, behavior: 'smooth', x: 0})
+                    },
+                    parseInt(charactersJson.scrollingTimeControl));
+                }
             },
 
             /**
@@ -173,11 +175,31 @@
                 }
             },
 
+            /**
+             * ---> TO-DO
+             * @return none
+             */
+            setLanguage() {
+                if (this.$route.query.lang === "fr") {
+                    // Use French language
+                } else {
+                    // Use English language
+                }
+            },
+
+            /**
+             * --->
+             * @return none
+             */
             setDiseaseToAnimate() {
                 if (this.$route.query.d === "flu" ||  this.$route.query.d === "measles" || this.$route.query.d === "pertussis")
                     this.diseaseHome = this.$route.query.d;
             },
 
+            /**
+             * --->
+             * @return none
+             */
             setVoiceToPlay() {
                 if (this.$route.query.v === "male" ||  this.$route.query.v === "female")
                     this.gender = this.$route.query.v;
@@ -223,7 +245,7 @@
              *  @return {number}
              */
             getRandomInt(value){
-                return Math.floor(Math.random()*Math.floor(value));
+                return Math.floor(Math.random() * Math.floor(value));
             },
 
             /**
@@ -233,9 +255,11 @@
              */
             changeLanguage() {
                 if (this.isLanguageChanged)
-                    this.labels = textsFr;
-                else
                     this.labels = textsEng;
+                    //this.labels = textsFr;
+                else
+                    this.labels = textsFr;
+                    //this.labels = textsEng;
                 this.isLanguageChanged = !this.isLanguageChanged;
                 this.manageCharacterCount();
                 this.$forceUpdate();
@@ -249,7 +273,7 @@
          */
         created() {
             this.characterList = charactersJson.characters;
-            this.labels = textsEng;
+            this.labels = textsFr;
             this.maxCharactersInGroup = charactersJson.nbAvatar + charactersJson.nbVulnerable + charactersJson.nbCommunity;
             this.contextualInfo = this.labels.contextualInfoAvatar;
             this.facialHairList = facialHairJson.beards;
@@ -262,6 +286,7 @@
             localStorage.clear();
             this.setDiseaseToAnimate();
             this.setVoiceToPlay();
+            //this.setLanguage();
         }
     }
 </script>
