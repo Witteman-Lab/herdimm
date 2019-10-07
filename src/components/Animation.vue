@@ -1030,18 +1030,17 @@
         }
     }
 
-    .captions{
+    .captions {
         background: #666666;
         opacity: 0.8;
         border: 1px solid #666666;
         border-radius: 8px;
         filter: alpha(opacity=50);
         z-index: 999999;
-        position: absolute;
+        position: fixed;
         left: 10%;
         right: 10%;
-        bottom: 0;
-
+        bottom: 0%;
     }
 
     .paragraph{
