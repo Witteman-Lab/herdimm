@@ -3,10 +3,12 @@
         <div>
             <v-stepper v-model="e1" class="stepper" :vertical="false" :alt-labels="true">
                 <div style="display: flex;justify-content: flex-end;">
-                    <button class="delete" style="margin: 5px 10px 5px 5px; background-color: red;" aria-label="close modal" v-on:click="this.onBoarding">
-                    </button>
+                    <button id="btnCloseOnBoarding" class="delete" aria-label="close modal" v-on:click="this.closeOnBoarding"></button>
                 </div>
                 <v-stepper-header>
+
+                    <!-- TODO: This could probably be optimized using v-for and configuration parameters (e.g. number of steps, etc.) -->
+
                     <v-stepper-step class="stepper-step" @click="e1 = 1" :complete="e1 > 1" step="1">{{this.labels.stepText1}}</v-stepper-step>
                     <v-divider ></v-divider>
 
@@ -37,119 +39,114 @@
 
 
                 <v-stepper-items>
+                    <!-- TODO: This could probably be optimized using v-for and configuration parameters (e.g. number of steps, etc.) -->
+
                     <!-- stepper-content 1 -->
                     <v-stepper-content step="1">
                         <v-card class="mb-12" color="#2196F3" >
-                            <p style="font-size: xx-large; padding: 10%; text-align: center; vertical-align: middle;" class="text-presentation">{{this.labels.step1}}</p>
+                            <p class="text-presentation" id="text-presentation_intro">{{this.labels.step1}}</p>
                         </v-card>
                         <div class="btn-group">
-                            <v-btn  color="secondary" v-on:click="this.onBoarding" >{{this.labels.cancelBtn}}</v-btn>
-                            <v-btn  color="primary" @click="e1 = 2">{{this.labels.continueBtn}}</v-btn>
+                            <v-btn color="secondary" v-on:click="this.closeOnBoarding">{{this.labels.cancelBtn}}</v-btn>
+                            <v-btn color="primary" @click="e1 = 2">{{this.labels.continueBtn}}</v-btn>
                         </div>
                     </v-stepper-content>
+
                     <!-- stepper-content 2 -->
                     <v-stepper-content step="2">
                         <v-card color="#2196F3">
-                            <img src="../assets/Image/Image1.jpg" alt="My Picture">
+                            <img src="../assets/Image/Fr/image1.png" :alt="this.labels.step2">
                             <p class="text-presentation">{{this.labels.step2}}</p>
                         </v-card>
-                        <div class="btn-group" style="padding: 0 0 0 0">
-                            <v-btn  color="secondary" @click="e1 = 1" >{{this.labels.backBtn}}</v-btn>
+                        <div class="btn-group">
+                            <v-btn color="secondary" @click="e1 = 1" >{{this.labels.backBtn}}</v-btn>
                             <v-btn color="primary" @click="e1 = 3">{{this.labels.continueBtn}}</v-btn>
                         </div>
                     </v-stepper-content>
 
-
                     <!-- stepper-content 3 -->
                     <v-stepper-content step="3">
                         <v-card color="#2196F3" >
-                            <img src="../assets/Image/Image2.jpg" alt="My Picture">
+                            <img src="../assets/Image/Fr/image2.png" :alt="this.labels.step3">
                             <p class="text-presentation">{{this.labels.step3}}</p>
                         </v-card>
-                        <div class="btn-group" style="padding: 0 0 0 0">
-                        <v-btn  color="secondary" @click="e1 = 2" >{{this.labels.backBtn}}</v-btn>
+                        <div class="btn-group">
+                        <v-btn color="secondary" @click="e1 = 2" >{{this.labels.backBtn}}</v-btn>
                         <v-btn color="primary" @click="e1 = 4">{{this.labels.continueBtn}}</v-btn>
                         </div>
                     </v-stepper-content>
 
-
-
-                    <!-- stepper-content 3 -->
+                    <!-- stepper-content 4 -->
                     <v-stepper-content step="4">
                         <v-card color="#2196F3" >
-                            <img src="../assets/Image/Image3.jpg" alt="My Picture">
+                            <img src="../assets/Image/Fr/image3.png" :alt="this.labels.step4">
                             <p class="text-presentation">{{this.labels.step4}}</p>
                         </v-card>
-                        <div class="btn-group" style="padding: 0 0 0 0">
-                        <v-btn  color="secondary" @click="e1 = 3" >{{this.labels.backBtn}}</v-btn>
+                        <div class="btn-group">
+                        <v-btn color="secondary" @click="e1 = 3" >{{this.labels.backBtn}}</v-btn>
                         <v-btn color="primary" @click="e1 = 5">{{this.labels.continueBtn}}</v-btn>
                         </div>
                     </v-stepper-content>
 
-
-                    <!-- stepper-content 3 -->
+                    <!-- stepper-content 5 -->
                     <v-stepper-content step="5">
                         <v-card color="#2196F3">
-                            <img src="../assets/Image/Image4.jpg" alt="My Picture">
-                            <p style="font-size: 20px;margin: 1px;" class="text-presentation">{{this.labels.step5}}</p>
+                            <img src="../assets/Image/Fr/image4.png" :alt="this.labels.step5">
+                            <p class="text-presentation">{{this.labels.step5}}</p>
                         </v-card>
-                        <div class="btn-group" style="padding: 20px 0 0 0">
+                        <div class="btn-group">
                         <v-btn color="secondary" @click="e1 = 4" >{{this.labels.backBtn}}</v-btn>
                         <v-btn color="primary" @click="e1 = 6">{{this.labels.continueBtn}}</v-btn>
                         </div>
                     </v-stepper-content>
 
-
-
-                    <!-- stepper-content 3 -->
+                    <!-- stepper-content 6 -->
                     <v-stepper-content step="6">
                         <v-card color="#2196F3" >
-                            <img src="../assets/Image/Image5.jpg" alt="My Picture">
-                            <p style="font-size: 16px;" class="text-presentation">{{this.labels.step6}}</p>
+                            <img src="../assets/Image/Fr/image5.png" :alt="this.labels.step6">
+                            <p class="text-presentation">{{this.labels.step6}}</p>
                         </v-card>
-                        <div class="btn-group" style="padding: 10px 0 0 0">
-                        <v-btn  color="secondary" @click="e1 = 5" >{{this.labels.backBtn}}</v-btn>
+                        <div class="btn-group">
+                        <v-btn color="secondary" @click="e1 = 5" >{{this.labels.backBtn}}</v-btn>
                         <v-btn color="primary" @click="e1 = 7">{{this.labels.continueBtn}}</v-btn>
                         </div>
                     </v-stepper-content>
 
-                    <!-- stepper-content 3 -->
+                    <!-- stepper-content 7 -->
                     <v-stepper-content step="7">
                         <v-card color="#2196F3">
-                            <img src="../assets/Image/Image6.jpg" alt="My Picture">
+                            <img src="../assets/Image/Fr/image6.png" :alt="this.labels.step7">
                             <p class="text-presentation">{{this.labels.step7}}</p>
                         </v-card>
-                        <div class="btn-group" style="padding: 10px 0 0 0">
-                        <v-btn  color="secondary" @click="e1 = 6" >{{this.labels.backBtn}}</v-btn>
+                        <div class="btn-group">
+                        <v-btn color="secondary" @click="e1 = 6" >{{this.labels.backBtn}}</v-btn>
                         <v-btn color="primary" @click="e1 = 8">{{this.labels.continueBtn}}</v-btn>
                         </div>
                     </v-stepper-content>
 
-
-                    <!-- stepper-content 3 -->
+                    <!-- stepper-content 8 -->
                     <v-stepper-content step="8">
                         <v-card color="#2196F3" >
-                            <img src="../assets/Image/Image7.jpg" alt="My Picture">
+                            <img src="../assets/Image/Fr/image7.png" :alt="this.labels.step8">
                             <p class="text-presentation">{{this.labels.step8}}</p>
                         </v-card>
-                        <div class="btn-group" style="padding: 10px 0 0 0">
-                        <v-btn  color="secondary" @click="e1 = 7" >{{this.labels.backBtn}}</v-btn>
+                        <div class="btn-group">
+                        <v-btn color="secondary" @click="e1 = 7" >{{this.labels.backBtn}}</v-btn>
                         <v-btn color="primary" @click="e1 = 9">{{this.labels.continueBtn}}</v-btn>
                         </div>
                     </v-stepper-content>
 
-                    <!-- stepper-content 3 -->
+                    <!-- stepper-content 9 -->
                     <v-stepper-content step="9">
                         <v-card color="#2196F3" >
-                            <img src="../assets/Image/Image8.jpg" alt="My Picture">
+                            <img src="../assets/Image/Fr/image8.png" :alt="this.labels.step9">
                             <p class="text-presentation">{{this.labels.step9}}</p>
                         </v-card>
-                        <div class="btn-group" style="padding: 10px 0 0 0">
-                        <v-btn  color="secondary" @click="e1 = 8" >{{this.labels.backBtn}}</v-btn>
-                        <v-btn color="primary" v-on:click="this.onBoarding" >{{this.labels.letsGetStart}}</v-btn>
+                        <div class="btn-group">
+                        <v-btn color="secondary" @click="e1 = 8" >{{this.labels.backBtn}}</v-btn>
+                        <v-btn color="primary" v-on:click="this.closeOnBoarding" >{{this.labels.letsGetStart}}</v-btn>
                         </div>
                     </v-stepper-content>
-
                 </v-stepper-items>
             </v-stepper>
 
@@ -171,8 +168,10 @@
                 e1: 0
             }
         },
-        props:{
-            labels: Object
+
+        props: {
+            labels: Object,
+            lang: String
         },
 
         methods: {
@@ -190,25 +189,20 @@
              * @param none
              * @return none
              */
-            onBoarding() {
+            closeOnBoarding() {
                 this.isActive = false;
                 this.e1 = 0;
             }
         },
-        created(){
-
-        },
+        created(){},
         mounted(){
-            // this.resetVulnerableOption();
             document.body.addEventListener('keyup', e => {
                 // Escape key to close the modal window (customizer)
                 if (e.keyCode === 27 && this.isActive) {
-                    this.onBoarding();
-                  }
+                    this.closeOnBoarding();
+                }
             });
-            console.log(this.labels.sourceImage);
         }
-
     }
 </script>
 
@@ -241,9 +235,18 @@
     .text-presentation{
         text-align: center;
         color: white ;
-        font-size: x-large;
+        font-size: 1.2rem;
+        vertical-align: middle;
+        padding: 5px;
+    }
+
+    #text-presentation_intro {
+        font-size: xx-large;
+        padding: 10%;
+        text-align: center;
         vertical-align: middle;
     }
+
 
     .btn-group{
         display: grid;
@@ -251,5 +254,10 @@
         grid-template-columns: auto auto;
         /*background-color: #2196F3;*/
         padding: 1vh;
+    }
+
+    #btnCloseOnBoarding {
+        margin: 5px 10px 5px 5px;
+        background-color: red;
     }
 </style>
