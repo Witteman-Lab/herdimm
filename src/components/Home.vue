@@ -176,14 +176,12 @@
             },
 
             /**
-             * ---> TO-DO
+             * ---> Check if the language in query is fr and change the language to english it's that the case
              * @return none
              */
             setLanguage() {
-                if (this.$route.query.lang === "fr") {
-                    // Use French language
-                } else {
-                    // Use English language
+                if (this.$route.query.lang !== "fr") {
+                    this.changeLanguage()
                 }
             },
 
@@ -286,7 +284,7 @@
             localStorage.clear();
             this.setDiseaseToAnimate();
             this.setVoiceToPlay();
-            //this.setLanguage();
+            this.setLanguage();
         }
     }
 </script>
