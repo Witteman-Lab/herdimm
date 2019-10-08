@@ -36,28 +36,77 @@
     "reason" : "Raisons",
     "vulnerableDescription" : "Pourquoi cette personne est-elle plus à risque? Cette personne est : (cochez tout ce qui s'applique)",
     "commentary" : "--------------------------------- Carousel.vue  -------------------------------------------------",
-    "step1": "Tutoriel d'instructions pour la création d'avatars.",
-    "step2": "Choisir et personnaliser un avatar pour vous représenter.",
-    "step3": "Entrez votre nom.",
-    "step4": "Choisissez votre teint de peau.",
-    "step5": "Choisissez votre couleur de cheveux. Sélectionnez les accessoires (lunettes, poils faciaux) si vous le souhaitez et sauvegardez votre avatar.",
-    "step6": "Maintenant, choisissez et personnalisez 2 avatars de personnes autour de vous qui sont plus à risque s'ils tombent malades : bébés ou enfants, personnes âgées, personnes souffrant d'un problème de santé (cancer, diabète, asthme, etc.) ou personnes qui ont d'autres risques sanitaires.",
-    "step7": "Enfin, choisissez et personnalisez 6 autres avatars. Ils représentent d'autres personnes autour de vous.",
-    "step8": "Une fois les 9 avatars créés, cliquez ou appuyez sur le bouton vert pour accéder à l'animation.",
-    "step9": "Cliquez sur le bouton vert pour démarrer l'animation.",
+    "stepsDescription" : [
+        {
+            "description": "Tutoriel d'instructions pour la création d'avatars.",
+            "image" : "",
+            "prevButton" : "Annuler",
+            "nextButton" : "Continuer"
+        },
+        {
+            "description": "Choisir et personnaliser un avatar pour vous représenter.",
+            "image" : "image1.png",
+            "prevButton" : "Retour",
+            "nextButton" : "Continuer"
+        },
+        {
+            "description": "Entrez votre nom.",
+            "image" : "image2.png",
+            "prevButton" : "Retour",
+            "nextButton" : "Continuer"
+        },
+        {
+            "description": "Choisissez votre teint de peau.",
+            "image" : "image3.png",
+            "prevButton" : "Retour",
+            "nextButton" : "Continuer"
+        },
+        {
+            "description": "Choisissez votre couleur de cheveux. Sélectionnez les accessoires (lunettes, poils faciaux) si vous le souhaitez et sauvegardez votre avatar.",
+            "image" : "image4.png",
+            "prevButton" : "Retour",
+            "nextButton" : "Continuer"
+        },
+        {
+            "description": "Maintenant, choisissez et personnalisez 2 avatars de personnes autour de vous qui sont plus à risque s'ils tombent malades : bébés ou enfants, personnes âgées, personnes souffrant d'un problème de santé (cancer, diabète, asthme, etc.) ou personnes qui ont d'autres risques sanitaires.",
+            "image" : "image5.png",
+            "prevButton" : "Retour",
+            "nextButton" : "Continuer"
+        },
+        {
+            "description": "Enfin, choisissez et personnalisez 6 autres avatars. Ils représentent d'autres personnes autour de vous.",
+            "image" : "image6.png",
+            "prevButton" : "Retour",
+            "nextButton" : "Continuer"
+        },
+        {
+            "description": "Une fois les 9 avatars créés, cliquez ou appuyez sur le bouton vert pour accéder à l'animation.",
+            "image" : "image7.png",
+            "prevButton" : "Retour",
+            "nextButton" : "Continuer"
+        },
+        {
+            "description": "Cliquez sur le bouton vert pour démarrer l'animation.",
+            "image" : "image8.png",
+            "prevButton" : "Retour",
+            "nextButton" : "Commençons"
+        }
+    ],
     "continueBtn" : "Continuer",
     "cancelBtn" : "Annuler",
     "backBtn" : "Retour",
     "letsGetStart" : "Commençons",
-    "stepText1" : "Étape 1",
-    "stepText2" : "Étape 2",
-    "stepText3" : "Étape 3",
-    "stepText4" : "Étape 4",
-    "stepText5" : "Étape 5",
-    "stepText6" : "Étape 6",
-    "stepText7" : "Étape 7",
-    "stepText8" : "Étape 8",
-    "stepText9" : "Étape 9",
+    "stepsTitle" : [
+        {"stepText" : "Étape 1"},
+        {"stepText" : "Étape 2"},
+        {"stepText" : "Étape 3"},
+        {"stepText" : "Étape 4"},
+        {"stepText" : "Étape 5"},
+        {"stepText" : "Étape 6"},
+        {"stepText" : "Étape 7"},
+        {"stepText" : "Étape 8"},
+        {"stepText" : "Étape 9"}
+    ],
     "tutorial"  : "tutoriel",
     "sourceImage": "../assets/Image/Fr/",
 
