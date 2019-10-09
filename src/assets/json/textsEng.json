@@ -92,10 +92,7 @@
             "nextButton" : "Let's get started"
         }
     ],
-    "continueBtn" : "Continue",
-    "cancelBtn" : "Cancel",
-    "backBtn" : "Back",
-    "letsGetStart" : "Let's get started",
+    "closeBtnTitle" : "Close tutorial (Escape key)",
     "stepsTitle" : [
         {"stepText" : "Step 1"},
         {"stepText" : "Step 2"},

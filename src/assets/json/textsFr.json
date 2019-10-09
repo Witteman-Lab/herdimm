@@ -92,10 +92,7 @@
             "nextButton" : "Commençons"
         }
     ],
-    "continueBtn" : "Continuer",
-    "cancelBtn" : "Annuler",
-    "backBtn" : "Retour",
-    "letsGetStart" : "Commençons",
+    "closeBtnTitle" : "Fermer le tutoriel (Touche Escape)",
     "stepsTitle" : [
         {"stepText" : "Étape 1"},
         {"stepText" : "Étape 2"},
