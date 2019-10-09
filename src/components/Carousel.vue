@@ -2,37 +2,40 @@
     <div class="modal-background" v-if="isActive">
         <div>
             <v-stepper v-model="e1" class="stepper" :vertical="false" :alt-labels="true">
+
+                <!-- Button to close the modal window (stepper) -->
                 <div style="display: flex;justify-content: flex-end;">
-                    <button id="btnCloseOnBoarding" class="delete" aria-label="close modal" v-on:click="this.closeOnBoarding"></button>
+                    <button id="btnCloseOnBoarding" class="delete" aria-label="close modal" v-on:click="this.closeOnBoarding" :title="this.labels.closeBtnTitle"></button>
                 </div>
+
+                <!-- Stepper headers -->
                 <v-stepper-header>
                     <div style="display: contents;" v-for="(step, index) in this.labels.stepsTitle">
                         <v-stepper-step class="stepper-step" @click="e1 = index + 1" :complete="e1 > index" :step="index + 1">{{step.stepText}}</v-stepper-step>
-                        <v-divider v-if="index < 8"></v-divider>
-                        <!-- need to change value -->
+                        <!-- Add n number of dividers based on the number of steps involved in the tutorial (minus 1) -->
+                        <v-divider v-if="index < numberOfSteps - 1"></v-divider>
                     </div>
                 </v-stepper-header>
 
-
-
+                <!-- Stepper items -->
                 <v-stepper-items>
                     <div v-for="(step, index) in this.labels.stepsDescription">
                         <v-stepper-content :step="index + 1">
-                                    <img v-if="index > 0" style="max-width: 80%" :src="require(`../assets/Image/En/${step.image}`)"
-                                         :alt="'Reload your browser'">
-                                    <v-card color="#2196F3">
-                                        <p v-if="index === 0" class="text-presentation" :style="index === 0 ? 'height: 32vh;' : ''">{{step.description}}</p>
-                                        <p v-if="index > 0" class="text-presentation" :style="index === 5 ? 'font-size: 1rem;' : ''">{{step.description}}</p>
-                                    </v-card>
-                                    <div class="btn-group" style="padding: 0">
-                                        <v-btn color="secondary" @click="changeCurrentView(index)">{{step.prevButton}}</v-btn>
-                                        <v-btn color="primary" @click="changeCurrentView(index + 2)">{{step.nextButton}}</v-btn>
-                                    </div>
+                            <!-- TODO: We need to make that section adapt to the language selected -->
+                            <img v-if="index > 0" style="max-width: 80%" :src="require(`../assets/Image/En/${step.image}`)"
+                                 :alt="step.description">
+                            <v-card color="#2196F3">
+                                <p v-if="index === 0" class="text-presentation" :style="index === 0 ? 'height: 32vh;' : ''">{{step.description}}</p>
+                                <p v-if="index > 0" class="text-presentation" :style="index === 5 ? 'font-size: 1rem;' : ''">{{step.description}}</p>
+                            </v-card>
+                            <div class="btn-group" style="padding: 0">
+                                <v-btn color="secondary" @click="changeCurrentView(index)">{{step.prevButton}}</v-btn>
+                                <v-btn color="primary" @click="changeCurrentView(index + 2)">{{step.nextButton}}</v-btn>
+                            </div>
                         </v-stepper-content>
                     </div>
                 </v-stepper-items>
             </v-stepper>
-
         </div>
     </div>
 </template>
@@ -44,8 +47,9 @@
         data () {
             return {
                 isActive : true,
-                e1: 1,
-                nbrOfView: 9
+                e1 : 1,
+                // Number of steps involved in the tutorial (length of the array of description)
+                numberOfSteps : Number
             }
         },
 
@@ -90,13 +94,16 @@
                     this.closeOnBoarding();
                 }
             });
+
+            // Get the number of steps involved in the tutorial (length of the array of description)
+            this.numberOfSteps = this.labels.stepsDescription.length;
         }
     }
 </script>
 
 <style scoped>
-    .modal-background{
-        height: 100vh;
+    .modal-background {
+        height: 100%;
     }
 
     .stepper{
@@ -111,9 +118,6 @@
         width: 80%;
         margin: 135px auto 0;
         z-index: 10;
-    }
-
-    .Image1{
     }
 
     .stepper-step:hover{
@@ -143,7 +147,6 @@
         display: grid;
         grid-gap: 50px;
         grid-template-columns: auto auto;
-        /*background-color: #2196F3;*/
         padding: 1vh;
     }
 
