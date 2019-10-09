@@ -8,7 +8,8 @@
         <div class="is-centered is-half-desktop is-half-mobile">
             <h1>{{this.labels.pageTitle}}</h1>
             <v-btn id="selectLanguage" color="primary" style="z-index: 20" class="button" v-on:click="this.changeLanguage">{{this.labels.language}}</v-btn>
-            <p id="generalInfo">{{this.labels.generalInfo}}</p>
+            <!-- <p id="generalInfo">{{this.labels.generalInfo}}</p> -->
+            <!-- <br /> -->
             <v-btn style="z-index: 1" class="button_tutorial" color="secondary" @click="showCarousel">{{this.labels.tutorial}}</v-btn>
             <p id="contextualInfo">{{ contextualInfo }}</p>
             <!-- <h2>{{ this.labels.totalCharacterCount }} {{this.totalCreated}} / {{maxCharactersInGroup}} </h2> -->
@@ -84,7 +85,6 @@
                 defaultCharacterColors: {},
                 diseaseHome:"",
                 gender : ""
-
             };
         },
         props: {},
@@ -284,7 +284,7 @@
             localStorage.clear();
             this.setDiseaseToAnimate();
             this.setVoiceToPlay();
-            this.setLanguage();
+            //this.setLanguage();
         }
     }
 </script>
@@ -307,7 +307,9 @@
     }
 </style>
 <style scoped>
-
+    .button_tutorial{
+        margin: 0 1rem;
+    }
     .button_tutorial:hover{
         cursor: pointer;
     }
@@ -320,7 +322,7 @@
     h2 {
         font-size: 1.3rem;
         font-weight: bold;
-        /* margin: 0 0 30px 0; */
+        margin: 2rem 0 1rem;
     }
     p {
         margin: 10px 0;
@@ -331,11 +333,10 @@
     }
 
     p#contextualInfo {
-        /* border: 2px solid #F67844;
-        margin: 0 0;
-        width: auto; */
-        text-decoration: underline;
+        margin: 1rem 0;
+        font-size: 1.1rem;
     }
+
     button#continue, p#contextualInfo, p#finalInfo {
         animation: appearanceAnim;
         /* animation: appearanceAnim 2s ease-in-out; */
