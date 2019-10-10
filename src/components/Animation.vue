@@ -36,7 +36,7 @@
                 <label for="showCaptions">{{this.labels.displayCaptions}}</label>
             </div>
         </div>
-        <div id="commandAnimationBox" style="display: flex; justify-content: space-between" v-if="this.isAnimationStarted">
+        <div id="commandAnimationBox" style="display: none; justify-content: space-between" v-if="this.isAnimationStarted">
             <a v-if=""><font-awesome-icon style="margin: 10px;" icon="fast-backward" size="lg" v-on:click="manageAudioPlayer('begin')"/></a>
             <a><font-awesome-icon style="margin: 10px;" icon="step-backward" size="lg" v-on:click="manageAudioPlayer('before')"/></a>
             <a v-if="!isAudioPlaying"><font-awesome-icon style="margin: 10px;" icon="play" size="lg" v-on:click="manageAudioPlayer('restart')"/></a>
