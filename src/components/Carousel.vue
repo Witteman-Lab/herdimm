@@ -22,7 +22,7 @@
                     <div v-for="(step, index) in this.labels.stepsDescription">
                         <v-stepper-content :step="index + 1">
                             <!-- TODO: We need to make that section adapt to the language selected -->
-                            <img v-if="index > 0" style="max-width: 80%" :src="require(`../assets/Image/Fr/${step.image}`)"
+                            <img v-if="index > 0" style="max-width: 80%" :src="require(`../assets/images/${labels.currentLanguage}/${step.image}`)"
                                  :alt="step.description">
                             <v-card color="#2196F3">
                                 <p v-if="index === 0" class="text-presentation" :style="index === 0 ? 'height: 32vh;' : ''">{{step.description}}</p>
@@ -67,6 +67,7 @@
              */
             openOnBoarding(){
                 this.isActive = true;
+                //:src="require(`../assets/images/${labels.currentLanguage}/${step.image}`
             },
             /**
              * ---> Close the modal and reset default parameter

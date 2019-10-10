@@ -104,9 +104,7 @@
         {"stepText" : "Étape 9"}
     ],
     "tutorial"  : "tutoriel",
-    "sourceImage": "../assets/Image/Fr/",
-
-  "vulnerableOptions": [
+    "vulnerableOptions": [
       {
         "name" : "Une personne plus jeune (bébé, jeune enfant)",
         "id" : 0
