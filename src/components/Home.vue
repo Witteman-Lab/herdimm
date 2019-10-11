@@ -180,7 +180,7 @@
              * @return none
              */
             setLanguage() {
-                if (this.$route.query.lang !== "fr") {
+                if (this.$route.query.lang === "en") {
                     this.changeLanguage()
                 }
             },
@@ -254,10 +254,8 @@
             changeLanguage() {
                 if (this.isLanguageChanged)
                     this.labels = textsEng;
-                    //this.labels = textsFr;
                 else
                     this.labels = textsFr;
-                    //this.labels = textsEng;
                 this.isLanguageChanged = !this.isLanguageChanged;
                 this.manageCharacterCount();
                 this.$forceUpdate();
@@ -281,10 +279,9 @@
             this.defaultCharacterColors = charactersJson.defaultColors;
         },
         mounted() {
-            localStorage.clear();
             this.setDiseaseToAnimate();
             this.setVoiceToPlay();
-            //this.setLanguage();
+            this.setLanguage();
         }
     }
 </script>
