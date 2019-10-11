@@ -26,7 +26,7 @@
             <!-- List of the group member -->
             <div class="tool">
                 <div style="width: 100%; margin: 12px; display: flex; justify-content: center;">
-                    <GroupCharacter :labels='labels' ref="listToFill"></GroupCharacter>
+                    <GroupCharacter :labels='labels' id="groupCharacter" ref="listToFill"></GroupCharacter>
                 </div>
             </div>
         </div>
@@ -80,11 +80,10 @@
                 gender : "",
                 totalTime: 0,
                 startTime: Date.now(),
-                characterTime: 0
-
             };
         },
         props: {
+            characterTime: Number,
         },
         methods: {
 
@@ -98,17 +97,7 @@
                 let  spendTime = Math.round((endTime - this.startTime));
                 this.totalTime = spendTime;
             },
-            /**
-             * ---> Launch modal with the given character object
-             * @param {Object} character
-             * @return none
-             */
-            calculateTimeForACharacter(){
-                // let startCharacterTime = Date.now()
-                // let endTime = Date.now();
-                // let  spendTime = Math.round((endTime - this.startTime));
-                // this.totalTime = spendTime;
-            },
+
             /**
              * ---> Launch modal with the given character object
              * @param {Object} character
@@ -143,7 +132,7 @@
                 this.totalCreated++;
                 this.manageCharacterCount();
                 this.$refs.listToFill.addCharacterToGroup(character,
-                    colors, this.getCurrentCharacterType(this.totalCreated), this.characterTime);
+                    colors, this.getCurrentCharacterType(this.totalCreated));
                 if (this.$refs.listToFill.getCharacterListSize() === this.maxCharactersInGroup) {
                     this.isGroupComplete = true;
                 }
@@ -209,6 +198,7 @@
             loadAnimationView() {
                 let groupCharacter = this.$refs.listToFill.getCharacterList();
                 this.calculateTotalTime();
+                // this.calculateTimeCharacter();
                 this.$router.push({name: 'Animation', params:{group: groupCharacter, labelSelected: this.labels.currentLanguage, diseaseToPlay: this.diseaseHome, voiceToPlay: this.gender, totalTime:[this.totalTime]}});
                 localStorage.setItem("currentLanguage", this.labels.currentLanguage);
                 localStorage.setItem("gender", this.gender);
@@ -276,7 +266,6 @@
             localStorage.clear();
             this.setDiseaseToAnimate();
             this.setVoiceToPlay();
-            this.calculateTimeForACharacter();
         }
     }
 </script>

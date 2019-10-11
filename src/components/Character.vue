@@ -29,7 +29,8 @@
                     glasses: '',
                     beards: '',
                     name: '',
-                    options: []
+                    options: [],
+                    characterTimeCreation: 0
                 },
                 glasses: [],
                 beards: [],
@@ -37,7 +38,7 @@
                 hasBeard: false,
                 hasGlasses: false,
                 hasHair: false,
-                isLoaded: false
+                isLoaded: false,
             };
         },
         props: {
@@ -47,9 +48,15 @@
             colors: Object,
             edit: Boolean,
             size: Object,
-            isName: Boolean
+            isName: Boolean,
+
+
         },
         methods: {
+
+            setCharacterTimeCreation(timeTotalCharacter){
+                this.svgColor.characterTimeCreation = timeTotalCharacter;
+            },
 
             /***
              * ---> Change character name and save it in svgColor

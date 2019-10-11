@@ -162,6 +162,9 @@
                 avatarNbr: 0,
                 vulnerableNbr: 0,
                 options: [],
+                endCharacterTime: 0,
+
+
             }
         },
         props: {
@@ -172,9 +175,24 @@
             vulnerableOptions: Array,
             skinColors: Array,
             hairColors: Array,
-            defaultCharacterColors: Object
+            defaultCharacterColors: Object,
+
         },
         methods: {
+
+            /**
+             * ---> calculate time spend for a user to create a character
+             * @param  none
+             * @return none
+             */
+            calculateTimeCharacter(){
+                let startCharacterTime = this.startCharacterTime;
+                console.log("startCharacterTime", startCharacterTime);
+                let  spendTime = Math.round((this.endCharacterTime - startCharacterTime));
+                console.log("spendTime", spendTime);
+                this.$refs.character.setCharacterTimeCreation(spendTime);
+
+            },
             /***
              *--> Check if the current character is vulnerable or not
              * @return {Boolean} isCharacterVulnerable
@@ -195,6 +213,8 @@
              * @return none
              */
             openModal(index, character, totalCreated, nbrVulnerable, nbrAvatar, isEdit, label) {
+                this.startCharacterTime = Date.now();
+                console.log("temps de debut",this.startCharacterTime);
                 this.modalTitle = this.getModalTitle(index, label, nbrVulnerable);
                 this.currentCharacter = require(`../assets/characters/${character.file}`);
                 this.currentCharacterObject = character;
@@ -284,10 +304,13 @@
                 if (this.isCharacterVulnerable) {
                     this.$refs.character.setCharacterOption(this.options);
                 }
-                if (this.avatarNbr > this.currentCharacterNumber && !this.characterName)
-                    this.setCharacterName(this.labels.avatarName);
+                if (this.avatarNbr > this.currentCharacterNumber && !this.characterName) {
+                this.setCharacterName(this.labels.avatarName);
+                }
                 else if (!this.characterName)
                     this.setCharacterName(this.labels.defaultCharacterName + " " + (this.currentCharacterNumber + 1));
+                this.endCharacterTime = Date.now();
+                this.calculateTimeCharacter();
                 this.$parent.saveCharacter(this.currentCharacterObject, this.$refs.character.getSvgColor());
                 this.closeModal();
             },
@@ -298,6 +321,9 @@
              * @return none
              */
             saveEditCharacter() {
+                //temps de modification pour un caractere
+                // this.endCharacterTime = Date.now();
+                // console.log("endCharacterTime", this.endCharacterTime )
                 this.$parent.editCharacter(this.currentCharacterObject, this.$refs.character.getSvgColor());
                 this.closeModal();
             },
@@ -467,6 +493,7 @@
                     this.saveEditCharacter();
                 }
             });
+            // this.calculateTimeForACharacter();
         }
     }
 </script>
