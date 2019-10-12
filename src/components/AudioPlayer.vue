@@ -60,10 +60,11 @@
                 let actions = this.playlist[this.audioPosition].actions;
                 let launchSequence = this.$parent.launchSequence;
                 this.caption = this.playlist[this.audioPosition].captions[0];
-                if(this.checkboxStateAudioPlayer)
-                    document.getElementById("paragraph").innerHTML = this.caption;
+
                 // No more autoplay, animation and audio start when the user clicks on the button,
                 setTimeout(() => {
+                    if (this.checkboxStateAudioPlayer)
+                        document.getElementById("paragraph").innerHTML = this.caption;
                     ref.play();
                     if (actions) {
                         actions.forEach((sequence) => {

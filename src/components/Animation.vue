@@ -77,7 +77,7 @@
                 reloadAnimationPage: false,
                 isAnimationStarted: false,
                 isAudioPlaying: false,
-                checkboxState: true,
+                checkboxState: false,
                 voiceToPlayAtAnimation : '',
                 counter: 0
 
@@ -102,11 +102,11 @@
                 if (this.reloadAnimationPage)
                     window.location.reload();
                 else {
+                    this.checkboxState = document.getElementById("showCaptions").checked;
                     this.isAnimationStarted = true;
                     this.$refs.audioPlayer.playAudio();
                     this.isAnimationPlaying();
                 }
-                this.checkboxState = document.getElementById("showCaptions").checked;
                 console.log("valeur animation :", this.checkboxState);
             },
 
@@ -999,6 +999,11 @@
         height: 100vh;
     }
 
+    .paragraph{
+        color: white;
+        margin: 20px;
+    }
+
     .container {
         overflow: hidden;
         padding: 0;
@@ -1034,6 +1039,10 @@
         /* transform: translate(-50%); */
     }
 
+    .captions {
+        margin-bottom: 20px;
+    }
+
 
     @media only screen and (max-width: 768px){
         .hexagon-container{
@@ -1054,8 +1063,9 @@
         bottom: 0%;
     }
 
-    .paragraph{
+    .paragraph {
         color: white;
+        margin: 10px;
     }
 
 </style>
