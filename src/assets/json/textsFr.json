@@ -67,19 +67,19 @@
             "nextButton" : "Continuer"
         },
         {
-            "description": "Maintenant, choisissez et personnalisez 2 avatars de personnes autour de vous qui sont plus à risque s'ils tombent malades : bébés ou enfants, personnes âgées, personnes souffrant d'un problème de santé (cancer, diabète, asthme, etc.) ou personnes qui ont d'autres risques sanitaires.",
+            "description": "Maintenant, choisissez et personnalisez ### avatars de personnes autour de vous qui sont plus à risque s'ils tombent malades : bébés ou enfants, personnes âgées, personnes souffrant d'un problème de santé (cancer, diabète, asthme, etc.) ou personnes qui ont d'autres risques sanitaires.",
             "image" : "image5.png",
             "prevButton" : "Retour",
             "nextButton" : "Continuer"
         },
         {
-            "description": "Enfin, choisissez et personnalisez 6 autres avatars. Ils représentent d'autres personnes autour de vous.",
+            "description": "Enfin, choisissez et personnalisez ### autres avatars. Ils représentent d'autres personnes autour de vous.",
             "image" : "image6.png",
             "prevButton" : "Retour",
             "nextButton" : "Continuer"
         },
         {
-            "description": "Une fois les 9 avatars créés, cliquez ou appuyez sur le bouton vert pour accéder à l'animation.",
+            "description": "Une fois les ### avatars créés, cliquez ou appuyez sur le bouton vert pour accéder à l'animation.",
             "image" : "image7.png",
             "prevButton" : "Retour",
             "nextButton" : "Continuer"

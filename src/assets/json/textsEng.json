@@ -61,25 +61,25 @@
             "nextButton" : "Continue"
         },
         {
-            "description": "Choose your hair colour. Select accessories (glasses, facial hair) if you want, and save your avatar.",
+            "description": "Choose your hair color. Select accessories (glasses, facial hair) if you want, and save your avatar.",
             "image" : "image4.png",
             "prevButton" : "Back",
             "nextButton" : "Continue"
         },
         {
-            "description": "Now choose and customize 2 avatars of people around you who are at greater risk if they get sick: babies or children, older people, people dealing with a health condition (cancer, diabetes, asthma, etc.) or people who have other health risks.",
+            "description": "Now choose and customize ### avatars of people around you who are at greater risk if they get sick: babies or children, older people, people dealing with a health condition (cancer, diabetes, asthma, etc.) or people who have other health risks.",
             "image" : "image5.png",
             "prevButton" : "Back",
             "nextButton" : "Continue"
         },
         {
-            "description": "Finally, choose and customize 6 other avatars. These represent other people around you.",
+            "description": "Finally, choose and customize ### other avatars. These represent other people around you.",
             "image" : "image6.png",
             "prevButton" : "Back",
             "nextButton" : "Continue"
         },
         {
-            "description": "Once all 9 avatars are made, click or tap the green button to go to the animation.",
+            "description": "Once all ### avatars are made, click or tap the green button to go to the animation.",
             "image" : "image7.png",
             "prevButton" : "Back",
             "nextButton" : "Continue"

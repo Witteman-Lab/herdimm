@@ -1,13 +1,14 @@
 <template>
     <div class="container">
         <!-- MODAL WINDOW -->
-        <Modal ref="modal" :defaultCharacterColors="defaultCharacterColors" :skin-colors="skinColors" :hair-colors="hairColors" :total-characters-count="maxCharactersInGroup" :glasses-list-json="glassesListJson" :facial-hair-list-json="facialHairList" :labels="labels"/>
+        <Modal ref="modal"  :defaultCharacterColors="defaultCharacterColors" :skin-colors="skinColors" :hair-colors="hairColors" :total-characters-count="maxCharactersInGroup" :glasses-list-json="glassesListJson" :facial-hair-list-json="facialHairList" :labels="labels"/>
         <!-- INTERFACE TUTORIAL -->
-        <Carousel id="Carousel" class="Carousel" ref="Carousel" :labels="labels" ></Carousel>
+        <Carousel id="Carousel" class="Carousel" ref="Carousel" :labels="labels" :change-language-button-index="changeLanguageButtonIndex"
+                  :nbr-avatar="nbAvatar" :nbr-vulnerable="nbrVulnerable"  :nbr-community="nbrCommunity"></Carousel>
 
         <div class="is-centered is-half-desktop is-half-mobile">
             <h1>{{this.labels.pageTitle}}</h1>
-            <v-btn id="selectLanguage" color="primary" style="z-index: 20" class="button" v-on:click="this.changeLanguage">{{this.labels.language}}</v-btn>
+            <v-btn id="selectLanguage" color="primary" :style="{'z-index': languageButtonIndex}" style="z-index: 20" class="button" v-on:click="this.changeLanguage">{{this.labels.language}}</v-btn>
             <!-- <p id="generalInfo">{{this.labels.generalInfo}}</p> -->
             <!-- <br /> -->
             <v-btn style="z-index: 1" class="button_tutorial" color="secondary" @click="showCarousel">{{this.labels.tutorial}}</v-btn>
@@ -84,11 +85,26 @@
                 hairColors: [],
                 defaultCharacterColors: {},
                 diseaseHome:"",
-                gender : ""
+                gender : "",
+                languageButtonIndex: 40,
+                nbAvatar: 0,
+                nbrVulnerable: 0,
+                nbrCommunity: 0
             };
         },
         props: {},
         methods: {
+            /**
+             * ---> ---------  completed soon -------
+             * @param none
+             * @return none
+             */
+            changeLanguageButtonIndex(action) {
+                if (action === "open")
+                    this.languageButtonIndex = 40;
+                else if (action === "close")
+                    this.languageButtonIndex = 20;
+            },
 
             /**
              * ---> ---------  completed soon -------
@@ -277,6 +293,9 @@
             this.skinColors = charactersJson.skinColors;
             this.hairColors = charactersJson.hairColors;
             this.defaultCharacterColors = charactersJson.defaultColors;
+            this.nbAvatar = charactersJson.nbAvatar;
+            this.nbrVulnerable = charactersJson.nbVulnerable;
+            this.nbrCommunity = charactersJson.nbCommunity;
         },
         mounted() {
             this.setDiseaseToAnimate();
