@@ -143,6 +143,8 @@
 
     .stepper-step:hover{
         cursor: pointer;
+        background: lightgrey;
+        /*background: lightblue;*/
     }
 
     .text-presentation {
