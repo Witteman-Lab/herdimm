@@ -25,7 +25,11 @@
                 </div>
             </div>
 
-            <h2>{{this.labels.subtitle}} ({{ this.labels.totalCharacterCount }} {{this.totalCreated}} / {{maxCharactersInGroup}})</h2>
+            <h2 style="margin: 10px">{{this.labels.subtitle}} ({{ this.labels.totalCharacterCount }} {{this.totalCreated}} / {{maxCharactersInGroup}})</h2>
+            <div v-if="debugMode">
+                <v-btn v-on:click="this.generateAllCharacters">{{this.labels.generateAllCharacters}}</v-btn>
+                <v-btn v-on:click="this.changeCharacterGeneration">{{characterTypeToGenerate ? this.labels.differentCharacters : this.labels.sameCharacters}}</v-btn>
+            </div>
 
             <!-- List of the group member -->
             <div class="tool">
@@ -89,11 +93,52 @@
                 languageButtonIndex: 40,
                 nbAvatar: 0,
                 nbrVulnerable: 0,
-                nbrCommunity: 0
+                nbrCommunity: 0,
+                characterTypeToGenerate: true,
+                debugMode: false
             };
         },
         props: {},
         methods: {
+            changeCharacterGeneration() {
+                this.characterTypeToGenerate = !this.characterTypeToGenerate
+            },
+            generateAllCharacters() {
+                if (!this.isGroupComplete) {
+                    let character;
+                    if (this.characterTypeToGenerate) {
+                       character = charactersJson.characters[Math.floor(Math.random() * charactersJson.characters.length)];
+                    }
+                    for (let i = this.totalCreated; i < this.maxCharactersInGroup; i++) {
+                        if (!this.characterTypeToGenerate) {
+                            character = charactersJson.characters[Math.floor(Math.random() * charactersJson.characters.length)];
+                        }
+                        let characterCount = i + 1;
+                        let name = "Personne " + characterCount;
+                        let shirt = "#BFBABE";
+                        let shirtShadow = "#999598";
+                        if (i === 0) {
+                            name = "Votre avatar";
+                            shirt = "#F67844";
+                            shirtShadow = "#c56036";
+                        }
+                        let svgColor = {
+                            beards: "",
+                            face: "#E7B38D",
+                            faceShadow: "#b98f71",
+                            glasses: "",
+                            hairBack: "#553e35",
+                            hairFront: "#6A4E42",
+                            idCharacter: "",
+                            name,
+                            options: ['', '', ''],
+                            shirt,
+                            shirtShadow
+                        };
+                        this.saveCharacter(character, svgColor);
+                    }
+                }
+            },
             /**
              * ---> ---------  completed soon -------
              * @param none
@@ -150,14 +195,13 @@
                 this.manageCharacterCount();
                 this.$refs.listToFill.addCharacterToGroup(character,
                     colors, this.getCurrentCharacterType(this.totalCreated));
-
                 if (this.$refs.listToFill.getCharacterListSize() === this.maxCharactersInGroup) {
                     this.isGroupComplete = true;
                 }
 
                 window.scrollTo(0, document.body.scrollHeight);
 
-                if(this.totalCreated <this.maxCharactersInGroup) {
+                if (this.totalCreated < this.maxCharactersInGroup) {
                     setTimeout(() => {
                         window.scrollTo({ top: 0, behavior: 'smooth', x: 0})
                     },
@@ -276,6 +320,11 @@
                 this.manageCharacterCount();
                 this.$forceUpdate();
             },
+            setDebugMode() {
+                if (this.$route.query.debug === "true") {
+                    this.debugMode = true;
+                }
+            }
         },
 
         /**
@@ -297,10 +346,12 @@
             this.nbrVulnerable = charactersJson.nbVulnerable;
             this.nbrCommunity = charactersJson.nbCommunity;
         },
+
         mounted() {
             this.setDiseaseToAnimate();
             this.setVoiceToPlay();
             this.setLanguage();
+            this.setDebugMode();
         }
     }
 </script>
