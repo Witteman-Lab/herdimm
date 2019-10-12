@@ -423,9 +423,9 @@
                     const shapeTargets = document.querySelectorAll('.hexagon');
                     const shapeTargetsVaccinated = document.querySelectorAll('.vaccinated');
                     shapeTargets.forEach((e) => {
-                        if(e.classList.value.indexOf("vulnerable") === -1){ // <-- For testing purpose
+                        if (e.classList.value.indexOf("vulnerable") === -1) { // <-- For testing purpose
                             shapeTargetsVaccinated.forEach((b) => {
-                                if(e.id === b.id){
+                                if (e.id === b.id) {
                                     e.classList.remove("barrier");
                                 }
                             });
@@ -448,9 +448,9 @@
                             let characterType = e.children[0].children[0].getAttribute('characterType');
                             if (characterType === "avatar") {
                                 this.ChangeTShirtColor(e.id, connections.secondDefaultShirtColor, connections.proportion);
-                            } else if(characterType === "vulnerable") {
+                            } else if (characterType === "vulnerable") {
                                 this.ChangeTShirtColor(e.id, connections.vulnerableShirtColor, connections.proportion);
-                            }else{
+                            } else {
                                 this.ChangeTShirtColor(e.id, connections.defaultShirtColor, connections.proportion);
                             }
                         }
@@ -843,8 +843,8 @@
                         if (value === coverage.length) {
                             clearInterval(vaccineCoverage);
                         }
-                        if(props.makeTransformer){
-                            this.makeTransformer(parseInt(props.duration)+parseInt(props.startTime)+parseInt(props.startTimeMakeTransformer));
+                        if (props.makeTransformer) {
+                            this.makeTransformer(parseInt(props.duration) + parseInt(props.startTime) + parseInt(props.startTimeMakeTransformer));
                         }
                     }, props.duration);
                 },parseInt(props.startTime));
@@ -887,12 +887,53 @@
                 lineObj.setAttributeNS(null, "stroke", colorStroke);
                 lineObj.setAttributeNS(null, "stroke-width", width);
                 return lineObj;
+            },
+
+            initialiseAnimation() {
+                let styles = require('../scss/animation.scss');
+
+                this.$refs.audioPlayer.loadAudioFiles(this.currentLanguage, localStorage.getItem("voice"));
+                this.voiceToPlayAtAnimation = localStorage.getItem("voice");
+                this.textButtonAnimation = this.labels.startAnimation;
+                // Fetch some styles from the SCSS file
+                this.characterSize = styles["hexagon-height"];
+                this.characterBottomMargin = styles["character-bottom-margin"];
+                // Build the shapes grid
+                this.buildGridIds();
+
+                // When content is loaded, make copies of the grid to facilitate the animation
+                if (document.readyState !== 'loading' ) {
+                    setTimeout(() => {
+                        this.duplicateGrid(2);
+                    }, 500);
+                } else {
+                    document.addEventListener('DOMContentLoaded', () => {
+                        this.duplicateGrid(2);
+                    });
+                }
+
+                window.addEventListener('gesturestart', e => e.preventDefault());
+                window.addEventListener('gesturechange', e => e.preventDefault());
+                window.addEventListener('gestureend', e => e.preventDefault());
+
+                const manageAudioPlayerEvent = this.manageAudioPlayer;
+                // when the user changes tab or put the browser on background
+                window.onblur = () => {
+                    // Problem : there are some timing issues (for example when change tabs when the currentAudio is changing)
+                    manageAudioPlayerEvent('pause');
+                };
+                // when the user go back to the animation
+                window.onfocus = () => {
+                    if (this.isAnimationStarted) {
+                        manageAudioPlayerEvent('restart');
+                    }
+                };
             }
         },
         created() {},
         mounted() {
             window.scrollTo({ top: 0, behavior: 'smooth', x: 0});
-            let styles = require('../scss/animation.scss');
+            let initAnimation = false;
 
             // Fetch the group member if it exists
             if (this.group) {
@@ -903,50 +944,20 @@
 
                 this.characterList = this.group;
                 this.selectCurrentLanguage(this.labelSelected);
-
+                initAnimation = true;
             } else {
                 if (localStorage.getItem("group")) {
                     this.characterList = JSON.parse(localStorage.getItem("group")); // <====== A demander à @Martin
                     this.selectCurrentLanguage(localStorage.getItem("language"));
+                    initAnimation = true;
                 } else {
                     this.$router.push({name: 'Home'});
                 }
             }
 
-            this.$refs.audioPlayer.loadAudioFiles(this.currentLanguage, localStorage.getItem("voice"));
-            this.voiceToPlayAtAnimation = localStorage.getItem("voice");
-            this.textButtonAnimation = this.labels.startAnimation;
-            // Fetch some styles from the SCSS file
-            this.characterSize = styles["hexagon-height"];
-            this.characterBottomMargin = styles["character-bottom-margin"];
-            // Build the shapes grid
-            this.buildGridIds();
-
-            // When content is loaded, make copies of the grid to facilitate the animation
-            if (document.readyState !== 'loading' ) {
-                setTimeout(() => {
-                    this.duplicateGrid(2);
-                }, 500);
-            } else {
-                document.addEventListener('DOMContentLoaded', () => {
-                    this.duplicateGrid(2);
-                });
+            if (initAnimation) {
+                this.initialiseAnimation();
             }
-
-            window.addEventListener('gesturestart', e => e.preventDefault());
-            window.addEventListener('gesturechange', e => e.preventDefault());
-            window.addEventListener('gestureend', e => e.preventDefault());
-
-            const manageAudioPlayerEvent = this.manageAudioPlayer;
-            // when the user changes tab or put the browser on background
-            window.onblur = function () {
-                // Problem : there are some timing issues (for example when change tabs when the currentAudio is changing)
-                manageAudioPlayerEvent('pause');
-            };
-            // when the user go back to the animation
-            window.onfocus = function () {
-                // console.log("back focus");
-            };
 
         },
 
