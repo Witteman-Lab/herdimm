@@ -17,7 +17,7 @@
         <div style="display: flex; justify-content: center;">
             <div class="hexagon-container" id="main-container">
                 <!-- Grid creation -->
-                <div class="shape" v-for="shape in this.gridIds">
+                <div class="shape" v-for="(shape, index) in this.gridIds" :key="index">
                     <div :class="shape.className" :id="shape.id">
                         <!-- Where the group members are being placed -->
                         <div v-if="shape.isCharacter">
@@ -37,7 +37,7 @@
             </div>
         </div>
         <div id="commandAnimationBox" style="display: none; justify-content: space-between" v-if="this.isAnimationStarted">
-            <a v-if=""><font-awesome-icon style="margin: 10px;" icon="fast-backward" size="lg" v-on:click="manageAudioPlayer('begin')"/></a>
+            <a><font-awesome-icon style="margin: 10px;" icon="fast-backward" size="lg" v-on:click="manageAudioPlayer('begin')"/></a>
             <a><font-awesome-icon style="margin: 10px;" icon="step-backward" size="lg" v-on:click="manageAudioPlayer('before')"/></a>
             <a v-if="!isAudioPlaying"><font-awesome-icon style="margin: 10px;" icon="play" size="lg" v-on:click="manageAudioPlayer('restart')"/></a>
             <a v-if="isAudioPlaying"><font-awesome-icon style="margin: 10px;" icon="pause" size="lg" v-on:click="manageAudioPlayer('pause')"/></a>
@@ -170,6 +170,7 @@
 
                         // Get the integer part of the shape value (when shape value is floating)
                         let integr = Math.trunc(shapeValue);
+                        let decimal;
 
                         // Give the object a className
                         switch(integr) {
@@ -181,7 +182,7 @@
                                 break;
                             case 3:
                                 // Get the decimal part (and make it integer) of the shape value so we can get the ordering
-                                let decimal = Math.round((shapeValue - integr) * 10, 0);
+                                decimal = Math.round((shapeValue - integr) * 10, 0);
                                 shapeObj.className = "comm";
                                 // Indicate its position (-1 because o-based array)
                                 shapeObj.position = decimal + integr - 1;

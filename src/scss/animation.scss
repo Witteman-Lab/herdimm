@@ -93,17 +93,19 @@ div.vaccinated::before {
   position: absolute;
   top: 0;
   left: 0;
-  // width: 100%;
-  // margin: 0 auto;
-  // transform: scale(3,3);
-  // transform-origin: (15% 45%);
 }
 .hexagon, svg#connections {
     // This so it doesn't get blurry when zoomed in (and out?)
     // Fix for Chrome (others?)
     -webkit-backface-visibility: hidden;
+    -moz-backface-visibility:    hidden;
+    -ms-backface-visibility:     hidden;
+    backface-visibility:         hidden;
     -webkit-transform: translateZ(0) scale(1.0, 1.0);
-    transform: translateZ(0);
+    -moz-transform:    translateZ(0);
+    -ms-transform:     translateZ(0);
+    -o-transform:      translateZ(0);
+    transform:         translateZ(0);
 }
 .hexagon {
   align-items: center;
@@ -171,12 +173,6 @@ div#copy1 .hexagon::after,
 div#copy1 .hexagon::before {
   background-color: var(--color-copy1);
 }
-// div#copy1 .contour,
-// div#copy1 .contour::after,
-// div#copy1 .contour::before {
-//     background-color: var(--color-contour);
-//     z-index: 5;
-// }
 
 div#copy2 {
   z-index: -3;
@@ -271,8 +267,6 @@ div#copy1 .transformer::before {
   }
 }
 
-
-
 @media only screen  and (orientation: landscape){
   $hex-height: 6.5vh;
   :export {
@@ -290,11 +284,8 @@ div#copy1 .transformer::before {
   }
 
   .hexagon-container{
-    /*margin-top: 10px;*/
-    //align-items: center;
     vertical-align: middle;
     justify-content: center;
-    //flex-direction:column-reverse;
   }
 }
 
@@ -323,6 +314,4 @@ div#copy1 .transformer::before {
     align-items: center;
     justify-content: center;
   }
-
 }
-
