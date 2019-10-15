@@ -25,7 +25,7 @@
                                 </div>
                                 <div style="overflow: visible;margin-top: 10px;" v-show="isCharacterVulnerable" class="control">
                                     <p id="vulnerableDescription">{{ this.labels.vulnerableDescription }}</p>
-                                    <div v-for="(option, index) in this.labels.vulnerableOptions" >
+                                    <div v-for="(option, index) in this.labels.vulnerableOptions" :key="option">
                                         <label class="checkbox" >
                                             <input v-on:click="setCharacterOption(option, index)" type="checkbox" :checked="options[index] ? options[index].id === option.id : ''">
                                             {{option.name}}
@@ -87,7 +87,7 @@
                                 <div id="glassesSelect" style="justify-content: center;" class="content-tab buttons" v-if="this.hasGlasses">
                                     <ul>
                                         <li class="accessoriesList button" style="overflow: hidden" v-on:click="selectGlasses(-1)">None</li>
-                                        <li class="accessoriesList button" style="overflow: hidden" v-for="(glasses, index) in glassesListJson" v-on:click="selectGlasses(index)" v-html="require(`../assets/glasses/${glasses.file}`)"></li>
+                                        <li class="accessoriesList button" style="overflow: hidden" v-for="(glasses, index) in glassesListJson" :key="glasses" v-on:click="selectGlasses(index)" v-html="require(`../assets/glasses/${glasses.file}`)"></li>
                                     </ul>
                                 </div>
 
@@ -95,7 +95,7 @@
                                 <div id="facialHairSelect" style="justify-content: center;" class="content-tab buttons" v-if="this.hasFacialHair">
                                     <ul>
                                         <li class="accessoriesList button" style="overflow: hidden" v-on:click="selectBeards(-1)">None</li>
-                                        <li class="accessoriesList button facialHairList"  style="overflow: hidden" v-for="(beard, index) in facialHairListJson" v-html="require(`../assets/facialHair/${beard.file}`)" v-on:click="selectBeards(index)"></li>
+                                        <li class="accessoriesList button facialHairList"  style="overflow: hidden" v-for="(beard, index) in facialHairListJson" :key="beard" v-html="require(`../assets/facialHair/${beard.file}`)" v-on:click="selectBeards(index)"></li>
                                     </ul>
                                 </div>
 
@@ -184,7 +184,8 @@
             },
             resetVulnerableOption() {
                 this.options = [];
-                this.labels.vulnerableOptions.forEach((option) => {
+                // this.labels.vulnerableOptions.forEach((option) => {
+                this.labels.vulnerableOptions.forEach(() => {
                     this.options.push({id: -1})
                 });
             },
