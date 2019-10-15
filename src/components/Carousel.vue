@@ -64,6 +64,12 @@
         },
 
         methods: {
+            /**
+             * ---> --------- to complete -------
+             * @param index
+             * @param description
+             * @return descriptionToShow
+             */
             adaptNumberOfCharacter(index, description) {
                 let descriptionToShow = '';
                 if (index === 5) {
@@ -79,7 +85,7 @@
             },
 
             /**
-             * ---> ---------  completed soon -------
+             * ---> --------- to complete -------
              * @param none
              * @return none
              */
@@ -88,6 +94,7 @@
                 this.changeLanguageButtonIndex("open");
                 //:src="require(`../assets/images/${labels.currentLanguage}/${step.image}`
             },
+
             /**
              * ---> Close the modal and reset default parameter
              * @param none
@@ -99,6 +106,10 @@
                 this.e1 = 1;
             },
 
+            /* ---> --------- to complete -------
+             * @param none
+             * @return none
+             */
             changeCurrentView(index) {
                 if (index <= 0 || index >= this.labels.stepsDescription.length + 1) {
                     this.closeOnBoarding();

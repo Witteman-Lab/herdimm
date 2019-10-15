@@ -107,7 +107,6 @@
                     this.$refs.audioPlayer.playAudio();
                     this.isAnimationPlaying();
                 }
-                console.log("valeur animation :", this.checkboxState);
             },
 
             /**

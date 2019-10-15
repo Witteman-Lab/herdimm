@@ -17,15 +17,14 @@
                                        :colors="{face: this.currentColorFace, hairFront: this.currentColorHair, beards: this.currentBeard,
                                        glasses: this.currentGlasses, shirt: this.currentShirt, name: this.characterName, options: this.options}"
                                        :is-name="true"/>
-                            <!--<inputclass="input"type="text"placeholder="Entername">-->
-                            <!--<labelclass="label">Name:<inputclass="input"v-model="message"type="text"placeholder="editname"></label>-->
+
                             <div class="field is-one-fifth-mobile" style="margin-top: 5px">
                                 <div class="control">
                                     <input v-on:input="setCharacterName(characterName)" class="input" v-model="characterName"  type="text" :placeholder="this.labels.nameInputPlaceHolder">
                                 </div>
                                 <div style="overflow: visible;margin-top: 10px;" v-show="isCharacterVulnerable" class="control">
                                     <p id="vulnerableDescription">{{ this.labels.vulnerableDescription }}</p>
-                                    <div v-for="(option, index) in this.labels.vulnerableOptions" :key="option">
+                                    <div v-for="(option, index) in this.labels.vulnerableOptions" :key="index">
                                         <label class="checkbox" >
                                             <input v-on:click="setCharacterOption(option, index)" type="checkbox" :checked="options[index] ? options[index].id === option.id : ''">
                                             {{option.name}}
@@ -87,7 +86,7 @@
                                 <div id="glassesSelect" style="justify-content: center;" class="content-tab buttons" v-if="this.hasGlasses">
                                     <ul>
                                         <li class="accessoriesList button" style="overflow: hidden" v-on:click="selectGlasses(-1)">None</li>
-                                        <li class="accessoriesList button" style="overflow: hidden" v-for="(glasses, index) in glassesListJson" :key="glasses" v-on:click="selectGlasses(index)" v-html="require(`../assets/glasses/${glasses.file}`)"></li>
+                                        <li class="accessoriesList button" style="overflow: hidden" v-for="(glasses, index) in glassesListJson" :key="index" v-on:click="selectGlasses(index)" v-html="require(`../assets/glasses/${glasses.file}`)"></li>
                                     </ul>
                                 </div>
 
@@ -95,7 +94,7 @@
                                 <div id="facialHairSelect" style="justify-content: center;" class="content-tab buttons" v-if="this.hasFacialHair">
                                     <ul>
                                         <li class="accessoriesList button" style="overflow: hidden" v-on:click="selectBeards(-1)">None</li>
-                                        <li class="accessoriesList button facialHairList"  style="overflow: hidden" v-for="(beard, index) in facialHairListJson" :key="beard" v-html="require(`../assets/facialHair/${beard.file}`)" v-on:click="selectBeards(index)"></li>
+                                        <li class="accessoriesList button facialHairList"  style="overflow: hidden" v-for="(beard, index) in facialHairListJson" :key="index" v-html="require(`../assets/facialHair/${beard.file}`)" v-on:click="selectBeards(index)"></li>
                                     </ul>
                                 </div>
 
@@ -119,7 +118,6 @@
 <script>
     import Character from "../components/Character.vue"
     import { Compact }  from "vue-color";
-    // import characterOptions from "../assets/json/characterOptions.json";
 
     export default {
         name: "Modal",
@@ -184,7 +182,6 @@
             },
             resetVulnerableOption() {
                 this.options = [];
-                // this.labels.vulnerableOptions.forEach((option) => {
                 this.labels.vulnerableOptions.forEach(() => {
                     this.options.push({id: -1})
                 });
@@ -214,6 +211,7 @@
                 this.isCharacterVulnerable = this.checkCharacterVulnerable(this.currentCharacterNumber);
                 this.resetVulnerableOption();
                 this.setCharacterColors(isEdit, character, totalCreated < nbrAvatar, index);
+
                 // Display the skin tab content when opening modal window
                 this.openTab("skinColorTab", "skinColorSelect");
             },
@@ -500,9 +498,6 @@
         height: 60px;
     }
 
-    .tab ul li{
-        /*display: inline;*/
-    }
     ul {
         display: flex;
         flex-direction: row;
