@@ -43,54 +43,54 @@
             "description": "Tutorial instructions for making avatar.",
             "image" : "",
             "prevButton" : "Cancel",
-            "nextButton" : "Continue"
+            "nextButton" : "Next"
         },
         {
             "description": "Choose and customize an avatar to represent you.",
             "image" : "image1.png",
-            "prevButton" : "Back",
-            "nextButton" : "Continue"
+            "prevButton" : "Previous",
+            "nextButton" : "Next"
         },
         {
             "description": "Enter your name.",
             "image" : "image2.png",
-            "prevButton" : "Back",
-            "nextButton" : "Continue"
+            "prevButton" : "Previous",
+            "nextButton" : "Next"
         },
         {
             "description": "Choose your skin tone.",
             "image" : "image3.png",
-            "prevButton" : "Back",
-            "nextButton" : "Continue"
+            "prevButton" : "Previous",
+            "nextButton" : "Next"
         },
         {
             "description": "Choose your hair color. Select accessories (glasses, facial hair) if you want, and save your avatar.",
             "image" : "image4.png",
-            "prevButton" : "Back",
-            "nextButton" : "Continue"
+            "prevButton" : "Previous",
+            "nextButton" : "Next"
         },
         {
             "description": "Now choose and customize ### avatars of people around you who are at greater risk if they get sick: babies or children, older people, people dealing with a health condition (cancer, diabetes, asthma, etc.) or people who have other health risks.",
             "image" : "image5.png",
-            "prevButton" : "Back",
-            "nextButton" : "Continue"
+            "prevButton" : "Previous",
+            "nextButton" : "Next"
         },
         {
             "description": "Finally, choose and customize ### other avatars. These represent other people around you.",
             "image" : "image6.png",
-            "prevButton" : "Back",
-            "nextButton" : "Continue"
+            "prevButton" : "Previous",
+            "nextButton" : "Next"
         },
         {
             "description": "Once all ### avatars are made, click or tap the green button to go to the animation.",
             "image" : "image7.png",
-            "prevButton" : "Back",
-            "nextButton" : "Continue"
+            "prevButton" : "Previous",
+            "nextButton" : "Next"
         },
         {
             "description": "Click green button to start the animation.",
             "image" : "image8.png",
-            "prevButton" : "Back",
+            "prevButton" : "Previous",
             "nextButton" : "Let's get started"
         }
     ],
