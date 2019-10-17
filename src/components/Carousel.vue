@@ -14,7 +14,7 @@
                         <div style="display: contents;" v-for="(step, index) in this.labels.stepsTitle" :key="index">
                             <v-stepper-step :editable="true" edit-icon="mdi-check" class="stepper-step" @click="e1 = index + 1" :complete="e1 > index+1" :step="index + 1">{{step.stepText}}</v-stepper-step>
                             <!-- Add n number of dividers based on the number of steps involved in the tutorial (minus 1) -->
-                            <v-divider v-if="index < numberOfSteps - 1"></v-divider>
+                            <v-divider style="margin: 35px -30px 0px -30px" v-if="index < numberOfSteps - 1"></v-divider>
                         </div>
                     </v-stepper-header>
 
@@ -138,7 +138,7 @@
         height: 100%;
     }
 
-    .stepper{
+    .stepper {
         background-color: white;
         justify-content: center;
         align-items: center;
@@ -152,10 +152,14 @@
         z-index: 10;
     }
 
-    .stepper-step:hover{
+    .stepper-step:hover {
         cursor: pointer;
-        background: lightgrey;
-        /*background: lightblue;*/
+        /*background: lightgrey;*/
+        background: lightblue;
+    }
+
+    .stepper-step {
+        flex-basis: auto !important;
     }
 
     .text-presentation {
