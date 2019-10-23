@@ -20,11 +20,11 @@
 
                     <!-- Stepper items -->
                     <v-stepper-items>
-                        <div v-for="(step, index) in this.labels.stepsDescription" :key="index">
-                            <v-stepper-content :step="index + 1">
+                        <div  v-for="(step, index) in this.labels.stepsDescription" :key="index">
+                            <v-stepper-content v-recognizer:swipe.left="swipeLeft" v-recognizer:swipe.right="swipeRight" :step="index + 1">
                                 <img v-if="index > 0" style="max-width: 80%" :src="require(`../assets/images/${labels.currentLanguage}/${step.image}`)"
                                      :alt="step.description">
-                                <v-card color="#2196F3">
+                                <v-card  color="#2196F3">
                                     <p v-if="index === 0" class="text-presentation" :style="index === 0 ? 'height: 32vh;' : ''">{{adaptNumberOfCharacter(index, step.description)}}</p>
                                     <p v-if="index > 0" class="text-presentation" :style="index === 5 ? 'font-size: 1rem;' : ''">{{adaptNumberOfCharacter(index, step.description)}}</p>
                                 </v-card>
@@ -64,6 +64,12 @@
         },
 
         methods: {
+            swipeLeft() {
+                this.changeCurrentView(this.e1 - 1);
+            },
+            swipeRight() {
+                this.changeCurrentView(this.e1 + 1)
+            },
             /**
              * ---> --------- to complete -------
              * @param index

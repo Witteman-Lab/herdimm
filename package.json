@@ -16,6 +16,7 @@
     "bulma": "^0.7.5",
     "vue": "^2.6.10",
     "vue-color": "^2.7.0",
+    "vue-recognizer": "^1.1.1",
     "vue-router": "^3.0.7",
     "vuetify": "^2.0.0"
   },
