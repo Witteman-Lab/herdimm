@@ -65,10 +65,10 @@
 
         methods: {
             swipeLeft() {
-                this.changeCurrentView(this.e1 - 1);
+                this.changeCurrentView(this.e1 + 1);
             },
             swipeRight() {
-                this.changeCurrentView(this.e1 + 1)
+                this.changeCurrentView(this.e1 - 1)
             },
             /**
              * ---> --------- to complete -------
