@@ -65,7 +65,7 @@
 
         methods: {
             swipeLeft() {
-                this.changeCurrentView(this.e1 + 1);
+               this.changeCurrentView(this.e1 + 1);
             },
             swipeRight() {
                 this.changeCurrentView(this.e1 - 1)
@@ -127,9 +127,66 @@
         created(){},
         mounted(){
             document.body.addEventListener('keyup', e => {
-                // Escape key to close the modal window (customizer)
-                if (e.keyCode === 27 && this.isActive) {
-                    this.closeOnBoarding();
+                if(this.isActive){
+                    switch (e.keyCode) {
+                        // Escape key to close the modal window (customizer)
+                        case 27:
+                            this.closeOnBoarding();
+                            break;
+                        //Press "ArrowLeft" key to ga at the next step
+                        case 37:
+                            this.swipeRight();
+                            break;
+                        //Press "ArrowRight" key to go at previous step
+                        case 39:
+                            this.swipeLeft();
+                            break;
+                        //press "Digit1" key  to go at step 1
+                        case 49:
+                            this.e1 = 1;
+                            this.changeCurrentView(this.e1);
+                            break;
+                        //press "Digit2" key  to go at step 2
+                        case 50:
+                            this.e1 = 1;
+                            this.changeCurrentView(this.e1 + 1);
+                            break;
+                        //press "Digit3" key  to go at step 3
+                        case 51:
+                            this.e1 = 1;
+                            this.changeCurrentView(this.e1 + 2);
+                            break;
+                        //press "Digit4" key  to go at step 4
+                        case 52:
+                            this.e1 = 1;
+                            this.changeCurrentView(this.e1 + 3);
+                            break;
+                        //press "Digit5" key  to go at step 5
+                        case 53:
+                            this.e1 = 1;
+                            this.changeCurrentView(this.e1 + 4);
+                            break;
+                        //press "Digit6" key  to go at step 6
+                        case 54:
+                            this.e1 = 1;
+                            this.changeCurrentView(this.e1 + 5);
+                            break;
+                        //press "Digit7" key  to go at step 7
+                        case 55:
+                            this.e1 = 1;
+                            this.changeCurrentView(this.e1 + 6);
+                            break;
+                        //press "Digit8" key  to go at step 8
+                        case 56:
+                            this.e1 = 1;
+                            this.changeCurrentView(this.e1 + 7);
+                            break;
+                        //press "Digit9" key  to go at step 9
+                        case 57:
+                            this.e1 = 1;
+                            this.changeCurrentView(this.e1 + 8);
+                            break;
+                    }
                 }
             });
 
