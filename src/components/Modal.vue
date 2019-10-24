@@ -16,7 +16,8 @@
                             <div class="column is-centered ">
                                 <Character v-if="isActive" :size="{width: '70px', height: '78px'}" :edit="false" :customised="true" ref="character" :id="'current'" :svgFile="this.currentCharacter"
                                            :colors="{face: this.currentColorFace, hairFront: this.currentColorHair, beards: this.currentBeard,
-                                           glasses: this.currentGlasses, shirt: this.currentShirt, name: this.characterName, options: this.options}"
+                                           glasses: this.currentGlasses, shirt: this.currentShirt, name: this.characterName, options: this.options,
+                                           characterTimeEdition: this.characterTimeEdition, numberOfEdition: this.numberOfEdition, characterTimeCreation: this.characterTimeCreation}"
                                            :is-name="true"/>
                                 <!--<inputclass="input"type="text"placeholder="Entername">-->
                                 <!--<labelclass="label">Name:<inputclass="input"v-model="message"type="text"placeholder="editname"></label>-->
@@ -163,8 +164,9 @@
                 vulnerableNbr: 0,
                 options: [],
                 endCharacterTime: 0,
-
-
+                characterTimeEdition: 0,
+                characterTimeCreation: 0,
+                numberOfEdition: 0
             }
         },
         props: {
@@ -185,13 +187,12 @@
              * @param  none
              * @return none
              */
-            calculateTimeCharacter(){
+            calculateTimeCharacter() {
                 let startCharacterTime = this.startCharacterTime;
                 console.log("startCharacterTime", startCharacterTime);
                 let  spendTime = Math.round((this.endCharacterTime - startCharacterTime));
                 console.log("spendTime", spendTime);
                 this.$refs.character.setCharacterTimeCreation(spendTime);
-
             },
             /***
              *--> Check if the current character is vulnerable or not
@@ -249,6 +250,9 @@
                     this.currentBeard = character.colors.beards;
                     this.currentShirt = character.colors.shirt;
                     this.characterName = character.colors.name;
+                    this.characterTimeEdition = character.colors.characterTimeEdition;
+                    this.numberOfEdition = character.colors.numberOfEdition;
+                    this.characterTimeCreation = character.colors.characterTimeCreation;
                     this.setVulnerableOption(character.colors.options);
                 } else {
                     // Avatar gets a special shirt
@@ -322,9 +326,14 @@
              */
             saveEditCharacter() {
                 //temps de modification pour un caractere
-                // this.endCharacterTime = Date.now();
-                // console.log("endCharacterTime", this.endCharacterTime )
+
+                this.endCharacterTime = Date.now();
+                let startCharacterTime = this.startCharacterTime;
+                console.log("startCharacterTime", startCharacterTime);
+                let spendTime = Math.round((this.endCharacterTime - startCharacterTime));
+                this.$refs.character.setCharacterTimeEdition(spendTime);
                 this.$parent.editCharacter(this.currentCharacterObject, this.$refs.character.getSvgColor());
+                console.log(this.$refs.character.getSvgColor().characterTimeEdition);
                 this.closeModal();
             },
 

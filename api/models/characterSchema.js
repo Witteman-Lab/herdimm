@@ -10,7 +10,9 @@ var characterSchema  = mongoose.Schema({
     "hairColor": String,
     "glassesId": Number,
     "beardsId": Number,
-    "characterTime": Number
+    "characterTime": Number,
+    "characterEditionTime": Number,
+    "numberOfEdition": Number
 });
 // create model if not exists.
 module.exports = mongoose.model('character', characterSchema);

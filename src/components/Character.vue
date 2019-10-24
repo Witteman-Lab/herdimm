@@ -30,7 +30,9 @@
                     beards: '',
                     name: '',
                     options: [],
-                    characterTimeCreation: 0
+                    characterTimeCreation: 0,
+                    characterTimeEdition: 0,
+                    numberOfEdition: 0
                 },
                 glasses: [],
                 beards: [],
@@ -49,10 +51,12 @@
             edit: Boolean,
             size: Object,
             isName: Boolean,
-
-
         },
         methods: {
+            setCharacterTimeEdition(timeTotalEdition) {
+              this.svgColor.characterTimeEdition += timeTotalEdition;
+              this.svgColor.numberOfEdition++;
+            },
 
             setCharacterTimeCreation(timeTotalCharacter){
                 this.svgColor.characterTimeCreation = timeTotalCharacter;
@@ -252,6 +256,9 @@
                 this.changeShirtColor(colors.shirt, 0.8);
                 this.setCharacterName(colors.name);
                 this.setCharacterOption(colors.options);
+                this.setCharacterTimeCreation(colors.characterTimeCreation);
+                this.svgColor.numberOfEdition = colors.numberOfEdition;
+                this.svgColor.characterTimeEdition = colors.characterTimeEdition;
             },
 
             /**

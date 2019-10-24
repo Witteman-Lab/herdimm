@@ -41,7 +41,7 @@ const saveCharacters = (request, response) => {
         if (err) {
             return console.error(err);
         } else {
-            console.log("Multiple documents inserted to Collection");
+            console.log("Characters inserted to Collection");
         }
         response.json(res);
     });
@@ -69,7 +69,9 @@ const charactersList = (characterList) => {
             hairColor: character.colors.hairFront,
             glassesId: character.colors.glasses,
             beardsId: character.colors.beards,
-            characterTime: character.colors.characterTimeCreation
+            characterTime: character.colors.characterTimeCreation,
+            characterEditionTime: character.colors.characterTimeEdition,
+            numberOfEdition: character.colors.numberOfEdition
         };
         characterDbList.push(characterObject);
     });
