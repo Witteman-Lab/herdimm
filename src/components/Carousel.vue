@@ -126,6 +126,10 @@
         },
         created(){},
         mounted(){
+
+            // Get the number of steps involved in the tutorial (length of the array of description)
+            this.numberOfSteps = this.labels.stepsDescription.length;
+
             document.body.addEventListener('keyup', e => {
                 if(this.isActive){
                     // Get the code property of the key
@@ -134,27 +138,30 @@
                     // Compare to true instead of code (since cases use === comparison)
                     switch (true) {
 
-                        // Escape key to close the modal window (customizer)
+                        // Press "Escape" key to close the modal window (as with the customizer)
                         case code === "Escape":
                             this.closeOnBoarding();
                             break;
 
-                        // Press "ArrowLeft" key to ga at the next step
+                        // Press "ArrowLeft" key to go to the next step
                         case code === "ArrowLeft":
                             this.swipeRight();
                             break;
 
-                        // Press "ArrowRight" key to go at previous step
+                        // Press "ArrowRight" key to go to the previous step
                         case code === "ArrowRight":
                             this.swipeLeft();
                             break;
 
                         // Press a "Digit" key to go to the appropriate step
-                        // Pressing 0 actually closes the tutorial
-                        // We could prevent that, but it's a funny default behaviour
                         case (code.indexOf("Digit") !== -1):
-                            // Send the last character (as an integer) of the "DigitX" string from code, which corresponds to the step we want to display
-                            this.changeCurrentView(parseInt(code.charAt(code.length-1)));
+                            let codeValue = parseInt(code.charAt(code.length-1));
+
+                            // Pressing 0 or a number key higher than the number of steps does nothing
+                            if (codeValue > 0 && codeValue <= this.numberOfSteps) {
+                                // Send the last character (as an integer) of the "DigitX" string from code, which corresponds to the step we want to display
+                                this.changeCurrentView(codeValue);
+                            }
                             break;
 
                         // Do nothing (by precaution)
@@ -164,8 +171,7 @@
                 }
             });
 
-            // Get the number of steps involved in the tutorial (length of the array of description)
-            this.numberOfSteps = this.labels.stepsDescription.length;
+
         }
     }
 </script>
