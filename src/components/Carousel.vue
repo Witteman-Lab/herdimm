@@ -128,63 +128,37 @@
         mounted(){
             document.body.addEventListener('keyup', e => {
                 if(this.isActive){
-                    switch (e.keyCode) {
+                    // Get the code property of the key
+                    let code = e.code;
+
+                    // Compare to true instead of code (since cases use === comparison)
+                    switch (true) {
+
                         // Escape key to close the modal window (customizer)
-                        case 27:
+                        case code === "Escape":
                             this.closeOnBoarding();
                             break;
-                        //Press "ArrowLeft" key to ga at the next step
-                        case 37:
+
+                        // Press "ArrowLeft" key to ga at the next step
+                        case code === "ArrowLeft":
                             this.swipeRight();
                             break;
-                        //Press "ArrowRight" key to go at previous step
-                        case 39:
+
+                        // Press "ArrowRight" key to go at previous step
+                        case code === "ArrowRight":
                             this.swipeLeft();
                             break;
-                        //press "Digit1" key  to go at step 1
-                        case 49:
-                            this.e1 = 1;
-                            this.changeCurrentView(this.e1);
+
+                        // Press a "Digit" key to go to the appropriate step
+                        // Pressing 0 actually closes the tutorial
+                        // We could prevent that, but it's a funny default behaviour
+                        case (code.indexOf("Digit") !== -1):
+                            // Send the last character (as an integer) of the "DigitX" string from code, which corresponds to the step we want to display
+                            this.changeCurrentView(parseInt(code.charAt(code.length-1)));
                             break;
-                        //press "Digit2" key  to go at step 2
-                        case 50:
-                            this.e1 = 1;
-                            this.changeCurrentView(this.e1 + 1);
-                            break;
-                        //press "Digit3" key  to go at step 3
-                        case 51:
-                            this.e1 = 1;
-                            this.changeCurrentView(this.e1 + 2);
-                            break;
-                        //press "Digit4" key  to go at step 4
-                        case 52:
-                            this.e1 = 1;
-                            this.changeCurrentView(this.e1 + 3);
-                            break;
-                        //press "Digit5" key  to go at step 5
-                        case 53:
-                            this.e1 = 1;
-                            this.changeCurrentView(this.e1 + 4);
-                            break;
-                        //press "Digit6" key  to go at step 6
-                        case 54:
-                            this.e1 = 1;
-                            this.changeCurrentView(this.e1 + 5);
-                            break;
-                        //press "Digit7" key  to go at step 7
-                        case 55:
-                            this.e1 = 1;
-                            this.changeCurrentView(this.e1 + 6);
-                            break;
-                        //press "Digit8" key  to go at step 8
-                        case 56:
-                            this.e1 = 1;
-                            this.changeCurrentView(this.e1 + 7);
-                            break;
-                        //press "Digit9" key  to go at step 9
-                        case 57:
-                            this.e1 = 1;
-                            this.changeCurrentView(this.e1 + 8);
+
+                        // Do nothing (by precaution)
+                        default:
                             break;
                     }
                 }
