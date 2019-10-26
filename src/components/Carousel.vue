@@ -154,8 +154,8 @@
                             break;
 
                         // Press a "Digit" key to go to the appropriate step
-                        case (code.indexOf("Digit") !== -1):
-                            let codeValue = parseInt(code.charAt(code.length-1));
+                        case (code.indexOf("Digit") !== -1): {
+                            const codeValue = parseInt(code.charAt(code.length - 1));
 
                             // Pressing 0 or a number key higher than the number of steps does nothing
                             if (codeValue > 0 && codeValue <= this.numberOfSteps) {
@@ -163,7 +163,7 @@
                                 this.changeCurrentView(codeValue);
                             }
                             break;
-
+                        }
                         // Do nothing (by precaution)
                         default:
                             break;

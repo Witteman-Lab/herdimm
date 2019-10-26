@@ -1,10 +1,10 @@
 <template>
     <div class="grid-category">
-        <div v-for="(category, index) in this.labels.categories" class="fit-content">
+        <div v-bind:key="index" v-for="(category, index) in this.labels.categories" class="fit-content">
             <div style="display: flex; justify-content: center;">
-                <div :key="character.id" ref="characterList"
-                     v-for="(character) in characterList" v-if="character.characterType === isCharacterType[index]">
-                    <div class="grid-list-character" v-if="">
+                <div :key="character.id"
+                     v-for="(character) in characterList" >
+                    <div class="grid-list-character" v-if="character.characterType === isCharacterType[index]">
                         <Character ref="character"  :is-name="true" :size="{width: '74px', height: '80px'}"
                                    :edit="true" :customised="true" :colors="character.colors" :id="character.id"
                                    :svgFile="require(`../assets/characters/${character.file}`)" />

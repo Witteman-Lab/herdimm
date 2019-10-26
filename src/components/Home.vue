@@ -70,7 +70,7 @@
             Modal,
             GroupCharacter,
             CharacterList,
-            Carousel
+            Carousel,
         },
         data() {
             return {
