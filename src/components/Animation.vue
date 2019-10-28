@@ -479,12 +479,14 @@
                 let durationLine = (parseInt(props.durationLine)/1000).toString();
                 let durationLineBouncingOff = (parseInt(props.durationLineBouncingOff)/1000).toString();
                 let path="";
+                const linewidth = props.linewidth;
                 if (typeof(props.file) === "object") {
                     if (localStorage.getItem("disease") === this.diseaseArray[0] || localStorage.getItem("disease") === this.diseaseArray[1] || localStorage.getItem("disease") === this.diseaseArray[2])
                     {
+
                         path = require("../assets/json/" + localStorage.getItem("disease")+".json");
                         setTimeout(() => {
-                            this.spreadInfection(path.connections, durationLine, durationLineBouncingOff);
+                            this.spreadInfection(path.connections, durationLine, durationLineBouncingOff, linewidth);
                         }, props.startTime);
                     }
                     else {
@@ -495,9 +497,10 @@
                             } else {
                                 value = this.getRandomInt(props.file.length);
                             }
+
                             path = require("../assets/json/" + props.file[value]);
                             setTimeout(() => {
-                                this.spreadInfection(path.connections, durationLine, durationLineBouncingOff);
+                                this.spreadInfection(path.connections, durationLine, durationLineBouncingOff, linewidth);
                             }, props.startTime);
                         } else {
                             alert("Add the name of json file in array to have infection sequences");
@@ -506,8 +509,9 @@
                 }
                 else{
                     path = require("../assets/json/" + props.file);
+
                     setTimeout(() => {
-                        this.spreadInfection(path.connections, durationLine, durationLineBouncingOff);
+                        this.spreadInfection(path.connections, durationLine, durationLineBouncingOff, linewidth);
                     }, parseInt(props.startTime));
                 }
             },
@@ -559,7 +563,7 @@
              * @param {Object} pattern
              * @return none
              */
-            spreadInfection(pattern, durationLine, durationLineBouncingOff){
+            spreadInfection(pattern, durationLine, durationLineBouncingOff, linewidth){
                 const drawingBoard = document.querySelector("#connections");
                 const selector = '#main-container #';
                 const state = "infected";
@@ -572,7 +576,10 @@
                     let infectionIsBouncing = pattern[i].infectionIsBouncing;
                     let nextTarget 	= pattern[i].nextTarget;
                     let id = pattern[i].id;
-                    let lineObj = this.drawLine(source, target, id);
+                    let line = connections.linewidth;
+                    if (linewidth)
+                        line = linewidth;
+                    let lineObj = this.drawLine(source, target, id, line);
                     let lineLength = this.getLineLength(lineObj);
 
                     lineObj.setAttributeNS(null, "stroke-dasharray", lineLength + " " + lineLength);
@@ -613,7 +620,7 @@
                     // When the animation ends, check if there is a next target
                     lineObj.addEventListener("animationend", () => { // webkitAnimationEnd
                         if (nextTarget !== "") {
-                            this.spreadInfection(nextTarget, durationLine, durationLineBouncingOff);
+                            this.spreadInfection(nextTarget, durationLine, durationLineBouncingOff, line);
                         }
 
                         // If target gets infected, its color changes
@@ -861,7 +868,7 @@
              * @param {String} id
              * @return {Object}
              */
-            drawLine(source, target, id) {
+            drawLine(source, target, id, linewidth) {
 
                 // Parameters
                 var radius = 10;
@@ -876,7 +883,7 @@
                 var sourceBCR = document.querySelector(selector+source).getBoundingClientRect();
                 var targetBCR = document.querySelector(selector+target).getBoundingClientRect();
 
-                var width = connections.linewidth;
+                var width = linewidth;
                 var colorStroke = connections.linecolor;
 
                 //drawing line
