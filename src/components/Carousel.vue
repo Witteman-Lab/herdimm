@@ -47,7 +47,7 @@
         name: "Carousel",
         data () {
             return {
-                isActive : true,
+                isActive : false,
                 e1 : 1,
                 // Number of steps involved in the tutorial (length of the array of description)
                 numberOfSteps : Number
