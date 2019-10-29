@@ -14,7 +14,7 @@
         </div>
 
         <!-- Container for the shapes (hexagons) -->
-        <div style="display: flex; justify-content: center;">
+        <div id="shapes-container" style="display: flex; justify-content: center;">
             <div class="hexagon-container" id="main-container">
                 <!-- Grid creation -->
                 <div class="shape" v-for="(shape, index) in this.gridIds" :key="index">
@@ -32,7 +32,7 @@
             <button class="button is-primary is-success" style="justify-self: center;" v-on:click="startAnimation">{{textButtonAnimation}}</button>
             <br />
             <div  v-if="!this.reloadAnimationPage">
-                <input type="checkbox" id="showCaptions" name="showCaptions" value="">
+                <input type="checkbox" id="showCaptions" name="showCaptions">
                 <label for="showCaptions">{{this.labels.displayCaptions}}</label>
             </div>
         </div>
@@ -384,12 +384,14 @@
             fadeInOut(props) {
                 // Fade-in transition
                 setTimeout(() => {
-                    document.body.classList.add('fade');
+                    document.getElementById('shapes-container').classList.remove('fade-in');
+                    document.getElementById('shapes-container').classList.add('fade-out');
                 }, parseInt(props.startTime));
 
                 // Fade-out transition (back to normal)
                 setTimeout(() => {
-                    document.body.classList.remove('fade');
+                    document.getElementById('shapes-container').classList.add('fade-in');
+                    document.getElementById('shapes-container').classList.remove('fade-out');
                 }, (parseInt(props.startTime) + parseInt(props.duration)));
             },
 
@@ -506,8 +508,7 @@
                             alert("Add the name of json file in array to have infection sequences");
                         }
                     }
-                }
-                else{
+                } else {
                     path = require("../assets/json/" + props.file);
 
                     setTimeout(() => {
