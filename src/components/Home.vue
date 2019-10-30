@@ -88,8 +88,8 @@
                 skinColors: [],
                 hairColors: [],
                 defaultCharacterColors: {},
-                diseaseHome:"",
-                gender : "",
+                diseaseHome: "",
+                gender: "",
                 languageButtonIndex: 40,
                 nbAvatar: 0,
                 nbrVulnerable: 0,
@@ -104,7 +104,7 @@
             characterTime: Number,
         },
         methods: {
-<<<<<<< HEAD
+
             changeCharacterGeneration() {
                 this.characterTypeToGenerate = !this.characterTypeToGenerate
             },
@@ -112,7 +112,7 @@
                 if (!this.isGroupComplete) {
                     let character;
                     if (this.characterTypeToGenerate) {
-                       character = charactersJson.characters[Math.floor(Math.random() * charactersJson.characters.length)];
+                        character = charactersJson.characters[Math.floor(Math.random() * charactersJson.characters.length)];
                     }
                     for (let i = this.totalCreated; i < this.maxCharactersInGroup; i++) {
                         if (!this.characterTypeToGenerate) {
@@ -170,9 +170,9 @@
              * @param  none
              * @return none
              */
-            calculateTotalTime(){
+            calculateTotalTime() {
                 let endTime = Date.now();
-                let  spendTime = Math.round((endTime - this.startTime));
+                let spendTime = Math.round((endTime - this.startTime));
                 this.totalTime = spendTime;
             },
 
@@ -182,7 +182,7 @@
              * @return none
              */
             launch(character) {
-                if (this.$refs.listToFill.getCharacterListSize() < this.maxCharactersInGroup)  {
+                if (this.$refs.listToFill.getCharacterListSize() < this.maxCharactersInGroup) {
                     this.$refs.modal.openModal(this.totalCreated, character, this.totalCreated,
                         charactersJson.nbVulnerable, charactersJson.nbAvatar, false, this.labels.createAvatar);
                 }
@@ -197,7 +197,7 @@
              */
             launchEditModal(character, index) {
                 this.$refs.modal.openModal(index, character, this.totalCreated,
-                    charactersJson.nbVulnerable, charactersJson.nbAvatar, true,  this.labels.editAvatar);
+                    charactersJson.nbVulnerable, charactersJson.nbAvatar, true, this.labels.editAvatar);
             },
             //add element to character
             /**
@@ -219,9 +219,9 @@
 
                 if (this.totalCreated < this.maxCharactersInGroup) {
                     setTimeout(() => {
-                        window.scrollTo({ top: 0, behavior: 'smooth', x: 0})
-                    },
-                    parseInt(charactersJson.scrollingTimeControl));
+                            window.scrollTo({top: 0, behavior: 'smooth', x: 0})
+                        },
+                        parseInt(charactersJson.scrollingTimeControl));
                 }
             },
 
@@ -244,7 +244,7 @@
             getCurrentCharacterType(position) {
                 if (position <= charactersJson.nbAvatar) {
                     return "avatar";
-                } else if (position <= charactersJson.nbAvatar + charactersJson.nbVulnerable)   {
+                } else if (position <= charactersJson.nbAvatar + charactersJson.nbVulnerable) {
                     return "vulnerable"
                 } else if (position <= charactersJson.nbAvatar + charactersJson.nbVulnerable + charactersJson.nbCommunity) {
                     return "comm";
@@ -266,7 +266,7 @@
              * @return none
              */
             setDiseaseToAnimate() {
-                if (this.$route.query.d === "flu" ||  this.$route.query.d === "measles" || this.$route.query.d === "pertussis")
+                if (this.$route.query.d === "flu" || this.$route.query.d === "measles" || this.$route.query.d === "pertussis")
                     this.diseaseHome = this.$route.query.d;
             },
 
@@ -275,7 +275,7 @@
              * @return none
              */
             setVoiceToPlay() {
-                if (this.$route.query.v === "male" ||  this.$route.query.v === "female")
+                if (this.$route.query.v === "male" || this.$route.query.v === "female")
                     this.gender = this.$route.query.v;
                 else if (this.$route.query.v === null)
                     this.gender = "male";
@@ -294,7 +294,16 @@
                 let groupCharacter = this.$refs.listToFill.getCharacterList();
                 this.calculateTotalTime();
                 // this.calculateTimeCharacter();
-                this.$router.push({name: 'Animation', params:{group: groupCharacter, labelSelected: this.labels.currentLanguage, diseaseToPlay: this.diseaseHome, voiceToPlay: this.gender, totalTime:[this.totalTime]}});
+                this.$router.push({
+                    name: 'Animation',
+                    params: {
+                        group: groupCharacter,
+                        labelSelected: this.labels.currentLanguage,
+                        diseaseToPlay: this.diseaseHome,
+                        voiceToPlay: this.gender,
+                        totalTime: [this.totalTime]
+                    }
+                });
                 localStorage.setItem("currentLanguage", this.labels.currentLanguage);
                 localStorage.setItem("gender", this.gender);
             },
@@ -305,7 +314,7 @@
              * @return none
              */
             manageCharacterCount() {
-                if (this.totalCreated < charactersJson.nbAvatar)  {
+                if (this.totalCreated < charactersJson.nbAvatar) {
                     this.contextualInfo = this.labels.contextualInfoAvatar;
                 } else if (this.totalCreated < charactersJson.nbAvatar + charactersJson.nbVulnerable) {
                     this.contextualInfo = `${this.labels.nowSelect} ${charactersJson.nbVulnerable} ${this.labels.selectVulnerable}`;
@@ -320,7 +329,7 @@
              *  @param {number} value
              *  @return {number}
              */
-            getRandomInt(value){
+            getRandomInt(value) {
                 return Math.floor(Math.random() * Math.floor(value));
             },
 
@@ -342,36 +351,38 @@
                 if (this.$route.query.debug === "true") {
                     this.debugMode = true;
                 }
-            },
+            }
 
-
-        /**
-         * ---> Load json data and labels
-         * @param none
-         * @return none
-         */
-        created() {
-            this.characterList = charactersJson.characters;
-            this.labels = textsFr;
-            this.maxCharactersInGroup = charactersJson.nbAvatar + charactersJson.nbVulnerable + charactersJson.nbCommunity;
-            this.contextualInfo = this.labels.contextualInfoAvatar;
-            this.facialHairList = facialHairJson.beards;
-            this.glassesListJson = glassesJson.glasses;
-            this.skinColors = charactersJson.skinColors;
-            this.hairColors = charactersJson.hairColors;
-            this.defaultCharacterColors = charactersJson.defaultColors;
-            this.nbAvatar = charactersJson.nbAvatar;
-            this.nbrVulnerable = charactersJson.nbVulnerable;
-            this.nbrCommunity = charactersJson.nbCommunity;
         },
 
-        mounted() {
-            this.setDiseaseToAnimate();
-            this.setVoiceToPlay();
-            this.setLanguage();
-            this.setDebugMode();
+
+            /**
+             * ---> Load json data and labels
+             * @param none
+             * @return none
+             */
+            created() {
+                this.characterList = charactersJson.characters;
+                this.labels = textsFr;
+                this.maxCharactersInGroup = charactersJson.nbAvatar + charactersJson.nbVulnerable + charactersJson.nbCommunity;
+                this.contextualInfo = this.labels.contextualInfoAvatar;
+                this.facialHairList = facialHairJson.beards;
+                this.glassesListJson = glassesJson.glasses;
+                this.skinColors = charactersJson.skinColors;
+                this.hairColors = charactersJson.hairColors;
+                this.defaultCharacterColors = charactersJson.defaultColors;
+                this.nbAvatar = charactersJson.nbAvatar;
+                this.nbrVulnerable = charactersJson.nbVulnerable;
+                this.nbrCommunity = charactersJson.nbCommunity;
+            },
+
+            mounted() {
+                this.setDiseaseToAnimate();
+                this.setVoiceToPlay();
+                this.setLanguage();
+                this.setDebugMode();
+            }
         }
-    }
 </script>
 <style>
     /* To change the visual for the color picker */

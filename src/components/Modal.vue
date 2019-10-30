@@ -63,6 +63,7 @@
                                         <a>{{this.labels.facialHairTab}}</a>
                                     </li>
                                 </ul>
+                            </div>
 <!--=======-->
 <!--&lt;!&ndash;                <form action="/save" method="post">&ndash;&gt;-->
 <!--                    <header class="modal-card-head">-->
