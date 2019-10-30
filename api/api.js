@@ -25,10 +25,10 @@ app.get('/', (request, response) => {
     response.json({ info: 'Node.js, Express, and Postgres API' })
 });
 
-app.use('/api/postgres', postgres);
+//app.use('/api/postgres', postgres);
 app.use('/api/mongodb', mongodb);
 
 
-app.listen(port, () => {
-    console.log(`app running on port ${port}.`)
+app.listen(3000, () => {
+    console.log("app running on port 3000.")
 });
