@@ -2,6 +2,7 @@
     <div class="modal" v-bind:class="{'is-active': isActive }">
         <div class="modal-background">
             <div class="modal-card mobile-modal">
+
                 <header class="modal-card-head">
                     <p class="modal-card-title">
                         {{ modalTitle }}
@@ -15,7 +16,8 @@
                         <div class="column is-centered ">
                             <Character v-if="isActive" :size="{width: '70px', height: '78px'}" :edit="false" :customised="true" ref="character" :id="'current'" :svgFile="this.currentCharacter"
                                        :colors="{face: this.currentColorFace, hairFront: this.currentColorHair, beards: this.currentBeard,
-                                       glasses: this.currentGlasses, shirt: this.currentShirt, name: this.characterName, options: this.options}"
+                                           glasses: this.currentGlasses, shirt: this.currentShirt, name: this.characterName, options: this.options,
+                                           characterTimeEdition: this.characterTimeEdition, numberOfEdition: this.numberOfEdition, characterTimeCreation: this.characterTimeCreation}"
                                        :is-name="true"/>
 
                             <div class="field is-one-fifth-mobile" style="margin-top: 5px">
@@ -61,26 +63,90 @@
                                         <a>{{this.labels.facialHairTab}}</a>
                                     </li>
                                 </ul>
-                            </div>
+<!--=======-->
+<!--&lt;!&ndash;                <form action="/save" method="post">&ndash;&gt;-->
+<!--                    <header class="modal-card-head">-->
+<!--                        <p class="modal-card-title">-->
+<!--                            {{ modalTitle }}-->
+<!--                            <br/>-->
+<!--                            <span style="font-size: medium">{{ this.labels.totalCharacterCount }} {{this.currentCharacterNumber}} / {{totalCharactersCount}}</span>-->
+<!--                        </p>-->
+<!--                        <button class="delete" aria-label="close modal" v-on:click="this.closeModal"></button>-->
+<!--                    </header>-->
+<!--                    <section class="modal-card-body">-->
+<!--                        <div class="columns">-->
+<!--                            <div class="column is-centered ">-->
+<!--                                <Character v-if="isActive" :size="{width: '70px', height: '78px'}" :edit="false" :customised="true" ref="character" :id="'current'" :svgFile="this.currentCharacter"-->
+<!--                                           :colors="{face: this.currentColorFace, hairFront: this.currentColorHair, beards: this.currentBeard,-->
+<!--                                           glasses: this.currentGlasses, shirt: this.currentShirt, name: this.characterName, options: this.options,-->
+<!--                                           characterTimeEdition: this.characterTimeEdition, numberOfEdition: this.numberOfEdition, characterTimeCreation: this.characterTimeCreation}"-->
+<!--                                           :is-name="true"/>-->
+<!--                                &lt;!&ndash;<inputclass="input"type="text"placeholder="Entername">&ndash;&gt;-->
+<!--                                &lt;!&ndash;<labelclass="label">Name:<inputclass="input"v-model="message"type="text"placeholder="editname"></label>&ndash;&gt;-->
+<!--                                <div class="field is-one-fifth-mobile" style="margin-top: 5px">-->
+<!--                                        <div class="control">-->
+<!--                                            <input v-on:input="setCharacterName(characterName)" class="input" v-model="characterName"  type="text" :placeholder="this.labels.nameInputPlaceHolder" name="characterName">-->
+<!--                                        </div>-->
+<!--                                        <div style="overflow: visible;margin-top: 10px;" v-show="isCharacterVulnerable" class="control">-->
+<!--                                            <div v-for="(option, index) in this.labels.vulnerableOptions" v-on:click="setCharacterOption(option.name, index)">-->
+<!--                                                <label class="checkbox">-->
+<!--                                                    <input type="checkbox" name="reason">-->
+<!--                                                    {{option.name}}-->
+<!--                                                </label>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                </div>-->
+<!--&gt;>>>>>> herdimm-data-->
+<!--                            </div>-->
+<!--                            <div class="column is-center">-->
+<!--                                <div class="tabs is-centered is-boxed is-three-quarters">-->
+<!--                                    <ul>-->
+<!--                                        &lt;!&ndash; For testing, in case we want to group skin and hair colors in a single tab (saves space) &ndash;&gt;-->
+<!--                                        &lt;!&ndash; <li class="tab" v-on:click="openTab($event, 'colorsSelect')">-->
+<!--                                            <a>Colors</a>-->
+<!--                                        </li> &ndash;&gt;-->
+<!--                                        <li class="tab" id="skinColorTab" v-on:click="openTab('skinColorTab', 'skinColorSelect')">-->
+<!--                                            &lt;!&ndash; <li class="tab" id="skinColorTab" v-on:click="openTab($event, 'skinColorSelect')"> &ndash;&gt;-->
+<!--                                            <a>{{this.labels.skinColorTab}}</a>-->
+<!--                                        </li>-->
+<!--                                        <li class="tab" id="hairColorTab" v-if="this.hasHair" v-on:click="openTab('hairColorTab', 'hairColorSelect')">-->
+<!--                                            &lt;!&ndash; <li class="tab" id="hairColorTab" v-if="this.hasHair" v-on:click="openTab($event, 'hairColorSelect')"> &ndash;&gt;-->
+<!--                                            <a>{{this.labels.hairColorTab}}</a>-->
+<!--                                        </li>-->
+
+<!--                                        &lt;!&ndash; Maybe we could also group these 2 tabs in a single one called accessories &ndash;&gt;-->
+<!--                                        &lt;!&ndash; Would need to take consider the v-if conditions... &ndash;&gt;-->
+<!--                                        &lt;!&ndash; <li class="tab" v-if="(this.hasGlasses || this.hasFacialHair)" v-on:click="openTab($event, 'accessoriesSelect')">-->
+<!--                                            <a>Accessories</a>-->
+<!--                                        </li> &ndash;&gt;-->
+<!--                                        <li class="tab" id="glassesTab" v-if="this.hasGlasses" v-on:click="openTab('glassesTab', 'glassesSelect')">-->
+<!--                                            <a>{{this.labels.glassesTab}}</a>-->
+<!--                                        </li>-->
+<!--                                        <li class="tab" id="facialHairTab" v-if="this.hasFacialHair" v-on:click="openTab('facialHairTab', 'facialHairSelect')">-->
+<!--                                            <a>{{this.labels.facialHairTab}}</a>-->
+<!--                                        </li>-->
+<!--                                    </ul>-->
+<!--                                </div>-->
 
 
-                            <div style="display: flex; justify-content: center">
+                                <div style="display: flex; justify-content: center">
 
-                                <!-- Skin color -->
-                                <div id="skinColorSelect" class="content-tab">
-                                    <Compact
-                                            :value="this.currentColorFace"
-                                            @input="this.changeFaceColor"
-                                            :palette="skinColors"/>
-                                </div>
+                                    <!-- Skin color -->
+                                    <div id="skinColorSelect" class="content-tab">
+                                        <Compact
+                                                :value="this.currentColorFace"
+                                                @input="this.changeFaceColor"
+                                                :palette="skinColors"/>
+                                    </div>
 
-                                <!-- Hair color -->
-                                <div id="hairColorSelect" class="content-tab" v-if="this.hasHair" >
-                                    <Compact
-                                            :value="this.currentColorHair"
-                                            @input="this.changeHairColor"
-                                            :palette="hairColors"/>
-                                </div>
+                                    <!-- Hair color -->
+                                    <div id="hairColorSelect" class="content-tab" v-if="this.hasHair" >
+                                        <Compact
+                                                :value="this.currentColorHair"
+                                                @input="this.changeHairColor"
+                                                :palette="hairColors"/>
+                                    </div>
+
 
                                 <!-- Glasses -->
                                 <div id="glassesSelect" style="justify-content: center;" class="content-tab buttons" v-if="this.hasGlasses">
@@ -97,19 +163,37 @@
                                         <li class="accessoriesList button facialHairList"  style="overflow: hidden" v-for="(beard, index) in facialHairListJson" :key="index" v-html="require(`../assets/facialHair/${beard.file}`)" v-on:click="selectBeards(index)"></li>
                                     </ul>
                                 </div>
+<!--=======-->
+<!--                                    &lt;!&ndash; Glasses &ndash;&gt;-->
+<!--                                    <div id="glassesSelect" style="justify-content: center;" class="content-tab buttons" v-if="this.hasGlasses">-->
+<!--                                        <ul>-->
+<!--                                            <li class="accessoriesList button" style="overflow: hidden" v-on:click="selectGlasses(-1)">None</li>-->
+<!--                                            <li class="accessoriesList button" style="overflow: hidden" v-for="(glasses, index) in glassesListJson" v-on:click="selectGlasses(index)" v-html="require(`../assets/glasses/${glasses.file}`)"></li>-->
+<!--                                        </ul>-->
+<!--                                    </div>-->
 
+<!--                                    &lt;!&ndash; Facial hair &ndash;&gt;-->
+<!--                                    <div id="facialHairSelect" style="justify-content: center;" class="content-tab buttons" v-if="this.hasFacialHair">-->
+<!--                                        <ul>-->
+<!--                                            <li class="accessoriesList button" style="overflow: hidden" v-on:click="selectBeards(-1)">None</li>-->
+<!--                                            <li class="accessoriesList button facialHairList"  style="overflow: hidden" v-for="(beard, index) in facialHairListJson" v-html="require(`../assets/facialHair/${beard.file}`)" v-on:click="selectBeards(index)"></li>-->
+<!--                                        </ul>-->
+<!--                                    </div>-->
+<!--&gt;>>>>>> herdimm-data-->
+
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </section>
-                <footer class="modal-card-foot">
-                    <div class="buttons is-light">
-                        <button class="button is-success" v-if="!this.isEdit" v-on:click="this.saveCharacter">{{this.labels.saveBtn}}</button>
-                        <button class="button is-success" v-if="this.isEdit" v-on:click="this.saveEditCharacter">{{this.labels.saveEditBtn}}</button>
-                        <button class="button" v-on:click="this.closeModal">{{this.labels.cancelBtn}}</button>
-                        <button class="button" v-on:click="this.resetDefault">{{this.labels.resetAllBtn}}</button>
-                    </div>
-                </footer>
+                    </section>
+                    <footer class="modal-card-foot">
+                        <div class="buttons is-light">
+                                <button class="button is-success" v-if="!this.isEdit" v-on:click="this.saveCharacter">{{this.labels.saveBtn}}</button>
+                                <button class="button is-success" v-if="this.isEdit" v-on:click="this.saveEditCharacter">{{this.labels.saveEditBtn}}</button>
+                                <button class="button" v-on:click="this.closeModal">{{this.labels.cancelBtn}}</button>
+                                <button class="button" v-on:click="this.resetDefault">{{this.labels.resetAllBtn}}</button>
+                        </div>
+                    </footer>
+<!--                </form>-->
             </div>
         </div>
     </div>
@@ -159,6 +243,10 @@
                 avatarNbr: 0,
                 vulnerableNbr: 0,
                 options: [],
+                endCharacterTime: 0,
+                characterTimeEdition: 0,
+                characterTimeCreation: 0,
+                numberOfEdition: 0
             }
         },
         props: {
@@ -169,9 +257,23 @@
             vulnerableOptions: Array,
             skinColors: Array,
             hairColors: Array,
-            defaultCharacterColors: Object
+            defaultCharacterColors: Object,
+
         },
         methods: {
+
+            /**
+             * ---> calculate time spend for a user to create a character
+             * @param  none
+             * @return none
+             */
+            calculateTimeCharacter() {
+                let startCharacterTime = this.startCharacterTime;
+                console.log("startCharacterTime", startCharacterTime);
+                let  spendTime = Math.round((this.endCharacterTime - startCharacterTime));
+                console.log("spendTime", spendTime);
+                this.$refs.character.setCharacterTimeCreation(spendTime);
+            },
             /***
              *--> Check if the current character is vulnerable or not
              * @return {Boolean} isCharacterVulnerable
@@ -198,6 +300,8 @@
              * @return none
              */
             openModal(index, character, totalCreated, nbrVulnerable, nbrAvatar, isEdit, label) {
+                this.startCharacterTime = Date.now();
+                console.log("temps de debut",this.startCharacterTime);
                 this.modalTitle = this.getModalTitle(index, label, nbrVulnerable);
                 this.currentCharacter = require(`../assets/characters/${character.file}`);
                 this.currentCharacterObject = character;
@@ -233,6 +337,9 @@
                     this.currentBeard = character.colors.beards;
                     this.currentShirt = character.colors.shirt;
                     this.characterName = character.colors.name;
+                    this.characterTimeEdition = character.colors.characterTimeEdition;
+                    this.numberOfEdition = character.colors.numberOfEdition;
+                    this.characterTimeCreation = character.colors.characterTimeCreation;
                     this.setVulnerableOption(character.colors.options);
                 } else {
                     // Avatar gets a special shirt
@@ -290,10 +397,13 @@
                 if (this.isCharacterVulnerable) {
                     this.$refs.character.setCharacterOption(this.options);
                 }
-                if (this.avatarNbr > this.currentCharacterNumber && !this.characterName)
-                    this.setCharacterName(this.labels.avatarName);
+                if (this.avatarNbr > this.currentCharacterNumber && !this.characterName) {
+                this.setCharacterName(this.labels.avatarName);
+                }
                 else if (!this.characterName)
                     this.setCharacterName(this.labels.defaultCharacterName + " " + (this.currentCharacterNumber + 1));
+                this.endCharacterTime = Date.now();
+                this.calculateTimeCharacter();
                 this.$parent.saveCharacter(this.currentCharacterObject, this.$refs.character.getSvgColor());
                 this.closeModal();
             },
@@ -304,7 +414,15 @@
              * @return none
              */
             saveEditCharacter() {
+                //temps de modification pour un caractere
+
+                this.endCharacterTime = Date.now();
+                let startCharacterTime = this.startCharacterTime;
+                console.log("startCharacterTime", startCharacterTime);
+                let spendTime = Math.round((this.endCharacterTime - startCharacterTime));
+                this.$refs.character.setCharacterTimeEdition(spendTime);
                 this.$parent.editCharacter(this.currentCharacterObject, this.$refs.character.getSvgColor());
+                console.log(this.$refs.character.getSvgColor().characterTimeEdition);
                 this.closeModal();
             },
 
@@ -468,6 +586,7 @@
                     this.saveEditCharacter();
                 }
             });
+            // this.calculateTimeForACharacter();
         }
     }
 </script>

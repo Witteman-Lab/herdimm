@@ -29,7 +29,10 @@
                     glasses: '',
                     beards: '',
                     name: '',
-                    options: []
+                    options: [],
+                    characterTimeCreation: 0,
+                    characterTimeEdition: 0,
+                    numberOfEdition: 0
                 },
                 glasses: [],
                 beards: [],
@@ -37,7 +40,7 @@
                 hasBeard: false,
                 hasGlasses: false,
                 hasHair: false,
-                isLoaded: false
+                isLoaded: false,
             };
         },
         props: {
@@ -47,9 +50,17 @@
             colors: Object,
             edit: Boolean,
             size: Object,
-            isName: Boolean
+            isName: Boolean,
         },
         methods: {
+            setCharacterTimeEdition(timeTotalEdition) {
+              this.svgColor.characterTimeEdition += timeTotalEdition;
+              this.svgColor.numberOfEdition++;
+            },
+
+            setCharacterTimeCreation(timeTotalCharacter){
+                this.svgColor.characterTimeCreation = timeTotalCharacter;
+            },
 
             /***
              * ---> Change character name and save it in svgColor
@@ -245,6 +256,9 @@
                 this.changeShirtColor(colors.shirt, 0.8);
                 this.setCharacterName(colors.name);
                 this.setCharacterOption(colors.options);
+                this.setCharacterTimeCreation(colors.characterTimeCreation);
+                this.svgColor.numberOfEdition = colors.numberOfEdition;
+                this.svgColor.characterTimeEdition = colors.characterTimeEdition;
             },
 
             /**

@@ -528,7 +528,7 @@ CharacterCustomizer.prototype = {
 			this.group.addNewGroupMember($("#customized"), groupId, this.style, type);
 
 			if (this.actualNumberInGroup === this.maxCharactersInGroup) {
-				$("#continue").css("visibility", "visible");
+				$("#continueAnimation").css("visibility", "visible");
 				this.refCharacters.disableClickAction();
 			}
 		}

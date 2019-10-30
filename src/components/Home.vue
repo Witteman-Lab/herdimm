@@ -34,7 +34,7 @@
             <!-- List of the group member -->
             <div class="tool">
                 <div style="width: 100%; margin: 12px; display: flex; justify-content: center;">
-                    <GroupCharacter :labels='labels' ref="listToFill"></GroupCharacter>
+                    <GroupCharacter :labels='labels' id="groupCharacter" ref="listToFill"></GroupCharacter>
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
         <section>
             <div class="control has-text-centered">
                 <p id="finalInfo" v-if="isGroupComplete">{{this.labels.finalInfo}}</p>
-                <button id="continue" class="button is-primary is-success" v-if="isGroupComplete" v-on:click="loadAnimationView()">{{this.labels.continueBtn}}</button>
+                <button id="continue" class="continue button is-primary is-success" v-if="isGroupComplete" v-on:click="loadAnimationView()">{{this.labels.continueBtn}}</button>
             </div>
         </section>
     </div>
@@ -95,11 +95,16 @@
                 nbrVulnerable: 0,
                 nbrCommunity: 0,
                 characterTypeToGenerate: true,
-                debugMode: false
+                debugMode: false,
+                totalTime: 0,
+                startTime: Date.now(),
             };
         },
-        props: {},
+        props: {
+            characterTime: Number,
+        },
         methods: {
+<<<<<<< HEAD
             changeCharacterGeneration() {
                 this.characterTypeToGenerate = !this.characterTypeToGenerate
             },
@@ -161,6 +166,17 @@
             },
 
             /**
+             * ---> calculate total time spend for a user
+             * @param  none
+             * @return none
+             */
+            calculateTotalTime(){
+                let endTime = Date.now();
+                let  spendTime = Math.round((endTime - this.startTime));
+                this.totalTime = spendTime;
+            },
+
+            /**
              * ---> Launch modal with the given character object
              * @param {Object} character
              * @return none
@@ -183,7 +199,7 @@
                 this.$refs.modal.openModal(index, character, this.totalCreated,
                     charactersJson.nbVulnerable, charactersJson.nbAvatar, true,  this.labels.editAvatar);
             },
-
+            //add element to character
             /**
              * ---> Update Home information and add the character to the groupList
              * @param {Object} character
@@ -276,7 +292,9 @@
              */
             loadAnimationView() {
                 let groupCharacter = this.$refs.listToFill.getCharacterList();
-                this.$router.push({name: 'Animation', params:{group: groupCharacter, labelSelected: this.labels.currentLanguage, diseaseToPlay: this.diseaseHome, voiceToPlay: this.gender}});
+                this.calculateTotalTime();
+                // this.calculateTimeCharacter();
+                this.$router.push({name: 'Animation', params:{group: groupCharacter, labelSelected: this.labels.currentLanguage, diseaseToPlay: this.diseaseHome, voiceToPlay: this.gender, totalTime:[this.totalTime]}});
                 localStorage.setItem("currentLanguage", this.labels.currentLanguage);
                 localStorage.setItem("gender", this.gender);
             },
@@ -324,8 +342,8 @@
                 if (this.$route.query.debug === "true") {
                     this.debugMode = true;
                 }
-            }
-        },
+            },
+
 
         /**
          * ---> Load json data and labels
@@ -404,7 +422,10 @@
         font-size: 1.1rem;
     }
 
+
     button#continue, p#contextualInfo, p#finalInfo {
+    /*button#continueAnimation, p#contextualInfo, p#finalInfo {*/
+
         animation: appearanceAnim;
         /* animation: appearanceAnim 2s ease-in-out; */
         -webkit-animation-name: appearanceAnim; /* Safari 4.0 - 8.0 */

@@ -7,7 +7,6 @@
         <div id="captions" class="captions" v-if="this.checkboxState">
             <p id="paragraph" class="paragraph"></p>
         </div>
-
         <!-- Where to draw the lines for infection spreading  -->
         <div class="draw" id="draw">
             <svg class="connections" ref="connections" id="connections"></svg>
@@ -34,6 +33,8 @@
             <div  v-if="!this.reloadAnimationPage">
                 <input type="checkbox" id="showCaptions" name="showCaptions">
                 <label for="showCaptions">{{this.labels.displayCaptions}}</label>
+                <button v-on:click="sendCharactersToApi('mongodb')">Send characters with mongoDB</button>
+                <button v-on:click="sendCharactersToApi('postgres')">Send characters with postgresSQL</button>
             </div>
         </div>
         <div id="commandAnimationBox" style="display: none; justify-content: space-between" v-if="this.isAnimationStarted">
@@ -89,9 +90,24 @@
             },
             labelSelected: String,
             diseaseToPlay : String,
-            voiceToPlay: String
+            voiceToPlay: String,
+            totalTime: Array
+
         },
         methods: {
+
+            sendCharactersToApi(chosenDB) {
+                const url =`http://localhost:8081/api/${chosenDB}/herdimm`;
+                let dataSent = {group: JSON.parse(localStorage.getItem("group")), totalTime: JSON.parse(localStorage.getItem("totalTime"))}
+                fetch(url, {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json;charset=utf-8'
+                    },
+                    body: JSON.stringify(dataSent)
+                }).then((response) => console.log(response));
+            },
 
             /**
              * ---> Start the animation when user is ready, clicks on the Start button
@@ -166,7 +182,7 @@
                     // For every element in each row
                     for (let j = 0; j < shapesArray.ShapesArrayList[i].length; j++) {
                         let shapeValue = shapesArray.ShapesArrayList[i][j];
-                        let shapeObj = new Object();
+                        let shapeObj = {};
 
                         // Get the integer part of the shape value (when shape value is floating)
                         let integr = Math.trunc(shapeValue);
@@ -948,6 +964,7 @@
             // Fetch the group member if it exists
             if (this.group) {
                 localStorage.setItem("group", JSON.stringify(this.group));
+                localStorage.setItem("totalTime", JSON.stringify(this.totalTime));
                 localStorage.setItem("language", this.labelSelected);
                 localStorage.setItem("disease", this.diseaseToPlay);
                 localStorage.setItem("voice", this.voiceToPlay);
