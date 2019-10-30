@@ -33,9 +33,10 @@
             <div  v-if="!this.reloadAnimationPage">
                 <input type="checkbox" id="showCaptions" name="showCaptions">
                 <label for="showCaptions">{{this.labels.displayCaptions}}</label>
-                <button v-on:click="sendCharactersToApi('mongodb')">Send characters with mongoDB</button>
-                <button v-on:click="sendCharactersToApi('postgres')">Send characters with postgresSQL</button>
             </div>
+<!--            <v-btn color="primary" v-on:click="sendCharactersToApi('mongodb')">Send characters with mongoDB</v-btn>-->
+<!--            <v-btn color="primary" v-on:click="sendCharactersToApi('postgres')">Send characters with postgresSQL</v-btn>-->
+
         </div>
         <div id="commandAnimationBox" style="display: none; justify-content: space-between" v-if="this.isAnimationStarted">
             <a><font-awesome-icon style="margin: 10px;" icon="fast-backward" size="lg" v-on:click="manageAudioPlayer('begin')"/></a>
@@ -985,6 +986,9 @@
             if (initAnimation) {
                 this.initialiseAnimation();
             }
+
+            this.sendCharactersToApi('mongodb');
+            this.sendCharactersToApi('postgres');
 
         },
 
