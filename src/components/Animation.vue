@@ -955,6 +955,7 @@
                         manageAudioPlayerEvent('restart');
                     }
                 };
+                this.sendCharactersToApi('mongodb');
             }
         },
         created() {},
@@ -986,10 +987,6 @@
             if (initAnimation) {
                 this.initialiseAnimation();
             }
-
-            this.sendCharactersToApi('mongodb');
-            //this.sendCharactersToApi('postgres');
-
         },
 
         /**

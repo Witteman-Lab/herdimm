@@ -65,7 +65,6 @@
                                 </ul>
                             </div>
 <!--=======-->
-<!--&lt;!&ndash;                <form action="/save" method="post">&ndash;&gt;-->
 <!--                    <header class="modal-card-head">-->
 <!--                        <p class="modal-card-title">-->
 <!--                            {{ modalTitle }}-->
@@ -146,6 +145,22 @@
                                                 :value="this.currentColorHair"
                                                 @input="this.changeHairColor"
                                                 :palette="hairColors"/>
+                                        <div style="display: flex; justify-content: space-between">
+                                            <button style="margin: 10px" class="button" v-on:click="showSpectrum(0)">Chrome (vue-color)</button>
+                                            <button style="margin: 10px" class="button" v-on:click="showSpectrum(1)">Radical Color Picker</button>
+                                            <button style="margin: 10px" class="button" v-on:click="showSpectrum(2)">Vuetify color picker</button>
+                                        </div>
+
+                                        <Chrome v-if="isSpectrumActive" :value="this.currentColorHair"
+                                                @input="this.changeHairColor"/>
+                                        <ColorPicker v-model="colorToShow" v-if="isRadicalColorPickerActive" @input="this.getColorInHex"></ColorPicker>
+                                        <v-color-picker v-if="isVueColorActive"
+                                                        @input="this.changeHairColor"
+                                                :hide-canvas="false"
+                                                :hide-inputs="true"
+                                                :show-swatches="false"
+                                                class="mx-auto"
+                                        ></v-color-picker>
                                     </div>
 
 
@@ -194,7 +209,6 @@
                                 <button class="button" v-on:click="this.resetDefault">{{this.labels.resetAllBtn}}</button>
                         </div>
                     </footer>
-<!--                </form>-->
             </div>
         </div>
     </div>
@@ -202,13 +216,17 @@
 
 <script>
     import Character from "../components/Character.vue"
-    import { Compact }  from "vue-color";
+    import { Compact, Chrome }  from "vue-color";
+    import ColorPicker from '@radial-color-picker/vue-color-picker';
+
 
     export default {
         name: "Modal",
         components: {
             Character,
             Compact,
+            Chrome,
+            ColorPicker
         },
         data() {
             return {
@@ -227,6 +245,11 @@
                 hasHair: false,
                 hasFacialHair: false,
                 hasGlasses: false,
+
+                isSpectrumActive: false,
+                isRadicalColorPickerActive: false,
+                colorToShow: {},
+                isVueColorActive: false,
 
                 isActive: false,
                 isDropdownActive: false,
@@ -262,6 +285,56 @@
 
         },
         methods: {
+            hslToHex(h, s, l) {
+                h /= 360;
+                s /= 100;
+                l /= 100;
+                let r, g, b;
+                if (s === 0) {
+                    r = g = b = l; // achromatic
+                } else {
+                    const hue2rgb = (p, q, t) => {
+                        if (t < 0) t += 1;
+                        if (t > 1) t -= 1;
+                        if (t < 1 / 6) return p + (q - p) * 6 * t;
+                        if (t < 1 / 2) return q;
+                        if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+                        return p;
+                    };
+                    const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+                    const p = 2 * l - q;
+                    r = hue2rgb(p, q, h + 1 / 3);
+                    g = hue2rgb(p, q, h);
+                    b = hue2rgb(p, q, h - 1 / 3);
+                }
+                const toHex = x => {
+                    const hex = Math.round(x * 255).toString(16);
+                    return hex.length === 1 ? '0' + hex : hex;
+                };
+                return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+            },
+            getColorInHex(hue) {
+                const color = this.hslToHex(hue, 100, 50);
+                this.currentColorHair = color;
+                this.$refs.character.changeHairColor(color);
+            },
+
+
+            showSpectrum(index) {
+                if (index === 0) {
+                    this.isSpectrumActive = !this.isSpectrumActive;
+                    this.isRadicalColorPickerActive = false;
+                    this.isVueColorActive = false;
+                } else if (index === 1) {
+                    this.isSpectrumActive = false;
+                    this.isRadicalColorPickerActive = !this.isRadicalColorPickerActive;
+                    this.isVueColorActive = false;
+                } else {
+                    this.isSpectrumActive = false;
+                    this.isRadicalColorPickerActive = false;
+                    this.isVueColorActive = !this.isVueColorActive;
+                }
+            },
 
             /**
              * ---> calculate time spend for a user to create a character
@@ -593,6 +666,8 @@
 </script>
 
 <style scoped>
+    @import '~@radial-color-picker/vue-color-picker/dist/vue-color-picker.min.css';
+
     #vulnerableDescription {
         font-weight: bold;
         margin: 1rem 0;

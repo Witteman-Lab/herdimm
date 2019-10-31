@@ -90,7 +90,7 @@
                 defaultCharacterColors: {},
                 diseaseHome: "",
                 gender: "",
-                languageButtonIndex: 40,
+                languageButtonIndex: 20,
                 nbAvatar: 0,
                 nbrVulnerable: 0,
                 nbrCommunity: 0,
