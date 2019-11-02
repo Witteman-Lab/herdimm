@@ -92,8 +92,8 @@
             labelSelected: String,
             diseaseToPlay : String,
             voiceToPlay: String,
-            totalTime: Array
-
+            totalTime: Array,
+            returnUrl: String
         },
         methods: {
 
@@ -116,8 +116,15 @@
              * @return none
              */
             startAnimation() {
-                if (this.reloadAnimationPage)
-                    window.location.reload();
+                // might need to change this function name or the way it handles operation
+                if (this.reloadAnimationPage) {
+                    if (this.returnUrl !== "" && this.returnUrl !== undefined) {
+                        console.log(this.returnUrl);
+                        window.open(this.returnUrl);
+                    } else {
+                        window.location.reload();
+                    }
+                }
                 else {
                     this.checkboxState = document.getElementById("showCaptions").checked;
                     this.isAnimationStarted = true;
@@ -164,7 +171,11 @@
             reloadAnimation() {
                 this.isAnimationStarted = false;
                 this.reloadAnimationPage = true;
-                this.textButtonAnimation = this.labels.restartAnimation;
+                if (this.returnUrl !== "" && this.returnUrl !== undefined) {
+                    this.textButtonAnimation = this.labels.redirectSurvey;
+                } else {
+                    this.textButtonAnimation = this.labels.restartAnimation ;
+                }
             },
 
 

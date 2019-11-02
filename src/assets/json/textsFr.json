@@ -25,6 +25,7 @@
     "editAvatar": "Éditez",
     "startAnimation": "Lancer l'animation",
     "restartAnimation" : "Relancer l'animation",
+    "redirectSurvey" : "Retourner au sondage",
     "nameInputLabel": "Nom",
     "nameInputPlaceHolder": "Nommez votre avatar",
     "totalCharacterCount" : "avatars créés : ",

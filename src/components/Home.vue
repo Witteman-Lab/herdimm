@@ -98,6 +98,7 @@
                 debugMode: false,
                 totalTime: 0,
                 startTime: Date.now(),
+                returnUrl: ""
             };
         },
         props: {
@@ -252,7 +253,17 @@
             },
 
             /**
-             * ---> Check if the language in query is fr and change the language to english it's that the case
+             * ---> Check if a return url is in query
+             * @return none
+             */
+            setReturnUrl() {
+                if (this.$route.query.returnUrl) {
+                    this.returnUrl = this.$route.query.returnUrl;
+                }
+            },
+
+            /**
+             * ---> Check if the language in query is en and change the language to english it's that the case
              * @return none
              */
             setLanguage() {
@@ -301,7 +312,8 @@
                         labelSelected: this.labels.currentLanguage,
                         diseaseToPlay: this.diseaseHome,
                         voiceToPlay: this.gender,
-                        totalTime: [this.totalTime]
+                        totalTime: [this.totalTime],
+                        returnUrl: this.returnUrl,
                     }
                 });
                 localStorage.setItem("currentLanguage", this.labels.currentLanguage);
@@ -381,6 +393,7 @@
                 this.setVoiceToPlay();
                 this.setLanguage();
                 this.setDebugMode();
+                this.setReturnUrl();
             }
         }
 </script>

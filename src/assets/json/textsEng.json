@@ -25,6 +25,7 @@
     "editAvatar": "Edit",
     "startAnimation": "Start the animation",
     "restartAnimation" : "Restart the animation",
+    "redirectSurvey" : "Return to survey",
     "nameInputLabel": "Name",
     "nameInputPlaceHolder": "Name your avatar",
     "totalCharacterCount": "avatars made: ",

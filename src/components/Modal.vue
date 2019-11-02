@@ -151,8 +151,12 @@
                                             <button style="margin: 10px" class="button" v-on:click="showSpectrum(2)">Vuetify color picker</button>
                                         </div>
 
-                                        <Chrome v-if="isSpectrumActive" :value="this.currentColorHair"
-                                                @input="this.changeHairColor"/>
+                                        <div v-if="isSpectrumActive" style="position: fixed;top: 230px;">
+                                            <Chrome  :value="this.currentColorHair"
+                                                    @input="this.changeHairColor"/>
+                                            <button class="button" v-on:click="addColorToSpectrum">Valider</button>
+                                        </div>
+
                                         <ColorPicker v-model="colorToShow" v-if="isRadicalColorPickerActive" @input="this.getColorInHex"></ColorPicker>
                                         <v-color-picker v-if="isVueColorActive"
                                                         @input="this.changeHairColor"
@@ -318,8 +322,10 @@
                 this.currentColorHair = color;
                 this.$refs.character.changeHairColor(color);
             },
-
-
+            addColorToSpectrum() {
+                this.isSpectrumActive = false;
+                this.hairColors.push(this.currentColorHair);
+            },
             showSpectrum(index) {
                 if (index === 0) {
                     this.isSpectrumActive = !this.isSpectrumActive;
