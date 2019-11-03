@@ -1,5 +1,5 @@
 <template>
-    <div class="container" v-recognizer:pinch.cancel="">
+    <div class="container">
         <!-- MODAL WINDOW -->
         <Modal ref="modal"  :defaultCharacterColors="defaultCharacterColors" :skin-colors="skinColors" :hair-colors="hairColors" :total-characters-count="maxCharactersInGroup" :glasses-list-json="glassesListJson" :facial-hair-list-json="facialHairList" :labels="labels"/>
         <!-- INTERFACE TUTORIAL -->
