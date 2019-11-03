@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" v-recognizer:pinch.cancel="">
         <!-- <meta name="viewport" content="width=device-width, user-scalable=no"> -->
         <!-- Audio player for audio files -->
         <AudioPlayer :current-language="currentLanguage" :voice="voiceToPlayAtAnimation" :checkbox-state-audio-player="checkboxState" ref="audioPlayer"></AudioPlayer>
