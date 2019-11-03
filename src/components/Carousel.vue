@@ -1,5 +1,5 @@
 <template>
-    <div class="modal" v-bind:class="{'is-active': isActive }">
+    <div class="modal" v-recognizer:pinch.cancel="" v-bind:class="{'is-active': isActive }">
         <div class="modal-background">
             <div>
                 <v-stepper v-model="e1" class="stepper" :vertical="false" :alt-labels="true">
