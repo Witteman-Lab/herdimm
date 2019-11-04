@@ -100,61 +100,61 @@
             "id": "adult05",
             "file" : "adult05.svg",
             "hasGlasses" : true,
-            "hasFacialHair" : false
+            "hasFacialHair" : true
         },
         {
             "id": "adult06",
             "file" : "adult06.svg",
             "hasGlasses" : true,
-            "hasFacialHair" : false
+            "hasFacialHair" : true
         },
         {
             "id": "adult07",
             "file" : "adult07.svg",
             "hasGlasses" : true,
-            "hasFacialHair" : false
+            "hasFacialHair" : true
         },
         {
             "id": "adult08",
             "file" : "adult08.svg",
             "hasGlasses" : true,
-            "hasFacialHair" : false
+            "hasFacialHair" : true
         },
         {
             "id": "adult09",
             "file" : "adult09.svg",
             "hasGlasses" : true,
-            "hasFacialHair" : false
+            "hasFacialHair" : true
         },
         {
             "id": "adult10",
             "file" : "adult10.svg",
             "hasGlasses" : true,
-            "hasFacialHair" : false
+            "hasFacialHair" : true
         },
         {
             "id": "adult11",
             "file" : "adult11.svg",
             "hasGlasses" : true,
-            "hasFacialHair" : false
+            "hasFacialHair" : true
         },
         {
             "id": "adult12",
             "file" : "adult12.svg",
             "hasGlasses" : true,
-            "hasFacialHair" : false
+            "hasFacialHair" : true
         },
         {
             "id": "adult13",
             "file" : "adult13.svg",
             "hasGlasses" : true,
-            "hasFacialHair" : false
+            "hasFacialHair" : true
         },
         {
             "id": "adult14",
             "file" : "adult14.svg",
             "hasGlasses" : true,
-            "hasFacialHair" : false
+            "hasFacialHair" : true
         },
         {
             "id": "adult15",
@@ -166,17 +166,65 @@
             "id": "adult16",
             "file" : "adult16.svg",
             "hasGlasses" : true,
-            "hasFacialHair" : false
+            "hasFacialHair" : true
         },
         {
             "id": "adult17",
             "file" : "adult17.svg",
             "hasGlasses" : true,
-            "hasFacialHair" : false
+            "hasFacialHair" : true
         },
         {
             "id": "adult18",
             "file" : "adult18.svg",
+            "hasGlasses" : true,
+            "hasFacialHair" : true
+        },
+        {
+            "id": "adult19",
+            "file" : "adult19.svg",
+            "hasGlasses" : true,
+            "hasFacialHair" : true
+        }
+        ,
+        {
+            "id": "adult20",
+            "file" : "adult20.svg",
+            "hasGlasses" : true,
+            "hasFacialHair" : true
+        }
+        ,
+        {
+            "id": "adult21",
+            "file" : "adult21.svg",
+            "hasGlasses" : true,
+            "hasFacialHair" : true
+        }
+        ,
+        {
+            "id": "adult22",
+            "file" : "adult22.svg",
+            "hasGlasses" : true,
+            "hasFacialHair" : true
+        }
+        ,
+        {
+            "id": "adult23",
+            "file" : "adult23.svg",
+            "hasGlasses" : true,
+            "hasFacialHair" : true
+        }
+        ,
+        {
+            "id": "adult24",
+            "file" : "adult24.svg",
+            "hasGlasses" : true,
+            "hasFacialHair" : true
+        }
+        ,
+        {
+            "id": "adult25",
+            "file" : "adult25.svg",
             "hasGlasses" : true,
             "hasFacialHair" : true
         }
