@@ -98,7 +98,10 @@
                 debugMode: false,
                 totalTime: 0,
                 startTime: Date.now(),
-                returnUrl: ""
+                returnUrl: "",
+                uid: 0,
+                maxUid : 999999,
+                randomUid: 0
             };
         },
         props: {
@@ -253,6 +256,21 @@
             },
 
             /**
+             * ---> Check if Uid exist. If not, randomly create a value between 0 and 999999
+             * @return none
+             */
+            setUid(){
+                if(this.$route.query.uid){
+                    this.uid = parseInt(this.$route.query.uid);
+                }
+                else {
+                    this.randomUid = Math.floor((Math.random() * (this.maxUid + 1)));
+                    this.uid = this.randomUid;
+                }
+            },
+
+
+            /**
              * ---> Check if a return url is in query
              * @return none
              */
@@ -303,6 +321,7 @@
              */
             loadAnimationView() {
                 let groupCharacter = this.$refs.listToFill.getCharacterList();
+                console.log("la valeur est ", groupCharacter);
                 this.calculateTotalTime();
                 // this.calculateTimeCharacter();
                 this.$router.push({
@@ -314,6 +333,7 @@
                         voiceToPlay: this.gender,
                         totalTime: [this.totalTime],
                         returnUrl: this.returnUrl,
+                        uid : this.uid
                     }
                 });
                 localStorage.setItem("currentLanguage", this.labels.currentLanguage);
@@ -394,6 +414,7 @@
                 this.setLanguage();
                 this.setDebugMode();
                 this.setReturnUrl();
+                this.setUid();
             }
         }
 </script>

@@ -81,7 +81,8 @@
                 isAudioPlaying: false,
                 checkboxState: false,
                 voiceToPlayAtAnimation : '',
-                counter: 0
+                counter: 0,
+                state: ""
 
             }
         },
@@ -93,7 +94,8 @@
             diseaseToPlay : String,
             voiceToPlay: String,
             totalTime: Array,
-            returnUrl: String
+            returnUrl: String,
+            uid : Number
         },
         methods: {
 
@@ -117,20 +119,24 @@
              */
             startAnimation() {
                 // might need to change this function name or the way it handles operation
-                if (this.reloadAnimationPage) {
-                    if (this.returnUrl !== "" && this.returnUrl !== undefined) {
-                        console.log(this.returnUrl);
-                        window.open(this.returnUrl);
-                    } else {
-                        window.location.reload();
-                    }
-                }
-                else {
-                    this.checkboxState = document.getElementById("showCaptions").checked;
-                    this.isAnimationStarted = true;
-                    this.$refs.audioPlayer.playAudio();
-                    this.isAnimationPlaying();
-                }
+                this.state = "completed";
+                window.open(this.returnUrl+"?"+"uid="+this.uid.toString()+"&"+"state="+this.state);
+
+
+                // if (this.reloadAnimationPage) {
+                //     if (this.returnUrl !== "" && this.returnUrl !== undefined) {
+                //         console.log(this.returnUrl);
+                //         window.open(this.returnUrl);
+                //     } else {
+                //         window.location.reload();
+                //     }
+                // }
+                // else {
+                //     this.checkboxState = document.getElementById("showCaptions").checked;
+                //     this.isAnimationStarted = true;
+                //     this.$refs.audioPlayer.playAudio();
+                //     this.isAnimationPlaying();
+                // }
             },
 
             /**
@@ -971,6 +977,7 @@
         },
         created() {},
         mounted() {
+            console.log("value of Return", this.returnUrl);
             window.scrollTo({ top: 0, behavior: 'smooth', x: 0});
             let initAnimation = false;
 
