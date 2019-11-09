@@ -111,6 +111,16 @@
                     body: JSON.stringify(dataSent)
                 }).then((response) => console.log(response));
             },
+            generateUrlQualtrics() {
+                this.state = "completed";
+                let finalUrl = this.returnUrl;
+                const group = localStorage.getItem("group");
+                const myg = localStorage.getItem("totalTime");
+                if (!this.returnUrl.startsWith("https")) {
+                    finalUrl = "https://" + this.returnUrl;
+                }
+                window.open(`${finalUrl}?uid=${this.uid.toString()}&state=${this.state}&group=${group}&myg=${myg}`);
+            },
 
             /**
              * ---> Start the animation when user is ready, clicks on the Start button
@@ -123,20 +133,18 @@
                 window.open(this.returnUrl+"?"+"uid="+this.uid.toString()+"&"+"state="+this.state);
 
 
-                // if (this.reloadAnimationPage) {
-                //     if (this.returnUrl !== "" && this.returnUrl !== undefined) {
-                //         console.log(this.returnUrl);
-                //         window.open(this.returnUrl);
-                //     } else {
-                //         window.location.reload();
-                //     }
-                // }
-                // else {
-                //     this.checkboxState = document.getElementById("showCaptions").checked;
-                //     this.isAnimationStarted = true;
-                //     this.$refs.audioPlayer.playAudio();
-                //     this.isAnimationPlaying();
-                // }
+                 if (this.reloadAnimationPage) {
+                     if (this.returnUrl !== "" && this.returnUrl !== undefined) {
+                         this.generateUrlQualtrics();
+                     } else {
+                        window.location.reload();
+                     }
+                 } else {
+                    this.checkboxState = document.getElementById("showCaptions").checked;
+                     this.isAnimationStarted = true;
+                     this.$refs.audioPlayer.playAudio();
+                     this.isAnimationPlaying();
+                 }
             },
 
             /**
