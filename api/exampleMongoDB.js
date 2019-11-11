@@ -3,7 +3,7 @@ var router = express.Router();
 
 // initialise mongoose for mongodb
 var mongoose = require("mongoose");
-mongoose.connect('mongodb://localhost:27017/api_herdimm', { useNewUrlParser: true });
+mongoose.connect('mongodb://wlab.fmed.ulaval.ca:27017/api_herdimm', { useNewUrlParser: true });
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);

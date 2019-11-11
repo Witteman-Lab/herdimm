@@ -100,7 +100,7 @@
         methods: {
 
             sendCharactersToApi(chosenDB) {
-                const url =`http://localhost:3000/api/${chosenDB}/herdimm`;
+                const url =`http://wlab.fmed.ulaval.ca:3000/api/${chosenDB}/herdimm`;
                 let dataSent = {group: JSON.parse(localStorage.getItem("group")), totalTime: JSON.parse(localStorage.getItem("totalTime"))}
                 fetch(url, {
                     method: 'POST',
