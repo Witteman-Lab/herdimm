@@ -39,6 +39,9 @@
     "generateAllCharacters": "Generate all characters",
     "sameCharacters": "Same Characters",
     "differentCharacters": "Random Characters",
+    "moreColor" : "More Color",
+    "addColor" : "Add color",
+    "cancelSpectrumColor" : "cancel",
     "commentary" : "--------------------------------- Carousel.vue  -------------------------------------------------",
     "stepsDescription" : [
         {

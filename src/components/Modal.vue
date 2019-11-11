@@ -75,30 +75,26 @@
 
                                 <!-- Hair color -->
                                 <div id="hairColorSelect" class="content-tab" v-if="this.hasHair" >
-                                    <Compact
+                                    <Compact v-show="!this.isVueColorActive"
                                             :value="this.currentColorHair"
                                             @input="this.changeHairColor"
                                             :palette="hairColors"/>
-                                    <div style="display: flex; justify-content: space-between">
-                                        <button style="margin: 10px" class="button" v-on:click="showSpectrum(0)">Chrome (vue-color)</button>
-                                        <button style="margin: 10px" class="button" v-on:click="showSpectrum(1)">Radical Color Picker</button>
-                                        <button style="margin: 10px" class="button" v-on:click="showSpectrum(2)">Vuetify color picker</button>
-                                    </div>
 
-                                    <div v-if="isSpectrumActive" style="position: fixed;top: 230px;">
-                                        <Chrome  :value="this.currentColorHair"
-                                                @input="this.changeHairColor"/>
-                                        <button class="button" v-on:click="addColorToSpectrum">Valider</button>
-                                    </div>
-
-                                    <ColorPicker v-model="colorToShow" v-if="isRadicalColorPickerActive" @input="this.getColorInHex"></ColorPicker>
-                                    <v-color-picker v-if="isVueColorActive"
+                                    <v-color-picker  v-if="isVueColorActive"
                                                     @input="this.changeHairColor"
-                                            :hide-canvas="false"
-                                            :hide-inputs="true"
-                                            :show-swatches="false"
-                                            class="mx-auto"
+                                                    :hide-canvas="false"
+                                                    :hide-inputs="true"
+                                                    :show-swatches="false"
+                                                    :dot-size=20
+                                                    :light="false"
+                                                    class="mx-auto"
                                     ></v-color-picker>
+                                    <div style="display: flex; justify-content: center;" >
+                                        <v-btn v-if="!this.isVueColorActive" color="black"  style="margin: 10px; color:white"  @click="showSpectrum">{{this.labels.moreColor}}</v-btn>
+                                        <v-btn v-if="this.isVueColorActive" color="black" style="margin: 10px; color: white"  @click="addColorToSpectrum">{{this.labels.addColor}}</v-btn>
+                                        <v-btn v-if="this.isVueColorActive" color="#D50000" style="margin: 10px; color: white"  @click="closeSpectrumColorCanvas">{{this.labels.cancelSpectrumColor}}</v-btn>
+                                    </div>
+
                                 </div>
 
 
@@ -166,8 +162,6 @@
                 hasFacialHair: false,
                 hasGlasses: false,
 
-                isSpectrumActive: false,
-                isRadicalColorPickerActive: false,
                 colorToShow: {},
                 isVueColorActive: false,
 
@@ -238,24 +232,15 @@
                 this.currentColorHair = color;
                 this.$refs.character.changeHairColor(color);
             },
-            addColorToSpectrum() {
-                this.isSpectrumActive = false;
-                this.hairColors.push(this.currentColorHair);
+            closeSpectrumColorCanvas() {
+                this.isVueColorActive = false;
             },
-            showSpectrum(index) {
-                if (index === 0) {
-                    this.isSpectrumActive = !this.isSpectrumActive;
-                    this.isRadicalColorPickerActive = false;
-                    this.isVueColorActive = false;
-                } else if (index === 1) {
-                    this.isSpectrumActive = false;
-                    this.isRadicalColorPickerActive = !this.isRadicalColorPickerActive;
-                    this.isVueColorActive = false;
-                } else {
-                    this.isSpectrumActive = false;
-                    this.isRadicalColorPickerActive = false;
-                    this.isVueColorActive = !this.isVueColorActive;
-                }
+            addColorToSpectrum() {
+                this.hairColors.push(this.currentColorHair);
+                this.isVueColorActive = false;
+            },
+            showSpectrum() {
+                this.isVueColorActive = true;
             },
 
             /**
@@ -265,9 +250,7 @@
              */
             calculateTimeCharacter() {
                 let startCharacterTime = this.startCharacterTime;
-                console.log("startCharacterTime", startCharacterTime);
                 let  spendTime = Math.round((this.endCharacterTime - startCharacterTime));
-                console.log("spendTime", spendTime);
                 this.$refs.character.setCharacterTimeCreation(spendTime);
             },
             /***
@@ -297,7 +280,6 @@
              */
             openModal(index, character, totalCreated, nbrVulnerable, nbrAvatar, isEdit, label) {
                 this.startCharacterTime = Date.now();
-                console.log("temps de debut",this.startCharacterTime);
                 this.modalTitle = this.getModalTitle(index, label, nbrVulnerable);
                 this.currentCharacter = require(`../assets/characters/${character.file}`);
                 this.currentCharacterObject = character;
@@ -381,6 +363,7 @@
                 this.isDropdownActive = false;
                 this.isHairColorButtonEnable = false;
                 this.isFaceColorButtonEnable = false;
+                this.isVueColorActive = false;
                 this.characterName = "";
             },
 
@@ -414,11 +397,9 @@
 
                 this.endCharacterTime = Date.now();
                 let startCharacterTime = this.startCharacterTime;
-                console.log("startCharacterTime", startCharacterTime);
                 let spendTime = Math.round((this.endCharacterTime - startCharacterTime));
                 this.$refs.character.setCharacterTimeEdition(spendTime);
                 this.$parent.editCharacter(this.currentCharacterObject, this.$refs.character.getSvgColor());
-                console.log(this.$refs.character.getSvgColor().characterTimeEdition);
                 this.closeModal();
             },
 

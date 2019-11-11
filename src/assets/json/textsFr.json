@@ -39,6 +39,9 @@
     "generateAllCharacters" : "Générer tous les personnages",
     "sameCharacters": "Même personnages",
     "differentCharacters": "Personnages aléatoires",
+    "moreColor" : "Plus de couleurs",
+    "addColor" : "Ajouter la couleur",
+    "cancelSpectrumColor": "Annuler",
     "commentary" : "--------------------------------- Carousel.vue  -------------------------------------------------",
     "stepsDescription" : [
         {
