@@ -4,7 +4,8 @@
   "main": "api.js",
   "license": "ISC",
   "scripts": {
-    "start": "nodemon api.js"
+    "start": "nodemon api.js",
+    "server": "pm2 start api.js && pm2 save"
   },
   "dependencies": {
     "dotenv": "^8.0.0",
