@@ -98,7 +98,11 @@
             uid : Number
         },
         methods: {
-
+            /**
+             * ---> TO DO
+             * @param TO DO
+             * @return TO DO
+             */
             sendCharactersToApi(chosenDB) {
                 const url =`http://${config.API_URL_PROD}/api/${chosenDB}/herdimm`;
                 let dataSent = {group: JSON.parse(localStorage.getItem("group")), totalTime: JSON.parse(localStorage.getItem("totalTime"))}
@@ -111,14 +115,22 @@
                     body: JSON.stringify(dataSent)
                 }).then((response) => console.log(response));
             },
+
+            /**
+             * ---> TO DO
+             * @param TO DO
+             * @return TO DO
+             */
             generateUrlQualtrics() {
                 this.state = "completed";
                 let finalUrl = this.returnUrl;
                 const group = localStorage.getItem("group");
                 const myg = localStorage.getItem("totalTime");
+
                 if (!this.returnUrl.startsWith("https")) {
                     finalUrl = "https://" + this.returnUrl;
                 }
+
                 window.open(`${finalUrl}?uid=${this.uid.toString()}&state=${this.state}&group=${group}&myg=${myg}`);
             },
 
@@ -129,22 +141,22 @@
              */
             startAnimation() {
                 // might need to change this function name or the way it handles operation
-                this.state = "completed";
-                window.open(this.returnUrl+"?"+"uid="+this.uid.toString()+"&"+"state="+this.state);
+                //this.state = "completed";
+                //window.open(this.returnUrl+"?"+"uid="+this.uid.toString()+"&"+"state="+this.state);
 
 
-                 if (this.reloadAnimationPage) {
-                     if (this.returnUrl !== "" && this.returnUrl !== undefined) {
-                         this.generateUrlQualtrics();
-                     } else {
+                if (this.reloadAnimationPage) {
+                    if (this.returnUrl !== "" && this.returnUrl !== undefined) {
+                        this.generateUrlQualtrics();
+                    } else {
                         window.location.reload();
-                     }
-                 } else {
+                    }
+                } else {
                     this.checkboxState = document.getElementById("showCaptions").checked;
-                     this.isAnimationStarted = true;
-                     this.$refs.audioPlayer.playAudio();
-                     this.isAnimationPlaying();
-                 }
+                    this.isAnimationStarted = true;
+                    this.$refs.audioPlayer.playAudio();
+                    this.isAnimationPlaying();
+                }
             },
 
             /**
@@ -185,14 +197,13 @@
             reloadAnimation() {
                 this.isAnimationStarted = false;
                 this.reloadAnimationPage = true;
+
                 if (this.returnUrl !== "" && this.returnUrl !== undefined) {
                     this.textButtonAnimation = this.labels.redirectSurvey;
                 } else {
                     this.textButtonAnimation = this.labels.restartAnimation ;
                 }
             },
-
-
 
             /**
              * ---> Build the hexagon grid based on an array
@@ -345,7 +356,6 @@
                 }
             },
 
-
             /**
              * ---> Execute the appropriate function by its name received as a string as well as with arguments
              * @param {String} functionName
@@ -379,8 +389,6 @@
                     });
                 });
             },
-
-
 
             /**
              * ---> A way to "draw" the contour of the shapes without using borders
@@ -582,7 +590,6 @@
 
                 }, parseInt(connections.delayCallRemoveline));
             },
-
 
             /**
              * --->  this method checks if the shape contains avatar
@@ -824,7 +831,6 @@
                 }, parseInt(props.startTime));
             },
 
-
             /**
              * ---> Change the size of the shape (target)
              * @param {String} selector
@@ -902,8 +908,6 @@
                 },parseInt(props.startTime));
             },
 
-
-
             /**
              * ---> Draw the lines of infections (when infection is spreading)
              * @param {String} source
@@ -941,6 +945,11 @@
                 return lineObj;
             },
 
+            /**
+             * ---> TO DO
+             * @param TO DO
+             * @return TO DO
+             */
             initialiseAnimation() {
                 let styles = require('../scss/animation.scss');
 

@@ -3,15 +3,15 @@
         <!-- MODAL WINDOW -->
         <Modal ref="modal"  :defaultCharacterColors="defaultCharacterColors" :skin-colors="skinColors" :hair-colors="hairColors" :total-characters-count="maxCharactersInGroup" :glasses-list-json="glassesListJson" :facial-hair-list-json="facialHairList" :labels="labels"/>
         <!-- INTERFACE TUTORIAL -->
-        <Carousel id="Carousel" class="Carousel" ref="Carousel" :labels="labels" :change-language-button-index="changeLanguageButtonIndex"
-                  :nbr-avatar="nbAvatar" :nbr-vulnerable="nbrVulnerable"  :nbr-community="nbrCommunity"></Carousel>
+        <!-- <Carousel id="Carousel" class="Carousel" ref="Carousel" :labels="labels" :change-language-button-index="changeLanguageButtonIndex"
+                  :nbr-avatar="nbAvatar" :nbr-vulnerable="nbrVulnerable"  :nbr-community="nbrCommunity"></Carousel> -->
 
         <div class="is-centered is-half-desktop is-half-mobile">
             <h1>{{this.labels.pageTitle}}</h1>
             <v-btn id="selectLanguage" color="primary" :style="{'z-index': languageButtonIndex}" style="z-index: 20" class="button" v-on:click="this.changeLanguage">{{this.labels.language}}</v-btn>
             <!-- <p id="generalInfo">{{this.labels.generalInfo}}</p> -->
             <!-- <br /> -->
-            <v-btn style="z-index: 1" class="button_tutorial" color="secondary" @click="showCarousel">{{this.labels.tutorial}}</v-btn>
+            <!-- <v-btn style="z-index: 1" class="button_tutorial" color="secondary" @click="showCarousel">{{this.labels.tutorial}}</v-btn> -->
             <p id="contextualInfo">{{ contextualInfo }}</p>
             <!-- <h2>{{ this.labels.totalCharacterCount }} {{this.totalCreated}} / {{maxCharactersInGroup}} </h2> -->
             <!-- List of all the characters -->
@@ -100,18 +100,27 @@
                 startTime: Date.now(),
                 returnUrl: "",
                 uid: 0,
-                maxUid : 999999,
-                randomUid: 0
+                maxUid : 999999
             };
         },
         props: {
             characterTime: Number,
         },
         methods: {
-
+            /**
+             * ---> ---------  completed soon -------
+             * @param none
+             * @return none
+             */
             changeCharacterGeneration() {
                 this.characterTypeToGenerate = !this.characterTypeToGenerate
             },
+
+            /**
+             * ---> ---------  completed soon -------
+             * @param none
+             * @return none
+             */
             generateAllCharacters() {
                 if (!this.isGroupComplete) {
                     let character;
@@ -150,7 +159,7 @@
             },
             /**
              * ---> ---------  completed soon -------
-             * @param none
+             * @param {string} action
              * @return none
              */
             changeLanguageButtonIndex(action) {
@@ -165,9 +174,9 @@
              * @param none
              * @return none
              */
-            showCarousel() {
-                this.$refs.Carousel.openOnBoarding()
-            },
+            // showCarousel() {
+            //     this.$refs.Carousel.openOnBoarding()
+            // },
 
             /**
              * ---> calculate total time spend for a user
@@ -223,9 +232,9 @@
 
                 if (this.totalCreated < this.maxCharactersInGroup) {
                     setTimeout(() => {
-                            window.scrollTo({top: 0, behavior: 'smooth', x: 0})
-                        },
-                        parseInt(charactersJson.scrollingTimeControl));
+                        window.scrollTo({top: 0, behavior: 'smooth', x: 0})
+                    },
+                    parseInt(charactersJson.scrollingTimeControl));
                 }
             },
 
@@ -257,6 +266,7 @@
 
             /**
              * ---> Check if Uid exist. If not, randomly create a value between 0 and 999999
+             * @param none
              * @return none
              */
             setUid(){
@@ -264,14 +274,14 @@
                     this.uid = parseInt(this.$route.query.uid);
                 }
                 else {
-                    this.randomUid = Math.floor((Math.random() * (this.maxUid + 1)));
-                    this.uid = this.randomUid;
+                    this.uid = Math.floor((Math.random() * (this.maxUid + 1)));
                 }
             },
 
 
             /**
              * ---> Check if a return url is in query
+             * @param none
              * @return none
              */
             setReturnUrl() {
@@ -292,6 +302,7 @@
 
             /**
              * --->
+             * @param none
              * @return none
              */
             setDiseaseToAnimate() {
@@ -301,6 +312,7 @@
 
             /**
              * --->
+             * @param none
              * @return none
              */
             setVoiceToPlay() {
@@ -321,7 +333,7 @@
              */
             loadAnimationView() {
                 let groupCharacter = this.$refs.listToFill.getCharacterList();
-                console.log("la valeur est ", groupCharacter);
+                //console.log("la valeur est ", groupCharacter);
                 this.calculateTotalTime();
                 // this.calculateTimeCharacter();
                 this.$router.push({
@@ -379,6 +391,12 @@
                 this.manageCharacterCount();
                 this.$forceUpdate();
             },
+
+            /**
+             * ---> ---------  completed soon -------
+             * @param none
+             * @return none
+             */
             setDebugMode() {
                 if (this.$route.query.debug === "true") {
                     this.debugMode = true;
@@ -469,8 +487,6 @@
 
 
     button#continue, p#contextualInfo, p#finalInfo {
-    /*button#continueAnimation, p#contextualInfo, p#finalInfo {*/
-
         animation: appearanceAnim;
         /* animation: appearanceAnim 2s ease-in-out; */
         -webkit-animation-name: appearanceAnim; /* Safari 4.0 - 8.0 */
