@@ -57,7 +57,7 @@
     import textsEng from "../assets/json/textsEng.json";
     import textsFr from "../assets/json/textsFr.json";
     import connections from "../assets/json/connections.json";
-    import config from "../../config/config"
+    import config from "../../config/configMongoDB"
 
 
     export default {
@@ -100,7 +100,7 @@
         methods: {
 
             sendCharactersToApi(chosenDB) {
-                const url =`http://${config.API_URL}/api/${chosenDB}/herdimm`;
+                const url =`http://${config.API_URL_PROD}/api/${chosenDB}/herdimm`;
                 let dataSent = {group: JSON.parse(localStorage.getItem("group")), totalTime: JSON.parse(localStorage.getItem("totalTime"))}
                 fetch(url, {
                     method: 'POST',
