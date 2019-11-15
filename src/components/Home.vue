@@ -271,10 +271,10 @@
              */
             setUid(){
                 if(this.$route.query.uid){
-                    this.uid = parseInt(this.$route.query.uid);
+                    this.uid = this.$route.query.uid;
                 }
                 else {
-                    this.uid = Math.floor((Math.random() * (this.maxUid + 1)));
+                    this.uid = Math.floor((Math.random() * (this.maxUid + 1))).toString();
                 }
             },
 
@@ -285,8 +285,8 @@
              * @return none
              */
             setReturnUrl() {
-                if (this.$route.query.returnUrl) {
-                    this.returnUrl = this.$route.query.returnUrl;
+                if (this.$route.query.returnURL) {
+                    this.returnUrl = this.$route.query.returnURL;
                 }
             },
 

@@ -95,7 +95,7 @@
             voiceToPlay: String,
             totalTime: Array,
             returnUrl: String,
-            uid : Number
+            uid : String
         },
         methods: {
             /**
@@ -127,11 +127,12 @@
                 const group = localStorage.getItem("group");
                 const myg = localStorage.getItem("totalTime");
 
-                if (!this.returnUrl.startsWith("https")) {
-                    finalUrl = "https://" + this.returnUrl;
-                }
+                // if (!this.returnUrl.startsWith("https")) {
+                //     finalUrl = "https://" + this.returnUrl;
+                // }
 
-                window.open(`${finalUrl}?uid=${this.uid.toString()}&state=${this.state}&group=${group}&myg=${myg}`);
+                //window.open(`${finalUrl}?uid=${this.uid.toString()}&state=${this.state}&group=${group}&myg=${myg}`);
+                window.location.replace(`${finalUrl}&uid=${this.uid}&state=${this.state}&group=${group}&myg=${myg}`);
             },
 
             /**
@@ -143,7 +144,6 @@
                 // might need to change this function name or the way it handles operation
                 //this.state = "completed";
                 //window.open(this.returnUrl+"?"+"uid="+this.uid.toString()+"&"+"state="+this.state);
-
 
                 if (this.reloadAnimationPage) {
                     if (this.returnUrl !== "" && this.returnUrl !== undefined) {
@@ -955,7 +955,14 @@
 
                 this.$refs.audioPlayer.loadAudioFiles(this.currentLanguage, localStorage.getItem("voice"));
                 this.voiceToPlayAtAnimation = localStorage.getItem("voice");
-                this.textButtonAnimation = this.labels.startAnimation;
+                //this.textButtonAnimation = this.labels.startAnimation;
+
+                if (this.returnUrl !== "" && this.returnUrl !== undefined) {
+                    this.textButtonAnimation = this.labels.redirectSurvey;
+                } else {
+                    this.textButtonAnimation = this.labels.restartAnimation;
+                }
+
                 // Fetch some styles from the SCSS file
                 this.characterSize = styles["hexagon-height"];
                 this.characterBottomMargin = styles["character-bottom-margin"];
@@ -994,7 +1001,7 @@
         },
         created() {},
         mounted() {
-            console.log("value of Return", this.returnUrl);
+            //console.log("value of Return", this.returnUrl);
             window.scrollTo({ top: 0, behavior: 'smooth', x: 0});
             let initAnimation = false;
 
