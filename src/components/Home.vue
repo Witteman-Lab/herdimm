@@ -55,7 +55,6 @@
     import CharacterList from "./CharacterList";
     import GroupCharacter from "./GroupCharacter";
     import Modal from "./Modal";
-    import Carousel from "./Carousel";
 
     import charactersJson from "../assets/json/characters.json";
     import textsEng from "../assets/json/textsEng.json";
@@ -70,7 +69,6 @@
             Modal,
             GroupCharacter,
             CharacterList,
-            Carousel,
         },
         data() {
             return {
@@ -269,11 +267,10 @@
              * @param none
              * @return none
              */
-            setUid(){
-                if(this.$route.query.uid){
+            setUid() {
+                if (this.$route.query.uid) {
                     this.uid = this.$route.query.uid;
-                }
-                else {
+                } else {
                     this.uid = Math.floor((Math.random() * (this.maxUid + 1))).toString();
                 }
             },
@@ -361,9 +358,10 @@
                 if (this.totalCreated < charactersJson.nbAvatar) {
                     this.contextualInfo = this.labels.contextualInfoAvatar;
                 } else if (this.totalCreated < charactersJson.nbAvatar + charactersJson.nbVulnerable) {
-                    this.contextualInfo = `${this.labels.nowSelect} ${charactersJson.nbVulnerable} ${this.labels.selectVulnerable}`;
+                    console.log(charactersJson.nbVulnerable);
+                    this.contextualInfo = this.labels.vulnerableDesc.replace("###", charactersJson.nbVulnerable);
                 } else if (this.totalCreated < charactersJson.nbAvatar + charactersJson.nbVulnerable + charactersJson.nbCommunity) {
-                    this.contextualInfo = `${this.labels.finallySelect} ${charactersJson.nbCommunity} ${this.labels.selectOthersPeople}`;
+                    this.contextualInfo = this.labels.othersDesc.replace("###", charactersJson.nbCommunity);
                 } else {
                     this.contextualInfo = "";
                 }

@@ -6,9 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "main": "nodemon api/api.js",
     "license": "ISC",
-    "description": "Restfull API with Node.js, Express, and PostgreSQL"
+    "description": "Herdimm Project"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.25",
@@ -19,11 +18,6 @@
     "autoprefixer": "^9.7.1",
     "bulma": "^0.8.0",
     "core-js": "^3.4.1",
-    "express": "^4.17.1",
-    "fsevents": "^1.2.9",
-    "mongoose": "^5.7.11",
-    "nodemon": "^1.19.4",
-    "regenerator-runtime": "^0.13.3",
     "vue": "^2.6.10",
     "vue-color": "^2.7.0",
     "vue-recognizer": "^1.1.1",

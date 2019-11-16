@@ -101,7 +101,7 @@
                                 <!-- Glasses -->
                                 <div id="glassesSelect" style="justify-content: center;" class="content-tab buttons" v-if="this.hasGlasses">
                                     <ul>
-                                        <li class="accessoriesList button" style="overflow: hidden" v-on:click="selectGlasses(-1)">None</li>
+                                        <li class="accessoriesList button" style="overflow: hidden" v-on:click="selectGlasses(-1)">{{this.labels.None}}</li>
                                         <li class="accessoriesList button" style="overflow: hidden" v-for="(glasses, index) in glassesListJson" :key="index" v-on:click="selectGlasses(index)" v-html="require(`../assets/glasses/${glasses.file}`)"></li>
                                     </ul>
                                 </div>
@@ -109,7 +109,7 @@
                                 <!-- Facial hair -->
                                 <div id="facialHairSelect" style="justify-content: center;" class="content-tab buttons" v-if="this.hasFacialHair">
                                     <ul>
-                                        <li class="accessoriesList button" style="overflow: hidden" v-on:click="selectBeards(-1)">None</li>
+                                        <li class="accessoriesList button" style="overflow: hidden" v-on:click="selectBeards(-1)">{{this.labels.None}}</li>
                                         <li class="accessoriesList button facialHairList"  style="overflow: hidden" v-for="(beard, index) in facialHairListJson" :key="index" v-html="require(`../assets/facialHair/${beard.file}`)" v-on:click="selectBeards(index)"></li>
                                     </ul>
                                 </div>
@@ -132,17 +132,13 @@
 
 <script>
     import Character from "../components/Character.vue"
-    import { Compact, Chrome }  from "vue-color";
-    import ColorPicker from '@radial-color-picker/vue-color-picker';
-
+    import { Compact }  from "vue-color";
 
     export default {
         name: "Modal",
         components: {
             Character,
-            Compact,
-            Chrome,
-            ColorPicker
+            Compact
         },
         data() {
             return {
@@ -510,7 +506,7 @@
             setAccessoriesPosition(height, marginTop) {
                 let accessories = document.getElementsByClassName("accessoriesList");
                 for (let i = 0; i < accessories.length; i++) {
-                    if (accessories[i].innerHTML !== "None") {
+                    if (accessories[i].innerHTML !== this.labels.None) {
                         let item = accessories[i].children[0];
                         item.setAttribute("height", height);
                         item.setAttribute("style", `margin-top: ${marginTop};`);
