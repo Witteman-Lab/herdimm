@@ -21,25 +21,25 @@
         {
             "id": "baby01",
             "file" : "baby01.svg",
-            "hasGlasses" : false,
+            "hasGlasses" : true,
             "hasFacialHair" : false
         },
         {
             "id": "baby02",
             "file" : "baby02.svg",
-            "hasGlasses" : false,
+            "hasGlasses" : true,
             "hasFacialHair" : false
         },
         {
             "id": "baby03",
             "file" : "baby03.svg",
-            "hasGlasses" : false,
+            "hasGlasses" : true,
             "hasFacialHair" : false
         },
         {
             "id": "baby04",
             "file" : "baby04.svg",
-            "hasGlasses" : false,
+            "hasGlasses" : true,
             "hasFacialHair" : false
         },
         {
