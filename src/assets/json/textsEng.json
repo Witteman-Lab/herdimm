@@ -16,6 +16,7 @@
     "nowSelect" : "Now create the avatars of",
     "selectVulnerable": "people around you who are vulnerable to diseases, i.e. they can catch diseases more easily or diseases can make them sicker (e.g. babies, the elderly, people with health problems (cancer, diabetes, asthma, etc.)).",
     "vulnerableDesc": "Now create the avatars of ### people around you who are vulnerable to diseases, i.e. they can catch diseases more easily or diseases can make them sicker (e.g. babies, the elderly, people with health problems (cancer, diabetes, asthma, etc.)).",
+    "othersDesc": "Finally, choose and customize ### other avatars. These represent other people around you.",
     "finallySelect" : "Finally, choose and customize",
     "selectOthersPeople": "other avatars. These represent other people around you.",
     "avatar": "your avatar",
@@ -41,7 +42,8 @@
     "differentCharacters": "Random Characters",
     "moreColor" : "More Color",
     "addColor" : "Add color",
-    "cancelSpectrumColor" : "cancel",
+    "cancelSpectrumColor" : "Cancel",
+    "None": "None",
     "commentary" : "--------------------------------- Carousel.vue  -------------------------------------------------",
     "stepsDescription" : [
         {

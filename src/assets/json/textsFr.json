@@ -16,6 +16,7 @@
     "nowSelect" : "Maintenant, créez les avatars de",
     "selectVulnerable": "personnes autour de vous qui sont vulnérables aux maladies, c’est à dire qu’elles peuvent attraper les maladies plus facilement et que les maladies peuvent les rendre plus malades (par exemples les bébés, les personnes âgées, les personnes souffrant d'un problème de santé (cancer, diabète, asthme, etc.)).",
     "vulnerableDesc": "Maintenant, créez les avatars de ### personnes autour de vous qui sont vulnérables aux maladies, c’est à dire qu’elles peuvent attraper les maladies plus facilement et que les maladies peuvent les rendre plus malades (par exemples les bébés, les personnes âgées, les personnes souffrant d'un problème de santé (cancer, diabète, asthme, etc.)).",
+    "othersDesc": "Finalement, sélectionnez et personnalisez ### autres avatars. Ceux-ci représentent des personnes de votre entourage.",
     "finallySelect" : "Finalement, sélectionnez et personnalisez",
     "selectOthersPeople": "autres avatars. Ceux-ci représentent des personnes de votre entourage.",
     "avatar": "votre avatar",
@@ -42,6 +43,7 @@
     "moreColor" : "Plus de couleurs",
     "addColor" : "Ajouter la couleur",
     "cancelSpectrumColor": "Annuler",
+    "None": "Aucune",
     "commentary" : "--------------------------------- Carousel.vue  -------------------------------------------------",
     "stepsDescription" : [
         {

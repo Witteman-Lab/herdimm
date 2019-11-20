@@ -11,58 +11,59 @@
                     <button class="delete" aria-label="close modal" v-on:click="this.closeModal"></button>
                 </header>
                 <section class="modal-card-body">
-                <div class="columns">
-                    <div class="column is-centered ">
-                        <Character v-if="isActive" :size="{width: '70px', height: '78px'}" :edit="false" :customised="true" ref="character" :id="'current'" :svgFile="this.currentCharacter"
-                                   :colors="{face: this.currentColorFace, hairFront: this.currentColorHair, beards: this.currentBeard,
+                    <div class="columns">
+                        <div class="column is-centered ">
+                            <Character  v-if="isActive" :size="{width: '70px', height: '78px'}" :edit="false" :customised="true" ref="character" :id="'current'" :svgFile="this.currentCharacter"
+                                       :colors="{face: this.currentColorFace, hairFront: this.currentColorHair, beards: this.currentBeard,
                                        glasses: this.currentGlasses, shirt: this.currentShirt, name: this.characterName, options: this.options,
                                        characterTimeEdition: this.characterTimeEdition, numberOfEdition: this.numberOfEdition, characterTimeCreation: this.characterTimeCreation}"
-                                   :is-name="true"/>
+                                       :is-name="true"/>
+                            <pre>{{ defaultCharacterColors.HairColor }}</pre>
 
-                        <div class="field is-one-fifth-mobile" style="margin-top: 5px">
-                            <div class="control">
-                                <input v-on:input="setCharacterName(characterName)" class="input" v-model="characterName"  type="text" :placeholder="this.labels.nameInputPlaceHolder">
-                            </div>
-                            <div style="overflow: visible;margin-top: 10px;" v-show="isCharacterVulnerable" class="control">
-                                <p id="vulnerableDescription">{{ this.labels.vulnerableDescription }}</p>
-                                <div v-for="(option, index) in this.labels.vulnerableOptions" :key="index">
-                                    <label class="checkbox" >
-                                        <input v-on:click="setCharacterOption(option, index)" type="checkbox" :checked="options[index] ? options[index].id === option.id : ''">
-                                        {{option.name}}
-                                    </label>
+                            <div class="field is-one-fifth-mobile" style="margin-top: 5px">
+                                <div class="control">
+                                    <input v-on:input="setCharacterName(characterName)" class="input" v-model="characterName"  type="text" :placeholder="this.labels.nameInputPlaceHolder">
+                                </div>
+                                <div style="overflow: visible;margin-top: 10px;" v-show="isCharacterVulnerable" class="control">
+                                    <p id="vulnerableDescription">{{ this.labels.vulnerableDescription }}</p>
+                                    <div v-for="(option, index) in this.labels.vulnerableOptions" :key="index">
+                                        <label class="checkbox" >
+                                            <input v-on:click="setCharacterOption(option, index)" type="checkbox" :checked="options[index] ? options[index].id === option.id : ''">
+                                            {{option.name}}
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="column is-center">
-                        <div class="tabs is-centered is-boxed is-three-quarters">
-                            <ul>
-                                <!-- For testing, in case we want to group skin and hair colors in a single tab (saves space) -->
-                                <!-- <li class="tab" v-on:click="openTab($event, 'colorsSelect')">
-                                    <a>Colors</a>
-                                </li> -->
-                                <li class="tab" id="skinColorTab" v-on:click="openTab('skinColorTab', 'skinColorSelect')">
-                                    <!-- <li class="tab" id="skinColorTab" v-on:click="openTab($event, 'skinColorSelect')"> -->
-                                    <a>{{this.labels.skinColorTab}}</a>
-                                </li>
-                                <li class="tab" id="hairColorTab" v-if="this.hasHair" v-on:click="openTab('hairColorTab', 'hairColorSelect')">
-                                    <!-- <li class="tab" id="hairColorTab" v-if="this.hasHair" v-on:click="openTab($event, 'hairColorSelect')"> -->
-                                    <a>{{this.labels.hairColorTab}}</a>
-                                </li>
+                        <div class="column is-center">
+                            <div class="tabs is-centered is-boxed is-three-quarters">
+                                <ul>
+                                    <!-- For testing, in case we want to group skin and hair colors in a single tab (saves space) -->
+                                    <!-- <li class="tab" v-on:click="openTab($event, 'colorsSelect')">
+                                        <a>Colors</a>
+                                    </li> -->
+                                    <li class="tab" id="skinColorTab" v-on:click="openTab('skinColorTab', 'skinColorSelect')">
+                                        <!-- <li class="tab" id="skinColorTab" v-on:click="openTab($event, 'skinColorSelect')"> -->
+                                        <a>{{this.labels.skinColorTab}}</a>
+                                    </li>
+                                    <li class="tab" id="hairColorTab" v-if="this.hasHair" v-on:click="openTab('hairColorTab', 'hairColorSelect')">
+                                        <!-- <li class="tab" id="hairColorTab" v-if="this.hasHair" v-on:click="openTab($event, 'hairColorSelect')"> -->
+                                        <a>{{this.labels.hairColorTab}}</a>
+                                    </li>
 
-                                <!-- Maybe we could also group these 2 tabs in a single one called accessories -->
-                                <!-- Would need to take consider the v-if conditions... -->
-                                <!-- <li class="tab" v-if="(this.hasGlasses || this.hasFacialHair)" v-on:click="openTab($event, 'accessoriesSelect')">
-                                    <a>Accessories</a>
-                                </li> -->
-                                <li class="tab" id="glassesTab" v-if="this.hasGlasses" v-on:click="openTab('glassesTab', 'glassesSelect')">
-                                    <a>{{this.labels.glassesTab}}</a>
-                                </li>
-                                <li class="tab" id="facialHairTab" v-if="this.hasFacialHair" v-on:click="openTab('facialHairTab', 'facialHairSelect')">
-                                    <a>{{this.labels.facialHairTab}}</a>
-                                </li>
-                            </ul>
-                        </div>
+                                    <!-- Maybe we could also group these 2 tabs in a single one called accessories -->
+                                    <!-- Would need to take consider the v-if conditions... -->
+                                    <!-- <li class="tab" v-if="(this.hasGlasses || this.hasFacialHair)" v-on:click="openTab($event, 'accessoriesSelect')">
+                                        <a>Accessories</a>
+                                    </li> -->
+                                    <li class="tab" id="glassesTab" v-if="this.hasGlasses" v-on:click="openTab('glassesTab', 'glassesSelect')">
+                                        <a>{{this.labels.glassesTab}}</a>
+                                    </li>
+                                    <li class="tab" id="facialHairTab" v-if="this.hasFacialHair" v-on:click="openTab('facialHairTab', 'facialHairSelect')">
+                                        <a>{{this.labels.facialHairTab}}</a>
+                                    </li>
+                                </ul>
+                            </div>
                             <div style="display: flex; justify-content: center">
 
                                 <!-- Skin color -->
@@ -76,18 +77,20 @@
                                 <!-- Hair color -->
                                 <div id="hairColorSelect" class="content-tab" v-if="this.hasHair" >
                                     <Compact v-show="!this.isVueColorActive"
-                                            :value="this.currentColorHair"
-                                            @input="this.changeHairColor"
-                                            :palette="hairColors"/>
+                                             :value="this.currentColorHair"
+                                             @input="this.changeHairColor"
+                                             :palette="hairColors"/>
+
+<!--                                    @input="this.changeHairColor"-->
 
                                     <v-color-picker  v-if="isVueColorActive"
-                                                    @input="this.changeHairColor"
-                                                    :hide-canvas="false"
-                                                    :hide-inputs="true"
-                                                    :show-swatches="false"
-                                                    :dot-size=20
-                                                    :light="false"
-                                                    class="mx-auto"
+                                                     v-model="currentColorHair"
+                                                     :hide-canvas="false"
+                                                     :hide-inputs="true"
+                                                     :show-swatches="false"
+                                                     :dot-size=20
+                                                     :light="false"
+                                                     class="mx-auto"
                                     ></v-color-picker>
                                     <div style="display: flex; justify-content: center;" >
                                         <v-btn v-if="!this.isVueColorActive" color="black"  style="margin: 10px; color:white"  @click="showSpectrum">{{this.labels.moreColor}}</v-btn>
@@ -132,17 +135,13 @@
 
 <script>
     import Character from "../components/Character.vue"
-    import { Compact, Chrome }  from "vue-color";
-    import ColorPicker from '@radial-color-picker/vue-color-picker';
-
+    import { Compact }  from "vue-color";
 
     export default {
         name: "Modal",
         components: {
             Character,
-            Compact,
-            Chrome,
-            ColorPicker
+            Compact
         },
         data() {
             return {
@@ -164,6 +163,7 @@
 
                 colorToShow: {},
                 isVueColorActive: false,
+                spectrumSaveCurrentColorHair: "",
 
                 isActive: false,
                 isDropdownActive: false,
@@ -199,46 +199,31 @@
 
         },
         methods: {
-            hslToHex(h, s, l) {
-                h /= 360;
-                s /= 100;
-                l /= 100;
-                let r, g, b;
-                if (s === 0) {
-                    r = g = b = l; // achromatic
-                } else {
-                    const hue2rgb = (p, q, t) => {
-                        if (t < 0) t += 1;
-                        if (t > 1) t -= 1;
-                        if (t < 1 / 6) return p + (q - p) * 6 * t;
-                        if (t < 1 / 2) return q;
-                        if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
-                        return p;
-                    };
-                    const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-                    const p = 2 * l - q;
-                    r = hue2rgb(p, q, h + 1 / 3);
-                    g = hue2rgb(p, q, h);
-                    b = hue2rgb(p, q, h - 1 / 3);
-                }
-                const toHex = x => {
-                    const hex = Math.round(x * 255).toString(16);
-                    return hex.length === 1 ? '0' + hex : hex;
-                };
-                return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
-            },
-            getColorInHex(hue) {
-                const color = this.hslToHex(hue, 100, 50);
-                this.currentColorHair = color;
-                this.$refs.character.changeHairColor(color);
-            },
+            /**
+             * ---> Close the spectrum color canvas
+             * @param none
+             * @return none
+             */
             closeSpectrumColorCanvas() {
                 this.isVueColorActive = false;
             },
+
+            /**
+             * ---> add the new color in color tile
+             * @param none
+             * @return none
+             */
             addColorToSpectrum() {
                 this.hairColors.push(this.currentColorHair);
+                this.$refs.character.changeHairColor(this.currentColorHair);
                 this.isVueColorActive = false;
             },
+
+            /**
+             * ---> show the spectrum color when we press on more colors
+             * @param none
+             * @return none
+             */
             showSpectrum() {
                 this.isVueColorActive = true;
             },
@@ -377,7 +362,7 @@
                     this.$refs.character.setCharacterOption(this.options);
                 }
                 if (this.avatarNbr > this.currentCharacterNumber && !this.characterName) {
-                this.setCharacterName(this.labels.avatarName);
+                    this.setCharacterName(this.labels.avatarName);
                 }
                 else if (!this.characterName)
                     this.setCharacterName(this.labels.defaultCharacterName + " " + (this.currentCharacterNumber + 1));

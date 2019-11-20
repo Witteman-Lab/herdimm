@@ -6,9 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "main": "nodemon api/api.js",
     "license": "ISC",
-    "description": "Restfull API with Node.js, Express, and PostgreSQL"
+    "description": "Herdimm Project"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.25",

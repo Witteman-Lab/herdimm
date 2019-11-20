@@ -105,7 +105,7 @@
              */
             sendCharactersToApi(chosenDB) {
                 const url =`http://${config.API_URL_PROD}/api/${chosenDB}/herdimm`;
-                let dataSent = {group: JSON.parse(localStorage.getItem("group")), totalTime: JSON.parse(localStorage.getItem("totalTime"))}
+                let dataSent = {group: JSON.parse(localStorage.getItem("group")), totalTime: JSON.parse(localStorage.getItem("totalTime"))};
                 fetch(url, {
                     method: 'POST',
                     mode: 'cors',
@@ -126,12 +126,6 @@
                 let finalUrl = this.returnUrl;
                 const group = localStorage.getItem("group");
                 const myg = localStorage.getItem("totalTime");
-
-                // if (!this.returnUrl.startsWith("https")) {
-                //     finalUrl = "https://" + this.returnUrl;
-                // }
-
-                //window.open(`${finalUrl}?uid=${this.uid.toString()}&state=${this.state}&group=${group}&myg=${myg}`);
                 window.location.replace(`${finalUrl}&uid=${this.uid}&state=${this.state}&group=${group}&myg=${myg}`);
             },
 
@@ -142,9 +136,6 @@
              */
             startAnimation() {
                 // might need to change this function name or the way it handles operation
-                //this.state = "completed";
-                //window.open(this.returnUrl+"?"+"uid="+this.uid.toString()+"&"+"state="+this.state);
-
                 if (this.reloadAnimationPage) {
                     if (this.returnUrl !== "" && this.returnUrl !== undefined) {
                         this.generateUrlQualtrics();
@@ -319,8 +310,6 @@
              */
             ChangeTShirtColor(shapeId, color, proportion) {
                 // TO-DO: try different proportion
-                // let darkerColor = this.$refs[shapeId][0].getDarkerShade(color, 0.8);
-                // this.$refs[shapeId][0].changeShirtColor(darkerColor, 0.8);
                 let darkerColor = this.$refs[shapeId][0].getDarkerShade(color, proportion);
                 this.$refs[shapeId][0].changeShirtColor(darkerColor, proportion);
             },
@@ -367,6 +356,7 @@
                 // why use argument instead of the parameter args ??
                 // just disable the warning but it needs to be discuss
                 let newArgs = Array.prototype.slice.call(arguments, 2);
+                console.log(args);
                 return context[functionName].apply(context, newArgs);
             },
 
@@ -540,8 +530,7 @@
                         setTimeout(() => {
                             this.spreadInfection(path.connections, durationLine, durationLineBouncingOff, linewidth);
                         }, props.startTime);
-                    }
-                    else {
+                    } else {
                         if (props.file.length !== 0) {
                             let value;
                             if (props.file.length === 1) {
@@ -573,7 +562,7 @@
              * @param {Object} props
              * @return none
              */
-            removeLine(){
+            removeLine() {
                 setTimeout(() => {
                     let nodeListLine = document.querySelectorAll("line");
                     let delay = parseInt(connections.removelineDuration);
@@ -596,7 +585,7 @@
              * @param {string} shape_id
              * @return {Boolean}
              */
-            characterChecking(shape_id){
+            characterChecking(shape_id) {
                 let value = false;
                 let variable = document.querySelectorAll("#main-container #"+shape_id);
                 variable.forEach(e => {
@@ -613,12 +602,12 @@
              * @param {Object} pattern
              * @return none
              */
-            spreadInfection(pattern, durationLine, durationLineBouncingOff, linewidth){
+            spreadInfection(pattern, durationLine, durationLineBouncingOff, linewidth) {
                 const drawingBoard = document.querySelector("#connections");
                 const selector = '#main-container #';
                 const state = "infected";
                 let endOfTheSequence;
-                for (let i = 0; i < pattern.length; i++){
+                for (let i = 0; i < pattern.length; i++) {
                     let source = pattern[i].source;
                     let target = pattern[i].target;
                     endOfTheSequence = pattern[0].endOfTheSequence;
@@ -693,7 +682,7 @@
              * @param {Object} line
              * @return number
              */
-            getLineLength(line){
+            getLineLength(line) {
                 let x1 = line.x1.baseVal.value;
                 let x2 = line.x2.baseVal.value;
                 let y1 = line.y1.baseVal.value;
@@ -721,27 +710,26 @@
              * @param {Object} props
              * @return none
              */
-            burst(props){
+            burst(props) {
                 const selector = '#main-container #';
 
-                if(props.add) {
+                if (props.add) {
                     // this.hexColor(selector, props.target, props.state);
                     setTimeout(() => {
                         this.hexColor(selector, props.target, props.state);
                         this.changeSize(selector, props.target, props.scale, props.timingFunction, props.duration);
                         this.setCharacterTshirtColor(props.target, props.state);
                     }, parseInt(props.startTime));
-                }
-                else{
-                    setTimeout(()=>{
+                } else {
+                    setTimeout(() => {
                         document.querySelector(selector + props.target).classList.remove(props.state);
                         if (this.characterChecking(props.target)) {
                             let characterType = document.querySelector(selector + props.target).children[0].children[0].getAttribute('characterType');
                             if (characterType === "avatar") {
                                 this.ChangeTShirtColor(props.target, connections.secondDefaultShirtColor, connections.proportion);
-                            } else if(characterType === "vulnerable") {
+                            } else if (characterType === "vulnerable") {
                                 this.ChangeTShirtColor(props.target, connections.vulnerableShirtColor, connections.proportion);
-                            }else{
+                            } else {
                                 this.ChangeTShirtColor(props.target, connections.defaultShirtColor, connections.proportion);
                             }
                         }
@@ -774,14 +762,13 @@
              * @param {Object} props
              * @return none
              */
-            setCharacterTshirtColor(target, state){
+            setCharacterTshirtColor(target, state) {
                 if (this.characterChecking(target)) {
                     if (state === connections.stateInfected) {
                         this.ChangeTShirtColor(target, connections.infectedShirtColor, connections.proportion);
                     } else if (state === connections.stateVaccinated) {
                         this.ChangeTShirtColor(target, connections.vaccinatedShirtColor, connections.proportion);
-                    }
-                    else if(state === connections.stateVulnerable){
+                    } else if (state === connections.stateVulnerable) {
                         this.ChangeTShirtColor(target, connections.vulnerableShirtColor, connections.proportion);
                     }
                 }
@@ -820,9 +807,9 @@
                                     let characterType = value.children[0].children[0].children[0].getAttribute('characterType');
                                     if (characterType === "avatar") {
                                         this.ChangeTShirtColor(id_shape, connections.secondDefaultShirtColor, connections.proportion);
-                                    } else if(characterType === "vulnerable") {
+                                    } else if (characterType === "vulnerable") {
                                         this.ChangeTShirtColor(id_shape, connections.vulnerableShirtColor, connections.proportion);
-                                    }else{
+                                    } else {
                                         this.ChangeTShirtColor(id_shape, connections.defaultShirtColor, connections.proportion);
                                     }
                                 }
@@ -891,9 +878,9 @@
                                 let characterType = document.querySelector(selector + target).children[0].children[0].getAttribute('characterType');
                                 if (characterType === "avatar") {
                                     this.ChangeTShirtColor(target, connections.secondDefaultShirtColor, connections.proportion);
-                                } else if(characterType === "vulnerable") {
+                                } else if (characterType === "vulnerable") {
                                     this.ChangeTShirtColor(target, connections.vulnerableShirtColor, connections.proportion);
-                                }else{
+                                } else {
                                     this.ChangeTShirtColor(target, connections.defaultShirtColor, connections.proportion);
                                 }
                             }
@@ -955,13 +942,7 @@
 
                 this.$refs.audioPlayer.loadAudioFiles(this.currentLanguage, localStorage.getItem("voice"));
                 this.voiceToPlayAtAnimation = localStorage.getItem("voice");
-                //this.textButtonAnimation = this.labels.startAnimation;
-                //
-                // if (this.returnUrl !== "" && this.returnUrl !== undefined) {
-                //     this.textButtonAnimation = this.labels.redirectSurvey;
-                // } else {
-                //     this.textButtonAnimation = this.labels.restartAnimation;
-                // }
+                this.textButtonAnimation = this.labels.startAnimation;
 
                 // Fetch some styles from the SCSS file
                 this.characterSize = styles["hexagon-height"];
