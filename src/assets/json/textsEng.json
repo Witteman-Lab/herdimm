@@ -1,5 +1,5 @@
 {
-    "currentLanguage" : "en",
+    "currentLanguage" : "En",
     "continueBtn" : "Go to the animation",
     "saveBtn" : "Save",
     "saveEditBtn" : "Save edit",
@@ -22,7 +22,7 @@
     "avatar": "your avatar",
     "vulnerable": "a vulnerable person",
     "otherPeople": "a person around you",
-    "language": "FR",
+    "language": "Français",
     "createAvatar": "Create",
     "editAvatar": "Edit",
     "startAnimation": "Start the animation",
