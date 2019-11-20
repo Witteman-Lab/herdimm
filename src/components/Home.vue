@@ -453,6 +453,16 @@
     }
 </style>
 <style scoped>
+    @media screen and (min-width:420px){
+        #selectLanguage{
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            margin-top: 20px;
+            margin-right: 20px;
+        }
+    }
+
     .button_tutorial{
         margin: 0 1rem;
     }
