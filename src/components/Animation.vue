@@ -997,6 +997,7 @@
                 localStorage.setItem("language", this.labelSelected);
                 localStorage.setItem("disease", this.diseaseToPlay);
                 localStorage.setItem("voice", this.voiceToPlay);
+                localStorage.setItem("uid", this.uid);
 
                 this.characterList = this.group;
                 this.selectCurrentLanguage(this.labelSelected);
@@ -1005,6 +1006,7 @@
                 if (localStorage.getItem("group")) {
                     this.characterList = JSON.parse(localStorage.getItem("group")); // <====== A demander à @Martin
                     this.selectCurrentLanguage(localStorage.getItem("language"));
+                    this.uid = localStorage.getItem("uid");
                     initAnimation = true;
                 } else {
                     this.$router.push({name: 'Home'});
