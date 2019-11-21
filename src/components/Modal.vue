@@ -18,7 +18,6 @@
                                        glasses: this.currentGlasses, shirt: this.currentShirt, name: this.characterName, options: this.options,
                                        characterTimeEdition: this.characterTimeEdition, numberOfEdition: this.numberOfEdition, characterTimeCreation: this.characterTimeCreation}"
                                        :is-name="true"/>
-                            <pre>{{ defaultCharacterColors.HairColor }}</pre>
 
                             <div class="field is-one-fifth-mobile" style="margin-top: 5px">
                                 <div class="control">
