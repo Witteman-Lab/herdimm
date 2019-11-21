@@ -10,7 +10,7 @@ mongoose.set('useCreateIndex', true);
 
 // Replace that by getting the uid from Herdimm (either from URL or randomly generated)
 // Not anymore computed here
-let userId = Math.floor(Math.random() * 1000000);
+// let userId = Math.floor(Math.random() * 1000000);
 
 var characterSchema = require("./models/characterSchema");
 var mygSchema = require("./models/MYGSchema");
@@ -27,8 +27,8 @@ const saveCharacters = (request, response) => {
     var res = {};
 
     // character list created with the same element as the characterSchema
-    const characterList = charactersList(request.body.group);
-    const spentTime = mygSpentTime(request.body.totalTime);
+    const characterList = charactersList(request.body.group, request.body.uid);
+    const spentTime = mygSpentTime(request.body.totalTime, request.body.uid);
 
     //  add all elements from spent time in the db
     totalTimeMYG.collection.insert(spentTime, function (err, docs) {
@@ -57,13 +57,13 @@ const saveCharacters = (request, response) => {
  * @param characterList
  * @returns {Array}
  */
-const charactersList = (characterList) => {
+const charactersList = (characterList, uid) => {
     const characterDbList = [];
     // let userId = Math.floor(Math.random() * 1000000);
     characterList.forEach((character) => {
         console.log(character);
         var characterObject = {
-            userId: userId,
+            userId: uid,
             // name: character.colors.name,
             type: character.characterType,
             vulnerabilities: character.colors.options,
@@ -87,9 +87,9 @@ const charactersList = (characterList) => {
  * @param characterList
  * @returns []
  */
-const mygSpentTime = (totalTimeList) => {
+const mygSpentTime = (totalTimeList, uid) => {
     let totalTimeDB = {
-        userId: userId,
+        userId: uid,
         totalTime: totalTimeList[0]
     };
     return totalTimeDB;
