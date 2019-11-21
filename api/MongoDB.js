@@ -7,6 +7,9 @@ mongoose.connect(`mongodb://${config.API_DB}:27017/api_herdimm`, { useNewUrlPars
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
+
+// Replace that by getting the uid from Herdimm (either from URL or randomly generated)
+// Not anymore computed here
 let userId = Math.floor(Math.random() * 1000000);
 
 var characterSchema = require("./models/characterSchema");
@@ -61,7 +64,7 @@ const charactersList = (characterList) => {
         console.log(character);
         var characterObject = {
             userId: userId,
-            name: character.colors.name,
+            // name: character.colors.name,
             type: character.characterType,
             vulnerabilities: character.colors.options,
             svgFile: character.file,

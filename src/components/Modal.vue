@@ -21,7 +21,8 @@
 
                             <div class="field is-one-fifth-mobile" style="margin-top: 5px">
                                 <div class="control">
-                                    <input v-on:input="setCharacterName(characterName)" class="input" v-model="characterName"  type="text" :placeholder="this.labels.nameInputPlaceHolder">
+                                    <!-- PUT HERE THE BUTTON FOR CHANGING AVATAR WHEN IN EDIT MODE -->
+                                    <!-- <input v-on:input="setCharacterName(characterName)" class="input" v-model="characterName"  type="text" :placeholder="this.labels.nameInputPlaceHolder"> -->
                                 </div>
                                 <div style="overflow: visible;margin-top: 10px;" v-show="isCharacterVulnerable" class="control">
                                     <p id="vulnerableDescription">{{ this.labels.vulnerableDescription }}</p>
@@ -104,7 +105,7 @@
                                 <!-- Glasses -->
                                 <div id="glassesSelect" style="justify-content: center;" class="content-tab buttons" v-if="this.hasGlasses">
                                     <ul>
-                                        <li class="accessoriesList button" style="overflow: hidden" v-on:click="selectGlasses(-1)">None</li>
+                                        <li class="accessoriesList button" style="overflow: hidden" v-on:click="selectGlasses(-1)">{{this.labels.None}}</li>
                                         <li class="accessoriesList button" style="overflow: hidden" v-for="(glasses, index) in glassesListJson" :key="index" v-on:click="selectGlasses(index)" v-html="require(`../assets/glasses/${glasses.file}`)"></li>
                                     </ul>
                                 </div>
@@ -112,7 +113,7 @@
                                 <!-- Facial hair -->
                                 <div id="facialHairSelect" style="justify-content: center;" class="content-tab buttons" v-if="this.hasFacialHair">
                                     <ul>
-                                        <li class="accessoriesList button" style="overflow: hidden" v-on:click="selectBeards(-1)">None</li>
+                                        <li class="accessoriesList button" style="overflow: hidden" v-on:click="selectBeards(-1)">{{this.labels.None}}</li>
                                         <li class="accessoriesList button facialHairList"  style="overflow: hidden" v-for="(beard, index) in facialHairListJson" :key="index" v-html="require(`../assets/facialHair/${beard.file}`)" v-on:click="selectBeards(index)"></li>
                                     </ul>
                                 </div>
@@ -331,9 +332,9 @@
              * @param {String} name
              * @return none
              */
-            setCharacterName(name) {
-                this.$refs.character.setCharacterName(name);
-            },
+            // setCharacterName(name) {
+            //     this.$refs.character.setCharacterName(name);
+            // },
 
             /***
              * --> Set character option
@@ -372,11 +373,11 @@
                 if (this.isCharacterVulnerable) {
                     this.$refs.character.setCharacterOption(this.options);
                 }
-                if (this.avatarNbr > this.currentCharacterNumber && !this.characterName) {
-                    this.setCharacterName(this.labels.avatarName);
-                }
-                else if (!this.characterName)
-                    this.setCharacterName(this.labels.defaultCharacterName + " " + (this.currentCharacterNumber + 1));
+                // if (this.avatarNbr > this.currentCharacterNumber && !this.characterName) {
+                //     this.setCharacterName(this.labels.avatarName);
+                // } else if (!this.characterName) {
+                //     this.setCharacterName(this.labels.defaultCharacterName + " " + (this.currentCharacterNumber + 1));
+                // }
                 this.endCharacterTime = Date.now();
                 this.calculateTimeCharacter();
                 this.$parent.saveCharacter(this.currentCharacterObject, this.$refs.character.getSvgColor());
@@ -506,7 +507,7 @@
             setAccessoriesPosition(height, marginTop) {
                 let accessories = document.getElementsByClassName("accessoriesList");
                 for (let i = 0; i < accessories.length; i++) {
-                    if (accessories[i].innerHTML !== "None") {
+                    if (accessories[i].innerHTML !== this.labels.None) {
                         let item = accessories[i].children[0];
                         item.setAttribute("height", height);
                         item.setAttribute("style", `margin-top: ${marginTop};`);
@@ -561,10 +562,10 @@
                 // Escape key to close the modal window (customizer)
                 if (e.keyCode === 27 && this.isActive) {
                     this.closeModal();
-                    // Enter key to add a new character to the group (and close the customizer)
+                // Enter key to add a new character to the group (and close the customizer)
                 } else if (e.keyCode === 13 && this.isActive  && !this.isEdit) {
                     this.saveCharacter();
-                    // Enter key to save edits to a group member (and close the customizer)
+                // Enter key to save edits to a group member (and close the customizer)
                 }  else if (e.keyCode === 13  && this.isActive && this.isEdit) {
                     this.saveEditCharacter();
                 }

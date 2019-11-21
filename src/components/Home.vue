@@ -358,7 +358,7 @@
                 if (this.totalCreated < charactersJson.nbAvatar) {
                     this.contextualInfo = this.labels.contextualInfoAvatar;
                 } else if (this.totalCreated < charactersJson.nbAvatar + charactersJson.nbVulnerable) {
-                    console.log(charactersJson.nbVulnerable);
+                    //console.log(charactersJson.nbVulnerable);
                     this.contextualInfo = this.labels.vulnerableDesc.replace("###", charactersJson.nbVulnerable);
                 } else if (this.totalCreated < charactersJson.nbAvatar + charactersJson.nbVulnerable + charactersJson.nbCommunity) {
                     this.contextualInfo = this.labels.othersDesc.replace("###", charactersJson.nbCommunity);
