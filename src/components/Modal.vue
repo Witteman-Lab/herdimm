@@ -77,13 +77,14 @@
                                 <div id="hairColorSelect" class="content-tab" v-if="this.hasHair" >
                                     <Compact v-show="!this.isVueColorActive"
                                              :value="this.currentColorHair"
-                                             @input="this.changeHairColor"
+                                             @input="this.changeHairColorByTile"
                                              :palette="hairColors"/>
 
 <!--                                    @input="this.changeHairColor"-->
 
                                     <v-color-picker  v-if="isVueColorActive"
                                                      v-model="currentColorHair"
+                                                     @input="this.changeHairColorBySpectrum"
                                                      :hide-canvas="false"
                                                      :hide-inputs="true"
                                                      :show-swatches="false"
@@ -160,7 +161,7 @@
                 hasFacialHair: false,
                 hasGlasses: false,
 
-                colorToShow: {},
+                colorToShow: "",
                 isVueColorActive: false,
                 spectrumSaveCurrentColorHair: "",
 
@@ -205,6 +206,8 @@
              */
             closeSpectrumColorCanvas() {
                 this.isVueColorActive = false;
+                this.currentColorHair = this.colorToShow;
+                this.$refs.character.changeHairColor(this.currentColorHair);
             },
 
             /**
@@ -213,7 +216,15 @@
              * @return none
              */
             addColorToSpectrum() {
-                this.hairColors.push(this.currentColorHair);
+                let isColorPresent = false;
+                this.hairColors.forEach((color) => {
+                    if (this.currentColorHair === color) {
+                        isColorPresent = true;
+                    }
+                });
+                if (!isColorPresent) {
+                    this.hairColors.push(this.currentColorHair);
+                }
                 this.$refs.character.changeHairColor(this.currentColorHair);
                 this.isVueColorActive = false;
             },
@@ -224,6 +235,7 @@
              * @return none
              */
             showSpectrum() {
+                this.colorToShow = this.currentColorHair;
                 this.isVueColorActive = true;
             },
 
@@ -514,12 +526,22 @@
 
             /**
              * ---> Apply the chosen color on the current character hair
-             * @param {String} color
+             * @param {Object} color
              * @return none
              */
-            changeHairColor(color) {
+            changeHairColorBySpectrum(color) {
+                this.currentColorHair = color;
+                this.$refs.character.changeHairColor(this.currentColorHair);
+            },
+
+            /**
+             * ---> Apply the chosen color on the current character hair
+             * @param {Object} color
+             * @return none
+             */
+            changeHairColorByTile(color) {
                 this.currentColorHair = color.hex;
-                this.$refs.character.changeHairColor(color.hex);
+                this.$refs.character.changeHairColor(this.currentColorHair);
             },
 
             /**
