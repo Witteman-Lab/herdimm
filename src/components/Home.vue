@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <!-- MODAL WINDOW -->
-        <Modal ref="modal"  :defaultCharacterColors="defaultCharacterColors" :skin-colors="skinColors" :hair-colors="hairColors" :total-characters-count="maxCharactersInGroup" :glasses-list-json="glassesListJson" :facial-hair-list-json="facialHairList" :labels="labels"/>
+        <Modal ref="modal"  :defaultCharacterColors="defaultCharacterColors" :skin-colors="skinColors" :hair-colors="hairColors" :total-characters-count="maxCharactersInGroup" :glasses-list-json="glassesListJson" :facial-hair-list-json="facialHairList" :max-color-tile="maxColorTile" :labels="labels"/>
         <!-- INTERFACE TUTORIAL -->
         <!-- <Carousel id="Carousel" class="Carousel" ref="Carousel" :labels="labels" :change-language-button-index="changeLanguageButtonIndex"
                   :nbr-avatar="nbAvatar" :nbr-vulnerable="nbrVulnerable"  :nbr-community="nbrCommunity"></Carousel> -->
@@ -80,6 +80,7 @@
                 finalInfo: "",
                 totalCreated: 0,
                 maxCharactersInGroup: 0,
+                maxColorTile: 0,
                 facialHairList: [],
                 glassesListJson: [],
                 texts: '',
@@ -422,6 +423,7 @@
                 this.nbAvatar = charactersJson.nbAvatar;
                 this.nbrVulnerable = charactersJson.nbVulnerable;
                 this.nbrCommunity = charactersJson.nbCommunity;
+                this.maxColorTile =  charactersJson.maxColorTile;
             },
 
             mounted() {

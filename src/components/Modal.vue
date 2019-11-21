@@ -94,7 +94,7 @@
                                                      class="mx-auto"
                                     ></v-color-picker>
                                     <div style="display: flex; justify-content: center;" >
-                                        <v-btn v-if="!this.isVueColorActive" color="black"  style="margin: 10px; color:white"  @click="showSpectrum">{{this.labels.moreColor}}</v-btn>
+                                        <v-btn v-if="!this.isVueColorActive" :disabled='this.showMoreColor' color="black"  style="margin: 10px; color:white"  @click="showSpectrum">{{this.labels.moreColor}}</v-btn>
                                         <v-btn v-if="this.isVueColorActive" color="black" style="margin: 10px; color: white"  @click="addColorToSpectrum">{{this.labels.addColor}}</v-btn>
                                         <v-btn v-if="this.isVueColorActive" color="#D50000" style="margin: 10px; color: white"  @click="closeSpectrumColorCanvas">{{this.labels.cancelSpectrumColor}}</v-btn>
                                     </div>
@@ -165,6 +165,8 @@
                 colorToShow: "",
                 isVueColorActive: false,
                 spectrumSaveCurrentColorHair: "",
+                ColorNumberCreateWithSpectrum : 0,
+                showMoreColor :  false,
 
                 isActive: false,
                 isDropdownActive: false,
@@ -197,6 +199,7 @@
             skinColors: Array,
             hairColors: Array,
             defaultCharacterColors: Object,
+            maxColorTile: Number
 
         },
         methods: {
@@ -223,11 +226,17 @@
                         isColorPresent = true;
                     }
                 });
-                if (!isColorPresent) {
+                if (!isColorPresent && this.ColorNumberCreateWithSpectrum < this.maxColorTile) {
                     this.hairColors.push(this.currentColorHair);
+                    this.ColorNumberCreateWithSpectrum++;
+                    console.log("ma couleur", this.ColorNumberCreateWithSpectrum);
+                }
+                if(this.ColorNumberCreateWithSpectrum === this.maxColorTile){
+                    this.showMoreColor = true   ;
                 }
                 this.$refs.character.changeHairColor(this.currentColorHair);
                 this.isVueColorActive = false;
+
             },
 
             /**
