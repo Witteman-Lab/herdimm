@@ -28,7 +28,7 @@
                     idCharacter: String,
                     glasses: '',
                     beards: '',
-                    name: '',
+                    // name: '',
                     options: [],
                     characterTimeCreation: 0,
                     characterTimeEdition: 0,
@@ -67,9 +67,9 @@
              * @param {String} name
              * @return none
              */
-            setCharacterName(name) {
-                this.svgColor.name = name;
-            },
+            // setCharacterName(name) {
+            //     this.svgColor.name = name;
+            // },
 
             /***
              * ---> Change character options and save it in svgColor
@@ -254,7 +254,7 @@
                 this.changeGlasses(colors.glasses);
                 this.changeBeard(colors.beards);
                 this.changeShirtColor(colors.shirt, 0.8);
-                this.setCharacterName(colors.name);
+                //this.setCharacterName(colors.name);
                 this.setCharacterOption(colors.options);
                 this.setCharacterTimeCreation(colors.characterTimeCreation);
                 this.svgColor.numberOfEdition = colors.numberOfEdition;

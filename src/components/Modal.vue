@@ -21,7 +21,8 @@
 
                             <div class="field is-one-fifth-mobile" style="margin-top: 5px">
                                 <div class="control">
-                                    <input v-on:input="setCharacterName(characterName)" class="input" v-model="characterName"  type="text" :placeholder="this.labels.nameInputPlaceHolder">
+                                    <!-- PUT HERE THE BUTTON FOR CHANGING AVATAR WHEN IN EDIT MODE -->
+                                    <!-- <input v-on:input="setCharacterName(characterName)" class="input" v-model="characterName"  type="text" :placeholder="this.labels.nameInputPlaceHolder"> -->
                                 </div>
                                 <div style="overflow: visible;margin-top: 10px;" v-show="isCharacterVulnerable" class="control">
                                     <p id="vulnerableDescription">{{ this.labels.vulnerableDescription }}</p>
@@ -319,9 +320,9 @@
              * @param {String} name
              * @return none
              */
-            setCharacterName(name) {
-                this.$refs.character.setCharacterName(name);
-            },
+            // setCharacterName(name) {
+            //     this.$refs.character.setCharacterName(name);
+            // },
 
             /***
              * --> Set character option
@@ -360,11 +361,11 @@
                 if (this.isCharacterVulnerable) {
                     this.$refs.character.setCharacterOption(this.options);
                 }
-                if (this.avatarNbr > this.currentCharacterNumber && !this.characterName) {
-                    this.setCharacterName(this.labels.avatarName);
-                }
-                else if (!this.characterName)
-                    this.setCharacterName(this.labels.defaultCharacterName + " " + (this.currentCharacterNumber + 1));
+                // if (this.avatarNbr > this.currentCharacterNumber && !this.characterName) {
+                //     this.setCharacterName(this.labels.avatarName);
+                // } else if (!this.characterName) {
+                //     this.setCharacterName(this.labels.defaultCharacterName + " " + (this.currentCharacterNumber + 1));
+                // }
                 this.endCharacterTime = Date.now();
                 this.calculateTimeCharacter();
                 this.$parent.saveCharacter(this.currentCharacterObject, this.$refs.character.getSvgColor());
@@ -539,10 +540,10 @@
                 // Escape key to close the modal window (customizer)
                 if (e.keyCode === 27 && this.isActive) {
                     this.closeModal();
-                    // Enter key to add a new character to the group (and close the customizer)
+                // Enter key to add a new character to the group (and close the customizer)
                 } else if (e.keyCode === 13 && this.isActive  && !this.isEdit) {
                     this.saveCharacter();
-                    // Enter key to save edits to a group member (and close the customizer)
+                // Enter key to save edits to a group member (and close the customizer)
                 }  else if (e.keyCode === 13  && this.isActive && this.isEdit) {
                     this.saveEditCharacter();
                 }
