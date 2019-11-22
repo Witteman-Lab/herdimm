@@ -105,7 +105,7 @@
              */
             sendCharactersToApi(chosenDB) {
 
-                const url =`http://${config.API_URL}/api/${chosenDB}/herdimm`;
+                const url =`http://${config.API_URL_PROD}/api/${chosenDB}/herdimm`;
                 let dataSent = {
                     group: JSON.parse(localStorage.getItem("group")),
                     totalTime: JSON.parse(localStorage.getItem("totalTime")),
@@ -152,12 +152,7 @@
                     this.isAnimationStarted = true;
                     this.$refs.audioPlayer.playAudio();
                     this.isAnimationPlaying();
-                    console.log("caption checked", this.checkboxState);
-
-
                     this.sendCharactersToApi('mongodb');
-
-
                 }
             },
 
@@ -367,7 +362,6 @@
                 // why use argument instead of the parameter args ??
                 // just disable the warning but it needs to be discuss
                 let newArgs = Array.prototype.slice.call(arguments, 2);
-                console.log(args);
                 return context[functionName].apply(context, newArgs);
             },
 
@@ -993,7 +987,6 @@
         },
         created() {},
         mounted() {
-            //console.log("value of Return", this.returnUrl);
             window.scrollTo({ top: 0, behavior: 'smooth', x: 0});
             let initAnimation = false;
 
