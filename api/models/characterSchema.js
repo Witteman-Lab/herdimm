@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 // create schema
 var characterSchema  = mongoose.Schema({
     "userId" : String,
-    "name" : String,
+    // "name" : String,
     "type": String,
     "options": Array,
     "svgFile": String,

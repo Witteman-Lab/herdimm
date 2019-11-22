@@ -28,7 +28,8 @@
                     idCharacter: String,
                     glasses: '',
                     beards: '',
-                    name: '',
+                    accessoriesColor: '',
+                    // name: '',
                     options: [],
                     characterTimeCreation: 0,
                     characterTimeEdition: 0,
@@ -67,9 +68,9 @@
              * @param {String} name
              * @return none
              */
-            setCharacterName(name) {
-                this.svgColor.name = name;
-            },
+            // setCharacterName(name) {
+            //     this.svgColor.name = name;
+            // },
 
             /***
              * ---> Change character options and save it in svgColor
@@ -91,6 +92,19 @@
                 this.svgColor.shirtShadow = this.getDarkerShade(color, proportion);
                 this.$refs.characterImg.children[0].children[0].innerHTML +=
                     `.st0_custom_${this.id}{fill:${this.svgColor.shirt};}.st1_custom_${this.id}{fill:${this.svgColor.shirtShadow};}`;
+            },
+
+            /**
+             * ---> Apply the color on the character shirt svg (style) with a given proportion
+             * @param {String} color
+             * @param {Number} proportion
+             * @return none
+             */
+            changeAccessoriesColor(color, proportion) {
+                this.svgColor.accessoriesColor = color;
+                let darkerShadeAccessories  = this.getDarkerShade(color, proportion);
+                this.$refs.characterImg.children[0].children[0].innerHTML +=
+                    `.st8_custom_${this.id}{fill:${color};}.st9_custom_${this.id}{fill:${darkerShadeAccessories};}`;
             },
 
             /**
@@ -254,7 +268,8 @@
                 this.changeGlasses(colors.glasses);
                 this.changeBeard(colors.beards);
                 this.changeShirtColor(colors.shirt, 0.8);
-                this.setCharacterName(colors.name);
+                this.changeAccessoriesColor(colors.accessoriesColor, 0.8);
+                //this.setCharacterName(colors.name);
                 this.setCharacterOption(colors.options);
                 this.setCharacterTimeCreation(colors.characterTimeCreation);
                 this.svgColor.numberOfEdition = colors.numberOfEdition;
@@ -369,6 +384,8 @@
                         characterImgSVG.children[i].classList.remove(classValue);
                         characterImgSVG.children[i].classList.add(classValue + "_custom_" + this.id);
                     }
+
+
 
                     // Because glasses and facial hair are grouped in <g> elements with ids
                     if (id === "glasses") {

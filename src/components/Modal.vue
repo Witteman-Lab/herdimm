@@ -16,13 +16,14 @@
                             <Character  v-if="isActive" :size="{width: '70px', height: '78px'}" :edit="false" :customised="true" ref="character" :id="'current'" :svgFile="this.currentCharacter"
                                        :colors="{face: this.currentColorFace, hairFront: this.currentColorHair, beards: this.currentBeard,
                                        glasses: this.currentGlasses, shirt: this.currentShirt, name: this.characterName, options: this.options,
-                                       characterTimeEdition: this.characterTimeEdition, numberOfEdition: this.numberOfEdition, characterTimeCreation: this.characterTimeCreation}"
+                                       characterTimeEdition: this.characterTimeEdition, numberOfEdition: this.numberOfEdition,
+                                       characterTimeCreation: this.characterTimeCreation, accessoriesColor: this.defaultCharacterColors.AccessoriesColor}"
                                        :is-name="true"/>
-                            <pre>{{ defaultCharacterColors.HairColor }}</pre>
 
                             <div class="field is-one-fifth-mobile" style="margin-top: 5px">
                                 <div class="control">
-                                    <input v-on:input="setCharacterName(characterName)" class="input" v-model="characterName"  type="text" :placeholder="this.labels.nameInputPlaceHolder">
+                                    <!-- PUT HERE THE BUTTON FOR CHANGING AVATAR WHEN IN EDIT MODE -->
+                                    <!-- <input v-on:input="setCharacterName(characterName)" class="input" v-model="characterName"  type="text" :placeholder="this.labels.nameInputPlaceHolder"> -->
                                 </div>
                                 <div style="overflow: visible;margin-top: 10px;" v-show="isCharacterVulnerable" class="control">
                                     <p id="vulnerableDescription">{{ this.labels.vulnerableDescription }}</p>
@@ -78,13 +79,14 @@
                                 <div id="hairColorSelect" class="content-tab" v-if="this.hasHair" >
                                     <Compact v-show="!this.isVueColorActive"
                                              :value="this.currentColorHair"
-                                             @input="this.changeHairColor"
+                                             @input="this.changeHairColorByTile"
                                              :palette="hairColors"/>
 
 <!--                                    @input="this.changeHairColor"-->
 
                                     <v-color-picker  v-if="isVueColorActive"
                                                      v-model="currentColorHair"
+                                                     @input="this.changeHairColorBySpectrum"
                                                      :hide-canvas="false"
                                                      :hide-inputs="true"
                                                      :show-swatches="false"
@@ -93,7 +95,7 @@
                                                      class="mx-auto"
                                     ></v-color-picker>
                                     <div style="display: flex; justify-content: center;" >
-                                        <v-btn v-if="!this.isVueColorActive" color="black"  style="margin: 10px; color:white"  @click="showSpectrum">{{this.labels.moreColor}}</v-btn>
+                                        <v-btn v-if="!this.isVueColorActive" :disabled='this.showMoreColor' color="black"  style="margin: 10px; color:white"  @click="showSpectrum">{{this.labels.moreColor}}</v-btn>
                                         <v-btn v-if="this.isVueColorActive" color="black" style="margin: 10px; color: white"  @click="addColorToSpectrum">{{this.labels.addColor}}</v-btn>
                                         <v-btn v-if="this.isVueColorActive" color="#D50000" style="margin: 10px; color: white"  @click="closeSpectrumColorCanvas">{{this.labels.cancelSpectrumColor}}</v-btn>
                                     </div>
@@ -104,7 +106,7 @@
                                 <!-- Glasses -->
                                 <div id="glassesSelect" style="justify-content: center;" class="content-tab buttons" v-if="this.hasGlasses">
                                     <ul>
-                                        <li class="accessoriesList button" style="overflow: hidden" v-on:click="selectGlasses(-1)">None</li>
+                                        <li class="accessoriesList button" style="overflow: hidden" v-on:click="selectGlasses(-1)">{{this.labels.None}}</li>
                                         <li class="accessoriesList button" style="overflow: hidden" v-for="(glasses, index) in glassesListJson" :key="index" v-on:click="selectGlasses(index)" v-html="require(`../assets/glasses/${glasses.file}`)"></li>
                                     </ul>
                                 </div>
@@ -112,7 +114,7 @@
                                 <!-- Facial hair -->
                                 <div id="facialHairSelect" style="justify-content: center;" class="content-tab buttons" v-if="this.hasFacialHair">
                                     <ul>
-                                        <li class="accessoriesList button" style="overflow: hidden" v-on:click="selectBeards(-1)">None</li>
+                                        <li class="accessoriesList button" style="overflow: hidden" v-on:click="selectBeards(-1)">{{this.labels.None}}</li>
                                         <li class="accessoriesList button facialHairList"  style="overflow: hidden" v-for="(beard, index) in facialHairListJson" :key="index" v-html="require(`../assets/facialHair/${beard.file}`)" v-on:click="selectBeards(index)"></li>
                                     </ul>
                                 </div>
@@ -161,9 +163,11 @@
                 hasFacialHair: false,
                 hasGlasses: false,
 
-                colorToShow: {},
+                colorToShow: "",
                 isVueColorActive: false,
                 spectrumSaveCurrentColorHair: "",
+                ColorNumberCreateWithSpectrum : 0,
+                showMoreColor :  false,
 
                 isActive: false,
                 isDropdownActive: false,
@@ -196,6 +200,7 @@
             skinColors: Array,
             hairColors: Array,
             defaultCharacterColors: Object,
+            maxColorTile: Number
 
         },
         methods: {
@@ -206,6 +211,8 @@
              */
             closeSpectrumColorCanvas() {
                 this.isVueColorActive = false;
+                this.currentColorHair = this.colorToShow;
+                this.$refs.character.changeHairColor(this.currentColorHair);
             },
 
             /**
@@ -214,9 +221,23 @@
              * @return none
              */
             addColorToSpectrum() {
-                this.hairColors.push(this.currentColorHair);
+                let isColorPresent = false;
+                this.hairColors.forEach((color) => {
+                    if (this.currentColorHair === color) {
+                        isColorPresent = true;
+                    }
+                });
+                if (!isColorPresent && this.ColorNumberCreateWithSpectrum < this.maxColorTile) {
+                    this.hairColors.push(this.currentColorHair);
+                    this.ColorNumberCreateWithSpectrum++;
+                    console.log("ma couleur", this.ColorNumberCreateWithSpectrum);
+                }
+                if(this.ColorNumberCreateWithSpectrum === this.maxColorTile){
+                    this.showMoreColor = true   ;
+                }
                 this.$refs.character.changeHairColor(this.currentColorHair);
                 this.isVueColorActive = false;
+
             },
 
             /**
@@ -225,6 +246,7 @@
              * @return none
              */
             showSpectrum() {
+                this.colorToShow = this.currentColorHair;
                 this.isVueColorActive = true;
             },
 
@@ -320,9 +342,9 @@
              * @param {String} name
              * @return none
              */
-            setCharacterName(name) {
-                this.$refs.character.setCharacterName(name);
-            },
+            // setCharacterName(name) {
+            //     this.$refs.character.setCharacterName(name);
+            // },
 
             /***
              * --> Set character option
@@ -361,11 +383,11 @@
                 if (this.isCharacterVulnerable) {
                     this.$refs.character.setCharacterOption(this.options);
                 }
-                if (this.avatarNbr > this.currentCharacterNumber && !this.characterName) {
-                    this.setCharacterName(this.labels.avatarName);
-                }
-                else if (!this.characterName)
-                    this.setCharacterName(this.labels.defaultCharacterName + " " + (this.currentCharacterNumber + 1));
+                // if (this.avatarNbr > this.currentCharacterNumber && !this.characterName) {
+                //     this.setCharacterName(this.labels.avatarName);
+                // } else if (!this.characterName) {
+                //     this.setCharacterName(this.labels.defaultCharacterName + " " + (this.currentCharacterNumber + 1));
+                // }
                 this.endCharacterTime = Date.now();
                 this.calculateTimeCharacter();
                 this.$parent.saveCharacter(this.currentCharacterObject, this.$refs.character.getSvgColor());
@@ -495,7 +517,7 @@
             setAccessoriesPosition(height, marginTop) {
                 let accessories = document.getElementsByClassName("accessoriesList");
                 for (let i = 0; i < accessories.length; i++) {
-                    if (accessories[i].innerHTML !== "None") {
+                    if (accessories[i].innerHTML !== this.labels.None) {
                         let item = accessories[i].children[0];
                         item.setAttribute("height", height);
                         item.setAttribute("style", `margin-top: ${marginTop};`);
@@ -515,12 +537,22 @@
 
             /**
              * ---> Apply the chosen color on the current character hair
-             * @param {String} color
+             * @param {Object} color
              * @return none
              */
-            changeHairColor(color) {
+            changeHairColorBySpectrum(color) {
+                this.currentColorHair = color;
+                this.$refs.character.changeHairColor(this.currentColorHair);
+            },
+
+            /**
+             * ---> Apply the chosen color on the current character hair
+             * @param {Object} color
+             * @return none
+             */
+            changeHairColorByTile(color) {
                 this.currentColorHair = color.hex;
-                this.$refs.character.changeHairColor(color.hex);
+                this.$refs.character.changeHairColor(this.currentColorHair);
             },
 
             /**
@@ -540,10 +572,10 @@
                 // Escape key to close the modal window (customizer)
                 if (e.keyCode === 27 && this.isActive) {
                     this.closeModal();
-                    // Enter key to add a new character to the group (and close the customizer)
+                // Enter key to add a new character to the group (and close the customizer)
                 } else if (e.keyCode === 13 && this.isActive  && !this.isEdit) {
                     this.saveCharacter();
-                    // Enter key to save edits to a group member (and close the customizer)
+                // Enter key to save edits to a group member (and close the customizer)
                 }  else if (e.keyCode === 13  && this.isActive && this.isEdit) {
                     this.saveEditCharacter();
                 }
