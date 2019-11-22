@@ -17,8 +17,6 @@ var mygSchema = require("./models/MYGSchema");
 var checkedCaptionSchema = require("./models/SubtitleSchemas");
 
 const saveCharacters = (request, response) => {
-    // check if the characters are sent by the herdimm app
-    console.log(request.body);
 
     // create schema instance which will save the datas
     var characterDB = new characterSchema();
@@ -73,7 +71,6 @@ const saveCharacters = (request, response) => {
  */
 const charactersList = (characterList, uid) => {
     const characterDbList = [];
-    // let userId = Math.floor(Math.random() * 1000000);
     characterList.forEach((character) => {
         console.log(character);
         var characterObject = {
@@ -111,7 +108,6 @@ const mygSpentTime = (totalTimeList, uid) => {
 };
 
 const captionUsed = (checkedCaption, uid) => {
-    console.log("checkedCap", checkedCaption);
     let checkedCaptionDB = {
         userId: uid,
         checkedCaption: checkedCaption
