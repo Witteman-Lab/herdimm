@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '../components/Avartars'
+import Home from '../components/Home'
+import Avatars from '../components/Avatars'
 import Animation from '../components/Animation'
 
 Vue.use(Router);
@@ -12,6 +13,12 @@ export default new Router({
             path: '/',
             name: 'Home',
             component: Home
+        },
+        {
+            path: '/Avatars',
+            name: 'Avatars',
+            component: Avatars,
+            props: true
         },
         {
             path: '/Animation',
