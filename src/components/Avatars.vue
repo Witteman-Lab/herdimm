@@ -488,6 +488,11 @@
         font-size: 1.1rem;
     }
 
+    #selectLanguage {
+        color: #000;
+        background-color: #FFF;
+        border: 1px solid grey;
+    }
 
     button#continue, p#contextualInfo, p#finalInfo {
         animation: appearanceAnim;
