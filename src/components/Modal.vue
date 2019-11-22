@@ -16,7 +16,8 @@
                             <Character  v-if="isActive" :size="{width: '70px', height: '78px'}" :edit="false" :customised="true" ref="character" :id="'current'" :svgFile="this.currentCharacter"
                                        :colors="{face: this.currentColorFace, hairFront: this.currentColorHair, beards: this.currentBeard,
                                        glasses: this.currentGlasses, shirt: this.currentShirt, name: this.characterName, options: this.options,
-                                       characterTimeEdition: this.characterTimeEdition, numberOfEdition: this.numberOfEdition, characterTimeCreation: this.characterTimeCreation}"
+                                       characterTimeEdition: this.characterTimeEdition, numberOfEdition: this.numberOfEdition,
+                                       characterTimeCreation: this.characterTimeCreation, accessoriesColor: this.defaultCharacterColors.AccessoriesColor}"
                                        :is-name="true"/>
 
                             <div class="field is-one-fifth-mobile" style="margin-top: 5px">

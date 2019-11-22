@@ -4,10 +4,11 @@
     "nbCommunity" : 6,
     "maxColorTile" : 12,
     "defaultColors" : {
-      "HairColor": "#91553D",
-      "SkinColor": "#E7B38D",
-      "ShirtColorAvatar": "#F67844",
-      "ShirtColorCharacters": "#BFBABE"
+        "HairColor": "#91553D",
+        "SkinColor": "#E7B38D",
+        "ShirtColorAvatar": "#F67844",
+        "ShirtColorCharacters": "#BFBABE",
+        "AccessoriesColor": "#727272"
     },
     "scrollingTimeControl" : "2000",
     "folder" : "characters",
