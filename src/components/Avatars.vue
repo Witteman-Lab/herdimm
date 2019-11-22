@@ -465,13 +465,6 @@
         }
     }
 
-    .button_tutorial{
-        margin: 0 1rem;
-    }
-    .button_tutorial:hover{
-        cursor: pointer;
-    }
-
     h1 {
         font-size: 2rem;
         font-weight: bold;
