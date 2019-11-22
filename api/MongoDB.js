@@ -3,7 +3,7 @@ var router = express.Router();
 var config = require('../config/configMongoDB');
 // initialise mongoose for mongodb
 var mongoose = require("mongoose");
-mongoose.connect(`mongodb://${config.API_URL}:27017/api_herdimm`, { useNewUrlParser: true });
+mongoose.connect(`mongodb://${config.API_URL_PROD}:27017/api_herdimm`, { useNewUrlParser: true });
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
@@ -18,7 +18,7 @@ var checkedCaptionSchema = require("./models/SubtitleSchemas");
 
 const saveCharacters = (request, response) => {
     // check if the characters are sent by the herdimm app
-    console.log(request.body);
+    //console.log(request.body);
 
     // create schema instance which will save the datas
     var characterDB = new characterSchema();
@@ -111,7 +111,7 @@ const mygSpentTime = (totalTimeList, uid) => {
 };
 
 const captionUsed = (checkedCaption, uid) => {
-    console.log("checkedCap", checkedCaption);
+    //console.log("checkedCap", checkedCaption);
     let checkedCaptionDB = {
         userId: uid,
         checkedCaption: checkedCaption
