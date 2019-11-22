@@ -121,26 +121,6 @@
                     body: JSON.stringify(dataSent)
                 });
             },
-
-            // sendSubtitleToApi(chosenDB, checkedCaption){
-            //     console.log("check", checkedCaption);
-            //     const url =`http://${config.API_URL}/api/${chosenDB}/herdimm`;
-            //     let dataSent = {
-            //         uid: this.uid,
-            //         checkedCaption: checkedCaption
-            //     };
-            //     fetch(url, {
-            //         method: 'POST',
-            //         mode: 'cors',
-            //         headers: {
-            //             'Content-Type': 'application/json;charset=utf-8'
-            //         },
-            //         body: JSON.stringify(dataSent)
-            //     });
-            //
-            //
-            // },
-
             /**
              * ---> TO DO
              * @param TO DO

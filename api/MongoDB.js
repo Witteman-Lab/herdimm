@@ -32,7 +32,6 @@ const saveCharacters = (request, response) => {
     // character list created with the same element as the characterSchema
     const characterList = charactersList(request.body.group, request.body.uid);
     const spentTime = mygSpentTime(request.body.totalTime, request.body.uid);
-
     const checkedCaption = captionUsed(request.body.checkedCaption, request.body.uid);
 
     //  add all elements from spent time in the db
