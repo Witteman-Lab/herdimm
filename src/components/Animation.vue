@@ -105,10 +105,11 @@
              */
             sendCharactersToApi(chosenDB) {
 
-                const url =`http://${config.API_URL_PROD}/api/${chosenDB}/herdimm`;
+                const url =`http://${config.API_URL}/api/${chosenDB}/herdimm`;
                 let dataSent = {
                     group: JSON.parse(localStorage.getItem("group")),
                     totalTime: JSON.parse(localStorage.getItem("totalTime")),
+                    checkedCaption: this.checkboxState,
                     uid: this.uid
                 };
                 fetch(url, {
@@ -120,6 +121,25 @@
                     body: JSON.stringify(dataSent)
                 });
             },
+
+            // sendSubtitleToApi(chosenDB, checkedCaption){
+            //     console.log("check", checkedCaption);
+            //     const url =`http://${config.API_URL}/api/${chosenDB}/herdimm`;
+            //     let dataSent = {
+            //         uid: this.uid,
+            //         checkedCaption: checkedCaption
+            //     };
+            //     fetch(url, {
+            //         method: 'POST',
+            //         mode: 'cors',
+            //         headers: {
+            //             'Content-Type': 'application/json;charset=utf-8'
+            //         },
+            //         body: JSON.stringify(dataSent)
+            //     });
+            //
+            //
+            // },
 
             /**
              * ---> TO DO
@@ -152,6 +172,12 @@
                     this.isAnimationStarted = true;
                     this.$refs.audioPlayer.playAudio();
                     this.isAnimationPlaying();
+                    console.log("caption checked", this.checkboxState);
+
+
+                    this.sendCharactersToApi('mongodb');
+
+
                 }
             },
 
@@ -982,7 +1008,7 @@
                         manageAudioPlayerEvent('restart');
                     }
                 };
-                this.sendCharactersToApi('mongodb');
+                // this.sendCharactersToApi('mongodb');
             }
         },
         created() {},

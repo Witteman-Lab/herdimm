@@ -14,7 +14,7 @@ mongoose.set('useCreateIndex', true);
 
 var characterSchema = require("./models/characterSchema");
 var mygSchema = require("./models/MYGSchema");
-// var substitleSchema = require("./models/SubstitleSchema");
+var checkedCaptionSchema = require("./models/SubtitleSchemas");
 
 const saveCharacters = (request, response) => {
     // check if the characters are sent by the herdimm app
@@ -23,7 +23,8 @@ const saveCharacters = (request, response) => {
     // create schema instance which will save the datas
     var characterDB = new characterSchema();
     var totalTimeMYG = new mygSchema();
-    // var substitleDB = new substitleSchema();
+    var substitleDB = new checkedCaptionSchema();
+
 
     // response for the client (herdimm application)
     var res = {};
@@ -31,7 +32,8 @@ const saveCharacters = (request, response) => {
     // character list created with the same element as the characterSchema
     const characterList = charactersList(request.body.group, request.body.uid);
     const spentTime = mygSpentTime(request.body.totalTime, request.body.uid);
-    // const checkedSubtittle = mygSpentTime(request.body.totalTime);
+
+    const checkedCaption = captionUsed(request.body.checkedCaption, request.body.uid);
 
     //  add all elements from spent time in the db
     totalTimeMYG.collection.insert(spentTime, function (err, docs) {
@@ -52,15 +54,15 @@ const saveCharacters = (request, response) => {
         response.json(res);
     });
 
-    //  add checked subtitle in the db
-    // substitleDB.collection.insertMany(checkedSubtittle, function (err, docs) {
-    //     if (err) {
-    //         return console.error(err);
-    //     } else {
-    //         console.log("checked subtitle inserted to Collection");
-    //     }
-    //     response.json(res);
-    // });
+     // add checked subtitle in the db
+    substitleDB.collection.insert(checkedCaption, function (err, docs) {
+        if (err) {
+            return console.error(err);
+        } else {
+            console.log("checked caption inserted to Collection");
+        }
+        response.json(res);
+    });
 };
 
 
@@ -107,6 +109,15 @@ const mygSpentTime = (totalTimeList, uid) => {
     };
     return totalTimeDB;
 
+};
+
+const captionUsed = (checkedCaption, uid) => {
+    console.log("checkedCap", checkedCaption);
+    let checkedCaptionDB = {
+        userId: uid,
+        checkedCaption: checkedCaption
+    };
+    return checkedCaptionDB;
 };
 
 router.post('/herdimm', saveCharacters);
