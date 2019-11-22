@@ -3,7 +3,7 @@ var router = express.Router();
 var config = require('../config/configMongoDB');
 // initialise mongoose for mongodb
 var mongoose = require("mongoose");
-mongoose.connect(`mongodb://${config.API_DB}:27017/api_herdimm`, { useNewUrlParser: true });
+mongoose.connect(`mongodb://${config.API_URL}:27017/api_herdimm`, { useNewUrlParser: true });
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
@@ -11,6 +11,7 @@ let userId = Math.floor(Math.random() * 1000000);
 
 var characterSchema = require("./models/characterSchema");
 var mygSchema = require("./models/MYGSchema");
+// var substitleSchema = require("./models/SubstitleSchema");
 
 const saveCharacters = (request, response) => {
     // check if the characters are sent by the herdimm app
@@ -19,6 +20,7 @@ const saveCharacters = (request, response) => {
     // create schema instance which will save the datas
     var characterDB = new characterSchema();
     var totalTimeMYG = new mygSchema();
+    // var substitleDB = new substitleSchema();
 
     // response for the client (herdimm application)
     var res = {};
@@ -26,6 +28,7 @@ const saveCharacters = (request, response) => {
     // character list created with the same element as the characterSchema
     const characterList = charactersList(request.body.group);
     const spentTime = mygSpentTime(request.body.totalTime);
+    // const checkedSubtittle = mygSpentTime(request.body.totalTime);
 
     //  add all elements from spent time in the db
     totalTimeMYG.collection.insert(spentTime, function (err, docs) {
@@ -45,6 +48,16 @@ const saveCharacters = (request, response) => {
         }
         response.json(res);
     });
+
+    //  add checked subtitle in the db
+    // substitleDB.collection.insertMany(checkedSubtittle, function (err, docs) {
+    //     if (err) {
+    //         return console.error(err);
+    //     } else {
+    //         console.log("checked subtitle inserted to Collection");
+    //     }
+    //     response.json(res);
+    // });
 };
 
 
