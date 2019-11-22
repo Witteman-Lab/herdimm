@@ -17,7 +17,7 @@
                                        :colors="{face: this.currentColorFace, hairFront: this.currentColorHair, beards: this.currentBeard,
                                        glasses: this.currentGlasses, shirt: this.currentShirt, name: this.characterName, options: this.options,
                                        characterTimeEdition: this.characterTimeEdition, numberOfEdition: this.numberOfEdition,
-                                       characterTimeCreation: this.characterTimeCreation, accessoriesColor: this.defaultCharacterColors.AccessoriesColor}"
+                                       characterTimeCreation: this.characterTimeCreation, accessoriesColor: this.currentAccessories}"
                                        :is-name="true"/>
 
                             <div class="field is-one-fifth-mobile" style="margin-top: 5px">
@@ -158,6 +158,7 @@
                 currentCharacter: "",
                 currentShirt: "",
                 currentCharacterObject: "",
+                currentAccessories: "",
 
                 hasHair: false,
                 hasFacialHair: false,
@@ -328,8 +329,13 @@
                     this.setVulnerableOption(character.colors.options);
                 } else {
                     // Avatar gets a special shirt
-                    isAvatar ? this.currentShirt = this.defaultCharacterColors.ShirtColorAvatar  :
+                    if (isAvatar) {
+                        this.currentAccessories = this.defaultCharacterColors.ShirtColorAvatar;
+                        this.currentShirt = this.defaultCharacterColors.ShirtColorAvatar;
+                    } else {
                         this.currentShirt = this.defaultCharacterColors.ShirtColorCharacters;
+                        this.currentAccessories = this.defaultCharacterColors.AccessoriesColor;
+                    }
                     this.currentColorFace = this.defaultCharacterColors.SkinColor;
                     this.currentColorHair = this.defaultCharacterColors.HairColor;
                     this.currentGlasses = -1;

@@ -322,6 +322,7 @@
             ChangeTShirtColor(shapeId, color, proportion) {
                 // TO-DO: try different proportion
                 let darkerColor = this.$refs[shapeId][0].getDarkerShade(color, proportion);
+                this.$refs[shapeId][0].changeAccessoriesColor(darkerColor, proportion);
                 this.$refs[shapeId][0].changeShirtColor(darkerColor, proportion);
             },
 
