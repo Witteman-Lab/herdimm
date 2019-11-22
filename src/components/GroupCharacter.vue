@@ -138,7 +138,7 @@
         display: grid;
         cursor: pointer;
         grid-template-columns: auto auto auto;
-        grid-gap: 10px;
+        grid-gap: 30px;
     }
     .line {
         justify-self: center;

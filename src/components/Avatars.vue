@@ -8,7 +8,7 @@
 
         <div class="is-centered is-half-desktop is-half-mobile">
             <h1>{{this.labels.pageTitle}}</h1>
-            <v-btn id="selectLanguage" color="primary" :style="{'z-index': languageButtonIndex}" style="z-index: 20" class="button" v-on:click="this.changeLanguage">{{this.labels.language}}</v-btn>
+            <v-btn id="selectLanguage" :style="{'z-index': languageButtonIndex}" style="z-index: 20" class="button" v-on:click="this.changeLanguage">{{this.labels.language}}</v-btn>
             <!-- <p id="generalInfo">{{this.labels.generalInfo}}</p> -->
             <!-- <br /> -->
             <!-- <v-btn style="z-index: 1" class="button_tutorial" color="secondary" @click="showCarousel">{{this.labels.tutorial}}</v-btn> -->
@@ -93,7 +93,7 @@
                 nbAvatar: 0,
                 nbrVulnerable: 0,
                 nbrCommunity: 0,
-                characterTypeToGenerate: true,
+                characterTypeToGenerate: false,
                 debugMode: false,
                 totalTime: 0,
                 startTime: Date.now(),
@@ -130,14 +130,13 @@
                         if (!this.characterTypeToGenerate) {
                             character = charactersJson.characters[Math.floor(Math.random() * charactersJson.characters.length)];
                         }
-                        let characterCount = i + 1;
-                        let name = "Personne " + characterCount;
                         let shirt = "#BFBABE";
                         let shirtShadow = "#999598";
+                        let accessoriesColor = this.defaultCharacterColors.AccessoriesColor;
                         if (i === 0) {
-                            name = "Votre avatar";
                             shirt = "#F67844";
                             shirtShadow = "#c56036";
+                            accessoriesColor = shirt;
                         }
                         let svgColor = {
                             beards: "",
@@ -147,10 +146,11 @@
                             hairBack: "#553e35",
                             hairFront: "#6A4E42",
                             idCharacter: "",
-                            name,
                             options: ['', '', ''],
                             shirt,
-                            shirtShadow
+                            shirtShadow,
+                            name,
+                            accessoriesColor
                         };
                         this.saveCharacter(character, svgColor);
                     }
@@ -488,6 +488,11 @@
         font-size: 1.1rem;
     }
 
+    #selectLanguage {
+        color: #000;
+        background-color: #FFF;
+        border: 1px solid grey;
+    }
 
     button#continue, p#contextualInfo, p#finalInfo {
         animation: appearanceAnim;
