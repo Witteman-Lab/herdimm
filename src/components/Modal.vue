@@ -20,6 +20,8 @@
                                        characterTimeCreation: this.characterTimeCreation, accessoriesColor: this.defaultCharacterColors.AccessoriesColor}"
                                        :is-name="true"/>
 
+                            <v-btn color="#212121" style="color:white" v-on:click="this.changeAvatar">{{this.labels.changeAvatar}}</v-btn>
+
                             <div class="field is-one-fifth-mobile" style="margin-top: 5px">
                                 <div class="control">
                                     <!-- PUT HERE THE BUTTON FOR CHANGING AVATAR WHEN IN EDIT MODE -->
@@ -204,6 +206,17 @@
 
         },
         methods: {
+
+            /**
+             * ---> -------------- will be completed soon -----------------
+             * @param none
+             * @return none
+             */
+            changeAvatar(){
+                this.closeModal();
+            },
+
+
             /**
              * ---> Close the spectrum color canvas
              * @param none

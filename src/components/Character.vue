@@ -254,6 +254,7 @@
             selectYourCharacter() {
                 if (this.edit) {
                     this.$parent.launchModal(this.id);
+                    console.log("mon id est ", this.id);
                 }
             },
 
