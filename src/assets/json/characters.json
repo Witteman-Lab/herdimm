@@ -13,7 +13,6 @@
     "scrollingTimeControl" : "2000",
     "folder" : "characters",
     "skinColors" : ["#FFE2C9", "#FFCBA3", "#E7B38D", "#D8905F", "#7C5235"],
-
     "hairColors" : ["#090806", "#71635A", "#4E433F",
         "#D6C4C2", "#CABFB1", "#412308",
         "#6A4E42", "#91553D", "#B55239",
@@ -187,36 +186,31 @@
             "file" : "adult19.svg",
             "hasGlasses" : true,
             "hasFacialHair" : true
-        }
-        ,
+        },
         {
             "id": "adult20",
             "file" : "adult20.svg",
             "hasGlasses" : true,
             "hasFacialHair" : true
-        }
-        ,
+        },
         {
             "id": "adult21",
             "file" : "adult21.svg",
             "hasGlasses" : true,
             "hasFacialHair" : true
-        }
-        ,
+        },
         {
             "id": "adult22",
             "file" : "adult22.svg",
             "hasGlasses" : true,
             "hasFacialHair" : true
-        }
-        ,
+        },
         {
             "id": "adult23",
             "file" : "adult23.svg",
             "hasGlasses" : true,
             "hasFacialHair" : true
-        }
-        ,
+        },
         {
             "id": "adult24",
             "file" : "adult24.svg",

@@ -18,7 +18,7 @@
                                        glasses: this.currentGlasses, shirt: this.currentShirt, name: this.characterName, options: this.options,
                                        characterTimeEdition: this.characterTimeEdition, numberOfEdition: this.numberOfEdition,
                                        characterTimeCreation: this.characterTimeCreation, accessoriesColor: this.currentAccessories}"
-                                       :is-name="true"/>
+                                       :is-name="true" :is-modal="true" :setAccessories="setAccessories"/>
 
                             <div class="field is-one-fifth-mobile" style="margin-top: 5px">
                                 <div class="control">
@@ -82,7 +82,6 @@
                                              @input="this.changeHairColorByTile"
                                              :palette="hairColors"/>
 
-<!--                                    @input="this.changeHairColor"-->
 
                                     <v-color-picker  v-if="isVueColorActive"
                                                      v-model="currentColorHair"
@@ -107,7 +106,7 @@
                                 <div id="glassesSelect" style="justify-content: center;" class="content-tab buttons" v-if="this.hasGlasses">
                                     <ul>
                                         <li class="accessoriesList button" style="overflow: hidden" v-on:click="selectGlasses(-1)">{{this.labels.None}}</li>
-                                        <li class="accessoriesList button" style="overflow: hidden" v-for="(glasses, index) in glassesListJson" :key="index" v-on:click="selectGlasses(index)" v-html="require(`../assets/glasses/${glasses.file}`)"></li>
+                                        <li class="accessoriesList button" style="overflow: hidden" v-for="(glasses, index) in glassesList" :key="index" v-on:click="selectGlasses(index)" v-html="require(`../assets/glasses/${glasses}.svg`)"></li>
                                     </ul>
                                 </div>
 
@@ -194,7 +193,6 @@
         },
         props: {
             labels: Object,
-            glassesListJson: Array,
             facialHairListJson: Array,
             totalCharactersCount: Number,
             vulnerableOptions: Array,
@@ -406,7 +404,7 @@
              * @return none
              */
             saveEditCharacter() {
-                //temps de modification pour un caractere
+                //modification time for a character
 
                 this.endCharacterTime = Date.now();
                 let startCharacterTime = this.startCharacterTime;
@@ -421,12 +419,14 @@
              * @param {Boolean} hasGlasses
              * @param {Boolean} hasBeard
              * @param {Boolean} hasHair
+             * @param {Array} glassesList
              * @return none
              */
-            setAccessories(hasGlasses, hasBeard, hasHair) {
+            setAccessories(hasGlasses, hasBeard, hasHair, glassesList) {
                 this.hasGlasses = hasGlasses;
                 this.hasFacialHair = hasBeard;
                 this.hasHair = hasHair;
+                this.glassesList = glassesList;
             },
 
             /**

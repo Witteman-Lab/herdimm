@@ -35,7 +35,7 @@
                     characterTimeEdition: 0,
                     numberOfEdition: 0
                 },
-                glasses: [],
+                glassesList: [],
                 beards: [],
                 defaultColor: '',
                 hasBeard: false,
@@ -52,6 +52,8 @@
             edit: Boolean,
             size: Object,
             isName: Boolean,
+            isModal: Boolean,
+            setAccessories: Function
         },
         methods: {
             setCharacterTimeEdition(timeTotalEdition) {
@@ -291,8 +293,8 @@
                         this.defaultColor = this.$refs.characterImg.children[0].children[0].innerHTML;
 
                         // Set Modal content after knowing if the character has glasses, has hair or beard
-                        if (this.$parent.$options.name === "Modal")
-                            this.$parent.setAccessories(this.hasGlasses, this.hasBeard, this.hasHair);
+                        if (this.isModal)
+                            this.setAccessories(this.hasGlasses, this.hasBeard, this.hasHair, this.glassesList);
                     }
                 }
             },
@@ -324,8 +326,7 @@
                     childrenPosition.children[i].classList.remove("st7");
                     childrenPosition.classList.add("st7_" + i +"_" + this.id);
                     childrenPosition.children[i].style.display = "none";
-                    childrenPosition.children[i].setAttribute("id", "glasses_" + i +"_" + this.id);
-                    this.glasses.push(childrenPosition.children[i].id);
+                    this.glassesList.push(childrenPosition.children[i].id);
                 }
                 this.hasGlasses = true;
             },
@@ -384,8 +385,6 @@
                         characterImgSVG.children[i].classList.remove(classValue);
                         characterImgSVG.children[i].classList.add(classValue + "_custom_" + this.id);
                     }
-
-
 
                     // Because glasses and facial hair are grouped in <g> elements with ids
                     if (id === "glasses") {

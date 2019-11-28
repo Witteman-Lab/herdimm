@@ -363,6 +363,7 @@
                 // why use argument instead of the parameter args ??
                 // just disable the warning but it needs to be discuss
                 let newArgs = Array.prototype.slice.call(arguments, 2);
+                console.log(args);
                 return context[functionName].apply(context, newArgs);
             },
 

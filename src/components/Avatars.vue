@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <!-- MODAL WINDOW -->
-        <Modal ref="modal"  :defaultCharacterColors="defaultCharacterColors" :skin-colors="skinColors" :hair-colors="hairColors" :total-characters-count="maxCharactersInGroup" :glasses-list-json="glassesListJson" :facial-hair-list-json="facialHairList" :max-color-tile="maxColorTile" :labels="labels"/>
+        <Modal ref="modal"  :defaultCharacterColors="defaultCharacterColors" :skin-colors="skinColors" :hair-colors="hairColors" :total-characters-count="maxCharactersInGroup"  :facial-hair-list-json="facialHairList" :max-color-tile="maxColorTile" :labels="labels"/>
         <!-- INTERFACE TUTORIAL -->
         <!-- <Carousel id="Carousel" class="Carousel" ref="Carousel" :labels="labels" :change-language-button-index="changeLanguageButtonIndex"
                   :nbr-avatar="nbAvatar" :nbr-vulnerable="nbrVulnerable"  :nbr-community="nbrCommunity"></Carousel> -->
@@ -59,7 +59,6 @@
     import charactersJson from "../assets/json/characters.json";
     import textsEng from "../assets/json/textsEng.json";
     import textsFr from "../assets/json/textsFr.json";
-    import glassesJson from "../assets/json/glasses.json";
     import facialHairJson from "../assets/json/facialHair.json";
 
 
@@ -82,7 +81,6 @@
                 maxCharactersInGroup: 0,
                 maxColorTile: 0,
                 facialHairList: [],
-                glassesListJson: [],
                 texts: '',
                 skinColors: [],
                 hairColors: [],
@@ -416,7 +414,6 @@
                 this.maxCharactersInGroup = charactersJson.nbAvatar + charactersJson.nbVulnerable + charactersJson.nbCommunity;
                 this.contextualInfo = this.labels.contextualInfoAvatar;
                 this.facialHairList = facialHairJson.beards;
-                this.glassesListJson = glassesJson.glasses;
                 this.skinColors = charactersJson.skinColors;
                 this.hairColors = charactersJson.hairColors;
                 this.defaultCharacterColors = charactersJson.defaultColors;
