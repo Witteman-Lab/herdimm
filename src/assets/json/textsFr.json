@@ -1,5 +1,10 @@
 {
     "currentLanguage" : "fr",
+    "homeTitle1" : "Quel est le rôle de chacun",
+    "homeTitle2" : "dans la protection ",
+    "homeTitle3" : "de la communauté?",
+    "homeSubTitle1" : "Une visualisation interactive ",
+    "homeBtnContinue" : "Commencer ",
     "continueBtn" : "Aller à l'animation",
     "saveBtn" : "Sauvegarder",
     "saveEditBtn" : "Sauvegarder l'édition",
