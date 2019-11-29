@@ -1,12 +1,12 @@
 <template>
     <div id="mainApp">
         <div class="columns is-centered">
-            <div class="column is-centered">
+            <div class="column is-one-third is-centered">
             <figure class="image">
                <img src="../assets/images/herdimm-landingPage-group.png">
             </figure>
             </div>
-            <div class="column " style="padding: 20px;">
+            <div class="column" style="padding: 20px;">
             <h1 class="title is-1 has-text-left is-spaced" style="font-weight: bolder">{{this.labels.homeTitle1}}
                 <br/>{{this.labels.homeTitle2}}<br/>{{this.labels.homeTitle3}}</h1>
             
@@ -60,8 +60,18 @@
 </script>
 
 <style scoped>
-    #mainApp{
-        margin: 150px 50px 150px 50px;
+    /*for larger and medium devices (desktop)*/
+    @media screen and (min-width: 812px){
+        .columns{
+            margin: 75px 75px 75px 250px;
+        }
+    }
+
+    /*on small devices such as phone and tablet(smartphone)*/
+    @media screen and (min-width: 320px)  and (max-width: 768px) {
+        #mainApp {
+            /*        to be done */
+        }
     }
 
 </style>
