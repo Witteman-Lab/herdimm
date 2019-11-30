@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="character-position" :style="{width: this.characterPositionWidth}">
-            <div v-on:click="selectYourCharacter" ref="characterImg" v-html="this.svg" :style="{width: this.width, height: this.height}" style="margin: 5px auto auto auto;"></div>
+            <div  v-on:click="selectYourCharacter" ref="characterImg" v-html="this.svg" :style="{width: this.width, height: this.height}" style="margin: 5px auto auto auto;"></div>
             <span v-if="isName" style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis;margin-bottom: 0.5em;color: #848484;font-size: 14px;">{{this.svgColor.name}}</span>
         </div>
     </div>
@@ -52,6 +52,7 @@
             edit: Boolean,
             size: Object,
             isName: Boolean,
+            changeAvatarState: Boolean,
         },
         methods: {
             setCharacterTimeEdition(timeTotalEdition) {
@@ -252,11 +253,17 @@
              * @return none
              */
             selectYourCharacter() {
+                console.log("le state de l avater", this.changeAvatarState);
                 if (this.edit) {
                     this.$parent.launchModal(this.id);
                     console.log("mon id est ", this.id);
                 }
+                // if(this.edit && this.changeAvatarState){
+                //     this.$parent.launchModal(this.id);
+                //     console.log("deuxieme");
+                // }
             },
+
 
             /**
              * ---> Apply properties on the character (colors is most likely given as props)

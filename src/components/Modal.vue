@@ -13,14 +13,14 @@
                 <section class="modal-card-body">
                     <div class="columns">
                         <div class="column is-centered ">
-                            <Character  v-if="isActive" :size="{width: '70px', height: '78px'}" :edit="false" :customised="true" ref="character" :id="'current'" :svgFile="this.currentCharacter"
+                            <Character  v-if="isActive" :size="{width: '70px', height: '78px'}" :change-avatar-state="changeAvatarState" :edit="false" :customised="true" ref="character" :id="'current'" :svgFile="this.currentCharacter"
                                        :colors="{face: this.currentColorFace, hairFront: this.currentColorHair, beards: this.currentBeard,
                                        glasses: this.currentGlasses, shirt: this.currentShirt, name: this.characterName, options: this.options,
                                        characterTimeEdition: this.characterTimeEdition, numberOfEdition: this.numberOfEdition,
                                        characterTimeCreation: this.characterTimeCreation, accessoriesColor: this.currentAccessories}"
                                        :is-name="true"/>
 
-                            <v-btn color="#212121" style="color:white" v-on:click="this.changeAvatar">{{this.labels.changeAvatar}}</v-btn>
+                            <v-btn v-if="isEdit" color="#212121" style="color:white" v-on:click="this.changeAvatar">{{this.labels.changeAvatar}}</v-btn>
 
                             <div class="field is-one-fifth-mobile" style="margin-top: 5px">
                                 <div class="control">
@@ -172,6 +172,8 @@
                 ColorNumberCreateWithSpectrum : 0,
                 showMoreColor :  false,
 
+                changeAvatarState : true,
+
                 isActive: false,
                 isDropdownActive: false,
                 isEdit: false,
@@ -215,6 +217,10 @@
              */
             changeAvatar(){
                 this.closeModal();
+                //this.changeAvatarState = false;
+                //document.getElementsByClassName("grid-list-character").disabled = true;
+
+                console.log(document.getElementsByClassName("grid-list-character"));
             },
 
 

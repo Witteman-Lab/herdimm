@@ -2,10 +2,9 @@
     <div class="grid-category">
         <div v-bind:key="index" v-for="(category, index) in this.labels.categories" class="fit-content">
             <div style="display: flex; justify-content: center;">
-                <div :key="character.id"
-                     v-for="(character) in characterList" >
+                <div :key="character.id" v-for="(character) in characterList" >
                     <div class="grid-list-character" v-if="character.characterType === isCharacterType[index]">
-                        <Character ref="character"  :is-name="true" :size="{width: '74px', height: '80px'}"
+                        <Character  :disabled="false" ref="character"  :is-name="true" :size="{width: '74px', height: '80px'}"
                                    :edit="true" :customised="true" :colors="character.colors" :id="character.id"
                                    :svgFile="require(`../assets/characters/${character.file}`)" />
                     </div>
@@ -72,6 +71,7 @@
                         this.characterList.splice(index, 1, {id: character.id,
                             file: character.file, colors: characterColors, characterType: type});
                         this.$refs.character[index].editCharacterColors(characterColors);
+                        console.log("characterColors", characterColors);
                     }
                 });
             },
