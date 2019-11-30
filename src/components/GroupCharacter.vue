@@ -4,7 +4,7 @@
             <div style="display: flex; justify-content: center;">
                 <div :key="character.id" v-for="(character) in characterList" >
                     <div class="grid-list-character" v-if="character.characterType === isCharacterType[index]">
-                        <Character  :disabled="false" ref="character"  :is-name="true" :size="{width: '74px', height: '80px'}"
+                        <Character :disabled="false" ref="character"  :is-name="true" :size="{width: '74px', height: '80px'}"
                                    :edit="true" :customised="true" :colors="character.colors" :id="character.id"
                                    :svgFile="require(`../assets/characters/${character.file}`)" />
                     </div>
@@ -37,7 +37,8 @@
             Character
         },
         props: {
-          labels: Object
+            labels: Object,
+            disableGroupCharacter : Boolean
         },
         methods: {
             setCharacterCategory(type) {

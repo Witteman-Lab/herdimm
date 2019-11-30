@@ -8,17 +8,17 @@
                         <br/>
                         <span style="font-size: medium">{{ this.labels.totalCharacterCount }} {{this.currentCharacterNumber}} / {{totalCharactersCount}}</span>
                     </p>
-                    <button class="delete" aria-label="close modal" v-on:click="this.closeModal"></button>
+                    <button class="delete" aria-label="close modal" v-on:click="this.closeModal"/>
                 </header>
                 <section class="modal-card-body">
                     <div class="columns">
                         <div class="column is-centered ">
-                            <Character  v-if="isActive" :size="{width: '70px', height: '78px'}" :change-avatar-state="changeAvatarState" :edit="false" :customised="true" ref="character" :id="'current'" :svgFile="this.currentCharacter"
+                            <Character  v-if="isActive" :size="{width: '70px', height: '78px'}" :disable-group-character="disableGroupCharacter" :change-avatar-state="changeAvatarState" :edit="false" :customised="true" ref="character" :id="'current'" :svgFile="this.currentCharacter"
                                        :colors="{face: this.currentColorFace, hairFront: this.currentColorHair, beards: this.currentBeard,
                                        glasses: this.currentGlasses, shirt: this.currentShirt, name: this.characterName, options: this.options,
                                        characterTimeEdition: this.characterTimeEdition, numberOfEdition: this.numberOfEdition,
                                        characterTimeCreation: this.characterTimeCreation, accessoriesColor: this.currentAccessories}"
-                                       :is-name="true"/>
+                                       :is-name="true" :is-modal="true" :setAccessories="setAccessories"/>
 
                             <v-btn v-if="isEdit" color="#212121" style="color:white" v-on:click="this.changeAvatar">{{this.labels.changeAvatar}}</v-btn>
 
@@ -84,7 +84,6 @@
                                              @input="this.changeHairColorByTile"
                                              :palette="hairColors"/>
 
-<!--                                    @input="this.changeHairColor"-->
 
                                     <v-color-picker  v-if="isVueColorActive"
                                                      v-model="currentColorHair"
@@ -94,8 +93,8 @@
                                                      :show-swatches="false"
                                                      :dot-size=20
                                                      :light="false"
-                                                     class="mx-auto"
-                                    ></v-color-picker>
+                                                     class="mx-auto" />
+
                                     <div style="display: flex; justify-content: center;" >
                                         <v-btn v-if="!this.isVueColorActive" :disabled='this.showMoreColor' color="black"  style="margin: 10px; color:white"  @click="showSpectrum">{{this.labels.moreColor}}</v-btn>
                                         <v-btn v-if="this.isVueColorActive" color="black" style="margin: 10px; color: white"  @click="addColorToSpectrum">{{this.labels.addColor}}</v-btn>
@@ -109,7 +108,7 @@
                                 <div id="glassesSelect" style="justify-content: center;" class="content-tab buttons" v-if="this.hasGlasses">
                                     <ul>
                                         <li class="accessoriesList button" style="overflow: hidden" v-on:click="selectGlasses(-1)">{{this.labels.None}}</li>
-                                        <li class="accessoriesList button" style="overflow: hidden" v-for="(glasses, index) in glassesListJson" :key="index" v-on:click="selectGlasses(index)" v-html="require(`../assets/glasses/${glasses.file}`)"></li>
+                                        <li class="accessoriesList button" style="overflow: hidden" v-for="(glasses, index) in glassesList" :key="index" v-on:click="selectGlasses(index)" v-html="require(`../assets/glasses/${glasses}.svg`)"/>
                                     </ul>
                                 </div>
 
@@ -117,7 +116,7 @@
                                 <div id="facialHairSelect" style="justify-content: center;" class="content-tab buttons" v-if="this.hasFacialHair">
                                     <ul>
                                         <li class="accessoriesList button" style="overflow: hidden" v-on:click="selectBeards(-1)">{{this.labels.None}}</li>
-                                        <li class="accessoriesList button facialHairList"  style="overflow: hidden" v-for="(beard, index) in facialHairListJson" :key="index" v-html="require(`../assets/facialHair/${beard.file}`)" v-on:click="selectBeards(index)"></li>
+                                        <li class="accessoriesList button facialHairList"  style="overflow: hidden" v-for="(beard, index) in facialHairListJson" :key="index" v-html="require(`../assets/facialHair/${beard.file}`)" v-on:click="selectBeards(index)"/>
                                     </ul>
                                 </div>
                             </div>
@@ -173,6 +172,7 @@
                 showMoreColor :  false,
 
                 changeAvatarState : true,
+                disableGroupCharacter : true,
 
                 isActive: false,
                 isDropdownActive: false,
@@ -198,7 +198,6 @@
         },
         props: {
             labels: Object,
-            glassesListJson: Array,
             facialHairListJson: Array,
             totalCharactersCount: Number,
             vulnerableOptions: Array,
@@ -217,10 +216,8 @@
              */
             changeAvatar(){
                 this.closeModal();
-                //this.changeAvatarState = false;
-                //document.getElementsByClassName("grid-list-character").disabled = true;
-
-                console.log(document.getElementsByClassName("grid-list-character"));
+                //this.disableGroupCharacter = false;
+                //console.log(document.getElementsByClassName("grid-list-character"));
             },
 
 
@@ -250,7 +247,6 @@
                 if (!isColorPresent && this.ColorNumberCreateWithSpectrum < this.maxColorTile) {
                     this.hairColors.push(this.currentColorHair);
                     this.ColorNumberCreateWithSpectrum++;
-                    console.log("ma couleur", this.ColorNumberCreateWithSpectrum);
                 }
                 if(this.ColorNumberCreateWithSpectrum === this.maxColorTile){
                     this.showMoreColor = true   ;
@@ -425,7 +421,7 @@
              * @return none
              */
             saveEditCharacter() {
-                //temps de modification pour un caractere
+                //modification time for a character
 
                 this.endCharacterTime = Date.now();
                 let startCharacterTime = this.startCharacterTime;
@@ -440,12 +436,14 @@
              * @param {Boolean} hasGlasses
              * @param {Boolean} hasBeard
              * @param {Boolean} hasHair
+             * @param {Array} glassesList
              * @return none
              */
-            setAccessories(hasGlasses, hasBeard, hasHair) {
+            setAccessories(hasGlasses, hasBeard, hasHair, glassesList) {
                 this.hasGlasses = hasGlasses;
                 this.hasFacialHair = hasBeard;
                 this.hasHair = hasHair;
+                this.glassesList = glassesList;
             },
 
             /**
