@@ -108,7 +108,7 @@
                                 <div id="glassesSelect" style="justify-content: center;" class="content-tab buttons" v-if="this.hasGlasses">
                                     <ul>
                                         <li class="accessoriesList button" style="overflow: hidden" v-on:click="selectGlasses(-1)">{{this.labels.None}}</li>
-                                        <li class="accessoriesList button" style="overflow: hidden" v-for="(glasses, index) in glassesList" :key="index" v-on:click="selectGlasses(index)" v-html="require(`../assets/glasses/${glasses}.svg`)"/>
+                                        <li class="accessoriesList button" style="overflow: hidden" v-for="(glasses, index) in glassesList" :key="index" v-on:click="selectGlasses(index)" v-html="require(`../assets/glasses/${glasses}.svg`)"></li>
                                     </ul>
                                 </div>
 
@@ -116,7 +116,7 @@
                                 <div id="facialHairSelect" style="justify-content: center;" class="content-tab buttons" v-if="this.hasFacialHair">
                                     <ul>
                                         <li class="accessoriesList button" style="overflow: hidden" v-on:click="selectBeards(-1)">{{this.labels.None}}</li>
-                                        <li class="accessoriesList button facialHairList"  style="overflow: hidden" v-for="(beard, index) in facialHairListJson" :key="index" v-html="require(`../assets/facialHair/${beard.file}`)" v-on:click="selectBeards(index)"/>
+                                        <li class="accessoriesList button facialHairList"  style="overflow: hidden" v-for="(beard, index) in facialHairListJson" :key="index" v-html="require(`../assets/facialHair/${beard.file}`)" v-on:click="selectBeards(index)"></li>
                                     </ul>
                                 </div>
                             </div>
@@ -543,7 +543,9 @@
                     if (accessories[i].innerHTML !== this.labels.None) {
                         let item = accessories[i].children[0];
                         item.setAttribute("height", height);
-                        item.setAttribute("style", `margin-top: ${marginTop};`);
+                        if (item.id !== "glasses4" && item.id !== "glasses5") {
+                            item.setAttribute("style", `margin-top: ${marginTop};`);
+                        }
                     }
                 }
             },
@@ -624,10 +626,10 @@
     }
     li.accessoriesList {
         display: inline-block;
-        margin: 0 auto;
         min-width: 115px;
-        margin-right: auto !important;
-        margin-bottom: 10px;
+        margin: 0 auto 10px;
+        padding-left: 0;
+        padding-right: 0;
     }
     .mobile-modal {
         margin-top: calc(20vh - 40px);
