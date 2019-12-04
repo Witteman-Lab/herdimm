@@ -535,12 +535,12 @@
         border-radius: 8px;
         font-size: 17px;
         position: relative;
+        margin: 16px auto;
     }
 
     button#continue:active {
         top: 4px;
         box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.25);
-
     }
 
     button#continue:focus {outline:0;}
