@@ -5,7 +5,7 @@
     "homeTitle3" : "de la communauté?",
     "homeSubTitle1" : "Une visualisation interactive ",
     "homeBtnContinue" : "Commencer ",
-    "continueBtn" : "Go to the animation",
+    "continueBtn" : "See animation",
     "saveBtn" : "Save",
     "saveEditBtn" : "Save edit",
     "cancelBtn" : "Cancel",
@@ -50,6 +50,24 @@
     "cancelSpectrumColor" : "Cancel",
     "None": "None",
     "changeAvatar" : "change avatar",
+    "stepsMakingAvatar" : [
+        {
+            "title": "1. Build your avatar",
+            "description" : "Choose a character that looks like you."
+        },
+        {
+            "title": "2. Add someone you know who is vulnerable to contagious diseases",
+            "description" : "Think about babies, older people, or those with chronic diseases or cancer. Vulnerable people can get sicker than other people if they catch a contagious disease."
+        },
+        {
+            "title": "3. Add a second vulnerable person",
+            "description" : "Think about babies, older people, or those with chronic diseases or cancer. Vulnerable people can get sicker than other people if they catch a contagious disease."
+        },
+        {
+            "title": "4. Complete your group with six others in your circle",
+            "description" : "Think of people you see often: for example, family, friends, colleagues, neighbours."
+        }
+    ],
     "commentary" : "--------------------------------- Carousel.vue  -------------------------------------------------",
     "stepsDescription" : [
         {

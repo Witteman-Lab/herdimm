@@ -7,12 +7,19 @@
                   :nbr-avatar="nbAvatar" :nbr-vulnerable="nbrVulnerable"  :nbr-community="nbrCommunity"></Carousel> -->
 
         <div class="is-centered is-half-desktop is-half-mobile">
-            <h1>{{this.labels.pageTitle}}</h1>
-            <v-btn id="selectLanguage" :style="{'z-index': languageButtonIndex}" style="z-index: 20" class="button" v-on:click="this.changeLanguage">{{this.labels.language}}</v-btn>
+            <div class="instructions-block">
+                <h1 class="page-instruction">{{this.labels.stepsMakingAvatar[step].title}}</h1>
+                <p v-if="!isGroupComplete" id="contextualInfo">{{ this.labels.stepsMakingAvatar[step].description }}</p>
+                <button id="continue" class="continue" v-if="isGroupComplete" v-on:click="loadAnimationView()">
+                        <span>{{this.labels.continueBtn.toUpperCase()}}</span>
+                        <font-awesome-icon style="margin-left: 10px;" icon="play" size="lg"/>
+                </button>
+            </div>
+            <button id="selectLanguage" :style="{'z-index': languageButtonIndex}" style="z-index: 20" class="button" v-on:click="this.changeLanguage">{{this.labels.language}}</button>
             <!-- <p id="generalInfo">{{this.labels.generalInfo}}</p> -->
             <!-- <br /> -->
             <!-- <v-btn style="z-index: 1" class="button_tutorial" color="secondary" @click="showCarousel">{{this.labels.tutorial}}</v-btn> -->
-            <p id="contextualInfo">{{ contextualInfo }}</p>
+
             <!-- <h2>{{ this.labels.totalCharacterCount }} {{this.totalCreated}} / {{maxCharactersInGroup}} </h2> -->
             <!-- List of all the characters -->
             <div class="tool">
@@ -25,7 +32,7 @@
                 </div>
             </div>
 
-            <h2 style="margin: 10px">{{this.labels.subtitle}} ({{ this.labels.totalCharacterCount }} {{this.totalCreated}} / {{maxCharactersInGroup}})</h2>
+<!--            <h2 style="margin: 10px">{{this.labels.subtitle}} ({{ this.labels.totalCharacterCount }} {{this.totalCreated}} / {{maxCharactersInGroup}})</h2>-->
             <div v-if="debugMode">
                 <v-btn v-on:click="this.generateAllCharacters">{{this.labels.generateAllCharacters}}</v-btn>
                 <v-btn v-on:click="this.changeCharacterGeneration">{{characterTypeToGenerate ? this.labels.differentCharacters : this.labels.sameCharacters}}</v-btn>
@@ -39,12 +46,11 @@
             </div>
         </div>
         <!-- Button to continue to the next section (e.g. the animation) -->
-        <section>
-            <div class="control has-text-centered">
-                <p id="finalInfo" v-if="isGroupComplete">{{this.labels.finalInfo}}</p>
-                <button id="continue" class="continue button is-primary is-success" v-if="isGroupComplete" v-on:click="loadAnimationView()">{{this.labels.continueBtn}}</button>
-            </div>
-        </section>
+<!--        <section>-->
+<!--            <div class="control has-text-centered">-->
+<!--                <p id="finalInfo" v-if="isGroupComplete">{{this.labels.finalInfo}}</p>-->
+<!--            </div>-->
+<!--        </section>-->
     </div>
 </template>
 
@@ -97,7 +103,8 @@
                 startTime: Date.now(),
                 returnUrl: "",
                 uid: 0,
-                maxUid : 999999
+                maxUid : 999999,
+                step: 0
             };
         },
         props: {
@@ -227,7 +234,7 @@
 
                 window.scrollTo(0, document.body.scrollHeight);
 
-                if (this.totalCreated < this.maxCharactersInGroup) {
+                if (this.totalCreated < this.maxCharactersInGroup && window.innerWidth < 420) {
                     setTimeout(() => {
                         window.scrollTo({top: 0, behavior: 'smooth', x: 0})
                     },
@@ -355,14 +362,15 @@
              */
             manageCharacterCount() {
                 if (this.totalCreated < charactersJson.nbAvatar) {
-                    this.contextualInfo = this.labels.contextualInfoAvatar;
+                    // this.contextualInfo = this.labels.contextualInfoAvatar;
                 } else if (this.totalCreated < charactersJson.nbAvatar + charactersJson.nbVulnerable) {
-                    //console.log(charactersJson.nbVulnerable);
-                    this.contextualInfo = this.labels.vulnerableDesc.replace("###", charactersJson.nbVulnerable);
-                } else if (this.totalCreated < charactersJson.nbAvatar + charactersJson.nbVulnerable + charactersJson.nbCommunity) {
-                    this.contextualInfo = this.labels.othersDesc.replace("###", charactersJson.nbCommunity);
+                    this.step++;
+                    // this.contextualInfo = this.labels.vulnerableDesc.replace("###", charactersJson.nbVulnerable);
+                } else if (this.totalCreated < charactersJson.nbAvatar + charactersJson.nbVulnerable + charactersJson.nbCommunity && this.step < this.labels.stepsMakingAvatar.length - 1) {
+                    this.step++;
+                    // this.contextualInfo = this.labels.othersDesc.replace("###", charactersJson.nbCommunity);
                 } else {
-                    this.contextualInfo = "";
+                    // this.contextualInfo = "";
                 }
             },
             /**
@@ -385,7 +393,6 @@
                 else
                     this.labels = textsFr;
                 this.isLanguageChanged = !this.isLanguageChanged;
-                this.manageCharacterCount();
                 this.$forceUpdate();
             },
 
@@ -452,8 +459,37 @@
     }
 </style>
 <style scoped>
-    @media screen and (min-width:420px){
-        #selectLanguage{
+    html {
+        overflow-y: hidden !important;
+    }
+    .container {
+        margin-top: 50px;
+    }
+
+    .instructions-block {
+        margin: 15px 0px;
+    }
+
+    @media screen and (min-width:300px) {
+        .instructions-block {
+            margin: auto;
+
+        }
+    }
+
+    @media screen and (min-width:697px) {
+        .instructions-block {
+            margin: auto 200px;
+        }
+    }
+    @media screen and (min-width:420px) {
+        .page-instruction {
+            margin-top: 8px;
+            font-family: Roboto;
+            font-weight: bold;
+            font-size: 24px;
+        }
+        #selectLanguage {
             position: absolute;
             right: 0px;
             top: 0px;
@@ -465,7 +501,7 @@
     h1 {
         font-size: 2rem;
         font-weight: bold;
-        margin: 0 0 30px 0;
+        margin: 0 0 10px 0;
     }
     h2 {
         font-size: 1.3rem;
@@ -485,10 +521,41 @@
         font-size: 1.1rem;
     }
 
+    button#continue {
+        background-color:  #05CDC1;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: bold;
+        line-height: 28px;
+        text-align: center;
+        color: #043213;
+        width: 289px;
+        height: 61px;
+        box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.25);
+        border-radius: 8px;
+        font-size: 17px;
+        position: relative;
+    }
+
+    button#continue:active {
+        top: 4px;
+        box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.25);
+
+    }
+
+    button#continue:focus {outline:0;}
+
+
     #selectLanguage {
-        color: #000;
+        color: #0000EE;
         background-color: #FFF;
-        border: 1px solid grey;
+        border: 1px solid #0000EE;
+        font-family: Roboto;
+        font-weight: bold;
+        font-size: 14px;
+        width: 120px;
+        height: 34px;
+        border-radius: 15px
     }
 
     button#continue, p#contextualInfo, p#finalInfo {

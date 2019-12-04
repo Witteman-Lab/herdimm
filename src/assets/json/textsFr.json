@@ -5,7 +5,7 @@
     "homeTitle3" : "de la communauté?",
     "homeSubTitle1" : "Une visualisation interactive ",
     "homeBtnContinue" : "Commencer ",
-    "continueBtn" : "Aller à l'animation",
+    "continueBtn" : "Voir l’animation",
     "saveBtn" : "Sauvegarder",
     "saveEditBtn" : "Sauvegarder l'édition",
     "cancelBtn" : "Annuler",
@@ -50,6 +50,24 @@
     "cancelSpectrumColor": "Annuler",
     "None": "Aucune",
     "changeAvatar" : "changer d'avatar",
+    "stepsMakingAvatar" : [
+        {
+            "title": "1. Créez votre avatar",
+            "description" : "Choisissez un personnage qui vous ressemble."
+        },
+        {
+            "title": "2. Ajoutez une personne vulnérable de votre entourage",
+            "description" : "Pensez aux bébés, aux personnes âgées, aux personnes souffrant de maladies, comme des maladies chroniques ou les cancers. Ces personnes vulnérables sont plus exposées aux complications d’une maladie."
+        },
+        {
+            "title": "3. Ajoutez une deuxième personne vulnérable ",
+            "description" : "Pensez aux bébés, aux personnes âgées, aux personnes souffrant de maladies, comme des maladies chroniques ou les cancers. Ces personnes vulnérables sont plus exposées aux complications d’une maladie."
+        },
+        {
+            "title": "4. Complétez avec six personnes de votre entourage",
+            "description" : "Pensez aux personnes que vous côtoyez souvent, par exemple votre famille, vos amis, vos collègues ou vos voisins."
+        }
+    ],
     "commentary" : "--------------------------------- Carousel.vue  -------------------------------------------------",
     "stepsDescription" : [
         {
