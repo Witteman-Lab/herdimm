@@ -558,16 +558,13 @@
         border-radius: 15px
     }
 
-    button#continue, p#contextualInfo, p#finalInfo {
+    /* button#continue, p#contextualInfo, p#finalInfo {
         animation: appearanceAnim;
-        /* animation: appearanceAnim 2s ease-in-out; */
-        -webkit-animation-name: appearanceAnim; /* Safari 4.0 - 8.0 */
-        -webkit-animation-duration: 2s; /* Safari 4.0 - 8.0 */
-        /* -webkit-animation-iteration-count: 2; */
-        -webkit-animation-direction: alternate; /* Safari 4.0 - 8.0 */
+        -webkit-animation-name: appearanceAnim;
+        -webkit-animation-duration: 2s;
+        -webkit-animation-direction: alternate;
         animation-name: appearanceAnim;
         animation-duration: 2s;
-        /* animation-iteration-count: 2; */
         animation-direction: alternate;
     }
     @keyframes appearanceAnim {
@@ -586,5 +583,5 @@
         100% {
             opacity: 1;
         }
-    }
+    } */
 </style>
