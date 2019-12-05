@@ -59,13 +59,12 @@
 
 </script>
 
-<style>
-    body {
-        background-color: #CED9DB;
-    }
-</style>
-
 <style scoped>
+
+    div#mainApp {
+        background-color: #CED9DB;
+        height: 100vh;
+    }
 
     /*for larger and medium devices (desktop)*/
     @media screen and (min-width: 812px){
