@@ -431,6 +431,8 @@
             },
 
             mounted() {
+                let html = document.querySelector("html");
+                html.style = "background-color: #FFFFFF !important";
                 this.setDiseaseToAnimate();
                 this.setVoiceToPlay();
                 this.setLanguage();
@@ -457,6 +459,7 @@
         left: 25%;
         right: 25%;
     }
+
 </style>
 <style scoped>
     html {
@@ -555,7 +558,7 @@
         font-size: 14px;
         width: 120px;
         height: 34px;
-        border-radius: 15px
+        border-radius: 15px;
     }
 
     /* button#continue, p#contextualInfo, p#finalInfo {
