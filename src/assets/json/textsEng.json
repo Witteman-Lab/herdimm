@@ -1,10 +1,8 @@
 {
     "currentLanguage" : "en",
-    "homeTitle1" : "Quel est le rôle de chacun",
-    "homeTitle2" : "dans la protection ",
-    "homeTitle3" : "de la communauté?",
-    "homeSubTitle1" : "Une visualisation interactive ",
-    "homeBtnContinue" : "Commencer ",
+    "homeTitle" : "What role does each of us play in protecting our community ?",
+    "homeSubTitle" : "An interactive visualization ",
+    "homeBtnContinue" : "Start ",
     "continueBtn" : "See animation",
     "saveBtn" : "Save",
     "saveEditBtn" : "Save edit",

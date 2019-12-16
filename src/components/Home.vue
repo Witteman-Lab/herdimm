@@ -1,25 +1,17 @@
 <template>
     <div id="mainApp">
-        <div class="columns is-centered">
-            <div class="column is-one-third is-centered">
-            <figure class="image">
-               <img src="../assets/images/herdimm-landingPage-group.png">
-            </figure>
-            </div>
-            <div class="column" style="padding: 20px;">
-            <h1 class="title is-1 has-text-left is-spaced" style="font-weight: bolder">{{this.labels.homeTitle1}}
-                <br/>{{this.labels.homeTitle2}}<br/>{{this.labels.homeTitle3}}</h1>
-
-            <h6 class="subtitle is-6 has-text-left">{{this.labels.homeSubTitle1}}</h6><br/>
-
-            <button id="continue" class="continue button is-primary is-medium has-text-centered" style="float: left;  color: black" v-on:click="loadHome()">{{this.labels.homeBtnContinue}}
-
-                <a><font-awesome-icon style="margin-left: 10px; color: black" icon="play" size="small"/></a>
-
-            </button>
-
-            <br/><br/><br/><br/>
-            <button id="selectLanguage"  class="button is-primary is-rounded is-link is-small"  style="float: left;" v-on:click="this.changeLanguage">{{this.labels.language}}</button>
+        <div class="landing-page">
+            <div ref="landingImage" v-html="require(`../assets/images/Illustration.svg`)"></div>
+            <div id="container-landing-page-text">
+                <div class="title-landing-page">{{this.labels.homeTitle}}</div>
+                <div class="subtitle-landing-page">{{this.labels.homeSubTitle}}</div>
+                <div class="interactions-landing-page" >
+                    <button id="continue" class="continue button is-primary is-medium has-text-centered" style="float: left;  color: black" v-on:click="loadHome()">
+                        <span style="margin-left: 30px">{{this.labels.homeBtnContinue.toUpperCase()}}</span>
+                        <a><font-awesome-icon style="margin-left: 10px; color: black" icon="play" /></a>
+                    </button>
+                    <button id="selectLanguage" class="button"  v-on:click="this.changeLanguage">{{this.labels.language}}</button>
+                </div>
             </div>
         </div>
     </div>
@@ -32,16 +24,17 @@
 
     export default {
         name: "Home",
-        data(){
+        data() {
             return {
                 myStyle:{
-                    backgroundColor:"#16a085"
-                }
+                    backgroundColor: "#16a085",
+                },
+                isLanguageChanged: true
             }
         },
         methods: {
             loadHome(){
-                this.$router.push({name: 'Avatars',});
+                this.$router.push({name: 'Avatars'});
             },
             changeLanguage() {
                 if (this.isLanguageChanged)
@@ -51,33 +44,149 @@
                 this.isLanguageChanged = !this.isLanguageChanged;
                 this.$forceUpdate();
             },
+            manageLandingPageImage() {
+                const characterImgSVG = this.$refs.landingImage.children[0];
+
+                if (window.innerWidth > 768) {
+                    characterImgSVG.style = "";
+                } else {
+                    characterImgSVG.style = "width: 300px;height: 300px;";
+                }
+            },
         },
         created() {
             this.labels = textsFr;
         },
+        mounted() {
+            let html = document.querySelector("html");
+            html.style = "background-color: #CED9DB !important;";
+            window.addEventListener('resize', this.manageLandingPageImage);
+            this.manageLandingPageImage();
+        }
     }
 
 </script>
 
 <style scoped>
 
+
     div#mainApp {
         background-color: #CED9DB;
         height: 100vh;
     }
 
+    #selectLanguage {
+        width: 133px;
+        height: 34px;
+        background: #0000EE;
+        border-radius: 15px;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 16px;
+        color: #FFFFFF;
+    }
+
+    .title-landing-page {
+        width: 425px;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 36px;
+        line-height: 54px;
+        color: #000000;
+        text-align: justify;
+    }
+
+    .subtitle-landing-page {
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 72px;
+        color: #000000;
+        display: flex;
+        margin-left: 10px;
+    }
+
+    button.continue {
+        background-color:  #05CDC1;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: bold;
+        line-height: 28px;
+        text-align: center;
+        color: #043213;
+        width: 289px;
+        height: 61px;
+        box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.25);
+        border-radius: 8px;
+        font-size: 17px;
+        margin-bottom: 80px;
+    }
+
+    button.continue:active {
+        top: 4px;
+        box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.25);
+    }
+
+    button.continue:focus {outline:0;}
+
+    .interactions-landing-page {
+        display: grid;
+    }
+
     /*for larger and medium devices (desktop)*/
-    @media screen and (min-width: 812px){
-        .columns{
-            margin: 75px 75px 75px 250px;
+    @media screen and (min-width: 812px) {
+        .landing-page {
+            display: flex;
+            margin-left: 5%;
+        }
+
+        #container-landing-page-text  {
+            margin: 100px auto 0 0;
         }
     }
 
     /*on small devices such as phone and tablet(smartphone)*/
     @media screen and (min-width: 320px)  and (max-width: 768px) {
-        #mainApp {
-            /*        to be done */
+        div#mainApp {
+            height: auto;
+        }
+        .landing-page {
+            margin-left: 0;
+        }
+
+        .title-landing-page {
+            width: auto;
+            height: auto;
+            line-height: 39px;
+            margin-left: 20px;
+            font-size: 24px;
+            margin-right: 20px;
+        }
+
+        .subtitle-landing-page {
+            margin-left: 5%;
+        }
+
+        .interactions-landing-page {
+            margin-left: 5%;
+        }
+
+        #selectLanguage {
+        }
+
+        button#continue {
+            margin-bottom: 36px;
         }
     }
 
+</style>
+
+<style>
+    /*html {*/
+    /*    background-color: #CED9DB !important;*/
+    /*}*/
 </style>
