@@ -1,8 +1,8 @@
 <template>
     <div id="mainApp">
-        <div class="landing-page" >
-            <div v-html="require(`../assets/images/Illustration.svg`)"></div>
-            <div style="margin: 100px auto 0 0;">
+        <div class="landing-page">
+            <div ref="landingImage" v-html="require(`../assets/images/Illustration.svg`)"></div>
+            <div id="container-landing-page-text">
                 <div class="title-landing-page">{{this.labels.homeTitle}}</div>
                 <div class="subtitle-landing-page">{{this.labels.homeSubTitle}}</div>
                 <div class="interactions-landing-page" >
@@ -44,6 +44,15 @@
                 this.isLanguageChanged = !this.isLanguageChanged;
                 this.$forceUpdate();
             },
+            manageLandingPageImage() {
+                const characterImgSVG = this.$refs.landingImage.children[0];
+
+                if (window.innerWidth > 768) {
+                    characterImgSVG.style = "";
+                } else {
+                    characterImgSVG.style = "width: 300px;height: 300px;";
+                }
+            },
         },
         created() {
             this.labels = textsFr;
@@ -51,13 +60,15 @@
         mounted() {
             let html = document.querySelector("html");
             html.style = "background-color: #CED9DB !important;";
-            console.log(html);
+            window.addEventListener('resize', this.manageLandingPageImage);
+            this.manageLandingPageImage();
         }
     }
 
 </script>
 
 <style scoped>
+
 
     div#mainApp {
         background-color: #CED9DB;
@@ -127,24 +138,33 @@
     }
 
     /*for larger and medium devices (desktop)*/
-    @media screen and (min-width: 812px){
+    @media screen and (min-width: 812px) {
         .landing-page {
             display: flex;
             margin-left: 5%;
+        }
+
+        #container-landing-page-text  {
+            margin: 100px auto 0 0;
         }
     }
 
     /*on small devices such as phone and tablet(smartphone)*/
     @media screen and (min-width: 320px)  and (max-width: 768px) {
-        #mainApp {
-            /*        to be done */
+        div#mainApp {
+            height: auto;
         }
         .landing-page {
             margin-left: 0;
         }
 
         .title-landing-page {
-            margin-left: 5%;
+            width: auto;
+            height: auto;
+            line-height: 39px;
+            margin-left: 20px;
+            font-size: 24px;
+            margin-right: 20px;
         }
 
         .subtitle-landing-page {
@@ -156,11 +176,10 @@
         }
 
         #selectLanguage {
-            margin-bottom: 40px;
         }
 
         button#continue {
-
+            margin-bottom: 36px;
         }
     }
 
