@@ -242,6 +242,25 @@
                 }
             },
 
+
+            saveCharacterAfterReplace(character, colors, type, id){
+                this.totalCreated++;
+                this.manageCharacterCount();
+                this.$refs.listToFill.replaceCharacterInGroup(character,
+                    colors, type, id);
+                if (this.$refs.listToFill.getCharacterListSize() === this.maxCharactersInGroup) {
+                    this.isGroupComplete = true;
+                }
+                window.scrollTo(0, document.body.scrollHeight);
+                if (this.totalCreated < this.maxCharactersInGroup && window.innerWidth < 420) {
+                    setTimeout(() => {
+                            window.scrollTo({top: 0, behavior: 'smooth', x: 0})
+                        },
+                        parseInt(charactersJson.scrollingTimeControl));
+                }
+            },
+
+
             /**
              * ---> Edit groupList character
              * @param {Object} character

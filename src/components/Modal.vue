@@ -139,6 +139,7 @@
 <script>
     import Character from "../components/Character.vue"
     import { Compact }  from "vue-color";
+    import charactersJson from "../assets/json/characters";
 
     export default {
         name: "Modal",
@@ -160,6 +161,7 @@
                 currentShirt: "",
                 currentCharacterObject: "",
                 currentAccessories: "",
+                currentCharacterObjectToRemove:"",
 
                 hasHair: false,
                 hasFacialHair: false,
@@ -173,6 +175,12 @@
 
                 changeAvatarState : true,
                 disableGroupCharacter : true,
+                replaceCharacterMode: false,
+                test : 0,
+                CharacterIndex: 0,
+                CharacterIndexSave: 0,
+                characterId :"",
+                characterType: "",
 
                 isActive: false,
                 isDropdownActive: false,
@@ -210,14 +218,26 @@
         methods: {
 
             /**
-             * ---> -------------- will be completed soon -----------------
+             * ---> --------------  -----------------
              * @param none
              * @return none
              */
-            changeAvatar(){
+            changeAvatar() {
+                this.replaceCharacterMode = true;
+                this.CharacterIndexSave = this.CharacterIndex;
+                this.characterId = this.currentCharacterObject.id;
+                this.characterType = this.getCurrentCharacterType(this.CharacterIndexSave);
                 this.closeModal();
-                //this.disableGroupCharacter = false;
-                //console.log(document.getElementsByClassName("grid-list-character"));
+            },
+
+            getCurrentCharacterType(position) {
+                if (position < charactersJson.nbAvatar) {
+                    return "avatar";
+                } else if (position < charactersJson.nbAvatar + charactersJson.nbVulnerable) {
+                    return "vulnerable"
+                } else if (position < charactersJson.nbAvatar + charactersJson.nbVulnerable + charactersJson.nbCommunity) {
+                    return "comm";
+                }
             },
 
 
@@ -306,9 +326,10 @@
                 this.modalTitle = this.getModalTitle(index, label, nbrVulnerable);
                 this.currentCharacter = require(`../assets/characters/${character.file}`);
                 this.currentCharacterObject = character;
-
                 this.isActive = true;
                 this.isEdit = isEdit;
+                console.log("type", character);
+
                 // this.isEdit ? this.currentCharacterNumber = index : this.currentCharacterNumber = totalCreated;
                 this.currentCharacterNumber = totalCreated;
                 this.avatarNbr = nbrAvatar;
@@ -316,6 +337,9 @@
                 this.isCharacterVulnerable = this.checkCharacterVulnerable(this.currentCharacterNumber);
                 this.resetVulnerableOption();
                 this.setCharacterColors(isEdit, character, totalCreated < nbrAvatar, index);
+
+                this.CharacterIndex = index;
+
 
                 // Display the skin tab content when opening modal window
                 this.openTab("skinColorTab", "skinColorSelect");
@@ -411,7 +435,19 @@
                 // }
                 this.endCharacterTime = Date.now();
                 this.calculateTimeCharacter();
-                this.$parent.saveCharacter(this.currentCharacterObject, this.$refs.character.getSvgColor());
+
+                if (this.replaceCharacterMode) {
+                    this.$parent.saveCharacterAfterReplace(this.currentCharacterObject, this.$refs.character.getSvgColor(), this.characterType, this.characterId);
+                    this.replaceCharacterMode = false;
+                } else {
+                    this.$parent.saveCharacter(this.currentCharacterObject, this.$refs.character.getSvgColor());
+                }
+
+                //this.$parent.saveCharacter(this.currentCharacterObject, this.$refs.character.getSvgColor());
+                if(this.test === 0){
+                    this.currentCharacterObjectToRemove = this.currentCharacterObject;
+                }
+                this.test ++;
                 this.closeModal();
             },
 
