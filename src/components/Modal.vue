@@ -214,7 +214,10 @@
             skinColors: Array,
             hairColors: Array,
             defaultCharacterColors: Object,
-            maxColorTile: Number
+            maxColorTile: Number,
+            totalCreated: Number,
+            maxCharactersInGroup : Number,
+            isGroupComplete: Boolean
 
         },
         methods: {
@@ -230,7 +233,8 @@
                 this.characterId = this.currentCharacterObject.id;
                 this.characterType = this.getCurrentCharacterType(this.CharacterIndexSave);
                 this.$parent.editCharacter(this.currentCharacterObject, this.$refs.character.getSvgColorForChangeAvatar());
-                //this.$parent.saveCharacter(this.currentCharacterObject, this.$refs.character.getSvgColorForChangeAvatar());
+                if(this.totalCreated === this.maxCharactersInGroup)
+                    console.log(" disabled button ");
                 this.closeModal();
             },
 

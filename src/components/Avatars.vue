@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <!-- MODAL WINDOW -->
-        <Modal ref="modal"  :defaultCharacterColors="defaultCharacterColors" :skin-colors="skinColors" :hair-colors="hairColors" :total-characters-count="maxCharactersInGroup"  :facial-hair-list-json="facialHairList" :max-color-tile="maxColorTile" :labels="labels"/>
+        <Modal ref="modal"  :total-created="totalCreated" :is-group-complete="isGroupComplete" :max-characters-in-group="maxCharactersInGroup" :defaultCharacterColors="defaultCharacterColors" :skin-colors="skinColors" :hair-colors="hairColors" :total-characters-count="maxCharactersInGroup"  :facial-hair-list-json="facialHairList" :max-color-tile="maxColorTile" :labels="labels"/>
         <!-- INTERFACE TUTORIAL -->
         <!-- <Carousel id="Carousel" class="Carousel" ref="Carousel" :labels="labels" :change-language-button-index="changeLanguageButtonIndex"
                   :nbr-avatar="nbAvatar" :nbr-vulnerable="nbrVulnerable"  :nbr-community="nbrCommunity"></Carousel> -->
@@ -10,10 +10,10 @@
             <div class="instructions-block">
                 <h1 class="page-instruction">{{this.labels.stepsMakingAvatar[step].title}}</h1>
                 <p v-if="!isGroupComplete" id="contextualInfo">{{ this.labels.stepsMakingAvatar[step].description }}</p>
-                <button id="continue" class="continue" v-if="isGroupComplete" v-on:click="loadAnimationView()">
+                <v-btn color="#05CDC1" id="continue" class="continue" v-if="isGroupComplete" v-on:click="loadAnimationView()">
                         <span>{{this.labels.continueBtn.toUpperCase()}}</span>
                         <font-awesome-icon style="margin-left: 10px;" icon="play" size="lg"/>
-                </button>
+                </v-btn>
             </div>
             <button id="selectLanguage" :style="{'z-index': languageButtonIndex}" style="z-index: 20" class="button" v-on:click="this.changeLanguage">{{this.labels.language}}</button>
             <!-- <p id="generalInfo">{{this.labels.generalInfo}}</p> -->
@@ -540,7 +540,6 @@
     }
 
     button#continue {
-        background-color:  #05CDC1;
         font-family: Roboto;
         font-style: normal;
         font-weight: bold;
