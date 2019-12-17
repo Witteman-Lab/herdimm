@@ -243,14 +243,10 @@
             },
 
 
-            saveCharacterAfterReplace(character, colors, type, id){
-                this.totalCreated++;
+            saveCharacterAfterReplace(character, colors, type, id) {
                 this.manageCharacterCount();
                 this.$refs.listToFill.replaceCharacterInGroup(character,
                     colors, type, id);
-                if (this.$refs.listToFill.getCharacterListSize() === this.maxCharactersInGroup) {
-                    this.isGroupComplete = true;
-                }
                 window.scrollTo(0, document.body.scrollHeight);
                 if (this.totalCreated < this.maxCharactersInGroup && window.innerWidth < 420) {
                     setTimeout(() => {

@@ -328,7 +328,6 @@
                 this.currentCharacterObject = character;
                 this.isActive = true;
                 this.isEdit = isEdit;
-                console.log("type", character);
 
                 // this.isEdit ? this.currentCharacterNumber = index : this.currentCharacterNumber = totalCreated;
                 this.currentCharacterNumber = totalCreated;
@@ -464,6 +463,7 @@
                 let spendTime = Math.round((this.endCharacterTime - startCharacterTime));
                 this.$refs.character.setCharacterTimeEdition(spendTime);
                 this.$parent.editCharacter(this.currentCharacterObject, this.$refs.character.getSvgColor());
+                console.log("le caracter current est", this.currentCharacterObject);
                 this.closeModal();
             },
 

@@ -54,24 +54,22 @@
              * @return none
              */
             addCharacterToGroup(character, characterColors, type) {
-                console.log("pass here");
                 this.setCharacterCategory(type);
                 this.characterList.push({id: character.id + this.characterList.length + "_customised",
                     file: character.file, colors: characterColors, characterType: type});
-                console.log("la liste 1 :", this.characterList);
             },
 
 
             replaceCharacterInGroup(character, characterColors, type, id) {
-                // this.setCharacterCategory(type);
-                console.log(type);
                 this.characterList.map((obj, index) => {
                     if (id === obj.id) {
-                        this.characterList.splice(index, 1, {id: character.id,
+                        this.setCharacterCategory(type);
+                        this.characterList.splice(index, 1, {id: character.id + this.characterList.length + "_customised",
                             file: character.file, colors: characterColors, characterType: type});
                         this.$refs.character[index].editCharacterColors(characterColors);
                     }
                 });
+                this.$forceUpdate();
             },
 
 
@@ -88,7 +86,6 @@
                         this.characterList.splice(index, 1, {id: character.id,
                             file: character.file, colors: characterColors, characterType: type});
                         this.$refs.character[index].editCharacterColors(characterColors);
-                        console.log("characterColors", characterColors);
                     }
                 });
             },
