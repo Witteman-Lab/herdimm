@@ -54,7 +54,8 @@
             isName: Boolean,
             changeAvatarState: Boolean,
             isModal: Boolean,
-            setAccessories: Function
+            setAccessories: Function,
+            defaultColorForAllAvatarElements : String
         },
         methods: {
             setCharacterTimeEdition(timeTotalEdition) {
@@ -200,9 +201,31 @@
              * @param {} none
              * @return svgColor
              */
-            getSvgColor() {
-                return this.svgColor
+            getSvgColorForChangeAvatar() {
+                this.svgColor.shirt = this.defaultColorForAllAvatarElements;
+                this.svgColor.shirtShadow = this.defaultColorForAllAvatarElements;
+                this.svgColor.face = this.defaultColorForAllAvatarElements;
+                this.svgColor.faceShadow = this.defaultColorForAllAvatarElements;
+                this.svgColor.hairFront = this.defaultColorForAllAvatarElements;
+                this.svgColor.hairBack = this.defaultColorForAllAvatarElements;
+                this.svgColor.accessoriesColor = this.defaultColorForAllAvatarElements;
+                this.svgColor.shirt = this.defaultColorForAllAvatarElements;
+                this.svgColor.beards = this.defaultColorForAllAvatarElements;
+                return this.svgColor;
             },
+
+
+            /**
+             * ---> Getter for all character properties ( used to access character properties from another component )
+             * @param {} none
+             * @return svgColor
+             */
+            getSvgColor() {
+                return this.svgColor;
+            },
+
+
+
 
 
             /**
@@ -260,7 +283,6 @@
                 }
                 // if(this.edit && this.changeAvatarState){
                 //     this.$parent.launchModal(this.id);
-                //     console.log("deuxieme");
                 // }
             },
 

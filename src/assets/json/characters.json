@@ -3,6 +3,7 @@
     "nbVulnerable" : 2,
     "nbCommunity" : 6,
     "maxColorTile" : 12,
+    "defaultColorForAllAvatarElements" : "#BDBDBD",
     "defaultColors" : {
         "HairColor": "#91553D",
         "SkinColor": "#E7B38D",

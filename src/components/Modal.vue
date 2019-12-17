@@ -18,6 +18,7 @@
                                        glasses: this.currentGlasses, shirt: this.currentShirt, name: this.characterName, options: this.options,
                                        characterTimeEdition: this.characterTimeEdition, numberOfEdition: this.numberOfEdition,
                                        characterTimeCreation: this.characterTimeCreation, accessoriesColor: this.currentAccessories}"
+                                        :default-color-for-all-avatar-elements="defaultColorForAllAvatarElements"
                                        :is-name="true" :is-modal="true" :setAccessories="setAccessories"/>
 
                             <v-btn v-if="isEdit" color="#212121" style="color:white" v-on:click="this.changeAvatar">{{this.labels.changeAvatar}}</v-btn>
@@ -162,6 +163,7 @@
                 currentCharacterObject: "",
                 currentAccessories: "",
                 currentCharacterObjectToRemove:"",
+                defaultColorForAllAvatarElements:"",
 
                 hasHair: false,
                 hasFacialHair: false,
@@ -227,6 +229,8 @@
                 this.CharacterIndexSave = this.CharacterIndex;
                 this.characterId = this.currentCharacterObject.id;
                 this.characterType = this.getCurrentCharacterType(this.CharacterIndexSave);
+                this.$parent.editCharacter(this.currentCharacterObject, this.$refs.character.getSvgColorForChangeAvatar());
+                //this.$parent.saveCharacter(this.currentCharacterObject, this.$refs.character.getSvgColorForChangeAvatar());
                 this.closeModal();
             },
 
@@ -463,7 +467,6 @@
                 let spendTime = Math.round((this.endCharacterTime - startCharacterTime));
                 this.$refs.character.setCharacterTimeEdition(spendTime);
                 this.$parent.editCharacter(this.currentCharacterObject, this.$refs.character.getSvgColor());
-                console.log("le caracter current est", this.currentCharacterObject);
                 this.closeModal();
             },
 
@@ -642,6 +645,7 @@
                 }
             });
             // this.calculateTimeForACharacter();
+            this.defaultColorForAllAvatarElements = charactersJson.defaultColorForAllAvatarElements;
         }
     }
 </script>
