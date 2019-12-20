@@ -193,18 +193,20 @@
              * @param {Array} props
              * @return none
              */
-            selectScenarioFile(){
-                if (localStorage.getItem("currentLanguage") === "en" && localStorage.getItem("gender") === "female")
+            selectScenarioFile() {
+                const language = localStorage.getItem("language");
+                const voice = localStorage.getItem("voice");
+                if (language === "en" && voice === "female")
                     this.scenario.push(require("../assets/json/scenario_female_en.json"));
-                else if (localStorage.getItem("currentLanguage") === "fr" && localStorage.getItem("gender") === "female")
+                else if (language === "fr" && voice === "female")
                     this.scenario.push(require("../assets/json/scenario_female_fr.json"));
-                else if (localStorage.getItem("currentLanguage") === "en" && localStorage.getItem("gender") === "male")
+                else if (language === "en" && voice === "male")
                     this.scenario.push(require("../assets/json/scenario_male_en.json"));
-                else if (localStorage.getItem("currentLanguage") === "fr" && localStorage.getItem("gender") === "male")
+                else if (language === "fr" && voice === "male")
                     this.scenario.push(require("../assets/json/scenario_male_fr.json"));
-                else{
+                else {
                     this.scenario.push(require("../assets/json/scenario_female_en.json"));
-                    }
+                }
             }
 
         },

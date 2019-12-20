@@ -56,7 +56,7 @@
 
 
 
-<script >
+<script>
 
     import CharacterList from "./CharacterList";
     import GroupCharacter from "./GroupCharacter";
@@ -91,8 +91,6 @@
                 skinColors: [],
                 hairColors: [],
                 defaultCharacterColors: {},
-                diseaseHome: "",
-                gender: "",
                 languageButtonIndex: 20,
                 nbAvatar: 0,
                 nbrVulnerable: 0,
@@ -101,9 +99,6 @@
                 debugMode: false,
                 totalTime: 0,
                 startTime: Date.now(),
-                returnUrl: "",
-                uid: 0,
-                maxUid : 999999,
                 step: 0
             };
         },
@@ -283,66 +278,6 @@
                 }
             },
 
-            /**
-             * ---> Check if Uid exist. If not, randomly create a value between 0 and 999999
-             * @param none
-             * @return none
-             */
-            setUid() {
-                if (this.$route.query.uid) {
-                    this.uid = this.$route.query.uid;
-                } else {
-                    this.uid = Math.floor((Math.random() * (this.maxUid + 1))).toString();
-                }
-            },
-
-
-            /**
-             * ---> Check if a return url is in query
-             * @param none
-             * @return none
-             */
-            setReturnUrl() {
-                if (this.$route.query.returnURL) {
-                    this.returnUrl = this.$route.query.returnURL;
-                }
-            },
-
-            /**
-             * ---> Check if the language in query is en and change the language to english it's that the case
-             * @return none
-             */
-            setLanguage() {
-                if (this.$route.query.lang === "en") {
-                    this.changeLanguage()
-                }
-            },
-
-            /**
-             * --->
-             * @param none
-             * @return none
-             */
-            setDiseaseToAnimate() {
-                if (this.$route.query.d === "flu" || this.$route.query.d === "measles" || this.$route.query.d === "pertussis")
-                    this.diseaseHome = this.$route.query.d;
-            },
-
-            /**
-             * --->
-             * @param none
-             * @return none
-             */
-            setVoiceToPlay() {
-                if (this.$route.query.v === "male" || this.$route.query.v === "female")
-                    this.gender = this.$route.query.v;
-                else if (this.$route.query.v === null)
-                    this.gender = "male";
-                else {
-                    let voiceType = ["male", "female"];
-                    this.gender = voiceType[this.getRandomInt(voiceType.length)];
-                }
-            },
 
             /**
              * ---> Go to the animation Page. Send the current language and the character groupList
@@ -351,23 +286,15 @@
              */
             loadAnimationView() {
                 let groupCharacter = this.$refs.listToFill.getCharacterList();
-                //console.log("la valeur est ", groupCharacter);
                 this.calculateTotalTime();
-                // this.calculateTimeCharacter();
                 this.$router.push({
                     name: 'Animation',
                     params: {
                         group: groupCharacter,
-                        labelSelected: this.labels.currentLanguage,
-                        diseaseToPlay: this.diseaseHome,
-                        voiceToPlay: this.gender,
                         totalTime: [this.totalTime],
-                        returnUrl: this.returnUrl,
-                        uid : this.uid
                     }
                 });
-                localStorage.setItem("currentLanguage", this.labels.currentLanguage);
-                localStorage.setItem("gender", this.gender);
+                localStorage.setItem("language", this.labels.currentLanguage);
             },
 
             /**
@@ -388,14 +315,7 @@
                     // this.contextualInfo = "";
                 }
             },
-            /**
-             * ---> This function randomly returns between [0-2]
-             *  @param {number} value
-             *  @return {number}
-             */
-            getRandomInt(value) {
-                return Math.floor(Math.random() * Math.floor(value));
-            },
+
 
             /**
              * ---> Change the language of the Application
@@ -420,7 +340,17 @@
                 if (this.$route.query.debug === "true") {
                     this.debugMode = true;
                 }
-            }
+            },
+
+            /**
+             * ---> Check if the language in query is en and change the language to english it's that the case
+             * @return none
+             */
+            setLanguage() {
+                if (localStorage.getItem("language") === "en") {
+                    this.changeLanguage()
+                }
+            },
 
         },
 
@@ -448,12 +378,8 @@
             mounted() {
                 let html = document.querySelector("html");
                 html.style = "background-color: #FFFFFF !important";
-                this.setDiseaseToAnimate();
-                this.setVoiceToPlay();
-                this.setLanguage();
                 this.setDebugMode();
-                this.setReturnUrl();
-                this.setUid();
+                this.setLanguage()
             }
         }
 </script>

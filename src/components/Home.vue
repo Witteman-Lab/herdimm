@@ -26,14 +26,21 @@
         name: "Home",
         data() {
             return {
-                myStyle:{
-                    backgroundColor: "#16a085",
-                },
-                isLanguageChanged: true
+                isLanguageChanged: true,
+                returnUrl: "",
+                uid: 0,
+                maxUid : 999999,
+                diseaseHome: "",
+                gender: ""
             }
         },
         methods: {
-            loadHome(){
+            loadHome() {
+                localStorage.setItem("disease", this.diseaseHome);
+                localStorage.setItem("voice", this.gender);
+                localStorage.setItem("returnUrl", this.returnUrl);
+                localStorage.setItem("uid", this.uid);
+                localStorage.setItem("language", this.labels.currentLanguage);
                 this.$router.push({name: 'Avatars'});
             },
             changeLanguage() {
@@ -44,6 +51,7 @@
                 this.isLanguageChanged = !this.isLanguageChanged;
                 this.$forceUpdate();
             },
+
             manageLandingPageImage() {
                 const characterImgSVG = this.$refs.landingImage.children[0];
 
@@ -51,6 +59,74 @@
                     characterImgSVG.style = "";
                 } else {
                     characterImgSVG.style = "width: 300px;height: 300px;";
+                }
+            },
+            /**
+             * ---> This function randomly returns between [0-2]
+             *  @param {number} value
+             *  @return {number}
+             */
+            getRandomInt(value) {
+                return Math.floor(Math.random() * Math.floor(value));
+            },
+            /**
+             * ---> Check if Uid exist. If not, randomly create a value between 0 and 999999
+             * @param none
+             * @return none
+             */
+            setUid() {
+                if (this.$route.query.uid) {
+                    this.uid = this.$route.query.uid;
+                } else {
+                    this.uid = Math.floor((Math.random() * (this.maxUid + 1))).toString();
+                }
+            },
+
+
+            /**
+             * ---> Check if a return url is in query
+             * @param none
+             * @return none
+             */
+            setReturnUrl() {
+                if (this.$route.query.returnURL) {
+                    this.returnUrl = this.$route.query.returnURL;
+                }
+            },
+
+            /**
+             * ---> Check if the language in query is en and change the language to english it's that the case
+             * @return none
+             */
+            setLanguage() {
+                if (this.$route.query.lang === "en") {
+                    this.changeLanguage()
+                }
+            },
+
+            /**
+             * --->
+             * @param none
+             * @return none
+             */
+            setDiseaseToAnimate() {
+                if (this.$route.query.d === "flu" || this.$route.query.d === "measles" || this.$route.query.d === "pertussis")
+                    this.diseaseHome = this.$route.query.d;
+            },
+
+            /**
+             * --->
+             * @param none
+             * @return none
+             */
+            setVoiceToPlay() {
+                if (this.$route.query.v === "male" || this.$route.query.v === "female")
+                    this.gender = this.$route.query.v;
+                else if (this.$route.query.v === null)
+                    this.gender = "male";
+                else {
+                    let voiceType = ["male", "female"];
+                    this.gender = voiceType[this.getRandomInt(voiceType.length)];
                 }
             },
         },
@@ -61,6 +137,11 @@
             let html = document.querySelector("html");
             html.style = "background-color: #CED9DB !important;";
             window.addEventListener('resize', this.manageLandingPageImage);
+            this.setDiseaseToAnimate();
+            this.setVoiceToPlay();
+            this.setLanguage();
+            this.setReturnUrl();
+            this.setUid();
             this.manageLandingPageImage();
         }
     }

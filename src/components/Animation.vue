@@ -82,20 +82,20 @@
                 checkboxState: false,
                 voiceToPlayAtAnimation : '',
                 counter: 0,
-                state: ""
+                state: "",
 
+                diseaseToPlay: String,
+                voiceToPlay: String,
+                returnUrl: String,
+                uid: String,
+                labelSelected: String
             }
         },
         props: {
             group: {
                 type: Array
             },
-            labelSelected: String,
-            diseaseToPlay : String,
-            voiceToPlay: String,
             totalTime: Array,
-            returnUrl: String,
-            uid : String
         },
         methods: {
             /**
@@ -946,8 +946,7 @@
              */
             initialiseAnimation() {
                 let styles = require('../scss/animation.scss');
-
-                this.$refs.audioPlayer.loadAudioFiles(this.currentLanguage, localStorage.getItem("voice"));
+                this.$refs.audioPlayer.loadAudioFiles(this.currentLanguage, this.voiceToPlay);
                 this.voiceToPlayAtAnimation = localStorage.getItem("voice");
                 this.textButtonAnimation = this.labels.startAnimation;
 
@@ -993,22 +992,22 @@
             let initAnimation = false;
 
             // Fetch the group member if it exists
+            this.diseaseToPlay = localStorage.getItem("disease");
+            this.voiceToPlay = localStorage.getItem("voice");
+            this.returnUrl = localStorage.getItem("returnUrl");
+            this.uid = localStorage.getItem("uid");
+            this.labelSelected = localStorage.getItem("language");
+            this.selectCurrentLanguage(this.labelSelected);
+
             if (this.group) {
                 localStorage.setItem("group", JSON.stringify(this.group));
                 localStorage.setItem("totalTime", JSON.stringify(this.totalTime));
-                localStorage.setItem("language", this.labelSelected);
-                localStorage.setItem("disease", this.diseaseToPlay);
-                localStorage.setItem("voice", this.voiceToPlay);
-                localStorage.setItem("uid", this.uid);
 
                 this.characterList = this.group;
-                this.selectCurrentLanguage(this.labelSelected);
                 initAnimation = true;
             } else {
                 if (localStorage.getItem("group")) {
                     this.characterList = JSON.parse(localStorage.getItem("group")); // <====== A demander à @Martin
-                    this.selectCurrentLanguage(localStorage.getItem("language"));
-                    this.uid = localStorage.getItem("uid");
                     initAnimation = true;
                 } else {
                     this.$router.push({name: 'Home'});
