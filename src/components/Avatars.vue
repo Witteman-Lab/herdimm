@@ -99,7 +99,7 @@
                 debugMode: false,
                 totalTime: 0,
                 startTime: Date.now(),
-                step: 0
+                step: 0,
             };
         },
         props: {
@@ -350,6 +350,14 @@
                 if (localStorage.getItem("language") === "en") {
                     this.changeLanguage()
                 }
+            },
+
+            /**
+             * ---> Check if the language in query is en and change the language to english it's that the case
+             * @return none
+             */
+            setReplaceCharacterMode(mode) {
+                this.$refs.listToFill.changeCharacterReplaceMode(mode);
             },
 
         },

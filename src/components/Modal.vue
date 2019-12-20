@@ -218,7 +218,6 @@
             totalCreated: Number,
             maxCharactersInGroup : Number,
             isGroupComplete: Boolean
-
         },
         methods: {
 
@@ -232,6 +231,7 @@
                 this.CharacterIndexSave = this.CharacterIndex;
                 this.characterId = this.currentCharacterObject.id;
                 this.characterType = this.getCurrentCharacterType(this.CharacterIndexSave);
+                this.$parent.setReplaceCharacterMode(false);
                 this.$parent.editCharacter(this.currentCharacterObject, this.$refs.character.getSvgColorForChangeAvatar());
                 if(this.totalCreated === this.maxCharactersInGroup)
                     console.log(" disabled button ");
@@ -446,6 +446,7 @@
                 if (this.replaceCharacterMode) {
                     this.$parent.saveCharacterAfterReplace(this.currentCharacterObject, this.$refs.character.getSvgColor(), this.characterType, this.characterId);
                     this.replaceCharacterMode = false;
+                    this.$parent.setReplaceCharacterMode(true);
                 } else {
                     this.$parent.saveCharacter(this.currentCharacterObject, this.$refs.character.getSvgColor());
                 }

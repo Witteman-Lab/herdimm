@@ -5,7 +5,7 @@
                 <div :key="character.id" v-for="(character) in characterList" >
                     <div class="grid-list-character" v-if="character.characterType === isCharacterType[index]">
                         <Character :disabled="false" ref="character"  :is-name="true" :size="{width: '74px', height: '80px'}"
-                                   :edit="true" :customised="true" :colors="character.colors" :id="character.id"
+                                   :edit="characterMode" :customised="true" :colors="character.colors" :id="character.id"
                                    :svgFile="require(`../assets/characters/${character.file}`)" />
                     </div>
                 </div>
@@ -31,6 +31,7 @@
                     height: "95px",
                     border: "5px"
                 },
+                characterMode: true
             }
         },
         components: {
@@ -101,6 +102,11 @@
                         this.$parent.launchEditModal(obj, index);
                     }
                 });
+            },
+
+            changeCharacterReplaceMode(mode) {
+                console.log(mode);
+                this.characterMode = mode;
             },
 
             /**
