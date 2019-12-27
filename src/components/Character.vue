@@ -199,19 +199,21 @@
             /**
              * ---> Getter for all character properties (used to access character properties from another component)
              * @param {} none
-             * @return svgColor
+             * @return {shirtShadow: (*|StringConstructor|String), hairBack: (*|StringConstructor|String), glasses: (*|StringConstructor|String), accessoriesColor: (*|StringConstructor|String), face: (*|StringConstructor|String), hairFront: (*|StringConstructor|String), shirt: (*|StringConstructor|String), idCharacter: StringConstructor, faceShadow: (*|StringConstructor|String), beards: (*|StringConstructor|String)}
              */
             getSvgColorForChangeAvatar() {
-                this.svgColor.shirt = this.defaultColorForAllAvatarElements;
-                this.svgColor.shirtShadow = this.defaultColorForAllAvatarElements;
-                this.svgColor.face = this.defaultColorForAllAvatarElements;
-                this.svgColor.faceShadow = this.defaultColorForAllAvatarElements;
-                this.svgColor.hairFront = this.defaultColorForAllAvatarElements;
-                this.svgColor.hairBack = this.defaultColorForAllAvatarElements;
-                this.svgColor.accessoriesColor = this.defaultColorForAllAvatarElements;
-                this.svgColor.shirt = this.defaultColorForAllAvatarElements;
-                this.svgColor.beards = this.defaultColorForAllAvatarElements;
-                return this.svgColor;
+                return {
+                    shirt: this.defaultColorForAllAvatarElements,
+                    shirtShadow: this.defaultColorForAllAvatarElements,
+                    face: this.defaultColorForAllAvatarElements,
+                    faceShadow: this.defaultColorForAllAvatarElements,
+                    hairFront: this.defaultColorForAllAvatarElements,
+                    hairBack: this.defaultColorForAllAvatarElements,
+                    idCharacter: String,
+                    glasses: this.defaultColorForAllAvatarElements,
+                    beards: this.defaultColorForAllAvatarElements,
+                    accessoriesColor: this.defaultColorForAllAvatarElements
+                };
             },
 
 

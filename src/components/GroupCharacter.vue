@@ -70,7 +70,6 @@
                         this.$refs.character[index].editCharacterColors(characterColors);
                     }
                 });
-                this.$forceUpdate();
             },
 
 

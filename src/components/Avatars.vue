@@ -10,7 +10,7 @@
             <div class="instructions-block">
                 <h1 class="page-instruction">{{this.labels.stepsMakingAvatar[step].title}}</h1>
                 <p v-if="!isGroupComplete" id="contextualInfo">{{ this.labels.stepsMakingAvatar[step].description }}</p>
-                <v-btn color="#05CDC1" id="continue" class="continue" v-if="isGroupComplete" v-on:click="loadAnimationView()">
+                <v-btn :disabled="replaceCharacterMode" color="#05CDC1" id="continue" class="continue" v-if="isGroupComplete" v-on:click="loadAnimationView()">
                         <span>{{this.labels.continueBtn.toUpperCase()}}</span>
                         <font-awesome-icon style="margin-left: 10px;" icon="play" size="lg"/>
                 </v-btn>
@@ -100,6 +100,7 @@
                 totalTime: 0,
                 startTime: Date.now(),
                 step: 0,
+                replaceCharacterMode: false
             };
         },
         props: {
@@ -194,7 +195,7 @@
              * @return none
              */
             launch(character) {
-                if (this.$refs.listToFill.getCharacterListSize() < this.maxCharactersInGroup) {
+                if (this.$refs.listToFill.getCharacterListSize() < this.maxCharactersInGroup || this.replaceCharacterMode) {
                     this.$refs.modal.openModal(this.totalCreated, character, this.totalCreated,
                         charactersJson.nbVulnerable, charactersJson.nbAvatar, false, this.labels.createAvatar);
                 }
@@ -357,6 +358,7 @@
              * @return none
              */
             setReplaceCharacterMode(mode) {
+                this.replaceCharacterMode = !mode;
                 this.$refs.listToFill.changeCharacterReplaceMode(mode);
             },
 

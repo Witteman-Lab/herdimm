@@ -178,7 +178,6 @@
                 changeAvatarState : true,
                 disableGroupCharacter : true,
                 replaceCharacterMode: false,
-                test : 0,
                 CharacterIndex: 0,
                 CharacterIndexSave: 0,
                 characterId :"",
@@ -233,8 +232,6 @@
                 this.characterType = this.getCurrentCharacterType(this.CharacterIndexSave);
                 this.$parent.setReplaceCharacterMode(false);
                 this.$parent.editCharacter(this.currentCharacterObject, this.$refs.character.getSvgColorForChangeAvatar());
-                if(this.totalCreated === this.maxCharactersInGroup)
-                    console.log(" disabled button ");
                 this.closeModal();
             },
 
@@ -452,10 +449,7 @@
                 }
 
                 //this.$parent.saveCharacter(this.currentCharacterObject, this.$refs.character.getSvgColor());
-                if(this.test === 0){
-                    this.currentCharacterObjectToRemove = this.currentCharacterObject;
-                }
-                this.test ++;
+
                 this.closeModal();
             },
 
