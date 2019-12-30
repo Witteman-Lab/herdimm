@@ -1,17 +1,21 @@
 <template>
-    <div class="grid-category">
-        <div v-bind:key="index" v-for="(category, index) in this.labels.categories" class="fit-content">
-            <div style="display: flex; justify-content: center;">
-                <div :key="character.id" v-for="(character) in characterList" >
-                    <div class="grid-list-character" v-if="character.characterType === isCharacterType[index]">
-                        <Character :disabled="false" ref="character"  :is-name="true" :size="{width: '74px', height: '80px'}"
-                                   :edit="characterMode" :customised="true" :colors="character.colors" :id="character.id"
-                                   :svgFile="require(`../assets/characters/${character.file}`)" />
+    <div class="groups-banner">
+        <div class="grid-category">
+            <div v-bind:key="index" v-for="(category, index) in this.labels.categories" class="fit-content">
+                <div style="display: flex; justify-content: center;">
+                    <div :key="character.id" v-for="(character) in characterList">
+                        <div class="grid-list-character" v-if="character.characterType === isCharacterType[index]">
+                            <div  v-if="character.file === ''" style="width: 64px; height: 50px;"></div>
+                            <Character style="margin: 10px 5px;" :disabled="false" ref="character"  :is-name="true" :size="{width: '64px', height: '70px'}"
+                                       :edit="characterMode" :customised="true" :colors="character.colors" :id="character.id"
+                                       :group="true"
+                                       :svgFile="character.file ? require(`../assets/characters/${character.file}`) : ''" />
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div v-if="isCharacterType[index]" class="line">
-                <div class="position-text-category">{{category}}</div>
+<!--                <div v-if="isCharacterType[index]" class="line">-->
+<!--                    <div class="position-text-category">{{category}}</div>-->
+<!--                </div>-->
             </div>
         </div>
     </div>
@@ -24,6 +28,7 @@
         name: "GroupCharacter",
         data() {
             return {
+                position: 0,
                 characterList: [],
                 isCharacterType: [],
                 characterSize: {
@@ -39,7 +44,10 @@
         },
         props: {
             labels: Object,
-            disableGroupCharacter : Boolean
+            disableGroupCharacter : Boolean,
+            nbAvatar: Number,
+            nbVulnerable: Number,
+            nbCommnunity: Number
         },
         methods: {
             setCharacterCategory(type) {
@@ -56,14 +64,16 @@
              */
             addCharacterToGroup(character, characterColors, type) {
                 this.setCharacterCategory(type);
-                this.characterList.push({id: character.id + this.characterList.length + "_customised",
+                this.characterList.splice(this.position, 1, {id: character.id + this.characterList.length + "_customised",
                     file: character.file, colors: characterColors, characterType: type});
+                this.position++;
             },
 
 
             replaceCharacterInGroup(character, characterColors, type, id) {
                 this.characterList.map((obj, index) => {
                     if (id === obj.id) {
+                        console.log(id);
                         this.setCharacterCategory(type);
                         this.characterList.splice(index, 1, {id: character.id + this.characterList.length + "_customised",
                             file: character.file, colors: characterColors, characterType: type});
@@ -83,6 +93,7 @@
             editCharacter(character, characterColors, type) {
                 this.characterList.map((obj, index) => {
                     if (obj.id === character.id) {
+                        console.log(character.id);
                         this.characterList.splice(index, 1, {id: character.id,
                             file: character.file, colors: characterColors, characterType: type});
                         this.$refs.character[index].editCharacterColors(characterColors);
@@ -104,7 +115,6 @@
             },
 
             changeCharacterReplaceMode(mode) {
-                console.log(mode);
                 this.characterMode = mode;
             },
 
@@ -123,7 +133,7 @@
              * @return {Number} characters number
              */
             getCharacterListSize() {
-                return this.characterList.length;
+                return this.position;
             },
 
             /**
@@ -135,6 +145,21 @@
                 return this.characterList;
             }
         },
+        mounted() {
+            const maxCharacters = this.nbAvatar + this.nbVulnerable + this.nbCommnunity;
+            for (let i = 0; i < maxCharacters; i++) {
+                let type = "";
+                if (i < this.nbAvatar) {
+                    type = "avatar";
+                } else if (i < this.nbAvatar + this.nbVulnerable) {
+                    type = "vulnerable"
+                } else if (i < this.nbAvatar + this.nbVulnerable + this.nbCommnunity) {
+                    type = "comm";
+                }
+                this.setCharacterCategory(type);
+                this.characterList.push({characterType: type, file: "", colors: {}, id: type + i})
+            }
+        }
     }
 </script>
 
@@ -144,13 +169,12 @@
         height:fit-content;
     }
     .position-text-category {
-        margin-top: 1vh;
+        margin-bottom: 5px;
         font-size: 15px;
         color: #848484;
     }
     .grid-list-character {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(55px, 1fr) );
         grid-gap: 20px;
     }
     .grid-category {
@@ -159,10 +183,18 @@
         grid-template-columns: auto auto auto;
         grid-gap: 30px;
     }
-    .line {
-        justify-self: center;
-        border-top: 0.10rem solid #848484;
-        margin-bottom: 30px;
+
+
+    .groups-banner {
+        padding-left: 16px;
+        padding-right: 16px;
+        margin: 30px;
+        display: flex;
+        justify-content: center;
+        background: #E4EDEE;
+        border: 2px dashed #888888;
+        box-sizing: border-box;
+        border-radius: 10px;
     }
     @media only screen and (max-width: 500px) {
         .fit-content {

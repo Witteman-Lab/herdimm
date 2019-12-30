@@ -40,9 +40,9 @@
 
             <!-- List of the group member -->
             <div class="tool">
-                <div style="width: 100%; margin: 12px; display: flex; justify-content: center;">
-                    <GroupCharacter :labels='labels' id="groupCharacter" ref="listToFill"></GroupCharacter>
-                </div>
+                <GroupCharacter :nbAvatar="nbAvatar"
+                                :nbVulnerable="nbrVulnerable"
+                                :nbCommnunity="nbrCommunity" :labels='labels' id="groupCharacter" ref="listToFill"></GroupCharacter>
             </div>
         </div>
         <!-- Button to continue to the next section (e.g. the animation) -->
@@ -240,7 +240,6 @@
 
 
             saveCharacterAfterReplace(character, colors, type, id) {
-                this.manageCharacterCount();
                 this.$refs.listToFill.replaceCharacterInGroup(character,
                     colors, type, id);
                 window.scrollTo(0, document.body.scrollHeight);

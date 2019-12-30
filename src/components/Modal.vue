@@ -178,8 +178,8 @@
                 changeAvatarState : true,
                 disableGroupCharacter : true,
                 replaceCharacterMode: false,
-                CharacterIndex: 0,
-                CharacterIndexSave: 0,
+                characterIndex: 0,
+                characterIndexSave: 0,
                 characterId :"",
                 characterType: "",
 
@@ -227,11 +227,11 @@
              */
             changeAvatar() {
                 this.replaceCharacterMode = true;
-                this.CharacterIndexSave = this.CharacterIndex;
+                this.characterIndexSave = this.characterIndex;
                 this.characterId = this.currentCharacterObject.id;
-                this.characterType = this.getCurrentCharacterType(this.CharacterIndexSave);
+                this.characterType = this.getCurrentCharacterType(this.characterIndexSave);
                 this.$parent.setReplaceCharacterMode(false);
-                this.$parent.editCharacter(this.currentCharacterObject, this.$refs.character.getSvgColorForChangeAvatar());
+                this.$parent.editCharacter(this.currentCharacterObject, this.$refs.character.getSvgColorForChangeAvatar(), this.characterIndexSave);
                 this.closeModal();
             },
 
@@ -273,12 +273,11 @@
                     this.hairColors.push(this.currentColorHair);
                     this.ColorNumberCreateWithSpectrum++;
                 }
-                if(this.ColorNumberCreateWithSpectrum === this.maxColorTile){
-                    this.showMoreColor = true   ;
+                if (this.ColorNumberCreateWithSpectrum === this.maxColorTile) {
+                    this.showMoreColor = true;
                 }
                 this.$refs.character.changeHairColor(this.currentColorHair);
                 this.isVueColorActive = false;
-
             },
 
             /**
@@ -342,7 +341,7 @@
                 this.resetVulnerableOption();
                 this.setCharacterColors(isEdit, character, totalCreated < nbrAvatar, index);
 
-                this.CharacterIndex = index;
+                this.characterIndex = index;
 
 
                 // Display the skin tab content when opening modal window
@@ -444,6 +443,8 @@
                     this.$parent.saveCharacterAfterReplace(this.currentCharacterObject, this.$refs.character.getSvgColor(), this.characterType, this.characterId);
                     this.replaceCharacterMode = false;
                     this.$parent.setReplaceCharacterMode(true);
+                    this.characterId = "";
+                    this.characterIndexSave = "";
                 } else {
                     this.$parent.saveCharacter(this.currentCharacterObject, this.$refs.character.getSvgColor());
                 }
