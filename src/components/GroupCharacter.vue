@@ -1,6 +1,6 @@
 <template>
     <div class="groups-banner">
-        <div class="grid-category">
+        <div v-if="!isMobile" class="grid-category">
             <div v-bind:key="index" v-for="(category, index) in this.labels.categories" class="fit-content">
                 <div style="display: flex; justify-content: center;">
                     <div :key="character.id" v-for="(character) in characterList">
@@ -17,6 +17,22 @@
 <!--                    <div class="position-text-category">{{category}}</div>-->
 <!--                </div>-->
             </div>
+        </div>
+        <div v-if="isMobile" class="grid-category">
+            <div class="fit-content">
+                    <div :key="character.id" v-for="(character) in characterList">
+                        <div class="grid-list-character">
+                            <div v-if="character.file === ''" style="width: 64px; height: 50px;"></div>
+                            <Character style="margin: 10px 5px;" :disabled="false" :ref="character.id"  :is-name="true" :size="{width: '64px', height: '70px'}"
+                                       :edit="characterMode" :customised="true" :colors="character.colors" :id="character.id"
+                                       :group="true"
+                                       :svgFile="character.file ? require(`../assets/characters/${character.file}`) : ''" />
+                        </div>
+                    </div>
+                </div>
+                <!--                <div v-if="isCharacterType[index]" class="line">-->
+                <!--                    <div class="position-text-category">{{category}}</div>-->
+                <!--                </div>-->
         </div>
     </div>
 </template>
@@ -36,7 +52,8 @@
                     height: "95px",
                     border: "5px"
                 },
-                characterMode: true
+                characterMode: true,
+                isMobile: false
             }
         },
         components: {
@@ -66,6 +83,13 @@
                 this.characterList.splice(this.position, 1, {id: character.id + Date.now() + "_customised",
                     file: character.file, colors: characterColors, characterType: type});
                 this.position++;
+                if (this.position > this.characterList.length - 1) {
+                    const groupBanner = document.getElementById("groupCharacter");
+                    groupBanner.style = "border: 4px solid #05CDC1;";
+                } else {
+                    const groupBanner = document.getElementById("groupCharacter");
+                    groupBanner.style = "";
+                }
             },
 
 
@@ -135,6 +159,10 @@
              */
             getCharacterList() {
                 return this.characterList;
+            },
+
+            isScreenMobile() {
+                this.isMobile = window.innerWidth <= 768;
             }
         },
         mounted() {
@@ -151,6 +179,8 @@
                 this.setCharacterCategory(type);
                 this.characterList.push({characterType: type, file: "", colors: {}, id: type + i})
             }
+            this.isScreenMobile();
+            window.addEventListener('resize', this.isScreenMobile);
         }
     }
 </script>
@@ -175,8 +205,6 @@
         grid-template-columns: auto auto auto;
         grid-gap: 30px;
     }
-
-
     .groups-banner {
         padding-left: 16px;
         padding-right: 16px;
@@ -188,14 +216,19 @@
         box-sizing: border-box;
         border-radius: 10px;
     }
-    @media only screen and (max-width: 500px) {
+    @media only screen and (min-width: 320px) and (max-width: 768px) {
         .fit-content {
             width:fit-content;
             height:fit-content;
-            display: inline;
+            grid-template-columns: auto auto auto;
+            grid-column-gap: 7px;
+            display: grid;
         }
         .grid-category {
-            display: inline;;
+            display: inline;
+        }
+        .groups-banner {
+            padding-bottom: 16px;
         }
     }
 </style>

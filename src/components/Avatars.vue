@@ -454,7 +454,7 @@
     h1 {
         font-size: 2rem;
         font-weight: bold;
-        margin: 0 0 10px 0;
+        margin: 10px;
     }
     h2 {
         font-size: 1.3rem;
@@ -470,7 +470,7 @@
     }
 
     p#contextualInfo {
-        margin: 1rem 0;
+        margin: 1rem;
         font-size: 1.1rem;
     }
 

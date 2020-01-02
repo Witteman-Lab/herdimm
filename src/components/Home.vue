@@ -41,6 +41,8 @@
                 localStorage.setItem("returnUrl", this.returnUrl);
                 localStorage.setItem("uid", this.uid);
                 localStorage.setItem("language", this.labels.currentLanguage);
+                window.removeEventListener('resize', this.manageLandingPageImage, true);
+
                 this.$router.push({name: 'Avatars'});
             },
             changeLanguage() {
@@ -231,7 +233,7 @@
     }
 
     /*on small devices such as phone and tablet(smartphone)*/
-    @media screen and (min-width: 320px)  and (max-width: 768px) {
+    @media screen and (min-width: 320px)  {
         div#mainApp {
             height: auto;
         }
