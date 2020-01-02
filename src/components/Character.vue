@@ -67,7 +67,7 @@
               this.svgColor.numberOfEdition++;
             },
 
-            setCharacterTimeCreation(timeTotalCharacter){
+            setCharacterTimeCreation(timeTotalCharacter) {
                 this.svgColor.characterTimeCreation = timeTotalCharacter;
             },
 

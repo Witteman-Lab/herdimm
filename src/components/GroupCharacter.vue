@@ -5,8 +5,8 @@
                 <div style="display: flex; justify-content: center;">
                     <div :key="character.id" v-for="(character) in characterList">
                         <div class="grid-list-character" v-if="character.characterType === isCharacterType[index]">
-                            <div  v-if="character.file === ''" style="width: 64px; height: 50px;"></div>
-                            <Character style="margin: 10px 5px;" :disabled="false" ref="character"  :is-name="true" :size="{width: '64px', height: '70px'}"
+                            <div v-if="character.file === ''" style="width: 64px; height: 50px;"></div>
+                            <Character style="margin: 10px 5px;" :disabled="false" :ref="character.id"  :is-name="true" :size="{width: '64px', height: '70px'}"
                                        :edit="characterMode" :customised="true" :colors="character.colors" :id="character.id"
                                        :group="true"
                                        :svgFile="character.file ? require(`../assets/characters/${character.file}`) : ''" />
@@ -63,23 +63,18 @@
              * @return none
              */
             addCharacterToGroup(character, characterColors, type) {
-                this.setCharacterCategory(type);
-                this.characterList.splice(this.position, 1, {id: character.id + this.characterList.length + "_customised",
+                this.characterList.splice(this.position, 1, {id: character.id + Date.now() + "_customised",
                     file: character.file, colors: characterColors, characterType: type});
                 this.position++;
             },
 
 
             replaceCharacterInGroup(character, characterColors, type, id) {
-                this.characterList.map((obj, index) => {
-                    if (id === obj.id) {
-                        console.log(id);
-                        this.setCharacterCategory(type);
-                        this.characterList.splice(index, 1, {id: character.id + this.characterList.length + "_customised",
-                            file: character.file, colors: characterColors, characterType: type});
-                        this.$refs.character[index].editCharacterColors(characterColors);
-                    }
-                });
+                const index = this.characterList.findIndex((characterObj) => characterObj.id === id);
+                const newCharacterId = character.id + Date.now() + "_customised";
+                if (index !== -1) {
+                    this.characterList.splice(index, 1, {id: newCharacterId, file: character.file, colors: characterColors, characterType: type});
+                }
             },
 
 
@@ -91,14 +86,11 @@
              * @return none
              */
             editCharacter(character, characterColors, type) {
-                this.characterList.map((obj, index) => {
-                    if (obj.id === character.id) {
-                        console.log(character.id);
-                        this.characterList.splice(index, 1, {id: character.id,
-                            file: character.file, colors: characterColors, characterType: type});
-                        this.$refs.character[index].editCharacterColors(characterColors);
-                    }
-                });
+                const index = this.characterList.findIndex((characterObj) => characterObj.id === character.id);
+                if (index !== -1) {
+                    this.characterList.splice(index, 1, {id: character.id, file: character.file, colors: characterColors, characterType: type});
+                    this.$refs[character.id][0].editCharacterColors(characterColors);
+                }
             },
 
             /**

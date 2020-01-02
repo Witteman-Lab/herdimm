@@ -231,7 +231,7 @@
                 this.characterId = this.currentCharacterObject.id;
                 this.characterType = this.getCurrentCharacterType(this.characterIndexSave);
                 this.$parent.setReplaceCharacterMode(false);
-                this.$parent.editCharacter(this.currentCharacterObject, this.$refs.character.getSvgColorForChangeAvatar(), this.characterIndexSave);
+                this.$parent.editCharacter(this.currentCharacterObject, this.$refs.character.getSvgColorForChangeAvatar());
                 this.closeModal();
             },
 
