@@ -41,7 +41,7 @@
                 localStorage.setItem("returnUrl", this.returnUrl);
                 localStorage.setItem("uid", this.uid);
                 localStorage.setItem("language", this.labels.currentLanguage);
-                window.removeEventListener('resize', this.manageLandingPageImage, true);
+                window.removeEventListener('resize', this.manageLandingPageImage, false);
 
                 this.$router.push({name: 'Avatars'});
             },
@@ -190,7 +190,6 @@
         line-height: 72px;
         color: #000000;
         display: flex;
-        margin-left: 10px;
     }
 
     button.continue {
@@ -233,7 +232,7 @@
     }
 
     /*on small devices such as phone and tablet(smartphone)*/
-    @media screen and (min-width: 320px)  {
+    @media screen and (min-width: 320px) and (max-width: 811px) {
         div#mainApp {
             height: auto;
         }
@@ -251,11 +250,11 @@
         }
 
         .subtitle-landing-page {
-            margin-left: 5%;
+            margin-left: 20px;
         }
 
         .interactions-landing-page {
-            margin-left: 5%;
+            margin-left: 20px;
         }
 
         #selectLanguage {
