@@ -1,10 +1,11 @@
 <template>
     <div class="groups-banner">
         <div v-if="!isMobile" class="grid-category">
-            <div v-bind:key="index" v-for="(category, index) in this.labels.categories" class="fit-content">
+            <div v-bind:key="index" v-for="(category, index) in this.labels.categories" class="fit-content" :style="index === 1 ? 'margin-left: 35px;' : ''">
                 <div style="display: flex; justify-content: center;">
-                    <div :key="character.id" v-for="(character) in characterList">
+                    <div style="z-index: 2;" :key="character.id" v-for="(character) in characterList">
                         <div class="grid-list-character" v-if="character.characterType === isCharacterType[index]">
+                            <div class="cercle-avatar" v-if="character.characterType === 'avatar'" v-html="require(`../assets/images/cercle-avatar.svg`)"></div>
                             <div v-if="character.file === ''" style="width: 64px; height: 50px;"></div>
                             <Character style="margin: 10px 5px;" :disabled="false" :ref="character.id"  :is-name="true" :size="{width: '64px', height: '70px'}"
                                        :edit="characterMode" :customised="true" :colors="character.colors" :id="character.id"
@@ -20,10 +21,10 @@
         </div>
         <div v-if="isMobile" class="grid-category">
             <div class="fit-content">
-                    <div :key="character.id" v-for="(character) in characterList">
+                    <div style="z-index: 2;" :key="character.id" v-for="(character) in characterList">
                         <div class="grid-list-character">
-                            <div v-if="character.file === ''" style="width: 64px; height: 50px;"></div>
-                            <Character style="margin: 10px 5px;" :disabled="false" :ref="character.id"  :is-name="true" :size="{width: '64px', height: '70px'}"
+                            <div  v-if="character.file === ''" style="width: 64px; height: 50px;"></div>
+                            <Character  style="margin: 10px 5px;" :disabled="false" :ref="character.id"  :is-name="true" :size="{width: '64px', height: '70px'}"
                                        :edit="characterMode" :customised="true" :colors="character.colors" :id="character.id"
                                        :group="true"
                                        :svgFile="character.file ? require(`../assets/characters/${character.file}`) : ''" />
@@ -83,12 +84,17 @@
                 this.characterList.splice(this.position, 1, {id: character.id + Date.now() + "_customised",
                     file: character.file, colors: characterColors, characterType: type});
                 this.position++;
+                this.changeBannerColor();
+            },
+
+            changeBannerColor() {
                 if (this.position > this.characterList.length - 1) {
                     const groupBanner = document.getElementById("groupCharacter");
+                    const circleAvatar = document.getElementById("circle-avatar");
+                    circleAvatar.setAttribute("stroke", "#05CDC1");
+                    circleAvatar.setAttribute("stroke-width", 4);
                     groupBanner.style = "border: 4px solid #05CDC1;";
-                } else {
-                    const groupBanner = document.getElementById("groupCharacter");
-                    groupBanner.style = "";
+                    console.log(circleAvatar);
                 }
             },
 
@@ -99,6 +105,7 @@
                 if (index !== -1) {
                     this.characterList.splice(index, 1, {id: newCharacterId, file: character.file, colors: characterColors, characterType: type});
                 }
+                this.changeBannerColor();
             },
 
 
@@ -190,6 +197,13 @@
         width:fit-content;
         height:fit-content;
     }
+
+    .cercle-avatar {
+        position: absolute;
+        z-index: -1;
+        top: -20px;
+        left: -39px;
+    }
     .position-text-category {
         margin-bottom: 5px;
         font-size: 15px;
@@ -197,6 +211,7 @@
     }
     .grid-list-character {
         display: grid;
+        position: relative;
         grid-gap: 20px;
     }
     .grid-category {
@@ -206,7 +221,7 @@
         grid-gap: 30px;
     }
     .groups-banner {
-        padding-left: 16px;
+        /*padding-left: 16px;*/
         padding-right: 16px;
         margin: 30px;
         display: flex;
@@ -221,7 +236,7 @@
             width:fit-content;
             height:fit-content;
             grid-template-columns: auto auto auto;
-            grid-column-gap: 7px;
+            grid-column-gap: 20px;
             display: grid;
         }
         .grid-category {
@@ -229,6 +244,12 @@
         }
         .groups-banner {
             padding-bottom: 16px;
+            padding-left: 16px;
+        }
+
+        .cercle-avatar {
+            top: -43px;
+            left: -60px;
         }
     }
 </style>
