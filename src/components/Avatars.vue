@@ -465,6 +465,7 @@
         margin: 10px 0;
     }
     .tool {
+        margin: 10px;
         display: flex;
         justify-content: center;
     }
