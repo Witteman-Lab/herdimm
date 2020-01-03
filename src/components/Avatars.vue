@@ -8,8 +8,9 @@
 
         <div class="is-centered is-half-desktop is-half-mobile">
             <div class="instructions-block">
-                <h1 class="page-instruction">{{this.labels.stepsMakingAvatar[step].title}}</h1>
-                <p v-if="!isGroupComplete" id="contextualInfo">{{ this.labels.stepsMakingAvatar[step].description }}</p>
+                <h1 v-if="!replaceCharacterMode" class="page-instruction">{{this.labels.stepsMakingAvatar[step].title}}</h1>
+                <h1 v-if="replaceCharacterMode" class="page-instruction">{{this.labels.changeAvatar}}</h1>
+                <p v-if="!isGroupComplete & !replaceCharacterMode" id="contextualInfo">{{ this.labels.stepsMakingAvatar[step].description }}</p>
                 <v-btn :disabled="replaceCharacterMode" color="#05CDC1" id="continue" class="continue" v-if="isGroupComplete" v-on:click="loadAnimationView()">
                         <span>{{this.labels.continueBtn.toUpperCase()}}</span>
                         <font-awesome-icon style="margin-left: 10px;" icon="play" size="lg"/>
