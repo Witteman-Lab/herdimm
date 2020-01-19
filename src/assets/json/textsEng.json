@@ -47,7 +47,11 @@
     "addColor" : "Add color",
     "cancelSpectrumColor" : "Cancel",
     "None": "None",
-    "changeAvatar" : "change avatar",
+    "changeAvatar" : "Change avatar",
+    "selectAvatar" : "Select a new avatar to replace the current one",
+    "replaceYourAvatar" : "Replace your avatar",
+    "replaceYourVulnerable" : "Replace your vulnerable person",
+    "replaceYourComm" : "Replace a person around you",
     "stepsMakingAvatar" : [
         {
             "title": "1. Build your avatar",

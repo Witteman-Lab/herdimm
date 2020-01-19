@@ -94,7 +94,6 @@
                     circleAvatar.setAttribute("stroke", "#05CDC1");
                     circleAvatar.setAttribute("stroke-width", 4);
                     groupBanner.style = "border: 4px solid #05CDC1;";
-                    console.log(circleAvatar);
                 }
             },
 

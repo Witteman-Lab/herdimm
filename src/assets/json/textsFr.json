@@ -48,6 +48,10 @@
     "cancelSpectrumColor": "Annuler",
     "None": "Aucune",
     "changeAvatar" : "changer d'avatar",
+    "selectAvatar" : "Sélectionnez le nouvel avatar à remplacer",
+    "replaceYourAvatar" : "Remplacer votre avatar",
+    "replaceYourVulnerable" : "Remplacer votre personne vulnérable",
+    "replaceYourComm" : "Remplacer votre personne autour de vous",
     "stepsMakingAvatar" : [
         {
             "title": "1. Créez votre avatar",

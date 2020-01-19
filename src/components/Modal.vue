@@ -28,7 +28,7 @@
                                     <!-- PUT HERE THE BUTTON FOR CHANGING AVATAR WHEN IN EDIT MODE -->
                                     <!-- <input v-on:input="setCharacterName(characterName)" class="input" v-model="characterName"  type="text" :placeholder="this.labels.nameInputPlaceHolder"> -->
                                 </div>
-                                <div style="overflow: visible;margin-top: 10px;" v-show="isCharacterVulnerable" class="control">
+                                <div style="overflow: visible;margin-top: 10px;" v-show="characterType === 'vulnerable'" class="control">
                                     <p id="vulnerableDescription">{{ this.labels.vulnerableDescription }}</p>
                                     <div v-for="(option, index) in this.labels.vulnerableOptions" :key="index">
                                         <label class="checkbox" >
@@ -190,14 +190,11 @@
                 isGlassesButtonEnable: false,
                 isHairColorButtonEnable: false,
                 isFaceColorButtonEnable: false,
-                isCharacterVulnerable: false,
 
                 glassesList: [],
                 beardsList: [],
                 characterName: "",
                 currentCharacterNumber: 0,
-                avatarNbr: 0,
-                vulnerableNbr: 0,
                 options: [],
                 endCharacterTime: 0,
                 characterTimeEdition: 0,
@@ -300,14 +297,7 @@
                 let  spendTime = Math.round((this.endCharacterTime - startCharacterTime));
                 this.$refs.character.setCharacterTimeCreation(spendTime);
             },
-            /***
-             *--> Check if the current character is vulnerable or not
-             * @return {Boolean} isCharacterVulnerable
-             **/
-            checkCharacterVulnerable(index) {
-                return index >= this.avatarNbr &&
-                    index < this.vulnerableNbr + this.avatarNbr;
-            },
+
             resetVulnerableOption() {
                 this.options = [];
                 this.labels.vulnerableOptions.forEach(() => {
@@ -319,30 +309,29 @@
              * @param {Number} index
              * @param {Object} character
              * @param {Number} totalCreated
-             * @param {Number} nbrVulnerable
-             * @param {Number} nbrAvatar
              * @param {Boolean} isEdit
              * @param {String} label
              * @return none
              */
-            openModal(index, character, totalCreated, nbrVulnerable, nbrAvatar, isEdit, label) {
+            openModal(index, character, totalCreated, isEdit, label) {
                 this.startCharacterTime = Date.now();
-                this.modalTitle = this.getModalTitle(index, label, nbrVulnerable);
+
+                if (!this.replaceCharacterMode)
+                    this.characterIndex = index;
+                else
+                    this.characterIndex = this.characterIndexSave;
+
+                this.characterType = this.getCurrentCharacterType(this.characterIndex);
+
+                this.modalTitle = this.getModalTitle(label);
                 this.currentCharacter = require(`../assets/characters/${character.file}`);
                 this.currentCharacterObject = character;
                 this.isActive = true;
                 this.isEdit = isEdit;
 
-                // this.isEdit ? this.currentCharacterNumber = index : this.currentCharacterNumber = totalCreated;
                 this.currentCharacterNumber = totalCreated;
-                this.avatarNbr = nbrAvatar;
-                this.vulnerableNbr = nbrVulnerable;
-                this.isCharacterVulnerable = this.checkCharacterVulnerable(this.currentCharacterNumber);
                 this.resetVulnerableOption();
-                this.setCharacterColors(isEdit, character, totalCreated < nbrAvatar, index);
-
-                this.characterIndex = index;
-
+                this.setCharacterColors(isEdit, character, this.characterType);
 
                 // Display the skin tab content when opening modal window
                 this.openTab("skinColorTab", "skinColorSelect");
@@ -352,13 +341,11 @@
              * ---> Apply character attributes when edit or default attributes when create
              * @param {Boolean} isEdit
              * @param {Object} character
-             * @param {Boolean} isAvatar
-             * @param {number} index
+             * @param {string} characterType
              * @return none
              */
-            setCharacterColors(isEdit, character, isAvatar, index) {
+            setCharacterColors(isEdit, character, characterType) {
                 if (isEdit) {
-                    this.isCharacterVulnerable = this.checkCharacterVulnerable(index);
                     this.currentColorFace = character.colors.face;
                     this.currentColorHair = character.colors.hairFront;
                     this.currentGlasses = character.colors.glasses;
@@ -371,7 +358,7 @@
                     this.setVulnerableOption(character.colors.options);
                 } else {
                     // Avatar gets a special shirt
-                    if (isAvatar) {
+                    if (characterType === "avatar") {
                         this.currentAccessories = this.defaultCharacterColors.ShirtColorAvatar;
                         this.currentShirt = this.defaultCharacterColors.ShirtColorAvatar;
                     } else {
@@ -396,7 +383,7 @@
 
             /***
              * --> Set character option
-             * @param {String} name
+             * @param {String} option
              * @param {Number} index
              * @return none
              */
@@ -428,7 +415,7 @@
              * @return none
              */
             saveCharacter() {
-                if (this.isCharacterVulnerable) {
+                if (this.characterType === "vulnerable") {
                     this.$refs.character.setCharacterOption(this.options);
                 }
                 // if (this.avatarNbr > this.currentCharacterNumber && !this.characterName) {
@@ -541,7 +528,7 @@
 
             /***
              * --> set checked button based on the option name
-             * @param {String} name
+             * @param {String} options
              * @return none
              **/
             setVulnerableOption(options) {
@@ -621,13 +608,28 @@
 
             /**
              * ---> Get modal title based on the position of the character to create/edit
-             * @param {Number} index
              * @param {String} verb
-             * @param {Number} nbVulnerable
              * @return {String} modal Title
              */
-            getModalTitle(index, verb, nbVulnerable) {
-                return (index === 0 ?  `${verb} ${this.labels.avatar}` : index <= nbVulnerable ? `${verb} ${this.labels.vulnerable}` : `${verb} ${this.labels.otherPeople}`);
+            getModalTitle(verb) {
+                if (!this.replaceCharacterMode) {
+                    if (this.characterType === "avatar") {
+                        return `${verb} ${this.labels.avatar}`
+                    } else if (this.characterType === "vulnerable") {
+                        return `${verb} ${this.labels.vulnerable}`
+                    } else {
+                        return `${verb} ${this.labels.otherPeople}`
+                    }
+                } else {
+                    if (this.characterType === "avatar") {
+                        return this.labels.replaceYourAvatar;
+                    } else if (this.characterType === "vulnerable") {
+                        return this.labels.replaceYourVulnerable;
+                    } else {
+                        return this.labels.replaceYourComm;
+                    }
+                }
+
             },
         },
         mounted() {

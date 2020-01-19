@@ -9,7 +9,7 @@
         <div class="is-centered is-half-desktop is-half-mobile">
             <div class="instructions-block">
                 <h1 v-if="!replaceCharacterMode" class="page-instruction">{{this.labels.stepsMakingAvatar[step].title}}</h1>
-                <h1 v-if="replaceCharacterMode" class="page-instruction">{{this.labels.changeAvatar}}</h1>
+                <h1 v-if="replaceCharacterMode" class="page-instruction">{{this.labels.selectAvatar}}</h1>
                 <p v-if="!isGroupComplete & !replaceCharacterMode" id="contextualInfo">{{ this.labels.stepsMakingAvatar[step].description }}</p>
                 <v-btn :disabled="replaceCharacterMode" color="#05CDC1" id="continue" class="continue" v-if="isGroupComplete" v-on:click="loadAnimationView()">
                         <span>{{this.labels.continueBtn.toUpperCase()}}</span>
@@ -197,8 +197,7 @@
              */
             launch(character) {
                 if (this.$refs.listToFill.getCharacterListSize() < this.maxCharactersInGroup || this.replaceCharacterMode) {
-                    this.$refs.modal.openModal(this.totalCreated, character, this.totalCreated,
-                        charactersJson.nbVulnerable, charactersJson.nbAvatar, false, this.labels.createAvatar);
+                    this.$refs.modal.openModal(this.totalCreated, character, this.totalCreated, false, this.labels.createAvatar);
                 }
             },
 
@@ -210,8 +209,7 @@
              * @return none
              */
             launchEditModal(character, index) {
-                this.$refs.modal.openModal(index, character, this.totalCreated,
-                    charactersJson.nbVulnerable, charactersJson.nbAvatar, true, this.labels.editAvatar);
+                this.$refs.modal.openModal(index, character, this.totalCreated, true, this.labels.editAvatar);
             },
             //add element to character
             /**
