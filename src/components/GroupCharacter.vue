@@ -89,11 +89,15 @@
 
             changeBannerColor() {
                 if (this.position > this.characterList.length - 1) {
-                    const groupBanner = document.getElementById("groupCharacter");
-                    const circleAvatar = document.getElementById("circle-avatar");
-                    circleAvatar.setAttribute("stroke", "#05CDC1");
-                    circleAvatar.setAttribute("stroke-width", 4);
-                    groupBanner.style = "border: 4px solid #05CDC1;";
+                    setTimeout(() => {
+                        const groupBanner = document.getElementById("groupCharacter");
+                        if (window.innerWidth > 768) {
+                            const circleAvatar = document.getElementById("circle-avatar");
+                            circleAvatar.setAttribute("stroke", "#05CDC1");
+                            circleAvatar.setAttribute("stroke-width", 4);
+                        }
+                        groupBanner.style = "border: 4px solid #05CDC1;";
+                    }, 50);
                 }
             },
 
@@ -169,6 +173,7 @@
 
             isScreenMobile() {
                 this.isMobile = window.innerWidth <= 768;
+                this.changeBannerColor();
             }
         },
         mounted() {
