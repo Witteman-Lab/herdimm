@@ -7,10 +7,10 @@
       "action": "zoom",
       "props": {
         "scale" : "4",
-        "duration" : "1000",
+        "duration" : "2000",
         "transformOrigin_X" : "52",
         "transformOrigin_Y": "43",
-        "startTime" : "500",
+        "startTime" : "1000",
         "timingFunction": "linear"
       }
     },
@@ -25,23 +25,8 @@
         "target" : ".avatar",
         "duration" : "1000",
         "class" : "contour",
-        "startTime" : "0",
+        "startTime" : "300",
         "add" : true
-      }
-    },
-
-    {
-      "--------------------------------------------------" : "--------------------------------------------------------"
-    },
-
-    {
-      "action": "makeContour",
-      "props": {
-        "target": ".avatar",
-        "duration": "1000",
-        "class": "contour",
-        "startTime" : "2000",
-        "add" : false
       }
     },
 
@@ -84,7 +69,9 @@
       "action": "parseSpreadInfection",
       "props": {
         "file": "spreadinfections1.json",
-        "startTime": "1000"
+        "startTime": "1000",
+        "durationLine": "1000",
+        "durationLineBouncingOff": "250"
       }
     },
 

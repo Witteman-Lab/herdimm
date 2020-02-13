@@ -35,6 +35,12 @@
             }
         },
         methods: {
+
+            /**
+             * ---> Load Home Page
+             * @param none
+             * @return none
+             */
             loadHome() {
                 localStorage.setItem("disease", this.diseaseHome);
                 localStorage.setItem("voice", this.gender);
@@ -45,6 +51,12 @@
 
                 this.$router.push({name: 'Avatars'});
             },
+
+            /**
+             * ---> Change Language
+             * @param none
+             * @return none
+             */
             changeLanguage() {
                 if (this.isLanguageChanged)
                     this.labels = textsEng;
@@ -54,6 +66,11 @@
                 this.$forceUpdate();
             },
 
+            /**
+             * ---> Load Home Page
+             * @param none
+             * @return none
+             */
             manageLandingPageImage() {
                 const characterImgSVG = this.$refs.landingImage.children[0];
 
@@ -64,7 +81,7 @@
                 }
             },
             /**
-             * ---> This function randomly returns between [0-2]
+             * ---> This function randomly returns a number between [0-2]
              *  @param {number} value
              *  @return {number}
              */
