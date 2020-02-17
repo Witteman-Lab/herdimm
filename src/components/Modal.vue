@@ -8,7 +8,7 @@
                         <br/>
                         <span style="font-size: medium">{{ this.labels.totalCharacterCount }} {{this.currentCharacterNumber}} / {{totalCharactersCount}}</span>
                     </p>
-                    <button class="delete" aria-label="close modal" v-on:click="this.closeModal"/>
+                    <button class="delete" aria-label="close modal" v-on:click="this.closeModal"></button>
                 </header>
                 <section class="modal-card-body">
                     <div class="columns">
@@ -24,10 +24,6 @@
                             <v-btn v-if="isEdit" color="#212121" style="color:white" v-on:click="this.changeAvatar">{{this.labels.changeAvatar}}</v-btn>
 
                             <div class="field is-one-fifth-mobile" style="margin-top: 5px">
-                                <div class="control">
-                                    <!-- PUT HERE THE BUTTON FOR CHANGING AVATAR WHEN IN EDIT MODE -->
-                                    <!-- <input v-on:input="setCharacterName(characterName)" class="input" v-model="characterName"  type="text" :placeholder="this.labels.nameInputPlaceHolder"> -->
-                                </div>
                                 <div style="overflow: visible;margin-top: 10px;" v-show="characterType === 'vulnerable'" class="control">
                                     <p id="vulnerableDescription">{{ this.labels.vulnerableDescription }}</p>
                                     <div v-for="(option, index) in this.labels.vulnerableOptions" :key="index">
@@ -42,24 +38,12 @@
                         <div class="column is-center">
                             <div class="tabs is-centered is-boxed is-three-quarters">
                                 <ul>
-                                    <!-- For testing, in case we want to group skin and hair colors in a single tab (saves space) -->
-                                    <!-- <li class="tab" v-on:click="openTab($event, 'colorsSelect')">
-                                        <a>Colors</a>
-                                    </li> -->
                                     <li class="tab" id="skinColorTab" v-on:click="openTab('skinColorTab', 'skinColorSelect')">
-                                        <!-- <li class="tab" id="skinColorTab" v-on:click="openTab($event, 'skinColorSelect')"> -->
                                         <a>{{this.labels.skinColorTab}}</a>
                                     </li>
                                     <li class="tab" id="hairColorTab" v-if="this.hasHair" v-on:click="openTab('hairColorTab', 'hairColorSelect')">
-                                        <!-- <li class="tab" id="hairColorTab" v-if="this.hasHair" v-on:click="openTab($event, 'hairColorSelect')"> -->
                                         <a>{{this.labels.hairColorTab}}</a>
                                     </li>
-
-                                    <!-- Maybe we could also group these 2 tabs in a single one called accessories -->
-                                    <!-- Would need to take consider the v-if conditions... -->
-                                    <!-- <li class="tab" v-if="(this.hasGlasses || this.hasFacialHair)" v-on:click="openTab($event, 'accessoriesSelect')">
-                                        <a>Accessories</a>
-                                    </li> -->
                                     <li class="tab" id="glassesTab" v-if="this.hasGlasses" v-on:click="openTab('glassesTab', 'glassesSelect')">
                                         <a>{{this.labels.glassesTab}}</a>
                                     </li>
@@ -129,7 +113,6 @@
                         <button class="button is-success" v-if="!this.isEdit" v-on:click="this.saveCharacter">{{this.labels.saveBtn}}</button>
                         <button class="button is-success" v-if="this.isEdit" v-on:click="this.saveEditCharacter">{{this.labels.saveEditBtn}}</button>
                         <button class="button" v-on:click="this.closeModal">{{this.labels.cancelBtn}}</button>
-                        <!-- <button class="button" v-on:click="this.resetDefault">{{this.labels.resetAllBtn}}</button> -->
                     </div>
                 </footer>
             </div>
@@ -372,15 +355,6 @@
                 }
             },
 
-            /**
-             * ---> Set user input (name) for the current character
-             * @param {String} name
-             * @return none
-             */
-            // setCharacterName(name) {
-            //     this.$refs.character.setCharacterName(name);
-            // },
-
             /***
              * --> Set character option
              * @param {String} option
@@ -418,11 +392,6 @@
                 if (this.characterType === "vulnerable") {
                     this.$refs.character.setCharacterOption(this.options);
                 }
-                // if (this.avatarNbr > this.currentCharacterNumber && !this.characterName) {
-                //     this.setCharacterName(this.labels.avatarName);
-                // } else if (!this.characterName) {
-                //     this.setCharacterName(this.labels.defaultCharacterName + " " + (this.currentCharacterNumber + 1));
-                // }
                 this.endCharacterTime = Date.now();
                 this.calculateTimeCharacter();
 
@@ -435,9 +404,6 @@
                 } else {
                     this.$parent.saveCharacter(this.currentCharacterObject, this.$refs.character.getSvgColor());
                 }
-
-                //this.$parent.saveCharacter(this.currentCharacterObject, this.$refs.character.getSvgColor());
-
                 this.closeModal();
             },
 
@@ -448,7 +414,6 @@
              */
             saveEditCharacter() {
                 //modification time for a character
-
                 this.endCharacterTime = Date.now();
                 let startCharacterTime = this.startCharacterTime;
                 let spendTime = Math.round((this.endCharacterTime - startCharacterTime));
@@ -473,24 +438,6 @@
             },
 
             /**
-             * ---> Set the glasses list show on the modal
-             * @param {Array} glasses
-             * @return none
-             */
-            setGlassesList(glasses) {
-                this.glassesList = glasses;
-            },
-
-            /**
-             * ---> Set the beards list show on the modal
-             * @param {Array} beards
-             * @return none
-             */
-            setBeardsList(beards) {
-                this.beardsList = beards;
-            },
-
-            /**
              * ---> Apply the glasses at the given position to the character
              * @param {Number} pos
              * @return none
@@ -508,22 +455,6 @@
             selectBeards(pos) {
                 this.$refs.character.changeBeard(pos);
                 this.isBeardsButtonEnable = false;
-            },
-
-            /**
-             * ---> Reset character attributes
-             * @param none
-             * @return none
-             */
-            resetDefault() {
-                this.currentColorFace = this.defaultCharacterColors.SkinColor;
-                this.currentColorHair = this.defaultCharacterColors.HairColor;
-                this.$refs.character.resetFaceColor();
-                this.$refs.character.changeFaceColor(this.currentColorFace);
-                this.$refs.character.changeHairColor(this.currentColorHair);
-                this.$refs.character.changeGlasses(-1);
-                this.$refs.character.changeBeard(-1);
-                this.resetVulnerableOption();
             },
 
             /***
@@ -646,7 +577,6 @@
                     this.saveEditCharacter();
                 }
             });
-            // this.calculateTimeForACharacter();
             this.defaultColorForAllAvatarElements = charactersJson.defaultColorForAllAvatarElements;
         }
     }
@@ -676,9 +606,6 @@
     .mobile-modal {
         margin-top: calc(20vh - 40px);
     }
-    span.facialHairList {
-        height: 60px;
-    }
 
     ul {
         display: flex;
@@ -691,9 +618,6 @@
     li.tab {
         display: inline-block;
         text-align: center;
-    }
-    .radio-list {
-        margin-top: 2vh;
     }
 
     @media only screen and (max-width: 768px) {

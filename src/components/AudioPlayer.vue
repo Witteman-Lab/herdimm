@@ -2,11 +2,6 @@
     <div id="audioPlayer">
         <audio controls :src="this.currentAudio"  ref="audio" @ended="nextAudio()" preload="auto"></audio>
         <track :src="this.caption" kind="captions" srclang="en" label="english_captions">
-<!-- test for audio not playing -->
-<!--        <audio controls="controls" ref="audio"  @ended="nextAudio()" preload="auto">-->
-<!--            <source :src="this.currentAudio"  type="audio/mpeg"/>-->
-<!--        </audio>-->
-<!--        <track :src="this.caption" kind="captions" srclang="en" label="english_captions">-->
     </div>
 </template>
 

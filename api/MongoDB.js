@@ -9,8 +9,6 @@ mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 
 // Replace that by getting the uid from Herdimm (either from URL or randomly generated)
-// Not anymore computed here
-// let userId = Math.floor(Math.random() * 1000000);
 
 var characterSchema = require("./models/characterSchema");
 var mygSchema = require("./models/MYGSchema");
@@ -116,6 +114,5 @@ const captionUsed = (checkedCaption, uid) => {
 };
 
 router.post('/herdimm', saveCharacters);
-// router.get('/herdimm', postCharacters);
 
 module.exports = router;

@@ -174,11 +174,8 @@
 </script>
 
 <style scoped>
-
-
     div#mainApp {
         background-color: #CED9DB;
-        height: 100vh;
     }
 
     #selectLanguage {
@@ -246,11 +243,17 @@
     @media screen and (min-width: 812px) {
         .landing-page {
             display: flex;
-            margin-left: 5%;
         }
 
         #container-landing-page-text  {
             margin: 100px auto 0 0;
+        }
+
+        div#mainApp {
+            position: fixed;
+            transform: translate(-50%, -50%);
+            top: 45%;
+            left: 45%;
         }
     }
 

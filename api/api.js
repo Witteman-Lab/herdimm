@@ -20,10 +20,9 @@ app.use(bodyParser.urlencoded({
 );
 
 app.get('/', (request, response) => {
-    response.json({ info: 'Node.js, Express, and Postgres API' })
+    response.json({ info: 'Herdimm API currently works' })
 });
 
-//app.use('/api/postgres', postgres);
 app.use('/api/mongodb', mongodb);
 
 

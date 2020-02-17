@@ -32,7 +32,6 @@
                     glasses: '',
                     beards: '',
                     accessoriesColor: '',
-                    // name: '',
                     options: [],
                     characterTimeCreation: 0,
                     characterTimeEdition: 0,
@@ -70,15 +69,6 @@
             setCharacterTimeCreation(timeTotalCharacter) {
                 this.svgColor.characterTimeCreation = timeTotalCharacter;
             },
-
-            /***
-             * ---> Change character name and save it in svgColor
-             * @param {String} name
-             * @return none
-             */
-            // setCharacterName(name) {
-            //     this.svgColor.name = name;
-            // },
 
             /***
              * ---> Change character options and save it in svgColor
@@ -230,10 +220,6 @@
                 return this.svgColor;
             },
 
-
-
-
-
             /**
              * ---> For getting a darker shade for the hair, skin, face and shirt
              * --->  To-do: That method could be optimized later
@@ -287,9 +273,6 @@
                 if (this.edit) {
                     this.$parent.launchModal(this.id);
                 }
-                // if(this.edit && this.changeAvatarState){
-                //     this.$parent.launchModal(this.id);
-                // }
             },
 
 
@@ -305,7 +288,6 @@
                 this.changeBeard(colors.beards);
                 this.changeShirtColor(colors.shirt, 0.8);
                 this.changeAccessoriesColor(colors.accessoriesColor, 0.8);
-                //this.setCharacterName(colors.name);
                 this.setCharacterOption(colors.options);
                 this.setCharacterTimeCreation(colors.characterTimeCreation);
                 this.svgColor.numberOfEdition = colors.numberOfEdition;

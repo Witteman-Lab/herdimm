@@ -54,7 +54,6 @@ export default {
 <style scoped>
 .grid-list-character {
     display: grid;
-    /*grid-template-columns: auto auto auto auto auto auto auto auto auto;*/
     grid-template-columns: repeat(auto-fit, minmax(55px, 1fr) );
     grid-gap: 20px;
 }

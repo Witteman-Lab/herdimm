@@ -2,9 +2,6 @@
     <div class="container">
         <!-- MODAL WINDOW -->
         <Modal ref="modal"  :total-created="totalCreated" :is-group-complete="isGroupComplete" :max-characters-in-group="maxCharactersInGroup" :defaultCharacterColors="defaultCharacterColors" :skin-colors="skinColors" :hair-colors="hairColors" :total-characters-count="maxCharactersInGroup"  :facial-hair-list-json="facialHairList" :max-color-tile="maxColorTile" :labels="labels"/>
-        <!-- INTERFACE TUTORIAL -->
-        <!-- <Carousel id="Carousel" class="Carousel" ref="Carousel" :labels="labels" :change-language-button-index="changeLanguageButtonIndex"
-                  :nbr-avatar="nbAvatar" :nbr-vulnerable="nbrVulnerable"  :nbr-community="nbrCommunity"></Carousel> -->
 
         <div class="is-centered is-half-desktop is-half-mobile">
             <div class="instructions-block">
@@ -17,23 +14,16 @@
                 </v-btn>
             </div>
             <button id="selectLanguage" :style="{'z-index': languageButtonIndex}" style="z-index: 20" class="button" v-on:click="this.changeLanguage">{{this.labels.language}}</button>
-            <!-- <p id="generalInfo">{{this.labels.generalInfo}}</p> -->
-            <!-- <br /> -->
-            <!-- <v-btn style="z-index: 1" class="button_tutorial" color="secondary" @click="showCarousel">{{this.labels.tutorial}}</v-btn> -->
 
-            <!-- <h2>{{ this.labels.totalCharacterCount }} {{this.totalCreated}} / {{maxCharactersInGroup}} </h2> -->
             <!-- List of all the characters -->
             <div class="tool">
                 <div style="width: 100%; margin: 12px;">
-                    <!-- Not sure if it should be displayed here or in the CharacterList.vue -->
-                    <!-- <progress v-if="!isCharactersListLoaded" class="progress is-large is-info" max="100"></progress> -->
                     <div style="width: 100%">
                         <CharacterList :defaultCharacterColors="defaultCharacterColors" ref="listAvailable" :characters="this.characterList"></CharacterList>
                     </div>
                 </div>
             </div>
 
-<!--            <h2 style="margin: 10px">{{this.labels.subtitle}} ({{ this.labels.totalCharacterCount }} {{this.totalCreated}} / {{maxCharactersInGroup}})</h2>-->
             <div v-if="debugMode">
                 <v-btn v-on:click="this.generateAllCharacters">{{this.labels.generateAllCharacters}}</v-btn>
                 <v-btn v-on:click="this.changeCharacterGeneration">{{characterTypeToGenerate ? this.labels.differentCharacters : this.labels.sameCharacters}}</v-btn>
@@ -46,12 +36,6 @@
                                 :nbCommnunity="nbrCommunity" :labels='labels' id="groupCharacter" ref="listToFill"></GroupCharacter>
             </div>
         </div>
-        <!-- Button to continue to the next section (e.g. the animation) -->
-<!--        <section>-->
-<!--            <div class="control has-text-centered">-->
-<!--                <p id="finalInfo" v-if="isGroupComplete">{{this.labels.finalInfo}}</p>-->
-<!--            </div>-->
-<!--        </section>-->
     </div>
 </template>
 
@@ -171,15 +155,6 @@
             },
 
             /**
-             * ---> ---------  completed soon -------
-             * @param none
-             * @return none
-             */
-            // showCarousel() {
-            //     this.$refs.Carousel.openOnBoarding()
-            // },
-
-            /**
              * ---> calculate total time spend for a user
              * @param  none
              * @return none
@@ -211,7 +186,6 @@
             launchEditModal(character, index) {
                 this.$refs.modal.openModal(index, character, this.totalCreated, true, this.labels.editAvatar);
             },
-            //add element to character
             /**
              * ---> Update Home information and add the character to the groupList
              * @param {Object} character
@@ -229,7 +203,7 @@
 
                 window.scrollTo(0, document.body.scrollHeight);
 
-                if (this.totalCreated < this.maxCharactersInGroup && window.innerWidth < 420) {
+                if (this.totalCreated <= this.maxCharactersInGroup && window.innerWidth < 420) {
                     setTimeout(() => {
                         window.scrollTo({top: 0, behavior: 'smooth', x: 0})
                     },
@@ -302,16 +276,10 @@
              * @return none
              */
             manageCharacterCount() {
-                if (this.totalCreated < charactersJson.nbAvatar) {
-                    // this.contextualInfo = this.labels.contextualInfoAvatar;
-                } else if (this.totalCreated < charactersJson.nbAvatar + charactersJson.nbVulnerable) {
+                if (this.totalCreated < charactersJson.nbAvatar + charactersJson.nbVulnerable) {
                     this.step++;
-                    // this.contextualInfo = this.labels.vulnerableDesc.replace("###", charactersJson.nbVulnerable);
                 } else if (this.totalCreated < charactersJson.nbAvatar + charactersJson.nbVulnerable + charactersJson.nbCommunity && this.step < this.labels.stepsMakingAvatar.length - 1) {
                     this.step++;
-                    // this.contextualInfo = this.labels.othersDesc.replace("###", charactersJson.nbCommunity);
-                } else {
-                    // this.contextualInfo = "";
                 }
             },
 
@@ -509,31 +477,4 @@
         height: 34px;
         border-radius: 15px;
     }
-
-    /* button#continue, p#contextualInfo, p#finalInfo {
-        animation: appearanceAnim;
-        -webkit-animation-name: appearanceAnim;
-        -webkit-animation-duration: 2s;
-        -webkit-animation-direction: alternate;
-        animation-name: appearanceAnim;
-        animation-duration: 2s;
-        animation-direction: alternate;
-    }
-    @keyframes appearanceAnim {
-        0% {
-            opacity: 1;
-        }
-        25% {
-            opacity: 0.25;
-        }
-        50% {
-            opacity: 1;
-        }
-        75% {
-            opacity: 0.25;
-        }
-        100% {
-            opacity: 1;
-        }
-    } */
 </style>

@@ -14,9 +14,6 @@
                         </div>
                     </div>
                 </div>
-<!--                <div v-if="isCharacterType[index]" class="line">-->
-<!--                    <div class="position-text-category">{{category}}</div>-->
-<!--                </div>-->
             </div>
         </div>
         <div v-if="isMobile" class="grid-category">
@@ -31,9 +28,6 @@
                         </div>
                     </div>
                 </div>
-                <!--                <div v-if="isCharacterType[index]" class="line">-->
-                <!--                    <div class="position-text-category">{{category}}</div>-->
-                <!--                </div>-->
         </div>
     </div>
 </template>
@@ -225,7 +219,6 @@
         grid-gap: 30px;
     }
     .groups-banner {
-        /*padding-left: 16px;*/
         padding-right: 16px;
         margin: 30px;
         display: flex;

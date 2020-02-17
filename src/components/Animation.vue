@@ -1,11 +1,11 @@
 <template>
     <div class="container" v-recognizer:pinch.cancel="">
-        <!-- <meta name="viewport" content="width=device-width, user-scalable=no"> -->
         <!-- Audio player for audio files -->
         <AudioPlayer :current-language="currentLanguage" :voice="voiceToPlayAtAnimation" :checkbox-state-audio-player="checkboxState" ref="audioPlayer"></AudioPlayer>
 
-        <div id="captions" class="captions" v-if="this.checkboxState">
+        <div id="captions" class="captions" v-if="this.checkboxState" style="display: flex;justify-content: space-between;">
             <p id="paragraph" class="paragraph"></p>
+            <button style="margin: auto 10px;" class="delete" aria-label="close modal" v-on:click="this.disableCaptions"></button>
         </div>
         <!-- Where to draw the lines for infection spreading  -->
         <div class="draw" id="draw">
@@ -28,24 +28,33 @@
         </div>
 
         <div id="startAnimationBox" v-if="!this.isAnimationStarted">
-            <button class="button is-primary is-success" style="justify-self: center;" v-on:click="startAnimation">{{textButtonAnimation}}</button>
-            <br />
-            <div  v-if="!this.reloadAnimationPage">
-                <input type="checkbox" id="showCaptions" name="showCaptions">
-                <label for="showCaptions">{{this.labels.displayCaptions}}</label>
+            <div v-if="!this.reloadAnimationPage">
+                <v-btn color="#05CDC1" style="height: 50px;" class="continue" v-on:click="startAnimation()">
+                    <span>{{textButtonAnimation.toUpperCase()}}</span>
+                    <font-awesome-icon style="margin-left: 10px;" icon="play" size="lg"/>
+                </v-btn>
+                <div style="display: flex">
+                    <input type="checkbox" id="showCaptions" name="showCaptions">
+                    <label class="choose-subtitles" for="showCaptions">{{this.labels.displayCaptions}}</label>
+                </div>
             </div>
-           <!-- <v-btn color="primary" v-on:click="sendCharactersToApi('mongodb')">Send characters with mongoDB</v-btn> -->
-           <!-- <v-btn color="primary" v-on:click="sendCharactersToApi('postgres')">Send characters with postgresSQL</v-btn> -->
-
+            <div v-if="this.reloadAnimationPage" style="display: grid">
+                <v-btn color="#05CDC1" style="height: 50px;" class="continue" v-on:click="reloadAnimationComp()">
+                    <span>{{this.labels.restartAnimation.toUpperCase()}}</span>
+                </v-btn>
+                <v-btn v-if="this.returnUrl !== '' && this.returnUrl !== undefined" color="#05CDC1" style="height: 50px;" class="continue" v-on:click="loadQualtrics()">
+                    <span>{{this.labels.redirectSurvey.toUpperCase()}}</span>
+                </v-btn>
+            </div>
         </div>
-        <div id="commandAnimationBox" style="display: none; justify-content: space-between" v-if="this.isAnimationStarted">
-            <a><font-awesome-icon style="margin: 10px;" icon="fast-backward" size="lg" v-on:click="manageAudioPlayer('begin')"/></a>
-            <a><font-awesome-icon style="margin: 10px;" icon="step-backward" size="lg" v-on:click="manageAudioPlayer('before')"/></a>
-            <a v-if="!isAudioPlaying"><font-awesome-icon style="margin: 10px;" icon="play" size="lg" v-on:click="manageAudioPlayer('restart')"/></a>
-            <a v-if="isAudioPlaying"><font-awesome-icon style="margin: 10px;" icon="pause" size="lg" v-on:click="manageAudioPlayer('pause')"/></a>
-            <a><font-awesome-icon style="margin: 10px;" icon="step-forward" size="lg" v-on:click="manageAudioPlayer('next')"/></a>
-            <a><font-awesome-icon style="margin: 10px;" icon="fast-forward" size="lg" v-on:click="manageAudioPlayer('end')"/></a>
-        </div>
+<!--        <div id="commandAnimationBox" style="display: none; justify-content: space-between" v-if="this.isAnimationStarted">-->
+<!--            <a><font-awesome-icon style="margin: 10px;" icon="fast-backward" size="lg" v-on:click="manageAudioPlayer('begin')"/></a>-->
+<!--            <a><font-awesome-icon style="margin: 10px;" icon="step-backward" size="lg" v-on:click="manageAudioPlayer('before')"/></a>-->
+<!--            <a v-if="!isAudioPlaying"><font-awesome-icon style="margin: 10px;" icon="play" size="lg" v-on:click="manageAudioPlayer('restart')"/></a>-->
+<!--            <a v-if="isAudioPlaying"><font-awesome-icon style="margin: 10px;" icon="pause" size="lg" v-on:click="manageAudioPlayer('pause')"/></a>-->
+<!--            <a><font-awesome-icon style="margin: 10px;" icon="step-forward" size="lg" v-on:click="manageAudioPlayer('next')"/></a>-->
+<!--            <a><font-awesome-icon style="margin: 10px;" icon="fast-forward" size="lg" v-on:click="manageAudioPlayer('end')"/></a>-->
+<!--        </div>-->
     </div>
 </template>
 
@@ -141,19 +150,25 @@
              */
             startAnimation() {
                 // might need to change this function name or the way it handles operation
-                if (this.reloadAnimationPage) {
-                    if (this.returnUrl !== "" && this.returnUrl !== undefined) {
-                        this.generateUrlQualtrics();
-                    } else {
-                        window.location.reload();
-                    }
-                } else {
+                // if (this.reloadAnimationPage) {
+                //     if (this.returnUrl !== "" && this.returnUrl !== undefined) {
+                //     } else {
+                //     }
+                // } else {
                     this.checkboxState = document.getElementById("showCaptions").checked;
                     this.isAnimationStarted = true;
                     this.$refs.audioPlayer.playAudio();
                     this.isAnimationPlaying();
                     this.sendCharactersToApi('mongodb');
-                }
+                // }
+            },
+
+            reloadAnimationComp() {
+                window.location.reload();
+            },
+
+            loadQualtrics() {
+                this.generateUrlQualtrics();
             },
 
             /**
@@ -175,6 +190,11 @@
                 else if (action === "restart")
                     this.$refs.audioPlayer.restartAudio();
                 this.isAnimationPlaying();
+            },
+
+
+            disableCaptions() {
+                this.checkboxState = false;
             },
 
             /**
@@ -1034,7 +1054,6 @@
             }
 
             // Stop the audio player from playing when going back to the make your gang tool
-            //AudioPlayer.stopAudio();
             this.$refs.audioPlayer.stopAudio();
         }
     }
@@ -1075,15 +1094,19 @@
 
     div#startAnimationBox {
         text-align: center;
-        position: fixed; /*absolute fixed*/
+        position: fixed;
         top: 50%;
         left: 50%;
         z-index: 999;
         background-color: #DDD;
         border: 1px solid #999;
-        padding: 10px;
-        transform: translate(-50%);
+        padding: 20px;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        border-radius: 10px;
     }
+
+
 
     div#commandAnimationBox {
         text-align: center;
@@ -1094,7 +1117,6 @@
         background-color: #DDD;
         border: 1px solid #999;
         padding: 5px;
-        /* transform: translate(-50%); */
     }
 
     .captions {
@@ -1124,6 +1146,50 @@
     .paragraph {
         color: white;
         margin: 10px;
+        width: 100%;
     }
 
+    .continue {
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: bold;
+        line-height: 28px;
+        text-align: center;
+        color: #043213;
+        width: 250px;
+        height: 50px;
+        box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.25);
+        border-radius: 8px;
+        font-size: 14px;
+        position: relative;
+        margin-bottom: 18px;
+    }
+
+    .continue:active {
+        top: 4px;
+        box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.25);
+    }
+
+    .continue:focus {outline:0;}
+
+    .choose-subtitles {
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 25px;
+
+        letter-spacing: 0.02em;
+        color: #000000;
+        margin-left: 15px;
+    }
+
+    #showCaptions {
+        width: 29px;
+        height: 29px;
+        background: #FFFFFF;
+        border: 1px solid #000000;
+        box-sizing: border-box;
+        margin: auto 0;
+    }
 </style>
