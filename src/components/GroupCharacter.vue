@@ -168,6 +168,7 @@
             isScreenMobile() {
                 this.isMobile = window.innerWidth <= 768;
                 this.changeBannerColor();
+                return this.isMobile;
             }
         },
         mounted() {

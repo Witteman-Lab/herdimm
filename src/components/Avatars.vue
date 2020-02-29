@@ -8,9 +8,9 @@
                 <h1 v-if="!replaceCharacterMode" class="page-instruction">{{this.labels.stepsMakingAvatar[step].title}}</h1>
                 <h1 v-if="replaceCharacterMode" class="page-instruction">{{this.labels.selectAvatar}}</h1>
                 <p v-if="!isGroupComplete & !replaceCharacterMode" id="contextualInfo">{{ this.labels.stepsMakingAvatar[step].description }}</p>
-                <v-btn :disabled="replaceCharacterMode" color="#05CDC1" id="continue" class="continue" v-if="isGroupComplete" v-on:click="loadAnimationView()">
+                <v-btn :disabled="replaceCharacterMode" color="#05CDC1" class="continue" v-if="isGroupComplete && !isMobile" v-on:click="loadAnimationView()">
                         <span>{{this.labels.continueBtn.toUpperCase()}}</span>
-                        <font-awesome-icon style="margin-left: 10px;" icon="play" size="lg"/>
+                    <font-awesome-icon style="margin-left: 10px;" icon="play" size="lg"/>
                 </v-btn>
             </div>
             <button id="selectLanguage" :style="{'z-index': languageButtonIndex}" style="z-index: 20" class="button" v-on:click="this.changeLanguage">{{this.labels.language}}</button>
@@ -35,6 +35,11 @@
                                 :nbVulnerable="nbrVulnerable"
                                 :nbCommnunity="nbrCommunity" :labels='labels' id="groupCharacter" ref="listToFill"></GroupCharacter>
             </div>
+
+            <v-btn :disabled="replaceCharacterMode" color="#05CDC1" class="continue" v-if="isGroupComplete && isMobile" v-on:click="loadAnimationView()">
+                <span>{{this.labels.continueBtn.toUpperCase()}}</span>
+                <font-awesome-icon style="margin-left: 10px;" icon="play" size="lg"/>
+            </v-btn>
         </div>
     </div>
 </template>
@@ -85,7 +90,8 @@
                 totalTime: 0,
                 startTime: Date.now(),
                 step: 0,
-                replaceCharacterMode: false
+                replaceCharacterMode: false,
+                isMobile: false
             };
         },
         props: {
@@ -197,17 +203,20 @@
                 this.manageCharacterCount();
                 this.$refs.listToFill.addCharacterToGroup(character,
                     colors, this.getCurrentCharacterType(this.totalCreated));
+                this.isMobile = this.$refs.listToFill.isScreenMobile();
                 if (this.$refs.listToFill.getCharacterListSize() === this.maxCharactersInGroup) {
                     this.isGroupComplete = true;
                 }
 
-                window.scrollTo(0, document.body.scrollHeight);
-
-                if (this.totalCreated <= this.maxCharactersInGroup && window.innerWidth < 420) {
+                if (this.totalCreated < this.maxCharactersInGroup && window.innerWidth < 420) {
+                    window.scrollTo(0, document.body.scrollHeight);
                     setTimeout(() => {
                         window.scrollTo({top: 0, behavior: 'smooth', x: 0})
-                    },
-                    parseInt(charactersJson.scrollingTimeControl));
+                    }, parseInt(charactersJson.scrollingTimeControl));
+                } else {
+                    setTimeout(() => {
+                        window.scrollTo(0, document.body.scrollHeight);
+                    }, 100);
                 }
             },
 
@@ -355,7 +364,7 @@
                 let html = document.querySelector("html");
                 html.style = "background-color: #FFFFFF !important";
                 this.setDebugMode();
-                this.setLanguage()
+                this.setLanguage();
             }
         }
 </script>
@@ -442,7 +451,7 @@
         font-size: 1.1rem;
     }
 
-    button#continue {
+    .continue {
         font-family: Roboto;
         font-style: normal;
         font-weight: bold;
@@ -450,7 +459,7 @@
         text-align: center;
         color: #043213;
         width: 289px;
-        height: 61px;
+        height: 61px !important;
         box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.25);
         border-radius: 8px;
         font-size: 17px;
@@ -458,12 +467,12 @@
         margin: 16px auto;
     }
 
-    button#continue:active {
+    .continue:active {
         top: 4px;
         box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.25);
     }
 
-    button#continue:focus {outline:0;}
+    .continue:focus {outline:0;}
 
 
     #selectLanguage {

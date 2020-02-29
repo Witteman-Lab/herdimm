@@ -41,9 +41,12 @@
             <div v-if="this.reloadAnimationPage" style="display: grid">
                 <v-btn color="#05CDC1" style="height: 50px;" class="continue" v-on:click="reloadAnimationComp()">
                     <span>{{this.labels.restartAnimation.toUpperCase()}}</span>
+                    <font-awesome-icon style="margin-left: 10px;" icon="redo" size="lg"/>
+
                 </v-btn>
                 <v-btn v-if="this.returnUrl !== '' && this.returnUrl !== undefined" color="#05CDC1" style="height: 50px;" class="continue" v-on:click="loadQualtrics()">
                     <span>{{this.labels.redirectSurvey.toUpperCase()}}</span>
+                    <font-awesome-icon style="margin-left: 10px;" icon="external-link-alt" size="lg"/>
                 </v-btn>
             </div>
         </div>
