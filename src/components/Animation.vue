@@ -27,29 +27,44 @@
             </div>
         </div>
 
-        <div id="startAnimationBox" v-if="!this.isAnimationStarted">
-            <div v-if="!this.reloadAnimationPage">
-                <v-btn color="#05CDC1" style="height: 50px;" class="continue" v-on:click="startAnimation()">
-                    <span>{{textButtonAnimation.toUpperCase()}}</span>
-                    <font-awesome-icon style="margin-left: 10px;" icon="play" size="lg"/>
-                </v-btn>
-                <div style="display: flex">
-                    <input type="checkbox" id="showCaptions" name="showCaptions">
-                    <label class="choose-subtitles" for="showCaptions">{{this.labels.displayCaptions}}</label>
-                </div>
-            </div>
-            <div v-if="this.reloadAnimationPage" style="display: grid">
-                <v-btn color="#05CDC1" style="height: 50px;" class="continue" v-on:click="reloadAnimationComp()">
-                    <span>{{this.labels.restartAnimation.toUpperCase()}}</span>
-                    <font-awesome-icon style="margin-left: 10px;" icon="redo" size="lg"/>
 
-                </v-btn>
-                <v-btn v-if="this.returnUrl !== '' && this.returnUrl !== undefined" color="#05CDC1" style="height: 50px;" class="continue" v-on:click="loadQualtrics()">
-                    <span>{{this.labels.redirectSurvey.toUpperCase()}}</span>
-                    <font-awesome-icon style="margin-left: 10px;" icon="external-link-alt" size="lg"/>
-                </v-btn>
-            </div>
-        </div>
+
+        <!---------------------------------------------------------------------------------------------->
+        <v-row justify="center">
+            <v-dialog
+                    v-model="dialogAnimation"
+                    max-width="290"
+                    persistent
+            >
+                <v-card>
+                    <div id="startAnimationBox" v-if="!this.isAnimationStarted">
+                        <div v-if="!this.reloadAnimationPage">
+                            <v-btn color="#05CDC1" style="height: 50px;" class="continue" v-on:click="startAnimation()">
+                                <span>{{textButtonAnimation.toUpperCase()}}</span>
+                                <font-awesome-icon style="margin-left: 10px;" icon="play" size="lg"/>
+                            </v-btn>
+                            <div style="display: flex">
+                                <input type="checkbox" id="showCaptions" name="showCaptions">
+                                <label class="choose-subtitles" for="showCaptions">{{this.labels.displayCaptions}}</label>
+                            </div>
+                        </div>
+                        <div v-if="this.reloadAnimationPage" style="display: grid">
+                            <v-btn color="#05CDC1" style="height: 50px;" class="continue" v-on:click="reloadAnimationComp()">
+                                <span>{{this.labels.restartAnimation.toUpperCase()}}</span>
+                                <font-awesome-icon style="margin-left: 10px;" icon="redo" size="lg"/>
+
+                            </v-btn>
+                            <v-btn v-if="this.returnUrl !== '' && this.returnUrl !== undefined" color="#05CDC1" style="height: 50px;" class="continue" v-on:click="loadQualtrics()">
+                                <span>{{this.labels.redirectSurvey.toUpperCase()}}</span>
+                                <font-awesome-icon style="margin-left: 10px;" icon="external-link-alt" size="lg"/>
+                            </v-btn>
+                        </div>
+                    </div>
+                </v-card>
+            </v-dialog>
+        </v-row>
+        <!---------------------------------------------------------------------------------------------->
+
 <!--        <div id="commandAnimationBox" style="display: none; justify-content: space-between" v-if="this.isAnimationStarted">-->
 <!--            <a><font-awesome-icon style="margin: 10px;" icon="fast-backward" size="lg" v-on:click="manageAudioPlayer('begin')"/></a>-->
 <!--            <a><font-awesome-icon style="margin: 10px;" icon="step-backward" size="lg" v-on:click="manageAudioPlayer('before')"/></a>-->
@@ -92,6 +107,7 @@
                 isAnimationStarted: false,
                 isAudioPlaying: false,
                 checkboxState: false,
+                dialogAnimation : true,
                 voiceToPlayAtAnimation : '',
                 counter: 0,
                 state: "",
@@ -163,11 +179,14 @@
                     this.$refs.audioPlayer.playAudio();
                     this.isAnimationPlaying();
                     this.sendCharactersToApi('mongodb');
+                    this.dialogAnimation = false;
+
                 // }
             },
 
             reloadAnimationComp() {
                 window.location.reload();
+                this.dialogAnimation = true;
             },
 
             loadQualtrics() {
