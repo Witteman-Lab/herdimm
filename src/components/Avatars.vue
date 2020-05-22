@@ -29,6 +29,11 @@
                 <v-btn v-on:click="this.changeCharacterGeneration">{{characterTypeToGenerate ? this.labels.differentCharacters : this.labels.sameCharacters}}</v-btn>
             </div>
 
+            <v-btn :disabled="replaceCharacterMode" color="#05CDC1" class="continue" v-if="isGroupComplete && isMobile" v-on:click="loadAnimationView()">
+                <span>{{this.labels.continueBtn.toUpperCase()}}</span>
+                <font-awesome-icon style="margin-left: 10px;" icon="play" size="lg"/>
+            </v-btn>
+
             <!-- List of the group member -->
             <div class="tool">
                 <GroupCharacter :nbAvatar="nbAvatar"
@@ -36,10 +41,7 @@
                                 :nbCommnunity="nbrCommunity" :labels='labels' id="groupCharacter" ref="listToFill"></GroupCharacter>
             </div>
 
-            <v-btn :disabled="replaceCharacterMode" color="#05CDC1" class="continue" v-if="isGroupComplete && isMobile" v-on:click="loadAnimationView()">
-                <span>{{this.labels.continueBtn.toUpperCase()}}</span>
-                <font-awesome-icon style="margin-left: 10px;" icon="play" size="lg"/>
-            </v-btn>
+
         </div>
     </div>
 </template>
