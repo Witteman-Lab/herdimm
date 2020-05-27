@@ -1,26 +1,29 @@
 <template>
+    <v-app style=" display: flex; flex-direction: column; justify-content: center; align-items: center">
+        <v-container  style="display: flex; flex-direction: column; justify-content: center; align-items: center; ">
 
-    <div id="mainApp" style="display: flex; flex-direction: column; justify-content: center; align-items: center">
-        <div style="display: flex; flex-direction: row; align-items: center; justify-content: flex-end; width: 100%">
-            <button id="selectLanguage" class="button"  v-on:click="this.changeLanguage">{{this.labels.language}}</button>
-        </div>
-
-        <div class="landing-page" >
-            <div ref="landingImage" v-html="require(`../assets/images/Illustration.svg`)"></div>
-            <div id="container-landing-page-text">
-                <div class="title-landing-page" style="text-align: left">{{this.labels.homeTitle}}</div>
-                <div class="subtitle-landing-page" >{{this.labels.homeSubTitle}}</div>
-
-                <div class="interactions-landing-page">
-                    <button id="continue" class="continue button is-primary is-medium has-text-centered" style="float: left;  color: black" v-on:click="loadHome()">
-                        <span style="margin-left: 30px">{{this.labels.homeBtnContinue.toUpperCase()}}</span>
-                        <a><font-awesome-icon style="margin-left: 10px; color: black" icon="play" /></a>
-                    </button>
+               <div style="display: flex; flex-direction: row; align-items: center; justify-content: flex-end; width: 100%">
+                   <button id="selectLanguage" class="button"  v-on:click="this.changeLanguage">{{this.labels.language}}</button>
                 </div>
-            </div>
-        </div>
-    </div>
 
+                <div class="landing-page" >
+                    <div ref="landingImage" v-html="require(`../assets/images/Illustration.svg`)"></div>
+                    <div id="container-landing-page-text">
+                        <div class="title-landing-page" style="text-align: left">{{this.labels.homeTitle}}</div>
+                        <div class="subtitle-landing-page" >{{this.labels.homeSubTitle}}</div>
+
+                        <div class="interactions-landing-page">
+                            <button id="continue" class="continue button is-primary is-medium has-text-centered" style="float: left;  color: black" v-on:click="loadHome()">
+                                <span style="margin-left: 30px">{{this.labels.homeBtnContinue.toUpperCase()}}</span>
+                                <a><font-awesome-icon style="margin-left: 10px; color: black" icon="play" /></a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+        </v-container>
+
+    </v-app>
 </template>
 
 <script>
