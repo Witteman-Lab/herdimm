@@ -84,7 +84,7 @@
     import textsEng from "../assets/json/textsEng.json";
     import textsFr from "../assets/json/textsFr.json";
     import connections from "../assets/json/connections.json";
-    import config from "../../config/configMongoDB"
+    import config from "../../api/config/configMongoDB";
 
 
     export default {

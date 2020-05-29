@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var config = require('../config/configMongoDB');
+var config = require('./config/configMongoDB');
 // initialise mongoose for mongodb
 var mongoose = require("mongoose");
 mongoose.connect(`mongodb://${config.API_URL_PROD}:27017/api_herdimm`, { useNewUrlParser: true });
