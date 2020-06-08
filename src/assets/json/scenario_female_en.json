@@ -146,7 +146,9 @@
                             "file": "spreadinfections1.json",
                             "startTime": "1000",
                             "durationLine": "1000",
-                            "durationLineBouncingOff": "250"
+                            "durationLineBouncingOff": "250",
+                            "linewidthWeb": "12",
+                            "linewidthMobile": "5"
                         }
                     },
                     {
@@ -213,7 +215,9 @@
                             "file" : "spreadinfections2-1.json",
                             "startTime" : "5500",
                             "durationLine": "125",
-                            "durationLineBouncingOff": "250"
+                            "durationLineBouncingOff": "250",
+                            "linewidthWeb": "12",
+                            "linewidthMobile": "5"
                         }
                     },
                     {
@@ -240,7 +244,9 @@
                             "file" : "spreadinfections2-2.json",
                             "startTime" : "500",
                             "durationLine": "300",
-                            "durationLineBouncingOff": "250"
+                            "durationLineBouncingOff": "250",
+                            "linewidthWeb": "12",
+                            "linewidthMobile": "5"
                         }
                     },
                     {
@@ -403,7 +409,9 @@
                             "file" : "spreadinfections3.json",
                             "startTime" : "500",
                             "durationLine": "125",
-                            "durationLineBouncingOff": "250"
+                            "durationLineBouncingOff": "250",
+                            "linewidthWeb": "12",
+                            "linewidthMobile": "5"
                         }
                     },
                     {
@@ -412,7 +420,9 @@
                             "file" : "spreadinfections4.json",
                             "startTime" : "1000",
                             "durationLine": "125",
-                            "durationLineBouncingOff": "250"
+                            "durationLineBouncingOff": "250",
+                            "linewidthWeb": "12",
+                            "linewidthMobile": "5"
                         }
                     },
                     {
@@ -433,7 +443,9 @@
                             "file" : "spreadinfections5.json",
                             "startTime" : "3500",
                             "durationLine": "125",
-                            "durationLineBouncingOff": "250"
+                            "durationLineBouncingOff": "250",
+                            "linewidthWeb": "12",
+                            "linewidthMobile": "5"
                         }
                     }
                 ]
@@ -482,7 +494,9 @@
                             "file" : ["flu.json","measles.json","pertussis.json"],
                             "startTime" : "500",
                             "durationLine": "160",
-                            "durationLineBouncingOff": "250"
+                            "durationLineBouncingOff": "250",
+                            "linewidthWeb": "12",
+                            "linewidthMobile": "5"
                         }
                     },
                     {
