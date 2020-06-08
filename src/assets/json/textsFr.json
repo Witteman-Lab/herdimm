@@ -52,6 +52,7 @@
     "replaceYourAvatar" : "Remplacer votre avatar",
     "replaceYourVulnerable" : "Remplacer votre personne vulnérable",
     "replaceYourComm" : "Remplacer votre personne autour de vous",
+    "TranscriptTextBtnHover" : "Transcrit pour des lecteurs d’écran",
     "stepsMakingAvatar" : [
         {
             "title": "1. Créez votre avatar",

@@ -2,10 +2,31 @@
     <v-app style=" display: flex; flex-direction: column; justify-content: center; align-items: center">
         <v-container  style="display: flex; flex-direction: column; justify-content: center; align-items: center; ">
 
-               <div style="display: flex; flex-direction: row; align-items: center; justify-content: flex-end; width: 100%">
-                   <button id="selectLanguage" class="button"  v-on:click="this.changeLanguage">{{this.labels.language}}</button>
-                </div>
+<!--               <div style="display: flex; flex-direction: row; align-items: center; justify-content: flex-end; width: 100%">-->
+<!--                   <button id="selectLanguage" class="button"  v-on:click="this.changeLanguage">{{this.labels.language}}</button>-->
+<!--                </div>-->
+            <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; width: 100%">
+                <v-tooltip bottom v-if="!isLanguageChanged">
+                    <template v-slot:activator="{ on }">
+                        <v-btn  x-large style="background-color: #CED9DB; color: #FF0000" elevation="0" dark v-on="on" v-on:click="loadTranscript()">Transcript</v-btn>
+                    </template>
+                    <span>{{this.labels.TranscriptTextBtnHover}}</span>
+                </v-tooltip>
 
+
+                <v-tooltip bottom v-if="isLanguageChanged">
+                    <template v-slot:activator="{ on }">
+                        <v-btn x-large style="background-color: #CED9DB; color: #FF0000"  elevation="0" dark v-on="on" v-on:click="loadTranscript()">Transcrit</v-btn>
+                    </template>
+                    <span>{{this.labels.TranscriptTextBtnHover}}</span>
+                </v-tooltip>
+
+                <button id="selectLanguage" class="button"  v-on:click="this.changeLanguage">{{this.labels.language}}</button>
+            </div>
+
+
+
+                <!---------------------------------------------------------------------------------------------->
                 <div class="landing-page" >
                     <div ref="landingImage" v-html="require(`../assets/images/Illustration.svg`)"></div>
                     <div id="container-landing-page-text">
@@ -44,6 +65,10 @@
             }
         },
         methods: {
+            loadTranscript(){
+                this.$router.push({name: 'Transcript'});
+                localStorage.setItem("language", this.labels.currentLanguage);
+            },
 
             /**
              * ---> Load Home Page
