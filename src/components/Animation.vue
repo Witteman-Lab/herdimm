@@ -570,7 +570,14 @@
                 let durationLine = (parseInt(props.durationLine)/1000).toString();
                 let durationLineBouncingOff = (parseInt(props.durationLineBouncingOff)/1000).toString();
                 let path="";
-                const linewidth = props.linewidth;
+                let linewidth = 0;
+                //const linewidth = props.linewidth;
+                if (window.innerWidth <= 768){
+                    linewidth = props.linewidthMobile;
+                }
+                else{
+                    linewidth = props.linewidthWeb;
+                }
                 if (typeof(props.file) === "object") {
                     if (localStorage.getItem("disease") === this.diseaseArray[0] || localStorage.getItem("disease") === this.diseaseArray[1] || localStorage.getItem("disease") === this.diseaseArray[2])
                     {
