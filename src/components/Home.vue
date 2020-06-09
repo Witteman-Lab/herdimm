@@ -51,6 +51,7 @@
 
     import textsEng from "../assets/json/textsEng.json";
     import textsFr from "../assets/json/textsFr.json";
+    import Bowser from "bowser";
 
     export default {
         name: "Home",
@@ -196,6 +197,9 @@
             this.setReturnUrl();
             this.setUid();
             this.manageLandingPageImage();
+            const browser = Bowser.getParser(window.navigator.userAgent);
+
+            console.log(`The current browser name is "${browser.getBrowserName()}"`);
         }
     }
 
