@@ -227,7 +227,7 @@
 
 
             console.log(`The current browser name is "${browser.getBrowserName()}"`);
-            console.log(`The current browser name is "${browser.getBrowserVersion()}"`);
+            console.log(`The current browser name is "${browser.getBrowserVersion() > "83.0.4103.96"}"`);
         }
     }
 
