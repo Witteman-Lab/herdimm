@@ -154,5 +154,11 @@
         "name" : "A person with a more fragile immune system (cancer, diabetes, or other conditions)",
         "id" : 2
       }
-    ]
+    ],
+
+
+
+    "dialogTitle" : "Welcome",
+    "dialogTexte" : "This application is optimized for iOS, Android, Chrome, Firefox, Safari, Opera with the view set at 100% zoom. Other browsers (e.g., Internet Explorer, Microsoft Edge) are not currently supported.",
+    "dialogbtn" : "Ok"
 }

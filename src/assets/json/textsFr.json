@@ -154,5 +154,10 @@
         "name" : "Une personne avec un système immunitaire plus faible (cancer, diabète ou autres conditions)",
         "id" : 2
       }
-    ]
+    ],
+
+
+    "dialogTitle" : "Bienvenue",
+    "dialogTexte" : "Cette application est optimisée pour iOS, Android, Chrome, Firefox, Safari, Opera avec la vue réglée sur un zoom à 100%. Les autres navigateurs (ex. Internet Explorer, Microsoft Edge) ne sont pas pris en charge actuellement.",
+    "dialogbtn" : "Ok"
 }

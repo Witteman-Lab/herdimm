@@ -1,10 +1,30 @@
 <template>
     <v-app style=" display: flex; flex-direction: column; justify-content: center; align-items: center">
-        <v-container  style="display: flex; flex-direction: column; justify-content: center; align-items: center; ">
 
-<!--               <div style="display: flex; flex-direction: row; align-items: center; justify-content: flex-end; width: 100%">-->
-<!--                   <button id="selectLanguage" class="button"  v-on:click="this.changeLanguage">{{this.labels.language}}</button>-->
-<!--                </div>-->
+        <v-row justify="center" v-if="dialogState">
+            <v-dialog v-model="dialogState" max-width="290" persistent>
+                <v-card>
+                    <v-card-title class="headline" style="color: #ff1744;">{{this.languageEN.dialogTitle}} / {{this.languageFR.dialogTitle}}</v-card-title>
+                    <v-card-text style="font-weight: bold; font-size: medium ">
+                        {{this.languageEN.dialogTexte}}
+                    </v-card-text>
+                    <v-spacer></v-spacer>
+                    <v-card-text style="font-weight: bold; font-size: medium ">
+                        {{this.languageFR.dialogTexte}}
+                    </v-card-text>
+                    <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn style="border-style: solid; border-color: #ff1744; color: #ff1744" text @click="dialogState = false">
+                            OK
+                        </v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
+        </v-row>
+
+        <v-container  style="display: flex; flex-direction: column; justify-content: center; align-items: center;" v-show="!dialogState" >
+            <!---------------------------------------------------------------------------------------------->
+            <!---------------------------------------------------------------------------------------------->
             <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; width: 100%">
                 <v-tooltip bottom v-if="!isLanguageChanged">
                     <template v-slot:activator="{ on }">
@@ -62,7 +82,10 @@
                 uid: 0,
                 maxUid : 999999,
                 diseaseHome: "",
-                gender: ""
+                gender: "",
+                dialogState : true,
+                languageFR: Object,
+                languageEN: Object
             }
         },
         methods: {
@@ -198,8 +221,13 @@
             this.setUid();
             this.manageLandingPageImage();
             const browser = Bowser.getParser(window.navigator.userAgent);
+            this.languageFR = textsFr;
+            this.languageEN = textsEng;
+
+
 
             console.log(`The current browser name is "${browser.getBrowserName()}"`);
+            console.log(`The current browser name is "${browser.getBrowserVersion()}"`);
         }
     }
 
