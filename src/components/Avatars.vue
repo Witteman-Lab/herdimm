@@ -100,6 +100,9 @@
             characterTime: Number,
         },
         methods: {
+            track () {
+                this.$ga.page('/Avatars')
+            },
             /**
              * ---> ---------  completed soon -------
              * @param none
@@ -367,6 +370,7 @@
                 html.style = "background-color: #FFFFFF !important";
                 this.setDebugMode();
                 this.setLanguage();
+                this.track();
             }
         }
 </script>

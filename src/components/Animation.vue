@@ -126,6 +126,9 @@
             totalTime: Array,
         },
         methods: {
+            track () {
+                this.$ga.page('/Animation')
+            },
             /**
              * ---> TO DO
              * @param TO DO
@@ -1066,6 +1069,8 @@
             if (initAnimation) {
                 this.initialiseAnimation();
             }
+
+            this.track();
         },
 
         /**

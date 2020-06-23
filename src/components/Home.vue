@@ -89,6 +89,10 @@
             }
         },
         methods: {
+            track () {
+                this.$ga.page('/')
+            },
+
             loadTranscript(){
                 this.$router.push({name: 'Transcript'});
                 localStorage.setItem("language", this.labels.currentLanguage);
@@ -228,6 +232,8 @@
 
             console.log(`The current browser name is "${browser.getBrowserName()}"`);
             console.log(`The current browser name is "${browser.getBrowserVersion() > "83.0.4103.96"}"`);
+
+            this.track();
         }
     }
 
