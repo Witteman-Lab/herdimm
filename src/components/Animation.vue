@@ -127,7 +127,7 @@
         },
         methods: {
             track () {
-                this.$ga.time();
+                // this.$ga.time();
                 this.$ga.page({
                     page: '/Animation',
                     title: 'Animation',

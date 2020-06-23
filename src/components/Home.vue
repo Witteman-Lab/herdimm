@@ -90,7 +90,11 @@
         },
         methods: {
             track () {
-                this.$ga.page('/')
+                this.$ga.page({
+                    page: '/',
+                    title: 'Home',
+                    location: window.location.href
+                })
             },
 
             loadTranscript(){
