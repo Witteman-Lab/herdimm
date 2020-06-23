@@ -127,7 +127,12 @@
         },
         methods: {
             track () {
-                this.$ga.page('/Animation')
+                this.$ga.time();
+                this.$ga.page({
+                    page: '/Animation',
+                    title: 'Animation',
+                    location: window.location.href
+                });
             },
             /**
              * ---> TO DO

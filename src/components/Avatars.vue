@@ -101,7 +101,13 @@
         },
         methods: {
             track () {
-                this.$ga.page('/Avatars')
+                this.$ga.page(
+                {
+                    page: '/Avatars',
+                    title: 'Avatars',
+                    location: window.location.href
+                })
+
             },
             /**
              * ---> ---------  completed soon -------
