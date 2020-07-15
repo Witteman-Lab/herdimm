@@ -159,5 +159,42 @@
 
     "dialogTitle" : "Bienvenue",
     "dialogTexte" : "Cette application est optimisée pour iOS, Android, Chrome, Firefox, Safari, Opera avec la vue réglée sur un zoom à 100%. Les autres navigateurs (ex. Internet Explorer, Microsoft Edge) ne sont pas pris en charge actuellement.",
-    "dialogbtn" : "Ok"
+    "dialogbtn" : "Ok",
+
+
+
+    "transcriptInfos1" : "Quel rôle jouons-nous dans la protection de la communauté?",
+    "transcriptInfos2" : "[Texte descriptif : Une image présente 100 hexagones gris, chacun représentant une personne.]",
+    "transcriptInfos3" : "Imaginez que c’est vous",
+    "transcriptInfos4" : "[La vidéo zoome sur l’hexagone au milieu des 100. Cet hexagone comporte un avatar portant un t-shirt orange. L’avatar vous représente et un contour orange apparaît autour de votre avatar.]",
+    "transcriptInfos5" : "Voici des personnes que vous côtoyez souvent, comme votre famille, vos amis, voisins, ou collègues, et les personnes qu’elles-mêmes côtoient souvent.",
+    "transcriptInfos6" : "[Le zoom de la vidéo s’éloigne un peu et montre les autres avatars qui vous entourent. Ceux-ci portent des t-shirts gris foncé.]",
+    "transcriptInfos7" : "Il y a des personnes dans ce groupe, par exemple des bébés, des personnes âgées ou des personnes avec un système immunitaire affaibli, comme les patients atteints du cancer...",
+    "transcriptInfos8" : "[Des lignes oranges apparaissent autour de deux hexagones à côté du vôtre. Ces hexagones contiennent des avatars qui représentent des personnes vulnérables de votre entourage.]",
+    "transcriptInfos9" : "...Ces personnes sont considérées comme étant plus vulnérables, car elles peuvent attraper les maladies plus facilement, et les maladies peuvent les rendre plus malades",
+    "transcriptInfos10" : "[La couleur des deux hexagones représentant des personnes vulnérables change et passe de grise à jaune pâle.]",
+    "transcriptInfos11" : "Lorsqu’une maladie contagieuse se propage dans un groupe, les personnes  peuvent l’attraper, la transmettre, tomber malade ou même mourir, surtout les personnes plus vulnérables.",
+    "transcriptInfos12" : "[Une ligne rouge pénètre dans le gros plan des hexagones affichés à l'écran. Elle touche un hexagone gris qui devient rouge ainsi que le T-shirt de l'avatar. Puis, la ligne s'étend de cet hexagone rouge à un autre hexagone gris, qui devient rouge à son tour, ainsi de suite. Bientôt, environ la moitié des hexagones ont été touchés par une ligne et sont devenus rouges, y compris votre avatar et les deux avatars représentant les personnes vulnérables.",
+    "transcriptInfos13" : "Des vaccins existent pour nous protéger de certaines maladies contagieuses. Ces vaccins entraînent le corps à lutter contre les maladies. Les personnes vaccinées sont moins susceptibles d’attraper et de transmettre la maladie.",
+    "transcriptInfos14" : "[Plusieurs fonds d'hexagone deviennent bleus pour représenter le fait d'être vacciné. Les hexagones rouges étendent des lignes aux hexagones bleus, mais contrairement aux gris, ils ne deviennent pas rouges au contact d'une ligne rouge.]",
+    "transcriptInfos15" : "Mais les vaccins ne fonctionnent pas toujours parfaitement. Ils ne fonctionnent pas à tout coup, et leur efficacité peut diminuer avec le temps",
+    "transcriptInfos16" : "[Les hexagones rouges prolongent les lignes des hexagones bleus, et cette fois, l'hexagone bleu devient rouge au contact par une ligne rouge indiquant que parfois les vaccins ne fonctionnent pas. Puis, lentement, tous les hexagones bleus deviennent gris, ce qui indique que la protection vaccinale diminue avec le temps.]",
+    "transcriptInfos17" : "c'est pourquoi d'autres doses de vaccins sont parfois nécessaires pour assurer la protection.",
+    "transcriptInfos18" : "[La vidéo fait un zoom arrière et la plupart des hexagones deviennent bleus, ce qui montre que des doses supplémentaires de vaccins sont maintenant administrées pour assurer la protection contre les maladies]",
+    "transcriptInfos19" : "supplémentaires de vaccins sont maintenant administrées pour assurer la protection contre les maladies]",
+    "transcriptInfos20" : "[La caméra montre les 100 hexagones dont la majorité est bleue.]",
+    "transcriptInfos21" : "Cette barrière se nomme “l’immunité de groupe” ou “l’immunité collective”. L’immunité collective empêche la maladie contagieuse de se propager d’une personne à l'autre.",
+    "transcriptInfos22" : "[L’espace entre les hexagones bleus se remplit d’un bleu plus clair et toute la forme connectée clignote doucement. Les deux hexagones représentant les personnes vulnérables sont toujours jaunes, et  sont entourés par la forme bleue.]",
+    "transcriptInfos23" : "Certaines maladies se répandent plus facilement que d'autres. C’est pourquoi plus de personnes doivent être vaccinées contre ces maladies pour créer l'immunité collective",
+    "transcriptInfos24" : "[ Toute la forme connectée de couleur bleue est représentée, et certains hexagones deviennent rouges et transforment quelques autres qui sont de couleur grise en couleur rouge. Les deux hexagones représentant les personnes vulnérables sont toujours jaunes, et sont entourés par la forme bleue représentant cette immunité collective. ]",
+    "transcriptInfos25" : "Mais lorsque trop peu des personne sont vaccinés…",
+    "transcriptInfos26" : "[Les lignes bleues connectées disparaissent et certains hexagones deviennent gris indiquant qu'ils n'ont pas été vaccinés et certains hexagones sont toujours de couleur bleue indiquant qu'ils ont été vaccinés.]",
+    "transcriptInfos27" : "l’immunité collective n’existe pas, et la maladie peut facilement vous toucher, , toucher les gens autour de vous et d’autres personnes de votre communauté, incluant les personnes plus vulnérables qui peuvent devenir très malades.",
+    "transcriptInfos28" : "[La ligne rouge représentant l'infection touche la plupart des hexagones et les fait passer au rouge pour indiquer la propagation de l'infection. Les deux hexagones jaune pâle deviennent également rouges, ce qui montre que l'immunité  collective affaiblie les a également infectés.]",
+    "transcriptInfos29" : "Lorsque votre communauté est l’immunité collective, cela protège votre communauté.",
+    "transcriptInfos30" : "[La plupart des hexagones deviennent bleus et l'espace entre les hexagones bleus se remplit d'un bleu plus pâle, et toute la forme connectée clignote doucement. Les deux hexagones représentant les personnes vulnérables sont toujours jaunes, et sont entourés par la forme bleue représentant l'immunité collectivité. ]",
+    "transcriptInfos31" : "...même les personnes plus vulnérables qui ne peuvent pas être vaccinées efficacement.",
+    "transcriptInfos32" : "[Le contour bleu foncé entoure les deux hexagones jaune pâle montrant que l'immunité collective les protège].",
+    "transcriptInfos33" : "Cela signifie que votre décision de vous faire vacciner ou non a un impact sur les gens autour de vous.",
+    "transcriptInfos34" : "[Toute la forme connectée de couleur bleue est montrée, et le contour bleu foncé entoure les deux hexagones jaune pâle montrant que l'immunité collective les protège.]"
 }

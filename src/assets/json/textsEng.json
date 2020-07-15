@@ -160,5 +160,43 @@
 
     "dialogTitle" : "Welcome",
     "dialogTexte" : "This application is optimized for iOS, Android, Chrome, Firefox, Safari, Opera with the view set at 100% zoom. Other browsers (e.g., Internet Explorer, Microsoft Edge) are not currently supported.",
-    "dialogbtn" : "Ok"
+    "dialogbtn" : "Ok",
+
+
+
+
+    "transcriptInfos1" : "What role does each of us play in protecting our community?",
+    "transcriptInfos2" : "[descriptive text: The image shows 100 grey hexagons, each representing one person, arranged on the screen.]",
+    "transcriptInfos3" : "Imagine this is you.",
+    "transcriptInfos4" : "[The video zooms in on the hexagon in the middle of the 100. The hexagon has an avatar representing you, wearing an orange T-shirt and an orange outline appears around your avatar ]",
+    "transcriptInfos5" : "These are people around you--people you see often, like your family, friends, neighbours, or coworkers, and the people around them that they see often.",
+    "transcriptInfos6" : "[The video zooms out a little to show other avatars and hexagons around you. The other avatars are wearing dark grey T-shirts.]",
+    "transcriptInfos7" : "Some of these people, like babies, older people, or those with fragile immune systems (for example, cancer patients)",
+    "transcriptInfos8" : "[Orange lines appear around two hexagons next to you. These hexagons have avatars representing vulnerable people in close to you.]",
+    "transcriptInfos9" : "… are more vulnerable to contagious diseases, either because they can catch them more easily, or the diseases can make them sicker.",
+    "transcriptInfos10" : "[The background of the two hexagons representing vulnerable people changes from grey to pale yellow.]",
+    "transcriptInfos11" : "When a contagious disease enters your community, people can catch it, pass it on to those around them, get sick, or even die from it, especially vulnerable people.",
+    "transcriptInfos12" : "[A red line enters the close-up of hexagons shown in the screen. It touches a grey hexagon. The hexagon turns red. The T-shirt of the avatar also turns red. Then a line extends from that red hexagon to another grey hexagon, it turns red, and so on. Soon, about half of the hexagons have been touched by a red line and have turned red, including your avatar and the two avatars representing vulnerable people.]",
+    "transcriptInfos13" : "For some contagious diseases, we have vaccines to protect us. Vaccines train our immune system--the body’s protection system--to fight against diseases. People who are vaccinated are less likely to catch and pass on those diseases.",
+    "transcriptInfos14" : "[Many hexagons’ background turns blue to represent having been vaccinated. The red hexagons extend lines to the blue hexagons, but unlike the grey hexagons, the blue ones don’t turn red upon contact by a red line.] ",
+    "transcriptInfos15" : "But vaccines are not perfect. They don’t work every time. And their protection can fade over time…",
+    "transcriptInfos16" : "[The red hexagons extend lines to the blue hexagons, and this time the blue hexagone is  turned red upon contact by a red line showing that sometimes vaccines do not work. And then slowly all blue hexagons turn grey showing that vaccine protection gets faded over time.]",
+    "transcriptInfos17" : "...making additional doses of vaccine necessary to ensure protection.\n[The video zooms out and most of the hexagons turns blue showing that now additional doses of vaccines are given to ensure protection from the diseases]",
+    "transcriptInfos18" : "When you and enough people around you are vaccinated, this creates a protective barrier for your community.",
+    "transcriptInfos19" : "[The video shows all 100 hexagons, the majority of which are blue.]",
+    "transcriptInfos20" : "This barrier is known as “herd immunity” or “community immunity”. Community immunity helps prevent contagious diseases from spreading from one person to another.",
+    "transcriptInfos21" : "[The space in between the blue hexagons fills in with a paler blue, and the whole connected shape pulses gently. The two hexagons representing vulnerable people are still yellow, and are surrounded by the blue shape.]",
+    "transcriptInfos22" : "Some diseases spread more easily than others and need more people to be vaccinated to create community immunity.",
+    "transcriptInfos23" : "[ The whole connected shape blue in colour is shown, and some hexagone gets red in colour and turns few others who are grey in colour to red color. The two hexagons representing vulnerable people are still yellow, and are surrounded by the blue shape representing that community immunity. ]",
+    "transcriptInfos24" : "If not enough people are vaccinated, your community will not be protected.",
+    "transcriptInfos25" : "[The connected blue lines disappear and some of the hexagons turn grey showing not being vaccinated and some hexagons are still blue in colour showing vaccinated.]",
+    "transcriptInfos26" : "Then, diseases can more easily spread and reach you, the people around you, and others in your community, including vulnerable people.",
+    "transcriptInfos27" : "[The red line representing infection touches most of the hexagons and turns them to red color showing spread of infection. The two pale yellow hexagons also turn to red color showing that weakened community immunity has infected them too.]",
+    "transcriptInfos28" : "When your community has community immunity, your community is protected.",
+    "transcriptInfos29" : "[Most of the hexagons turn blue and the space in between the blue hexagons fills in with a paler blue, and the whole connected shape pulses gently. The two hexagons representing vulnerable people are still yellow, and are surrounded by the blue shape representing that community immunity. ]",
+    "transcriptInfos30" : "….including vulnerable people who depend on those around them for protection.",
+    "transcriptInfos31" : "[The dark blue outline surrounds the two pale yellow hexagons showing that community immunity protects them.]",
+    "transcriptInfos32" : "This means that your decision to get vaccinated or not has an impact not only on you, but also on other people in your community.",
+    "transcriptInfos33" : "",
+    "transcriptInfos34" : ""
 }
