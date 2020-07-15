@@ -196,7 +196,11 @@
             maxColorTile: Number,
             totalCreated: Number,
             maxCharactersInGroup : Number,
-            isGroupComplete: Boolean
+            isGroupComplete: Boolean,
+            setReplaceCharacterMode: Function,
+            editCharacter: Function,
+            saveCharacterAfterReplace: Function,
+            saveCharacterInfo: Function,
         },
         methods: {
 
@@ -210,8 +214,10 @@
                 this.characterIndexSave = this.characterIndex;
                 this.characterId = this.currentCharacterObject.id;
                 this.characterType = this.getCurrentCharacterType(this.characterIndexSave);
-                this.$parent.setReplaceCharacterMode(false);
-                this.$parent.editCharacter(this.currentCharacterObject, this.$refs.character.getSvgColorForChangeAvatar());
+                // this.$parent.setReplaceCharacterMode(false);
+                // this.$parent.editCharacter(this.currentCharacterObject, this.$refs.character.getSvgColorForChangeAvatar());
+                this.setReplaceCharacterMode(false);
+                this.editCharacter(this.currentCharacterObject, this.$refs.character.getSvgColorForChangeAvatar());
                 this.closeModal();
             },
 
@@ -396,13 +402,14 @@
                 this.calculateTimeCharacter();
 
                 if (this.replaceCharacterMode) {
-                    this.$parent.saveCharacterAfterReplace(this.currentCharacterObject, this.$refs.character.getSvgColor(), this.characterType, this.characterId);
+                    //this.$parent.saveCharacterAfterReplace(this.currentCharacterObject, this.$refs.character.getSvgColor(), this.characterType, this.characterId);
+                    this.saveCharacterAfterReplace(this.currentCharacterObject, this.$refs.character.getSvgColor(), this.characterType, this.characterId);
                     this.replaceCharacterMode = false;
-                    this.$parent.setReplaceCharacterMode(true);
+                    this.setReplaceCharacterMode(true);
                     this.characterId = "";
                     this.characterIndexSave = "";
                 } else {
-                    this.$parent.saveCharacter(this.currentCharacterObject, this.$refs.character.getSvgColor());
+                    this.saveCharacterInfo(this.currentCharacterObject, this.$refs.character.getSvgColor());
                 }
                 this.closeModal();
             },
@@ -415,10 +422,7 @@
             saveEditCharacter() {
                 //modification time for a character
                 this.endCharacterTime = Date.now();
-                let startCharacterTime = this.startCharacterTime;
-                let spendTime = Math.round((this.endCharacterTime - startCharacterTime));
-                this.$refs.character.setCharacterTimeEdition(spendTime);
-                this.$parent.editCharacter(this.currentCharacterObject, this.$refs.character.getSvgColor());
+                this.editCharacter(this.currentCharacterObject, this.$refs.character.getSvgColor());
                 this.closeModal();
             },
 

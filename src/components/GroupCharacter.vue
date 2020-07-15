@@ -10,7 +10,8 @@
                             <Character style="margin: 10px 5px;" :disabled="false" :ref="character.id"  :is-name="true" :size="{width: '64px', height: '70px'}"
                                        :edit="characterMode" :customised="true" :colors="character.colors" :id="character.id"
                                        :group="true"
-                                       :svgFile="character.file ? require(`../assets/characters/${character.file}`) : ''" />
+                                       :svgFile="character.file ? require(`../assets/characters/${character.file}`) : ''"
+                                       :launchModal="launchModal"/>
                         </div>
                     </div>
                 </div>
@@ -24,7 +25,8 @@
                             <Character  style="margin: 10px 5px;" :disabled="false" :ref="character.id"  :is-name="true" :size="{width: '64px', height: '70px'}"
                                        :edit="characterMode" :customised="true" :colors="character.colors" :id="character.id"
                                        :group="true"
-                                       :svgFile="character.file ? require(`../assets/characters/${character.file}`) : ''" />
+                                       :svgFile="character.file ? require(`../assets/characters/${character.file}`) : ''"
+                                        :launchModal="launchModal"/>
                         </div>
                     </div>
                 </div>
@@ -59,7 +61,8 @@
             disableGroupCharacter : Boolean,
             nbAvatar: Number,
             nbVulnerable: Number,
-            nbCommnunity: Number
+            nbCommnunity: Number,
+            launchEditModal: Function
         },
         methods: {
             setCharacterCategory(type) {
@@ -75,8 +78,8 @@
              * @return none
              */
             addCharacterToGroup(character, characterColors, type) {
-                this.characterList.splice(this.position, 1, {id: character.id + Date.now() + "_customised",
-                    file: character.file, colors: characterColors, characterType: type});
+                let id = character.id + Date.now() + "_customised";
+                this.characterList.splice(this.position, 1, {id, file: character.file, colors: characterColors, characterType: type});
                 this.position++;
                 this.changeBannerColor();
             },
@@ -129,7 +132,7 @@
             launchModal(id) {
                 this.characterList.filter((obj, index) => {
                     if (obj.id === id) {
-                        this.$parent.launchEditModal(obj, index);
+                        this.launchEditModal(obj, index);
                     }
                 });
             },

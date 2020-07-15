@@ -1,49 +1,64 @@
 <template>
-    <div class="container">
-        <!-- MODAL WINDOW -->
-        <Modal ref="modal"  :total-created="totalCreated" :is-group-complete="isGroupComplete" :max-characters-in-group="maxCharactersInGroup" :defaultCharacterColors="defaultCharacterColors" :skin-colors="skinColors" :hair-colors="hairColors" :total-characters-count="maxCharactersInGroup"  :facial-hair-list-json="facialHairList" :max-color-tile="maxColorTile" :labels="labels"/>
+    <v-app id="main_container">
+        <v-container id="myContainer" style="width: 100%; height: 100%; display: flex; flex-direction: row; justify-content: start; align-items: start;">
+            <div class="container" style="width: 100%; height: 100%;">
+                <!-- MODAL WINDOW -->
+                <Modal ref="modal"
+                       :setReplaceCharacterMode="setReplaceCharacterMode"
+                       :edit-character="editCharacter"
+                       :saveCharacterAfterReplace="saveCharacterAfterReplace"
+                       :saveCharacterInfo="saveCharacter"
+                       :total-created="totalCreated"
+                       :is-group-complete="isGroupComplete"
+                       :max-characters-in-group="maxCharactersInGroup"
+                       :defaultCharacterColors="defaultCharacterColors"
+                       :skin-colors="skinColors" :hair-colors="hairColors" :total-characters-count="maxCharactersInGroup"
+                       :facial-hair-list-json="facialHairList" :max-color-tile="maxColorTile" :labels="labels"/>
 
-        <div class="is-centered is-half-desktop is-half-mobile">
-            <div class="instructions-block">
-                <h1 v-if="!replaceCharacterMode" class="page-instruction">{{this.labels.stepsMakingAvatar[step].title}}</h1>
-                <h1 v-if="replaceCharacterMode" class="page-instruction">{{this.labels.selectAvatar}}</h1>
-                <p v-if="!isGroupComplete & !replaceCharacterMode" id="contextualInfo">{{ this.labels.stepsMakingAvatar[step].description }}</p>
-                <v-btn :disabled="replaceCharacterMode" color="#05CDC1" class="continue" v-if="isGroupComplete && !isMobile" v-on:click="loadAnimationView()">
-                        <span>{{this.labels.continueBtn.toUpperCase()}}</span>
-                    <font-awesome-icon style="margin-left: 10px;" icon="play" size="lg"/>
-                </v-btn>
-            </div>
-            <button id="selectLanguage" :style="{'z-index': languageButtonIndex}" style="z-index: 20" class="button" v-on:click="this.changeLanguage">{{this.labels.language}}</button>
-
-            <!-- List of all the characters -->
-            <div class="tool">
-                <div style="width: 100%; margin: 12px;">
-                    <div style="width: 100%">
-                        <CharacterList :defaultCharacterColors="defaultCharacterColors" ref="listAvailable" :characters="this.characterList"></CharacterList>
+                <div class="is-centered is-half-desktop is-half-mobile">
+                    <div class="instructions-block">
+                        <h1 v-if="!replaceCharacterMode" class="page-instruction">{{this.labels.stepsMakingAvatar[step].title}}</h1>
+                        <h1 v-if="replaceCharacterMode" class="page-instruction">{{this.labels.selectAvatar}}</h1>
+                        <p v-if="!isGroupComplete & !replaceCharacterMode" id="contextualInfo"  style="font-size: medium">{{ this.labels.stepsMakingAvatar[step].description }}</p>
+                        <v-btn :disabled="replaceCharacterMode" color="#05CDC1" class="continue" v-if="isGroupComplete && !isMobile" v-on:click="loadAnimationView()">
+                            <span>{{this.labels.continueBtn.toUpperCase()}}</span>
+                            <font-awesome-icon style="margin-left: 10px;" icon="play" size="lg"/>
+                        </v-btn>
                     </div>
+                    <button id="selectLanguage" :style="{'z-index': languageButtonIndex}" style="z-index: 20" class="button" v-on:click="this.changeLanguage">{{this.labels.language}}</button>
+
+                    <!-- List of all the characters -->
+                    <div class="tool">
+                        <div style="width: 100%; margin: 5px;">
+                            <div style="width: 100%">
+                                <CharacterList :defaultCharacterColors="defaultCharacterColors" ref="listAvailable" :characters="this.characterList" :launch="launch"></CharacterList>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div v-if="debugMode">
+                        <v-btn v-on:click="this.generateAllCharacters">{{this.labels.generateAllCharacters}}</v-btn>
+                        <v-btn v-on:click="this.changeCharacterGeneration">{{characterTypeToGenerate ? this.labels.differentCharacters : this.labels.sameCharacters}}</v-btn>
+                    </div>
+
+
+                    <v-btn :disabled="replaceCharacterMode" color="#05CDC1" class="continue" v-if="isGroupComplete && isMobile" v-on:click="loadAnimationView()">
+                        <span>{{this.labels.continueBtn.toUpperCase()}}</span>
+                        <font-awesome-icon style="margin-left: 10px;" icon="play" size="lg"/>
+                    </v-btn>
+
+                    <!-- List of the group member -->
+                    <div class="tool">
+                        <GroupCharacter :nbAvatar="nbAvatar"
+                                        :nbVulnerable="nbrVulnerable"
+                                        :nbCommnunity="nbrCommunity" :labels='labels' id="groupCharacter" ref="listToFill" :launch-edit-modal="launchEditModal"></GroupCharacter>
+                    </div>
+
+
                 </div>
             </div>
-
-            <div v-if="debugMode">
-                <v-btn v-on:click="this.generateAllCharacters">{{this.labels.generateAllCharacters}}</v-btn>
-                <v-btn v-on:click="this.changeCharacterGeneration">{{characterTypeToGenerate ? this.labels.differentCharacters : this.labels.sameCharacters}}</v-btn>
-            </div>
-
-            <v-btn :disabled="replaceCharacterMode" color="#05CDC1" class="continue" v-if="isGroupComplete && isMobile" v-on:click="loadAnimationView()">
-                <span>{{this.labels.continueBtn.toUpperCase()}}</span>
-                <font-awesome-icon style="margin-left: 10px;" icon="play" size="lg"/>
-            </v-btn>
-
-            <!-- List of the group member -->
-            <div class="tool">
-                <GroupCharacter :nbAvatar="nbAvatar"
-                                :nbVulnerable="nbrVulnerable"
-                                :nbCommnunity="nbrCommunity" :labels='labels' id="groupCharacter" ref="listToFill"></GroupCharacter>
-            </div>
-
-
-        </div>
-    </div>
+        </v-container>
+    </v-app>
 </template>
 
 
@@ -217,6 +232,7 @@
                 this.isMobile = this.$refs.listToFill.isScreenMobile();
                 if (this.$refs.listToFill.getCharacterListSize() === this.maxCharactersInGroup) {
                     this.isGroupComplete = true;
+                    window.scrollTo(0, document.body.scrollHeight);
                 }
 
                 if (this.totalCreated < this.maxCharactersInGroup && window.innerWidth < 420) {
@@ -224,9 +240,9 @@
                     setTimeout(() => {
                         window.scrollTo({top: 0, behavior: 'smooth', x: 0})
                     }, parseInt(charactersJson.scrollingTimeControl));
-                } else {
+                } else if (this.totalCreated < this.maxCharactersInGroup && window.innerWidth < 420) {
                     setTimeout(() => {
-                        window.scrollTo(0, document.body.scrollHeight);
+                        window.scrollTo({top: -100, behavior: 'smooth', x: 0})
                     }, 100);
                 }
             },
@@ -377,6 +393,7 @@
                 this.setDebugMode();
                 this.setLanguage();
                 this.track();
+                window.scrollTo({top: 0, x: 0})
             }
         }
 </script>

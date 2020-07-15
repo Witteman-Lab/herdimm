@@ -1,7 +1,11 @@
 <template>
-    <div class="container" v-recognizer:pinch.cancel="">
+    <div class="container" v-recognizer:pinch.cancel="" v-recognizer:rotate.cancel="" >
         <!-- Audio player for audio files -->
-        <AudioPlayer :current-language="currentLanguage" :voice="voiceToPlayAtAnimation" :checkbox-state-audio-player="checkboxState" ref="audioPlayer"></AudioPlayer>
+        <AudioPlayer :reloadAnimation="reloadAnimation"
+                     :launch-sequence="launchSequence"
+                     :current-language="currentLanguage"
+                     :voice="voiceToPlayAtAnimation"
+                     :checkbox-state-audio-player="checkboxState" ref="audioPlayer"></AudioPlayer>
 
         <div id="captions" class="captions" v-if="this.checkboxState" style="display: flex;justify-content: space-between;">
             <p id="paragraph" class="paragraph"></p>
@@ -30,39 +34,34 @@
 
 
         <!---------------------------------------------------------------------------------------------->
-        <v-row justify="center">
-            <v-dialog
-                    v-model="dialogAnimation"
-                    max-width="290"
-                    persistent
-            >
-                <v-card>
-                    <div id="startAnimationBox" v-if="!this.isAnimationStarted">
-                        <div v-if="!this.reloadAnimationPage">
-                            <v-btn color="#05CDC1" style="height: 50px;" class="continue" v-on:click="startAnimation()">
-                                <span>{{textButtonAnimation.toUpperCase()}}</span>
-                                <font-awesome-icon style="margin-left: 10px;" icon="play" size="lg"/>
-                            </v-btn>
-                            <div style="display: flex">
-                                <input type="checkbox" id="showCaptions" name="showCaptions">
-                                <label class="choose-subtitles" for="showCaptions">{{this.labels.displayCaptions}}</label>
-                            </div>
-                        </div>
-                        <div v-if="this.reloadAnimationPage" style="display: grid">
-                            <v-btn color="#05CDC1" style="height: 50px;" class="continue" v-on:click="reloadAnimationComp()">
-                                <span>{{this.labels.restartAnimation.toUpperCase()}}</span>
-                                <font-awesome-icon style="margin-left: 10px;" icon="redo" size="lg"/>
+        <div id="startAnimationBox" v-if="!this.isAnimationStarted">
+            <div v-if="!this.reloadAnimationPage">
+                <v-btn color="#05CDC1" style="height: 50px;" class="continue" v-on:click="startAnimation()">
+                    <span>{{textButtonAnimation.toUpperCase()}}</span>
+                    <font-awesome-icon style="margin-left: 10px;" icon="play" size="lg"/>
+                </v-btn>
+                <div style="display: flex">
+                    <input type="checkbox" id="showCaptions" name="showCaptions">
+                    <label class="choose-subtitles" for="showCaptions">{{this.labels.displayCaptions}}</label>
+                </div>
+            </div>
+            <div v-if="this.reloadAnimationPage" style="display: grid">
+                <!--                <v-btn color="#05CDC1" style="height: 50px;" class="continue" v-on:click="reloadAnimationComp()">-->
+                <!--                    <span>{{this.labels.restartAnimation.toUpperCase()}}</span>-->
+                <!--                    <font-awesome-icon style="margin-left: 10px;" icon="redo" size="lg"/>-->
+                <!--                </v-btn>-->
 
-                            </v-btn>
-                            <v-btn v-if="this.returnUrl !== '' && this.returnUrl !== undefined" color="#05CDC1" style="height: 50px;" class="continue" v-on:click="loadQualtrics()">
-                                <span>{{this.labels.redirectSurvey.toUpperCase()}}</span>
-                                <font-awesome-icon style="margin-left: 10px;" icon="external-link-alt" size="lg"/>
-                            </v-btn>
-                        </div>
-                    </div>
-                </v-card>
-            </v-dialog>
-        </v-row>
+                <v-btn color="#05CDC1" style="height: 50px;" class="continue" v-on:click="loadExtraInfoVue()">
+                    <span>{{this.labels.doneButton.toUpperCase()}}</span>
+                    <v-icon style="font-size: xx-large" right>mdi-check</v-icon>
+                </v-btn>
+
+                <v-btn v-if="this.returnUrl !== '' && this.returnUrl !== undefined" color="#05CDC1" style="height: 50px;" class="continue" v-on:click="loadQualtrics()">
+                    <span>{{this.labels.redirectSurvey.toUpperCase()}}</span>
+                    <font-awesome-icon style="margin-left: 10px;" icon="external-link-alt" size="lg"/>
+                </v-btn>
+            </div>
+        </div>
         <!---------------------------------------------------------------------------------------------->
 
 <!--        <div id="commandAnimationBox" style="display: none; justify-content: space-between" v-if="this.isAnimationStarted">-->
@@ -130,7 +129,7 @@
                 // this.$ga.time();
                 this.$ga.page({
                     page: '/Animation',
-                    title: 'Animation',
+                    title: 'Animation Page',
                     location: window.location.href
                 });
             },
@@ -187,7 +186,7 @@
                     this.$refs.audioPlayer.playAudio();
                     this.isAnimationPlaying();
                     this.sendCharactersToApi('mongodb');
-                    this.dialogAnimation = false;
+                    this.isAnimationPlaying();
 
                 // }
             },
@@ -234,6 +233,10 @@
              */
             isAnimationPlaying() {
                 this.isAudioPlaying = this.$refs.audioPlayer.getAudioStatus();
+            },
+
+            loadExtraInfoVue(){
+                this.$router.push({name: 'ExtraInfo'});
             },
 
             /**

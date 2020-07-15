@@ -7,7 +7,8 @@
                        :colors="{face: defaultCharacterColors.SkinColor,
                                  hairFront: defaultCharacterColors.HairColor,
                                  shirt: defaultCharacterColors.ShirtColorCharacters,
-                                 accessoriesColor: defaultCharacterColors.AccessoriesColor}"/>
+                                 accessoriesColor: defaultCharacterColors.AccessoriesColor}"
+                        :launch-modal="launchModal"/>
         </div>
     </div>
 </template>
@@ -28,7 +29,8 @@ export default {
     },
     props: {
         characters: Array,
-        defaultCharacterColors: Object
+        defaultCharacterColors: Object,
+        launch: Function
     },
     methods: {
         /**
@@ -39,7 +41,7 @@ export default {
         launchModal(id) {
             this.characterList.filter(obj => {
                 if (obj.id === id) {
-                    this.$parent.launch(obj);
+                    this.launch(obj);
                 }
             });
         },
