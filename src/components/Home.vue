@@ -232,8 +232,7 @@
             console.log("test de magniol", browser.getBrowserName());
             this.languageFR = textsFr;
             this.languageEN = textsEng;
-            if(browser.getBrowserName() === "Microsoft Edge" || browser.getBrowserName() === "Chrome" || browser.getBrowserName() === "Safari"){
-                console.log(browser.getBrowserName(), "test de magniol");
+            if(browser.getBrowserName() === "Microsoft Edge" || browser.getBrowserName() === "Chrome" || browser.getBrowserName() === "Safari" || browser.getBrowserName() === "Opera"){
                 this.dialogState = false ;
             }
             this.track();
