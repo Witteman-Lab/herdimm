@@ -46,11 +46,6 @@
                 </div>
             </div>
             <div v-if="this.reloadAnimationPage" style="display: grid">
-                <!--                <v-btn color="#05CDC1" style="height: 50px;" class="continue" v-on:click="reloadAnimationComp()">-->
-                <!--                    <span>{{this.labels.restartAnimation.toUpperCase()}}</span>-->
-                <!--                    <font-awesome-icon style="margin-left: 10px;" icon="redo" size="lg"/>-->
-                <!--                </v-btn>-->
-
                 <v-btn color="#05CDC1" style="height: 50px;" class="continue" v-on:click="loadExtraInfoVue()">
                     <span>{{this.labels.doneButton.toUpperCase()}}</span>
                     <v-icon style="font-size: xx-large" right>mdi-check</v-icon>
@@ -62,16 +57,6 @@
                 </v-btn>
             </div>
         </div>
-        <!---------------------------------------------------------------------------------------------->
-
-<!--        <div id="commandAnimationBox" style="display: none; justify-content: space-between" v-if="this.isAnimationStarted">-->
-<!--            <a><font-awesome-icon style="margin: 10px;" icon="fast-backward" size="lg" v-on:click="manageAudioPlayer('begin')"/></a>-->
-<!--            <a><font-awesome-icon style="margin: 10px;" icon="step-backward" size="lg" v-on:click="manageAudioPlayer('before')"/></a>-->
-<!--            <a v-if="!isAudioPlaying"><font-awesome-icon style="margin: 10px;" icon="play" size="lg" v-on:click="manageAudioPlayer('restart')"/></a>-->
-<!--            <a v-if="isAudioPlaying"><font-awesome-icon style="margin: 10px;" icon="pause" size="lg" v-on:click="manageAudioPlayer('pause')"/></a>-->
-<!--            <a><font-awesome-icon style="margin: 10px;" icon="step-forward" size="lg" v-on:click="manageAudioPlayer('next')"/></a>-->
-<!--            <a><font-awesome-icon style="margin: 10px;" icon="fast-forward" size="lg" v-on:click="manageAudioPlayer('end')"/></a>-->
-<!--        </div>-->
     </div>
 </template>
 
@@ -175,12 +160,6 @@
              * @return none
              */
             startAnimation() {
-                // might need to change this function name or the way it handles operation
-                // if (this.reloadAnimationPage) {
-                //     if (this.returnUrl !== "" && this.returnUrl !== undefined) {
-                //     } else {
-                //     }
-                // } else {
                     this.checkboxState = document.getElementById("showCaptions").checked;
                     this.isAnimationStarted = true;
                     this.$refs.audioPlayer.playAudio();
