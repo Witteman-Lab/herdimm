@@ -1,7 +1,7 @@
 <template>
     <v-app style=" display: flex; flex-direction: column; justify-content: center; align-items: center">
 
-        <v-row justify="center" v-if="dialogState">
+        <v-row justify="center" v-show="dialogState">
             <v-dialog v-model="dialogState" max-width="290" persistent>
                 <v-card>
                     <v-card-title class="headline" style="color: #ff1744;">{{this.languageEN.dialogTitle}} / {{this.languageFR.dialogTitle}}</v-card-title>
@@ -229,14 +229,13 @@
             this.setUid();
             this.manageLandingPageImage();
             const browser = Bowser.getParser(window.navigator.userAgent);
+            console.log("test de magniol", browser.getBrowserName());
             this.languageFR = textsFr;
             this.languageEN = textsEng;
-
-
-
-            console.log(`The current browser name is "${browser.getBrowserName()}"`);
-            console.log(`The current browser name is "${browser.getBrowserVersion() > "83.0.4103.96"}"`);
-
+            if(browser.getBrowserName() === "Microsoft Edge" || browser.getBrowserName() === "Chrome" || browser.getBrowserName() === "Safari"){
+                console.log(browser.getBrowserName(), "test de magniol");
+                this.dialogState = false ;
+            }
             this.track();
         }
     }
