@@ -214,8 +214,6 @@
                 this.characterIndexSave = this.characterIndex;
                 this.characterId = this.currentCharacterObject.id;
                 this.characterType = this.getCurrentCharacterType(this.characterIndexSave);
-                // this.$parent.setReplaceCharacterMode(false);
-                // this.$parent.editCharacter(this.currentCharacterObject, this.$refs.character.getSvgColorForChangeAvatar());
                 this.setReplaceCharacterMode(false);
                 this.editCharacter(this.currentCharacterObject, this.$refs.character.getSvgColorForChangeAvatar());
                 this.closeModal();
@@ -402,7 +400,6 @@
                 this.calculateTimeCharacter();
 
                 if (this.replaceCharacterMode) {
-                    //this.$parent.saveCharacterAfterReplace(this.currentCharacterObject, this.$refs.character.getSvgColor(), this.characterType, this.characterId);
                     this.saveCharacterAfterReplace(this.currentCharacterObject, this.$refs.character.getSvgColor(), this.characterType, this.characterId);
                     this.replaceCharacterMode = false;
                     this.setReplaceCharacterMode(true);
@@ -568,7 +565,6 @@
             },
         },
         mounted() {
-            // this.resetVulnerableOption();
             document.body.addEventListener('keyup', e => {
                 // Escape key to close the modal window (customizer)
                 if (e.keyCode === 27 && this.isActive) {
