@@ -362,7 +362,5 @@
 </style>
 
 <style>
-    /*html {*/
-    /*    background-color: #CED9DB !important;*/
-    /*}*/
+
 </style>
