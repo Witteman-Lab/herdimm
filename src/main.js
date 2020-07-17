@@ -11,9 +11,7 @@ import VueAnalytics from 'vue-analytics';
 Vue.use(VueRecognizer);
 library.add(faPlay, faPause, faStepForward, faStepBackward, faFastBackward, faFastForward, faAngleDown,faPlayCircle, faRedo, faExternalLinkAlt);
 
-//Vue.config.productionTip = false;
 require("./scss/main.scss");
-// require("./scss/animation.scss");
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.use(VueAnalytics, {
     id: 'UA-170491516-1',
