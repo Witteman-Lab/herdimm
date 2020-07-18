@@ -37,8 +37,8 @@
                     </div>
 
                     <div v-if="debugMode">
-                        <v-btn v-on:click="this.generateAllCharacters">{{this.labels.generateAllCharacters}}</v-btn>
-                        <v-btn v-on:click="this.changeCharacterGeneration">{{characterTypeToGenerate ? this.labels.differentCharacters : this.labels.sameCharacters}}</v-btn>
+                        <v-btn v-on:click="regenerateCharacters('all')">{{this.labels.differentCharacters}}</v-btn>
+                        <v-btn v-on:click="regenerateCharacters()">{{this.labels.sameCharacters}}</v-btn>
                     </div>
 
 
@@ -126,26 +126,18 @@
             },
             /**
              * ---> ---------  completed soon -------
-             * @param none
              * @return none
+             * @param characterType
              */
-            changeCharacterGeneration() {
-                this.characterTypeToGenerate = !this.characterTypeToGenerate
-            },
+            generateAllCharacters(characterType) {
+                let character;
 
-            /**
-             * ---> ---------  completed soon -------
-             * @param none
-             * @return none
-             */
-            generateAllCharacters() {
-                if (!this.isGroupComplete) {
-                    let character;
-                    if (this.characterTypeToGenerate) {
-                        character = charactersJson.characters[Math.floor(Math.random() * charactersJson.characters.length)];
-                    }
-                    for (let i = this.totalCreated; i < this.maxCharactersInGroup; i++) {
-                        if (!this.characterTypeToGenerate) {
+                if (characterType !== "all") {
+                    character = charactersJson.characters[Math.floor(Math.random() * charactersJson.characters.length)];
+                }
+                for (let i = this.totalCreated; i < this.maxCharactersInGroup; i++) {
+                    setTimeout(() => {
+                        if (characterType === "all") {
                             character = charactersJson.characters[Math.floor(Math.random() * charactersJson.characters.length)];
                         }
                         let shirt = "#BFBABE";
@@ -171,8 +163,17 @@
                             accessoriesColor
                         };
                         this.saveCharacter(character, svgColor);
-                    }
+                    }, 100);
                 }
+            },
+
+            regenerateCharacters(characterType) {
+                if (this.isGroupComplete) {
+                    this.$refs.listToFill.removeAllCharacters();
+                    this.totalCreated = 0;
+                    this.step = 0;
+                }
+                this.generateAllCharacters(characterType);
             },
             /**
              * ---> ---------  completed soon -------

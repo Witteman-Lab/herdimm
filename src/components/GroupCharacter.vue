@@ -150,6 +150,25 @@
                 this.characterList = characters;
             },
 
+            removeAllCharacters() {
+                this.characterList = [];
+                const maxCharacters = this.nbAvatar + this.nbVulnerable + this.nbCommnunity;
+                for (let i = 0; i < maxCharacters; i++) {
+                    let type = "";
+                    if (i < this.nbAvatar) {
+                        type = "avatar";
+                    } else if (i < this.nbAvatar + this.nbVulnerable) {
+                        type = "vulnerable"
+                    } else if (i < this.nbAvatar + this.nbVulnerable + this.nbCommnunity) {
+                        type = "comm";
+                    }
+                    this.setCharacterCategory(type);
+                    this.characterList.push({characterType: type, file: "", colors: {}, id: type + i})
+                }
+                this.position = 0;
+                this.isScreenMobile();
+            },
+
             /**
              * ---> Get the current number of character in the group to manage "Go to the animation" button
              * @param none

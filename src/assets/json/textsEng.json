@@ -40,7 +40,6 @@
     "categories" : ["You", "Vulnerable people", "People around you"],
     "reason" : "Reasons",
     "vulnerableDescription" : "Why is this person at greater risk? This person is: (check all that apply)",
-    "generateAllCharacters": "Generate all characters",
     "sameCharacters": "Same Characters",
     "differentCharacters": "Random Characters",
     "moreColor" : "More Colours",
