@@ -442,10 +442,11 @@
     }
     @media screen and (min-width:420px) {
         .page-instruction {
-            margin-top: 8px;
+            margin-top: 0.5%;
             font-family: Roboto;
             font-weight: bold;
-            font-size: 24px;
+            /*font-size: 20px;*/
+            font-size: 20px;
         }
         #selectLanguage {
             position: absolute;
@@ -457,9 +458,7 @@
     }
 
     h1 {
-        font-size: 2rem;
         font-weight: bold;
-        margin: 10px;
     }
     h2 {
         font-size: 1.3rem;
@@ -467,17 +466,18 @@
         margin: 2rem 0 1rem;
     }
     p {
-        margin: 10px 0;
+        margin: 1px 0;
     }
     .tool {
-        margin: 10px;
+        margin: 1px;
         display: flex;
         justify-content: center;
     }
 
     p#contextualInfo {
-        margin: 1rem;
-        font-size: 1.1rem;
+        margin: 0.2rem;
+        font-size: 1rem;
+
     }
 
     .continue {
@@ -491,7 +491,7 @@
         height: 61px !important;
         box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.25);
         border-radius: 8px;
-        font-size: 17px;
+        font-size: 15px;
         position: relative;
         margin: 16px auto;
     }

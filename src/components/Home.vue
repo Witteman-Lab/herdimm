@@ -339,7 +339,7 @@
             height: auto;
             line-height: 39px;
             margin-left: 20px;
-            font-size: 24px;
+            font-size: 18px;
             margin-right: 20px;
         }
 
