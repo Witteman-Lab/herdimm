@@ -31,7 +31,7 @@ const saveCharacters = (request, response) => {
     const checkedCaption = captionUsed(request.body.checkedCaption, request.body.uid);
 
     //  add all elements from spent time in the db
-    totalTimeMYG.collection.insert(spentTime, function (err, docs) {
+    totalTimeMYG.collection.insertOne(spentTime, function (err, docs) {
         if (err) {
             return console.error(err);
         } else {
@@ -50,7 +50,7 @@ const saveCharacters = (request, response) => {
     });
 
      // add checked subtitle in the db
-    substitleDB.collection.insert(checkedCaption, function (err, docs) {
+    substitleDB.collection.insertOne(checkedCaption, function (err, docs) {
         if (err) {
             return console.error(err);
         } else {
