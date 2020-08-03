@@ -165,9 +165,6 @@
                     this.$refs.audioPlayer.playAudio();
                     this.isAnimationPlaying();
                     this.sendCharactersToApi('mongodb');
-                    this.isAnimationPlaying();
-
-                // }
             },
 
             reloadAnimationComp() {
