@@ -205,7 +205,7 @@
         methods: {
 
             /**
-             * ---> --------------  -----------------
+             * ---> change avatar ( Mask old avatar and close Modal)
              * @param none
              * @return none
              */
@@ -219,6 +219,11 @@
                 this.closeModal();
             },
 
+            /**
+             * ---> get the current character type
+             * @param none
+             * @return none
+             */
             getCurrentCharacterType(position) {
                 if (position < charactersJson.nbAvatar) {
                     return "avatar";
@@ -285,6 +290,11 @@
                 this.$refs.character.setCharacterTimeCreation(spendTime);
             },
 
+            /**
+             * ---> reset vulnerable option
+             * @param  none
+             * @return none
+             */
             resetVulnerableOption() {
                 this.options = [];
                 this.labels.vulnerableOptions.forEach(() => {

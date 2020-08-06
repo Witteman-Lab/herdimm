@@ -59,15 +59,17 @@
         },
 
         methods: {
+            /**
+             * ---> Track function to send information to google analytics
+             * @param none
+             * @return none
+             */
             track () {
                 this.$ga.page({
                     page: '/Transcript',
                     title: 'Transcript page',
                     location: window.location.href
                 })
-            },
-            openLinkInTitle() {
-                window.open(`${this.labels.ExtraInfoTitleLink}`);
             },
             /**
              * ---> Change the language of the interface
@@ -80,10 +82,6 @@
                 else
                     this.labels = textsEng;
                 this.currentLanguage = this.labels.currentLanguage;
-            },
-            scrollFunction(){
-                let elmnt = document.getElementById("content");
-                elmnt.scrollIntoView();
             }
         },
         mounted() {
