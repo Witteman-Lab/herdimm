@@ -4,7 +4,7 @@ var config = require('./config/configMongoDB');
 // initialise mongoose for mongodb
 var mongoose = require("mongoose");
 //mongoose.connect(`mongodb://${config.URL_DB}:27017/api_herdimm`, { useNewUrlParser: true });
-mongoose.connect(`mongodb://${config.URL_DB}:27017/api_herdimm`, { useNewUrlParser: true });
+mongoose.connect(`mongodb://${config.URL_DB_PROD}:27017/api_herdimm`, { useNewUrlParser: true });
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
