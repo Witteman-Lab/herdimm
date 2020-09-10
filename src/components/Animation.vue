@@ -68,7 +68,7 @@
     import textsEng from "../assets/json/textsEng.json";
     import textsFr from "../assets/json/textsFr.json";
     import connections from "../assets/json/connections.json";
-    import config from "../../api/config/configMongoDB";
+
 
 
     export default {
@@ -118,30 +118,38 @@
                     location: window.location.href
                 });
             },
+          sendCharactersToApi(){
+
+          },
             /**
              * ---> TO DO
              * @param TO DO
              * @return TO DO
              */
-            sendCharactersToApi(chosenDB) {
-
-                const url =`http://${config.API_URL_PROD}/api/${chosenDB}/herdimm`;
-                //const url =`http://${config.API_URL}/api/${chosenDB}/herdimm`;
-                let dataSent = {
-                    group: JSON.parse(localStorage.getItem("group")),
-                    totalTime: JSON.parse(localStorage.getItem("totalTime")),
-                    checkedCaption: this.checkboxState,
-                    uid: this.uid
-                };
-                fetch(url, {
-                    method: 'POST',
-                    mode: 'cors',
-                    headers: {
-                        'Content-Type': 'application/json;charset=utf-8'
-                    },
-                    body: JSON.stringify(dataSent)
-                });
-            },
+            // sendCharactersToApi(chosenDB) {
+            //
+            //     console.log("group", localStorage.getItem("group"));
+            //     console.log("totalTime", localStorage.getItem("totalTime"));
+            //     console.log("checkboxState", this.checkboxState);
+            //     console.log("uid", this.uid);
+            //
+            //     const url =`http://${config.API_URL_PROD}/api/${chosenDB}/herdimm`;
+            //     //const url =`http://${config.API_URL}/api/${chosenDB}/herdimm`;
+            //     let dataSent = {
+            //         group: JSON.parse(localStorage.getItem("group")),
+            //         totalTime: JSON.parse(localStorage.getItem("totalTime")),
+            //         checkedCaption: this.checkboxState,
+            //         uid: this.uid
+            //     };
+            //     fetch(url, {
+            //         method: 'POST',
+            //         mode: 'cors',
+            //         headers: {
+            //             'Content-Type': 'application/json;charset=utf-8'
+            //         },
+            //         body: JSON.stringify(dataSent)
+            //     });
+            // },
             /**
              * ---> TO DO
              * @param TO DO
@@ -165,7 +173,7 @@
                     this.isAnimationStarted = true;
                     this.$refs.audioPlayer.playAudio();
                     this.isAnimationPlaying();
-                    this.sendCharactersToApi('mongodb');
+                    this.sendCharactersToApi();
             },
 
             reloadAnimationComp() {
