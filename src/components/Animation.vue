@@ -60,7 +60,10 @@
     </div>
 </template>
 
+
+
 <script>
+
     import Character from "./Character";
     import AudioPlayer from "./AudioPlayer";
     // The scenario might need to be imported in AudioPlayer instead of here, I'm not sure at the moment
@@ -68,8 +71,28 @@
     import textsEng from "../assets/json/textsEng.json";
     import textsFr from "../assets/json/textsFr.json";
     import connections from "../assets/json/connections.json";
+    import db from "@/firebase/firebaseInit";
 
+    // Your web app's Firebase configuration
+    // let firebaseConfig = {
+    //   apiKey: "AIzaSyBd--LxbfoCdonhrGYUEv2WkvV2RBgewF4",
+    //   authDomain: "herdimm-7d6c9.firebaseapp.com",
+    //   databaseURL: "https://herdimm-7d6c9.firebaseio.com",
+    //   projectId: "herdimm-7d6c9",
+    //   storageBucket: "herdimm-7d6c9.appspot.com",
+    //   messagingSenderId: "548934183538",
+    //   appId: "1:548934183538:web:de2f44167b154c774670eb",
+    //   measurementId: "G-Y5E1JLXSJ7"
+    // };
 
+    // Initialize Firebase
+    // firebase.initializeApp(firebaseConfig);
+    // firebase.analytics();
+    // let db = app.database();
+    // let uid  = db.ref('UID');
+    // let totalTime  = db.ref('totalTime');
+    // let group  = db.ref('group');
+    // let checkboxState  = db.ref('checkboxState');
 
     export default {
         name: "Animation",
@@ -120,36 +143,21 @@
             },
           sendCharactersToApi(){
 
+            let docData = {
+              uid: this.uid,
+              totalTime: JSON.parse(localStorage.getItem("totalTime")),
+              group: JSON.parse(localStorage.getItem("group")),
+              checkboxState: this.checkboxState
+            };
+
+              db.collection("Users").add(docData)
+                .then(function(docRef) {
+                  console.log("Document written with ID: ", docRef.id);
+                })
+                .catch(function(error) {
+                  console.error("Error adding document: ", error);
+                });
           },
-            /**
-             * ---> TO DO
-             * @param TO DO
-             * @return TO DO
-             */
-            // sendCharactersToApi(chosenDB) {
-            //
-            //     console.log("group", localStorage.getItem("group"));
-            //     console.log("totalTime", localStorage.getItem("totalTime"));
-            //     console.log("checkboxState", this.checkboxState);
-            //     console.log("uid", this.uid);
-            //
-            //     const url =`http://${config.API_URL_PROD}/api/${chosenDB}/herdimm`;
-            //     //const url =`http://${config.API_URL}/api/${chosenDB}/herdimm`;
-            //     let dataSent = {
-            //         group: JSON.parse(localStorage.getItem("group")),
-            //         totalTime: JSON.parse(localStorage.getItem("totalTime")),
-            //         checkedCaption: this.checkboxState,
-            //         uid: this.uid
-            //     };
-            //     fetch(url, {
-            //         method: 'POST',
-            //         mode: 'cors',
-            //         headers: {
-            //             'Content-Type': 'application/json;charset=utf-8'
-            //         },
-            //         body: JSON.stringify(dataSent)
-            //     });
-            // },
             /**
              * ---> TO DO
              * @param TO DO
