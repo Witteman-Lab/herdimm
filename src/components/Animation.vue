@@ -16,20 +16,37 @@
             <svg class="connections" ref="connections" id="connections"></svg>
         </div>
 
-        <!-- Container for the shapes (hexagons) -->
-        <div id="shapes-container" style="display: flex; justify-content: center;">
-            <div class="hexagon-container" id="main-container">
-                <!-- Grid creation -->
-                <div class="shape" v-for="(shape, index) in this.gridIds" :key="index">
-                    <div :class="shape.className" :id="shape.id">
-                        <!-- Where the group members are being placed -->
-                        <div v-if="shape.isCharacter">
-                            <Character :characterType="shape.character.characterType" v-bind:ref="shape.id" :size="{ width: characterSize }"  :edit="false" :customised="true" :colors="shape.character.colors" :id="shape.character.id" :svgFile="require(`../assets/characters/${shape.character.file}`)" />
-                        </div>
-                    </div>
-                </div>
+<!--        &lt;!&ndash; Container for the shapes (hexagons) &ndash;&gt;-->
+<!--        <div id="shapes-container" style="display: flex; justify-content: center;">-->
+<!--            <div class="hexagon-container" id="main-container">-->
+<!--                &lt;!&ndash; Grid creation &ndash;&gt;-->
+<!--                <div class="shape" v-for="(shape, index) in this.gridIds" :key="index">-->
+<!--                    <div :class="shape.className" :id="shape.id">-->
+<!--                        &lt;!&ndash; Where the group members are being placed &ndash;&gt;-->
+<!--                        <div v-if="shape.isCharacter">-->
+<!--                            <Character :characterType="shape.character.characterType" v-bind:ref="shape.id" :size="{ width: characterSize }"  :edit="false" :customised="true" :colors="shape.character.colors" :id="shape.character.id" :svgFile="require(`../assets/characters/${shape.character.file}`)" />-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--      New Grid with SVG-->
+      <!-- Container for the shapes (hexagons) -->
+      <div id="shapes-container" style="display: flex; justify-content: center;">
+        <div class="hexagon-container" id="main-container">
+          <!-- Grid creation -->
+          <div class="shape" v-for="(shape, index) in this.gridIds" :key="index">
+            <div :class="shape.className" :id="shape.id" v-html="require(`../hexagons/hexagon.svg`)">
+              <!-- Where the group members are being placed -->
+              <div v-if="shape.isCharacter">
+                <Character :characterType="shape.character.characterType" v-bind:ref="shape.id" :size="{ width: characterSize }"  :edit="false" :customised="true" :colors="shape.character.colors" :id="shape.character.id" :svgFile="require(`../assets/characters/${shape.character.file}`)" />
+              </div>
             </div>
+
+          </div>
         </div>
+      </div>
 
 
 
@@ -163,7 +180,7 @@
             startAnimation() {
                     this.checkboxState = document.getElementById("showCaptions").checked;
                     this.isAnimationStarted = true;
-                    this.$refs.audioPlayer.playAudio();
+                    //this.$refs.audioPlayer.playAudio();
                     this.isAnimationPlaying();
                     this.sendCharactersToApi('mongodb');
             },
@@ -996,11 +1013,11 @@
                 // When content is loaded, make copies of the grid to facilitate the animation
                 if (document.readyState !== 'loading' ) {
                     setTimeout(() => {
-                        this.duplicateGrid(2);
+                        //this.duplicateGrid(2);
                     }, 500);
                 } else {
                     document.addEventListener('DOMContentLoaded', () => {
-                        this.duplicateGrid(2);
+                        //this.duplicateGrid(2);
                     });
                 }
 

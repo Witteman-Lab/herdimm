@@ -51,7 +51,7 @@
              */
             playAudio() {
                 this.onplay = true;
-                let ref = this.$refs.audio;
+                //let ref = this.$refs.audio;
                 let actions = this.playlist[this.audioPosition].actions;
                 let launchSequence = this.$parent.launchSequence;
                 this.caption = this.playlist[this.audioPosition].captions[0];
@@ -60,7 +60,7 @@
                 setTimeout(() => {
                     if (this.checkboxStateAudioPlayer)
                         document.getElementById("paragraph").innerHTML = this.caption;
-                    ref.play();
+                    //ref.play();
                     if (actions) {
                         actions.forEach((sequence) => {
                             launchSequence(sequence);
@@ -92,8 +92,8 @@
             restartAudio() {
                 if (!this.onplay) {
                     this.onplay = true;
-                    let ref = this.$refs.audio;
-                    ref.play();
+                    //let ref = this.$refs.audio;
+                    //ref.play();
                 }
             },
 
@@ -110,7 +110,7 @@
                 const voiceType  = this.voice;
                 this.currentAudio = require(`../assets/${folder}/${type}/${voiceType}/${this.playlist[this.audioPosition].file}`);
                 this.caption = this.playlist[this.audioPosition].captions[0];
-                this.playAudio();
+                //this.playAudio();
             },
 
             /**
@@ -126,7 +126,7 @@
                 const voiceType  = this.voice;
                 this.currentAudio = require(`../assets/${folder}/${type}/${voiceType}/${this.playlist[this.audioPosition].file}`);
                 this.caption = this.playlist[this.audioPosition].captions[0];
-                this.playAudio();
+                //this.playAudio();
             },
 
             /**
@@ -143,7 +143,7 @@
                     const voiceType  = this.voice;
                     this.currentAudio = require(`../assets/${folder}/${type}/${voiceType}/${this.playlist[this.audioPosition].file}`);
                     this.caption = this.playlist[this.audioPosition].captions[0];
-                    this.playAudio();
+                    //this.playAudio();
                 }
             },
 
@@ -161,7 +161,7 @@
                     const voiceType  = this.voice;
                     this.currentAudio = require(`../assets/${folder}/${type}/${voiceType}/${this.playlist[this.audioPosition].file}`);
                     this.caption = this.playlist[this.audioPosition].captions[0];
-                    this.playAudio();
+                    //this.playAudio();
                 } else {
                     const folder = this.scenario[0].folder;
                     const type = this.currentLanguage;

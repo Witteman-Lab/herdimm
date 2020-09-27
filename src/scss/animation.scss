@@ -130,36 +130,13 @@ div.vaccinated::before {
 .hexagon,
 .hexagon::after,
 .hexagon::before {
-  background-color: var(--color-hex-default);
-  height: var(--hex-height);
-  width: var(--hex-width);
-  -webkit-transition: background-color 0.5s linear;
-  -moz-transition: background-color 0.5s linear;
-  -ms-transform: background-color 0.5s linear;
-  -o-transition: background-color 0.5s linear;
-  transition: background-color 0.5s linear;
 }
 .hexagon::after,
 .hexagon::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
 }
 .hexagon::before {
-  transform: rotate(-60deg);
-  -o-transform: rotate(-60deg);
-  -moz-transform: rotate(-60deg);
-  -webkit-transform: rotate(-60deg);
-  -ms-transform: rotate(-60deg);
 }
 .hexagon::after {
-  transform: rotate(60deg);
-  -o-transform: rotate(60deg);
-  -moz-transform: rotate(60deg);
-  -webkit-transform: rotate(60deg);
-  -ms-transform: rotate(60deg);
 }
 .no-hexagon,
 .no-hexagon::after,
