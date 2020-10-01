@@ -36,14 +36,8 @@
       <div id="shapes-container" style="display: flex; justify-content: center;">
         <div class="hexagon-container" id="main-container">
           <!-- Grid creation -->
-          <div class="shape" v-for="(shape, index) in this.gridIds" :key="index">
-            <div :class="shape.className" :id="shape.id" v-html="require(`../hexagons/hexagon.svg`)">
-              <!-- Where the group members are being placed -->
-              <div v-if="shape.isCharacter">
-                <Character :characterType="shape.character.characterType" v-bind:ref="shape.id" :size="{ width: characterSize }"  :edit="false" :customised="true" :colors="shape.character.colors" :id="shape.character.id" :svgFile="require(`../assets/characters/${shape.character.file}`)" />
-              </div>
-            </div>
-
+          <div class="shape" v-for="(shape, index) in this.gridIds" :key="index" style=" height: 200px; width: 50%;">
+            <Hexagon :characterSize="characterSize" :shape="shape"/>
           </div>
         </div>
       </div>
@@ -78,7 +72,8 @@
 </template>
 
 <script>
-    import Character from "./Character";
+    //import Character from "./Character";
+    import Hexagon from "./Hexagon";
     import AudioPlayer from "./AudioPlayer";
     // The scenario might need to be imported in AudioPlayer instead of here, I'm not sure at the moment
     import shapesArray from "../assets/json/shapesArray";
@@ -91,8 +86,8 @@
     export default {
         name: "Animation",
         components: {
-            Character,
-            AudioPlayer
+          Hexagon,
+          AudioPlayer
         },
         data() {
             return {
