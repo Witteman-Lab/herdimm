@@ -6,14 +6,14 @@
     "defaultColorForAllAvatarElements" : "#BDBDBD",
     "defaultColors" : {
         "HairColor": "#91553D",
-        "SkinColor": "#D8905F",
+        "SkinColor": "#BF7754",
         "ShirtColorAvatar": "#F67844",
         "ShirtColorCharacters": "#BFBABE",
         "AccessoriesColor": "#727272"
     },
     "scrollingTimeControl" : "2000",
     "folder" : "characters",
-    "skinColors" : ["#FFE2C9", "#FFCBA3", "#D8905F", "#E7B38D", "#7C5235"],
+    "skinColors" : ["#FAE7DF", "#EBC0A9", "#BF7754", "#6F3A29", "#412B28"],
     "hairColors" : ["#090806", "#71635A", "#4E433F",
         "#D6C4C2", "#CABFB1", "#412308",
         "#6A4E42", "#91553D", "#B55239",
