@@ -133,7 +133,7 @@
             },
 
             /**
-             * ---> Load Home Page
+             * ---> Load Home Pagem website accessed by clicking a hyperlink on another web page
              * @param none
              * @return none
              */
@@ -190,7 +190,7 @@
             },
 
             /**
-             * --->
+             * ---> settings type of disease for a specified animation
              * @param none
              * @return none
              */
@@ -200,7 +200,7 @@
             },
 
             /**
-             * --->
+             * ---> Settings voice to animate with on animation
              * @param none
              * @return none
              */
