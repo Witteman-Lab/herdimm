@@ -58,7 +58,7 @@
 
                       color="blue-grey"
                       class="ma-2 white--text"
-                      @click="regenerateCharacters('all')"
+                      @click="automaticAvatarsGeneration()"
                   >
                     Random
                     <v-icon
@@ -139,6 +139,84 @@
                 })
 
             },
+          /**
+           * ---> Generate random avatars
+           * @param none
+           * @return none
+           */
+            automaticAvatarsGeneration(){
+            if (this.isGroupComplete) {
+              this.$refs.listToFill.removeAllCharacters();
+              this.totalCreated = 0;
+              this.step = 0;
+            }
+
+            let character;
+            //let babyMimNumber = 0;
+            let babyMaxNumber = 1;
+            let childMinNumber = 1;
+            let childMaxNumber = 2;
+            let numberOfBaby = ( Math.floor(Math.random() * (babyMaxNumber + 1)));
+            let numberOfChild = ( Math.floor(Math.random() * childMaxNumber) + childMinNumber);
+            console.log("Nombre de Bebe -", numberOfBaby, "Nombre D'enfant -" , numberOfChild);
+            let decrementBabyValue = numberOfBaby;
+            let decrementChildValue = numberOfChild;
+
+
+
+
+            for (let i = this.totalCreated; i < this.maxCharactersInGroup; i++) {
+              setTimeout(() => {
+                if(numberOfBaby === 1 && decrementBabyValue !== 0) {
+                  character = charactersJson.characters[charactersJson.babyListIndex[Math.floor(Math.random() * (charactersJson.babyListIndex.length))]];
+                  --decrementBabyValue
+                }
+                else if(numberOfChild <= 2 && decrementChildValue !== 0 && decrementBabyValue === 0 ){
+                 character = charactersJson.characters[charactersJson.childListIndex[Math.floor(Math.random() * (charactersJson.childListIndex.length))]];
+                  --decrementChildValue;
+                }
+                else if(decrementChildValue === 0 && decrementBabyValue === 0){
+                  character = charactersJson.characters[charactersJson.adultListIndex[Math.floor(Math.random() * (charactersJson.adultListIndex.length))]];
+                }
+
+                //character = charactersJson.characters[Math.floor(Math.random() * charactersJson.characters.length)];
+
+
+
+
+                //console.log("mon test", charactersJson.babyListIndex[0]);
+                //console.log("mon test", charactersJson.babyListIndex[charactersJson.babyListIndex.length - 1]);
+
+
+                let shirt = "#BFBABE";
+                let shirtShadow = "#999598";
+                let accessoriesColor = this.defaultCharacterColors.AccessoriesColor;
+                if (i === 0) {
+                  shirt = "#F67844";
+                  shirtShadow = "#c56036";
+                  accessoriesColor = shirt;
+                }
+                let svgColor = {
+                  beards: "",
+                  face: "#E7B38D",
+                  faceShadow: "#b98f71",
+                  glasses: "",
+                  hairBack: "#553e35",
+                  hairFront: "#6A4E42",
+                  idCharacter: "",
+                  options: ['', '', ''],
+                  shirt,
+                  shirtShadow,
+                  name,
+                  accessoriesColor
+                };
+                this.saveCharacter(character, svgColor);
+              }, 100);
+            }
+
+            },
+
+
             /**
              * ---> Generate all types characters to form a group of a group
              * @param characterType
@@ -189,7 +267,6 @@
                     this.step = 0;
                 }
                 this.generateAllCharacters(characterType);
-                console.log("je fais mon test", characterType);
             },
             /**
              * ---> ---------  completed soon -------
