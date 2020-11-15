@@ -27,6 +27,7 @@
                     </div>
                     <button id="selectLanguage" :style="{'z-index': languageButtonIndex}" style="z-index: 20" class="button" v-on:click="this.changeLanguage">{{this.labels.language}}</button>
 
+
                     <!-- List of all the characters -->
                     <div class="tool">
                         <div style="width: 100%; margin: 5px;">
@@ -53,6 +54,20 @@
                                         :nbVulnerable="nbrVulnerable"
                                         :nbCommnunity="nbrCommunity" :labels='labels' id="groupCharacter" ref="listToFill" :launch-edit-modal="launchEditModal"></GroupCharacter>
                     </div>
+                  <v-btn
+
+                      color="blue-grey"
+                      class="ma-2 white--text"
+                      @click="regenerateCharacters('all')"
+                  >
+                    Random
+                    <v-icon
+                        right
+                        dark
+                    >
+                      mdi-shuffle-variant
+                    </v-icon>
+                  </v-btn>
 
 
                 </div>
@@ -174,6 +189,7 @@
                     this.step = 0;
                 }
                 this.generateAllCharacters(characterType);
+                console.log("je fais mon test", characterType);
             },
             /**
              * ---> ---------  completed soon -------
