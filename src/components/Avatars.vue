@@ -140,9 +140,9 @@
 
             },
             /**
-             * ---> ---------  completed soon -------
-             * @return none
+             * ---> Generate all types characters to form a group of a group
              * @param characterType
+             * @return none
              */
             generateAllCharacters(characterType) {
                 let character;
@@ -204,7 +204,7 @@
             },
 
             /**
-             * ---> calculate total time spend for a user
+             * ---> calculate total time spend for a user to create his list of characters
              * @param  none
              * @return none
              */
@@ -264,7 +264,14 @@
                 }
             },
 
-
+            /**
+             * ---> Update Home information and replace the character groupList
+             * @param {Object} character
+             * @param {Object} colors
+             * @param type
+             * @param id
+             * @return none
+             */
             saveCharacterAfterReplace(character, colors, type, id) {
                 this.$refs.listToFill.replaceCharacterInGroup(character,
                     colors, type, id);

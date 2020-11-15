@@ -184,8 +184,8 @@
             },
 
             /**
-             * --->  ---------------------------------- It's will be completed later ------------------------------
-             * @param {Array} props
+             * --->  Manage scenario file depending of language and voice
+             * @param none
              * @return none
              */
             selectScenarioFile() {

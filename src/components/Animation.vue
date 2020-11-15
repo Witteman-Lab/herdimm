@@ -119,9 +119,9 @@
                 });
             },
             /**
-             * ---> TO DO
-             * @param TO DO
-             * @return TO DO
+             * ---> Sending all set of characters to the api rest
+             * @param chosenDB
+             * @return none
              */
             sendCharactersToApi(chosenDB) {
 
@@ -143,9 +143,9 @@
                 });
             },
             /**
-             * ---> TO DO
-             * @param TO DO
-             * @return TO DO
+             * ---> Generate qualtrics  hyperlink
+             * @param none
+             * @return none
              */
             generateUrlQualtrics() {
                 this.state = "completed";
@@ -173,6 +173,11 @@
                 this.dialogAnimation = true;
             },
 
+            /**
+             * ---> Loading qualtrics plate-forme
+             * @param none
+             * @return none
+             */
             loadQualtrics() {
                 this.generateUrlQualtrics();
             },
@@ -198,7 +203,11 @@
                 this.isAnimationPlaying();
             },
 
-
+            /**
+             * ---> Disable captions state
+             * @param none
+             * @return none
+             */
             disableCaptions() {
                 this.checkboxState = false;
             },
@@ -212,6 +221,12 @@
                 this.isAudioPlaying = this.$refs.audioPlayer.getAudioStatus();
             },
 
+            /**
+             * ---> Send a new entry into the history stack,
+             * so when the user clicks the browser back button they will be taken to the previous URL
+             * @param none
+             * @return none
+             */
             loadExtraInfoVue(){
                 this.$router.push({name: 'ExtraInfo'});
             },
@@ -802,8 +817,8 @@
             },
 
             /**
-             * ---> ------------------ will be completed soon -------------------
-             * @param {Object} props
+             * Change the color of the st-shirt based on its status (vaccinated, infected)
+             * @param target, state
              * @return none
              */
             setCharacterTshirtColor(target, state) {
@@ -977,9 +992,9 @@
             },
 
             /**
-             * ---> TO DO
-             * @param TO DO
-             * @return TO DO
+             * ---> Builds animations grid and settings with characters from the group chosen
+             * @param none
+             * @return none
              */
             initialiseAnimation() {
                 let styles = require('../scss/animation.scss');
