@@ -55,12 +55,12 @@
                                         :nbCommnunity="nbrCommunity" :labels='labels' id="groupCharacter" ref="listToFill" :launch-edit-modal="launchEditModal"></GroupCharacter>
                     </div>
                   <v-btn
-
+                      v-show="this.showRandomBtn"
                       color="blue-grey"
                       class="ma-2 white--text"
                       @click="automaticAvatarsGeneration()"
                   >
-                    Random
+                    {{this.labels.random}}
                     <v-icon
                         right
                         dark
@@ -123,7 +123,8 @@
                 startTime: Date.now(),
                 step: 0,
                 replaceCharacterMode: false,
-                isMobile: false
+                isMobile: false,
+                showRandomBtn: true
             };
         },
         props: {
@@ -158,11 +159,13 @@
             let childMaxNumber = 2;
             let numberOfBaby = ( Math.floor(Math.random() * (babyMaxNumber + 1)));
             let numberOfChild = ( Math.floor(Math.random() * childMaxNumber) + childMinNumber);
-            console.log("Nombre de Bebe -", numberOfBaby, "Nombre D'enfant -" , numberOfChild);
+            console.log("Nombre de Bebe ->", numberOfBaby, "Nombre D'enfant ->" , numberOfChild);
             let decrementBabyValue = numberOfBaby;
             let decrementChildValue = numberOfChild;
-
-
+            /////////////////////////////////////////////////////////////////////////////////////////////////
+            let ListOfSkinColorNumber = [3, 4, 5];
+            let SkinColorNumber = ListOfSkinColorNumber[Math.floor(Math.random()*ListOfSkinColorNumber.length)];
+            console.log("test", SkinColorNumber);
 
 
             for (let i = this.totalCreated; i < this.maxCharactersInGroup; i++) {
@@ -324,8 +327,15 @@
                 this.$refs.listToFill.addCharacterToGroup(character,
                     colors, this.getCurrentCharacterType(this.totalCreated));
                 this.isMobile = this.$refs.listToFill.isScreenMobile();
+                if(this.totalCreated >= 1){
+                  this.showRandomBtn = true;
+                }
+                if(this.totalCreated > 2){
+                  this.showRandomBtn = false;
+                }
                 if (this.$refs.listToFill.getCharacterListSize() === this.maxCharactersInGroup) {
                     this.isGroupComplete = true;
+                    this.showRandomBtn = false;
                     window.scrollTo(0, document.body.scrollHeight);
                 }
 
@@ -369,6 +379,8 @@
              * @return none
              */
             editCharacter(character, colors) {
+              console.log("Edit");
+              this.showRandomBtn = false;
                 this.$refs.listToFill.editCharacter(character,
                     colors, character.characterType);
             },
@@ -495,6 +507,7 @@
                 this.setLanguage();
                 this.track();
                 window.scrollTo({top: 0, x: 0})
+                this.showRandomBtn = false;
             }
         }
 </script>
