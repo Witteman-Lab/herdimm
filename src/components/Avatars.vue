@@ -108,8 +108,12 @@
                 startTime: Date.now(),
                 step: 0,
                 replaceCharacterMode: false,
-                isMobile: false
-            };
+                isMobile: false,
+                maxCreated: 1,
+                maxBabyCreated: 1,
+                maxChildCreated: 1,
+                maxAdultCreated: 1
+        };
         },
         props: {
             characterTime: Number,
@@ -124,6 +128,65 @@
                 })
 
             },
+            isBabyAdd(generatedList,character){
+                let element;
+                // eslint-disable-next-line no-unused-vars
+                let booleanBaby = false;
+                let counter = 0;
+                for(element of generatedList){
+                    if( element.id.startsWith("baby") ){
+                        counter++;
+                    }
+                }
+                console.log("counteur baby", +counter)
+                console.log("taile generateur baby", +generatedList.length)
+                if(counter < 1 && character.id.startsWith("baby")){
+                    booleanBaby = true;
+                }
+                return booleanBaby;
+
+
+            },
+
+            isChildAdd(generatedList,character){
+                let element;
+                // eslint-disable-next-line no-unused-vars
+                let booleanChild = false;
+                let counter = 0;
+                for(element of generatedList){
+                    if( element.id.startsWith("child") ){
+                        counter++;
+                    }
+                }
+                console.log("counteur child", +counter)
+                console.log("taile generateur child", +generatedList.length)
+                if(counter < 2 && character.id.startsWith("child") ){
+                    booleanChild = true;
+                }
+                return booleanChild;
+
+
+            },
+
+            isAdultAdd(generatedList,character){
+                let element;
+                // eslint-disable-next-line no-unused-vars
+                let booleanAdult = false;
+                let counter = 0;
+                for(element of generatedList){
+                    if( element.id.startsWith("adult") ){
+                        counter++;
+                    }
+                }
+                console.log("counteur adult", +counter)
+                console.log("taile generateur adult", +generatedList.length)
+                if(counter < 7 && character.id.startsWith("adult") ){
+                    booleanAdult = true;
+                }
+                return booleanAdult;
+
+
+            },
             /**
              * ---> ---------  completed soon -------
              * @return none
@@ -131,50 +194,91 @@
              */
             generateAllCharacters(characterType) {
                 let character;
+                let generatedList =  [];
 
                 if (characterType !== "all") {
                     character = charactersJson.characters[Math.floor(Math.random() * charactersJson.characters.length)];
+
                 }
-                for (let i = this.totalCreated; i < this.maxCharactersInGroup; i++) {
+
+                // for (let i = this.totalCreated; i < this.maxCharactersInGroup; i++) {
+                let i = 0;
+                while(generatedList.length < this.maxCharactersInGroup){
+
                     setTimeout(() => {
                         if (characterType === "all") {
+                       // character = charactersJson.characters[Math.floor(Math.random() * charactersJson.characters.length)];
                             character = charactersJson.characters[Math.floor(Math.random() * charactersJson.characters.length)];
+                            //character = charactersJson.characters[10];
+                            if(this.isBabyAdd(generatedList,character)){
+                                this.filterGeneratedCharacter(i, character, generatedList);
+                            }
+                            else if(this.isChildAdd(generatedList, character)){
+                                // counterChild++;
+                                this.filterGeneratedCharacter(i, character, generatedList);
+                            }
+                            else if(this.isAdultAdd(generatedList, character)){
+                                // counterAdult++;
+                                this.filterGeneratedCharacter(i, character, generatedList);
+                            }
+
+
                         }
-                        let shirt = "#BFBABE";
-                        let shirtShadow = "#999598";
-                        let accessoriesColor = this.defaultCharacterColors.AccessoriesColor;
-                        if (i === 0) {
-                            shirt = "#F67844";
-                            shirtShadow = "#c56036";
-                            accessoriesColor = shirt;
-                        }
-                        let svgColor = {
-                            beards: "",
-                            face: "#E7B38D",
-                            faceShadow: "#b98f71",
-                            glasses: "",
-                            hairBack: "#553e35",
-                            hairFront: "#6A4E42",
-                            idCharacter: "",
-                            options: ['', '', ''],
-                            shirt,
-                            shirtShadow,
-                            name,
-                            accessoriesColor
-                        };
-                        this.saveCharacter(character, svgColor);
+
+
                     }, 100);
+                    // console.log("counter baby", +counterBaby);
+                    // console.log("counter child", +counterChild);
+                    // console.log("counter adult", +counterAdult);
+                    i++;
                 }
+
+
+            },
+
+            filterGeneratedCharacter(index, character, generatedList){
+
+                    generatedList.push(character);
+                    // console.log(character.id)
+
+                    let shirt = "#BFBABE";
+                    let shirtShadow = "#999598";
+                    let accessoriesColor = this.defaultCharacterColors.AccessoriesColor;
+                    if (index === 0) {
+                        shirt = "#F67844";
+                        shirtShadow = "#c56036";
+                        accessoriesColor = shirt;
+                    }
+                    let svgColor = {
+                        beards: "",
+                        face: "#E7B38D",
+                        faceShadow: "#b98f71",
+                        glasses: "",
+                        hairBack: "#553e35",
+                        hairFront: "#6A4E42",
+                        idCharacter: "",
+                        options: ['', '', ''],
+                        shirt,
+                        shirtShadow,
+                        name,
+                        accessoriesColor
+                    };
+                    this.saveCharacter(character, svgColor);
+
+
             },
 
             regenerateCharacters(characterType) {
                 if (this.isGroupComplete) {
+
                     this.$refs.listToFill.removeAllCharacters();
                     this.totalCreated = 0;
                     this.step = 0;
                 }
                 this.generateAllCharacters(characterType);
             },
+
+
             /**
              * ---> ---------  completed soon -------
              * @param {string} action
@@ -395,6 +499,7 @@
                 this.setLanguage();
                 this.track();
                 window.scrollTo({top: 0, x: 0})
+
             }
         }
 </script>
