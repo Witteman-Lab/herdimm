@@ -17,6 +17,8 @@
                 </div>
             </div>
         </div>
+
+
         <div v-if="isMobile" class="grid-category">
             <div class="fit-content">
                     <div style="z-index: 2;" :key="character.id" v-for="(character) in characterList">

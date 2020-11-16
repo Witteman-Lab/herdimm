@@ -201,7 +201,7 @@
                 }
                 let svgColor = {
                   beards: "",
-                  face: "#E7B38D",
+                  face: "#BF7754",
                   faceShadow: "#b98f71",
                   glasses: "",
                   hairBack: "#553e35",
