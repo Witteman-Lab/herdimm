@@ -357,6 +357,7 @@
              * ---> Set the character's t-shirt color
              * @param {String} shapeId
              * @param {String} color
+             * @param {Number} proportion
              * @return none
              */
             ChangeTShirtColor(shapeId, color, proportion) {
@@ -618,7 +619,6 @@
 
             /**
              * --->  this method allows the gradual disappearance of lines and its removal
-             * @param {Object} props
              * @return none
              */
             removeLine() {
@@ -659,6 +659,9 @@
             /**
              * ---> Parse the pattern (JSON pattern) to draw lines between various shapes during infection
              * @param {Object} pattern
+             * @param {String} durationLine
+             * @param {String} durationLineBouncingOff
+             * @param {String} linewidth
              * @return none
              */
             spreadInfection(pattern, durationLine, durationLineBouncingOff, linewidth) {
@@ -959,6 +962,7 @@
              * @param {String} source
              * @param {String} target
              * @param {String} id
+             * @param {String} linewidth
              * @return {Object}
              */
             drawLine(source, target, id, linewidth) {
