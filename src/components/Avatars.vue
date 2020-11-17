@@ -329,7 +329,7 @@
 
 
             /**
-             * ---> Change the language of the Application
+             * --->  Change the language of the Application
              * @param none
              * @return none
              */
