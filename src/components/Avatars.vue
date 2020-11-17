@@ -316,7 +316,7 @@
                 this.$refs.modal.openModal(index, character, this.totalCreated, true, this.labels.editAvatar);
             },
             /**
-             * ---> Update Home information and add the character to the groupList
+             * --->  Update Home information and add the character to the groupList
              * @param {Object} character
              * @param {Object} colors
              * @return none
