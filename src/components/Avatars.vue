@@ -330,9 +330,6 @@
                 if(this.totalCreated >= 1){
                   this.showRandomBtn = true;
                 }
-                if(this.totalCreated > 2){
-                  this.showRandomBtn = false;
-                }
                 if (this.$refs.listToFill.getCharacterListSize() === this.maxCharactersInGroup) {
                     this.isGroupComplete = true;
                     this.showRandomBtn = false;
