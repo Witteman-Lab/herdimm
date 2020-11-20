@@ -201,10 +201,9 @@
 
                 }
 
-                // for (let i = this.totalCreated; i < this.maxCharactersInGroup; i++) {
-                let i = 0;
-                while(generatedList.length < this.maxCharactersInGroup){
-
+                for (let i = this.totalCreated; i < this.maxCharactersInGroup; i++) {
+                // let i = 0;
+                // while(generatedList.length < 9){
                     setTimeout(() => {
                         if (characterType === "all") {
                        // character = charactersJson.characters[Math.floor(Math.random() * charactersJson.characters.length)];
@@ -227,10 +226,6 @@
 
 
                     }, 100);
-                    // console.log("counter baby", +counterBaby);
-                    // console.log("counter child", +counterChild);
-                    // console.log("counter adult", +counterAdult);
-                    i++;
                 }
 
 
