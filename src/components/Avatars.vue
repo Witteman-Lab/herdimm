@@ -145,6 +145,23 @@
            * @param none
            * @return none
            */
+          arrayShuffle(item){
+              let l = item.length;
+              let t, r;
+            while (0 !== l) {
+              r = Math.floor(Math.random() * l);
+              l -= 1;
+              t = item[l];
+              item[l] = item[r];
+              item[r] = t;
+            }
+            return item;
+          },
+          /**
+           * ---> Generate random avatars
+           * @param none
+           * @return none
+           */
             automaticAvatarsGeneration(){
             if (this.isGroupComplete) {
               this.$refs.listToFill.removeAllCharacters();
@@ -159,13 +176,40 @@
             let childMaxNumber = 2;
             let numberOfBaby = ( Math.floor(Math.random() * (babyMaxNumber + 1)));
             let numberOfChild = ( Math.floor(Math.random() * childMaxNumber) + childMinNumber);
-            console.log("Nombre de Bebe ->", numberOfBaby, "Nombre D'enfant ->" , numberOfChild);
+            //console.log("Nombre de Bebe ->", numberOfBaby, "Nombre D'enfant ->" , numberOfChild);
             let decrementBabyValue = numberOfBaby;
             let decrementChildValue = numberOfChild;
             /////////////////////////////////////////////////////////////////////////////////////////////////
             let ListOfSkinColorNumber = [3, 4, 5];
-            let SkinColorNumber = ListOfSkinColorNumber[Math.floor(Math.random()*ListOfSkinColorNumber.length)];
-            console.log("test", SkinColorNumber);
+            let SkinColorRandomNumber = ListOfSkinColorNumber[Math.floor(Math.random()*ListOfSkinColorNumber.length)];
+            console.log("magniol", SkinColorRandomNumber);
+
+            let RadomSkinColors = this.arrayShuffle(charactersJson.skinColors);
+            console.log("RadomSkinColors", RadomSkinColors);
+            let firstSkinColorslist = [];
+
+            for ( let i=0; i< SkinColorRandomNumber; i++){
+              firstSkinColorslist.push(RadomSkinColors[i]);
+            }
+
+            console.log("firstskinColorslist", firstSkinColorslist);
+
+
+
+            let value = (this.maxCharactersInGroup - this.totalCreated)-SkinColorRandomNumber;
+            let secondtSkinColorslist = [];
+            for(let i=0; i<value; i++){
+              secondtSkinColorslist.push(firstSkinColorslist[Math.floor(Math.random()*firstSkinColorslist.length)]);
+            }
+
+            let finalSkinColorsList = this.arrayShuffle(firstSkinColorslist).concat(this.arrayShuffle(secondtSkinColorslist));
+            console.log("la nouvelle liste est", finalSkinColorsList);
+
+            //console.log("liste des couleurs", charactersJson.skinColors.length);
+
+
+            //console.log("le nombre ", this.arrayShuffle(charactersJson.skinColors));
+            //console.log("totalCreated ", this.totalCreated);
 
 
             for (let i = this.totalCreated; i < this.maxCharactersInGroup; i++) {
@@ -201,7 +245,7 @@
                 }
                 let svgColor = {
                   beards: "",
-                  face: "#BF7754",
+                  face: finalSkinColorsList[i],
                   faceShadow: "#b98f71",
                   glasses: "",
                   hairBack: "#553e35",
@@ -332,7 +376,7 @@
                 }
                 if (this.$refs.listToFill.getCharacterListSize() === this.maxCharactersInGroup) {
                     this.isGroupComplete = true;
-                    this.showRandomBtn = false;
+                    //this.showRandomBtn = false;
                     window.scrollTo(0, document.body.scrollHeight);
                 }
 
@@ -504,7 +548,7 @@
                 this.setLanguage();
                 this.track();
                 window.scrollTo({top: 0, x: 0})
-                this.showRandomBtn = false;
+                //this.showRandomBtn = false;
             }
         }
 </script>
