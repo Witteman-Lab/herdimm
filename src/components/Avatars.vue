@@ -205,11 +205,8 @@
             let finalSkinColorsList = this.arrayShuffle(firstSkinColorslist).concat(this.arrayShuffle(secondtSkinColorslist));
             console.log("la nouvelle liste est", finalSkinColorsList);
 
-            //console.log("liste des couleurs", charactersJson.skinColors.length);
-
-
-            //console.log("le nombre ", this.arrayShuffle(charactersJson.skinColors));
-            //console.log("totalCreated ", this.totalCreated);
+            //generate four random hair colors
+            let fourRandomColors = this.getFourRandomHairColor(charactersJson.hairColors, 4);
 
 
             for (let i = this.totalCreated; i < this.maxCharactersInGroup; i++) {
@@ -226,13 +223,11 @@
                   character = charactersJson.characters[charactersJson.adultListIndex[Math.floor(Math.random() * (charactersJson.adultListIndex.length))]];
                 }
 
-                //character = charactersJson.characters[Math.floor(Math.random() * charactersJson.characters.length)];
+                  //avatar hair shuffled
+                  let shuffled = fourRandomColors.sort(function(){return .5 - Math.random()});
 
+                  //facial hair
 
-
-
-                //console.log("mon test", charactersJson.babyListIndex[0]);
-                //console.log("mon test", charactersJson.babyListIndex[charactersJson.babyListIndex.length - 1]);
 
 
                 let shirt = "#BFBABE";
@@ -248,8 +243,8 @@
                   face: finalSkinColorsList[i],
                   faceShadow: "#b98f71",
                   glasses: "",
-                  hairBack: "#553e35",
-                  hairFront: "#6A4E42",
+                  hairBack: shuffled[0],
+                  hairFront: shuffled[0],
                   idCharacter: "",
                   options: ['', '', ''],
                   shirt,
@@ -261,6 +256,47 @@
               }, 100);
             }
 
+            },
+            generateCharacterHairColor(index){
+
+                let fourRandomColors = this.getFourRandomHairColor(charactersJson.hairColors, 4);
+                let color  = this.arrayShuffle(fourRandomColors);
+
+                // let fourRandomColors = this.getFourRandomHairColor(charactersJson.hairColors, 4);
+                // let color = fourRandomColors[Math.floor(Math.random() * 5) ];
+                // let randomColor4 = charactersJson.hairColors[Math.floor(Math.random() * 5) ]
+                // console.log("four Random Colors \n" +randomColor4);
+                console.log("color \n" +color[index]);
+
+                return color[index];
+
+
+
+                // let shuffled = charactersJson.hairColors.sort(function(){return .5 - Math.random()});
+                //  console.log("shuffled \n" +shuffled);
+                //
+                // let selected =shuffled.slice(0,4);
+                //  for(let i=0; i<=selected.length; i++) {
+                //      console.log("selected \n" +selected[i]);
+                //
+                //      return selected[i];
+                //  }
+
+
+            },
+
+            getFourRandomHairColor(arr, n) {
+                var result = new Array(n),
+                    len = arr.length,
+                    taken = new Array(len);
+                if (n > len)
+                    throw new RangeError("getRandom: more elements taken than available");
+                while (n--) {
+                    var x = Math.floor(Math.random() * len);
+                    result[n] = arr[x in taken ? taken[x] : x];
+                    taken[x] = --len in taken ? taken[len] : len;
+                }
+                return result;
             },
 
 
