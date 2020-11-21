@@ -207,9 +207,10 @@
 
             //generate four random hair colors
             let fourRandomColors = this.getFourRandomHairColor(charactersJson.hairColors, 4);
+            let generatedList =  [];
 
 
-            for (let i = this.totalCreated; i < this.maxCharactersInGroup; i++) {
+              for (let i = this.totalCreated; i < this.maxCharactersInGroup; i++) {
               setTimeout(() => {
                 if(numberOfBaby === 1 && decrementBabyValue !== 0) {
                   character = charactersJson.characters[charactersJson.babyListIndex[Math.floor(Math.random() * (charactersJson.babyListIndex.length))]];
@@ -223,14 +224,13 @@
                   character = charactersJson.characters[charactersJson.adultListIndex[Math.floor(Math.random() * (charactersJson.adultListIndex.length))]];
                 }
 
+                  generatedList.push(character);
+
                   //avatar hair shuffled
                   let shuffled = fourRandomColors.sort(function(){return .5 - Math.random()});
+                  //facial hair to do
 
-                  //facial hair
-
-
-
-                let shirt = "#BFBABE";
+                  let shirt = "#BFBABE";
                 let shirtShadow = "#999598";
                 let accessoriesColor = this.defaultCharacterColors.AccessoriesColor;
                 if (i === 0) {
@@ -254,49 +254,40 @@
                 };
                 this.saveCharacter(character, svgColor);
               }, 100);
-            }
+
+              }
 
             },
-            generateCharacterHairColor(index){
-
-                let fourRandomColors = this.getFourRandomHairColor(charactersJson.hairColors, 4);
-                let color  = this.arrayShuffle(fourRandomColors);
-
-                // let fourRandomColors = this.getFourRandomHairColor(charactersJson.hairColors, 4);
-                // let color = fourRandomColors[Math.floor(Math.random() * 5) ];
-                // let randomColor4 = charactersJson.hairColors[Math.floor(Math.random() * 5) ]
-                // console.log("four Random Colors \n" +randomColor4);
-                console.log("color \n" +color[index]);
-
-                return color[index];
-
-
-
-                // let shuffled = charactersJson.hairColors.sort(function(){return .5 - Math.random()});
-                //  console.log("shuffled \n" +shuffled);
-                //
-                // let selected =shuffled.slice(0,4);
-                //  for(let i=0; i<=selected.length; i++) {
-                //      console.log("selected \n" +selected[i]);
-                //
-                //      return selected[i];
-                //  }
-
-
-            },
-
-            getFourRandomHairColor(arr, n) {
-                var result = new Array(n),
-                    len = arr.length,
-                    taken = new Array(len);
-                if (n > len)
+            getFourRandomHairColor(list, numberOfColor) {
+                let result = new Array(numberOfColor),
+                    len = list.length,
+                    chosenList = new Array(len);
+                if (numberOfColor > len)
                     throw new RangeError("getRandom: more elements taken than available");
-                while (n--) {
-                    var x = Math.floor(Math.random() * len);
-                    result[n] = arr[x in taken ? taken[x] : x];
-                    taken[x] = --len in taken ? taken[len] : len;
+                while (numberOfColor--) {
+                    let x = Math.floor(Math.random() * len);
+                    result[numberOfColor] = list[x in chosenList ? chosenList[x] : x];
+                    chosenList[x] = --len in chosenList ? chosenList[len] : len;
                 }
                 return result;
+            },
+
+            isAdultAdd(generatedList,character){
+                let element;
+                let booleanAdult = false;
+                let counter = 0;
+                for(element of generatedList){
+                    if( element.id.startsWith("adult")){
+                        counter++;
+                    }
+                }
+
+                if(counter < 2 && character.id.startsWith("adult") ){
+                    booleanAdult = true;
+                }
+                return booleanAdult;
+
+
             },
 
 
