@@ -165,7 +165,6 @@
                 }
                 return booleanChild;
 
-
             },
 
             isAdultAdd(generatedList,character){
