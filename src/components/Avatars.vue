@@ -206,9 +206,7 @@
                 // while(generatedList.length < 9){
                     setTimeout(() => {
                         if (characterType === "all") {
-                       // character = charactersJson.characters[Math.floor(Math.random() * charactersJson.characters.length)];
                             character = charactersJson.characters[Math.floor(Math.random() * charactersJson.characters.length)];
-                            //character = charactersJson.characters[10];
                             if(this.isBabyAdd(generatedList,character)){
                                 this.filterGeneratedCharacter(i, character, generatedList);
                             }
@@ -234,7 +232,6 @@
             filterGeneratedCharacter(index, character, generatedList){
 
                     generatedList.push(character);
-                    // console.log(character.id)
 
                     let shirt = "#BFBABE";
                     let shirtShadow = "#999598";
