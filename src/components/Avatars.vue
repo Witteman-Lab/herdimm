@@ -169,7 +169,8 @@
               this.step = 0;
             }
 
-            let character;
+
+              let character;
             //let babyMimNumber = 0;
             let babyMaxNumber = 1;
             let childMinNumber = 1;
@@ -227,10 +228,15 @@
                   generatedList.push(character);
 
                   //avatar hair shuffled
-                  let shuffled = fourRandomColors.sort(function(){return .5 - Math.random()});
-                  //facial hair to do
+                let shuffled = fourRandomColors.sort(function(){return .5 - Math.random()});
 
-                  let shirt = "#BFBABE";
+                  // let groupCharacter = this.$refs.listToFill.getCharacterList();
+
+                  //facial hair and glasses
+
+
+
+                let shirt = "#BFBABE";
                 let shirtShadow = "#999598";
                 let accessoriesColor = this.defaultCharacterColors.AccessoriesColor;
                 if (i === 0) {
@@ -373,6 +379,7 @@
             launch(character) {
                 if (this.$refs.listToFill.getCharacterListSize() < this.maxCharactersInGroup || this.replaceCharacterMode) {
                     this.$refs.modal.openModal(this.totalCreated, character, this.totalCreated, false, this.labels.createAvatar);
+
                 }
             },
 
