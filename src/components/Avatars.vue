@@ -27,6 +27,20 @@
                     </div>
                     <button id="selectLanguage" :style="{'z-index': languageButtonIndex}" style="z-index: 20" class="button" v-on:click="this.changeLanguage">{{this.labels.language}}</button>
 
+                  <v-btn
+                      v-show="this.showRandomBtn"
+                      color="blue-grey"
+                      class="ma-2 white--text"
+                      @click="automaticAvatarsGeneration()"
+                  >
+                    {{this.labels.random}}
+                    <v-icon
+                        right
+                        dark
+                    >
+                      mdi-shuffle-variant
+                    </v-icon>
+                  </v-btn>
 
                     <!-- List of all the characters -->
                     <div class="tool">
@@ -54,21 +68,6 @@
                                         :nbVulnerable="nbrVulnerable"
                                         :nbCommnunity="nbrCommunity" :labels='labels' id="groupCharacter" ref="listToFill" :launch-edit-modal="launchEditModal"></GroupCharacter>
                     </div>
-                  <v-btn
-                      v-show="this.showRandomBtn"
-                      color="blue-grey"
-                      class="ma-2 white--text"
-                      @click="automaticAvatarsGeneration()"
-                  >
-                    {{this.labels.random}}
-                    <v-icon
-                        right
-                        dark
-                    >
-                      mdi-shuffle-variant
-                    </v-icon>
-                  </v-btn>
-
 
                 </div>
             </div>
@@ -146,6 +145,14 @@
            * @param none
            * @return none
            */
+          random(min, max){
+            return Math.round(Math.random()*(max - min) + min);
+          },
+          /**
+           * ---> Generate random avatars
+           * @param none
+           * @return none
+           */
           arrayShuffle(item){
               let l = item.length;
               let t, r;
@@ -183,35 +190,41 @@
             let decrementBabyValue = numberOfBaby;
             let decrementChildValue = numberOfChild;
             /////////////////////////////////////////////////////////////////////////////////////////////////
-            let ListOfSkinColorNumber = [3, 4, 5];
-            let SkinColorRandomNumber = ListOfSkinColorNumber[Math.floor(Math.random()*ListOfSkinColorNumber.length)];
+            //let ListOfSkinColorNumber = [3, 4, 5];
+            //let SkinColorRandomNumber = ListOfSkinColorNumber[Math.floor(Math.random()*ListOfSkinColorNumber.length)];
+            let SkinColorRandomNumber = this.random(3, 5);
             console.log("magniol", SkinColorRandomNumber);
 
             let RadomSkinColors = this.arrayShuffle(charactersJson.skinColors);
-            console.log("RadomSkinColors", RadomSkinColors);
+            //console.log("RadomSkinColors", RadomSkinColors);
             let firstSkinColorslist = [];
 
             for ( let i=0; i< SkinColorRandomNumber; i++){
               firstSkinColorslist.push(RadomSkinColors[i]);
             }
 
-            console.log("firstskinColorslist", firstSkinColorslist);
+            //console.log("firstskinColorslist", firstSkinColorslist);
+            let value = 0;
+            if ((this.maxCharactersInGroup - this.totalCreated) > SkinColorRandomNumber)
+              value = (this.maxCharactersInGroup - this.totalCreated)-SkinColorRandomNumber;
+            else
+              value = 0;
 
-
-
-            let value = (this.maxCharactersInGroup - this.totalCreated)-SkinColorRandomNumber;
+            //let value = (this.maxCharactersInGroup - this.totalCreated)-SkinColorRandomNumber;
             let secondtSkinColorslist = [];
             for(let i=0; i<value; i++){
               secondtSkinColorslist.push(firstSkinColorslist[Math.floor(Math.random()*firstSkinColorslist.length)]);
             }
 
             let finalSkinColorsList = this.arrayShuffle(firstSkinColorslist).concat(this.arrayShuffle(secondtSkinColorslist));
-            console.log("la nouvelle liste est", finalSkinColorsList);
+            //console.log("la nouvelle liste est", finalSkinColorsList);
 
+            //---------------------------------------------------------------------------------------------
             //generate four random hair colors
             let fourRandomColors = this.getFourRandomHairColor(charactersJson.hairColors, 4);
             let generatedList =  [];
 
+            let totalCreatedCopy = this.totalCreated;
 
               for (let i = this.totalCreated; i < this.maxCharactersInGroup; i++) {
               setTimeout(() => {
@@ -227,12 +240,10 @@
                   character = charactersJson.characters[charactersJson.adultListIndex[Math.floor(Math.random() * (charactersJson.adultListIndex.length))]];
                 }
 
-                  generatedList.push(character);
-
+                generatedList.push(character);
 
                   //avatar hair shuffled
                 let shuffled = fourRandomColors.sort(function(){return .5 - Math.random()});
-
                 let shirt = "#BFBABE";
                 let shirtShadow = "#999598";
                 let accessoriesColor = this.defaultCharacterColors.AccessoriesColor;
@@ -242,10 +253,11 @@
                   shirtShadow = "#c56036";
                   accessoriesColor = shirt;
                 }
+                //console.log("la nouvelle liste est", finalSkinColorsList[i]);
                 let svgColor = {
                   beards: "",
                   glasses: this.manageCharacterGlasses(generatedList, character),
-                  face: finalSkinColorsList[i],
+                  face: finalSkinColorsList[i-(totalCreatedCopy)],
                   faceShadow: "#b98f71",
                   hairBack: shuffled[0],
                   hairFront: shuffled[0],
@@ -258,7 +270,6 @@
                 };
                 this.saveCharacter(character, svgColor);
               }, 100);
-
               }
 
             },
@@ -275,16 +286,18 @@
                 }
                 return result;
             },
-        //a modifier on obitiens encore lles grouoe d'avatar  avec juste une de lunette
-          manageCharacterGlasses(generatedList,character){
+
+          //a modifier on obitiens encore lles grouoe d'avatar  avec juste une de lunette
+          manageCharacterGlasses(generatedList, character){
             let counter = 0;
             let element;
             let glassesValue;
             for(element of generatedList) {
               if (element.id.startsWith("baby") || element.id.startsWith("child") || element.id.startsWith("adult")) {
-                console.log("counteur rebot commence\n",+counter)
+                //console.log("counteur rebot commence\n",+counter)
                 glassesValue = "";
                 counter++;
+                console.log("glassesValue", counter);
               }
             }
             if(counter < 4 && (character.id.startsWith("baby") || character.id.startsWith("child") ||character.id.startsWith("adult") )) {
@@ -450,7 +463,7 @@
              * @return none
              */
             editCharacter(character, colors) {
-              console.log("Edit");
+              //console.log("Edit");
               this.showRandomBtn = false;
                 this.$refs.listToFill.editCharacter(character,
                     colors, character.characterType);
