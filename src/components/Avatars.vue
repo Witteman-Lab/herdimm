@@ -88,6 +88,7 @@
     import textsEng from "../assets/json/textsEng.json";
     import textsFr from "../assets/json/textsFr.json";
     import facialHairJson from "../assets/json/facialHair.json";
+   // import glassesJson from "../assets/json/glasses.json";
 
 
     export default {
@@ -168,6 +169,7 @@
               this.totalCreated = 0;
               this.step = 0;
             }
+            // let  glassesValue;
 
 
               let character;
@@ -227,18 +229,14 @@
 
                   generatedList.push(character);
 
+
                   //avatar hair shuffled
                 let shuffled = fourRandomColors.sort(function(){return .5 - Math.random()});
-
-                  // let groupCharacter = this.$refs.listToFill.getCharacterList();
-
-                  //facial hair and glasses
-
-
 
                 let shirt = "#BFBABE";
                 let shirtShadow = "#999598";
                 let accessoriesColor = this.defaultCharacterColors.AccessoriesColor;
+                //accessoriesColor = "#318ce7"
                 if (i === 0) {
                   shirt = "#F67844";
                   shirtShadow = "#c56036";
@@ -246,9 +244,9 @@
                 }
                 let svgColor = {
                   beards: "",
+                  glasses: this.manageCharacterGlasses(generatedList, character),
                   face: finalSkinColorsList[i],
                   faceShadow: "#b98f71",
-                  glasses: "",
                   hairBack: shuffled[0],
                   hairFront: shuffled[0],
                   idCharacter: "",
@@ -277,25 +275,23 @@
                 }
                 return result;
             },
-
-            isAdultAdd(generatedList,character){
-                let element;
-                let booleanAdult = false;
-                let counter = 0;
-                for(element of generatedList){
-                    if( element.id.startsWith("adult")){
-                        counter++;
-                    }
-                }
-
-                if(counter < 2 && character.id.startsWith("adult") ){
-                    booleanAdult = true;
-                }
-                return booleanAdult;
-
-
+        //a modifier on obitiens encore lles grouoe d'avatar  avec juste une de lunette
+          manageCharacterGlasses(generatedList,character){
+            let counter = 0;
+            let element;
+            let glassesValue;
+            for(element of generatedList) {
+              if (element.id.startsWith("baby") || element.id.startsWith("child") || element.id.startsWith("adult")) {
+                console.log("counteur rebot commence\n",+counter)
+                glassesValue = "";
+                counter++;
+              }
+            }
+            if(counter < 4 && (character.id.startsWith("baby") || character.id.startsWith("child") ||character.id.startsWith("adult") )) {
+              glassesValue = Math.floor(Math.random() * 3);
+            }
+              return glassesValue;
             },
-
 
             /**
              * ---> Generate all types characters to form a group of a group

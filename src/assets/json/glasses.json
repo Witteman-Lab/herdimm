@@ -1,0 +1,17 @@
+{
+  "folder" : "glasses",
+  "glasses" : [
+    {
+      "id": "glasses1",
+      "file" : "glasses1.svg"
+    },
+    {
+      "id": "glasses2",
+      "file" : "glasses2.svg"
+    },
+    {
+      "id": "glasses3",
+      "file" : "glasses3.svg"
+    }
+  ]
+}
