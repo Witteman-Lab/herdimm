@@ -170,6 +170,7 @@
               this.step = 0;
             }
             // let  glassesValue;
+            let beardsValue = null;
 
 
               let character;
@@ -233,6 +234,9 @@
                   //avatar hair shuffled
                 let shuffled = fourRandomColors.sort(function(){return .5 - Math.random()});
 
+                beardsValue = this.manageBeardsAvatar(generatedList, character);
+                console.log(beardsValue);
+
                 let shirt = "#BFBABE";
                 let shirtShadow = "#999598";
                 let accessoriesColor = this.defaultCharacterColors.AccessoriesColor;
@@ -243,7 +247,7 @@
                   accessoriesColor = shirt;
                 }
                 let svgColor = {
-                  beards: "",
+                  beards: beardsValue,
                   glasses: this.manageCharacterGlasses(generatedList, character),
                   face: finalSkinColorsList[i],
                   faceShadow: "#b98f71",
@@ -276,6 +280,7 @@
                 return result;
             },
         //a modifier on obitiens encore lles grouoe d'avatar  avec juste une de lunette
+          //permet de counter le nombre de character dans liste pour attribuer les lunette à un nombre restreint
           manageCharacterGlasses(generatedList,character){
             let counter = 0;
             let element;
@@ -283,15 +288,33 @@
             for(element of generatedList) {
               if (element.id.startsWith("baby") || element.id.startsWith("child") || element.id.startsWith("adult")) {
                 console.log("counteur rebot commence\n",+counter)
-                glassesValue = "";
+                glassesValue = Math.floor(Math.random() * 3);
                 counter++;
               }
             }
-            if(counter < 4 && (character.id.startsWith("baby") || character.id.startsWith("child") ||character.id.startsWith("adult") )) {
-              glassesValue = Math.floor(Math.random() * 3);
+            if(counter > 3 && (character.id.startsWith("baby") || character.id.startsWith("child") ||character.id.startsWith("adult") )) {
+              glassesValue = "";
             }
               return glassesValue;
             },
+          //permet de counter le nombre de character dans liste pour attribuer la barbe à un nombre restreint( ne fonctionne pas bien)
+          manageBeardsAvatar(generatedList, character){
+            let element;
+            let beardsValue;
+            let counter = 0;
+            // let bool = false;
+            for(element of generatedList) {
+              if (element.id.startsWith("baby") || element.id.startsWith("child")) {
+                 beardsValue = "";
+                counter++
+
+              }
+            }
+              if(counter < 2 && character.id.startsWith("adult") ){
+                beardsValue = Math.floor(Math.random() * 3);                // bool = true;
+              }
+            return beardsValue;
+          },
 
             /**
              * ---> Generate all types characters to form a group of a group
