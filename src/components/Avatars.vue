@@ -29,7 +29,8 @@
 
                   <v-btn
                       v-show="this.showRandomBtn"
-                      color="blue-grey"
+                      id="showRandomBtnId"
+                      color="#212121"
                       class="ma-2 white--text"
                       @click="automaticAvatarsGeneration()"
                   >
@@ -140,6 +141,14 @@
                 })
 
             },
+          disableRandomBtn(){
+            document.getElementById("showRandomBtnId").disabled = true;
+            document.getElementById("showRandomBtnId").style.opacity = 0.19;
+          },
+          enabledRandomBtn(){
+            document.getElementById("showRandomBtnId").disabled = false;
+            document.getElementById("showRandomBtnId").style.opacity = 1;
+          },
           /**
            * ---> Generate random avatars
            * @param none
@@ -443,11 +452,11 @@
                     colors, this.getCurrentCharacterType(this.totalCreated));
                 this.isMobile = this.$refs.listToFill.isScreenMobile();
                 if(this.totalCreated >= 1){
-                  this.showRandomBtn = true;
+                  this.enabledRandomBtn();
                 }
                 if (this.$refs.listToFill.getCharacterListSize() === this.maxCharactersInGroup) {
                     this.isGroupComplete = true;
-                    //this.showRandomBtn = false;
+                    this.disableRandomBtn();
                     window.scrollTo(0, document.body.scrollHeight);
                 }
 
@@ -475,6 +484,7 @@
                 this.$refs.listToFill.replaceCharacterInGroup(character,
                     colors, type, id);
                 window.scrollTo(0, document.body.scrollHeight);
+                this.enabledRandomBtn();
                 if (this.totalCreated < this.maxCharactersInGroup && window.innerWidth < 420) {
                     setTimeout(() => {
                             window.scrollTo({top: 0, behavior: 'smooth', x: 0})
@@ -492,7 +502,7 @@
              */
             editCharacter(character, colors) {
               //console.log("Edit");
-              this.showRandomBtn = false;
+              this.disableRandomBtn();
                 this.$refs.listToFill.editCharacter(character,
                     colors, character.characterType);
             },
@@ -619,7 +629,8 @@
                 this.setLanguage();
                 this.track();
                 window.scrollTo({top: 0, x: 0})
-                this.showRandomBtn = false;
+                this.disableRandomBtn();
+
             }
         }
 </script>
