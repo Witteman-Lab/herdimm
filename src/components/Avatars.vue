@@ -125,7 +125,21 @@
                 step: 0,
                 replaceCharacterMode: false,
                 isMobile: false,
-                showRandomBtn: true
+                showRandomBtn: true,
+                babyMimNumber : 0,
+                babyMaxNumber : 0,
+                childMinNumber : 0,
+                childMaxNumber : 0,
+                adultMinNumber : 0,
+                adultMaxNUmber : 0,
+                decrementBabyValue : 0,
+                decrementChildValue : 0,
+                decrementAdultValue : 0,
+                numberOfBabyAfterRandom : 0,
+                numberOfChildAfterRandom : 0,
+                numberOfAdultAfterRandom : 0,
+
+
             };
         },
         props: {
@@ -174,12 +188,106 @@
             }
             return item;
           },
+            personFromTheCommunity(index){
+              switch (index) {
+                  case 1:
+                      console.log(" je suis au case 1");
+                      this.babyMimNumber = 0;
+                      this.babyMaxNumber = 1;
+                      this.childMinNumber = 1;
+                      this.childMaxNumber = 2;
+                      this.numberOfBabyAfterRandom = this.random(this.babyMimNumber, this.babyMaxNumber);
+                      this.numberOfChildAfterRandom = this.random(this.childMinNumber, this.childMaxNumber);
+                      this.decrementBabyValue = this.numberOfBabyAfterRandom;
+                      this.decrementChildValue = this.numberOfChildAfterRandom;
+                      break;
+                  case 2:
+                      this.babyMimNumber = 0;
+                      this.babyMaxNumber = 1;
+                      this.childMinNumber = 1;
+                      this.childMaxNumber = 2;
+                      this.numberOfBabyAfterRandom = this.random(this.babyMimNumber, this.babyMaxNumber);
+                      this.numberOfChildAfterRandom = this.random(this.childMinNumber, this.childMaxNumber);
+                      this.decrementBabyValue = this.numberOfBabyAfterRandom;
+                      this.decrementChildValue = this.numberOfChildAfterRandom;
+                      break;
+                  case 3:
+                      this.babyMimNumber = 0;
+                      this.babyMaxNumber = 1;
+                      this.childMinNumber = 1;
+                      this.childMaxNumber = 2;
+                      this.numberOfBabyAfterRandom = this.random(this.babyMimNumber, this.babyMaxNumber);
+                      this.numberOfChildAfterRandom = this.random(this.childMinNumber, this.childMaxNumber);
+                      this.decrementBabyValue = this.numberOfBabyAfterRandom;
+                      this.decrementChildValue = this.numberOfChildAfterRandom;
+                      break;
+                  case 4:
+                      this.babyMimNumber = 0;
+                      this.babyMaxNumber = 1;
+                      this.childMinNumber = 0;
+                      this.childMaxNumber = 2;
+                      this.numberOfBabyAfterRandom = this.random(this.babyMimNumber, this.babyMaxNumber);
+                      this.numberOfChildAfterRandom = this.random(this.childMinNumber, this.childMaxNumber);
+                      this.decrementBabyValue = this.numberOfBabyAfterRandom;
+                      this.decrementChildValue = this.numberOfChildAfterRandom;
+                      break;
+                  case 5:
+                      this.babyMimNumber = 0;
+                      this.babyMaxNumber = 1;
+                      this.childMinNumber = 1;
+                      this.childMaxNumber = 2;
+                      this.numberOfBabyAfterRandom = this.random(this.babyMimNumber, this.babyMaxNumber);
+                      this.numberOfChildAfterRandom = this.random(this.childMinNumber, this.childMaxNumber);
+                      this.decrementBabyValue = this.numberOfBabyAfterRandom;
+                      this.decrementChildValue = this.numberOfChildAfterRandom;
+                      break;
+
+                  case 6:
+                      this.babyMimNumber = 0;
+                      this.babyMaxNumber = 1;
+                      this.childMinNumber = 0;
+                      this.childMaxNumber = 1;
+                      this.numberOfBabyAfterRandom = this.random(this.babyMimNumber, this.babyMaxNumber);
+                      this.numberOfChildAfterRandom = this.random(this.childMinNumber, this.childMaxNumber);
+                      this.decrementBabyValue = this.numberOfBabyAfterRandom;
+                      this.decrementChildValue = this.numberOfChildAfterRandom;
+                      break;
+
+                  case 7:
+                      this.babyMimNumber = 0;
+                      this.babyMaxNumber = 1;
+                      this.childMinNumber = 0;
+                      this.childMaxNumber = 1;
+                      this.numberOfBabyAfterRandom = this.random(this.babyMimNumber, this.babyMaxNumber);
+                      this.numberOfChildAfterRandom = this.random(this.childMinNumber, this.childMaxNumber);
+                      this.decrementBabyValue = this.numberOfBabyAfterRandom;
+                      this.decrementChildValue = this.numberOfChildAfterRandom;
+                      break;
+                  case 8:
+                      this.babyMimNumber = 0;
+                      this.babyMaxNumber = 1;
+                      this.childMinNumber = 1;
+                      this.childMaxNumber = 2;
+                      this.numberOfBabyAfterRandom = this.random(this.babyMimNumber, this.babyMaxNumber);
+                      this.numberOfChildAfterRandom = this.random(this.childMinNumber, this.childMaxNumber);
+                      this.decrementBabyValue = this.numberOfBabyAfterRandom;
+                      this.decrementChildValue = this.numberOfChildAfterRandom;
+                      break;
+                  default:
+                      console.log("unknown value")
+              }
+            },
+
+
+
+
           /**
            * ---> Generate random avatars
            * @param none
            * @return none
            */
             automaticAvatarsGeneration(){
+
             if (this.isGroupComplete) {
               this.$refs.listToFill.removeAllCharacters();
               this.totalCreated = 0;
@@ -188,23 +296,21 @@
             // let  glassesValue;
             //let beardsValue = null;
 
+              this.personFromTheCommunity(this.totalCreated);
 
               let character;
-            //let babyMimNumber = 0;
+            let babyMimNumber = 0;
             let babyMaxNumber = 1;
             let childMinNumber = 1;
             let childMaxNumber = 2;
-            let numberOfBaby = ( Math.floor(Math.random() * (babyMaxNumber + 1)));
-            let numberOfChild = ( Math.floor(Math.random() * childMaxNumber) + childMinNumber);
-            //console.log("Nombre de Bebe ->", numberOfBaby, "Nombre D'enfant ->" , numberOfChild);
+            let numberOfBaby = this.random(babyMimNumber, babyMaxNumber);
+            let numberOfChild = this.random(childMinNumber, childMaxNumber);
             let decrementBabyValue = numberOfBaby;
             let decrementChildValue = numberOfChild;
             /////////////////////////////////////////////////////////////////////////////////////////////////
-            //let ListOfSkinColorNumber = [3, 4, 5];
-            //let SkinColorRandomNumber = ListOfSkinColorNumber[Math.floor(Math.random()*ListOfSkinColorNumber.length)];
-            let SkinColorRandomNumber = this.random(3, 5);
-            console.log("magniol", SkinColorRandomNumber);
 
+
+              let SkinColorRandomNumber = this.random(3, 5);
             let RadomSkinColors = this.arrayShuffle(charactersJson.skinColors);
             //console.log("RadomSkinColors", RadomSkinColors);
             let firstSkinColorslist = [];
@@ -239,17 +345,20 @@
 
               for (let i = this.totalCreated; i < this.maxCharactersInGroup; i++) {
               setTimeout(() => {
+                  console.log("le nombre qui reste a creer", this.totalCreated);
                 if(numberOfBaby === 1 && decrementBabyValue !== 0) {
-                  character = charactersJson.characters[charactersJson.babyListIndex[Math.floor(Math.random() * (charactersJson.babyListIndex.length))]];
+                  character = charactersJson.characters[this.random(0, 3)];
                   --decrementBabyValue
                 }
                 else if(numberOfChild <= 2 && decrementChildValue !== 0 && decrementBabyValue === 0 ){
-                 character = charactersJson.characters[charactersJson.childListIndex[Math.floor(Math.random() * (charactersJson.childListIndex.length))]];
+                 character = charactersJson.characters[this.random(4, 8)];
                   --decrementChildValue;
                 }
                 else if(decrementChildValue === 0 && decrementBabyValue === 0){
-                  character = charactersJson.characters[charactersJson.adultListIndex[Math.floor(Math.random() * (charactersJson.adultListIndex.length))]];
+                  character = charactersJson.characters[this.random(9, 33)];
                 }
+
+                console.log("mon test", i);
 
                 generatedList.push(character);
 
@@ -456,7 +565,7 @@
                 }
                 if (this.$refs.listToFill.getCharacterListSize() === this.maxCharactersInGroup) {
                     this.isGroupComplete = true;
-                    this.disableRandomBtn();
+                    //this.disableRandomBtn();
                     window.scrollTo(0, document.body.scrollHeight);
                 }
 
