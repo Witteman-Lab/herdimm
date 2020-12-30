@@ -911,7 +911,20 @@
             vaccination(props){
                 const selector = '#main-container #';
                 let value = 0;
-                let file = require("../assets/json/" + props.file);
+                let file = "";
+                if(typeof(props.file) === "object"){
+                    if (localStorage.getItem("disease") === this.diseaseArray[0] || localStorage.getItem("disease") === this.diseaseArray[1] || localStorage.getItem("disease") === this.diseaseArray[2])
+                    {
+                        file = require("../assets/json/" + props.file[0] +localStorage.getItem("disease")+".json");
+                        console.log("file", file);
+                    }
+                    else {
+                        file = require("../assets/json/" + props.file[0] +".json");
+                    }
+                }else{
+                    file = require("../assets/json/" + props.file);
+                }
+                console.log("file coverage", file.coverage)
                 let coverage = file.coverage;
                 setTimeout(()=> {
                     let vaccineCoverage = setInterval(() => {

@@ -284,7 +284,7 @@
                     {
                         "action": "vaccination",
                         "props": {
-                            "file" : "vaccineCoverageAdd91.json",
+                            "file" : ["vaccineCoverageAdd91"],
                             "duration": "10",
                             "state": "vaccinated",
                             "startTime" : "400",
