@@ -346,6 +346,7 @@
             automaticAvatarsGeneration(){
               let character;
               let finalSkinColorsList = [];
+              let generatedList =  [];
 
             if (this.isGroupComplete) {
               this.$refs.listToFill.removeAllCharacters();
@@ -357,11 +358,12 @@
             this.personFromTheCommunity(this.totalCreated);
             finalSkinColorsList = this.randomSkinColor(this.totalCreated, this.maxCharactersInGroup);
 
-            //---------------------------------------------------------------------------------------------
 
             //generate four random hair colors
             let fourRandomColors = this.getFourRandomHairColor(charactersJson.hairColors, 4);
-            let generatedList =  [];
+            //avatar hair shuffled
+              let shuffled = fourRandomColors.sort(function(){return .5 - Math.random()});
+
 
             let totalCreatedCopy = this.totalCreated;
 
@@ -378,13 +380,10 @@
                 else if(this.decrementChildValue === 0 && this.decrementBabyValue === 0){
                   character = charactersJson.characters[this.random(9, 33)];
                 }
+
                 generatedList.push(character);
 
-                  //avatar hair shuffled
-                let shuffled = fourRandomColors.sort(function(){return .5 - Math.random()});
-
-                // //beardsValue = this.manageBeardsAvatar(character);
-
+                //beardsValue = this.manageBeardsAvatar(character);
                 let shirt = "#BFBABE";
                 let shirtShadow = "#999598";
                 let accessoriesColor = this.defaultCharacterColors.AccessoriesColor;
@@ -426,7 +425,7 @@
                 }
                 return result;
             },
-        //a modifier on obitiens encore lles grouoe d'avatar  avec juste une de lunette
+
           //permet de counter le nombre de character dans liste pour attribuer les lunette à un nombre restreint
           manageCharacterGlasses(generatedList,character){
             let counter = 0;

@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="character-position" :style="{width: this.characterPositionWidth}">
-            <div v-on:click="selectYourCharacter" ref="characterImg" v-html="this.svg" :style="{width: this.width, height: this.height}" style="margin: 5px auto auto auto;"></div>
+            <div  v-on:click="selectYourCharacter" ref="characterImg" v-html="this.svg" :style="{width: this.width, height: this.height}" style="margin: 5px auto auto auto;"></div>
             <span v-if="isName" style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis;margin-bottom: 0.5em;color: #848484;font-size: 14px;">{{this.svgColor.name}}</span>
             <div style="display: flex;justify-content: center;">
                 <div v-if="group" class="line"></div>

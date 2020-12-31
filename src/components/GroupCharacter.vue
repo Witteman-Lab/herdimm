@@ -1,10 +1,12 @@
 <template>
     <div class="groups-banner">
         <div v-if="!isMobile" class="grid-category">
-            <div v-bind:key="index" v-for="(category, index) in this.labels.categories" class="fit-content" :style="index === 1 ? 'margin-left: 35px;' : ''">
+            <div v-bind:key="index"
+                 v-for="(category, index) in this.labels.categories" class="fit-content" :style="index === 1 ? 'margin-left: 35px;' : ''">
                 <div style="display: flex; justify-content: center;">
-                    <div style="z-index: 2;" :key="character.id" v-for="(character) in characterList">
-                        <div class="grid-list-character" v-if="character.characterType === isCharacterType[index]">
+                    <div style="z-index: 2; " :key="character.id" v-for="(character) in characterList">
+                        <div :content="index" v-tippy="{ arrow : true,  animation : 'perspective', placement : 'bottom'}"
+                                class="grid-list-character" v-if="character.characterType === isCharacterType[index]">
                             <div class="cercle-avatar" v-if="character.characterType === 'avatar'" v-html="require(`../assets/images/cercle-avatar.svg`)"></div>
                             <div v-if="character.file === ''" style="width: 64px; height: 50px;"></div>
                             <Character style="margin: 10px 5px;" :disabled="false" :ref="character.id"  :is-name="true" :size="{width: '64px', height: '70px'}"
@@ -119,6 +121,7 @@
              * @return none
              */
             editCharacter(character, characterColors, type) {
+                console.log("edition du charactere");
                 const index = this.characterList.findIndex((characterObj) => characterObj.id === character.id);
                 if (index !== -1) {
                     this.characterList.splice(index, 1, {id: character.id, file: character.file, colors: characterColors, characterType: type});
