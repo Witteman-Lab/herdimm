@@ -138,6 +138,7 @@
                 numberOfBabyAfterRandom : 0,
                 numberOfChildAfterRandom : 0,
                 numberOfAdultAfterRandom : 0,
+                SkinColorRandomNumber : 0
 
 
             };
@@ -277,6 +278,63 @@
               }
             },
 
+            randomSkinColor(totalCreated, maxCharactersInGroup){
+                let firstSkinColorsList = [];
+                let additionalColorNumber = 0;
+                let secondSkinColorsList = [];
+                let finalSkinColorsList = [];
+
+                switch (totalCreated) {
+                    case 1:
+                        this.SkinColorRandomNumber = this.random(3, 5);
+                        break;
+                    case 2:
+                        this.SkinColorRandomNumber = this.random( 3, 5);
+                        break;
+                    case 3:
+                        this.SkinColorRandomNumber = this.random( 3, 5);
+                        break;
+                    case 4:
+                        this.SkinColorRandomNumber = this.random( 2, 5);
+                        break;
+                    case 5:
+                        this.SkinColorRandomNumber = this.random( 2, 4);
+                        break;
+                    case 6:
+                        this.SkinColorRandomNumber = this.random( 1, 3);
+                        break;
+                    case 7:
+                        this.SkinColorRandomNumber = this.random( 1, 2);
+                        break;
+                    case 8:
+                        this.SkinColorRandomNumber = 1;
+                        break;
+                    default:
+                        this.SkinColorRandomNumber = this.random( 3, 5);
+
+                }
+                let radomSkinColors = this.arrayShuffle(charactersJson.skinColors);
+
+                for ( let i=0; i< this.SkinColorRandomNumber; i++){
+                    firstSkinColorsList.push(radomSkinColors[i]);
+                }
+
+                if ((maxCharactersInGroup - totalCreated) > this.SkinColorRandomNumber){
+                    additionalColorNumber = (maxCharactersInGroup - totalCreated) - this.SkinColorRandomNumber;
+
+                    for(let i=0; i<additionalColorNumber; i++){
+                        secondSkinColorsList.push(firstSkinColorsList[Math.floor(Math.random()*firstSkinColorsList.length)]);
+                    }
+                    finalSkinColorsList = this.arrayShuffle(firstSkinColorsList).concat(this.arrayShuffle(secondSkinColorsList));
+                }
+                else
+                {
+                    finalSkinColorsList = this.arrayShuffle(firstSkinColorsList)
+                }
+
+                return finalSkinColorsList;
+            },
+
 
 
 
@@ -286,6 +344,8 @@
            * @return none
            */
             automaticAvatarsGeneration(){
+              let character;
+              let finalSkinColorsList = [];
 
             if (this.isGroupComplete) {
               this.$refs.listToFill.removeAllCharacters();
@@ -293,35 +353,9 @@
               this.step = 0;
             }
 
+
             this.personFromTheCommunity(this.totalCreated);
-
-              let character;
-
-            /////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-              let SkinColorRandomNumber = this.random(3, 5);
-            let RadomSkinColors = this.arrayShuffle(charactersJson.skinColors);
-
-            let firstSkinColorslist = [];
-
-            for ( let i=0; i< SkinColorRandomNumber; i++){
-              firstSkinColorslist.push(RadomSkinColors[i]);
-            }
-
-            let value = 0;
-            if ((this.maxCharactersInGroup - this.totalCreated) > SkinColorRandomNumber)
-              value = (this.maxCharactersInGroup - this.totalCreated)-SkinColorRandomNumber;
-            else
-              value = 0;
-
-            //let value = (this.maxCharactersInGroup - this.totalCreated)-SkinColorRandomNumber;
-            let secondtSkinColorslist = [];
-            for(let i=0; i<value; i++){
-              secondtSkinColorslist.push(firstSkinColorslist[Math.floor(Math.random()*firstSkinColorslist.length)]);
-            }
-
-            let finalSkinColorsList = this.arrayShuffle(firstSkinColorslist).concat(this.arrayShuffle(secondtSkinColorslist));
+            finalSkinColorsList = this.randomSkinColor(this.totalCreated, this.maxCharactersInGroup);
 
             //---------------------------------------------------------------------------------------------
 
