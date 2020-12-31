@@ -191,7 +191,6 @@
             personFromTheCommunity(index){
               switch (index) {
                   case 1:
-                      console.log(" je suis au case 1");
                       this.babyMimNumber = 0;
                       this.babyMaxNumber = 1;
                       this.childMinNumber = 1;
@@ -293,33 +292,23 @@
               this.totalCreated = 0;
               this.step = 0;
             }
-            // let  glassesValue;
-            //let beardsValue = null;
 
-              this.personFromTheCommunity(this.totalCreated);
+            this.personFromTheCommunity(this.totalCreated);
 
               let character;
-            let babyMimNumber = 0;
-            let babyMaxNumber = 1;
-            let childMinNumber = 1;
-            let childMaxNumber = 2;
-            let numberOfBaby = this.random(babyMimNumber, babyMaxNumber);
-            let numberOfChild = this.random(childMinNumber, childMaxNumber);
-            let decrementBabyValue = numberOfBaby;
-            let decrementChildValue = numberOfChild;
+
             /////////////////////////////////////////////////////////////////////////////////////////////////
 
 
               let SkinColorRandomNumber = this.random(3, 5);
             let RadomSkinColors = this.arrayShuffle(charactersJson.skinColors);
-            //console.log("RadomSkinColors", RadomSkinColors);
+
             let firstSkinColorslist = [];
 
             for ( let i=0; i< SkinColorRandomNumber; i++){
               firstSkinColorslist.push(RadomSkinColors[i]);
             }
 
-            //console.log("firstskinColorslist", firstSkinColorslist);
             let value = 0;
             if ((this.maxCharactersInGroup - this.totalCreated) > SkinColorRandomNumber)
               value = (this.maxCharactersInGroup - this.totalCreated)-SkinColorRandomNumber;
@@ -333,7 +322,6 @@
             }
 
             let finalSkinColorsList = this.arrayShuffle(firstSkinColorslist).concat(this.arrayShuffle(secondtSkinColorslist));
-            //console.log("la nouvelle liste est", finalSkinColorsList);
 
             //---------------------------------------------------------------------------------------------
 
@@ -345,29 +333,23 @@
 
               for (let i = this.totalCreated; i < this.maxCharactersInGroup; i++) {
               setTimeout(() => {
-                  console.log("le nombre qui reste a creer", this.totalCreated);
-                if(numberOfBaby === 1 && decrementBabyValue !== 0) {
+                if(this.numberOfBabyAfterRandom !== 0 && this.decrementBabyValue !== 0) {
                   character = charactersJson.characters[this.random(0, 3)];
-                  --decrementBabyValue
+                  --this.decrementBabyValue;
                 }
-                else if(numberOfChild <= 2 && decrementChildValue !== 0 && decrementBabyValue === 0 ){
+                else if(this.numberOfChildAfterRandom !==0 && this.decrementChildValue !== 0 && this.decrementBabyValue === 0 ){
                  character = charactersJson.characters[this.random(4, 8)];
-                  --decrementChildValue;
+                  --this.decrementChildValue;
                 }
-                else if(decrementChildValue === 0 && decrementBabyValue === 0){
+                else if(this.decrementChildValue === 0 && this.decrementBabyValue === 0){
                   character = charactersJson.characters[this.random(9, 33)];
                 }
-
-                console.log("mon test", i);
-
                 generatedList.push(character);
 
                   //avatar hair shuffled
                 let shuffled = fourRandomColors.sort(function(){return .5 - Math.random()});
 
                 // //beardsValue = this.manageBeardsAvatar(character);
-                // // console.log(beardsValue);
-                // console.log("character", this.manageBeardsAvatar(character));
 
                 let shirt = "#BFBABE";
                 let shirtShadow = "#999598";
@@ -378,7 +360,6 @@
                   shirtShadow = "#c56036";
                   accessoriesColor = shirt;
                 }
-                //console.log("la nouvelle liste est", finalSkinColorsList[i]);
                 let svgColor = {
                   beards: "",
                   glasses: "",
@@ -419,10 +400,8 @@
             let glassesValue;
             for(element of generatedList) {
               if (element.id.startsWith("baby") || element.id.startsWith("child") || element.id.startsWith("adult")) {
-                //console.log("counteur rebot commence\n",+counter)
                 glassesValue = Math.floor(Math.random() * 3);
                 counter++;
-                //console.log("glassesValue", counter);
               }
             }
             if(counter > 3 && (character.id.startsWith("baby") || character.id.startsWith("child") ||character.id.startsWith("adult") )) {
@@ -610,7 +589,6 @@
              * @return none
              */
             editCharacter(character, colors) {
-              //console.log("Edit");
               this.disableRandomBtn();
                 this.$refs.listToFill.editCharacter(character,
                     colors, character.characterType);
