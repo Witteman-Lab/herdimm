@@ -5,7 +5,7 @@
                  v-for="(category, index) in this.labels.categories" class="fit-content" :style="index === 1 ? 'margin-left: 35px;' : ''">
                 <div style="display: flex; justify-content: center;">
                     <div style="z-index: 2; " :key="character.id" v-for="(character) in characterList">
-                        <div :content="index" v-tippy="{ arrow : true,  animation : 'perspective', placement : 'bottom'}"
+                        <div :content="index"
                                 class="grid-list-character" v-if="character.characterType === isCharacterType[index]">
                             <div class="cercle-avatar" v-if="character.characterType === 'avatar'" v-html="require(`../assets/images/cercle-avatar.svg`)"></div>
                             <div v-if="character.file === ''" style="width: 64px; height: 50px;"></div>
@@ -121,7 +121,6 @@
              * @return none
              */
             editCharacter(character, characterColors, type) {
-                console.log("edition du charactere");
                 const index = this.characterList.findIndex((characterObj) => characterObj.id === character.id);
                 if (index !== -1) {
                     this.characterList.splice(index, 1, {id: character.id, file: character.file, colors: characterColors, characterType: type});
@@ -154,7 +153,37 @@
             addGroup(characters) {
                 this.characterList = characters;
             },
+            /**
+             * ---> -------------------
+             * @param none
+             * @return none
+             */
+            removeSpecificGroupOfCharacter(value){
+                let characterListCopy = this.characterList.splice(0, value);
+                this.characterList = [];
+                this.characterList = characterListCopy;
+                const maxCharacters = this.nbAvatar + this.nbVulnerable + this.nbCommnunity;
+                for (let i = value; i < maxCharacters; i++) {
+                    let type = "";
+                    if (i < this.nbAvatar) {
+                        type = "avatar";
+                    } else if (i < this.nbAvatar + this.nbVulnerable) {
+                        type = "vulnerable"
+                    } else if (i < this.nbAvatar + this.nbVulnerable + this.nbCommnunity) {
+                        type = "comm";
+                    }
+                    this.setCharacterCategory(type);
+                    this.characterList.push({characterType: type, file: "", colors: {}, id: type + i})
+                }
+                this.position = value;
+                this.isScreenMobile();
 
+            },
+            /**
+             * ---> -------------------
+             * @param none
+             * @return none
+             */
             removeAllCharacters() {
                 this.characterList = [];
                 const maxCharacters = this.nbAvatar + this.nbVulnerable + this.nbCommnunity;

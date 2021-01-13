@@ -88,7 +88,6 @@
     import textsEng from "../assets/json/textsEng.json";
     import textsFr from "../assets/json/textsFr.json";
     import facialHairJson from "../assets/json/facialHair.json";
-   // import glassesJson from "../assets/json/glasses.json";
 
 
     export default {
@@ -138,7 +137,14 @@
                 numberOfBabyAfterRandom : 0,
                 numberOfChildAfterRandom : 0,
                 numberOfAdultAfterRandom : 0,
-                SkinColorRandomNumber : 0
+                SkinColorRandomNumber : 0,
+                beardsRandomNumber : 0,
+                beardsRandomNumberCopy : 0,
+                glassesRandomNumber : 0,
+                glassesRandomNumberCopy : 0,
+                totalCreatedCopy : 0,
+                automaticAvatarsGenerationState : true,
+
 
 
             };
@@ -189,6 +195,11 @@
             }
             return item;
           },
+            /**
+             * ---> -------------------
+             * @param none
+             * @return none
+             */
             personFromTheCommunity(index){
               switch (index) {
                   case 1:
@@ -274,10 +285,21 @@
                       this.decrementChildValue = this.numberOfChildAfterRandom;
                       break;
                   default:
-                      console.log("unknown value")
+                      this.babyMimNumber = 0;
+                      this.babyMaxNumber = 1;
+                      this.childMinNumber = 1;
+                      this.childMaxNumber = 2;
+                      this.numberOfBabyAfterRandom = this.random(this.babyMimNumber, this.babyMaxNumber);
+                      this.numberOfChildAfterRandom = this.random(this.childMinNumber, this.childMaxNumber);
+                      this.decrementBabyValue = this.numberOfBabyAfterRandom;
+                      this.decrementChildValue = this.numberOfChildAfterRandom;
               }
             },
-
+            /**
+             * ---> -------------------
+             * @param none
+             * @return none
+             */
             randomSkinColor(totalCreated, maxCharactersInGroup){
                 let firstSkinColorsList = [];
                 let additionalColorNumber = 0;
@@ -313,6 +335,7 @@
                         this.SkinColorRandomNumber = this.random( 3, 5);
 
                 }
+
                 let radomSkinColors = this.arrayShuffle(charactersJson.skinColors);
 
                 for ( let i=0; i< this.SkinColorRandomNumber; i++){
@@ -334,7 +357,96 @@
 
                 return finalSkinColorsList;
             },
+            /**
+             * ---> -------------------
+             * @param none
+             * @return none
+             */
+            randomBeardsAvatar(totalCreated){
+              switch (totalCreated) {
+                  case 1:
+                      this.beardsRandomNumber = this.random(1, 2);
+                      this.beardsRandomNumberCopy = this.beardsRandomNumber;
+                      break;
+                  case 2:
+                      this.beardsRandomNumber = this.random(1, 2);
+                      this.beardsRandomNumberCopy = this.beardsRandomNumber;
+                      break;
+                  case 3:
+                      this.beardsRandomNumber = this.random(1, 2);
+                      this.beardsRandomNumberCopy = this.beardsRandomNumber;
+                      break;
+                  case 4:
+                      this.beardsRandomNumber = this.random(0, 2);
+                      this.beardsRandomNumberCopy = this.beardsRandomNumber;
+                      break;
+                  case 5:
+                      this.beardsRandomNumber = this.random(0, 2);
+                      this.beardsRandomNumberCopy = this.beardsRandomNumber;
+                      break;
+                  case 6:
+                      this.beardsRandomNumber = this.random(0, 2);
+                      this.beardsRandomNumberCopy = this.beardsRandomNumber;
+                      break;
+                  case 7:
+                      this.beardsRandomNumber = this.random(0, 2);
+                      this.beardsRandomNumberCopy = this.beardsRandomNumber;
+                      break;
+                  case 8:
+                      this.beardsRandomNumber = this.random(0, 1);
+                      this.beardsRandomNumberCopy = this.beardsRandomNumber;
+                      break;
+                  default:
+                      this.beardsRandomNumber = this.random(0, 1);
+                      this.beardsRandomNumberCopy = this.beardsRandomNumber;
 
+              }
+            },
+            /**
+             * ---> -------------------
+             * @param none
+             * @return none
+             */
+            randomGlassesAvatar(totalCreated){
+                switch (totalCreated) {
+                    case 1:
+                        this.glassesRandomNumber = this.random(2, 4);
+                        this.glassesRandomNumberCopy = this.glassesRandomNumber;
+                        break;
+                    case 2:
+                        this.glassesRandomNumber = this.random(2, 4);
+                        this.glassesRandomNumberCopy = this.glassesRandomNumber;
+                        break;
+                    case 3:
+                        this.glassesRandomNumber = this.random(2, 4);
+                        this.glassesRandomNumberCopy = this.glassesRandomNumber;
+                        break;
+                    case 4:
+                        this.glassesRandomNumber = this.random(2, 3);
+                        this.glassesRandomNumberCopy = this.glassesRandomNumber;
+                        break;
+                    case 5:
+                        this.glassesRandomNumber = this.random(2, 3);
+                        this.glassesRandomNumberCopy = this.glassesRandomNumber;
+                        break;
+                    case 6:
+                        this.glassesRandomNumber = this.random(1, 2);
+                        this.glassesRandomNumberCopy = this.glassesRandomNumber;
+                        break;
+                    case 7:
+                        this.glassesRandomNumber = this.random(0, 2);
+                        this.glassesRandomNumberCopy = this.glassesRandomNumber;
+                        break;
+                    case 8:
+                        this.glassesRandomNumber = this.random(0, 1);
+                        this.glassesRandomNumberCopy = this.glassesRandomNumber;
+                        break;
+                    default:
+                        this.glassesRandomNumber = this.random(0, 1);
+                        this.glassesRandomNumberCopy = this.glassesRandomNumber;
+
+                }
+            },
 
 
 
@@ -344,26 +456,39 @@
            * @return none
            */
             automaticAvatarsGeneration(){
+
+              if(this.automaticAvatarsGenerationState){
+                  this.totalCreatedCopy = this.totalCreated;
+                  this.automaticAvatarsGenerationState = false;
+              }
+
+
               let character;
               let finalSkinColorsList = [];
               let generatedList =  [];
+              this.beardsRandomNumber = 0;
+              this.beardsRandomNumberCopy = this.beardsRandomNumber;
+              this.glassesRandomNumber = 0;
+              this.glassesRandomNumberCopy = this.glassesRandomNumber;
 
-            if (this.isGroupComplete) {
-              this.$refs.listToFill.removeAllCharacters();
-              this.totalCreated = 0;
-              this.step = 0;
-            }
-
+              if (this.isGroupComplete) {
+                  this.$refs.listToFill.removeSpecificGroupOfCharacter(this.totalCreatedCopy);
+                  this.totalCreated = this.totalCreatedCopy;
+                  //this.step = this.totalCreatedCopy;
+              }
 
             this.personFromTheCommunity(this.totalCreated);
             finalSkinColorsList = this.randomSkinColor(this.totalCreated, this.maxCharactersInGroup);
+            this.randomBeardsAvatar(this.totalCreated);
+            this.randomGlassesAvatar(this.totalCreated);
+
+
 
 
             //generate four random hair colors
             let fourRandomColors = this.getFourRandomHairColor(charactersJson.hairColors, 4);
             //avatar hair shuffled
               let shuffled = fourRandomColors.sort(function(){return .5 - Math.random()});
-
 
             let totalCreatedCopy = this.totalCreated;
 
@@ -383,19 +508,18 @@
 
                 generatedList.push(character);
 
-                //beardsValue = this.manageBeardsAvatar(character);
                 let shirt = "#BFBABE";
                 let shirtShadow = "#999598";
                 let accessoriesColor = this.defaultCharacterColors.AccessoriesColor;
-                //accessoriesColor = "#318ce7"
+
                 if (i === 0) {
                   shirt = "#F67844";
                   shirtShadow = "#c56036";
                   accessoriesColor = shirt;
                 }
                 let svgColor = {
-                  beards: "",
-                  glasses: "",
+                  beards: this.manageBeardsAvatar(character),
+                  glasses: this.manageCharacterGlasses(character),
                   face: finalSkinColorsList[i-(totalCreatedCopy)],
                   faceShadow: "#b98f71",
                   hairBack: shuffled[0],
@@ -426,43 +550,47 @@
                 return result;
             },
 
-          //permet de counter le nombre de character dans liste pour attribuer les lunette à un nombre restreint
-          manageCharacterGlasses(generatedList,character){
-            let counter = 0;
-            let element;
+            /**
+             * ---> -------------------
+             * @param none
+             * @return none
+             */
+          manageCharacterGlasses(character){
+
             let glassesValue;
-            for(element of generatedList) {
-              if (element.id.startsWith("baby") || element.id.startsWith("child") || element.id.startsWith("adult")) {
-                glassesValue = Math.floor(Math.random() * 3);
-                counter++;
+              if (character.id.startsWith("baby") || character.id.startsWith("child") || character.id.startsWith("adult") && this.glassesRandomNumberCopy !==0) {
+                  if(character.id.startsWith("baby") || character.id.startsWith("child")){
+                      glassesValue = 0;
+                  }
+                  else{
+                      glassesValue = this.random(0, 2);
+                  }
+                  this.glassesRandomNumberCopy--;
               }
-            }
-            if(counter > 3 && (character.id.startsWith("baby") || character.id.startsWith("child") ||character.id.startsWith("adult") )) {
-              glassesValue = "";
-            }
+              else{
+                  glassesValue = "";
+              }
               return glassesValue;
             },
 
 
-          //permet de counter le nombre de character dans liste pour attribuer la barbe à un nombre restreint( ne fonctionne pas bien)
-          // manageBeardsAvatar(character){
-            // let element;
-            // let beardsValue;
-            // let counter = 0;
-            // // let bool = false;
-            // for(element of generatedList) {
-            //   if (element.id.startsWith("baby") || element.id.startsWith("child") || element.id === "adult19") {
-            //      beardsValue = "";
-            //     counter++
-            //     console.l
-            //
-            //   }
-            // }
-            //   if(counter < 2 && character.id.startsWith("adult") ){
-            //     beardsValue = Math.floor(Math.random() * 3);                // bool = true;
-            //   }
-            // return beardsValue;
-          // },
+            /**
+             * ---> -------------------
+             * @param none
+             * @return none
+             */
+          manageBeardsAvatar(character){
+            let beardsValue;
+              if(character.id.startsWith("adult") && character.id !== "adult19" && this.beardsRandomNumberCopy !== 0 ){
+                beardsValue = this.random(0, 3);
+                this.beardsRandomNumberCopy--;
+              }
+              else{
+                  beardsValue = "";
+              }
+
+            return beardsValue;
+          },
 
             /**
              * ---> Generate all types characters to form a group of a group
@@ -506,7 +634,11 @@
                     }, 100);
                 }
             },
-
+            /**
+             * ---> -------------------
+             * @param none
+             * @return none
+             */
             regenerateCharacters(characterType) {
                 if (this.isGroupComplete) {
                     this.$refs.listToFill.removeAllCharacters();
