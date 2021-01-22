@@ -482,9 +482,6 @@
             this.randomBeardsAvatar(this.totalCreated);
             this.randomGlassesAvatar(this.totalCreated);
 
-
-
-
             //generate four random hair colors
             let fourRandomColors = this.getFourRandomHairColor(charactersJson.hairColors, 4);
             //avatar hair shuffled
