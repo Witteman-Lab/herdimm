@@ -15,6 +15,8 @@
                                        :svgFile="character.file ? require(`../assets/characters/${character.file}`) : ''"
                                        :launchModal="launchModal"/>
 
+
+
                         </div>
                     </div>
                 </div>

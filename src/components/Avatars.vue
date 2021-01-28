@@ -552,7 +552,7 @@
           manageCharacterGlasses(character){
 
             let glassesValue;
-              if (character.id.startsWith("baby") || character.id.startsWith("child") || character.id.startsWith("adult") && this.glassesRandomNumberCopy >0) {
+              if (character.id.startsWith("baby") || character.id.startsWith("child") || character.id.startsWith("adult") && this.glassesRandomNumberCopy > 0) {
                   this.glassesRandomNumberCopy--;
                   if(character.id.startsWith("baby") || character.id.startsWith("child")){
                       glassesValue = 0;
@@ -560,7 +560,6 @@
                   else{
                       glassesValue = this.random(0, 2);
                   }
-                  console.log("glassesRandomNumberCopy", this.glassesRandomNumberCopy);
               }
               else{
                   glassesValue = "";
