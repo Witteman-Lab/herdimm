@@ -408,7 +408,6 @@
                     case 1:
                         this.glassesRandomNumber = this.random(2, 4);
                         this.glassesRandomNumberCopy = this.glassesRandomNumber;
-                        console.log("le nombre de glass est ", this.glassesRandomNumber);
                         break;
                     case 2:
                         this.glassesRandomNumber = this.random(2, 4);
