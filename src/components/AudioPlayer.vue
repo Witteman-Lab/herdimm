@@ -191,16 +191,61 @@
             selectScenarioFile() {
                 const language = localStorage.getItem("language");
                 const voice = localStorage.getItem("voice");
-                if (language === "en" && voice === "female")
-                    this.scenario.push(require("../assets/json/scenario_female_en.json"));
-                else if (language === "fr" && voice === "female")
-                    this.scenario.push(require("../assets/json/scenario_female_fr.json"));
-                else if (language === "en" && voice === "male")
-                    this.scenario.push(require("../assets/json/scenario_male_en.json"));
-                else if (language === "fr" && voice === "male")
-                    this.scenario.push(require("../assets/json/scenario_male_fr.json"));
+                const disease = localStorage.getItem("disease");
+                console.log("Langue,", language);
+                console.log("Voice,", voice);
+                console.log("Disease,", disease);
+
+                if (language === "en" && voice === "female" && disease === "measles") {
+                    this.scenario.push(require("../assets/json/scenario_female_en_measles.json"));
+                    console.log("scenario_female_en_measles ");
+                }
+                else if (language === "fr" && voice === "female" && disease === "measles") {
+                    this.scenario.push(require("../assets/json/scenario_female_fr_measles.json"));
+                    console.log(" scenario_female_fr_measles");
+                }
+                else if (language === "en" && voice === "male" && disease === "measles") {
+                    this.scenario.push(require("../assets/json/scenario_male_en_measles.json"));
+                    console.log("scenario_male_en_measles ");
+                }
+                else if (language === "fr" && voice === "male" & disease === "measles") {
+                    this.scenario.push(require("../assets/json/scenario_male_fr_measles.json"));
+                    console.log("scenario_male_fr_measles ");
+                }
+                else if (language === "en" && voice === "female" && disease === "flu") {
+                    this.scenario.push(require("../assets/json/scenario_female_en_flu.json"));
+                    console.log(" scenario_female_en_flu");
+                }
+                else if (language === "fr" && voice === "female" && disease === "flu") {
+                    this.scenario.push(require("../assets/json/scenario_female_fr_flu.json"));
+                    console.log(" scenario_female_fr_flu");
+                }
+                else if (language === "en" && voice === "male" && disease === "flu") {
+                    this.scenario.push(require("../assets/json/scenario_male_en_flu.json"));
+                    console.log("scenario_male_en_flu ");
+                }
+                else if (language === "fr" && voice === "male" & disease === "flu") {
+                    this.scenario.push(require("../assets/json/scenario_male_fr_flu.json"));
+                    console.log(" scenario_male_fr_flu");
+                }
+                else if (language === "en" && voice === "female" && disease === "pertussis") {
+                    this.scenario.push(require("../assets/json/scenario_female_en_pertussis.json"));
+                    console.log(" scenario_female_en_pertussis");
+                }
+                else if (language === "fr" && voice === "female" && disease === "pertussis") {
+                    this.scenario.push(require("../assets/json/scenario_female_fr_pertussis.json"));
+                    console.log(" scenario_female_fr_pertussis");
+                }
+                else if (language === "en" && voice === "male" && disease === "pertussis") {
+                    this.scenario.push(require("../assets/json/scenario_male_en_pertussis.json"));
+                    console.log("scenario_male_en_pertussis ");
+                }
+                else if (language === "fr" && voice === "male" & disease === "pertussis") {
+                    this.scenario.push(require("../assets/json/scenario_male_fr_pertussis.json"));
+                    console.log(" scenario_male_fr_pertussis");
+                }
                 else {
-                    this.scenario.push(require("../assets/json/scenario_female_en.json"));
+                    this.scenario.push(require("../assets/json/scenario_female_en_measles.json"));
                 }
             }
 

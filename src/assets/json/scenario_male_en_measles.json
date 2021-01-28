@@ -459,7 +459,7 @@
                     {
                         "action": "vaccination",
                         "props": {
-                            "file" : "vaccineCoverageRemove31.json",
+                            "file" : "vaccineCoverageRemove12_measles.json",
                             "duration": "0",
                             "state": "vaccinated",
                             "startTime" : "500",

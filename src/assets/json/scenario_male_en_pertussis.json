@@ -1,0 +1,596 @@
+{
+  "folder" : "audio",
+  "en" : {
+    "folder" : "en",
+    "sequences" : [
+      {
+        "file" : "1E.mp3",
+        "captions" : [
+          "What role does each of us play in protecting our community?"
+        ],
+        "actions" : [
+          {
+            "action": "zoom",
+            "props": {
+              "scale" : "4",
+              "duration" : "2000",
+              "transformOrigin_X" : "52",
+              "transformOrigin_Y": "43",
+              "startTime" : "1000",
+              "timingFunction": "linear"
+            }
+          }
+        ]
+      },
+      {
+        "file" : "2E.mp3",
+        "captions" : [
+          "Imagine this is you."
+        ],
+        "actions" : [
+          {
+            "action" : "makeContour",
+            "props" : {
+              "target" : ".avatar",
+              "duration" : "1000",
+              "class" : "contour",
+              "startTime" : "300",
+              "add" : true
+            }
+          },
+          {
+            "action": "makeContour",
+            "props": {
+              "target": ".avatar",
+              "duration": "1000",
+              "class": "contour",
+              "startTime" : "2000",
+              "add" : false
+            }
+          }
+        ]
+      },
+      {
+        "file" : "3E.mp3",
+        "captions" : [
+          "These are people around you--people you see often, like your family or your coworkers, and the people around them that they see often."
+        ],
+        "actions" : [
+          {
+            "action": "zoom",
+            "props": {
+              "scale" : "3",
+              "duration" : "1000",
+              "transformOrigin_X" : "52",
+              "transformOrigin_Y": "43",
+              "startTime" : "100",
+              "timingFunction": "linear"
+            }
+          }
+        ]
+      },
+      {
+        "file" : "4E.mp3",
+        "captions" : [
+          "Some of these people, like babies, older people, or those with fragile immune systems (for example, cancer patients)..."
+        ],
+        "actions" : [
+          {
+            "action": "makeContour",
+            "props": {
+              "target": ".vulnerable",
+              "class": "contour",
+              "startTime" : "100",
+              "duration": "1000",
+              "add" : true
+            }
+          },
+          {
+            "action": "makeContour",
+            "props": {
+              "target": ".vulnerable",
+              "class": "contour",
+              "startTime" : "4000",
+              "duration": "1000",
+              "add" : false
+            }
+          },
+          {
+            "action": "changeShapeColor",
+            "props": {
+              "target": ".vulnerable",
+              "state": "vulnerability",
+              "startTime": "4000",
+              "duration": "1000"
+            }
+          }
+        ]
+      },
+      {
+        "file" : "5E.mp3",
+        "captions" : [
+          "...are more vulnerable to contagious diseases, either because they can catch them more easily, or the diseases can make them sicker."
+
+        ],
+        "_commentary" : "------------------------ No action for that scenario ---------------------------------",
+        "actions" : [
+          {
+            "action": "",
+            "props": {
+
+            }
+          }
+        ]
+      },
+      {
+        "file" : "6E.mp3",
+        "captions" : [
+          "When a contagious disease enters your community, people can catch it, pass it on to those around them, get sick, or even die from it, especially vulnerable people."
+        ],
+        "actions" : [
+          {
+            "action": "burst",
+            "props": {
+              "target": "shape_41",
+              "scale": "1.2",
+              "state": "infected",
+              "timingFunction": "linear",
+              "startTime" : "500",
+              "duration" : "250",
+              "add" : true
+            }
+          },
+          {
+            "action": "parseSpreadInfection",
+            "props": {
+              "file": "spreadinfections1.json",
+              "startTime": "1000",
+              "durationLine": "1000",
+              "durationLineBouncingOff": "250",
+              "linewidthWeb": "12",
+              "linewidthMobile": "5"
+            }
+          },
+          {
+            "action": "fadeInOut",
+            "props": {
+              "startTime" : "11000",
+              "duration": "2000"
+            }
+          },
+          {
+            "action": "resetGrid",
+            "props": {
+              "startTime" : "12000"
+            }
+          }
+        ]
+      },
+      {
+        "file" : "7E.mp3",
+        "captions" : [
+          "For some contagious diseases, we have vaccines to protect us. Vaccines train our immune system--the body’s protection system--to fight against diseases. People who are vaccinated are less likely to catch and pass on those diseases."
+        ],
+        "actions" : [
+          {
+            "action": "burst",
+            "props": {
+              "target": "shape_50",
+              "scale": "1.2",
+              "state": "vaccinated",
+              "timingFunction": "linear",
+              "startTime" : "1000",
+              "duration" : "250",
+              "add": true
+            }
+          },
+          {
+            "action": "vaccination",
+            "props": {
+              "file" : "vaccineCoverageAdd94.json",
+              "duration": "100",
+              "state": "vaccinated",
+              "startTime" : "1700",
+              "add": true,
+              "makeTransformer": false,
+              "startTimeMakeTransformer": "0"
+
+            }
+          },
+          {
+            "action": "burst",
+            "props": {
+              "target": "shape_41",
+              "scale": "1.2",
+              "state": "infected",
+              "timingFunction": "linear",
+              "startTime" : "5400",
+              "duration" : "250",
+              "add": true
+            }
+          },
+          {
+            "action": "parseSpreadInfection",
+            "props": {
+              "file" : "spreadinfections2-1.json",
+              "startTime" : "5500",
+              "durationLine": "125",
+              "durationLineBouncingOff": "250",
+              "linewidthWeb": "12",
+              "linewidthMobile": "5"
+            }
+          },
+          {
+            "action": "changeShapeColor",
+            "props": {
+              "target": "#shape_61",
+              "state": "infected",
+              "timingFunction": "linear",
+              "startTime" : "5600",
+              "duration" : "250"
+            }
+          }
+        ]
+      },
+      {
+        "file" : "8E.mp3",
+        "captions" : [
+          "But vaccines are not perfect. They don’t work every time, and their protection can fade over time..."
+        ],
+        "actions" : [
+          {
+            "action": "parseSpreadInfection",
+            "props": {
+              "file" : "spreadinfections2-2.json",
+              "startTime" : "500",
+              "durationLine": "300",
+              "durationLineBouncingOff": "250",
+              "linewidthWeb": "12",
+              "linewidthMobile": "5"
+            }
+          },
+          {
+            "action": "burst",
+            "props": {
+              "target": "shape_50",
+              "scale": "1.2",
+              "state": "vaccinated",
+              "timingFunction": "linear",
+              "duration" : "250",
+              "startTime" : "2000",
+              "add": false
+            }
+          },
+          {
+            "action": "vaccination",
+            "props": {
+              "file" : "vaccineCoverageRemove93.json",
+              "duration": "30",
+              "state": "vaccinated",
+              "startTime" : "2500",
+              "add": false,
+              "makeTransformer": false,
+              "startTimeMakeTransformer": "0"
+            }
+          }
+        ]
+      },
+      {
+        "file" : "9E.mp3",
+        "captions" : [
+          "...making additional doses of vaccine necessary to ensure protection."
+        ],
+        "actions" : [
+          {
+            "action": "vaccination",
+            "props": {
+              "file" : "vaccineCoverageAdd91.json",
+              "duration": "10",
+              "state": "vaccinated",
+              "startTime" : "400",
+              "add": true,
+              "makeTransformer": false,
+              "startTimeMakeTransformer": "0"
+
+            }
+          },
+          {
+            "action": "zoom",
+            "props": {
+              "scale" : "1.00",
+              "duration" : "1000",
+              "transformOrigin_X" : "52",
+              "transformOrigin_Y": "43",
+              "startTime" : "1500",
+              "timingFunction": "linear"
+            }
+          },
+          {
+            "action": "vaccination",
+            "props": {
+              "file" : "vaccineCoverageAdd4.json",
+              "duration": "30",
+              "state": "vaccinated",
+              "startTime" : "2700",
+              "add": true,
+              "makeTransformer": true,
+              "startTimeMakeTransformer": "5000"
+            }
+          }
+        ]
+      },
+      {
+        "file" : "10E.mp3",
+        "captions" : [
+          "When you and enough people around you are vaccinated, this creates a protective barrier for your community."
+        ],
+        "actions" : [
+
+        ]
+      },
+      {
+        "file" : "11E.mp3",
+        "captions" : [
+          "This barrier is known as “herd immunity” or “community immunity”. Community immunity helps prevent contagious diseases from spreading from one person to another."
+        ],
+        "actions" : [
+          {
+            "action": "vaccination",
+            "props": {
+              "file" : "vaccineCoverageAdd2.json",
+              "duration": "0",
+              "state": "vaccinated",
+              "startTime" : "5500",
+              "add": true,
+              "makeTransformer": true,
+              "startTimeMakeTransformer": "-5400"
+            }
+          },
+          {
+            "action": "vaccination",
+            "props": {
+              "file" : "vaccineCoverageRemove24.json",
+              "duration": "1",
+              "state": "vaccinated",
+              "startTime" : "5510",
+              "add": false,
+              "makeTransformer": true,
+              "startTimeMakeTransformer": "-5500"
+
+            }
+          },
+          {
+            "action": "vaccination",
+            "props": {
+              "file" : "vaccineCoverageRemove5.json",
+              "duration": "0",
+              "state": "vaccinated",
+              "startTime" : "9000",
+              "add": false,
+              "makeTransformer": true,
+              "startTimeMakeTransformer": "-9000"
+            }
+          },
+          {
+            "action": "vaccination",
+            "props": {
+              "file" : "vaccineCoverageAdd20.json",
+              "duration": "0",
+              "state": "vaccinated",
+              "startTime" : "9100",
+              "add": true,
+              "makeTransformer": true,
+              "startTimeMakeTransformer": "-9100"
+            }
+          },
+          {
+            "action": "vaccination",
+            "props": {
+              "file" : "vaccineCoverageAdd7.json",
+              "duration": "0",
+              "state": "vaccinated",
+              "startTime" : "12000",
+              "add": true,
+              "makeTransformer": true,
+              "startTimeMakeTransformer": "-12000"
+            }
+          }
+        ]
+      },
+      {
+        "file" : "12E.mp3",
+        "captions" : [
+          "Some diseases spread more easily than others and need more people to be vaccinated to create community immunity."
+        ],
+        "actions" : [
+          {
+            "action": "parseSpreadInfection",
+            "props": {
+              "file" : "spreadinfections3.json",
+              "startTime" : "500",
+              "durationLine": "125",
+              "durationLineBouncingOff": "250",
+              "linewidthWeb": "12",
+              "linewidthMobile": "5"
+            }
+          },
+          {
+            "action": "parseSpreadInfection",
+            "props": {
+              "file" : "spreadinfections4.json",
+              "startTime" : "1000",
+              "durationLine": "125",
+              "durationLineBouncingOff": "250",
+              "linewidthWeb": "12",
+              "linewidthMobile": "5"
+            }
+          },
+          {
+            "action": "vaccination",
+            "props": {
+              "file" : "vaccineCoverageRemove3-1.json",
+              "duration": "0",
+              "state": "vaccinated",
+              "startTime" : "1400",
+              "add": false,
+              "makeTransformer": true,
+              "startTimeMakeTransformer": "10"
+            }
+          },
+          {
+            "action": "parseSpreadInfection",
+            "props": {
+              "file" : "spreadinfections5.json",
+              "startTime" : "3500",
+              "durationLine": "125",
+              "durationLineBouncingOff": "250",
+              "linewidthWeb": "12",
+              "linewidthMobile": "5"
+            }
+          }
+        ]
+      },
+      {
+        "file" : "13E.mp3",
+        "captions" : [
+          "If not enough people are vaccinated, your community will not be protected."
+        ],
+        "actions" : [
+          {
+            "action": "vaccination",
+            "props": {
+              "file" : "vaccineCoverageRemove31.json",
+              "duration": "0",
+              "state": "vaccinated",
+              "startTime" : "500",
+              "add": false,
+              "makeTransformer": false,
+              "startTimeMakeTransformer": "0"
+            }
+          },
+          {
+            "action": "removeBarrier",
+            "props": {
+              "startTime" : "700"
+            }
+          },
+          {
+            "action": "removeInfection",
+            "props": {
+              "startTime" : "1000"
+            }
+          }
+        ]
+      },
+      {
+        "file" : "14E.mp3",
+        "captions" : [
+          "Then, diseases can more easily spread and reach you, the people around you, and others in your community, including vulnerable people."
+        ],
+        "actions" : [
+          {
+            "action": "parseSpreadInfection",
+            "props": {
+              "file" : ["flu.json","measles.json","pertussis.json"],
+              "startTime" : "500",
+              "durationLine": "160",
+              "durationLineBouncingOff": "250",
+              "linewidthWeb": "12",
+              "linewidthMobile": "5"
+            }
+          },
+          {
+            "action": "removeInfection",
+            "props": {
+              "startTime" : "9000"
+            }
+          }
+        ]
+      },
+      {
+        "file" : "15E.mp3",
+        "captions" : [
+          "When your community has community immunity, your community is protected..."
+        ],
+        "actions" : [
+          {
+            "action": "burst",
+            "props": {
+              "target": "shape_50",
+              "scale": "1.2",
+              "state": "vaccinated",
+              "timingFunction": "linear",
+              "startTime" : "2000",
+              "duration" : "250",
+              "add": true
+            }
+          },
+          {
+            "action": "vaccination",
+            "props": {
+              "file" : "vaccineCoverageAdd95.json",
+              "duration": "0",
+              "state": "vaccinated",
+              "startTime" : "2100",
+              "add": true,
+              "makeTransformer": true,
+              "startTimeMakeTransformer": "0"
+            }
+          },
+          {
+            "action": "makeContour",
+            "props": {
+              "target": ".vulnerable",
+              "class": "vulnerableContour",
+              "startTime" : "7000",
+              "duration": "700",
+              "add" : true
+            }
+          },
+          {
+            "action": "burstscrollingTimeControlContour",
+            "props": {
+              "target": ".vulnerable",
+              "scale": "1.6",
+              "state": "vaccinated",
+              "timingFunction": "linear",
+              "startTime" : "9000",
+              "duration" : "500"
+            }
+          }
+        ]
+      },
+      {
+        "file" : "16E.mp3",
+        "captions" : [
+          "...including vulnerable people who depend on those around them for protection."
+        ],
+        "actions" : [
+
+          {
+            "_commentary" : "------------------------ barrierScaling (burst on #copy2) ---------------",
+            "action" : "",
+            "props" : {
+
+            }
+          }
+        ]
+      },
+      {
+        "file" : "17E.mp3",
+        "captions" : [
+          "This means that your decision to get vaccinated or not has an impact not only on you, but also on other people in your community."
+        ],
+        "_commentary" : "------------------------ No action for that scenario (confirmed)) ---------------------------------",
+        "actions" : [
+          {
+            "action": "",
+            "props": {
+
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
