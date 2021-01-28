@@ -53,7 +53,7 @@
     "replaceYourComm" : "Remplacer votre personne autour de vous",
     "TranscriptTextBtnHover" : "Transcrit pour des lecteurs d’écran",
     "doneButton" : "Terminé",
-    "random" : "Aléatoire",
+    "random" : "Créer automatiquement les autres avatars",
     "stepsMakingAvatar" : [
         {
             "title": "1. Créez votre avatar",

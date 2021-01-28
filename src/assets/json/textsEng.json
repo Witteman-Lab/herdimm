@@ -53,7 +53,7 @@
     "replaceYourComm" : "Replace a person around you",
     "TranscriptTextBtnHover" : "Transcript for screen readers",
     "doneButton" : "Done",
-    "random" : "Random",
+    "random" : "autofill remaining avatars",
     "stepsMakingAvatar" : [
         {
             "title": "1. Build your avatar",

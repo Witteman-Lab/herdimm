@@ -35,12 +35,7 @@
                       @click="automaticAvatarsGeneration()"
                   >
                     {{this.labels.random}}
-                    <v-icon
-                        right
-                        dark
-                    >
-                      mdi-shuffle-variant
-                    </v-icon>
+
                   </v-btn>
 
                     <!-- List of all the characters -->
@@ -144,6 +139,7 @@
                 glassesRandomNumberCopy : 0,
                 totalCreatedCopy : 0,
                 automaticAvatarsGenerationState : true,
+                stepCopy : 0
 
 
 
@@ -412,6 +408,7 @@
                     case 1:
                         this.glassesRandomNumber = this.random(2, 4);
                         this.glassesRandomNumberCopy = this.glassesRandomNumber;
+                        console.log("le nombre de glass est ", this.glassesRandomNumber);
                         break;
                     case 2:
                         this.glassesRandomNumber = this.random(2, 4);
@@ -469,12 +466,12 @@
               this.beardsRandomNumber = 0;
               this.beardsRandomNumberCopy = this.beardsRandomNumber;
               this.glassesRandomNumber = 0;
-              this.glassesRandomNumberCopy = this.glassesRandomNumber;
+
 
               if (this.isGroupComplete) {
                   this.$refs.listToFill.removeSpecificGroupOfCharacter(this.totalCreatedCopy);
                   this.totalCreated = this.totalCreatedCopy;
-                  //this.step = this.totalCreatedCopy;
+                  this.step = this.stepCopy
               }
 
             this.personFromTheCommunity(this.totalCreated);
@@ -555,14 +552,15 @@
           manageCharacterGlasses(character){
 
             let glassesValue;
-              if (character.id.startsWith("baby") || character.id.startsWith("child") || character.id.startsWith("adult") && this.glassesRandomNumberCopy !==0) {
+              if (character.id.startsWith("baby") || character.id.startsWith("child") || character.id.startsWith("adult") && this.glassesRandomNumberCopy >0) {
+                  this.glassesRandomNumberCopy--;
                   if(character.id.startsWith("baby") || character.id.startsWith("child")){
                       glassesValue = 0;
                   }
                   else{
                       glassesValue = this.random(0, 2);
                   }
-                  this.glassesRandomNumberCopy--;
+                  console.log("glassesRandomNumberCopy", this.glassesRandomNumberCopy);
               }
               else{
                   glassesValue = "";
