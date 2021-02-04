@@ -284,7 +284,7 @@
           {
             "action": "vaccination",
             "props": {
-              "file" : "vaccineCoverageAdd91.json",
+              "file" : "vaccineCoverageAdd86_pertussis.json",
               "duration": "10",
               "state": "vaccinated",
               "startTime" : "400",
@@ -308,7 +308,7 @@
           {
             "action": "vaccination",
             "props": {
-              "file" : "vaccineCoverageAdd4.json",
+              "file" : "vaccineCoverageAdd4_pertussis.json",
               "duration": "30",
               "state": "vaccinated",
               "startTime" : "3500",
@@ -325,19 +325,10 @@
           "Quand vous êtes vacciné et qu’assez de personnes autour de vous sont vaccinées, cela crée une barrière protectrice autour de toute la communauté."
         ],
         "actions" : [
-
-        ]
-      },
-      {
-        "file" : "11F.mp3",
-        "captions" : [
-          "Cette barrière se nomme “l’immunité de groupe” ou “l’immunité collective”. L’immunité collective empêche la maladie contagieuse de se propager d’une personne à l'autre."
-        ],
-        "actions" : [
           {
             "action": "vaccination",
             "props": {
-              "file" : "vaccineCoverageAdd2.json",
+              "file" : "vaccineCoverageAdd7_pertussis.json",
               "duration": "0",
               "state": "vaccinated",
               "startTime" : "5500",
@@ -350,7 +341,7 @@
           {
             "action": "vaccination",
             "props": {
-              "file" : "vaccineCoverageRemove24.json",
+              "file" : "vaccineCoverageRemove24_pertussis.json",
               "duration": "1",
               "state": "vaccinated",
               "startTime" : "5510",
@@ -396,6 +387,15 @@
               "startTimeMakeTransformer": "-12000"
             }
           }
+        ]
+      },
+      {
+        "file" : "11F.mp3",
+        "captions" : [
+          "Cette barrière se nomme “l’immunité de groupe” ou “l’immunité collective”. L’immunité collective empêche la maladie contagieuse de se propager d’une personne à l'autre."
+        ],
+        "actions" : [
+
         ]
       },
       {
