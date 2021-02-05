@@ -325,6 +325,15 @@
           "Quand vous êtes vacciné et qu’assez de personnes autour de vous sont vaccinées, cela crée une barrière protectrice autour de toute la communauté."
         ],
         "actions" : [
+
+        ]
+      },
+      {
+        "file" : "11F.mp3",
+        "captions" : [
+          "Cette barrière se nomme “l’immunité de groupe” ou “l’immunité collective”. L’immunité collective empêche la maladie contagieuse de se propager d’une personne à l'autre."
+        ],
+        "actions" : [
           {
             "action": "vaccination",
             "props": {
@@ -341,7 +350,7 @@
           {
             "action": "vaccination",
             "props": {
-              "file" : "vaccineCoverageRemove24_pertussis.json",
+              "file" : "vaccineCoverageRemove24-1_pertussis.json",
               "duration": "1",
               "state": "vaccinated",
               "startTime" : "5510",
@@ -378,7 +387,7 @@
           {
             "action": "vaccination",
             "props": {
-              "file" : "vaccineCoverageAdd7.json",
+              "file" : "vaccineCoverageAdd6_pertussis.json",
               "duration": "0",
               "state": "vaccinated",
               "startTime" : "12000",
@@ -386,16 +395,19 @@
               "makeTransformer": true,
               "startTimeMakeTransformer": "-12000"
             }
+          },
+          {
+            "action": "vaccination",
+            "props": {
+              "file" : "vaccineCoverageRemove4_pertussis.json",
+              "duration": "0",
+              "state": "vaccinated",
+              "startTime" : "12100",
+              "add": false,
+              "makeTransformer": true,
+              "startTimeMakeTransformer": "-12100"
+            }
           }
-        ]
-      },
-      {
-        "file" : "11F.mp3",
-        "captions" : [
-          "Cette barrière se nomme “l’immunité de groupe” ou “l’immunité collective”. L’immunité collective empêche la maladie contagieuse de se propager d’une personne à l'autre."
-        ],
-        "actions" : [
-
         ]
       },
       {
@@ -405,34 +417,12 @@
         ],
         "actions" : [
           {
-            "action": "parseSpreadInfection",
-            "props": {
-              "file" : "spreadinfections3.json",
-              "startTime" : "500",
-              "durationLine": "125",
-              "durationLineBouncingOff": "250",
-              "linewidthWeb": "12",
-              "linewidthMobile": "5"
-            }
-          },
-          {
-            "action": "parseSpreadInfection",
-            "props": {
-              "file" : "spreadinfections4.json",
-              "startTime" : "1000",
-              "durationLine": "125",
-              "durationLineBouncingOff": "250",
-              "linewidthWeb": "12",
-              "linewidthMobile": "5"
-            }
-          },
-          {
             "action": "vaccination",
             "props": {
-              "file" : "vaccineCoverageRemove3-1.json",
+              "file" : "vaccineCoverageRemove2_pertussis.json",
               "duration": "0",
               "state": "vaccinated",
-              "startTime" : "1400",
+              "startTime" : "500",
               "add": false,
               "makeTransformer": true,
               "startTimeMakeTransformer": "10"
@@ -441,9 +431,9 @@
           {
             "action": "parseSpreadInfection",
             "props": {
-              "file" : "spreadinfections5.json",
-              "startTime" : "3500",
-              "durationLine": "125",
+              "file" : "spreadinfections2_pertussis.json",
+              "startTime" : "1000",
+              "durationLine": "25",
               "durationLineBouncingOff": "250",
               "linewidthWeb": "12",
               "linewidthMobile": "5"
@@ -460,7 +450,7 @@
           {
             "action": "vaccination",
             "props": {
-              "file" : "vaccineCoverageRemove31.json",
+              "file" : "vaccineCoverageRemove24_pertussis.json",
               "duration": "0",
               "state": "vaccinated",
               "startTime" : "500",
@@ -480,6 +470,18 @@
             "props": {
               "startTime" : "1000"
             }
+          },
+          {
+            "action": "vaccination",
+            "props": {
+              "file" : "vaccineCoverageAdd7-1_pertussis.json",
+              "duration": "0",
+              "state": "vaccinated",
+              "startTime" : "1200",
+              "add": true,
+              "makeTransformer": false,
+              "startTimeMakeTransformer": "0"
+            }
           }
         ]
       },
@@ -492,9 +494,9 @@
           {
             "action": "parseSpreadInfection",
             "props": {
-              "file" : ["flu.json","measles.json","pertussis.json"],
+              "file" : ["pertussis.json"],
               "startTime" : "300",
-              "durationLine": "125",
+              "durationLine": "60",
               "durationLineBouncingOff": "250",
               "linewidthWeb": "12",
               "linewidthMobile": "5"
@@ -529,7 +531,7 @@
           {
             "action": "vaccination",
             "props": {
-              "file" : "vaccineCoverageAdd95.json",
+              "file" : "vaccineCoverageAdd90_pertussis.json",
               "duration": "0",
               "state": "vaccinated",
               "startTime" : "2100",

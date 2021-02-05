@@ -325,6 +325,15 @@
                     "When you and enough people around you are vaccinated, this creates a protective barrier for your community."
                 ],
                 "actions" : [
+
+                ]
+            },
+            {
+                "file" : "11E.mp3",
+                "captions" : [
+                    "This barrier is known as “herd immunity” or “community immunity”. Community immunity helps prevent contagious diseases from spreading from one person to another."
+                ],
+                "actions" : [
                     {
                         "action": "vaccination",
                         "props": {
@@ -386,15 +395,6 @@
                             "startTimeMakeTransformer": "-12000"
                         }
                     }
-                ]
-            },
-            {
-                "file" : "11E.mp3",
-                "captions" : [
-                    "This barrier is known as “herd immunity” or “community immunity”. Community immunity helps prevent contagious diseases from spreading from one person to another."
-                ],
-                "actions" : [
-
                 ]
             },
             {
@@ -478,6 +478,18 @@
                         "action": "removeInfection",
                         "props": {
                             "startTime" : "1000"
+                        }
+                    },
+                    {
+                        "action": "vaccination",
+                        "props": {
+                            "file" : "vaccineCoverageAdd5_measles.json",
+                            "duration": "0",
+                            "state": "vaccinated",
+                            "startTime" : "1200",
+                            "add": true,
+                            "makeTransformer": false,
+                            "startTimeMakeTransformer": "0"
                         }
                     }
                 ]

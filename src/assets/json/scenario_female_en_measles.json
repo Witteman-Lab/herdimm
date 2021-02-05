@@ -325,6 +325,15 @@
                     "When you and enough people around you are vaccinated, this creates a protective barrier for your community."
                 ],
                 "actions" : [
+
+                ]
+            },
+            {
+                "file" : "11E.mp3",
+                "captions" : [
+                    "This barrier is known as “herd immunity” or “community immunity”. Community immunity helps prevent contagious diseases from spreading from one person to another."
+                ],
+                "actions" : [
                     {
                         "action": "vaccination",
                         "props": {
@@ -389,15 +398,6 @@
                 ]
             },
             {
-                "file" : "11E.mp3",
-                "captions" : [
-                    "This barrier is known as “herd immunity” or “community immunity”. Community immunity helps prevent contagious diseases from spreading from one person to another."
-                ],
-                "actions" : [
-
-                ]
-            },
-            {
                 "file" : "12E.mp3",
                 "captions" : [
                     "Some diseases spread more easily than others and need more people to be vaccinated to create community immunity."
@@ -459,7 +459,7 @@
                     {
                         "action": "vaccination",
                         "props": {
-                            "file" : "vaccineCoverageRemove31.json",
+                            "file" : "vaccineCoverageRemove12_measles.json",
                             "duration": "0",
                             "state": "vaccinated",
                             "startTime" : "500",
@@ -478,6 +478,18 @@
                         "action": "removeInfection",
                         "props": {
                             "startTime" : "1000"
+                        }
+                    },
+                    {
+                        "action": "vaccination",
+                        "props": {
+                            "file" : "vaccineCoverageAdd5_measles.json",
+                            "duration": "0",
+                            "state": "vaccinated",
+                            "startTime" : "1200",
+                            "add": true,
+                            "makeTransformer": false,
+                            "startTimeMakeTransformer": "0"
                         }
                     }
                 ]

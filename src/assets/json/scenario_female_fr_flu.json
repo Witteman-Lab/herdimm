@@ -325,6 +325,15 @@
           "Quand vous êtes vacciné et qu’assez de personnes autour de vous sont vaccinées, cela crée une barrière protectrice autour de toute la communauté."
         ],
         "actions" : [
+
+        ]
+      },
+      {
+        "file" : "11F.mp3",
+        "captions" : [
+          "Cette barrière se nomme “l’immunité de groupe” ou “l’immunité collective”. L’immunité collective empêche la maladie contagieuse de se propager d’une personne à l'autre."
+        ],
+        "actions" : [
           {
             "action": "vaccination",
             "props": {
@@ -390,15 +399,6 @@
         ]
       },
       {
-        "file" : "11F.mp3",
-        "captions" : [
-          "Cette barrière se nomme “l’immunité de groupe” ou “l’immunité collective”. L’immunité collective empêche la maladie contagieuse de se propager d’une personne à l'autre."
-        ],
-        "actions" : [
-
-        ]
-      },
-      {
         "file" : "12F.mp3",
         "captions" : [
           "Certaines maladies se répandent plus facilement que d'autres. C’est pourquoi plus de personnes doivent être vaccinées contre ces maladies pour créer l'immunité collective."
@@ -460,7 +460,7 @@
           {
             "action": "vaccination",
             "props": {
-              "file" : "vaccineCoverageRemove31.json",
+              "file" : "vaccineCoverageRemove75_flu.json",
               "duration": "0",
               "state": "vaccinated",
               "startTime" : "500",
