@@ -94,10 +94,26 @@
                           "nextTarget": [
                             {
                               "id"	 : "7",
+                              "source" : "shape_36",
+                              "target" : "shape_46",
+                              "targetGetsInfected": true,
+                              "nextTarget": [
+                              ]
+                            },
+                            {
+                              "id"	 : "7",
                               "source" : "shape_49",
                               "target" : "shape_39",
                               "targetGetsInfected": true,
                               "nextTarget": [
+                                {
+                                  "id"	 : "9",
+                                  "source" : "shape_46",
+                                  "target" : "shape_57",
+                                  "targetGetsInfected": true,
+                                  "nextTarget": [
+                                  ]
+                                },
                                 {
                                   "id"	 : "8",
                                   "source" : "shape_39",
@@ -109,6 +125,7 @@
                                       "source" : "shape_30",
                                       "target" : "shape_17",
                                       "targetGetsInfected": true,
+                                      "endOfTheSequence": true,
                                       "nextTarget": [
                                       ]
                                     }

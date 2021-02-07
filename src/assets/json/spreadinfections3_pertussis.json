@@ -1,0 +1,35 @@
+{
+  "connections" : [
+    {
+      "id"	 : "1",
+      "source" : "shape_83",
+      "target" : "shape_93",
+      "targetGetsInfected": true,
+      "nextTarget": [
+        {
+          "id"	 : "1",
+          "source" : "shape_93",
+          "target" : "shape_88",
+          "targetGetsInfected": true,
+          "endOfTheSequence": true,
+          "nextTarget": ""
+        },
+        {
+          "id"	 : "1",
+          "source" : "shape_93",
+          "target" : "shape_89",
+          "targetGetsInfected": false,
+          "nextTarget": ""
+        },
+        {
+          "id"	 : "1",
+          "source" : "shape_93",
+          "target" : "shape_97",
+          "targetGetsInfected": false,
+          "nextTarget": ""
+        }
+      ]
+    }
+
+  ]
+}
