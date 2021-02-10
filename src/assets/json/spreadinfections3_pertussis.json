@@ -2,29 +2,22 @@
   "connections" : [
     {
       "id"	 : "1",
-      "source" : "shape_83",
-      "target" : "shape_93",
+      "source" : "shape_27",
+      "target" : "shape_33",
       "targetGetsInfected": true,
+      "endOfTheSequence": true,
       "nextTarget": [
         {
-          "id"	 : "1",
-          "source" : "shape_93",
-          "target" : "shape_88",
-          "targetGetsInfected": true,
-          "endOfTheSequence": true,
-          "nextTarget": ""
-        },
-        {
-          "id"	 : "1",
-          "source" : "shape_93",
-          "target" : "shape_89",
+          "id"	 : "2",
+          "source" : "shape_33",
+          "target" : "shape_37",
           "targetGetsInfected": false,
           "nextTarget": ""
         },
         {
-          "id"	 : "1",
-          "source" : "shape_93",
-          "target" : "shape_97",
+          "id"	 : "2",
+          "source" : "shape_33",
+          "target" : "shape_26",
           "targetGetsInfected": false,
           "nextTarget": ""
         }

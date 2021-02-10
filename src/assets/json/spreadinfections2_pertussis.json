@@ -2,41 +2,10 @@
   "connections" : [
     {
       "id"	 : "1",
-      "source" : "shape_28",
-      "target" : "shape_15",
+      "source" : "shape_11",
+      "target" : "shape_24",
       "targetGetsInfected": false,
       "nextTarget": ""
-    },
-    {
-      "id"	 : "1",
-      "source" : "shape_28",
-      "target" : "shape_22",
-      "targetGetsInfected": true,
-      "endOfTheSequence": true,
-      "nextTarget": [
-        {
-          "id"	 : "1",
-          "source" : "shape_22",
-          "target" : "shape_10",
-          "targetGetsInfected": false,
-          "nextTarget": ""
-        },
-        {
-          "id"	 : "1",
-          "source" : "shape_22",
-          "target" : "shape_16",
-          "targetGetsInfected": false,
-          "nextTarget": ""
-        },
-        {
-          "id"	 : "1",
-          "source" : "shape_22",
-          "target" : "shape_29",
-          "targetGetsInfected": false,
-          "nextTarget": ""
-        }
-      ]
     }
-
   ]
 }
