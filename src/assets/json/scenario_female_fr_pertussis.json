@@ -335,65 +335,25 @@
         ],
         "actions" : [
           {
-            "action": "vaccination",
+            "action": "parseSpreadInfection",
             "props": {
-              "file" : "vaccineCoverageAdd7_pertussis.json",
-              "duration": "0",
-              "state": "vaccinated",
-              "startTime" : "5500",
-              "add": true,
-              "makeTransformer": true,
-              "startTimeMakeTransformer": "-5400"
-
+              "file" : "spreadinfections2_pertussis.json",
+              "startTime" : "8000",
+              "durationLine": "1000",
+              "durationLineBouncingOff": "250",
+              "linewidthWeb": "12",
+              "linewidthMobile": "5"
             }
           },
           {
-            "action": "vaccination",
+            "action": "parseSpreadInfection",
             "props": {
-              "file" : "vaccineCoverageRemove24-1_pertussis.json",
-              "duration": "1",
-              "state": "vaccinated",
-              "startTime" : "5510",
-              "add": false,
-              "makeTransformer": true,
-              "startTimeMakeTransformer": "-5500"
-
-            }
-          },
-          {
-            "action": "vaccination",
-            "props": {
-              "file" : "vaccineCoverageRemove2-1_pertussis.json",
-              "duration": "0",
-              "state": "vaccinated",
-              "startTime" : "9000",
-              "add": false,
-              "makeTransformer": true,
-              "startTimeMakeTransformer": "-9000"
-            }
-          },
-          {
-            "action": "vaccination",
-            "props": {
-              "file" : "vaccineCoverageAdd24_pertussis.json",
-              "duration": "0",
-              "state": "vaccinated",
-              "startTime" : "9100",
-              "add": true,
-              "makeTransformer": true,
-              "startTimeMakeTransformer": "-9100"
-            }
-          },
-          {
-            "action": "vaccination",
-            "props": {
-              "file" : "vaccineCoverageRemove7_pertussis.json",
-              "duration": "0",
-              "state": "vaccinated",
-              "startTime" : "12100",
-              "add": false,
-              "makeTransformer": true,
-              "startTimeMakeTransformer": "-12100"
+              "file" : "spreadinfections3_pertussis.json",
+              "startTime" : "8000",
+              "durationLine": "1500",
+              "durationLineBouncingOff": "250",
+              "linewidthWeb": "12",
+              "linewidthMobile": "5"
             }
           }
         ]
@@ -405,25 +365,21 @@
         ],
         "actions" : [
           {
-            "action": "parseSpreadInfection",
+            "action": "removeInfection",
             "props": {
-              "file" : "spreadinfections2_pertussis.json",
-              "startTime" : "500",
-              "durationLine": "1000",
-              "durationLineBouncingOff": "250",
-              "linewidthWeb": "12",
-              "linewidthMobile": "5"
+              "startTime" : "100"
             }
           },
           {
-            "action": "parseSpreadInfection",
+            "action": "vaccination",
             "props": {
-              "file" : "spreadinfections3_pertussis.json",
+              "file" : "vaccineCoverageAdd5-1_pertussis.json",
+              "duration": "2",
+              "state": "vaccinated",
               "startTime" : "500",
-              "durationLine": "1000",
-              "durationLineBouncingOff": "250",
-              "linewidthWeb": "12",
-              "linewidthMobile": "5"
+              "add": true,
+              "makeTransformer": true,
+              "startTimeMakeTransformer": "10"
             }
           }
         ]
@@ -453,18 +409,12 @@
             }
           },
           {
-            "action": "removeInfection",
-            "props": {
-              "startTime" : "1000"
-            }
-          },
-          {
             "action": "vaccination",
             "props": {
-              "file" : "vaccineCoverageAdd9_pertussis.json",
+              "file" : "vaccineCoverageAdd3_pertussis.json",
               "duration": "0",
               "state": "vaccinated",
-              "startTime" : "1200",
+              "startTime" : "700",
               "add": true,
               "makeTransformer": false,
               "startTimeMakeTransformer": "0"

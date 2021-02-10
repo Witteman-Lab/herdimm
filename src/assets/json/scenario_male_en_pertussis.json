@@ -335,80 +335,10 @@
         ],
         "actions" : [
           {
-            "action": "vaccination",
-            "props": {
-              "file" : "vaccineCoverageAdd7_pertussis.json",
-              "duration": "0",
-              "state": "vaccinated",
-              "startTime" : "5500",
-              "add": true,
-              "makeTransformer": true,
-              "startTimeMakeTransformer": "-5400"
-
-            }
-          },
-          {
-            "action": "vaccination",
-            "props": {
-              "file" : "vaccineCoverageRemove24-1_pertussis.json",
-              "duration": "1",
-              "state": "vaccinated",
-              "startTime" : "5510",
-              "add": false,
-              "makeTransformer": true,
-              "startTimeMakeTransformer": "-5500"
-
-            }
-          },
-          {
-            "action": "vaccination",
-            "props": {
-              "file" : "vaccineCoverageRemove2-1_pertussis.json",
-              "duration": "0",
-              "state": "vaccinated",
-              "startTime" : "9000",
-              "add": false,
-              "makeTransformer": true,
-              "startTimeMakeTransformer": "-9000"
-            }
-          },
-          {
-            "action": "vaccination",
-            "props": {
-              "file" : "vaccineCoverageAdd24_pertussis.json",
-              "duration": "0",
-              "state": "vaccinated",
-              "startTime" : "9100",
-              "add": true,
-              "makeTransformer": true,
-              "startTimeMakeTransformer": "-9100"
-            }
-          },
-          {
-            "action": "vaccination",
-            "props": {
-              "file" : "vaccineCoverageRemove7_pertussis.json",
-              "duration": "0",
-              "state": "vaccinated",
-              "startTime" : "12100",
-              "add": false,
-              "makeTransformer": true,
-              "startTimeMakeTransformer": "-12100"
-            }
-          }
-        ]
-      },
-      {
-        "file" : "12E.mp3",
-        "captions" : [
-          "Some diseases spread more easily than others and need more people to be vaccinated to create community immunity."
-        ],
-        "actions" : [
-          {
             "action": "parseSpreadInfection",
             "props": {
               "file" : "spreadinfections2_pertussis.json",
-              "startTime" : "500",
+              "startTime" : "6000",
               "durationLine": "1000",
               "durationLineBouncingOff": "250",
               "linewidthWeb": "12",
@@ -419,11 +349,38 @@
             "action": "parseSpreadInfection",
             "props": {
               "file" : "spreadinfections3_pertussis.json",
-              "startTime" : "500",
-              "durationLine": "1000",
+              "startTime" : "6000",
+              "durationLine": "1500",
               "durationLineBouncingOff": "250",
               "linewidthWeb": "12",
               "linewidthMobile": "5"
+            }
+          }
+        ]
+      },
+      {
+        "file" : "12E.mp3",
+        "captions" : [
+          "Some diseases spread more easily than others and need more people to be vaccinated to create community immunity."
+        ],
+        "actions" : [
+
+          {
+            "action": "removeInfection",
+            "props": {
+              "startTime" : "100"
+            }
+          },
+          {
+            "action": "vaccination",
+            "props": {
+              "file" : "vaccineCoverageAdd5-1_pertussis.json",
+              "duration": "2",
+              "state": "vaccinated",
+              "startTime" : "500",
+              "add": true,
+              "makeTransformer": true,
+              "startTimeMakeTransformer": "10"
             }
           }
         ]
@@ -453,18 +410,12 @@
             }
           },
           {
-            "action": "removeInfection",
-            "props": {
-              "startTime" : "1000"
-            }
-          },
-          {
             "action": "vaccination",
             "props": {
-              "file" : "vaccineCoverageAdd9_pertussis.json",
+              "file" : "vaccineCoverageAdd3_pertussis.json",
               "duration": "0",
               "state": "vaccinated",
-              "startTime" : "1200",
+              "startTime" : "700",
               "add": true,
               "makeTransformer": false,
               "startTimeMakeTransformer": "0"
