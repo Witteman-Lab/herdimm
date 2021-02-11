@@ -335,80 +335,10 @@
                 ],
                 "actions" : [
                     {
-                        "action": "vaccination",
-                        "props": {
-                            "file" : "vaccineCoverageAdd2_measles.json",
-                            "duration": "0",
-                            "state": "vaccinated",
-                            "startTime" : "5500",
-                            "add": true,
-                            "makeTransformer": true,
-                            "startTimeMakeTransformer": "-5400"
-
-                        }
-                    },
-                    {
-                        "action": "vaccination",
-                        "props": {
-                            "file" : "vaccineCoverageRemove24_measles.json",
-                            "duration": "1",
-                            "state": "vaccinated",
-                            "startTime" : "5510",
-                            "add": false,
-                            "makeTransformer": true,
-                            "startTimeMakeTransformer": "-5500"
-
-                        }
-                    },
-                    {
-                        "action": "vaccination",
-                        "props": {
-                            "file" : "vaccineCoverageRemove5.json",
-                            "duration": "0",
-                            "state": "vaccinated",
-                            "startTime" : "9000",
-                            "add": false,
-                            "makeTransformer": true,
-                            "startTimeMakeTransformer": "-9000"
-                        }
-                    },
-                    {
-                        "action": "vaccination",
-                        "props": {
-                            "file" : "vaccineCoverageAdd20.json",
-                            "duration": "0",
-                            "state": "vaccinated",
-                            "startTime" : "9100",
-                            "add": true,
-                            "makeTransformer": true,
-                            "startTimeMakeTransformer": "-9100"
-                        }
-                    },
-                    {
-                        "action": "vaccination",
-                        "props": {
-                            "file" : "vaccineCoverageAdd7.json",
-                            "duration": "0",
-                            "state": "vaccinated",
-                            "startTime" : "12000",
-                            "add": true,
-                            "makeTransformer": true,
-                            "startTimeMakeTransformer": "-12000"
-                        }
-                    }
-                ]
-            },
-            {
-                "file" : "12F.mp3",
-                "captions" : [
-                    "Certaines maladies se répandent plus facilement que d'autres. C’est pourquoi plus de personnes doivent être vaccinées contre ces maladies pour créer l'immunité collective."
-                ],
-                "actions" : [
-                    {
                         "action": "parseSpreadInfection",
                         "props": {
                             "file" : "spreadinfections3.json",
-                            "startTime" : "500",
+                            "startTime" : "5500",
                             "durationLine": "125",
                             "durationLineBouncingOff": "250",
                             "linewidthWeb": "12",
@@ -419,7 +349,7 @@
                         "action": "parseSpreadInfection",
                         "props": {
                             "file" : "spreadinfections4.json",
-                            "startTime" : "1000",
+                            "startTime" : "6000",
                             "durationLine": "125",
                             "durationLineBouncingOff": "250",
                             "linewidthWeb": "12",
@@ -432,7 +362,7 @@
                             "file" : "vaccineCoverageRemove3-1.json",
                             "duration": "0",
                             "state": "vaccinated",
-                            "startTime" : "1400",
+                            "startTime" : "7400",
                             "add": false,
                             "makeTransformer": true,
                             "startTimeMakeTransformer": "10"
@@ -442,11 +372,37 @@
                         "action": "parseSpreadInfection",
                         "props": {
                             "file" : "spreadinfections5.json",
-                            "startTime" : "3500",
+                            "startTime" : "9500",
                             "durationLine": "125",
                             "durationLineBouncingOff": "250",
                             "linewidthWeb": "12",
                             "linewidthMobile": "5"
+                        }
+                    }
+                ]
+            },
+            {
+                "file" : "12F.mp3",
+                "captions" : [
+                    "Certaines maladies se répandent plus facilement que d'autres. C’est pourquoi plus de personnes doivent être vaccinées contre ces maladies pour créer l'immunité collective."
+                ],
+                "actions" : [
+                    {
+                        "action": "removeInfection",
+                        "props": {
+                            "startTime" : "500"
+                        }
+                    },
+                    {
+                        "action": "vaccination",
+                        "props": {
+                            "file" : "vaccineCoverageAdd4-1_measles.json",
+                            "duration": "0",
+                            "state": "vaccinated",
+                            "startTime" : "600",
+                            "add": true,
+                            "makeTransformer": true,
+                            "startTimeMakeTransformer": "1"
                         }
                     }
                 ]
@@ -458,36 +414,30 @@
                 ],
                 "actions" : [
                     {
+                        "action": "removeBarrier",
+                        "props": {
+                            "startTime" : "50"
+                        }
+                    },
+                    {
                         "action": "vaccination",
                         "props": {
                             "file" : "vaccineCoverageRemove12_measles.json",
                             "duration": "0",
                             "state": "vaccinated",
-                            "startTime" : "500",
+                            "startTime" : "100",
                             "add": false,
                             "makeTransformer": false,
                             "startTimeMakeTransformer": "0"
                         }
                     },
                     {
-                        "action": "removeBarrier",
-                        "props": {
-                            "startTime" : "700"
-                        }
-                    },
-                    {
-                        "action": "removeInfection",
-                        "props": {
-                            "startTime" : "1000"
-                        }
-                    },
-                    {
                         "action": "vaccination",
                         "props": {
-                            "file" : "vaccineCoverageAdd5_measles.json",
+                            "file" : "vaccineCoverageAdd1_measles.json",
                             "duration": "0",
                             "state": "vaccinated",
-                            "startTime" : "1200",
+                            "startTime" : "100",
                             "add": true,
                             "makeTransformer": false,
                             "startTimeMakeTransformer": "0"
@@ -504,9 +454,9 @@
                     {
                         "action": "parseSpreadInfection",
                         "props": {
-                            "file" : ["flu.json","measles.json","pertussis.json"],
-                            "startTime" : "300",
-                            "durationLine": "125",
+                            "file" : ["measles.json"],
+                            "startTime" : "500",
+                            "durationLine": "800",
                             "durationLineBouncingOff": "250",
                             "linewidthWeb": "12",
                             "linewidthMobile": "5"
@@ -515,7 +465,7 @@
                     {
                         "action": "removeInfection",
                         "props": {
-                            "startTime" : "9900"
+                            "startTime" : "9000"
                         }
                     }
                 ]
@@ -533,7 +483,7 @@
                             "scale": "1.2",
                             "state": "vaccinated",
                             "timingFunction": "linear",
-                            "startTime" : "2000",
+                            "startTime" : "800",
                             "duration" : "250",
                             "add": true
                         }
@@ -541,11 +491,23 @@
                     {
                         "action": "vaccination",
                         "props": {
-                            "file" : "vaccineCoverageAdd95.json",
+                            "file" : "vaccineCoverageAdd12_measles.json",
+                            "duration": "0",
+                            "state": "vaccinated",
+                            "startTime" : "900",
+                            "add": true,
+                            "makeTransformer": false,
+                            "startTimeMakeTransformer": "0"
+                        }
+                    },
+                    {
+                        "action": "vaccination",
+                        "props": {
+                            "file" : "vaccineCoverageRemove3_measles.json",
                             "duration": "0",
                             "state": "vaccinated",
                             "startTime" : "2100",
-                            "add": true,
+                            "add": false,
                             "makeTransformer": true,
                             "startTimeMakeTransformer": "0"
                         }
