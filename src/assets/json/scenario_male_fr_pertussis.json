@@ -438,12 +438,6 @@
               "linewidthWeb": "12",
               "linewidthMobile": "5"
             }
-          },
-          {
-            "action": "removeInfection",
-            "props": {
-              "startTime" : "9900"
-            }
           }
         ]
       },
@@ -453,6 +447,12 @@
           "Lorsque votre communauté a l’immunité collective, cela protège votre communauté."
         ],
         "actions" : [
+          {
+            "action": "removeInfection",
+            "props": {
+              "startTime" : "1"
+            }
+          },
           {
             "action": "burst",
             "props": {
