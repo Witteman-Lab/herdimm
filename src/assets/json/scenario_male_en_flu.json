@@ -308,13 +308,13 @@
           {
             "action": "vaccination",
             "props": {
-              "file" : "vaccineCoverageAdd4.json",
+              "file" : "vaccineCoverageAdd4_flu.json",
               "duration": "30",
               "state": "vaccinated",
               "startTime" : "2700",
               "add": true,
-              "makeTransformer": true,
-              "startTimeMakeTransformer": "5000"
+              "makeTransformer": false,
+              "startTimeMakeTransformer": "0"
             }
           }
         ]
@@ -325,7 +325,30 @@
           "When you and enough people around you are vaccinated, this creates a protective barrier for your community."
         ],
         "actions" : [
-
+          {
+            "action": "vaccination",
+            "props": {
+              "file" : "vaccineCoverageRemove14-1_flu.json",
+              "duration": "30",
+              "state": "vaccinated",
+              "startTime" : "2000",
+              "add": false,
+              "makeTransformer": false,
+              "startTimeMakeTransformer": "0"
+            }
+          },
+          {
+            "action": "vaccination",
+            "props": {
+              "file" : "vaccineCoverageAdd12-1_flu.json",
+              "duration": "30",
+              "state": "vaccinated",
+              "startTime" : "2000",
+              "add": true,
+              "makeTransformer": true,
+              "startTimeMakeTransformer": "500"
+            }
+          }
         ]
       },
       {
@@ -335,64 +358,25 @@
         ],
         "actions" : [
           {
-            "action": "vaccination",
+            "action": "parseSpreadInfection",
             "props": {
-              "file" : "vaccineCoverageAdd12_flu.json",
-              "duration": "0",
-              "state": "vaccinated",
-              "startTime" : "5500",
-              "add": true,
-              "makeTransformer": true,
-              "startTimeMakeTransformer": "-5400"
+              "file" : "spreadinfections3_flu.json",
+              "startTime" : "6000",
+              "durationLine": "1000",
+              "durationLineBouncingOff": "250",
+              "linewidthWeb": "12",
+              "linewidthMobile": "5"
             }
           },
           {
-            "action": "vaccination",
+            "action": "parseSpreadInfection",
             "props": {
-              "file" : "vaccineCoverageRemove14_flu.json",
-              "duration": "1",
-              "state": "vaccinated",
-              "startTime" : "5510",
-              "add": false,
-              "makeTransformer": true,
-              "startTimeMakeTransformer": "-5500"
-
-            }
-          },
-          {
-            "action": "vaccination",
-            "props": {
-              "file" : "vaccineCoverageRemove5.json",
-              "duration": "0",
-              "state": "vaccinated",
-              "startTime" : "9000",
-              "add": false,
-              "makeTransformer": true,
-              "startTimeMakeTransformer": "-9000"
-            }
-          },
-          {
-            "action": "vaccination",
-            "props": {
-              "file" : "vaccineCoverageAdd20.json",
-              "duration": "0",
-              "state": "vaccinated",
-              "startTime" : "9100",
-              "add": true,
-              "makeTransformer": true,
-              "startTimeMakeTransformer": "-9100"
-            }
-          },
-          {
-            "action": "vaccination",
-            "props": {
-              "file" : "vaccineCoverageAdd7.json",
-              "duration": "0",
-              "state": "vaccinated",
-              "startTime" : "12000",
-              "add": true,
-              "makeTransformer": true,
-              "startTimeMakeTransformer": "-12000"
+              "file" : "spreadinfections4_flu.json",
+              "startTime" : "6000",
+              "durationLine": "1000",
+              "durationLineBouncingOff": "250",
+              "linewidthWeb": "12",
+              "linewidthMobile": "5"
             }
           }
         ]
@@ -404,48 +388,33 @@
         ],
         "actions" : [
           {
-            "action": "parseSpreadInfection",
+            "action": "removeInfection",
             "props": {
-              "file" : "spreadinfections3.json",
-              "startTime" : "500",
-              "durationLine": "125",
-              "durationLineBouncingOff": "250",
-              "linewidthWeb": "12",
-              "linewidthMobile": "5"
-            }
-          },
-          {
-            "action": "parseSpreadInfection",
-            "props": {
-              "file" : "spreadinfections4.json",
-              "startTime" : "1000",
-              "durationLine": "125",
-              "durationLineBouncingOff": "250",
-              "linewidthWeb": "12",
-              "linewidthMobile": "5"
+              "startTime" : "100"
             }
           },
           {
             "action": "vaccination",
             "props": {
-              "file" : "vaccineCoverageRemove3-1.json",
+              "file" : "vaccineCoverageAdd25_flu.json",
               "duration": "0",
               "state": "vaccinated",
-              "startTime" : "1400",
-              "add": false,
+              "startTime" : "400",
+              "add": true,
               "makeTransformer": true,
               "startTimeMakeTransformer": "10"
             }
           },
           {
-            "action": "parseSpreadInfection",
+            "action": "vaccination",
             "props": {
-              "file" : "spreadinfections5.json",
-              "startTime" : "3500",
-              "durationLine": "125",
-              "durationLineBouncingOff": "250",
-              "linewidthWeb": "12",
-              "linewidthMobile": "5"
+              "file" : "vaccineCoverageRemove7_flu.json",
+              "duration": "0",
+              "state": "vaccinated",
+              "startTime" : "500",
+              "add": false,
+              "makeTransformer": false,
+              "startTimeMakeTransformer": "0"
             }
           }
         ]
@@ -459,7 +428,7 @@
           {
             "action": "vaccination",
             "props": {
-              "file" : "vaccineCoverageRemove75_flu.json",
+              "file" : "vaccineCoverageRemove70_flu.json",
               "duration": "0",
               "state": "vaccinated",
               "startTime" : "500",
@@ -469,15 +438,21 @@
             }
           },
           {
-            "action": "removeBarrier",
+            "action": "vaccination",
             "props": {
-              "startTime" : "700"
+              "file" : "vaccineCoverageAdd2_flu.json",
+              "duration": "0",
+              "state": "vaccinated",
+              "startTime" : "500",
+              "add": true,
+              "makeTransformer": false,
+              "startTimeMakeTransformer": "0"
             }
           },
           {
-            "action": "removeInfection",
+            "action": "removeBarrier",
             "props": {
-              "startTime" : "1000"
+              "startTime" : "700"
             }
           }
         ]
@@ -491,18 +466,12 @@
           {
             "action": "parseSpreadInfection",
             "props": {
-              "file" : ["flu.json","measles.json","pertussis.json"],
+              "file" : ["flu.json"],
               "startTime" : "500",
-              "durationLine": "160",
+              "durationLine": "800",
               "durationLineBouncingOff": "250",
               "linewidthWeb": "12",
               "linewidthMobile": "5"
-            }
-          },
-          {
-            "action": "removeInfection",
-            "props": {
-              "startTime" : "9000"
             }
           }
         ]
@@ -514,13 +483,19 @@
         ],
         "actions" : [
           {
+            "action": "removeInfection",
+            "props": {
+              "startTime" : "500"
+            }
+          },
+          {
             "action": "burst",
             "props": {
               "target": "shape_50",
               "scale": "1.2",
               "state": "vaccinated",
               "timingFunction": "linear",
-              "startTime" : "2000",
+              "startTime" : "1000",
               "duration" : "250",
               "add": true
             }
@@ -528,13 +503,25 @@
           {
             "action": "vaccination",
             "props": {
-              "file" : "vaccineCoverageAdd95.json",
+              "file" : "vaccineCoverageRemove7-1_flu.json",
               "duration": "0",
               "state": "vaccinated",
-              "startTime" : "2100",
+              "startTime" : "1100",
+              "add": false,
+              "makeTransformer": false,
+              "startTimeMakeTransformer": "0"
+            }
+          },
+          {
+            "action": "vaccination",
+            "props": {
+              "file" : "vaccineCoverageAdd59_flu.json",
+              "duration": "0",
+              "state": "vaccinated",
+              "startTime" : "1100",
               "add": true,
               "makeTransformer": true,
-              "startTimeMakeTransformer": "0"
+              "startTimeMakeTransformer": "1"
             }
           },
           {

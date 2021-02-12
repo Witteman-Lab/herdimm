@@ -3,117 +3,46 @@
     {
       "id"	 : "1",
       "source" : "shape_67",
-      "target" : "shape_62",
-      "targetGetsInfected": true,
-      "nextTarget": [
-      ]
-    },
-    {
-      "id"	 : "1",
-      "source" : "shape_67",
-      "target" : "shape_72",
+      "target" : "shape_57",
       "targetGetsInfected": true,
       "nextTarget": [
         {
           "id"	 : "2",
-          "source" : "shape_72",
-          "target" : "shape_82",
-          "targetGetsInfected": true,
-          "nextTarget": [
-          ]
-        },
-        {
-          "id"	 : "2",
-          "source" : "shape_72",
-          "target" : "shape_61",
-          "targetGetsInfected": true,
-          "nextTarget": [
-          ]
-        },
-        {
-          "id"	 : "2",
-          "source" : "shape_62",
+          "source" : "shape_57",
           "target" : "shape_51",
           "targetGetsInfected": true,
           "nextTarget": [
             {
               "id"	 : "3",
-              "source" : "shape_61",
-              "target" : "shape_50",
-              "targetGetsInfected": true,
-              "nextTarget": [
-              ]
-            },
-            {
-              "id"	 : "3",
               "source" : "shape_51",
-              "target" : "shape_41",
+              "target" : "shape_46",
               "targetGetsInfected": true,
               "nextTarget": [
                 {
                   "id"	 : "4",
-                  "source" : "shape_41",
-                  "target" : "shape_32",
-                  "targetGetsInfected": true,
-                  "nextTarget": [
-                  ]
-                },
-                {
-                  "id"	 : "4",
-                  "source" : "shape_50",
-                  "target" : "shape_40",
+                  "source" : "shape_46",
+                  "target" : "shape_36",
                   "targetGetsInfected": true,
                   "nextTarget": [
                     {
                       "id"	 : "5",
-                      "source" : "shape_32",
-                      "target" : "shape_19",
-                      "targetGetsInfected": true,
-                      "nextTarget": [
-                      ]
-                    },
-                    {
-                      "id"	 : "5",
-                      "source" : "shape_32",
-                      "target" : "shape_36",
-                      "targetGetsInfected": true,
-                      "nextTarget": [
-                      ]
-                    },
-                    {
-                      "id"	 : "5",
-                      "source" : "shape_40",
-                      "target" : "shape_45",
+                      "source" : "shape_36",
+                      "target" : "shape_40",
                       "targetGetsInfected": true,
                       "nextTarget": [
                         {
                           "id"	 : "6",
-                          "source" : "shape_45",
-                          "target" : "shape_49",
+                          "source" : "shape_40",
+                          "target" : "shape_45",
                           "targetGetsInfected": true,
                           "nextTarget": [
                             {
                               "id"	 : "7",
-                              "source" : "shape_49",
-                              "target" : "shape_39",
+                              "source" : "shape_45",
+                              "target" : "shape_49",
                               "targetGetsInfected": true,
+                              "endOfTheSequence": true,
                               "nextTarget": [
-                                {
-                                  "id"	 : "8",
-                                  "source" : "shape_39",
-                                  "target" : "shape_30",
-                                  "targetGetsInfected": true,
-                                  "nextTarget": [
-                                    {
-                                      "id"	 : "9",
-                                      "source" : "shape_30",
-                                      "target" : "shape_17",
-                                      "targetGetsInfected": true,
-                                      "nextTarget": [
-                                      ]
-                                    }
-                                  ]
-                                }
                               ]
                             }
                           ]
@@ -128,7 +57,6 @@
         }
       ]
     }
-
 
   ]
 }
