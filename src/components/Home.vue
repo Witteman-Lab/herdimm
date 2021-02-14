@@ -85,7 +85,8 @@
                 gender: "",
                 dialogState : true,
                 languageFR: Object,
-                languageEN: Object
+                languageEN: Object,
+                diseases: ['flu', 'measles', 'pertussis']
             }
         },
         methods: {
@@ -195,8 +196,12 @@
              * @return none
              */
             setDiseaseToAnimate() {
-                if (this.$route.query.d === "flu" || this.$route.query.d === "measles" || this.$route.query.d === "pertussis")
-                    this.diseaseHome = this.$route.query.d;
+                if (this.$route.query.d === "flu" || this.$route.query.d === "measles" || this.$route.query.d === "pertussis") {
+                  this.diseaseHome = this.$route.query.d;
+                } else {
+                  this.diseaseHome = this.diseases[this.getRandomInt(this.diseases.length)];
+
+                }
             },
 
             /**
