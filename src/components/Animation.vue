@@ -46,12 +46,12 @@
                 </div>
             </div>
             <div v-if="this.reloadAnimationPage" style="display: grid">
-                <v-btn color="#05CDC1" style="height: 50px;" class="continue" v-on:click="loadExtraInfoVue()">
+                <v-btn color="#05CDC1" style="height: 50px;" class="continue" v-on:click="reloadAnimationComp()">
                     <span>{{this.labels.doneButton.toUpperCase()}}</span>
                     <v-icon style="font-size: xx-large" right>mdi-check</v-icon>
                 </v-btn>
 
-                <v-btn v-if="this.returnUrl !== '' && this.returnUrl !== undefined" color="#05CDC1" style="height: 50px;" class="continue" v-on:click="loadQualtrics()">
+                <v-btn color="#05CDC1" style="height: 50px;" class="continue" v-on:click="loadQualtrics()">
                     <span>{{this.labels.redirectSurvey.toUpperCase()}}</span>
                     <font-awesome-icon style="margin-left: 10px;" icon="external-link-alt" size="lg"/>
                 </v-btn>
@@ -123,11 +123,13 @@
              * @return none
              */
             generateUrlQualtrics() {
-                this.state = "completed";
-                let finalUrl = this.returnUrl;
-                const group = localStorage.getItem("group");
-                const myg = localStorage.getItem("totalTime");
-                window.location.replace(`${finalUrl}&uid=${this.uid}&state=${this.state}&group=${group}&myg=${myg}`);
+                if (this.returnUrl) {
+                  this.state = "completed";
+                  let finalUrl = this.returnUrl;
+                  const group = localStorage.getItem("group");
+                  const myg = localStorage.getItem("totalTime");
+                  window.location.replace(`${finalUrl}&uid=${this.uid}&state=${this.state}&group=${group}&myg=${myg}`);
+                }
             },
 
             /**
@@ -213,12 +215,6 @@
             reloadAnimation() {
                 this.isAnimationStarted = false;
                 this.reloadAnimationPage = true;
-
-                if (this.returnUrl !== "" && this.returnUrl !== undefined) {
-                    this.textButtonAnimation = this.labels.redirectSurvey;
-                } else {
-                    this.textButtonAnimation = this.labels.restartAnimation ;
-                }
             },
 
             /**
@@ -1154,6 +1150,15 @@
         color: white;
         margin: 10px;
         width: 100%;
+    }
+
+    @media (min-width: 760px) {
+      .paragraph {
+        color: white;
+        margin: 10px;
+        width: 100%;
+        font-size:24px;
+      }
     }
 
     .continue {
