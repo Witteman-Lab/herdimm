@@ -68,7 +68,6 @@
     import textsEng from "../assets/json/textsEng.json";
     import textsFr from "../assets/json/textsFr.json";
     import connections from "../assets/json/connections.json";
-    import config from "../../api/config/configMongoDB";
 
 
     export default {
@@ -119,30 +118,6 @@
                 });
             },
             /**
-             * ---> Sending all set of characters to the api rest
-             * @param chosenDB
-             * @return none
-             */
-            sendCharactersToApi(chosenDB) {
-
-                const url =`http://${config.API_URL_PROD}/api/${chosenDB}/herdimm`;
-                //const url =`http://${config.API_URL}/api/${chosenDB}/herdimm`;
-                let dataSent = {
-                    group: JSON.parse(localStorage.getItem("group")),
-                    totalTime: JSON.parse(localStorage.getItem("totalTime")),
-                    checkedCaption: this.checkboxState,
-                    uid: this.uid
-                };
-                fetch(url, {
-                    method: 'POST',
-                    mode: 'cors',
-                    headers: {
-                        'Content-Type': 'application/json;charset=utf-8'
-                    },
-                    body: JSON.stringify(dataSent)
-                });
-            },
-            /**
              * ---> Generate qualtrics  hyperlink
              * @param none
              * @return none
@@ -165,7 +140,6 @@
                     this.isAnimationStarted = true;
                     this.$refs.audioPlayer.playAudio();
                     this.isAnimationPlaying();
-                    this.sendCharactersToApi('mongodb');
             },
 
             reloadAnimationComp() {
@@ -1035,7 +1009,6 @@
                         manageAudioPlayerEvent('restart');
                     }
                 };
-                // this.sendCharactersToApi('mongodb');
             }
         },
         created() {},
