@@ -48,7 +48,6 @@
             <div v-if="this.reloadAnimationPage" style="display: grid">
                 <v-btn color="#05CDC1" style="height: 50px;" class="continue" v-on:click="reloadAnimationComp()">
                     <span>{{this.labels.doneButton.toUpperCase()}}</span>
-                    <v-icon style="font-size: xx-large" right>mdi-check</v-icon>
                 </v-btn>
 
                 <v-btn color="#05CDC1" style="height: 50px;" class="continue" v-on:click="loadQualtrics()">
@@ -155,7 +154,7 @@
              * @return none
              */
             loadQualtrics() {
-                this.generateUrlQualtrics();
+              this.generateUrlQualtrics();
             },
 
             /**
@@ -997,12 +996,12 @@
                 // when the user changes tab or put the browser on background
                 window.onblur = () => {
                     // Problem : there are some timing issues (for example when change tabs when the currentAudio is changing)
-                    manageAudioPlayerEvent('pause');
+                  manageAudioPlayerEvent('pause');
                 };
                 // when the user go back to the animation
                 window.onfocus = () => {
                     if (this.isAnimationStarted) {
-                        manageAudioPlayerEvent('restart');
+                      manageAudioPlayerEvent('restart');
                     }
                 };
             }
