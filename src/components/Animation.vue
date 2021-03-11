@@ -50,7 +50,7 @@
                     <span>{{this.labels.doneButton.toUpperCase()}}</span>
                 </v-btn>
 
-                <v-btn color="#05CDC1" width="auto" style="height: 50px;" class="continue" v-on:click="loadQualtrics()">
+                <v-btn v-if="this.showRedirectSurvey" color="#05CDC1" width="auto" style="height: 50px;" class="continue" v-on:click="loadQualtrics()">
                     <span>{{this.labels.redirectSurvey.toUpperCase()}}</span>
                     <font-awesome-icon style="margin-left: 10px;" icon="external-link-alt" size="lg"/>
                 </v-btn>
@@ -93,6 +93,7 @@
                 voiceToPlayAtAnimation : '',
                 counter: 0,
                 state: "",
+                showRedirectSurvey: false,
 
                 diseaseToPlay: String,
                 voiceToPlay: String,
@@ -1036,6 +1037,10 @@
 
             if (initAnimation) {
                 this.initialiseAnimation();
+            }
+
+            if(this.returnUrl){
+                this.showRedirectSurvey = true;
             }
 
             this.track();
