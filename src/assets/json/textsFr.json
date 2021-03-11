@@ -30,7 +30,7 @@
     "editAvatar": "Éditez",
     "startAnimation": "Voir/écouter l'animation",
     "restartAnimation" : "Revoir l'animation",
-    "redirectSurvey" : "Retourner au sondage",
+    "redirectSurvey" : "Fermer et retourner au sondage",
     "nameInputLabel": "Nom",
     "nameInputPlaceHolder": "Nommez votre avatar",
     "totalCharacterCount" : "avatars créés : ",

@@ -1,6 +1,5 @@
 <template>
     <v-app style=" display: flex; flex-direction: column; justify-content: center; align-items: center">
-
         <v-row justify="center" v-show="dialogState">
             <v-dialog v-model="dialogState" max-width="290" persistent>
                 <v-card>

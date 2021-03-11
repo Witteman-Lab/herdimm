@@ -30,7 +30,7 @@
     "editAvatar": "Edit",
     "startAnimation": "Start animation & sound",
     "restartAnimation" : "Replay the animation",
-    "redirectSurvey" : "Return to survey",
+    "redirectSurvey" : "Close and return to survey",
     "nameInputLabel": "Name",
     "nameInputPlaceHolder": "Name your avatar",
     "totalCharacterCount": "avatars made: ",

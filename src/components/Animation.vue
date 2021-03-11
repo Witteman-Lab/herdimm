@@ -45,12 +45,12 @@
                     <label class="choose-subtitles" for="showCaptions">{{this.labels.displayCaptions}}</label>
                 </div>
             </div>
-            <div v-if="this.reloadAnimationPage" style="display: grid">
+            <div v-if="this.reloadAnimationPage" style="display: flex; flex-direction: column; justify-content: center; align-items: center; align-content: center " >
                 <v-btn color="#05CDC1" style="height: 50px;" class="continue" v-on:click="reloadAnimationComp()">
                     <span>{{this.labels.doneButton.toUpperCase()}}</span>
                 </v-btn>
 
-                <v-btn color="#05CDC1" style="height: 50px;" class="continue" v-on:click="loadQualtrics()">
+                <v-btn color="#05CDC1" width="auto" style="height: 50px;" class="continue" v-on:click="loadQualtrics()">
                     <span>{{this.labels.redirectSurvey.toUpperCase()}}</span>
                     <font-awesome-icon style="margin-left: 10px;" icon="external-link-alt" size="lg"/>
                 </v-btn>
