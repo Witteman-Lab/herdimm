@@ -4,6 +4,7 @@
         <div class="container" id="ourApp">
           <div class="columns">
             <router-view class="column"/>
+            <h>magniol</h>
           </div>
         </div>
     </v-content>
