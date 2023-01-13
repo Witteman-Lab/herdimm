@@ -167,6 +167,11 @@
                 }
             },
 
+          /**
+           * ---> Remove the choice of user and Regenerate all types characters to form a group of a group
+           * @param characterType
+           * @return none
+           */
             regenerateCharacters(characterType) {
                 if (this.isGroupComplete) {
                     this.$refs.listToFill.removeAllCharacters();
@@ -176,7 +181,7 @@
                 this.generateAllCharacters(characterType);
             },
             /**
-             * ---> ---------  completed soon -------
+             * --->  Switch between languages
              * @param {string} action
              * @return none
              */
@@ -343,7 +348,7 @@
             },
 
             /**
-             * ---> ---------  completed soon -------
+             * ---> Switch to debug mode
              * @param none
              * @return none
              */

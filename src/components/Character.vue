@@ -66,6 +66,11 @@
               this.svgColor.numberOfEdition++;
             },
 
+          /***
+           * ---> Change character options and save it in svgColor
+           * @param {Array} timeTotalCharacter
+           * @return none
+           */
             setCharacterTimeCreation(timeTotalCharacter) {
                 this.svgColor.characterTimeCreation = timeTotalCharacter;
             },

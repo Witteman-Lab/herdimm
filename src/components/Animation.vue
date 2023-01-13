@@ -109,6 +109,12 @@
             totalTime: Array,
         },
         methods: {
+
+          /**
+           * ---> Animation page display with tittle when user load the page
+           * @param none
+           * @return none
+           */
             track () {
                 // this.$ga.time();
                 this.$ga.page({

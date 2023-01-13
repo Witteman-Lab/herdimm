@@ -84,7 +84,13 @@
                 this.changeBannerColor();
             },
 
-            changeBannerColor() {
+          /**
+           * ---> change color of banner
+           * @param none
+           * @return none
+           */
+
+          changeBannerColor() {
                 if (this.position > this.characterList.length - 1) {
                     setTimeout(() => {
                         const groupBanner = document.getElementById("groupCharacter");
@@ -99,6 +105,14 @@
             },
 
 
+          /**
+           * ---> Replace character
+           * @param {Object} character
+           * @param {Object} characterColors
+           * @param {String} type
+           * @param {number} id
+           * @return none
+           */
             replaceCharacterInGroup(character, characterColors, type, id) {
                 const index = this.characterList.findIndex((characterObj) => characterObj.id === id);
                 const newCharacterId = character.id + Date.now() + "_customised";
@@ -136,7 +150,6 @@
                     }
                 });
             },
-
             changeCharacterReplaceMode(mode) {
                 this.characterMode = mode;
             },
@@ -150,6 +163,11 @@
                 this.characterList = characters;
             },
 
+          /**
+           * ---> Remove choice of character
+           * @param none
+           * @return none
+           */
             removeAllCharacters() {
                 this.characterList = [];
                 const maxCharacters = this.nbAvatar + this.nbVulnerable + this.nbCommnunity;

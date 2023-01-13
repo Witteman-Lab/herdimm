@@ -89,6 +89,12 @@
             }
         },
         methods: {
+
+          /**
+           * ---> Load Automatic home page
+           * @param none
+           * @return none
+           */
             track () {
                 this.$ga.page({
                     page: '/',
@@ -96,6 +102,11 @@
                     location: window.location.href
                 })
             },
+          /**
+           * ---> Translate into selected language
+           * @param none
+           * @return none
+           */
 
             loadTranscript(){
                 this.$router.push({name: 'Transcript'});
@@ -190,7 +201,7 @@
             },
 
             /**
-             * --->
+             * ---> load disease for animation
              * @param none
              * @return none
              */
@@ -204,7 +215,7 @@
             },
 
             /**
-             * --->
+             * ---> load voice for animation(male or female)
              * @param none
              * @return none
              */
