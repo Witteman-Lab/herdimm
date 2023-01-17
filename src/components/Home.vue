@@ -244,7 +244,6 @@
             this.setUid();
             this.manageLandingPageImage();
             const browser = Bowser.getParser(window.navigator.userAgent);
-            console.log("test de magniol", browser.getBrowserName());
             this.languageFR = textsFr;
             this.languageEN = textsEng;
             if(browser.getBrowserName() === "Microsoft Edge" || browser.getBrowserName() === "Chrome" || browser.getBrowserName() === "Safari" || browser.getBrowserName() === "Opera"){
