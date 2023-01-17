@@ -16,6 +16,12 @@ export default {
   name: 'App',
   components: {
   },
+  metaInfo: {
+    title: 'Herdimm',
+    meta:[
+      {name: 'description', content: "An interactive visualization of each one's role in protecting our community"}
+    ]
+  },
   data: () => ({
     //
   }),

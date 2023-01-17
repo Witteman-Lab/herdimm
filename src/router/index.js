@@ -4,8 +4,10 @@ import Home from '../components/Home'
 import Avatars from '../components/Avatars'
 import Animation from '../components/Animation'
 import Transcript from '../components/Transcript'
+import VueMeta from 'vue-meta'
 
 Vue.use(Router);
+Vue.use(VueMeta);
 
 
 export default new Router({
