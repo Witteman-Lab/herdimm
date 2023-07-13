@@ -1,40 +1,39 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Home from '../components/Home'
-import Avatars from '../components/Avatars'
-import Animation from '../components/Animation'
-import Transcript from '../components/Transcript'
-import VueMeta from 'vue-meta'
+// Composables
+import { createRouter, createWebHistory } from 'vue-router'
 
-Vue.use(Router);
-Vue.use(VueMeta);
+const routes = [
+  {
+    path: '/',
+    component: () => import('@/layouts/default/Default.vue'),
+    children: [
+      {
+        path: '',
+        name: 'Home',
+        component: () => import('@/views/Home.vue'),
+      },
+      {
+        path:"Animation",
+        name:"Animation",
+        component:()=>import("@/views/Animation.vue")
+      },
+      {
+        path:"Avatars",
+        name:"Avatars",
+        component:()=>import("@/views/MakeAvatar.vue")
+      },
+      {
+        path:"Transcript",
+        name:"Transcript",
+        component:()=>import("@/views/Transcript.vue")
+      }
+      
+    ],
+  },
+]
 
-
-export default new Router({
-    routes: [
-        {
-            path: '/',
-            name: 'Home',
-            component: Home
-        },
-        {
-            path: '/Avatars',
-            name: 'Avatars',
-            component: Avatars,
-            props: true
-        },
-        {
-            path: '/Animation',
-            name: 'Animation',
-            component: Animation,
-            props: true
-        },
-        {
-            path: '/Transcript',
-            name: 'Transcript',
-            component: Transcript,
-            props: true
-        }
-    ]
-
+const router = createRouter({
+  history: createWebHistory(process.env.BASE_URL),
+  routes,
 })
+
+export default router

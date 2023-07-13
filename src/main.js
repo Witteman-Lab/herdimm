@@ -1,26 +1,32 @@
-import Vue from 'vue'
+/**
+ * main.js
+ *
+ * Bootstraps Vuetify and other plugins then mounts the App`
+ */
+
+// Components
 import App from './App.vue'
-import router from './router'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faPlay, faPause, faStepForward, faStepBackward, faFastBackward, faFastForward, faAngleDown,faPlayCircle, faRedo, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import vuetify from './plugins/vuetify';
-import VueRecognizer from 'vue-recognizer';
-import VueAnalytics from 'vue-analytics';
 
-Vue.use(VueRecognizer);
-library.add(faPlay, faPause, faStepForward, faStepBackward, faFastBackward, faFastForward, faAngleDown,faPlayCircle, faRedo, faExternalLinkAlt);
+// Composables
+import { createApp } from 'vue'
 
-require("./scss/main.scss");
-Vue.component('font-awesome-icon', FontAwesomeIcon);
-Vue.use(VueAnalytics, {
-    id: 'UA-170491516-1',
-    router
-});
-
-
-new Vue({
-    router,
-    vuetify,
-    render: h => h(App)
-}).$mount('#app');
+// Plugins
+import { registerPlugins } from '@/plugins'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import VSwatches from 'vue3-swatches'
+import 'vue3-swatches/dist/style.css'
+library.add(fas);
+import { createVuetify } from 'vuetify'
+import 'vuetify/dist/vuetify.css'
+import Vue3ColorPicker from "vue3-colorpicker";
+import "vue3-colorpicker/style.css";
+const app = createApp(App)
+const vuetify = createVuetify()
+registerPlugins(app)
+app.component('font-awesome-icon', FontAwesomeIcon);
+app.use(vuetify)
+app.use(VSwatches)
+app.use(Vue3ColorPicker)
+app.mount('#app')

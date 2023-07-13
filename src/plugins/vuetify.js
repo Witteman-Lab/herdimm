@@ -1,30 +1,26 @@
-import Vue from 'vue';
-import Vuetify, {
-  VCarousel,
-  VCarouselItem,
-  VStepperHeader,
-  VStepper,
-  VStepperItems,
-  VStepperContent,
-  VStepperStep,
-  VBtn
-} from 'vuetify/lib'
+/**
+ * plugins/vuetify.js
+ *
+ * Framework documentation: https://vuetifyjs.com`
+ */
 
-Vue.use(Vuetify, {
-  components: {
-    VCarousel,
-    VCarouselItem,
-    VStepperHeader,
-    VStepper,
-    VStepperItems,
-    VStepperContent,
-    VStepperStep,
-    VBtn
-  }
-});
+// Styles
+import '@mdi/font/css/materialdesignicons.css'
+import 'vuetify/styles'
 
-export default new Vuetify({
-  icons: {
-    iconfont: 'mdi',
-  }
-});
+// Composables
+import { createVuetify } from 'vuetify'
+
+// https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
+export default createVuetify({
+  theme: {
+    themes: {
+      light: {
+        colors: {
+          primary: '#1867C0',
+          secondary: '#5CBBF6',
+        },
+      },
+    },
+  },
+})
